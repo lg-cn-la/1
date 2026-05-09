@@ -105,13 +105,13 @@ Claude 随后提出第三条路：`Operations Console`。
 - 中心 KPI 变静态，削弱了“活的运营控制台”感觉。
 - 节点业务密度偏稀。
 
-### v3.5：当前主候选
+### v3.5：上一版主候选
 
 桌面文件 `09_v35_operations_console_hybrid.html` 是 Claude 在 v3 和 GPT 改版之间做的 hybrid，现已归档到：
 
 `补充资料归档/operations-console/09_v35_operations_console_hybrid.html`
 
-它应该被视为当前主候选，而不是普通新增 demo。
+它应该被视为 v4 的直接基准，而不是普通新增 demo。
 
 v3.5 的取舍：
 
@@ -120,7 +120,24 @@ v3.5 的取舍：
 - H1 从隐喻式 `like a control room` 收敛为更产品化的 `Run survey supply from one operations console.`
 - 字体收敛为 IBM Plex Sans + JetBrains Mono。
 
-当前判断：v3.5 是目前最值得继续迭代的方向。
+当前判断：v3.5 证明了 operations console 方向成立，v4 应继续沿着它迭代。
+
+### v4：当前主动迭代
+
+`11_v4_operations_console_product_loop.html` 是基于 v3.5 复制出来的新版本，现已归档到：
+
+`补充资料归档/operations-console/11_v4_operations_console_product_loop.html`
+
+v4 的目标不是换风格，而是回答“SRMG 那种视频感是否值得用于我们”的问题：不做品牌视频照搬，先用网页内部动效做一段产品运行短循环。
+
+v4 的取舍：
+
+- 保留 v3.5 的深色运营控制台、命名节点、网格、罗盘签名和 SaaS 克制感。
+- 将中心 KPI 面板改为 `Launch → Route → QC → Settle` 的循环运行界面。
+- 用 JS 更新当前阶段、事件记录、完成数、QC 队列和结算金额，让右侧 hero 像真实产品正在跑。
+- 先以低成本拿到“运动叙事”和“系统运行感”，以后如果要做真实 WebM，可以把 v4 当作脚本和镜头分解基础。
+
+当前判断：v4 是当前主线，v3.5 是对照基准。
 
 ## 5. 当前资料归档位置
 
@@ -132,7 +149,8 @@ v3.5 的取舍：
 
 - `operations-console/09_v3_operations_console.html`：Claude v3 原始 operations console 方向。
 - `operations-console/10_ops_console_overseas_saas_demo.html`：GPT 修改版，更像 SaaS 的方向验证稿。
-- `operations-console/09_v35_operations_console_hybrid.html`：v3.5 hybrid，当前主候选。
+- `operations-console/09_v35_operations_console_hybrid.html`：v3.5 hybrid，v4 的对照基准。
+- `operations-console/11_v4_operations_console_product_loop.html`：当前主线，产品运行短循环版本。
 - `handoff/1778316283238__HANDOFF.md`：Claude Cowork 交接文档。
 - `handoff/claude聊天.txt`：用户和 Claude Chat 的完整聊天记录。
 
@@ -147,12 +165,13 @@ v3.5 的取舍：
 
 如果后续 agent 接手，建议不要重新从“7 个 demo 哪个最好”开始，而是按以下顺序推进：
 
-1. 先打开 `09_v35_operations_console_hybrid.html`，判断它是否足够像海外 B2B SaaS，而不是只看源码。
-2. 对比 `10_ops_console_overseas_saas_demo.html`，确认 v3.5 是否在“记忆点”和“SaaS 克制感”之间取得更好平衡。
-3. 如果继续做页面，应优先把真实业务内容替换进去，而不是继续写“设计语言”占位文案。
-4. 重点完善首屏之后的产品证据：模块、工作流、供应商路由、反作弊、财务结算、合规、客户案例。
-5. 检查移动端和窄屏：不要让暗色数据密度变成拥挤或无法阅读。
-6. 继续保持真实动效，但动效要像运营状态，不要像装饰。
+1. 先打开 `11_v4_operations_console_product_loop.html`，看右侧循环是否像真实产品正在运行。
+2. 再打开 `09_v35_operations_console_hybrid.html`，对比 v4 的“视频感收益”是否真的超过 v3.5 的简洁稳定。
+3. 对比 `10_ops_console_overseas_saas_demo.html`，确认 v4 没有丢掉 SaaS 克制感。
+4. 如果继续做页面，应优先把真实业务内容替换进去，而不是继续写“设计语言”占位文案。
+5. 重点完善首屏之后的产品证据：模块、工作流、供应商路由、反作弊、财务结算、合规、客户案例。
+6. 检查移动端和窄屏：不要让暗色数据密度变成拥挤或无法阅读。
+7. 继续保持真实动效，但动效要像运营状态，不要像装饰。
 
 ## 7. 质量标准
 
@@ -167,7 +186,6 @@ v3.5 的取舍：
 
 ## 8. 我的当前建议
 
-继续以 v3.5 为主线迭代。
+继续以 v4 为主线迭代，同时保留 v3.5 作为低动效对照基准。
 
 不要回到 v2 的 editorial warm-paper 路线；也不要完全退回早期 03-07 的蓝白圆角 SaaS 模板。最有潜力的路是：克制的 operations console，加真实业务内容，加国际 SaaS 信息架构。
-

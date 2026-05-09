@@ -14,11 +14,15 @@
 
 > 国际 SaaS 正版感 + 运营密度 + 产品可信。
 
-最值得继续迭代的候选是：
+当前主动迭代版本是：
+
+[补充资料归档/operations-console/11_v4_operations_console_product_loop.html](补充资料归档/operations-console/11_v4_operations_console_product_loop.html)
+
+它是在 v3.5 hybrid 基础上做的 v4 产品运行短循环版本，目标是在“海外 B2B SaaS 可信感”“运营控制台记忆点”和“系统正在运行的视频感”之间取得平衡。
+
+对照基准是：
 
 [补充资料归档/operations-console/09_v35_operations_console_hybrid.html](补充资料归档/operations-console/09_v35_operations_console_hybrid.html)
-
-它是 Claude v3 与 GPT 改版思路融合后的 v3.5 hybrid 版本，目标是在“海外 B2B SaaS 可信感”和“运营控制台记忆点”之间取得平衡。
 
 ## 目录说明
 
@@ -35,8 +39,8 @@
 不要从“7 个旧 demo 重新打分”开始。更有效的顺序是：
 
 1. 先读 `PROJECT_HANDOFF.md`。
-2. 打开 v3.5 当前候选页面。
-3. 对照 `10_ops_console_overseas_saas_demo.html`，判断 SaaS 克制感和视觉记忆点是否平衡。
+2. 打开 v4 当前候选页面。
+3. 对照 v3.5 和 `10_ops_console_overseas_saas_demo.html`，判断 SaaS 克制感、视觉记忆点和产品运行感是否平衡。
 4. 再把真实业务内容替换进当前候选，而不是继续写设计说明类占位文案。
 
 ## 注意
