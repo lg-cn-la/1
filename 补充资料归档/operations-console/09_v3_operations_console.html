@@ -1,0 +1,1368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SurveySaaS — The operations console for survey supply.</title>
+<meta name="description" content="A dark, data-dense operations console for survey supply: project setup, supplier routing, fraud control and finance settlement, all under one auditable record. Built for panel networks, fieldwork agencies and brand insights teams who run operations 24/7." />
+
+<!-- ============================================================
+     Aesthetic anchor (per Anthropic frontend-design rules):
+
+       direction  : OPERATIONS CONSOLE
+                    (Bloomberg-terminal × Datadog × Linear-restraint)
+       why        : matches the genre buyers (panel-ops leaders,
+                    fieldwork agencies, brand insights ops) live in
+                    every day — not editorial print, not blue-white
+                    SaaS template
+       fonts      : Cabinet Grotesk (display)
+                    IBM Plex Sans (body, 300 + 600)
+                    JetBrains Mono (data, callsigns, ticker)
+                    — no Inter, Roboto, Arial, Space Grotesk, Fraunces
+       palette    : ink-navy #0A1628, panel #131F36, rule #1F2D4D,
+                    cyan #4FE3FF, lime #B5F056, amber #FFB454,
+                    off-white #E8EEF5, muted #8AA0BC
+                    — no warm paper, no purple-on-white
+       weight     : 300 vs 800 (extreme)
+       size jump  : H1 ~88px / body 16px ≈ 5.5×
+       motion     : real, not decoration
+                    rings rotate, nodes pulse, connectors flow,
+                    KPIs count up, ticker scrolls, scanlines
+       background : deep navy + layered radials + scanline overlay
+============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@500;800;900&family=IBM+Plex+Sans:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* primary surfaces — deep navy stack */
+  --ink:#0A1628;
+  --panel:#131F36;
+  --panel-2:#192945;
+  --rule:#1F2D4D;
+  --rule-soft:#2A3B61;
+
+  /* signal colors — sharp accents */
+  --cyan:#4FE3FF;          /* primary signal: live, primary CTA, key data */
+  --cyan-soft:rgba(79,227,255,.12);
+  --lime:#B5F056;          /* go / pass / success */
+  --amber:#FFB454;         /* heat / warmth / featured */
+  --rose:#FF7B95;          /* alert / fraud */
+
+  /* text */
+  --fg:#E8EEF5;
+  --fg-2:#C5D2E2;
+  --muted:#8AA0BC;
+  --muted-2:#5C6F8C;
+
+  /* type stacks */
+  --display:'Cabinet Grotesk','Helvetica Neue',Arial,sans-serif;
+  --sans:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono','SFMono-Regular',Menlo,monospace;
+
+  --shadow-1:0 1px 0 rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+  --shadow-2:0 24px 60px rgba(0,0,0,.45);
+  --glow-cyan:0 0 0 1px rgba(79,227,255,.45),0 0 24px rgba(79,227,255,.18);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--fg);
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+
+  /* Atmosphere: deep navy + two large radials (cyan top-right, amber bottom-left)
+     + a fine scanline pattern. No purple gradient. */
+  background-image:
+    radial-gradient(60% 50% at 88% 0%, rgba(79,227,255,.10) 0%, rgba(79,227,255,0) 60%),
+    radial-gradient(50% 40% at 8% 100%, rgba(255,180,84,.07) 0%, rgba(255,180,84,0) 60%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.012) 0px,
+      rgba(255,255,255,.012) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  background-attachment:fixed;
+}
+
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+
+.container{width:min(1320px,calc(100% - 48px));margin:0 auto}
+.mono{font-family:var(--mono);font-weight:400;letter-spacing:.02em}
+.display{font-family:var(--display)}
+
+/* ============================================================
+   STATUS BAR — narrow ribbon at the very top
+   "OPS · LIVE | UTC time | networks online" — sets the genre
+   immediately
+============================================================ */
+.statusbar{
+  position:relative;
+  background:#06101F;
+  border-bottom:1px solid var(--rule);
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  z-index:50;
+}
+.statusbar-inner{
+  display:flex;align-items:center;gap:24px;
+  height:32px;
+}
+.statusbar .live{
+  color:var(--lime);
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:500;
+}
+.statusbar .live::before{
+  content:"";width:6px;height:6px;border-radius:50%;
+  background:var(--lime);
+  box-shadow:0 0 0 0 rgba(181,240,86,.6);
+  animation:pulse-lime 1.4s ease-out infinite;
+}
+@keyframes pulse-lime{
+  0%{box-shadow:0 0 0 0 rgba(181,240,86,.55)}
+  70%{box-shadow:0 0 0 9px rgba(181,240,86,0)}
+  100%{box-shadow:0 0 0 0 rgba(181,240,86,0)}
+}
+.statusbar .sep{opacity:.4}
+.statusbar .right{margin-left:auto;display:flex;gap:24px}
+.statusbar .right span:last-child{color:var(--cyan)}
+
+/* ============================================================
+   MASTHEAD — sticky nav, panel-style with hairline
+============================================================ */
+.masthead{
+  position:sticky;top:0;z-index:40;
+  background:rgba(10,22,40,.78);
+  backdrop-filter:saturate(160%) blur(18px);
+  border-bottom:1px solid var(--rule);
+}
+.mast-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;height:68px;
+}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em}
+.brand .mark{
+  width:28px;height:28px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--cyan) 0%,#2A8FFF 100%);
+  border-radius:6px;
+  box-shadow:0 0 0 1px rgba(79,227,255,.4),0 6px 16px rgba(79,227,255,.25);
+  position:relative;
+}
+.brand .mark::after{
+  content:"";position:absolute;inset:6px;
+  background:var(--ink);
+  border-radius:2px;
+}
+.brand .mark::before{
+  content:"";position:absolute;inset:9px 9px auto auto;width:6px;height:6px;
+  background:var(--lime);border-radius:50%;
+  box-shadow:0 0 6px rgba(181,240,86,.8);
+  z-index:2;
+  animation:pulse-lime 1.6s ease-out infinite;
+}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{
+  font-size:13.5px;font-weight:400;color:var(--fg-2);
+  padding:8px 14px;border-radius:6px;
+  transition:color .2s ease,background .2s ease;
+}
+.nav a:hover{color:var(--cyan);background:var(--cyan-soft)}
+.nav a.active{color:var(--cyan)}
+.actions{display:flex;align-items:center;gap:12px}
+.lang{
+  display:inline-flex;align-items:center;
+  font-family:var(--mono);font-size:11px;
+  border:1px solid var(--rule);border-radius:6px;
+  overflow:hidden;
+  height:34px;
+}
+.lang button{
+  background:transparent;border:0;color:var(--muted);
+  padding:0 10px;height:100%;
+  letter-spacing:.05em;
+  border-right:1px solid var(--rule);
+  min-width:44px;
+}
+.lang button:last-child{border-right:0}
+.lang button.active{background:var(--cyan-soft);color:var(--cyan)}
+.lang button:hover:not(.active){color:var(--fg)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-weight:600;font-size:14px;
+  height:38px;padding:0 16px;border-radius:6px;
+  border:1px solid transparent;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.btn.primary{
+  background:var(--cyan);color:var(--ink);
+  box-shadow:0 0 0 1px rgba(79,227,255,.5),0 6px 18px rgba(79,227,255,.25);
+}
+.btn.primary:hover{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(79,227,255,.7),0 12px 28px rgba(79,227,255,.4)}
+.btn.ghost{border-color:var(--rule);color:var(--fg)}
+.btn.ghost:hover{border-color:var(--cyan);color:var(--cyan);background:var(--cyan-soft)}
+.btn.lg{height:46px;padding:0 22px;font-size:15px}
+.btn .arrow{transition:transform .2s ease}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* ============================================================
+   HERO — the heart of v3
+   Left:  H1 + sub + CTAs + trust callsigns
+   Right: live console (4 rotating rings + 8 supplier nodes
+          + center "control window" with live KPIs and ticker)
+============================================================ */
+.hero{
+  position:relative;
+  padding:80px 0 96px;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(36% 24% at 76% 32%, rgba(79,227,255,.08) 0%, rgba(79,227,255,0) 70%);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;
+  align-items:center;
+  position:relative;z-index:2;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+  padding:8px 12px;border:1px solid var(--rule);
+  border-radius:99px;margin-bottom:28px;
+}
+.hero-eyebrow .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 0 0 rgba(79,227,255,.55);
+  animation:pulse-cyan 1.4s ease-out infinite;
+}
+@keyframes pulse-cyan{
+  0%{box-shadow:0 0 0 0 rgba(79,227,255,.55)}
+  70%{box-shadow:0 0 0 9px rgba(79,227,255,0)}
+  100%{box-shadow:0 0 0 0 rgba(79,227,255,0)}
+}
+
+.hero h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(48px,6.5vw,88px);
+  line-height:0.98;letter-spacing:-.035em;
+  margin:0 0 28px;color:var(--fg);
+}
+.hero h1 .accent{color:var(--cyan)}
+.hero h1 .dim{color:var(--muted-2);font-weight:500}
+.hero-sub{
+  font-size:18px;line-height:1.6;color:var(--fg-2);
+  font-weight:300;
+  max-width:520px;margin:0 0 36px;
+}
+.hero-sub b{font-weight:600;color:var(--fg)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px}
+.callsigns{
+  display:flex;flex-wrap:wrap;gap:0;
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  border-top:1px solid var(--rule);padding-top:18px;
+}
+.callsigns span{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:0 18px 0 0;margin-right:18px;
+  border-right:1px solid var(--rule);
+  height:18px;
+}
+.callsigns span:last-child{border-right:0}
+.callsigns span::before{
+  content:"";width:5px;height:5px;border-radius:50%;
+  background:var(--lime);opacity:.8;
+}
+.callsigns span:nth-child(2)::before{background:var(--cyan)}
+.callsigns span:nth-child(3)::before{background:var(--amber)}
+.callsigns span:nth-child(4)::before{background:var(--muted)}
+
+/* ----- console (right side) ----- */
+.console{
+  position:relative;
+  aspect-ratio:1/1;
+  max-width:560px;margin-left:auto;
+}
+.console-frame{
+  position:absolute;inset:0;
+  border:1px solid var(--rule);border-radius:14px;
+  background:
+    linear-gradient(180deg,rgba(19,31,54,.6) 0%,rgba(10,22,40,.4) 100%),
+    radial-gradient(60% 50% at 50% 40%,rgba(79,227,255,.05) 0%,rgba(79,227,255,0) 70%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 30px 70px rgba(0,0,0,.5);
+}
+.console-frame::before{
+  content:"";position:absolute;inset:0;border-radius:14px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 3px,
+      rgba(255,255,255,.012) 3px,
+      rgba(255,255,255,.012) 4px
+    );
+  pointer-events:none;
+}
+/* corner marks (control-room aesthetic) */
+.console-frame::after{
+  content:"";position:absolute;inset:8px;border-radius:8px;
+  background:
+    /* top-left */
+    linear-gradient(to right, var(--cyan) 0, var(--cyan) 12px, transparent 12px) top left / 100% 1px no-repeat,
+    linear-gradient(to bottom, var(--cyan) 0, var(--cyan) 12px, transparent 12px) top left / 1px 100% no-repeat,
+    /* top-right */
+    linear-gradient(to left, var(--cyan) 0, var(--cyan) 12px, transparent 12px) top right / 100% 1px no-repeat,
+    linear-gradient(to bottom, var(--cyan) 0, var(--cyan) 12px, transparent 12px) top right / 1px 100% no-repeat,
+    /* bottom-left */
+    linear-gradient(to right, var(--cyan) 0, var(--cyan) 12px, transparent 12px) bottom left / 100% 1px no-repeat,
+    linear-gradient(to top, var(--cyan) 0, var(--cyan) 12px, transparent 12px) bottom left / 1px 100% no-repeat,
+    /* bottom-right */
+    linear-gradient(to left, var(--cyan) 0, var(--cyan) 12px, transparent 12px) bottom right / 100% 1px no-repeat,
+    linear-gradient(to top, var(--cyan) 0, var(--cyan) 12px, transparent 12px) bottom right / 1px 100% no-repeat;
+  opacity:.55;
+  pointer-events:none;
+}
+
+.console-svg{
+  position:absolute;inset:0;width:100%;height:100%;
+}
+/* concentric rings — outermost rotates slowly */
+.ring{fill:none;stroke:var(--rule-soft);stroke-width:1}
+.ring.outer{stroke:var(--cyan);stroke-opacity:.35;stroke-dasharray:2 5;transform-origin:center;animation:rotate-cw 90s linear infinite}
+.ring.mid-1{stroke-dasharray:none;stroke-opacity:.5}
+.ring.mid-2{stroke-dasharray:1 6;stroke-opacity:.4;transform-origin:center;animation:rotate-ccw 70s linear infinite}
+.ring.inner{stroke:var(--cyan);stroke-opacity:.6}
+@keyframes rotate-cw{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes rotate-ccw{from{transform:rotate(360deg)}to{transform:rotate(0)}}
+
+/* tick marks every 30° — like a navigation compass */
+.ticks line{stroke:var(--cyan);stroke-opacity:.4;stroke-width:1.2}
+.ticks .major{stroke-opacity:.7;stroke-width:1.6}
+
+/* axis labels (compass) */
+.axis-label{
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;
+  fill:var(--muted);text-transform:uppercase;
+}
+
+/* supplier nodes */
+.node{stroke:var(--ink);stroke-width:2}
+.node.live{fill:var(--cyan);filter:drop-shadow(0 0 6px rgba(79,227,255,.6))}
+.node.warm{fill:var(--amber);filter:drop-shadow(0 0 5px rgba(255,180,84,.4))}
+.node.dim{fill:var(--rule-soft)}
+.node-pulse{
+  fill:none;stroke:var(--cyan);stroke-width:2;
+  transform-origin:center;transform-box:fill-box;
+  animation:node-pulse 2.4s ease-out infinite;
+}
+.node-pulse.warm{stroke:var(--amber);animation-delay:-1.2s}
+@keyframes node-pulse{
+  0%{r:8;stroke-opacity:.7}
+  100%{r:22;stroke-opacity:0}
+}
+.node-label{
+  font-family:var(--mono);font-size:9.5px;
+  fill:var(--fg-2);letter-spacing:.05em;
+}
+.node-label.dim{fill:var(--muted-2)}
+
+/* connector dashes from outer nodes to center — animated flow */
+.connector{stroke:var(--cyan);stroke-width:1;stroke-opacity:.35;fill:none;stroke-dasharray:3 5;animation:flow-dash 1.8s linear infinite}
+.connector.warm{stroke:var(--amber);stroke-opacity:.3}
+@keyframes flow-dash{from{stroke-dashoffset:0}to{stroke-dashoffset:-32}}
+
+/* center control window — hard-edge, lit panel */
+.console-window{
+  position:absolute;
+  left:50%;top:50%;transform:translate(-50%,-50%);
+  width:54%;
+  background:linear-gradient(180deg,rgba(15,28,52,.96) 0%,rgba(10,22,40,.96) 100%);
+  border:1px solid var(--cyan);
+  border-radius:8px;
+  box-shadow:var(--glow-cyan),0 22px 50px rgba(0,0,0,.5);
+  overflow:hidden;
+}
+.cw-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;
+  border-bottom:1px solid var(--rule);
+  background:rgba(0,0,0,.25);
+  font-family:var(--mono);font-size:10px;color:var(--muted);
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.cw-bar .dot{width:6px;height:6px;border-radius:50%;background:var(--lime);
+  box-shadow:0 0 6px rgba(181,240,86,.7);
+  animation:pulse-lime 1.4s ease-out infinite;
+}
+.cw-body{padding:14px}
+.cw-stat{margin-bottom:14px}
+.cw-stat:last-child{margin-bottom:0}
+.cw-key{
+  font-family:var(--mono);font-size:10px;color:var(--muted);
+  letter-spacing:.1em;text-transform:uppercase;
+  display:flex;justify-content:space-between;
+}
+.cw-key .delta{color:var(--lime)}
+.cw-key .delta.warn{color:var(--amber)}
+.cw-val{
+  font-family:var(--display);font-weight:800;
+  font-size:32px;line-height:1;
+  letter-spacing:-.02em;color:var(--fg);
+  margin-top:3px;
+  font-feature-settings:"tnum" 1;
+}
+.cw-val .unit{font-size:14px;color:var(--muted);font-weight:500;margin-left:4px}
+.cw-bar-meter{
+  margin-top:6px;height:3px;border-radius:2px;
+  background:var(--rule);overflow:hidden;
+}
+.cw-bar-meter b{
+  display:block;height:100%;
+  background:linear-gradient(90deg,var(--cyan),#7DEFFF);
+  box-shadow:0 0 8px rgba(79,227,255,.5);
+}
+
+/* ticker under the console window */
+.console-ticker{
+  position:absolute;left:8px;right:8px;bottom:8px;
+  height:28px;
+  background:rgba(0,0,0,.45);
+  border:1px solid var(--rule);
+  border-radius:6px;
+  overflow:hidden;
+  display:flex;align-items:center;
+  padding:0 10px;gap:10px;
+  font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.04em;color:var(--fg-2);
+}
+.console-ticker .tag{
+  flex:0 0 auto;
+  color:var(--cyan);
+  font-weight:500;letter-spacing:.1em;
+  border-right:1px solid var(--rule);padding-right:10px;
+  text-transform:uppercase;
+}
+.ticker-track{
+  flex:1;overflow:hidden;position:relative;
+  white-space:nowrap;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 6%,#000 94%,transparent 100%);
+}
+.ticker-track-inner{
+  display:inline-block;
+  animation:tick 38s linear infinite;
+  padding-left:100%;
+}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.ticker-track-inner i{font-style:normal;color:var(--lime);margin-right:6px}
+.ticker-track-inner i.warn{color:var(--amber)}
+.ticker-track-inner i.alert{color:var(--rose)}
+.ticker-track-inner span{margin-right:36px}
+.ticker-track-inner em{font-style:normal;color:var(--muted)}
+
+/* ============================================================
+   RIBBON — between hero and modules
+   Logo wall / customer proof, mono typography
+============================================================ */
+.ribbon{
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  background:rgba(0,0,0,.18);
+  padding:22px 0;
+}
+.ribbon-inner{
+  display:flex;align-items:center;gap:32px;
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  flex-wrap:wrap;
+}
+.ribbon-inner .label{color:var(--cyan);border-right:1px solid var(--rule);padding-right:24px}
+.ribbon-inner .firms{
+  display:flex;gap:32px;flex-wrap:wrap;
+  font-family:var(--display);font-weight:500;
+  font-size:14px;letter-spacing:0;
+  text-transform:none;color:var(--fg-2);
+}
+.ribbon-inner .firms b{font-weight:800}
+
+/* ============================================================
+   SECTION — modules (dashboard tile grid)
+============================================================ */
+.section{padding:120px 0;position:relative}
+.section-head{
+  display:grid;grid-template-columns:1fr 1.4fr;gap:56px;
+  margin-bottom:56px;align-items:end;
+}
+.section-num{
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:.16em;color:var(--cyan);
+  text-transform:uppercase;
+}
+.section-num::before{content:"§ ";color:var(--muted)}
+.section-head h2{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(36px,4.4vw,56px);
+  line-height:1.05;letter-spacing:-.025em;
+  margin:14px 0 0;color:var(--fg);
+}
+.section-head h2 em{font-style:normal;color:var(--cyan)}
+.section-head .lead{
+  font-size:17px;line-height:1.65;color:var(--fg-2);
+  font-weight:300;margin:0;
+}
+.section-head .lead b{color:var(--fg);font-weight:600}
+
+.modules{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+  border-radius:14px;overflow:hidden;
+}
+.mod{
+  background:var(--panel);
+  padding:32px 28px 28px;
+  position:relative;
+  transition:background .25s ease;
+  min-height:240px;
+}
+.mod:hover{background:var(--panel-2)}
+.mod:hover .mod-num{color:var(--cyan)}
+.mod-num{
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:.2em;color:var(--muted);
+  text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:24px;
+  transition:color .25s ease;
+}
+.mod-num .live-dot{
+  width:5px;height:5px;border-radius:50%;background:var(--lime);
+  box-shadow:0 0 5px rgba(181,240,86,.7);
+}
+.mod h3{
+  font-family:var(--display);font-weight:800;
+  font-size:22px;line-height:1.15;letter-spacing:-.018em;
+  margin:0 0 12px;color:var(--fg);
+}
+.mod p{
+  font-size:14.5px;line-height:1.6;color:var(--muted);
+  font-weight:300;margin:0 0 18px;
+}
+.mod-data{
+  display:flex;align-items:baseline;gap:16px;
+  font-family:var(--mono);font-size:11px;
+  color:var(--muted);letter-spacing:.05em;
+  border-top:1px solid var(--rule);padding-top:14px;
+}
+.mod-data b{
+  font-family:var(--display);font-size:18px;font-weight:800;
+  color:var(--cyan);letter-spacing:-.015em;
+  font-feature-settings:"tnum" 1;
+}
+.mod-data b.amber{color:var(--amber)}
+.mod-data b.lime{color:var(--lime)}
+.mod-data span{text-transform:uppercase;font-size:10px;letter-spacing:.12em}
+.mod .glyph{
+  position:absolute;top:32px;right:28px;
+  width:28px;height:28px;
+  opacity:.6;
+}
+.mod .glyph svg{width:100%;height:100%;stroke:var(--cyan);stroke-width:1.4;fill:none}
+
+/* ============================================================
+   WORKFLOW — horizontal flow with animated rail
+============================================================ */
+.workflow{
+  position:relative;
+  border:1px solid var(--rule);border-radius:14px;
+  background:linear-gradient(180deg,var(--panel) 0%,var(--ink) 100%);
+  padding:48px 32px 40px;
+  overflow:hidden;
+}
+.workflow::before{
+  content:"";position:absolute;left:32px;right:32px;top:50%;
+  height:1px;
+  background:linear-gradient(90deg,
+    transparent 0%,
+    rgba(79,227,255,.2) 8%,
+    rgba(79,227,255,.5) 50%,
+    rgba(79,227,255,.2) 92%,
+    transparent 100%);
+  z-index:1;
+  pointer-events:none;
+}
+.workflow::after{
+  content:"";position:absolute;left:0;top:50%;
+  width:60px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--cyan));
+  filter:drop-shadow(0 0 6px rgba(79,227,255,.6));
+  animation:rail 2.6s linear infinite;
+  z-index:2;pointer-events:none;
+}
+@keyframes rail{
+  0%{left:32px;opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{left:calc(100% - 92px);opacity:0}
+}
+.flow-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  position:relative;z-index:3;
+}
+.flow-step{
+  background:var(--ink);
+  border:1px solid var(--rule);border-radius:10px;
+  padding:18px 18px 16px;
+  transition:border-color .25s ease,transform .25s ease;
+}
+.flow-step:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.flow-step .num{
+  display:inline-block;
+  font-family:var(--mono);font-size:11px;
+  color:var(--cyan);letter-spacing:.1em;
+  margin-bottom:14px;
+}
+.flow-step h4{
+  font-family:var(--display);font-weight:800;
+  font-size:17px;line-height:1.2;
+  margin:0 0 8px;color:var(--fg);
+}
+.flow-step p{
+  font-size:13.5px;line-height:1.55;color:var(--muted);
+  margin:0;font-weight:300;
+}
+
+/* ============================================================
+   PRICING — tier strip
+============================================================ */
+.pricing{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);border-radius:14px;overflow:hidden;
+}
+.tier{
+  background:var(--panel);padding:36px 32px;
+  position:relative;
+  transition:background .25s ease;
+}
+.tier:hover{background:var(--panel-2)}
+.tier.featured{background:linear-gradient(180deg,rgba(79,227,255,.08) 0%,var(--panel) 50%)}
+.tier.featured::before{
+  content:"BEST FIT";
+  position:absolute;top:14px;right:18px;
+  font-family:var(--mono);font-size:10px;
+  letter-spacing:.18em;color:var(--cyan);
+  border:1px solid var(--cyan);
+  padding:3px 8px;border-radius:99px;
+}
+.tier-name{
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:18px;
+}
+.tier .price{
+  font-family:var(--display);font-weight:800;
+  font-size:54px;line-height:1;
+  color:var(--fg);letter-spacing:-.025em;
+  font-feature-settings:"tnum" 1;
+}
+.tier .price .currency{font-size:22px;vertical-align:super;color:var(--muted);font-weight:500;margin-right:2px}
+.tier .price .period{font-size:14px;color:var(--muted);font-weight:400;letter-spacing:0;margin-left:6px}
+.tier .desc{
+  font-size:14.5px;line-height:1.55;color:var(--fg-2);
+  font-weight:300;margin:14px 0 24px;
+  min-height:64px;
+}
+.tier ul{
+  list-style:none;padding:0;margin:0 0 28px;
+  font-size:13.5px;color:var(--fg-2);font-weight:300;
+  border-top:1px solid var(--rule);padding-top:20px;
+}
+.tier li{
+  padding:8px 0;display:flex;gap:10px;align-items:center;
+}
+.tier li::before{
+  content:"";width:5px;height:5px;border-radius:50%;
+  background:var(--cyan);flex:0 0 5px;
+}
+.tier li.muted{color:var(--muted-2)}
+.tier li.muted::before{background:var(--muted-2)}
+.tier .btn{width:100%;justify-content:center}
+
+/* ============================================================
+   FINAL CTA
+============================================================ */
+.final{
+  text-align:center;
+  padding:96px 0 120px;
+  border-top:1px solid var(--rule);
+  position:relative;
+}
+.final::before{
+  content:"";position:absolute;left:50%;top:0;
+  width:200px;height:1px;
+  background:var(--cyan);
+  transform:translateX(-50%);
+  box-shadow:0 0 16px rgba(79,227,255,.6);
+}
+.final .eyebrow{
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--cyan);
+}
+.final h2{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(40px,5vw,68px);
+  line-height:1.02;letter-spacing:-.03em;
+  margin:18px auto 22px;max-width:14ch;
+}
+.final p{
+  font-size:17px;line-height:1.65;color:var(--fg-2);
+  font-weight:300;max-width:560px;margin:0 auto 32px;
+}
+.final .cta-row{justify-content:center}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.foot{
+  border-top:1px solid var(--rule);
+  padding:32px 0;font-family:var(--mono);
+  font-size:11px;letter-spacing:.06em;color:var(--muted);
+  text-transform:uppercase;
+}
+.foot-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot a{color:var(--muted);transition:color .2s}
+.foot a:hover{color:var(--cyan)}
+
+/* ============================================================
+   STAGGERED REVEAL on load
+============================================================ */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.d-1{transition-delay:.05s}.d-2{transition-delay:.15s}.d-3{transition-delay:.25s}
+.d-4{transition-delay:.35s}.d-5{transition-delay:.45s}.d-6{transition-delay:.55s}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media(max-width:980px){
+  .hero{padding:48px 0 64px}
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .console{max-width:420px;margin:0 auto}
+  .section-head{grid-template-columns:1fr;gap:18px}
+  .modules{grid-template-columns:1fr}
+  .flow-grid{grid-template-columns:repeat(2,1fr)}
+  .pricing{grid-template-columns:1fr}
+  .nav,.statusbar .right{display:none}
+  .workflow::before,.workflow::after{display:none}
+  .ribbon-inner .firms{font-size:13px;gap:18px}
+}
+@media(max-width:560px){
+  .hero h1{font-size:42px}
+  .flow-grid{grid-template-columns:1fr}
+  .callsigns span{font-size:10px;padding:0 12px 0 0;margin-right:12px}
+}
+
+/* honor reduce-motion preference */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+
+@media(min-width:981px){
+  /* slight focus ring for keyboard users — consistent across all interactive */
+  a:focus-visible,button:focus-visible{
+    outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     STATUS BAR
+============================================================ -->
+<div class="statusbar">
+  <div class="container statusbar-inner">
+    <span class="live">OPERATIONS · LIVE</span>
+    <span class="sep">/</span>
+    <span data-i18n="sb1">38 supplier networks online</span>
+    <span class="sep">/</span>
+    <span data-i18n="sb2">EU · NA · APAC routing</span>
+    <div class="right">
+      <span data-i18n="sb3">SOC 2 Type II / GDPR-ready</span>
+      <span class="mono" id="utcClock">UTC 00:00:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MASTHEAD
+============================================================ -->
+<header class="masthead">
+  <div class="container mast-inner">
+    <a href="#top" class="brand"><span class="mark"></span><span>SurveySaaS</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#modules" data-i18n="nav1">Platform</a>
+      <a href="#workflow" data-i18n="nav2">Workflow</a>
+      <a href="#pricing" data-i18n="nav3">Pricing</a>
+      <a href="#" data-i18n="nav4">Customers</a>
+      <a href="#" data-i18n="nav5">Docs</a>
+    </nav>
+    <div class="actions">
+      <div class="lang" role="group" aria-label="Language">
+        <button class="active" data-lang="en">EN</button>
+        <button data-lang="zh">中文</button>
+        <button data-lang="hi">हिन्दी</button>
+      </div>
+      <a class="btn primary" href="#contact" data-i18n="navCta">Book a demo <span class="arrow">→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-eyebrow reveal d-1">
+        <span class="dot"></span>
+        <span data-i18n="eyebrow">Survey supply · operations console</span>
+      </div>
+      <h1 class="reveal d-2" id="heroH1">
+        Run survey supply<br>
+        <span class="accent">like a control room.</span>
+      </h1>
+      <p class="hero-sub reveal d-3" data-i18n="heroSub">
+        Project setup, supplier routing, fraud control and finance settlement —
+        <b>one console, one auditable record.</b>
+        Built for panel networks, fieldwork agencies and brand insights teams who run operations 24/7.
+      </p>
+      <div class="cta-row reveal d-4">
+        <a class="btn primary lg" href="#contact" data-i18n="ctaBook">Book a demo <span class="arrow">→</span></a>
+        <a class="btn ghost lg" href="#workflow" data-i18n="ctaSee">See the workflow</a>
+      </div>
+      <div class="callsigns reveal d-5">
+        <span data-i18n="cs1">99.8 % SLA</span>
+        <span data-i18n="cs2">Callback / HMAC</span>
+        <span data-i18n="cs3">Private deploy</span>
+        <span data-i18n="cs4">SOC 2 / GDPR</span>
+      </div>
+    </div>
+
+    <!-- Console (right) -->
+    <div class="console reveal d-6" aria-hidden="true">
+      <div class="console-frame"></div>
+
+      <svg class="console-svg" viewBox="0 0 480 480" preserveAspectRatio="xMidYMid meet">
+        <!-- 4 concentric rings (outer + inner rotate, mids static) -->
+        <circle class="ring outer" cx="240" cy="240" r="216"/>
+        <circle class="ring mid-1" cx="240" cy="240" r="172"/>
+        <circle class="ring mid-2" cx="240" cy="240" r="128"/>
+        <circle class="ring inner" cx="240" cy="240" r="86"/>
+
+        <!-- 12-tick compass on mid-1 ring, with 4 cardinal majors -->
+        <g class="ticks">
+          <line class="major" x1="240" y1="56" x2="240" y2="72"/>
+          <line x1="316" y1="76" x2="312" y2="86"/>
+          <line x1="384" y1="124" x2="376" y2="130"/>
+          <line class="major" x1="408" y1="240" x2="424" y2="240"/>
+          <line x1="384" y1="356" x2="376" y2="350"/>
+          <line x1="316" y1="404" x2="312" y2="394"/>
+          <line class="major" x1="240" y1="408" x2="240" y2="424"/>
+          <line x1="164" y1="404" x2="168" y2="394"/>
+          <line x1="96" y1="356" x2="104" y2="350"/>
+          <line class="major" x1="56" y1="240" x2="72" y2="240"/>
+          <line x1="96" y1="124" x2="104" y2="130"/>
+          <line x1="164" y1="76" x2="168" y2="86"/>
+        </g>
+
+        <!-- compass labels -->
+        <text class="axis-label" x="240" y="48" text-anchor="middle">N · APAC</text>
+        <text class="axis-label" x="436" y="244" text-anchor="end">E · EU</text>
+        <text class="axis-label" x="240" y="446" text-anchor="middle">S · LATAM</text>
+        <text class="axis-label" x="44" y="244">W · NA</text>
+
+        <!-- connectors (animated dashed flow toward center) -->
+        <g>
+          <line class="connector" x1="316" y1="76" x2="280" y2="200"/>
+          <line class="connector warm" x1="384" y1="124" x2="320" y2="220"/>
+          <line class="connector" x1="384" y1="356" x2="320" y2="260"/>
+          <line class="connector" x1="316" y1="404" x2="280" y2="280"/>
+          <line class="connector warm" x1="164" y1="404" x2="200" y2="280"/>
+          <line class="connector" x1="96" y1="356" x2="160" y2="260"/>
+          <line class="connector" x1="96" y1="124" x2="160" y2="220"/>
+          <line class="connector" x1="164" y1="76" x2="200" y2="200"/>
+        </g>
+
+        <!-- 8 supplier nodes around outer ring; 3 live, 1 warm-featured, 4 dim -->
+        <g>
+          <!-- live US -->
+          <circle class="node-pulse" cx="316" cy="76" r="8"/>
+          <circle class="node live" cx="316" cy="76" r="6.5"/>
+          <text class="node-label" x="332" y="72">US · 14 panels</text>
+          <text class="node-label" x="332" y="84" style="opacity:.6">12,400 / 24h</text>
+
+          <!-- featured warm IN -->
+          <circle class="node-pulse warm" cx="384" cy="356" r="8"/>
+          <circle class="node warm" cx="384" cy="356" r="7.5"/>
+          <text class="node-label" x="400" y="352">IN · 9 panels</text>
+          <text class="node-label" x="400" y="364" style="opacity:.6">8,150 / 24h</text>
+
+          <!-- live UK -->
+          <circle class="node-pulse" cx="384" cy="124" r="8" style="animation-delay:-.6s"/>
+          <circle class="node live" cx="384" cy="124" r="6.5"/>
+          <text class="node-label" x="400" y="120">UK · 7 panels</text>
+
+          <!-- dim DE -->
+          <circle class="node dim" cx="316" cy="404" r="5.5"/>
+          <text class="node-label dim" x="332" y="408">DE · 5 panels</text>
+
+          <!-- dim BR -->
+          <circle class="node dim" cx="164" cy="404" r="5.5"/>
+          <text class="node-label dim" x="92" y="408">BR · 4 panels</text>
+
+          <!-- dim MX -->
+          <circle class="node dim" cx="96" cy="356" r="5.5"/>
+          <text class="node-label dim" x="20" y="360">MX · 3 panels</text>
+
+          <!-- dim PH -->
+          <circle class="node dim" cx="96" cy="124" r="5.5"/>
+          <text class="node-label dim" x="22" y="120">PH · 4 panels</text>
+
+          <!-- dim JP -->
+          <circle class="node dim" cx="164" cy="76" r="5.5"/>
+          <text class="node-label dim" x="92" y="72">JP · 6 panels</text>
+        </g>
+      </svg>
+
+      <!-- center control window -->
+      <div class="console-window">
+        <div class="cw-bar">
+          <span class="dot"></span>
+          <span>app.surveysaas.com</span>
+          <span style="margin-left:auto;color:var(--cyan)" class="mono" data-i18n="cwLive">LIVE</span>
+        </div>
+        <div class="cw-body">
+          <div class="cw-stat">
+            <div class="cw-key">
+              <span data-i18n="cwK1">Completes / 24 h</span>
+              <span class="delta">+12.4 %</span>
+            </div>
+            <div class="cw-val mono" data-counter="12400" data-suffix="">0</div>
+          </div>
+          <div class="cw-stat">
+            <div class="cw-key">
+              <span data-i18n="cwK2">Median LOI</span>
+              <span class="delta warn">8.4 m</span>
+            </div>
+            <div class="cw-val mono">8<span class="unit">m 24s</span></div>
+            <div class="cw-bar-meter"><b style="width:62%"></b></div>
+          </div>
+          <div class="cw-stat">
+            <div class="cw-key">
+              <span data-i18n="cwK3">Fraud-block rate</span>
+              <span class="delta">−0.3 pp</span>
+            </div>
+            <div class="cw-val mono" data-counter="3.2" data-decimals="1" data-suffix=" %">0 %</div>
+            <div class="cw-bar-meter"><b style="width:32%;background:linear-gradient(90deg,var(--lime),#D8FF87)"></b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ticker strip -->
+      <div class="console-ticker">
+        <span class="tag">EVENTS</span>
+        <div class="ticker-track">
+          <div class="ticker-track-inner">
+            <span><i>●</i> 14:08:32 · PROJECT_2148 routed → <em>US/UK panel</em></span>
+            <span><i>●</i> 14:09:01 · 412 completes returned · <em>QC pass 96.7 %</em></span>
+            <span><i class="warn">●</i> 14:09:14 · LOI alert · <em>PROJECT_2103</em> · 14m</span>
+            <span><i>●</i> 14:09:22 · supplier KOR-04 added · <em>3 panels</em></span>
+            <span><i class="alert">●</i> 14:09:38 · fraud-block · 17 IDs · <em>auto-routed</em></span>
+            <span><i>●</i> 14:09:55 · settlement · USD 12,440 · <em>15 suppliers</em></span>
+            <span><i>●</i> 14:10:08 · PROJECT_2150 launched · <em>quota 4,000</em></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RIBBON — proof
+============================================================ -->
+<div class="ribbon">
+  <div class="container ribbon-inner">
+    <span class="label" data-i18n="rbLabel">Operating layer for</span>
+    <div class="firms">
+      <span data-i18n="firm1">Panel <b>networks</b></span>
+      <span data-i18n="firm2">Fieldwork <b>agencies</b></span>
+      <span data-i18n="firm3">Brand insights <b>teams</b></span>
+      <span data-i18n="firm4">Sample <b>aggregators</b></span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECTION · MODULES
+============================================================ -->
+<section class="section" id="modules">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-num">01 / Platform</div>
+        <h2 data-i18n="modH">Six modules. <em>One operating record.</em></h2>
+      </div>
+      <p class="lead" data-i18n="modLead">
+        Every action — project launched, supplier routed, completion settled — lands in the same auditable log. <b>No spreadsheets, no fragmented chats, no blind handoffs.</b>
+      </p>
+    </div>
+
+    <div class="modules">
+      <div class="mod">
+        <div class="mod-num"><span class="live-dot"></span>MODULE 01</div>
+        <h3 data-i18n="m1H">Project setup</h3>
+        <p data-i18n="m1P">Templates, quotas, screener logic and routing rules — defined once and reused across teams.</p>
+        <div class="mod-data"><b>2 min</b><span data-i18n="m1U">avg setup time</span></div>
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h12"/></svg></div>
+      </div>
+      <div class="mod">
+        <div class="mod-num"><span class="live-dot"></span>MODULE 02</div>
+        <h3 data-i18n="m2H">Supplier routing</h3>
+        <p data-i18n="m2P">Live router across 38 networks. Failover, fallback, quota-aware. Watch the route, change the route.</p>
+        <div class="mod-data"><b>38</b><span data-i18n="m2U">supplier networks</span></div>
+        <div class="glyph"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="12" r="8"/><path d="M12 4v4M12 16v4M4 12h4M16 12h4"/></svg></div>
+      </div>
+      <div class="mod">
+        <div class="mod-num"><span class="live-dot"></span>MODULE 03</div>
+        <h3 data-i18n="m3H">Fraud control</h3>
+        <p data-i18n="m3P">Fingerprint + behavioral + IP heuristics. Auto-block, auto-replace, full audit trail per response.</p>
+        <div class="mod-data"><b class="lime">96.8 %</b><span data-i18n="m3U">QC pass rate</span></div>
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v6c0 4-3 7-8 8-5-1-8-4-8-8V7l8-4z"/></svg></div>
+      </div>
+      <div class="mod">
+        <div class="mod-num"><span class="live-dot"></span>MODULE 04</div>
+        <h3 data-i18n="m4H">Finance settlement</h3>
+        <p data-i18n="m4P">Per-CPI ledgers, multi-currency wallets, supplier statements — settled on a schedule you set, not theirs.</p>
+        <div class="mod-data"><b class="amber">14 cur.</b><span data-i18n="m4U">multi-currency</span></div>
+        <div class="glyph"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="1"/><path d="M3 10h18M8 15h2M14 15h4"/></svg></div>
+      </div>
+      <div class="mod">
+        <div class="mod-num"><span class="live-dot"></span>MODULE 05</div>
+        <h3 data-i18n="m5H">Reports &amp; insights</h3>
+        <p data-i18n="m5P">Live dashboards, exportable cuts, scheduled deliveries. Everything your client asked for, before they ask.</p>
+        <div class="mod-data"><b>real-time</b><span data-i18n="m5U">data freshness</span></div>
+        <div class="glyph"><svg viewBox="0 0 24 24"><path d="M3 19l5-7 4 3 7-9"/><path d="M3 19h18"/></svg></div>
+      </div>
+      <div class="mod">
+        <div class="mod-num"><span class="live-dot"></span>MODULE 06</div>
+        <h3 data-i18n="m6H">Compliance &amp; audit</h3>
+        <p data-i18n="m6P">SOC 2 Type II controls, GDPR &amp; DPDP coverage, region-pinned data residency, signed export logs.</p>
+        <div class="mod-data"><b>SOC 2 / GDPR</b><span data-i18n="m6U">/ DPDP-ready</span></div>
+        <div class="glyph"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION · WORKFLOW
+============================================================ -->
+<section class="section" id="workflow" style="padding-top:32px">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-num">02 / Workflow</div>
+        <h2 data-i18n="wfH">Launch. Route. Monitor. <em>Settle.</em></h2>
+      </div>
+      <p class="lead" data-i18n="wfLead">
+        One unbroken line from a buyer brief to a supplier statement. Every step keeps the same project ID, the same audit log, the same currency of truth.
+      </p>
+    </div>
+
+    <div class="workflow">
+      <div class="flow-grid">
+        <div class="flow-step">
+          <div class="num mono">STEP 01</div>
+          <h4 data-i18n="wf1H">Launch</h4>
+          <p data-i18n="wf1P">Spin up a project from a template. Quotas, screeners, redirects — wired in 2 minutes, not 2 days.</p>
+        </div>
+        <div class="flow-step">
+          <div class="num mono">STEP 02</div>
+          <h4 data-i18n="wf2H">Route</h4>
+          <p data-i18n="wf2P">Live router fans the project across supplier networks. Watch fills, switch sources, hit quota.</p>
+        </div>
+        <div class="flow-step">
+          <div class="num mono">STEP 03</div>
+          <h4 data-i18n="wf3H">Monitor</h4>
+          <p data-i18n="wf3P">QC heuristics catch fraud as completions land. Replacements auto-route; you see it on the console.</p>
+        </div>
+        <div class="flow-step">
+          <div class="num mono">STEP 04</div>
+          <h4 data-i18n="wf4H">Settle</h4>
+          <p data-i18n="wf4P">Per-CPI ledgers and signed statements close the loop. One click to invoice, one click to pay.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION · PRICING
+============================================================ -->
+<section class="section" id="pricing" style="padding-top:32px">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-num">03 / Pricing</div>
+        <h2 data-i18n="prH">Three operating models. <em>Pick yours.</em></h2>
+      </div>
+      <p class="lead" data-i18n="prLead">
+        Priced for the operator who runs projects, not the org that buys software. <b>No per-seat tax, no surprise overage.</b> All plans include private deploy on request.
+      </p>
+    </div>
+
+    <div class="pricing">
+      <div class="tier">
+        <div class="tier-name" data-i18n="t1N">Starter</div>
+        <div class="price"><span class="currency">$</span>150<span class="period">/ mo</span></div>
+        <div class="desc" data-i18n="t1D">For solo operators and small fieldwork desks shipping a handful of projects every month.</div>
+        <ul>
+          <li data-i18n="t1F1">Up to 5 active projects</li>
+          <li data-i18n="t1F2">8 supplier connectors</li>
+          <li data-i18n="t1F3">Standard fraud heuristics</li>
+          <li class="muted" data-i18n="t1F4">Single-region deploy</li>
+        </ul>
+        <a href="#contact" class="btn ghost" data-i18n="t1Cta">Start trial</a>
+      </div>
+      <div class="tier featured">
+        <div class="tier-name" data-i18n="t2N">Growth</div>
+        <div class="price"><span class="currency">$</span>400<span class="period">/ mo</span></div>
+        <div class="desc" data-i18n="t2D">For panel networks and agencies running concurrent projects across teams and regions.</div>
+        <ul>
+          <li data-i18n="t2F1">Unlimited projects</li>
+          <li data-i18n="t2F2">All 38 supplier connectors</li>
+          <li data-i18n="t2F3">Fraud + LOI + ID-collision QC</li>
+          <li data-i18n="t2F4">Multi-currency settlement</li>
+        </ul>
+        <a href="#contact" class="btn primary" data-i18n="t2Cta">Book a demo <span class="arrow">→</span></a>
+      </div>
+      <div class="tier">
+        <div class="tier-name" data-i18n="t3N">Scale</div>
+        <div class="price"><span class="currency">$</span>800<span class="period">/ mo</span></div>
+        <div class="desc" data-i18n="t3D">For sample aggregators and brand insights teams with private deploy, custom routing and dedicated SLAs.</div>
+        <ul>
+          <li data-i18n="t3F1">Private deploy / region-pinned</li>
+          <li data-i18n="t3F2">Custom routing rules</li>
+          <li data-i18n="t3F3">99.8 % SLA &amp; named CSM</li>
+          <li data-i18n="t3F4">SSO, audit log API, DPDP</li>
+        </ul>
+        <a href="#contact" class="btn ghost" data-i18n="t3Cta">Talk to sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+============================================================ -->
+<section class="final" id="contact">
+  <div class="container">
+    <div class="eyebrow" data-i18n="finalEyebrow">Book · 30 min · your real workflow</div>
+    <h2 data-i18n="finalH">Bring your survey supply onto the console.</h2>
+    <p data-i18n="finalP">We don't pitch slides. Bring a live project, we'll wire it onto the console with you and tell you in 30 minutes whether it fits.</p>
+    <div class="cta-row">
+      <a class="btn primary lg" href="mailto:hello@surveysaas.com" data-i18n="finalCta">Book a demo <span class="arrow">→</span></a>
+      <a class="btn ghost lg" href="#" data-i18n="finalCta2">Read the docs</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOT
+============================================================ -->
+<footer class="foot">
+  <div class="container foot-inner">
+    <span>© 2026 SurveySaaS · Operations console</span>
+    <span><a href="#">Security</a> · <a href="#">DPA</a> · <a href="#">Privacy</a></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   I18N — minimal trilingual switcher (EN / 中文 / हिन्दी)
+============================================================ */
+const i18n = {
+  en: {},
+  zh: {
+    sb1:'38 个供应商网络在线', sb2:'EU · NA · APAC 路由', sb3:'SOC 2 Type II / GDPR 就绪',
+    nav1:'平台', nav2:'流程', nav3:'定价', nav4:'客户', nav5:'文档', navCta:'预约演示 →',
+    eyebrow:'调查供应 · 运营控制台',
+    heroSub:'项目配置、供应商分发、反作弊与财务结算 — 一个控制台、一份可审计的运营记录。为 panel 网络、外包调研机构和品牌洞察团队全天候运营而设。',
+    ctaBook:'预约演示 →', ctaSee:'查看流程',
+    cs1:'99.8 % SLA', cs2:'回调 / HMAC', cs3:'私有化部署', cs4:'SOC 2 / GDPR',
+    cwLive:'实时', cwK1:'24 小时完成数', cwK2:'中位访问时长', cwK3:'反作弊拦截率',
+    rbLabel:'适用于', firm1:'Panel <b>网络</b>', firm2:'外包 <b>调研</b>', firm3:'品牌洞察 <b>团队</b>', firm4:'样本 <b>聚合方</b>',
+    modH:'六个模块。<em>同一份运营记录。</em>',
+    modLead:'每一次动作 — 项目上线、供应商路由、完成结算 — 都落在同一份可审计的日志里。<b>没有表格、没有零散的群聊、没有盲交接。</b>',
+    m1H:'项目配置', m1P:'模板、配额、筛选逻辑与路由规则 — 一次定义,跨团队复用。', m1U:'平均配置时长',
+    m2H:'供应商分发', m2P:'实时路由跨 38 个网络。失败切换、降级、配额感知。看路由,改路由。', m2U:'供应商网络',
+    m3H:'反作弊', m3P:'指纹 + 行为 + IP 启发式。自动拦截、自动补量、每条响应留痕。', m3U:'QC 通过率',
+    m4H:'财务结算', m4P:'按 CPI 计账、多币种钱包、供应商对账单 — 按你的节奏结算,不是他们的。', m4U:'多币种',
+    m5H:'报表与洞察', m5P:'实时 dashboard、可导出切片、定时投递。客户要的,在他要之前送达。', m5U:'数据新鲜度',
+    m6H:'合规与审计', m6P:'SOC 2 Type II、GDPR & DPDP 覆盖、区域锁定数据驻留、签名导出日志。', m6U:'/ DPDP 就绪',
+    wfH:'上线。分发。监控。<em>结算。</em>',
+    wfLead:'从买方简报到供应商对账单的一条不间断流水线。每一步保留同一个项目 ID、同一份审计日志、同一种事实标准。',
+    wf1H:'上线', wf1P:'从模板拉起项目。配额、筛选、跳转 — 2 分钟接好,不是 2 天。',
+    wf2H:'分发', wf2P:'实时路由把项目分发到供应商网络。看完成、切来源、追配额。',
+    wf3H:'监控', wf3P:'QC 启发式在完成入库时识别作弊。补量自动路由,你在控制台看见。',
+    wf4H:'结算', wf4P:'按 CPI 计账与签名对账单收尾。一键开票、一键付款。',
+    prH:'三种运营模型。<em>选你的那一种。</em>',
+    prLead:'按"做项目的运营人"定价,不按"买软件的组织"定价。<b>没有按席位收费、没有意外的超额账单。</b>所有方案均可申请私有化部署。',
+    t1N:'起步版', t1D:'适合个人运营者和小型外包调研团队,每月运行少量项目。',
+    t1F1:'最多 5 个并行项目', t1F2:'8 个供应商连接器', t1F3:'标准反作弊', t1F4:'单区域部署', t1Cta:'开始试用',
+    t2N:'增长版', t2D:'适合 panel 网络和 agency,跨团队跨区域并行运行项目。',
+    t2F1:'项目数量不限', t2F2:'全部 38 个供应商连接器', t2F3:'反作弊 + LOI + ID 冲突 QC', t2F4:'多币种结算', t2Cta:'预约演示 →',
+    t3N:'规模版', t3D:'适合样本聚合方与品牌洞察团队,提供私有化部署、自定义路由和专属 SLA。',
+    t3F1:'私有化部署 / 区域锁定', t3F2:'自定义路由规则', t3F3:'99.8 % SLA & 专属 CSM', t3F4:'SSO、审计日志 API、DPDP', t3Cta:'联系销售',
+    finalEyebrow:'30 分钟 · 你的真实流程',
+    finalH:'把你的调查供应搬上控制台。',
+    finalP:"我们不讲 PPT。带一个真实项目过来,我们当场把它接上控制台,30 分钟内告诉你它合不合适。",
+    finalCta:'预约演示 →', finalCta2:'阅读文档'
+  },
+  hi: {
+    sb1:'38 supplier networks online', sb2:'EU · NA · APAC routing', sb3:'SOC 2 Type II / GDPR-ready',
+    nav1:'Platform', nav2:'Workflow', nav3:'मूल्य', nav4:'ग्राहक', nav5:'Docs', navCta:'Demo book करें →',
+    eyebrow:'Survey supply · operations console',
+    heroSub:'Project setup, supplier routing, fraud control और finance settlement — एक console, एक auditable record। Panel networks, fieldwork agencies और brand insights teams के लिए जो operations 24/7 चलाती हैं।',
+    ctaBook:'Demo book करें →', ctaSee:'Workflow देखें',
+    cs1:'99.8 % SLA', cs2:'Callback / HMAC', cs3:'Private deploy', cs4:'SOC 2 / GDPR',
+    cwLive:'LIVE', cwK1:'Completes / 24 घं', cwK2:'Median LOI', cwK3:'Fraud-block दर',
+    rbLabel:'के लिए operating layer', firm1:'Panel <b>networks</b>', firm2:'Fieldwork <b>agencies</b>', firm3:'Brand insights <b>teams</b>', firm4:'Sample <b>aggregators</b>',
+    modH:'छह modules. <em>एक operating record.</em>',
+    modLead:'हर action — project launched, supplier routed, completion settled — एक ही auditable log में जाता है। <b>Spreadsheets नहीं, बिखरी chats नहीं, blind handoffs नहीं।</b>',
+    m1H:'Project setup', m1P:'Templates, quotas, screener logic और routing rules — एक बार define, teams भर में reuse।', m1U:'avg setup time',
+    m2H:'Supplier routing', m2P:'38 networks पर live router। Failover, fallback, quota-aware।', m2U:'supplier networks',
+    m3H:'Fraud control', m3P:'Fingerprint + behavioral + IP heuristics। Auto-block, auto-replace, हर response पर audit trail।', m3U:'QC pass दर',
+    m4H:'Finance settlement', m4P:'Per-CPI ledgers, multi-currency wallets, supplier statements — आपके schedule पर settle, उनके नहीं।', m4U:'multi-currency',
+    m5H:'Reports & insights', m5P:'Live dashboards, exportable cuts, scheduled deliveries।', m5U:'data freshness',
+    m6H:'Compliance & audit', m6P:'SOC 2 Type II controls, GDPR & DPDP coverage, region-pinned data residency।', m6U:'/ DPDP-ready',
+    wfH:'Launch. Route. Monitor. <em>Settle.</em>',
+    wfLead:'Buyer brief से supplier statement तक एक unbroken line। हर step पर वही project ID, वही audit log, वही currency of truth।',
+    wf1H:'Launch', wf1P:'Template से project spin up करें। Quotas, screeners, redirects — 2 मिनट में wired।',
+    wf2H:'Route', wf2P:'Live router project को supplier networks पर fan करता है। Fills देखें, sources switch करें।',
+    wf3H:'Monitor', wf3P:'QC heuristics fraud को catch करते हैं। Replacements auto-route होते हैं, console पर दिखता है।',
+    wf4H:'Settle', wf4P:'Per-CPI ledgers और signed statements loop close करते हैं। एक click invoice, एक click pay।',
+    prH:'तीन operating models। <em>अपना चुनें।</em>',
+    prLead:'उस operator के लिए priced जो projects चलाता है, उस org के लिए नहीं जो software खरीदता है। <b>Per-seat tax नहीं, surprise overage नहीं।</b>',
+    t1N:'Starter', t1D:'Solo operators और छोटी fieldwork desks के लिए जो हर महीने कुछ projects ship करती हैं।',
+    t1F1:'5 active projects तक', t1F2:'8 supplier connectors', t1F3:'Standard fraud heuristics', t1F4:'Single-region deploy', t1Cta:'Trial शुरू करें',
+    t2N:'Growth', t2D:'Panel networks और agencies के लिए जो teams और regions भर में concurrent projects चलाती हैं।',
+    t2F1:'Unlimited projects', t2F2:'सभी 38 supplier connectors', t2F3:'Fraud + LOI + ID-collision QC', t2F4:'Multi-currency settlement', t2Cta:'Demo book करें →',
+    t3N:'Scale', t3D:'Sample aggregators और brand insights teams के लिए private deploy, custom routing और dedicated SLAs के साथ।',
+    t3F1:'Private deploy / region-pinned', t3F2:'Custom routing rules', t3F3:'99.8 % SLA & named CSM', t3F4:'SSO, audit log API, DPDP', t3Cta:'Sales से बात करें',
+    finalEyebrow:'Book · 30 min · आपका real workflow',
+    finalH:'अपनी survey supply को console पर लाइए।',
+    finalP:'हम slides नहीं pitch करते। एक live project लाइए, हम 30 मिनट में आपके साथ console पर wire करेंगे और बताएंगे कि fit है या नहीं।',
+    finalCta:'Demo book करें →', finalCta2:'Docs पढ़ें'
+  }
+};
+const heroH1Variants = {
+  en: 'Run survey supply<br><span class="accent">like a control room.</span>',
+  zh: '把调查供应跑成<br><span class="accent">一间控制室。</span>',
+  hi: 'Survey supply को<br><span class="accent">control room की तरह run कीजिए।</span>'
+};
+function applyLang(lang){
+  const dict = i18n[lang] || {};
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(lang==='en'){
+      // restore from a data-en cache once captured
+      if(el.dataset.en) el.innerHTML = el.dataset.en;
+      return;
+    }
+    if(!el.dataset.en) el.dataset.en = el.innerHTML;
+    if(dict[k] != null) el.innerHTML = dict[k];
+  });
+  // hero H1
+  document.getElementById('heroH1').innerHTML = heroH1Variants[lang] || heroH1Variants.en;
+  document.documentElement.lang = lang;
+}
+document.querySelectorAll('.lang button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('.lang button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    applyLang(b.dataset.lang);
+  });
+});
+
+/* ============================================================
+   STAGGER REVEAL on load
+============================================================ */
+function reveal(){
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    setTimeout(()=>el.classList.add('in'), 80*i);
+  });
+}
+window.addEventListener('load', ()=>{ reveal(); animateCounters(); });
+
+/* ============================================================
+   KPI count-up animation
+============================================================ */
+function animateCounters(){
+  document.querySelectorAll('[data-counter]').forEach(el=>{
+    const target = parseFloat(el.dataset.counter);
+    const decimals = parseInt(el.dataset.decimals||'0',10);
+    const suffix = el.dataset.suffix||'';
+    const dur = 1600;
+    const start = performance.now();
+    function step(now){
+      const t = Math.min(1,(now-start)/dur);
+      const eased = 1 - Math.pow(1-t,3);
+      const v = target * eased;
+      el.textContent = (decimals>0
+        ? v.toFixed(decimals)
+        : Math.round(v).toLocaleString('en-US')) + suffix;
+      if(t<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+/* ============================================================
+   UTC clock (status bar)
+============================================================ */
+function tick(){
+  const d = new Date();
+  const h=String(d.getUTCHours()).padStart(2,'0');
+  const m=String(d.getUTCMinutes()).padStart(2,'0');
+  const s=String(d.getUTCSeconds()).padStart(2,'0');
+  const el = document.getElementById('utcClock');
+  if(el) el.textContent = `UTC ${h}:${m}:${s}`;
+}
+tick();setInterval(tick,1000);
+</script>
+</body>
+</html>
