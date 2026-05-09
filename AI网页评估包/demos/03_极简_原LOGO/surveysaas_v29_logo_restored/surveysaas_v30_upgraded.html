@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SurveySaaS — Survey fieldwork operations platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0a84ff;
+  --blue2:#16b8ff;
+  --navy:#071426;
+  --muted:#61728c;
+  --line:#dce9f8;
+  --soft:#f6fbff;
+  --green:#15a678;
+  --shadow:0 24px 80px rgba(12,45,84,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--navy);background:linear-gradient(180deg,#f8fbff 0%,#fff 32%,#f8fbff 100%);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html[lang="zh-CN"] body{font-family:"Noto Sans SC",'Plus Jakarta Sans',system-ui,sans-serif}
+html[lang="hi-IN"] body{font-family:"Noto Sans Devanagari",'Plus Jakarta Sans',system-ui,sans-serif}
+h1,h2,.brand span{font-family:'Bricolage Grotesque',system-ui,sans-serif}
+a{text-decoration:none;color:inherit}.container{width:min(1180px,calc(100% - 48px));margin:auto}.nav{position:fixed;z-index:100;top:14px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 32px));display:flex;align-items:center;justify-content:space-between;padding:10px 14px 10px 18px;border:1px solid rgba(210,226,246,.86);background:rgba(255,255,255,.82);backdrop-filter:blur(22px);border-radius:999px;box-shadow:0 14px 50px rgba(18,61,115,.08)}.brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:-.04em}.brand img{width:26px;height:26px;border-radius:8px}.links{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:850}.links a{padding:10px 13px;border-radius:999px;color:#43516a;transition:.22s}.links a:hover,.links a.active{background:#eef7ff;color:var(--blue)}.links a.active:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--blue);margin-right:7px;vertical-align:1px}.langs{display:flex;gap:4px;background:#f2f7ff;border:1px solid #dbe9fa;border-radius:999px;padding:3px}.langs button{border:0;background:transparent;padding:7px 9px;border-radius:999px;font-weight:900;color:#62728c;cursor:pointer}.langs button.active{background:#fff;color:var(--blue);box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.hero{padding:138px 0 86px;text-align:center;background:radial-gradient(circle at 50% 0,#eaf5ff 0,rgba(234,245,255,0) 44%)}.kicker{display:inline-flex;gap:9px;align-items:center;padding:8px 14px;border:1px solid #dbe9fa;background:rgba(255,255,255,.72);border-radius:999px;color:var(--blue);font-weight:900;font-size:13px}.kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 0 0 6px rgba(10,132,255,.09)}h1{font-size:clamp(46px,6.3vw,86px);line-height:1.14;letter-spacing:-.04em;margin:26px auto 24px;max-width:1060px;font-weight:850;text-wrap:balance}html[lang="zh-CN"] h1{font-size:clamp(42px,5.6vw,74px);line-height:1.14;letter-spacing:-.035em}html[lang="hi-IN"] h1{font-size:clamp(40px,5.8vw,74px);line-height:1.22;letter-spacing:-.015em}.hero-sub{max-width:780px;margin:auto;color:#647491;font-size:clamp(18px,2vw,22px);line-height:1.58}.ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:34px 0 22px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:999px;font-weight:900;border:1px solid #cadcef;background:#fff;color:#071426;transition:.25s}.btn:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(10,132,255,.16);border-color:#99d3ff;color:var(--blue)}.btn.primary,.plan .btn:hover{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border-color:transparent;box-shadow:0 18px 40px rgba(10,132,255,.22)}.pills{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:18px}.pills span{display:inline-flex;gap:8px;align-items:center;border:1px solid #dbe9fa;border-radius:999px;background:#fff;padding:9px 14px;font-size:13px;font-weight:800;box-shadow:0 10px 28px rgba(12,45,84,.04)}.pills span:before{content:"";width:7px;height:7px;background:var(--blue);border-radius:50%}.section{padding:108px 0}.section-head{display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:end;margin-bottom:42px}.eyebrow{font-size:13px;font-weight:900;color:var(--blue);letter-spacing:.07em;text-transform:uppercase;margin-bottom:14px}h2{font-size:clamp(40px,5vw,70px);line-height:1.02;letter-spacing:-.055em;margin:0;font-weight:900;text-wrap:balance}.lead{font-size:19px;line-height:1.65;color:#61728c;margin:0;max-width:640px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card,.plan,.story,.interface-shell,details{border:1px solid var(--line);background:#fff;border-radius:32px;box-shadow:0 18px 56px rgba(12,45,84,.06)}.feature{padding:28px;min-height:210px;transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}.feature:hover{transform:translateY(-8px);border-color:#9ed2ff;box-shadow:0 30px 84px rgba(10,132,255,.12)}.num,.step{display:flex;align-items:center;justify-content:center;font-weight:900}.num{width:44px;height:44px;border-radius:16px;background:#eef7ff;color:var(--blue);margin-bottom:25px}.feature h3,.flow-card-clean h3,.plan h3,.story h3{font-size:25px;letter-spacing:-.035em;margin:0 0 12px;font-weight:900}.feature p,.flow-card-clean p,.plan p,.story p{color:#61728c;line-height:1.6;margin:0}.workflow-wrap{position:relative;margin-top:6px;padding:10px 0 22px}.workflow-track-clean{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;align-items:stretch;isolation:isolate}.workflow-svg-clean{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:8}.flow-card-clean{position:relative;z-index:2;border:1px solid rgba(180,215,248,.95);background:rgba(255,255,255,.96);border-radius:30px;min-height:282px;padding:34px 32px;box-shadow:0 18px 56px rgba(12,45,84,.055);transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}.flow-card-clean:hover{transform:translateY(-8px);border-color:#99d3ff;box-shadow:0 30px 84px rgba(10,132,255,.12)}.flow-card-clean .step{width:52px;height:52px;border-radius:18px;background:linear-gradient(180deg,#eef7ff,#fff);border:1px solid #cce5ff;color:var(--blue);box-shadow:0 16px 36px rgba(10,132,255,.08);margin-bottom:30px;transition:.25s}.flow-card-clean:hover .step{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border-color:transparent}.flow-card-clean > *{position:relative;z-index:10}.flow-base{fill:none;stroke:rgba(10,132,255,.17);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}.flow-glow{fill:none;stroke:rgba(10,132,255,.22);stroke-width:10;stroke-linecap:round;stroke-linejoin:round;filter:blur(5px);opacity:.42}.flow-hot{fill:none;stroke:url(#flowGradClean);stroke-width:4.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:72 928;stroke-dashoffset:1000;animation:cleanFlow 6.6s linear infinite;filter:drop-shadow(0 0 10px rgba(10,132,255,.38))}.flow-hot.bottom{animation-delay:.02s}@keyframes cleanFlow{0%{stroke-dashoffset:1000;opacity:0}4%{opacity:1}92%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;padding:6px;border:1px solid #dce9f8;background:#fff;border-radius:999px;width:max-content;box-shadow:0 18px 54px rgba(10,132,255,.06)}.tab{border:1px solid transparent;background:#f7fbff;border-radius:999px;padding:13px 22px;font-weight:900;color:#0e2038;cursor:pointer;transition:.22s}.tab:hover{transform:translateY(-2px);background:#eef7ff;color:var(--blue)}.tab.active{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 16px 32px rgba(10,132,255,.18)}.interface-shell{padding:22px;overflow:hidden}.window-bar{height:48px;border:1px solid #e8f1fb;border-radius:22px;background:#fff;display:flex;align-items:center;padding:0 18px;gap:9px;margin-bottom:18px}.dot{width:12px;height:12px;border-radius:50%}.red{background:#ff625d}.yellow{background:#ffbd45}.green{background:#27c561}.window-title{font-weight:900;color:var(--blue);font-size:14px;margin-left:6px}.screen-view{display:none}.screen-view.active{display:block}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.metric{border:1px solid #e4eef9;border-radius:22px;padding:22px;background:#fff;box-shadow:0 12px 32px rgba(12,45,84,.04);display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:center;transition:.24s;min-height:132px}.metric:hover{transform:translateY(-5px);border-color:#9ed2ff;box-shadow:0 28px 70px rgba(10,132,255,.12)}.metric-ico{width:54px;height:54px;border-radius:18px;background:#eaf4ff;display:flex;align-items:center;justify-content:center}.metric-ico svg{width:26px;height:26px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.metric h4{font-size:14px;color:#657591;margin:0 0 4px;font-weight:900}.metric strong{font-size:26px;letter-spacing:-.04em}.metric small{display:block;color:#15a678;font-weight:900;margin-top:4px}.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.plan{padding:30px;min-height:430px;display:flex;flex-direction:column;transition:.28s}.plan:hover{transform:translateY(-6px);border-color:#a7d6ff;box-shadow:0 34px 90px rgba(10,132,255,.11)}.plan .badge{width:max-content;max-width:100%;height:34px;display:inline-flex;align-items:center;justify-content:center;padding:0 13px;border-radius:999px;background:#eef7ff;color:var(--blue);font-size:13px;font-weight:800;margin-bottom:22px;letter-spacing:.02em}
+.plan.featured{background:linear-gradient(160deg,#071d3a 0%,#0a2a52 100%);border-color:#1a4a8a;color:#fff}
+.plan.featured h3,.plan.featured p,.plan.featured li{color:rgba(255,255,255,.9)}
+.plan.featured p{color:rgba(255,255,255,.65)}
+.plan.featured .badge{background:rgba(10,132,255,.25);color:#60c4ff;border:1px solid rgba(10,132,255,.35)}
+.plan.featured li:before{color:#38d98a}
+.plan.featured .btn{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border-color:transparent;box-shadow:0 18px 40px rgba(10,132,255,.35)}.plan p{min-height:78px}.plan ul{list-style:none;padding:0;margin:22px 0;display:grid;gap:15px;flex:1}.plan li{font-weight:900;line-height:1.45}.plan li:before{content:"✓";color:#09b878;margin-right:10px}.plan .btn{width:100%;margin-top:auto}.stories{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.story{padding:20px 20px 28px}.story img{width:100%;height:205px;object-fit:cover;border-radius:24px;margin-bottom:22px}.story h3{font-size:22px}.story .role{color:#61728c;font-weight:700;margin:-4px 0 18px}.story blockquote{margin:0;color:#24364f;font-size:18px;line-height:1.55}.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}details{padding:0;overflow:hidden;transition:box-shadow .2s}details[open]{box-shadow:0 18px 56px rgba(12,45,84,.09)}summary{cursor:pointer;font-weight:800;font-size:17px;padding:22px 24px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}summary::-webkit-details-marker{display:none}summary::after{content:"";width:22px;height:22px;min-width:22px;border-radius:50%;background:#eef7ff;border:1px solid #cce5ff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M5 2v6M2 5h6' stroke='%230a84ff' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center;transition:transform .25s}details[open] summary::after{transform:rotate(45deg)}details p{color:#61728c;line-height:1.65;margin:0;padding:0 24px 22px}.footer{padding:70px 0 44px;border-top:1px solid #e6f0fb;background:#fff}.footer-inner{display:flex;justify-content:space-between;gap:30px;align-items:center}.cta-band{margin-top:40px;padding:50px;border-radius:38px;background:linear-gradient(135deg,#eef7ff,#fff);border:1px solid #dce9f8;text-align:center}.cta-band h2{font-size:clamp(34px,4.2vw,58px)}@media(max-width:980px){.links{display:none}.section-head,.grid4,.workflow-track-clean,.plans,.stories,.metrics,.faq-grid{grid-template-columns:1fr}.workflow-svg-clean{display:none}.section{padding:78px 0}.container{width:min(100% - 30px,1180px)}h1{font-size:42px}.hero{padding-top:120px}.tabs{width:100%;overflow:auto}.footer-inner{display:block}.flow-card-clean{min-height:auto}}
+
+/* v30 upgrades: typography, icons, featured plan, FAQ, footer */
+.links{font-weight:700}
+.btn{font-weight:800}
+.kicker{font-weight:800}
+.eyebrow{font-weight:800;letter-spacing:.09em}
+.feature h3,.flow-card-clean h3,.plan h3,.story h3{font-weight:800}
+.num{font-weight:800}
+.plan li{font-weight:700}
+/* Page load fade-in */
+@keyframes pageIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero-inner > *{animation:pageIn .7s ease both}
+.hero-inner > *:nth-child(1){animation-delay:.05s}
+.hero-inner > *:nth-child(2){animation-delay:.15s}
+.hero-inner > *:nth-child(3){animation-delay:.22s}
+.hero-inner > *:nth-child(4){animation-delay:.30s}
+.hero-inner > *:nth-child(5){animation-delay:.37s}
+/* Stronger section heading */
+h2{letter-spacing:-.045em}
+/* Card number pill */
+.num{border-radius:12px;font-size:13px}
+#workflow .workflow-wrap{padding:10px 0 28px; overflow:visible;}
+#workflow .workflow-track-clean{position:relative; overflow:visible; isolation:isolate;}
+#workflow .workflow-canvas-v25{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:40;
+  pointer-events:none;
+}
+#workflow .flow-card-clean{
+  z-index:5;
+  transform:none !important;
+  overflow:visible;
+  border:1px solid rgba(180,215,248,.95);
+  transition:border-color .22s ease, box-shadow .22s ease;
+}
+#workflow .flow-card-clean:hover{
+  transform:none !important;
+  border-color:rgba(180,215,248,.95) !important;
+  box-shadow:0 18px 56px rgba(12,45,84,.055) !important;
+}
+#workflow .flow-card-clean:hover .step{
+  background:linear-gradient(180deg,#eef7ff,#fff) !important;
+  color:var(--blue) !important;
+  border-color:#cce5ff !important;
+}
+#workflow .workflow-svg-clean{display:none !important;}
+@media(max-width:980px){#workflow .workflow-canvas-v25{display:none}}
+
+
+/* v27 patch: only fix workflow canvas alignment and FAQ independent item height */
+#workflow .workflow-canvas-v25{
+  top:-16px !important;
+  right:-16px !important;
+  bottom:-16px !important;
+  left:-16px !important;
+  width:calc(100% + 32px) !important;
+  height:calc(100% + 32px) !important;
+  z-index:40 !important;
+}
+#workflow .flow-card-clean{transform:none !important;}
+#workflow .flow-card-clean:hover{transform:none !important;}
+#stories .story img{width:86px !important;height:86px !important;border-radius:28px !important;object-fit:cover !important;display:block !important;margin:0 0 22px !important;box-shadow:0 16px 34px rgba(7,20,38,.12) !important;}
+@media(max-width:900px){#stories .story img{width:74px !important;height:74px !important;}}
+#faq .faq-grid{align-items:start !important;}
+#faq details{align-self:start !important;height:auto !important;}
+
+
+
+/* v29: restore homepage split-logo assembly animation only */
+.hero{
+  min-height:214vh;
+  padding:0;
+  position:relative;
+  overflow:clip;
+  background:radial-gradient(circle at 50% 0,#eaf5ff 0,rgba(234,245,255,0) 44%);
+}
+.hero-inner{
+  position:sticky;
+  top:0;
+  min-height:100vh;
+  padding-top:138px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+.logo-assembly{
+  position:relative;
+  width:min(620px,100%);
+  height:350px;
+  margin:38px auto 0;
+  pointer-events:none;
+  overflow:visible;
+  isolation:isolate;
+}
+.logo-piece{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:260px;
+  height:260px;
+  margin:-130px 0 0 -130px;
+  background:url('assets/logo.png') center/cover no-repeat;
+  opacity:0;
+  transform-origin:center;
+  will-change:transform,opacity;
+  filter:drop-shadow(0 18px 42px rgba(10,132,255,.10));
+  z-index:1;
+}
+.logo-final{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:260px;
+  height:260px;
+  transform:translate(-50%,-50%) scale(.96);
+  opacity:0;
+  border-radius:31%;
+  pointer-events:none;
+  will-change:transform,opacity;
+  filter:drop-shadow(0 26px 70px rgba(10,132,255,.18));
+  z-index:3;
+}
+.lp1{clip-path:polygon(0 0,42% 0,36% 42%,0 48%)}
+.lp2{clip-path:polygon(42% 0,100% 0,100% 34%,62% 40%,36% 42%)}
+.lp3{clip-path:polygon(0 48%,36% 42%,50% 62%,18% 72%,0 66%)}
+.lp4{clip-path:polygon(36% 42%,62% 40%,76% 58%,50% 62%)}
+.lp5{clip-path:polygon(62% 40%,100% 34%,100% 70%,76% 58%)}
+.lp6{clip-path:polygon(18% 72%,50% 62%,45% 100%,0 100%,0 66%)}
+.lp7{clip-path:polygon(50% 62%,76% 58%,100% 70%,100% 100%,45% 100%)}
+.lp8{clip-path:circle(18% at 50% 50%)}
+.lp9{clip-path:polygon(0 0,100% 0,86% 14%,14% 14%)}
+.lp10{clip-path:polygon(0 86%,100% 86%,100% 100%,0 100%)}
+@media (max-width:760px){.hero-inner{padding-top:112px}.logo-assembly{height:260px;margin-top:28px}.logo-piece,.logo-final{width:198px;height:198px;margin:-99px 0 0 -99px}.logo-final{margin:0;transform:translate(-50%,-50%) scale(.96)}}
+
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="#top"><img src="assets/logo.png" alt="SurveySaaS logo"><span>SurveySaaS</span></a>
+  <div class="links">
+    <a href="#product" data-i18n="navProduct">Product</a><a href="#workflow" data-i18n="navWorkflow">Workflow</a><a href="#interface" data-i18n="navScreens">Screens</a><a href="#plans" data-i18n="navPlans">Plans</a><a href="#stories" data-i18n="navStories">Stories</a><a href="#faq" data-i18n="navFaq">FAQ</a>
+  </div>
+  <div class="langs"><button data-lang="en-IN" class="active">EN</button><button data-lang="hi-IN">हिन्दी</button><button data-lang="zh-CN">中文</button></div>
+</nav>
+<header id="top" class="hero">
+  <div class="container hero-inner">
+    <div class="kicker" data-i18n="kicker">Built for survey operations teams</div>
+    <h1 data-i18n="heroTitle">Run survey fieldwork from one beautifully controlled operating layer.</h1>
+    <p class="hero-sub" data-i18n="heroSub">Unify project setup, supplier routing, survey station access, callback APIs, quality logs and settlement into one premium operations platform.</p>
+    <div class="ctas"><a class="btn primary" href="#contact" data-i18n="bookDemo">Book a demo</a><a class="btn" href="#product" data-i18n="getStarted">Get started</a></div>
+    <div class="pills"><span data-i18n="pill1">Admin + supplier portal</span><span data-i18n="pill2">Callback / API ready</span><span data-i18n="pill3">Private deployment support</span></div>
+    <div class="logo-assembly" aria-hidden="true">
+      <span class="logo-piece lp1"></span><span class="logo-piece lp2"></span><span class="logo-piece lp3"></span><span class="logo-piece lp4"></span><span class="logo-piece lp5"></span>
+      <span class="logo-piece lp6"></span><span class="logo-piece lp7"></span><span class="logo-piece lp8"></span><span class="logo-piece lp9"></span><span class="logo-piece lp10"></span>
+      <img class="logo-final" src="assets/logo.png" alt="">
+    </div>
+  </div>
+</header>
+<main>
+<section id="product" class="section">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow" data-i18n="productEyebrow">Product modules</div><h2 data-i18n="productTitle">One platform for the work behind every survey launch.</h2></div><p class="lead" data-i18n="productLead">Replace scattered spreadsheets, chats and manual settlement records with a single operating system for fieldwork teams.</p></div>
+    <div class="grid4">
+      <article class="card feature"><div class="num">01</div><h3 data-i18n="f1Title">Project control</h3><p data-i18n="f1Text">Configure CPI, audience, quota, country rules, IR/LOI and supplier conditions.</p></article>
+      <article class="card feature"><div class="num">02</div><h3 data-i18n="f2Title">Supplier routing</h3><p data-i18n="f2Text">Give suppliers a clear portal while keeping access, redirects and settlement under control.</p></article>
+      <article class="card feature"><div class="num">03</div><h3 data-i18n="f3Title">Survey station access</h3><p data-i18n="f3Text">Track visits, completes, rejects, pass rate, device signals and status logs.</p></article>
+      <article class="card feature"><div class="num">04</div><h3 data-i18n="f4Title">Callback & API</h3><p data-i18n="f4Text">Manage encrypted callback URLs, signatures, redirects and event notifications.</p></article>
+    </div>
+  </div>
+</section>
+<section id="workflow" class="section">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow" data-i18n="workflowEyebrow">Operating flow</div><h2 data-i18n="workflowTitle">From launch to settlement, every step stays visible.</h2></div><p class="lead" data-i18n="workflowLead">A continuous operational path keeps project setup, supplier routing, quality monitoring and finance review connected.</p></div>
+    <div class="workflow-wrap">
+      <div class="workflow-track-clean" id="flowTrack">
+        <canvas class="workflow-canvas-v25" id="flowCanvasV25" aria-hidden="true"></canvas>
+        <article class="flow-card-clean"><div class="step">1</div><h3 data-i18n="w1Title">Create project</h3><p data-i18n="w1Text">Set CPI, audience, country, quota, IR/LOI, supplier access and customer rules.</p></article>
+        <article class="flow-card-clean"><div class="step">2</div><h3 data-i18n="w2Title">Route suppliers</h3><p data-i18n="w2Text">Distribute traffic, configure access logic, callbacks, redirects and whitelist controls.</p></article>
+        <article class="flow-card-clean"><div class="step">3</div><h3 data-i18n="w3Title">Monitor quality</h3><p data-i18n="w3Text">Watch completes, rejects, pass rate, device signals, status logs and abnormal activity.</p></article>
+        <article class="flow-card-clean"><div class="step">4</div><h3 data-i18n="w4Title">Settle finance</h3><p data-i18n="w4Text">Review wallets, pending funds, supplier bills, employee logs and settlement notes.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="interface" class="section">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow" data-i18n="screensEyebrow">Product workspace</div><h2 data-i18n="screensTitle">A clean workspace for daily fieldwork control.</h2></div><p class="lead" data-i18n="screensLead">Switch between analytics, admin, supplier portal and finance without leaving the same operating view.</p></div>
+    <div class="tabs"><button class="tab active" data-view="analytics" data-i18n="tabAnalytics">Analytics</button><button class="tab" data-view="admin" data-i18n="tabAdmin">Admin console</button><button class="tab" data-view="supplier" data-i18n="tabSupplier">Supplier portal</button><button class="tab" data-view="finance" data-i18n="tabFinance">Finance ledger</button></div>
+    <div class="interface-shell">
+      <div class="window-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="window-title" id="windowTitle">Operations analytics</span></div>
+      <div class="screen-view active" id="analytics"><div class="metrics">
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><h4 data-i18n="m1">Visits</h4><strong>26,741</strong><small>↑ 2.8%</small></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><h4 data-i18n="m2">Completes</h4><strong>1,542</strong><small>↑ 16.4%</small></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><h4 data-i18n="m3">Revenue</h4><strong>US$43,781</strong><small>↑ 8.1%</small></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div><h4 data-i18n="m4">Pass rate</h4><strong>93.52%</strong><small>↑ 6.2%</small></div></div>
+</div></div>
+      <div class="screen-view" id="admin"><div class="metrics">
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><h4>CPI</h4><strong>US$1.80</strong></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div><h4>Country</h4><strong>India</strong></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div><div><h4>Quota</h4><strong>1,500</strong></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><h4>IR / LOI</h4><strong>32% / 12m</strong></div></div>
+</div></div>
+      <div class="screen-view" id="supplier"><div class="metrics">
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><h4>Active suppliers</h4><strong>38</strong></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div><h4>Live links</h4><strong>124</strong></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.11 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg></div><div><h4>Callbacks</h4><strong>99.8%</strong></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div><div><h4>Blocked traffic</h4><strong>7,842</strong></div></div>
+</div></div>
+      <div class="screen-view" id="finance"><div class="metrics">
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><h4>Pending funds</h4><strong>US$18,420</strong></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div><div><h4>Supplier bills</h4><strong>42</strong></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div><h4>Wallet logs</h4><strong>1,204</strong></div></div>
+<div class="metric"><div class="metric-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><h4>Close cycle</h4><strong>2.4h</strong></div></div>
+</div></div>
+    </div>
+  </div>
+</section>
+<section id="plans" class="section">
+  <div class="container"><div class="section-head"><div><div class="eyebrow" data-i18n="plansEyebrow">Plans</div><h2 data-i18n="plansTitle">Choose the operating model that fits your team.</h2></div><p class="lead" data-i18n="plansLead">Start with a focused internal workspace or scale into a full supplier and survey station operating suite.</p></div><div class="plans">
+    <article class="plan"><span class="badge">A</span><h3>Studio</h3><p data-i18n="p1Text">For internal teams running focused research projects.</p><ul><li data-i18n="p1a">Project management</li><li data-i18n="p1b">Finance logs</li><li data-i18n="p1c">Survey station access</li></ul><a class="btn" href="#contact" data-i18n="getStarted">Get started</a></article>
+    <article class="plan"><span class="badge">B</span><h3>Supplier Network</h3><p data-i18n="p2Text">For teams managing suppliers and distributed fieldwork traffic.</p><ul><li data-i18n="p2a">Supplier portal</li><li data-i18n="p2b">Wallet and settlement</li><li data-i18n="p2c">Role and department logic</li></ul><a class="btn" href="#contact" data-i18n="getStarted">Get started</a></article>
+    <article class="plan featured"><span class="badge" data-i18n="recommended">⭐ Recommended</span><h3>Operations Suite</h3><p data-i18n="p3Text">For companies connecting admin, supplier portal and survey station as one system.</p><ul><li data-i18n="p3a">Three core portals</li><li data-i18n="p3b">Callback / API rules</li><li data-i18n="p3c">Advanced analytics</li></ul><a class="btn" href="#contact" data-i18n="getStarted">Get started</a></article>
+    <article class="plan"><span class="badge">D</span><h3>Private Deployment</h3><p data-i18n="p4Text">For enterprises with infrastructure, compliance and integration requirements.</p><ul><li data-i18n="p4a">Dedicated deployment</li><li data-i18n="p4b">Custom domain and DNS</li><li data-i18n="p4c">Integration support</li></ul><a class="btn" href="#contact" data-i18n="contactSales">Contact sales</a></article>
+  </div></div>
+</section>
+<section id="stories" class="section">
+  <div class="container"><div class="section-head"><div><div class="eyebrow" data-i18n="storiesEyebrow">Customer stories</div><h2 data-i18n="storiesTitle">Built for India fieldwork and global research operations.</h2></div><p class="lead" data-i18n="storiesLead">Three practical operating scenarios show how teams keep supplier routing, quality control and finance visible.</p></div><div class="stories">
+    <article class="story"><img src="assets/case_1.jpg" alt="Indian fieldwork manager"><h3>Aarav Menon</h3><div class="role">Fieldwork Director · Mumbai</div><blockquote data-i18n="story1">“Our team can see supplier traffic, quota progress and settlement status in one place.”</blockquote></article>
+    <article class="story"><img src="assets/case_2.jpg" alt="Supplier network operator"><h3>Priya Nair</h3><div class="role">Supplier Operations Lead · Bengaluru</div><blockquote data-i18n="story2">“The supplier portal gives partners a clear entry point while our team keeps rules under control.”</blockquote></article>
+    <article class="story"><img src="assets/case_3.jpg" alt="Global research operations lead"><h3>Emma Wilson</h3><div class="role">Research Operations · London</div><blockquote data-i18n="story3">“Callback and finance logs make project review faster and easier to audit.”</blockquote></article>
+  </div></div>
+</section>
+<section id="faq" class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">FAQ</div><h2 data-i18n="faqTitle">Questions before your demo.</h2></div><p class="lead" data-i18n="faqLead">A quick overview for operations, supplier and IT teams evaluating SurveySaaS.</p></div><div class="faq-grid"><details name="surveysaas-faq" open><summary data-i18n="q1">Can it support supplier routing?</summary><p data-i18n="a1">Yes. You can manage supplier access, redirect rules, callback rules, status logs and finance records in one workspace.</p></details><details name="surveysaas-faq"><summary data-i18n="q2">Is private deployment available?</summary><p data-i18n="a2">Yes. Private deployment can support dedicated infrastructure, custom domains and integration requirements.</p></details><details name="surveysaas-faq"><summary data-i18n="q3">Can we use it for India fieldwork?</summary><p data-i18n="a3">Yes. The page is designed for India-facing operations teams and supplier networks.</p></details><details name="surveysaas-faq"><summary data-i18n="q4">Do we need separate tools?</summary><p data-i18n="a4">No. The goal is to keep project control, supplier operations, survey station access, callbacks and finance connected.</p></details></div></div></section>
+</main>
+<footer id="contact" class="footer"><div class="container"><div class="cta-band"><h2 data-i18n="ctaTitle">Bring your fieldwork operations into one clear system.</h2><div class="ctas"><a class="btn primary" href="mailto:sales@surveysaas.com" data-i18n="bookDemo">Book a demo</a><a class="btn" href="mailto:sales@surveysaas.com" data-i18n="contactSales">Contact sales</a></div></div><div class="footer-inner"><div style="display:flex;align-items:center;gap:10px"><img src="assets/logo.png" style="width:22px;height:22px;border-radius:6px" alt=""><strong style="font-family:'Bricolage Grotesque',sans-serif;font-size:15px">SurveySaaS</strong></div><div style="display:flex;gap:24px;font-size:13px;color:#61728c"><a href="#product" style="color:#61728c;text-decoration:none">Product</a><a href="#workflow" style="color:#61728c;text-decoration:none">Workflow</a><a href="#plans" style="color:#61728c;text-decoration:none">Plans</a><a href="mailto:sales@surveysaas.com" style="color:#61728c;text-decoration:none">Contact</a></div><span style="font-size:12px;color:#a0afc0">© 2026 SurveySaaS. All rights reserved.</span></div></div></footer>
+<script>
+const dict={
+'en-IN':{navProduct:'Product',navWorkflow:'Workflow',navScreens:'Screens',navPlans:'Plans',navStories:'Stories',navFaq:'FAQ',kicker:'Built for survey operations teams',heroTitle:'Run survey fieldwork from one beautifully controlled operating layer.',heroSub:'Unify project setup, supplier routing, survey station access, callback APIs, quality logs and settlement into one premium operations platform.',bookDemo:'Book a demo',getStarted:'Get started',contactSales:'Contact sales',pill1:'Admin + supplier portal',pill2:'Callback / API ready',pill3:'Private deployment support',productEyebrow:'Product modules',productTitle:'One platform for the work behind every survey launch.',productLead:'Replace scattered spreadsheets, chats and manual settlement records with a single operating system for fieldwork teams.',f1Title:'Project control',f1Text:'Configure CPI, audience, quota, country rules, IR/LOI and supplier conditions.',f2Title:'Supplier routing',f2Text:'Give suppliers a clear portal while keeping access, redirects and settlement under control.',f3Title:'Survey station access',f3Text:'Track visits, completes, rejects, pass rate, device signals and status logs.',f4Title:'Callback & API',f4Text:'Manage encrypted callback URLs, signatures, redirects and event notifications.',workflowEyebrow:'Operating flow',workflowTitle:'From launch to settlement, every step stays visible.',workflowLead:'A continuous operational path keeps project setup, supplier routing, quality monitoring and finance review connected.',w1Title:'Create project',w1Text:'Set CPI, audience, country, quota, IR/LOI, supplier access and customer rules.',w2Title:'Route suppliers',w2Text:'Distribute traffic, configure access logic, callbacks, redirects and whitelist controls.',w3Title:'Monitor quality',w3Text:'Watch completes, rejects, pass rate, device signals, status logs and abnormal activity.',w4Title:'Settle finance',w4Text:'Review wallets, pending funds, supplier bills, employee logs and settlement notes.',screensEyebrow:'Product workspace',screensTitle:'A clean workspace for daily fieldwork control.',screensLead:'Switch between analytics, admin, supplier portal and finance without leaving the same operating view.',tabAnalytics:'Analytics',tabAdmin:'Admin console',tabSupplier:'Supplier portal',tabFinance:'Finance ledger',m1:'Visits',m2:'Completes',m3:'Revenue',m4:'Pass rate',plansEyebrow:'Plans',plansTitle:'Choose the operating model that fits your team.',plansLead:'Start with a focused internal workspace or scale into a full supplier and survey station operating suite.',recommended:'Recommended',p1Text:'For internal teams running focused research projects.',p1a:'Project management',p1b:'Finance logs',p1c:'Survey station access',p2Text:'For teams managing suppliers and distributed fieldwork traffic.',p2a:'Supplier portal',p2b:'Wallet and settlement',p2c:'Role and department logic',p3Text:'For companies connecting admin, supplier portal and survey station as one system.',p3a:'Three core portals',p3b:'Callback / API rules',p3c:'Advanced analytics',p4Text:'For enterprises with infrastructure, compliance and integration requirements.',p4a:'Dedicated deployment',p4b:'Custom domain and DNS',p4c:'Integration support',storiesEyebrow:'Customer stories',storiesTitle:'Built for India fieldwork and global research operations.',storiesLead:'Three practical operating scenarios show how teams keep supplier routing, quality control and finance visible.',story1:'“Our team can see supplier traffic, quota progress and settlement status in one place.”',story2:'“The supplier portal gives partners a clear entry point while our team keeps rules under control.”',story3:'“Callback and finance logs make project review faster and easier to audit.”',faqTitle:'Questions before your demo.',faqLead:'A quick overview for operations, supplier and IT teams evaluating SurveySaaS.',q1:'Can it support supplier routing?',a1:'Yes. You can manage supplier access, redirect rules, callback rules, status logs and finance records in one workspace.',q2:'Is private deployment available?',a2:'Yes. Private deployment can support dedicated infrastructure, custom domains and integration requirements.',q3:'Can we use it for India fieldwork?',a3:'Yes. The page is designed for India-facing operations teams and supplier networks.',q4:'Do we need separate tools?',a4:'No. The goal is to keep project control, supplier operations, survey station access, callbacks and finance connected.',ctaTitle:'Bring your fieldwork operations into one clear system.'},
+'zh-CN':{navProduct:'产品',navWorkflow:'流程',navScreens:'界面',navPlans:'版本',navStories:'案例',navFaq:'问答',kicker:'面向调研运营团队',heroTitle:'用一个清晰可控的运营层管理调研 fieldwork。',heroSub:'将项目配置、供应商分发、调查站访问、回调 API、质量日志和财务结算统一到一个高级运营平台。',bookDemo:'预约演示',getStarted:'开始了解',contactSales:'联系销售',pill1:'后台 + 供应商门户',pill2:'回调 / API 就绪',pill3:'支持私有化部署',productEyebrow:'产品模块',productTitle:'覆盖每次调查上线背后工作的统一平台。',productLead:'用一个 fieldwork 运营系统替代分散表格、聊天沟通和人工结算记录。',f1Title:'项目控制',f1Text:'配置 CPI、人群、配额、国家规则、IR/LOI 和供应商条件。',f2Title:'供应商分发',f2Text:'为供应商提供清晰门户，同时控制访问、跳转和结算。',f3Title:'调查站访问',f3Text:'追踪访问、完成、拒绝、通过率、设备信号和状态日志。',f4Title:'回调与 API',f4Text:'管理加密回调 URL、签名、跳转规则和事件通知。',workflowEyebrow:'运营流程',workflowTitle:'从上线到结算，每一步都清晰可见。',workflowLead:'连续的运营路径连接项目配置、供应商分发、质量监控和财务审核。',w1Title:'创建项目',w1Text:'设置 CPI、人群、国家、配额、IR/LOI、供应商访问和客户规则。',w2Title:'分配供应商',w2Text:'分发流量，配置访问逻辑、回调、跳转和白名单控制。',w3Title:'监控质量',w3Text:'查看完成、拒绝、通过率、设备信号、状态日志和异常活动。',w4Title:'结算财务',w4Text:'审核钱包、待审资金、供应商账单、员工日志和结算备注。',screensEyebrow:'产品工作台',screensTitle:'为日常 fieldwork 控制设计的清晰工作台。',screensLead:'在同一个运营视图中切换数据分析、管理后台、供应商门户和财务账本。',tabAnalytics:'数据分析',tabAdmin:'管理后台',tabSupplier:'供应商门户',tabFinance:'财务账本',m1:'参与访问',m2:'有效完成',m3:'收入',m4:'通过率',plansEyebrow:'版本',plansTitle:'选择适合团队的运营模式。',plansLead:'从内部工作室到完整的供应商与调查站运营套件，按业务规模选择。',recommended:'推荐',p1Text:'适合运行内部小型调研项目的团队。',p1a:'项目管理',p1b:'财务日志',p1c:'调查站访问',p2Text:'适合管理供应商和分布式 fieldwork 流量的团队。',p2a:'供应商门户',p2b:'钱包与结算',p2c:'角色与部门逻辑',p3Text:'适合把后台、供应商门户和调查站作为一个系统协作的公司。',p3a:'三大核心门户',p3b:'回调 / API 规则',p3c:'高级分析',p4Text:'适合有基础设施、合规和集成要求的企业。',p4a:'独立部署',p4b:'自定义域名和 DNS',p4c:'集成支持',storiesEyebrow:'客户案例',storiesTitle:'服务印度 fieldwork 与全球调研运营。',storiesLead:'三个运营场景展示团队如何保持供应商分发、质量控制和财务可见。',story1:'“团队可以在一个地方看到供应商流量、配额进度和结算状态。”',story2:'“供应商门户让合作伙伴有清晰入口，同时团队仍能控制规则。”',story3:'“回调和财务日志让项目复盘更快，也更容易审计。”',faqTitle:'演示前常见问题。',faqLead:'为运营、供应商和 IT 团队提供快速了解。',q1:'支持供应商分发吗？',a1:'支持。你可以在一个工作台管理供应商访问、跳转规则、回调规则、状态日志和财务记录。',q2:'支持私有化部署吗？',a2:'支持。私有化部署可配合独立基础设施、自定义域名和集成需求。',q3:'适合印度 fieldwork 吗？',a3:'适合。页面和方案面向印度调研运营团队和供应商网络设计。',q4:'还需要多个独立工具吗？',a4:'不需要。平台目标是连接项目控制、供应商运营、调查站访问、回调和财务。',ctaTitle:'把 fieldwork 运营带入一个清晰系统。'},
+'hi-IN':{navProduct:'उत्पाद',navWorkflow:'प्रवाह',navScreens:'स्क्रीन',navPlans:'प्लान',navStories:'कहानियां',navFaq:'FAQ',kicker:'सर्वे ऑपरेशंस टीमों के लिए',heroTitle:'पूरे survey fieldwork को एक साफ और नियंत्रित operating layer से चलाएं।',heroSub:'Project setup, supplier routing, survey station access, callback APIs, quality logs और settlement को एक premium operations platform में जोड़ें।',bookDemo:'डेमो बुक करें',getStarted:'शुरू करें',contactSales:'सेल्स से बात करें',pill1:'Admin + supplier portal',pill2:'Callback / API तैयार',pill3:'Private deployment support',productEyebrow:'उत्पाद मॉड्यूल',productTitle:'हर survey launch के पीछे के काम के लिए एक platform।',productLead:'बिखरे spreadsheets, chats और manual settlement records की जगह fieldwork teams के लिए एक operating system इस्तेमाल करें।',f1Title:'Project control',f1Text:'CPI, audience, quota, country rules, IR/LOI और supplier conditions configure करें।',f2Title:'Supplier routing',f2Text:'Suppliers को साफ portal दें और access, redirects और settlement control में रखें।',f3Title:'Survey station access',f3Text:'Visits, completes, rejects, pass rate, device signals और status logs track करें।',f4Title:'Callback & API',f4Text:'Encrypted callback URLs, signatures, redirects और event notifications manage करें।',workflowEyebrow:'ऑपरेटिंग प्रवाह',workflowTitle:'Launch से settlement तक हर step साफ दिखता है।',workflowLead:'एक continuous operational path project setup, supplier routing, quality monitoring और finance review को जोड़ता है।',w1Title:'Project बनाएं',w1Text:'CPI, audience, country, quota, IR/LOI, supplier access और customer rules set करें।',w2Title:'Suppliers route करें',w2Text:'Traffic distribute करें, access logic, callbacks, redirects और whitelist controls configure करें।',w3Title:'Quality monitor करें',w3Text:'Completes, rejects, pass rate, device signals, status logs और abnormal activity देखें।',w4Title:'Finance settle करें',w4Text:'Wallets, pending funds, supplier bills, employee logs और settlement notes review करें।',screensEyebrow:'Product workspace',screensTitle:'Daily fieldwork control के लिए साफ workspace।',screensLead:'Analytics, admin, supplier portal और finance को एक ही operating view में switch करें।',tabAnalytics:'Analytics',tabAdmin:'Admin console',tabSupplier:'Supplier portal',tabFinance:'Finance ledger',m1:'Visits',m2:'Completes',m3:'Revenue',m4:'Pass rate',plansEyebrow:'प्लान',plansTitle:'अपनी team के लिए सही operating model चुनें।',plansLead:'Focused internal workspace से लेकर full supplier और survey station operating suite तक scale करें।',recommended:'अनुशंसित',p1Text:'Focused research projects चलाने वाली internal teams के लिए।',p1a:'Project management',p1b:'Finance logs',p1c:'Survey station access',p2Text:'Suppliers और distributed fieldwork traffic manage करने वाली teams के लिए।',p2a:'Supplier portal',p2b:'Wallet and settlement',p2c:'Role and department logic',p3Text:'Admin, supplier portal और survey station को एक system में जोड़ने वाली companies के लिए।',p3a:'Three core portals',p3b:'Callback / API rules',p3c:'Advanced analytics',p4Text:'Infrastructure, compliance और integration requirements वाले enterprises के लिए।',p4a:'Dedicated deployment',p4b:'Custom domain and DNS',p4c:'Integration support',storiesEyebrow:'Customer stories',storiesTitle:'India fieldwork और global research operations के लिए बनाया गया।',storiesLead:'तीन practical scenarios दिखाते हैं कि teams supplier routing, quality control और finance visibility कैसे रखती हैं।',story1:'“हमारी team supplier traffic, quota progress और settlement status एक जगह देख सकती है।”',story2:'“Supplier portal partners को clear entry point देता है और हमारी team rules control में रखती है।”',story3:'“Callback और finance logs project review को तेज और audit को आसान बनाते हैं।”',faqTitle:'Demo से पहले सवाल।',faqLead:'Operations, supplier और IT teams के लिए quick overview।',q1:'क्या यह supplier routing support करता है?',a1:'हां। आप supplier access, redirect rules, callback rules, status logs और finance records एक workspace में manage कर सकते हैं।',q2:'क्या private deployment उपलब्ध है?',a2:'हां। Private deployment dedicated infrastructure, custom domains और integration needs support कर सकता है।',q3:'क्या यह India fieldwork के लिए ठीक है?',a3:'हां। यह page India-facing operations teams और supplier networks के लिए design किया गया है।',q4:'क्या अलग tools की जरूरत है?',a4:'नहीं। लक्ष्य project control, supplier operations, survey station access, callbacks और finance को connect करना है।',ctaTitle:'अपने fieldwork operations को एक clear system में लाएं।'}
+};
+function setLang(lang){document.documentElement.lang=lang;localStorage.setItem('surveysaas-lang',lang);document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(dict[lang]&&dict[lang][key]) el.textContent=dict[lang][key];});document.querySelectorAll('.langs button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));}
+document.querySelectorAll('.langs button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));setLang(localStorage.getItem('surveysaas-lang')||'en-IN');
+// v27 FAQ: keep accordion behavior independent and avoid row-stretch artifacts.
+document.querySelectorAll('#faq details').forEach(item=>{
+  item.addEventListener('toggle',()=>{
+    if(item.open){
+      document.querySelectorAll('#faq details').forEach(other=>{ if(other!==item) other.open=false; });
+    }
+  });
+});
+
+const tabs=document.querySelectorAll('.tab');const titleMap={analytics:'Operations analytics',admin:'Project control center',supplier:'Supplier operations',finance:'Finance ledger'};tabs.forEach(tab=>tab.addEventListener('click',()=>{tabs.forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.screen-view').forEach(v=>v.classList.remove('active'));document.getElementById(tab.dataset.view).classList.add('active');document.getElementById('windowTitle').textContent=titleMap[tab.dataset.view];}));
+function roundedRoute(parts, side){
+  let d='';
+  parts.forEach((c,i)=>{
+    const r=Math.min(30,(c.x1-c.x0)/7,(c.y1-c.y0)/7);
+    if(i===0){ d+=`M ${c.x0} ${c.ym} `; } else { d+=`L ${c.x0} ${c.ym} `; }
+    if(side==='top'){
+      d+=`L ${c.x0} ${c.y0+r} Q ${c.x0} ${c.y0} ${c.x0+r} ${c.y0} L ${c.x1-r} ${c.y0} Q ${c.x1} ${c.y0} ${c.x1} ${c.y0+r} L ${c.x1} ${c.ym} `;
+    } else {
+      d+=`L ${c.x0} ${c.y1-r} Q ${c.x0} ${c.y1} ${c.x0+r} ${c.y1} L ${c.x1-r} ${c.y1} Q ${c.x1} ${c.y1} ${c.x1} ${c.y1-r} L ${c.x1} ${c.ym} `;
+    }
+  });
+  return d;
+}
+function buildFlow(){
+  const track=document.getElementById('flowTrack');const svg=document.getElementById('flowSvg');if(!track||!svg)return;
+  const tb=track.getBoundingClientRect();const cards=[...track.querySelectorAll('.flow-card-clean')];
+  if(!cards.length||tb.width<600){return}
+  const parts=cards.map(card=>{const b=card.getBoundingClientRect();return{x0:b.left-tb.left,x1:b.right-tb.left,y0:b.top-tb.top,y1:b.bottom-tb.top,ym:b.top-tb.top+b.height/2};});
+  svg.setAttribute('viewBox',`0 0 ${tb.width} ${tb.height}`);
+  const top=roundedRoute(parts,'top'), bottom=roundedRoute(parts,'bottom');
+  ['flowBaseTop','flowGlowTop','flowHotTop'].forEach(id=>{const p=document.getElementById(id);p.setAttribute('d',top);p.setAttribute('pathLength','1000');});
+  ['flowBaseBottom','flowGlowBottom','flowHotBottom'].forEach(id=>{const p=document.getElementById(id);p.setAttribute('d',bottom);p.setAttribute('pathLength','1000');});
+}
+window.addEventListener('load',()=>{buildFlow();setTimeout(buildFlow,250);});
+window.addEventListener('resize',()=>requestAnimationFrame(buildFlow));
+const observer=new ResizeObserver(()=>buildFlow());observer.observe(document.getElementById('flowTrack'));
+const sections=[...document.querySelectorAll('main section')];const navLinks=[...document.querySelectorAll('.links a')];const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}})},{rootMargin:'-45% 0px -50% 0px'});sections.forEach(s=>obs.observe(s));
+</script>
+
+<script>
+/* v26: workflow flow only. Faster continuous canvas trail with visible first/last edges. */
+(function(){
+  const track = document.getElementById('flowTrack');
+  const canvas = document.getElementById('flowCanvasV25');
+  if(!track || !canvas) return;
+
+  let ctx, dpr=1, W=0, H=0, topRoute=null, bottomRoute=null, connectorSegments=[];
+  let cycleStart = performance.now();
+  const CYCLE_MS = 5600;      // close to the earlier faster feel
+  const TRAIL = 310;          // long enough to read as one flowing process
+  const RADIUS = 28;
+
+  function distance(a,b){ return Math.hypot(b.x-a.x,b.y-a.y); }
+  function addPoint(points,x,y){
+    const p={x,y};
+    const last=points[points.length-1];
+    if(!last || Math.hypot(last.x-x,last.y-y)>0.2) points.push(p);
+  }
+  function addLine(points,x1,y1,x2,y2,steps){
+    for(let i=1;i<=steps;i++) addPoint(points,x1+(x2-x1)*i/steps,y1+(y2-y1)*i/steps);
+  }
+  function addQuarter(points,cx,cy,r,start,end,steps){
+    for(let i=1;i<=steps;i++){
+      const a=start+(end-start)*i/steps;
+      addPoint(points,cx+Math.cos(a)*r,cy+Math.sin(a)*r);
+    }
+  }
+  function makeRoute(cards, side){
+    const pts=[];
+    if(!cards.length) return makePolyline([]);
+    addPoint(pts, cards[0].x0, cards[0].ym);
+    cards.forEach((c,i)=>{
+      const next=cards[i+1];
+      const r=Math.min(RADIUS,(c.x1-c.x0)/5,(c.y1-c.y0)/5);
+      if(side==='top'){
+        addLine(pts, c.x0, c.ym, c.x0, c.y0+r, 8);
+        addQuarter(pts, c.x0+r, c.y0+r, r, Math.PI, Math.PI*1.5, 12);
+        addLine(pts, c.x0+r, c.y0, c.x1-r, c.y0, 24);
+        addQuarter(pts, c.x1-r, c.y0+r, r, Math.PI*1.5, Math.PI*2, 12);
+        addLine(pts, c.x1, c.y0+r, c.x1, c.ym, 8);
+      }else{
+        addLine(pts, c.x0, c.ym, c.x0, c.y1-r, 8);
+        addQuarter(pts, c.x0+r, c.y1-r, r, Math.PI, Math.PI/2, 12);
+        addLine(pts, c.x0+r, c.y1, c.x1-r, c.y1, 24);
+        addQuarter(pts, c.x1-r, c.y1-r, r, Math.PI/2, 0, 12);
+        addLine(pts, c.x1, c.y1-r, c.x1, c.ym, 8);
+      }
+      if(next) addLine(pts, c.x1, c.ym, next.x0, next.ym, 16);
+    });
+    return makePolyline(pts);
+  }
+  function makeConnector(cards){
+    // Each connector must be isolated. If all connector points are placed in one polyline,
+    // the canvas draws unwanted center lines through card 2 and card 3.
+    const segments=[];
+    for(let i=0;i<cards.length-1;i++){
+      const a=cards[i], b=cards[i+1];
+      const pts=[];
+      addPoint(pts,a.x1,a.ym);
+      addLine(pts,a.x1,a.ym,b.x0,b.ym,16);
+      segments.push(makePolyline(pts));
+    }
+    return segments;
+  }
+  function makePolyline(points){
+    const cum=[0]; let len=0;
+    for(let i=1;i<points.length;i++){ len+=distance(points[i-1],points[i]); cum.push(len); }
+    return {points,cum,len};
+  }
+  function pointAt(route, pos){
+    if(!route || !route.points.length) return null;
+    if(pos<=0) return route.points[0];
+    if(pos>=route.len) return route.points[route.points.length-1];
+    let lo=0, hi=route.cum.length-1;
+    while(lo<hi){ const mid=(lo+hi)>>1; if(route.cum[mid]<pos) lo=mid+1; else hi=mid; }
+    const i=Math.max(1,lo);
+    const prev=route.points[i-1], next=route.points[i];
+    const span=Math.max(.0001,route.cum[i]-route.cum[i-1]);
+    const t=(pos-route.cum[i-1])/span;
+    return {x:prev.x+(next.x-prev.x)*t, y:prev.y+(next.y-prev.y)*t};
+  }
+  function strokePolyline(route, style, width){
+    if(!route || route.points.length<2) return;
+    ctx.save(); ctx.strokeStyle=style; ctx.lineWidth=width; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.beginPath(); ctx.moveTo(route.points[0].x,route.points[0].y);
+    for(let i=1;i<route.points.length;i++) ctx.lineTo(route.points[i].x,route.points[i].y);
+    ctx.stroke(); ctx.restore();
+  }
+  function strokeConnectorSegments(segments, style, width){
+    if(!segments || !segments.length) return;
+    segments.forEach(segment => strokePolyline(segment, style, width));
+  }
+  function drawTrail(route, progress){
+    if(!route || !route.len) return;
+    const rawStart=progress-TRAIL;
+    const start=Math.max(0, rawStart);
+    const end=Math.min(route.len, progress);
+    if(end<=0 || start>=route.len || end<=start) return;
+    const steps=52;
+    for(let i=0;i<steps;i++){
+      const a=start+(end-start)*i/steps;
+      const b=start+(end-start)*(i+1)/steps;
+      const p1=pointAt(route,a), p2=pointAt(route,b);
+      if(!p1||!p2) continue;
+      const k=(i+1)/steps;
+      ctx.save();
+      ctx.lineCap='round'; ctx.lineJoin='round';
+      ctx.globalAlpha=Math.min(1,0.14+k*0.92);
+      ctx.strokeStyle=k>.72 ? 'rgba(10,132,255,1)' : 'rgba(22,184,255,.95)';
+      ctx.lineWidth=2.8 + k*2.4;
+      ctx.shadowColor='rgba(10,132,255,.45)'; ctx.shadowBlur=8+k*7;
+      ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y); ctx.stroke();
+      ctx.restore();
+    }
+    if(progress<=route.len){
+      const head=pointAt(route, progress);
+      if(head){
+        ctx.save();
+        ctx.fillStyle='rgba(10,132,255,1)'; ctx.shadowColor='rgba(10,132,255,.65)'; ctx.shadowBlur=16;
+        ctx.beginPath(); ctx.arc(head.x,head.y,3.4,0,Math.PI*2); ctx.fill();
+        ctx.restore();
+      }
+    }
+  }
+  function measure(){
+    dpr=window.devicePixelRatio||1;
+    const tr=track.getBoundingClientRect();
+    const PAD=16; // matches the negative canvas inset; keeps drawing aligned to the real card border while preventing clipping
+    W=Math.max(1,tr.width + PAD*2); H=Math.max(1,tr.height + PAD*2);
+    canvas.width=Math.round(W*dpr); canvas.height=Math.round(H*dpr);
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx=canvas.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0);
+    const cards=[...track.querySelectorAll('.flow-card-clean')].map(card=>{
+      const b=card.getBoundingClientRect();
+      return {
+        x0:b.left-tr.left+PAD,
+        x1:b.right-tr.left+PAD,
+        y0:b.top-tr.top+PAD,
+        y1:b.bottom-tr.top+PAD,
+        ym:b.top-tr.top+b.height/2+PAD
+      };
+    });
+    topRoute=makeRoute(cards,'top'); bottomRoute=makeRoute(cards,'bottom'); connectorSegments=makeConnector(cards);
+  }
+  function draw(now){
+    if(!ctx){ requestAnimationFrame(draw); return; }
+    ctx.clearRect(0,0,W,H);
+    // Static middle connectors only; card borders remain CSS borders.
+    strokeConnectorSegments(connectorSegments,'rgba(10,132,255,.16)',2);
+    const total=Math.max(topRoute?.len||0,bottomRoute?.len||0);
+    const progress=((now-cycleStart)%CYCLE_MS)/CYCLE_MS*(total+TRAIL);
+    drawTrail(topRoute, progress);
+    drawTrail(bottomRoute, progress);
+    requestAnimationFrame(draw);
+  }
+  function init(){ measure(); cycleStart=performance.now(); }
+  window.addEventListener('load',()=>{ init(); requestAnimationFrame(draw); setTimeout(measure,220); setTimeout(measure,900); });
+  window.addEventListener('resize',()=>requestAnimationFrame(measure));
+  if('ResizeObserver' in window){ new ResizeObserver(()=>requestAnimationFrame(measure)).observe(track); }
+})();
+</script>
+
+
+<script>
+/* v29: homepage split-logo assembly animation only */
+(function(){
+  const hero=document.querySelector('.hero');
+  const pieces=[...document.querySelectorAll('.logo-piece')];
+  const finalLogo=document.querySelector('.logo-final');
+  if(!hero || !pieces.length || !finalLogo) return;
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const easeOutCubic=t=>1-Math.pow(1-t,3);
+  function updateLogoAssembly(){
+    const rect=hero.getBoundingClientRect();
+    const travel=Math.max(1,hero.offsetHeight-window.innerHeight);
+    const progressed=clamp((-rect.top)/travel,0,1);
+    const enter=clamp((progressed-.16)/.60,0,1);
+    const eased=easeOutCubic(enter);
+    const w=window.innerWidth, h=window.innerHeight;
+    const routes=[[-.88*w,-.68*h,-42],[.82*w,-.64*h,34],[-.96*w,.30*h,55],[.92*w,.36*h,-47],[.05*w,-.90*h,26],[-.92*w,-.10*h,-68],[.98*w,-.04*h,72],[-.18*w,.84*h,-22],[.42*w,-.84*h,88],[-.46*w,.78*h,-82]];
+    const finalFade=clamp((progressed-.70)/.20,0,1);
+    pieces.forEach((el,i)=>{
+      const [sx,sy,sr]=routes[i%routes.length];
+      const arc=Math.sin(enter*Math.PI+i*.6)*34*(1-eased);
+      const visible=enter<=0?0:Math.max(0,(1-finalFade)*Math.min(1,enter*2.35));
+      el.style.transform=`translate3d(${sx*(1-eased)}px,${sy*(1-eased)+arc}px,0) rotate(${sr*(1-eased)}deg) scale(${.56+.44*eased})`;
+      el.style.opacity=visible;
+    });
+    const f=easeOutCubic(finalFade);
+    finalLogo.style.opacity=f;
+    finalLogo.style.transform=`translate(-50%,-50%) scale(${.94+.06*f})`;
+  }
+  window.addEventListener('scroll',updateLogoAssembly,{passive:true});
+  window.addEventListener('resize',updateLogoAssembly);
+  window.addEventListener('load',updateLogoAssembly);
+  updateLogoAssembly();
+})();
+</script>
+
+</body>
+</html>

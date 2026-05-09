@@ -1,0 +1,783 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SurveySaaS — Survey fieldwork operations platform</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet"><style>
+:root{--blue:#0a84ff;--blue2:#16b8ff;--navy:#071426;--muted:#60718c;--line:#dce9f8;--deep:#06162c;--deep2:#092443;--shadow:0 24px 70px rgba(22,57,107,.09)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;color:var(--navy);background:linear-gradient(180deg,#f7fbff,#fff 24%,#f8fbff);-webkit-font-smoothing:antialiased}html[lang=zh-CN] body{font-family:"Noto Sans SC",Inter,system-ui,sans-serif}html[lang=hi-IN] body{font-family:"Noto Sans Devanagari",Inter,system-ui,sans-serif}a{text-decoration:none;color:inherit}.container{width:min(1180px,calc(100% - 48px));margin:auto}.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:100;width:min(1180px,calc(100% - 32px));height:70px;border:1px solid rgba(209,225,245,.84);background:rgba(255,255,255,.88);backdrop-filter:blur(24px);border-radius:18px;box-shadow:0 18px 58px rgba(18,61,115,.09);display:flex;align-items:center;justify-content:space-between;padding:0 18px 0 22px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px;letter-spacing:-.035em}.brand img{width:34px;height:34px}.links{display:flex;gap:4px;align-items:center;font-size:13px;font-weight:800;color:#40516a}.links a{position:relative;padding:12px 13px;border-radius:999px;transition:.22s}.links a:hover,.links a.active{color:var(--blue);background:#eef7ff}.links a.active:after{content:"";position:absolute;left:50%;bottom:4px;width:5px;height:5px;border-radius:50%;background:var(--blue);transform:translateX(-50%)}.nav-actions{display:flex;gap:12px;align-items:center}.langs{display:flex;gap:4px;background:#f3f8ff;border:1px solid #dce9f8;border-radius:999px;padding:4px}.langs button{border:0;background:transparent;cursor:pointer;padding:8px 10px;border-radius:999px;font-weight:900;color:#64738b}.langs button.active{background:white;color:var(--blue);box-shadow:0 8px 18px rgba(8,47,94,.08)}.nav-demo{height:44px;padding:0 20px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;font-weight:900;display:flex;align-items:center;box-shadow:0 14px 34px rgba(10,132,255,.24)}
+.hero{min-height:100vh;padding:138px 0 72px;background:radial-gradient(circle at 70% 18%,#e7f4ff 0,rgba(231,244,255,0) 36%),linear-gradient(180deg,#f7fbff 0%,#fff 72%);overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:58px;align-items:center}.kicker{display:inline-flex;align-items:center;gap:9px;border:1px solid #dce9f8;background:rgba(255,255,255,.76);border-radius:999px;color:var(--blue);padding:8px 14px;font-size:13px;font-weight:850;box-shadow:0 12px 30px rgba(12,45,84,.04)}.kicker:before{content:"";width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 0 0 6px rgba(10,132,255,.09)}h1{font-family:"Plus Jakarta Sans",Inter,sans-serif;font-size:clamp(48px,5.4vw,80px);line-height:1.06;letter-spacing:-.055em;margin:24px 0}.blue{color:var(--blue)}.hero-sub{font-size:18px;line-height:1.76;color:#50617c;max-width:660px}.ctas{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:34px 0 28px}.btn{height:52px;display:inline-flex;align-items:center;justify-content:center;padding:0 26px;border-radius:14px;border:1px solid #cfe0f3;background:white;color:#0c1729;font-weight:900;transition:.24s;box-shadow:0 10px 28px rgba(12,45,84,.04)}.btn:hover{transform:translateY(-2px);border-color:#9bd4ff;color:var(--blue);box-shadow:0 18px 46px rgba(10,132,255,.15)}.btn.primary,.plan.featured .btn{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border-color:transparent;box-shadow:0 18px 46px rgba(10,132,255,.27)}.btn svg{width:18px;margin-left:10px}.trust{display:flex;gap:18px;flex-wrap:wrap;color:#50617c;font-size:13px;font-weight:750}.trust span{display:inline-flex;align-items:center;gap:8px}.trust i{width:22px;height:22px;border-radius:999px;background:#eef7ff;color:var(--blue);display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-weight:900}
+.logo-stage{position:relative;height:470px;display:flex;align-items:center;justify-content:center}.cube{position:absolute;width:22px;height:22px;border-radius:7px;background:linear-gradient(145deg,#0a84ff,#a8d8ff);opacity:.7;filter:drop-shadow(0 14px 18px rgba(10,132,255,.18));animation:drift 7s ease-in-out infinite}.c1{left:7%;top:23%}.c2{left:22%;bottom:18%;width:16px;height:16px}.c3{right:8%;top:27%;width:20px;height:20px}.c4{right:22%;bottom:12%;width:14px;height:14px}.c5{left:48%;top:5%;width:18px;height:18px}.c6{right:36%;top:12%;width:32px;height:32px;opacity:.48}@keyframes drift{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(8px,-16px,0) rotate(18deg)}}.assembly{position:relative;width:350px;height:350px}.logo-piece,.logo-final{position:absolute;left:50%;top:50%;width:230px;height:230px;transform:translate(-50%,-50%);will-change:transform,opacity;filter:drop-shadow(0 28px 58px rgba(10,132,255,.18))}.logo-piece{opacity:0}.logo-final{opacity:0;z-index:5}.lp1{clip-path:polygon(0 0,42% 0,37% 43%,0 48%)}.lp2{clip-path:polygon(42% 0,100% 0,100% 38%,62% 42%,37% 43%)}.lp3{clip-path:polygon(0 48%,37% 43%,50% 62%,18% 74%,0 66%)}.lp4{clip-path:polygon(37% 43%,62% 42%,76% 59%,50% 62%)}.lp5{clip-path:polygon(62% 42%,100% 38%,100% 72%,76% 59%)}.lp6{clip-path:polygon(18% 74%,50% 62%,45% 100%,0 100%,0 66%)}.lp7{clip-path:polygon(50% 62%,76% 59%,100% 72%,100% 100%,45% 100%)}.lp8{clip-path:circle(17% at 50% 50%)}
+.section{padding:96px 0;border-top:1px solid rgba(220,233,248,.52)}.section-grid{display:grid;grid-template-columns:240px 1fr;gap:50px;align-items:start}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:900;margin-bottom:12px}.section h2{font-family:"Plus Jakarta Sans",Inter,sans-serif;margin:0;font-size:clamp(30px,3.4vw,48px);line-height:1.12;letter-spacing:-.045em}.lead{margin:18px 0 0;color:var(--muted);line-height:1.75;font-size:16px}.workflow-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}.workflow-cards:before{content:"";position:absolute;left:11%;right:11%;top:50%;height:2px;background:linear-gradient(90deg,rgba(10,132,255,0),rgba(10,132,255,.45),rgba(10,132,255,0));z-index:0}.flow-card{position:relative;z-index:2;background:rgba(255,255,255,.94);border:1px solid #dce9f8;border-radius:20px;padding:26px;min-height:218px;box-shadow:0 18px 50px rgba(22,57,107,.06);transition:.24s}.flow-card:hover{transform:translateY(-4px);border-color:#98d3ff;box-shadow:0 28px 76px rgba(10,132,255,.12)}.flow-card:after{content:"";position:absolute;right:-22px;top:50%;width:22px;height:2px;background:linear-gradient(90deg,var(--blue),rgba(10,132,255,.16));transform:translateY(-50%)}.flow-card:last-child:after{display:none}.step{width:44px;height:44px;border-radius:14px;border:1px solid #cbe5ff;background:linear-gradient(180deg,#eef7ff,#fff);color:var(--blue);font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:24px}.flow-card:first-child .step{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border-color:transparent;box-shadow:0 14px 30px rgba(10,132,255,.22)}.flow-card h3{font-size:20px;margin:0 0 12px;letter-spacing:-.035em}.flow-card p{font-size:14px;line-height:1.65;color:#62738e;margin:0}
+.workspace{display:grid;grid-template-columns:260px 1fr;gap:44px;align-items:center}.dashboard{background:white;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden;display:grid;grid-template-columns:154px 1fr;min-height:330px}.side{background:#f5faff;border-right:1px solid #e5effa;padding:18px}.side-brand{display:flex;gap:8px;align-items:center;font-weight:900;margin-bottom:24px}.side-brand img{width:24px}.side a{display:flex;gap:10px;align-items:center;border-radius:10px;padding:10px 12px;color:#61728c;font-size:13px;font-weight:800;margin-bottom:6px}.side a.active{background:#eaf4ff;color:var(--blue)}.dash-main{padding:20px}.dash-top{display:flex;justify-content:space-between;margin-bottom:16px}.dash-title{font-weight:900}.filter{font-size:12px;color:#61728c;border:1px solid #dce9f8;border-radius:999px;padding:8px 12px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.metric{border:1px solid #e4eef9;border-radius:14px;background:white;padding:16px;box-shadow:0 10px 28px rgba(12,45,84,.04)}.metric small{display:block;color:#61728c;font-weight:800;font-size:12px}.metric strong{display:block;font-size:24px;margin:6px 0 2px;letter-spacing:-.04em}.metric i{font-style:normal;color:#12a572;font-size:12px;font-weight:900}.chart-grid{display:grid;grid-template-columns:1.45fr .9fr;gap:12px}.chart,.countries{border:1px solid #e4eef9;border-radius:14px;background:white;padding:16px}.chart-title{font-size:13px;font-weight:900;margin-bottom:10px}.bar{display:grid;grid-template-columns:76px 1fr 38px;gap:10px;align-items:center;font-size:12px;color:#61728c;margin:12px 0}.bar span:nth-child(2){height:8px;border-radius:999px;background:#edf5ff;overflow:hidden}.bar b{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#60c4ff);border-radius:999px}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.plan{border:1px solid var(--line);border-radius:20px;background:white;box-shadow:0 18px 50px rgba(22,57,107,.06);padding:26px;min-height:326px;display:flex;flex-direction:column}.plan h3{margin:0 0 10px;font-size:22px;letter-spacing:-.035em}.price{font-size:26px;font-weight:900;letter-spacing:-.05em;margin-bottom:12px}.plan p{color:#61728c;line-height:1.55;font-size:14px;margin:0 0 16px}.plan ul{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:9px;font-size:13px;color:#26364e;font-weight:700}.plan li:before{content:"✓";color:#12a572;font-weight:900;margin-right:8px}.plan .btn{margin-top:auto;height:42px;border-radius:999px}.plan.featured{background:linear-gradient(160deg,var(--deep),var(--deep2));border-color:#0e3f79;color:white;transform:translateY(-8px);box-shadow:0 30px 80px rgba(6,22,44,.22)}.plan.featured p,.plan.featured li{color:rgba(255,255,255,.72)}.popular{display:inline-flex;align-self:flex-end;margin-top:-38px;margin-bottom:12px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border-radius:999px;padding:6px 12px;font-size:11px;font-weight:900;box-shadow:0 12px 24px rgba(10,132,255,.22)}
+.stories{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.story{border:1px solid var(--line);border-radius:20px;background:white;box-shadow:0 18px 50px rgba(22,57,107,.06);overflow:hidden}.story-img{height:172px;overflow:hidden}.story-img img{width:100%;height:100%;object-fit:cover;display:block}.quote{margin:-36px 18px 0;position:relative;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border:1px solid #e3edf9;border-radius:18px;padding:20px;min-height:158px}.quote:before{content:'“';position:absolute;color:var(--blue);font-size:44px;left:18px;top:10px;font-weight:900}.quote p{font-size:14px;line-height:1.65;color:#354764;margin:28px 0 18px}.person{font-size:13px}.person b{display:block}.person span{display:block;color:#61728c;margin-top:3px}.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.faq-list{display:grid;gap:12px}details{border:1px solid var(--line);border-radius:16px;background:white;box-shadow:0 12px 30px rgba(22,57,107,.04);overflow:hidden}summary{cursor:pointer;list-style:none;padding:18px 20px;font-weight:850;display:flex;gap:10px}summary::-webkit-details-marker{display:none}summary:before{content:'▶';font-size:12px;color:var(--blue)}details[open] summary:before{transform:rotate(90deg)}details p{margin:0;padding:0 20px 18px;color:#61728c;line-height:1.65;font-size:14px}.bottom-cta{margin:36px auto 0;border:1px solid var(--line);border-radius:22px;background:linear-gradient(135deg,#edf7ff,#fff);padding:28px;display:flex;align-items:center;justify-content:space-between;gap:22px;box-shadow:0 18px 50px rgba(22,57,107,.06)}.send{width:56px;height:56px;border-radius:18px;background:#eaf4ff;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:26px}.bottom-cta h3{margin:0 0 6px;font-size:20px}.bottom-cta p{margin:0;color:#61728c}.footer{padding:52px 0;color:#7c8ca4;font-size:13px}.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center;border-top:1px solid #e5effa;padding-top:24px}.footer a{color:#61728c;margin-left:18px}
+@media(max-width:980px){.links,.nav-demo{display:none}.hero{padding-top:120px}.hero-grid,.section-grid,.workspace,.plans,.stories,.faq-grid{grid-template-columns:1fr}.logo-stage{height:330px}.workflow-cards{grid-template-columns:1fr}.workflow-cards:before,.flow-card:after{display:none}.dashboard{grid-template-columns:1fr}.side{display:none}.metrics,.chart-grid{grid-template-columns:1fr}.section{padding:72px 0}.bottom-cta{flex-direction:column;align-items:flex-start}.container{width:min(100% - 30px,1180px)}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.logo-piece{display:none}.logo-final{opacity:1!important;transform:translate(-50%,-50%)!important}}/* v33 refinements: image-reference hero logo, tighter hero rhythm, visible workflow motion */
+.hero{min-height:auto !important;padding:124px 0 54px !important;background:radial-gradient(circle at 74% 18%,#e8f5ff 0,rgba(232,245,255,0) 38%),linear-gradient(180deg,#f7fbff 0%,#fff 74%) !important;}
+.hero-grid{gap:50px !important;align-items:center !important;}
+.logo-stage{height:388px !important;position:relative !important;display:flex !important;align-items:center !important;justify-content:center !important;overflow:visible !important;}
+.hero-brand-visual{position:relative;z-index:3;text-align:center;animation:brandFloat 5.6s ease-in-out infinite;}
+.hero-mark{width:176px;height:176px;display:block;margin:0 auto 24px;filter:drop-shadow(0 28px 58px rgba(10,132,255,.22));}
+.hero-wordmark{font-family:"Plus Jakarta Sans",Inter,sans-serif;font-size:42px;line-height:1;font-weight:900;letter-spacing:-.055em;color:#071426;text-shadow:0 12px 36px rgba(7,20,38,.08)}
+.hero-wordmark span{color:var(--blue)}
+.logo-orb{position:absolute;display:block;border-radius:8px;background:linear-gradient(145deg,#0a84ff 0%,#75c9ff 62%,#d8ecff 100%);box-shadow:0 18px 36px rgba(10,132,255,.16);opacity:.64;transform:rotate(45deg);animation:orbFloat 6.8s ease-in-out infinite;}
+.orb1{width:22px;height:22px;left:10%;top:25%;animation-delay:-.4s}.orb2{width:15px;height:15px;left:23%;top:46%;animation-delay:-1.1s}.orb3{width:12px;height:12px;left:18%;bottom:18%;animation-delay:-2s}.orb4{width:34px;height:34px;right:28%;top:10%;opacity:.48;animation-delay:-.8s}.orb5{width:20px;height:20px;right:11%;top:26%;animation-delay:-1.7s}.orb6{width:14px;height:14px;right:20%;bottom:18%;animation-delay:-2.6s}.orb7{width:12px;height:12px;left:48%;top:4%;animation-delay:-3s}.orb8{width:16px;height:16px;right:7%;bottom:39%;animation-delay:-3.5s}
+@keyframes brandFloat{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-10px,0) scale(1.01)}}
+@keyframes orbFloat{0%,100%{transform:translate3d(0,0,0) rotate(45deg)}50%{transform:translate3d(10px,-18px,0) rotate(66deg)}}
+.section{padding:84px 0 !important;}
+#workflow{padding-top:72px !important;}
+.workflow-cards:before{left:8% !important;right:8% !important;top:50% !important;height:2px !important;background:linear-gradient(90deg,rgba(10,132,255,0),rgba(10,132,255,.22),rgba(10,132,255,0)) !important;}
+.workflow-cards:after{content:"";position:absolute;left:8%;right:8%;top:50%;height:3px;z-index:1;transform:translateY(-50%);background:linear-gradient(90deg,rgba(10,132,255,0) 0%,rgba(10,132,255,0) 40%,rgba(10,132,255,.22) 46%,#0a84ff 50%,rgba(22,184,255,.22) 54%,rgba(10,132,255,0) 60%,rgba(10,132,255,0) 100%);background-size:260px 100%;animation:railFlow 2.1s linear infinite;filter:drop-shadow(0 0 9px rgba(10,132,255,.35));pointer-events:none;}
+.flow-card:after{height:3px !important;right:-22px !important;width:22px !important;background:linear-gradient(90deg,rgba(10,132,255,.22),#0a84ff,rgba(22,184,255,.2)) !important;background-size:220% 100% !important;animation:connectorFlow 1.15s linear infinite !important;filter:drop-shadow(0 0 7px rgba(10,132,255,.35));}
+@keyframes railFlow{0%{background-position:260px 0}100%{background-position:0 0}}
+@keyframes connectorFlow{0%{background-position:220% 0}100%{background-position:0 0}}
+@media(max-width:980px){.hero{padding:112px 0 42px !important}.hero-grid{grid-template-columns:1fr !important}.logo-stage{height:300px !important}.hero-mark{width:138px;height:138px}.hero-wordmark{font-size:34px}.workflow-cards:before,.workflow-cards:after,.flow-card:after{display:none !important}.section{padding:70px 0 !important}}
+
+/* V54: V52 hero ratio, floating atmosphere blocks, product browser frame, V52 workflow flow */
+.hero-grid{grid-template-columns:minmax(0,1.02fr) minmax(520px,.98fr) !important;gap:64px !important;align-items:center !important}
+.hero-art{display:flex;justify-content:center;align-items:center}
+.v54-logo-stage{min-height:500px !important;height:500px !important;width:100%;position:relative;display:flex;align-items:center;justify-content:center;overflow:visible}
+.logo-orbit{position:relative;width:100%;max-width:620px;height:500px;margin:0 auto;pointer-events:none;overflow:visible;isolation:isolate}
+.orbit-glow{position:absolute;inset:9% 10% 11% 10%;background:radial-gradient(circle at 50% 46%,rgba(126,188,255,.24),rgba(126,188,255,.10) 28%,rgba(126,188,255,0) 66%);filter:blur(26px);opacity:.96;will-change:transform,opacity}
+.orbit-layer{position:absolute;inset:0;pointer-events:none}.orbit-back{z-index:8}.orbit-front{z-index:24}
+.orbit-logo-wrap{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:20px;z-index:20;pointer-events:none;will-change:transform}
+.orbit-logo-mark{width:194px;max-width:194px;min-width:194px;height:auto;filter:drop-shadow(0 18px 40px rgba(60,130,255,.18))}
+.orbit-wordmark{font-family:"Plus Jakarta Sans",Inter,sans-serif;font-size:clamp(46px,4.8vw,66px);line-height:1;font-weight:900;letter-spacing:-.08em;white-space:nowrap}.orbit-wordmark .dark{color:#071426}.orbit-wordmark .blue{color:#2f76ff}
+.orbit-particle{position:absolute;left:50%;top:50%;width:var(--size);height:var(--size);border-radius:calc(var(--size) * .30);opacity:.9;transform:translate3d(0,0,0) rotate(45deg);will-change:transform,opacity;backface-visibility:hidden}
+.orbit-particle.soft{background:linear-gradient(145deg,rgba(255,255,255,.98) 0%,rgba(239,247,255,.98) 26%,rgba(176,214,255,.92) 58%,rgba(90,154,255,.88) 100%);box-shadow:0 12px 24px rgba(69,137,255,.13),0 0 0 1px rgba(255,255,255,.24) inset,inset 0 1px 0 rgba(255,255,255,.72)}
+.orbit-particle.solid{background:linear-gradient(145deg,rgba(255,255,255,1) 0%,rgba(235,245,255,.99) 22%,rgba(148,201,255,.99) 52%,rgba(65,132,255,.98) 78%,rgba(39,102,230,.98) 100%);box-shadow:0 16px 30px rgba(47,113,255,.20),0 0 0 1px rgba(255,255,255,.36) inset,inset 0 1px 0 rgba(255,255,255,.84),inset 0 -5px 8px rgba(28,78,196,.18)}
+.orbit-particle.solid::after{content:"";position:absolute;left:14%;top:14%;width:40%;height:11%;border-radius:999px;background:rgba(255,255,255,.68)}
+
+.product-layout-v54{display:grid;grid-template-columns:270px minmax(0,1fr);gap:42px;align-items:center}.product-copy-v54 .btn{margin-top:22px}.product-showcase-v54{min-width:0}
+.product-tabs-v54{display:inline-flex;gap:8px;border:1px solid #dce9f8;background:rgba(255,255,255,.82);box-shadow:0 18px 46px rgba(22,57,107,.08);border-radius:999px;padding:8px;margin-bottom:22px}
+.product-tab-v54{border:0;background:transparent;border-radius:999px;padding:14px 26px;font-weight:900;color:#071426;cursor:pointer;transition:.22s}.product-tab-v54.active,.product-tab-v54:hover{background:linear-gradient(135deg,var(--blue),#48adff);color:#fff;box-shadow:0 16px 34px rgba(10,132,255,.22)}
+.browser-frame-v54{border:1px solid #cfe2f7;border-radius:28px;background:rgba(255,255,255,.78);box-shadow:0 28px 86px rgba(22,57,107,.08);padding:20px;overflow:hidden}.browser-top-v54{height:48px;border:1px solid #e0ebf8;border-radius:22px;background:rgba(255,255,255,.78);display:flex;align-items:center;gap:14px;padding:0 18px;margin-bottom:18px}.traffic-v54{display:flex;gap:9px}.traffic-v54 span{width:12px;height:12px;border-radius:50%;display:block}.traffic-v54 span:nth-child(1){background:#ff6b55}.traffic-v54 span:nth-child(2){background:#f5bf4f}.traffic-v54 span:nth-child(3){background:#4fc46c}.browser-title-v54{font-weight:900;color:#3470ff}
+.product-panel-v54{display:none;grid-template-columns:repeat(4,1fr);gap:16px;min-height:176px}.product-panel-v54.active{display:grid}.mini-metric-v54,.admin-card-v54,.finance-card-v54,.chart-card-v54,.supplier-map-v54,.supplier-list-v54,.ledger-v54{border:1px solid #e1edf9;background:#fff;border-radius:20px;padding:22px;box-shadow:0 12px 34px rgba(12,45,84,.04);transition:.24s}.mini-metric-v54:hover,.admin-card-v54:hover,.finance-card-v54:hover,.chart-card-v54:hover,.supplier-map-v54:hover,.supplier-list-v54:hover,.ledger-v54:hover{transform:translateY(-4px);border-color:#9ed2ff;box-shadow:0 24px 60px rgba(10,132,255,.10)}.icon-v54{width:54px;height:54px;border-radius:17px;background:#eef5ff;color:#2f76ff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;margin-bottom:12px}.mini-metric-v54 small,.admin-card-v54 small,.finance-card-v54 small{display:block;color:#61728c;font-weight:900}.mini-metric-v54 strong,.admin-card-v54 strong,.finance-card-v54 strong{display:block;font-size:26px;letter-spacing:-.045em;margin:6px 0}.mini-metric-v54 i{font-style:normal;color:#12a572;font-weight:900}.mini-metric-v54 i.red-v54{color:#f35b69}.wide-v54{grid-column:span 3}.chart-card-v54 svg{width:100%;height:112px;margin-top:10px}.bar-v54{margin-top:14px}.bar-v54 span{display:block;font-weight:800;color:#61728c;font-size:12px;margin-bottom:7px}.bar-v54 em{display:block;height:8px;border-radius:999px;background:linear-gradient(90deg,var(--blue),#62c5ff)}.admin-card-v54{min-height:132px}.admin-card-v54.active{border-color:#9ed2ff;box-shadow:0 20px 60px rgba(10,132,255,.12)}.supplier-map-v54{grid-column:span 2}.supplier-list-v54{grid-column:span 2;display:grid;gap:12px}.supplier-list-v54 span,.route-pill-v54{border:1px solid #e1edf9;border-radius:999px;padding:10px 14px;color:#50617c;background:#f8fbff;font-weight:800}.finance-card-v54{min-height:132px}.finance-card-v54 span{color:#61728c;font-weight:800}.ledger-v54{grid-column:span 4}
+
+.workflow-grid-v54{grid-template-columns:240px minmax(0,1fr) !important}.workflow-wrap{position:relative;margin-top:0;padding:8px 0 34px;overflow:visible}.workflow-track-clean{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch;isolation:isolate;overflow:visible}.workflow-canvas-v25{position:absolute;top:-16px;right:-16px;bottom:-16px;left:-16px;width:calc(100% + 32px);height:calc(100% + 32px);z-index:40;pointer-events:none}.flow-card-clean{position:relative;z-index:5;isolation:isolate;overflow:visible;border:1px solid rgba(180,215,248,.95);background:rgba(255,255,255,.96);border-radius:24px;min-height:276px;padding:28px 26px 26px;box-shadow:0 18px 56px rgba(12,45,84,.055);transition:border-color .22s ease,box-shadow .22s ease,transform .28s ease}.flow-card-clean:hover,.flow-card-clean.is-flow-active{transform:translateY(-6px);border-color:#99d3ff;box-shadow:0 30px 84px rgba(10,132,255,.12)}.flow-card-clean .step{position:relative;overflow:hidden;isolation:isolate;width:44px;height:44px;border-radius:14px;background:linear-gradient(180deg,#eef7ff,#fff);border:1px solid #cce5ff;color:var(--blue);box-shadow:0 14px 30px rgba(10,132,255,.08);margin-bottom:28px;display:flex;align-items:center;justify-content:center;font-weight:900;transition:.28s}.flow-card-clean .step::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.80),rgba(255,255,255,.18) 40%,rgba(255,255,255,0) 72%);opacity:.94}.flow-card-clean:hover .step,.flow-card-clean .step.is-lit{background:linear-gradient(135deg,var(--blue),var(--blue2));border-color:rgba(63,173,255,.34);color:#fff;text-shadow:0 1px 1px rgba(7,59,141,.14);box-shadow:0 0 0 1px rgba(255,255,255,.36) inset,0 14px 28px rgba(10,132,255,.18),inset 0 1px 0 rgba(255,255,255,.72),inset 0 -5px 8px rgba(16,114,220,.14);transform:translateY(-1px)}.flow-card-clean .step.is-lit{animation:stepBreathe 2.4s ease-in-out infinite}.flow-card-clean h3{font-size:19px;line-height:1.16;margin:0 0 12px;letter-spacing:-.035em}.flow-card-clean p{font-size:14px;line-height:1.7;color:#61728c;margin:0}@keyframes stepBreathe{0%,100%{transform:translateY(-1px) scale(1)}50%{transform:translateY(-1px) scale(1.028)}}
+
+.plan,.story{transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}.plan:hover,.story:hover{transform:translateY(-7px);border-color:#9ed2ff;box-shadow:0 30px 84px rgba(10,132,255,.12)}.plan.featured:hover{transform:translateY(-13px)}
+@media(max-width:1180px){.hero-grid,.product-layout-v54{grid-template-columns:1fr !important}.hero-art{order:-1}.workflow-grid-v54{grid-template-columns:1fr !important}.product-panel-v54{grid-template-columns:repeat(2,1fr)}.wide-v54,.ledger-v54,.supplier-map-v54,.supplier-list-v54{grid-column:span 2}.workflow-track-clean{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:980px){.v54-logo-stage,.logo-orbit{height:370px !important;min-height:370px !important}.orbit-logo-mark{width:154px;max-width:154px;min-width:154px}.product-tabs-v54{display:grid;grid-template-columns:repeat(2,1fr);width:100%;border-radius:24px}.workflow-track-clean,.product-panel-v54{grid-template-columns:1fr}.workflow-canvas-v25{display:none}.wide-v54,.ledger-v54,.supplier-map-v54,.supplier-list-v54{grid-column:auto}}
+
+
+/* v56: keep the previous v54 line shape, but stop active-card movement that caused the canvas path to detach from the border */
+#workflow .flow-card-clean.is-flow-active{
+  transform:translateY(-6px) !important;
+}
+#workflow .flow-card-clean.is-flow-active::after{
+  opacity:0 !important;
+}
+#workflow .flow-card-clean:hover{
+  transform:translateY(-6px);
+}
+#workflow .flow-card-clean:hover.is-flow-active{
+  transform:translateY(-6px) !important;
+}
+
+@media(max-width:980px){
+  .logo-orbit-v42{height:350px !important;}
+  .logo-core-v42{top:51.8% !important;transform:translate(-50%,-50%) scale(.74) !important;}
+  .hero-mark-clean{width:108px !important;height:108px !important;}
+  .logo-wordmark-clean{font-size:46px !important;}
+}
+
+
+/* v57: restore V55-V53 product screenshot module; no Explore Features button */
+.product-layout-v55{grid-template-columns:280px 1fr;align-items:start}
+.product-showcase-v55{display:grid;gap:18px}
+.product-tabs-v55{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.product-tabs-v55 button{border:1px solid #dce9f8;background:#fff;padding:13px 28px;border-radius:999px;font-weight:900;font-size:16px;color:#08172e;box-shadow:0 10px 24px rgba(8,47,94,.04);cursor:pointer;transition:.24s}
+.product-tabs-v55 button:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(10,132,255,.10)}
+.product-tabs-v55 button.active{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border-color:transparent;box-shadow:0 18px 42px rgba(10,132,255,.22)}
+.browser-shell-v55{border:1px solid #dce9f8;border-radius:28px;background:#fff;box-shadow:0 24px 70px rgba(22,57,107,.09);overflow:hidden}
+.browser-top-v55{display:flex;align-items:center;gap:16px;padding:16px 18px;border-bottom:1px solid #ebf2fb;background:linear-gradient(180deg,#fbfdff,#f6faff)}
+.browser-dots-v55{display:flex;gap:9px}
+.browser-dots-v55 span{width:12px;height:12px;border-radius:50%;display:block}
+.browser-dots-v55 span:nth-child(1){background:#f46a5f}.browser-dots-v55 span:nth-child(2){background:#efc24f}.browser-dots-v55 span:nth-child(3){background:#63c554}
+.browser-address-v55{flex:1;min-width:0;border:1px solid #dfebfb;background:#fff;color:#4370b3;font-weight:800;border-radius:999px;padding:10px 18px;line-height:1.2;text-align:left;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.product-viewport-v55{position:relative;background:#f8fbff;min-height:620px}
+.product-viewport-v55 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;visibility:hidden;transition:opacity .28s ease;display:block}
+.product-viewport-v55 img.active{opacity:1;visibility:visible;position:relative}
+@media(max-width:980px){.product-layout-v55{grid-template-columns:1fr}.browser-address-v55{font-size:13px}.product-viewport-v55{min-height:440px}.product-tabs-v55 button{padding:12px 18px;font-size:14px}}
+
+/* v57: customer stories stay in V55-V53 style; only hover feedback preserved */
+.plan,.story{transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.plan:hover,.story:hover{transform:translateY(-8px);box-shadow:0 28px 76px rgba(10,132,255,.12);border-color:#b8d8ff}
+
+/* v57 workflow fix: active cards lift, and canvas route is remeasured against the lifted border */
+#workflow .flow-card-clean.is-flow-active{
+  transform:translateY(-6px) !important;
+  border-color:#99d3ff !important;
+  box-shadow:0 30px 84px rgba(10,132,255,.12) !important;
+}
+#workflow .flow-card-clean:hover{
+  transform:translateY(-6px);
+}
+
+
+/* v59: EXACT V53 hero/logo/canvas CSS restored. Only distribution is adjusted in JS. */
+.hero-logo-v42{
+  height:430px !important;
+  position:relative !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:visible !important;
+  background:transparent !important;
+}
+.logo-orbit-v42{
+  position:relative !important;
+  width:min(640px,100%) !important;
+  height:430px !important;
+  overflow:visible !important;
+  isolation:isolate !important;
+}
+.logo-orbit-canvas{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  pointer-events:none !important;
+}
+.logo-orbit-canvas.back{z-index:4 !important;}
+.logo-orbit-canvas.front{z-index:42 !important;}
+.logo-core-v42{
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  transform:translate(-50%,-50%) translateZ(0) !important;
+  z-index:24 !important;
+  width:min(430px,78vw) !important;
+  height:auto !important;
+  perspective:1100px !important;
+  filter:drop-shadow(0 28px 70px rgba(10,132,255,.22)) !important;
+}
+.logo-core-v42:before{
+  content:"" !important;
+  position:absolute !important;
+  left:50% !important;
+  top:44% !important;
+  width:72% !important;
+  height:54% !important;
+  transform:translate(-50%,-50%) rotateX(64deg) !important;
+  border-radius:50% !important;
+  background:radial-gradient(ellipse at center,rgba(10,132,255,.16) 0%,rgba(10,132,255,.08) 35%,rgba(10,132,255,0) 72%) !important;
+  filter:blur(18px) !important;
+  z-index:-2 !important;
+}
+.logo-core-v42:after{
+  content:"" !important;
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  width:88% !important;
+  height:76% !important;
+  transform:translate(-50%,-49%) !important;
+  border-radius:34% !important;
+  background:radial-gradient(ellipse at 48% 38%,rgba(255,255,255,.72),rgba(255,255,255,.22) 42%,rgba(255,255,255,0) 72%) !important;
+  filter:blur(20px) !important;
+  z-index:-1 !important;
+  opacity:.72 !important;
+}
+.logo-core-v42 img{
+  width:100% !important;
+  height:auto !important;
+  display:block !important;
+  object-fit:contain !important;
+  image-rendering:auto !important;
+  transform:translateZ(34px) !important;
+  filter:
+    drop-shadow(0 2px 0 rgba(255,255,255,.65))
+    drop-shadow(0 9px 16px rgba(10,64,150,.16))
+    drop-shadow(0 32px 52px rgba(10,132,255,.18)) !important;
+}
+
+.hero-mark-clean{
+  width:236px !important;
+  height:236px !important;
+  object-fit:contain !important;
+  display:block !important;
+  image-rendering:auto !important;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.72)) drop-shadow(0 8px 20px rgba(16,48,95,.09)) !important;
+}
+.logo-wordmark-clean{
+  font-family:"Plus Jakarta Sans",Inter,sans-serif !important;
+  font-size:66px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  letter-spacing:-.065em !important;
+  white-space:nowrap !important;
+  text-rendering:geometricPrecision !important;
+  -webkit-font-smoothing:antialiased !important;
+  text-shadow:0 8px 18px rgba(20,41,70,.06) !important;
+}
+.logo-wordmark-clean .dark{color:#071426 !important;}
+.logo-wordmark-clean .blue{color:#2b73ff !important;}
+.logo-orbit-canvas{inset:-12px -26px !important;width:calc(100% + 52px) !important;height:calc(100% + 24px) !important;}
+.logo-orbit-canvas.back,.logo-orbit-canvas.front{background:transparent !important;}
+
+
+/* v60: rollback hero logo size/proportion; keep canvas orbit system */
+.hero-logo-v42{
+  height:430px !important;
+  position:relative !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:visible !important;
+  background:transparent !important;
+}
+.logo-orbit-v42{
+  position:relative !important;
+  width:min(640px,100%) !important;
+  height:430px !important;
+  overflow:visible !important;
+  isolation:isolate !important;
+}
+.logo-orbit-canvas{
+  position:absolute !important;
+  inset:0 !important;
+  width:100% !important;
+  height:100% !important;
+  pointer-events:none !important;
+  background:transparent !important;
+}
+.logo-orbit-canvas.back{z-index:4 !important;}
+.logo-orbit-canvas.front{z-index:42 !important;}
+.logo-core-v42{
+  position:absolute !important;
+  left:50% !important;
+  top:51.4% !important;
+  transform:translate(-50%,-50%) translateZ(0) !important;
+  z-index:24 !important;
+  width:auto !important;
+  height:auto !important;
+  perspective:1100px !important;
+  filter:drop-shadow(0 22px 54px rgba(10,132,255,.18)) !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  gap:12px !important;
+}
+.logo-core-v42:before{
+  content:"" !important;
+  position:absolute !important;
+  left:50% !important;
+  top:44% !important;
+  width:230px !important;
+  height:170px !important;
+  transform:translate(-50%,-50%) rotateX(64deg) !important;
+  border-radius:50% !important;
+  background:radial-gradient(ellipse at center,rgba(10,132,255,.15) 0%,rgba(10,132,255,.07) 36%,rgba(10,132,255,0) 72%) !important;
+  filter:blur(18px) !important;
+  z-index:-2 !important;
+}
+.logo-core-v42:after{
+  content:"" !important;
+  position:absolute !important;
+  left:50% !important;
+  top:50% !important;
+  width:250px !important;
+  height:210px !important;
+  transform:translate(-50%,-49%) !important;
+  border-radius:34% !important;
+  background:radial-gradient(ellipse at 48% 38%,rgba(255,255,255,.70),rgba(255,255,255,.20) 42%,rgba(255,255,255,0) 72%) !important;
+  filter:blur(20px) !important;
+  z-index:-1 !important;
+  opacity:.70 !important;
+}
+.hero-mark-clean{
+  width:126px !important;
+  height:126px !important;
+  object-fit:contain !important;
+  display:block !important;
+  image-rendering:auto !important;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.72)) drop-shadow(0 8px 20px rgba(16,48,95,.09)) !important;
+  transform:none !important;
+}
+.logo-core-v42 img{
+  width:126px !important;
+  height:126px !important;
+  object-fit:contain !important;
+  display:block !important;
+  image-rendering:auto !important;
+  transform:none !important;
+}
+.logo-wordmark-clean{
+  font-family:"Plus Jakarta Sans",Inter,sans-serif !important;
+  font-size:54px !important;
+  line-height:1 !important;
+  font-weight:900 !important;
+  letter-spacing:-.065em !important;
+  white-space:nowrap !important;
+  text-rendering:geometricPrecision !important;
+  -webkit-font-smoothing:antialiased !important;
+  text-shadow:0 8px 18px rgba(20,41,70,.06) !important;
+}
+.logo-wordmark-clean .dark{color:#071426 !important;}
+.logo-wordmark-clean .blue{color:#2b73ff !important;}
+@media(max-width:980px){
+  .hero-logo-v42{height:350px !important;}
+  .logo-orbit-v42{height:350px !important;}
+  .hero-mark-clean,.logo-core-v42 img{width:108px !important;height:108px !important;}
+  .logo-wordmark-clean{font-size:46px !important;}
+}
+
+
+
+/* v64: preserve v62 motion but improve solidity, remove hero divider/clipping, and premium rectangular story cards */
+.hero{overflow:visible !important;padding-bottom:120px !important;}
+.hero-logo-v42{height:468px !important;min-height:468px !important;overflow:visible !important;}
+.logo-orbit-v42{width:min(660px,100%) !important;height:468px !important;overflow:visible !important;}
+#product, main > .section:first-child{border-top:none !important;padding-top:34px !important;}
+
+#stories .section-grid{grid-template-columns:250px 1fr !important;gap:34px !important;align-items:start !important;}
+#stories .stories{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:20px !important;align-items:stretch !important;}
+#stories .story{display:flex !important;flex-direction:column !important;min-height:418px !important;border:1px solid var(--line) !important;border-radius:24px !important;background:linear-gradient(180deg,#ffffff 0%,#fbfdff 100%) !important;box-shadow:0 18px 50px rgba(22,57,107,.06) !important;overflow:hidden !important;transition:.28s !important;}
+#stories .story:hover{transform:translateY(-6px) !important;border-color:#98d3ff !important;box-shadow:0 30px 84px rgba(10,132,255,.14) !important;}
+#stories .story-img{height:188px !important;flex:0 0 188px !important;position:relative !important;overflow:hidden !important;}
+#stories .story-img:after{content:'';position:absolute;inset:auto 0 0 0;height:48px;background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.44) 48%,rgba(255,255,255,.82) 100%);pointer-events:none;}
+#stories .story-img img{width:100% !important;height:100% !important;object-fit:cover !important;display:block !important;transform:scale(1.015) !important;}
+#stories .quote{margin:0 !important;position:relative !important;flex:1 1 auto !important;display:flex !important;flex-direction:column !important;justify-content:flex-start !important;min-height:230px !important;padding:26px 24px 24px !important;border:none !important;border-top:1px solid #edf4fc !important;border-radius:0 !important;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,251,255,.96)) !important;backdrop-filter:none !important;box-shadow:none !important;}
+#stories .quote:before{content:'“' !important;position:absolute !important;left:22px !important;top:14px !important;font-size:52px !important;line-height:1 !important;color:var(--blue) !important;font-weight:900 !important;opacity:.92 !important;}
+#stories .quote p{margin:36px 0 24px !important;font-size:15px !important;line-height:1.72 !important;color:#354764 !important;}
+#stories .person{margin-top:auto !important;padding-top:16px !important;border-top:1px solid #edf4fc !important;font-size:13px !important;}
+#stories .person b{display:block !important;font-size:18px !important;letter-spacing:-.02em !important;color:#0b1830 !important;}
+#stories .person span{display:block !important;margin-top:5px !important;color:#61728c !important;line-height:1.55 !important;}
+
+@media(max-width:980px){
+  .hero{padding-bottom:86px !important;}
+  .hero-logo-v42{height:390px !important;min-height:390px !important;}
+  .logo-orbit-v42{height:390px !important;width:min(620px,116%) !important;}
+  #stories .section-grid{grid-template-columns:1fr !important;}
+}
+
+</style></head>
+<body><nav class="nav"><a class="brand" href="#top"><img src="assets/logo-mark-v40.png" alt="SurveySaaS logo"><span>SurveySaaS</span></a><div class="links"><a href="#top" class="active">Home</a><a href="#product">Product</a><a href="#workflow">Workflow</a><a href="#plans">Versions</a><a href="#stories">Stories</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div><div class="nav-actions"><div class="langs"><button data-lang="en-IN" class="active">EN</button><button data-lang="hi-IN">हिन्दी</button><button data-lang="zh-CN">中文</button></div><a class="nav-demo" href="#contact" data-i18n="bookDemo">Book a Demo</a></div></nav>
+<header class="hero" id="top"><div class="container hero-grid"><div><div class="kicker" data-i18n="kicker">End-to-end survey operations platform</div><h1 data-i18n="heroTitle">From Field to Insight,<br><span class="blue">Seamless and Reliable.</span></h1><p class="hero-sub" data-i18n="heroSub">SurveySaaS helps you create projects, route suppliers, monitor quality, and settle finance — all in one powerful platform.</p><div class="ctas"><a class="btn primary" href="#contact" data-i18n="bookDemo">Book a Demo <svg viewBox="0 0 20 20" fill="none"><path d="M5 10h10M11 6l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn" href="#workflow" data-i18n="seeHow">See How It Works <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M8 6.8l5 3.2-5 3.2V6.8z" fill="currentColor"/></svg></a></div><div class="trust"><span><i>✓</i><span data-i18n="secure">Secure & Compliant</span></span><span><i>●</i><span data-i18n="visibility">Real-time Visibility</span></span><span><i>↗</i><span data-i18n="scale">Built for Scale</span></span></div></div><div class="logo-stage hero-logo-v42" aria-hidden="true">
+  <div class="logo-orbit-v42" id="logoOrbitStageV42">
+    <canvas class="logo-orbit-canvas back" id="logoOrbitBackV42"></canvas>
+    <div class="logo-core-v42">
+      <img class="hero-mark-clean" src="assets/logo-mark-v40.png" alt="SurveySaaS logo mark">
+      <div class="logo-wordmark-clean" aria-label="SurveySaaS"><span class="dark">Survey</span><span class="blue">SaaS</span></div>
+    </div>
+    <canvas class="logo-orbit-canvas front" id="logoOrbitFrontV42"></canvas>
+  </div>
+</div></div></header>
+<main><section class="section" id="product"><div class="container section-grid product-layout-v55"><div><div class="eyebrow" data-i18n="efficiency">Built for efficiency</div><h2 data-i18n="workspaceTitle">Everything you need in one workspace</h2><p class="lead" data-i18n="workspaceLead">Real-time dashboards, intelligent alerts, role-based access, and detailed logs — designed to give you complete control and clarity.</p></div><div class="product-showcase-v55"><div class="product-tabs-v55" role="tablist" aria-label="Product screens"><button class="active" type="button" data-screen="analytics" data-title-key="tabAnalytics" data-i18n="tabAnalytics">运营分析</button><button type="button" data-screen="project" data-title-key="tabProjects" data-i18n="tabProjects">管理后台</button><button type="button" data-screen="supplier" data-title-key="tabSuppliers" data-i18n="tabSuppliers">供应商门户</button><button type="button" data-screen="finance" data-title-key="tabFinance" data-i18n="tabFinance">财务账本</button></div><div class="browser-shell-v55"><div class="browser-top-v55"><div class="browser-dots-v55"><span></span><span></span><span></span></div><div class="browser-address-v55" data-i18n="browserLabel">Product control center</div></div><div class="product-viewport-v55"><img class="active" data-screen-pane="analytics" src="assets/product_analytics.png" alt="SurveySaaS analytics overview" loading="lazy" decoding="async"><img data-screen-pane="project" src="assets/product_project.png" alt="SurveySaaS project control center" loading="lazy" decoding="async"><img data-screen-pane="supplier" src="assets/product_supplier.png" alt="SurveySaaS supplier portal" loading="lazy" decoding="async"><img data-screen-pane="finance" src="assets/product_finance.png" alt="SurveySaaS finance ledger" loading="lazy" decoding="async"></div></div></div></div></section>
+<section class="section" id="workflow">
+  <div class="container section-grid workflow-grid-v54">
+    <div><div class="eyebrow" data-i18n="workflowEyebrow">How it works</div><h2 data-i18n="workflowTitle">A smarter way to run survey operations</h2></div>
+    <div class="workflow-wrap">
+      <div class="workflow-track-clean" id="flowTrack">
+        <canvas class="workflow-canvas-v25" id="flowCanvasV25" aria-hidden="true"></canvas>
+        <article class="flow-card-clean"><div class="step">1</div><h3 data-i18n="w1t">Create Project</h3><p data-i18n="w1p">Set CPI, audience, country, quota, IR/LOI, supplier access and customer rules.</p></article>
+        <article class="flow-card-clean"><div class="step">2</div><h3 data-i18n="w2t">Route Suppliers</h3><p data-i18n="w2p">Distribute traffic, configure access logic, callbacks, redirects and whitelist controls.</p></article>
+        <article class="flow-card-clean"><div class="step">3</div><h3 data-i18n="w3t">Monitor Quality</h3><p data-i18n="w3p">Watch completes, rejects, pass rate, device signals, status logs and abnormal activity.</p></article>
+        <article class="flow-card-clean"><div class="step">4</div><h3 data-i18n="w4t">Settle Finance</h3><p data-i18n="w4p">Review wallets, pending funds, supplier bills, employee logs and settlement notes.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="plans"><div class="container section-grid"><div><div class="eyebrow" data-i18n="plansEyebrow">Flexible plans</div><h2 data-i18n="plansTitle">Choose the right edition for you</h2></div><div class="plans"><article class="plan"><h3>Studio</h3><div class="price">Custom</div><p>Perfect for small teams getting started.</p><ul><li>Up to 5 users</li><li>Basic reports</li><li>Email support</li></ul><a class="btn" href="#contact" data-i18n="getStarted">Get Started</a></article><article class="plan"><h3>Supplier Network</h3><div class="price">Custom</div><p>Advanced features for growing supplier teams.</p><ul><li>Up to 20 users</li><li>Advanced reports</li><li>Priority support</li></ul><a class="btn" href="#contact" data-i18n="getStarted">Get Started</a></article><article class="plan featured"><span class="popular">Most Popular</span><h3>Operations Suite</h3><div class="price">Custom</div><p>Complete toolkit for professional operations.</p><ul><li>Unlimited users</li><li>Real-time monitoring</li><li>Dedicated support</li></ul><a class="btn" href="#contact" data-i18n="getStarted">Get Started</a></article><article class="plan"><h3>Private Deployment</h3><div class="price">Custom</div><p>Tailored solutions for large organizations.</p><ul><li>Custom integrations</li><li>SLA & compliance</li><li>Dedicated manager</li></ul><a class="btn" href="#contact" data-i18n="contactSales">Contact Sales</a></article></div></div></section>
+<section class="section" id="stories"><div class="container section-grid"><div><div class="eyebrow" data-i18n="storiesEyebrow">Customer stories</div><h2 data-i18n="storiesTitle">Trusted by teams across industries</h2></div><div class="stories"><article class="story"><div class="story-img"><img src="assets/case_1.webp" alt=""></div><div class="quote"><p><span data-i18n="story1">SurveySaaS has streamlined our operations and improved data quality significantly.</span></p><div class="person"><b>Rahul Mehta</b><span>Research Director, MarketEdge India</span></div></div></article><article class="story"><div class="story-img"><img src="assets/case_2.webp" alt=""></div><div class="quote"><p><span data-i18n="story2">Real-time monitoring and smart alerts help us deliver better results, faster.</span></p><div class="person"><b>Priya Nair</b><span>Operations Manager, InsightHub</span></div></div></article><article class="story"><div class="story-img"><img src="assets/case_3.webp" alt=""></div><div class="quote"><p><span data-i18n="story3">The platform is reliable, scalable, and the support team is exceptional.</span></p><div class="person"><b>Arjun Verma</b><span>COO, DataTrack Solutions</span></div></div></article></div></div></section>
+<section class="section" id="faq"><div class="container section-grid"><div><div class="eyebrow">Frequently asked questions</div><h2>Everything you need to know</h2></div><div class="faq-grid"><details name="faq"><summary>Do you support supplier splits?</summary><p>Yes. You can route traffic by supplier, project rule, quota status and callback condition.</p></details><details name="faq" open><summary>Do you support private deployments?</summary><p>Yes. Private deployments are available with dedicated infrastructure, custom domains, and enterprise-grade security.</p></details><details name="faq"><summary>Is there an API available?</summary><p>Yes. SurveySaaS supports callback APIs, redirect events and integrations for operational workflows.</p></details><details name="faq"><summary>What kind of support do you offer?</summary><p>We support onboarding, configuration reviews and operational consultation for supplier-heavy fieldwork teams.</p></details></div></div></section></main>
+<footer id="contact"><div class="container"><div class="bottom-cta"><div style="display:flex;gap:18px;align-items:center"><div class="send">↗</div><div><h3>Ready to transform your survey operations?</h3><p>Book a demo today and see how SurveySaaS can help you achieve more.</p></div></div><div class="ctas" style="margin:0"><a class="btn primary" href="mailto:sales@surveysaas.com">Book a Demo</a><a class="btn" href="mailto:sales@surveysaas.com">Contact Sales</a></div></div><div class="footer"><div class="footer-inner"><div style="display:flex;align-items:center;gap:10px"><img src="assets/logo-mark-v40.png" width="24" height="24"><strong>SurveySaaS</strong></div><div><a href="#product">Product</a><a href="#workflow">Workflow</a><a href="#plans">Plans</a><a href="#contact">Contact</a></div><span>© 2026 SurveySaaS. All rights reserved.</span></div></div></div></footer>
+<script>
+const links=[...document.querySelectorAll('.links a')];
+const sections=[document.querySelector('#top'),...document.querySelectorAll('main section'),document.querySelector('#contact')].filter(Boolean);
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));
+    }
+  });
+},{rootMargin:'-42% 0px -53% 0px'});
+sections.forEach(section=>observer.observe(section));
+</script>
+<script>
+/* workflow canvas flow — v57 keeps V54 line shape, but remeasures lifted active card so the path stays attached to the border */
+(function(){
+  const track = document.getElementById('flowTrack');
+  const canvas = document.getElementById('flowCanvasV25');
+  if(!track || !canvas) return;
+
+  let ctx, dpr=1, W=0, H=0, topRoute=null, bottomRoute=null, connectorSegments=[], flowCards=[];
+  let cycleStart = performance.now();
+  const CYCLE_MS = 5600;
+  const TRAIL = 310;
+  const RADIUS = 28;
+  let activeStepIndex = -1;
+
+  function distance(a,b){ return Math.hypot(b.x-a.x,b.y-a.y); }
+  function addPoint(points,x,y){
+    const p={x,y};
+    const last=points[points.length-1];
+    if(!last || Math.hypot(last.x-x,last.y-y)>0.2) points.push(p);
+  }
+  function addLine(points,x1,y1,x2,y2,steps){
+    for(let i=1;i<=steps;i++) addPoint(points,x1+(x2-x1)*i/steps,y1+(y2-y1)*i/steps);
+  }
+  function addQuarter(points,cx,cy,r,start,end,steps){
+    for(let i=1;i<=steps;i++){
+      const a=start+(end-start)*i/steps;
+      addPoint(points,cx+Math.cos(a)*r,cy+Math.sin(a)*r);
+    }
+  }
+  function makeRoute(cards, side){
+    const pts=[];
+    if(!cards.length) return makePolyline([]);
+    addPoint(pts, cards[0].x0, cards[0].ym);
+    cards.forEach((c,i)=>{
+      const next=cards[i+1];
+      const r=Math.min(RADIUS,(c.x1-c.x0)/5,(c.y1-c.y0)/5);
+      if(side==='top'){
+        addLine(pts, c.x0, c.ym, c.x0, c.y0+r, 8);
+        addQuarter(pts, c.x0+r, c.y0+r, r, Math.PI, Math.PI*1.5, 12);
+        addLine(pts, c.x0+r, c.y0, c.x1-r, c.y0, 24);
+        addQuarter(pts, c.x1-r, c.y0+r, r, Math.PI*1.5, Math.PI*2, 12);
+        addLine(pts, c.x1, c.y0+r, c.x1, c.ym, 8);
+      }else{
+        addLine(pts, c.x0, c.ym, c.x0, c.y1-r, 8);
+        addQuarter(pts, c.x0+r, c.y1-r, r, Math.PI, Math.PI/2, 12);
+        addLine(pts, c.x0+r, c.y1, c.x1-r, c.y1, 24);
+        addQuarter(pts, c.x1-r, c.y1-r, r, Math.PI/2, 0, 12);
+        addLine(pts, c.x1, c.y1-r, c.x1, c.ym, 8);
+      }
+      if(next) addLine(pts, c.x1, c.ym, next.x0, next.ym, 16);
+    });
+    return makePolyline(pts);
+  }
+  function makeConnector(cards){
+    const segments=[];
+    for(let i=0;i<cards.length-1;i++){
+      const a=cards[i], b=cards[i+1];
+      const pts=[];
+      addPoint(pts,a.x1,a.ym);
+      addLine(pts,a.x1,a.ym,b.x0,b.ym,16);
+      segments.push(makePolyline(pts));
+    }
+    return segments;
+  }
+  function makePolyline(points){
+    const cum=[0]; let len=0;
+    for(let i=1;i<points.length;i++){ len+=distance(points[i-1],points[i]); cum.push(len); }
+    return {points,cum,len};
+  }
+  function pointAt(route, pos){
+    if(!route || !route.points.length) return null;
+    if(pos<=0) return route.points[0];
+    if(pos>=route.len) return route.points[route.points.length-1];
+    let lo=0, hi=route.cum.length-1;
+    while(lo<hi){ const mid=(lo+hi)>>1; if(route.cum[mid]<pos) lo=mid+1; else hi=mid; }
+    const i=Math.max(1,lo);
+    const prev=route.points[i-1], next=route.points[i];
+    const span=Math.max(.0001,route.cum[i]-route.cum[i-1]);
+    const t=(pos-route.cum[i-1])/span;
+    return {x:prev.x+(next.x-prev.x)*t, y:prev.y+(next.y-prev.y)*t};
+  }
+  function strokePolyline(route, style, width){
+    if(!route || route.points.length<2) return;
+    ctx.save(); ctx.strokeStyle=style; ctx.lineWidth=width; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.beginPath(); ctx.moveTo(route.points[0].x,route.points[0].y);
+    for(let i=1;i<route.points.length;i++) ctx.lineTo(route.points[i].x,route.points[i].y);
+    ctx.stroke(); ctx.restore();
+  }
+  function strokeConnectorSegments(segments, style, width){
+    if(!segments || !segments.length) return;
+    segments.forEach(segment => strokePolyline(segment, style, width));
+  }
+  function drawTrail(route, progress){
+    if(!route || !route.len) return;
+    const rawStart=progress-TRAIL;
+    const start=Math.max(0, rawStart);
+    const end=Math.min(route.len, progress);
+    if(end<=0 || start>=route.len || end<=start) return;
+    const samples=72;
+    const points=[];
+    for(let i=0;i<=samples;i++){
+      const d=start + (end-start) * i / samples;
+      const p=pointAt(route, d);
+      if(p) points.push(p);
+    }
+    if(points.length<2) return;
+
+    ctx.save();
+    ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.strokeStyle='rgba(74,167,232,.14)';
+    ctx.lineWidth=8.6;
+    ctx.shadowColor='rgba(74,167,232,.10)'; ctx.shadowBlur=5;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for(let i=1;i<points.length;i++) ctx.lineTo(points[i].x, points[i].y);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.save();
+    ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.strokeStyle='rgba(54,151,224,.76)';
+    ctx.lineWidth=3.1;
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for(let i=1;i<points.length;i++) ctx.lineTo(points[i].x, points[i].y);
+    ctx.stroke();
+    ctx.restore();
+
+    if(progress<=route.len){
+      const head=pointAt(route, progress);
+      if(head){
+        ctx.save();
+        ctx.fillStyle='rgba(54,151,224,.92)';
+        ctx.shadowColor='rgba(54,151,224,.24)';
+        ctx.shadowBlur=8;
+        ctx.beginPath(); ctx.arc(head.x,head.y,2.7,0,Math.PI*2); ctx.fill();
+        ctx.restore();
+      }
+    }
+  }
+
+  function measure(){
+    dpr=window.devicePixelRatio||1;
+    const tr=track.getBoundingClientRect();
+    const PAD=16;
+    W=Math.max(1,tr.width + PAD*2); H=Math.max(1,tr.height + PAD*2);
+    canvas.width=Math.round(W*dpr); canvas.height=Math.round(H*dpr);
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx=canvas.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0);
+    flowCards=[...track.querySelectorAll('.flow-card-clean')].map(card=>{
+      const b=card.getBoundingClientRect();
+      return {
+        el:card,
+        stepEl:card.querySelector('.step'),
+        x0:b.left-tr.left+PAD,
+        x1:b.right-tr.left+PAD,
+        y0:b.top-tr.top+PAD,
+        y1:b.bottom-tr.top+PAD,
+        ym:b.top-tr.top+b.height/2+PAD,
+        xc:b.left-tr.left+b.width/2+PAD
+      };
+    });
+    const cards=flowCards.map(({x0,x1,y0,y1,ym})=>({x0,x1,y0,y1,ym}));
+    topRoute=makeRoute(cards,'top'); bottomRoute=makeRoute(cards,'bottom'); connectorSegments=makeConnector(cards);
+  }
+
+  function setActiveFromProgress(progress){
+    if(!flowCards.length || !topRoute || !topRoute.len) return;
+    let nextIndex=-1;
+    if(progress>0 && progress<=topRoute.len){
+      const head=pointAt(topRoute, Math.min(progress, topRoute.len));
+      if(head){
+        const matched=flowCards.findIndex(card => head.x>=card.x0 && head.x<=card.x1);
+        if(matched!==-1) nextIndex=matched;
+        else {
+          let bestIndex=-1, bestDistance=Infinity;
+          flowCards.forEach((card,index)=>{
+            const d=Math.abs(card.xc-head.x);
+            if(d<bestDistance){ bestDistance=d; bestIndex=index; }
+          });
+          if(bestDistance<90) nextIndex=bestIndex;
+        }
+      }
+    }
+    if(nextIndex===activeStepIndex) return;
+    activeStepIndex=nextIndex;
+    flowCards.forEach((card,index)=>{
+      const active=index===activeStepIndex;
+      if(card.stepEl) card.stepEl.classList.toggle('is-lit', active);
+      if(card.el) card.el.classList.toggle('is-flow-active', active);
+    });
+  }
+
+  function draw(now){
+    // First measure current transformed cards, compute progress, set active.
+    measure();
+    const total=Math.max(topRoute?.len||0,bottomRoute?.len||0);
+    const progress=((now-cycleStart)%CYCLE_MS)/CYCLE_MS*(total+TRAIL);
+    setActiveFromProgress(progress);
+
+    // Re-measure after .is-flow-active lift has been applied; canvas path now follows the lifted border.
+    measure();
+    ctx.clearRect(0,0,W,H);
+    strokeConnectorSegments(connectorSegments,'rgba(10,132,255,.16)',2);
+    drawTrail(topRoute, progress);
+    drawTrail(bottomRoute, progress);
+    requestAnimationFrame(draw);
+  }
+
+  function init(){ measure(); cycleStart=performance.now(); }
+  window.addEventListener('load',()=>{ init(); requestAnimationFrame(draw); setTimeout(measure,220); setTimeout(measure,900); });
+  if(document.readyState !== 'loading') { init(); requestAnimationFrame(draw); }
+  window.addEventListener('resize',()=>requestAnimationFrame(measure));
+  if('ResizeObserver' in window){ new ResizeObserver(()=>requestAnimationFrame(measure)).observe(track); }
+})();
+</script>
+<script>
+/* v66 Hero: match index(95) particle size/blur, double total count by expanding outward, and lock spacing to prevent collisions. */
+(function(){
+  const stage=document.getElementById('logoOrbitStageV42');
+  const back=document.getElementById('logoOrbitBackV42');
+  const front=document.getElementById('logoOrbitFrontV42');
+  if(!stage||!back||!front) return;
+
+  let bctx,fctx,dpr=1,W=0,H=0,cx=0,cy=0;
+  const particles=[];
+
+  // Based on the original 38-block reference sizing. Doubled to 76 by adding outward companion rings,
+  // not by increasing density on the same orbit.
+  const rings=[
+    {count:16, rx:0.33, ry:0.34, size:[10,18], alpha:[0.54,0.80], solidEvery:4, speed:0.00012, offset:-Math.PI/2 + 0.05},
+    {count:12, rx:0.27, ry:0.28, size:[11,22], alpha:[0.62,0.90], solidEvery:3, speed:0.00016, offset:-Math.PI/2 - 0.03},
+    {count:10, rx:0.39, ry:0.40, size:[8,13],  alpha:[0.30,0.52], solidEvery:99, speed:0.00009, offset:-Math.PI/2 + 0.02},
+
+    // Outward expansion copy: same count/size/opacity rules, larger orbit radius.
+    {count:16, rx:0.47, ry:0.48, size:[10,18], alpha:[0.54,0.80], solidEvery:4, speed:0.000105, offset:-Math.PI/2 + Math.PI/16},
+    {count:12, rx:0.58, ry:0.59, size:[11,22], alpha:[0.62,0.90], solidEvery:3, speed:0.000092, offset:-Math.PI/2 + Math.PI/12},
+    {count:10, rx:0.70, ry:0.70, size:[8,13],  alpha:[0.30,0.52], solidEvery:99, speed:0.000078, offset:-Math.PI/2 + Math.PI/10}
+  ];
+
+  rings.forEach((ring, ri)=>{
+    for(let i=0;i<ring.count;i++){
+      const angle=(Math.PI*2/ring.count)*i + ring.offset;
+      const solid = (i % ring.solidEvery===0) || ((ri===1 || ri===4) && (i===5 || i===8));
+      const size = ring.size[0] + (ring.size[1]-ring.size[0])*((i*0.37)%1);
+      const alpha = ring.alpha[0] + (ring.alpha[1]-ring.alpha[0])*((i*0.23)%1);
+      const extraBottom = Math.sin(angle) > 0.55 ? 1.14 : 1.0;
+      particles.push({
+        angle0:angle,
+        rx:ring.rx,
+        ry:ring.ry,
+        size:(solid ? size*1.18 : size) * extraBottom,
+        alpha:solid ? Math.min(0.96, alpha+0.10) : alpha,
+        solid,
+        speed:ring.speed,
+        twirl:(i%7)*0.1
+      });
+    }
+  });
+
+  function resize(){
+    dpr=window.devicePixelRatio||1;
+    const r=stage.getBoundingClientRect();
+    W=Math.max(1,r.width+340);
+    H=Math.max(1,r.height+280);
+    cx=W*0.50;
+    cy=H*0.49;
+    [back,front].forEach(c=>{
+      c.width=Math.round(W*dpr);
+      c.height=Math.round(H*dpr);
+      c.style.width=W+'px';
+      c.style.height=H+'px';
+    });
+    bctx=back.getContext('2d');
+    fctx=front.getContext('2d');
+    bctx.setTransform(dpr,0,0,dpr,0,0);
+    fctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  function roundRect(ctx,x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+    ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+    ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath();
+  }
+
+  function drawBlock(ctx,p,t){
+    const s=p.renderSize;
+    ctx.save();
+    ctx.translate(p.x,p.y);
+    ctx.rotate(Math.PI/4 + p.twirl + t*0.00006);
+    ctx.globalAlpha=p.renderAlpha;
+    ctx.shadowColor = p.solid ? 'rgba(72,145,255,.28)' : 'rgba(72,145,255,.18)';
+    ctx.shadowBlur = p.solid ? 18 : 12;
+    ctx.shadowOffsetY = p.solid ? 4 : 3;
+    const g=ctx.createLinearGradient(-s,-s,s,s);
+    if(p.solid){
+      g.addColorStop(0,'rgba(255,255,255,.99)');
+      g.addColorStop(.18,'rgba(234,243,255,.98)');
+      g.addColorStop(.56,'rgba(156,203,255,.96)');
+      g.addColorStop(1,'rgba(80,147,255,1)');
+    }else{
+      g.addColorStop(0,'rgba(255,255,255,.96)');
+      g.addColorStop(.26,'rgba(245,249,255,.90)');
+      g.addColorStop(.66,'rgba(191,221,255,.76)');
+      g.addColorStop(1,'rgba(118,173,255,.86)');
+    }
+    roundRect(ctx,-s/2,-s/2,s,s,Math.max(3,s*.23));
+    ctx.fillStyle=g;
+    ctx.fill();
+    ctx.lineWidth=Math.max(1,s*.042);
+    ctx.strokeStyle=p.solid ? 'rgba(255,255,255,.38)' : 'rgba(255,255,255,.24)';
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function draw(t){
+    if(!bctx||!fctx){ requestAnimationFrame(draw); return; }
+    bctx.clearRect(0,0,W,H);
+    fctx.clearRect(0,0,W,H);
+
+    const list = particles.map((p)=>{
+      // Locked spacing: every block stays fixed on its own orbit. No per-particle speed,
+      // random angular drift, or individual bobbing that could cause collisions.
+      const angle = p.angle0 + t*p.speed;
+      const rx = W*p.rx;
+      const ry = H*p.ry;
+      const x = cx + Math.cos(angle)*rx;
+      const y = cy + Math.sin(angle)*ry;
+      const z = Math.cos(angle)*0.55;
+      const scale = (p.solid ? 1.06 : 1.00) + z*0.18;
+      const renderSize = p.size * scale;
+      const renderAlpha = Math.max(0.28, p.alpha + z*0.11);
+      return {...p, x, y, z, renderSize, renderAlpha};
+    }).sort((a,b)=>a.z-b.z);
+
+    const exclusion={left:W*0.38, right:W*0.62, top:H*0.20, bottom:H*0.74};
+    list.forEach(p=>{
+      const overlapsCore = p.x>exclusion.left && p.x<exclusion.right && p.y>exclusion.top && p.y<exclusion.bottom;
+      const ctx = (p.z<0 || overlapsCore) ? bctx : fctx;
+      drawBlock(ctx,p,t);
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('load', ()=>{ resize(); requestAnimationFrame(draw); setTimeout(resize, 240); });
+})();
+</script>
+<script>
+
+/* V54 product browser tabs */
+(function(){const tabs=[...document.querySelectorAll('.product-tab-v54')],panels=[...document.querySelectorAll('.product-panel-v54')],title=document.getElementById('browserTitleV54'),titles={analytics:'Operations analytics',admin:'Project control center',supplier:'Supplier portal',finance:'Finance ledger'};tabs.forEach(tab=>tab.addEventListener('click',()=>{const view=tab.dataset.productView;tabs.forEach(t=>t.classList.toggle('active',t===tab));panels.forEach(p=>p.classList.toggle('active',p.dataset.panel===view));if(title)title.textContent=titles[view]||view;}));})();
+</script>
+
+<script>
+const i18nV54={
+ 'en-IN':{tabAnalytics:'Data Analytics',tabAdmin:'Admin Console',tabSupplier:'Supplier Portal',tabFinance:'Finance Ledger',efficiency:'Built for efficiency',workspaceTitle:'Everything you need in one workspace',workspaceLead:'Switch between live analytics, project control, supplier routing and finance settlement in one premium operations console.',exploreFeatures:'Explore Features',workflowEyebrow:'How it works',workflowTitle:'A smarter way to run survey operations'},
+ 'zh-CN':{tabAnalytics:'数据分析',tabAdmin:'管理后台',tabSupplier:'供应商门户',tabFinance:'财务账本',efficiency:'为效率而建',workspaceTitle:'一个工作台覆盖全部运营流程',workspaceLead:'在同一个高级运营控制台中切换实时分析、项目管理、供应商路由与财务结算。',exploreFeatures:'查看功能',workflowEyebrow:'工作流程',workflowTitle:'更聪明地管理调研运营'},
+ 'hi-IN':{tabAnalytics:'डेटा एनालिटिक्स',tabAdmin:'एडमिन कंसोल',tabSupplier:'सप्लायर पोर्टल',tabFinance:'फाइनेंस लेजर',efficiency:'दक्षता के लिए बनाया गया',workspaceTitle:'एक ही वर्कस्पेस में सब कुछ',workspaceLead:'लाइव एनालिटिक्स, प्रोजेक्ट कंट्रोल, सप्लायर रूटिंग और फाइनेंस सेटलमेंट को एक ही प्रीमियम कंसोल में देखें।',exploreFeatures:'फ़ीचर देखें',workflowEyebrow:'यह कैसे काम करता है',workflowTitle:'सर्वे ऑपरेशंस चलाने का बेहतर तरीका'}
+};
+function applyV54Lang(lang){document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const val=i18nV54[lang]?.[el.dataset.i18n];if(val)el.textContent=val;});document.querySelectorAll('.langs button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));}
+document.querySelectorAll('.langs button').forEach(b=>b.addEventListener('click',()=>applyV54Lang(b.dataset.lang)));
+</script>
+<script>
+
+(function(){
+  const buttons=[...document.querySelectorAll('.product-tabs-v55 button')];
+  const panes=[...document.querySelectorAll('.product-viewport-v55 [data-screen-pane]')];
+  const label=document.querySelector('.browser-address-v55');
+  function currentPack(){ if(typeof i18n==='undefined') return {}; return i18n[document.documentElement.lang] || i18n['en-IN'] || {}; }
+  function syncProductLabel(activeBtn){
+    if(!label || !activeBtn) return;
+    const pack=currentPack();
+    const key=activeBtn.dataset.titleKey;
+    label.textContent=(pack && pack[key]) || activeBtn.textContent.trim();
+  }
+  function activate(screen){
+    const btn=buttons.find(b=>b.dataset.screen===screen) || buttons[0];
+    buttons.forEach(b=>b.classList.toggle('active', b===btn));
+    panes.forEach(p=>p.classList.toggle('active', p.dataset.screenPane===btn.dataset.screen));
+    syncProductLabel(btn);
+  }
+  buttons.forEach(btn=>btn.addEventListener('click',()=>activate(btn.dataset.screen)));
+  document.querySelectorAll('.langs button').forEach(btn=>btn.addEventListener('click',()=>setTimeout(()=>activate((buttons.find(b=>b.classList.contains('active'))||buttons[0]).dataset.screen),0)));
+  activate('analytics');
+})();
+
+</script>
+</body></html>

@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1920" name="viewport" />
+    <title>调查站系统 - FenSvyG</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-dark': '#0B3343', 'eco-teal': '#31477F',
+                        'eco-light-teal': '#4A619D', 'eco-gray': '#F3F4F6', 'eco-accent': '#66BB6A',
+                    },
+                    fontFamily: { manrope: ['Manrope', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Manrope", "Microsoft YaHei", sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuD1HBoM6Scw_Kaa_yUEczByB6qmD2lLbtqefHOcnhlJ4XAKW5j8pWryN7gUYHnjACoX6T__YFGbU24LP0HvkiRrLIhxyK1fwmggwxepzg3fCEHF3mgp7Jh0ZpkPe06o3LZj84ii10NFewkG8A2d0ef43Ptevny_fYv1zTdCRxR4aWqTUfXdRKdg5L9P1ZK_t0YOrcYiBh5hxeR5r6CTBjPWqM2O6zcawTm37cj6dptJHJH2Lf1SnsDc-H5fZ8pnHuOItiCMsCrU0NU);
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+
+        .footer-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuC17yLU6He1OEYCQePq5CuGLIaY1014rM8r-fVlYnxVCDfoZzeIjreRE1r32_uKoHHz_RxsAAM5RUlH3VLZe7UZTaQohUUdKllv1gldvRZgLRtAUcsGGUfXxvGrxHu8xOtpTBDvk_2jydOoUueHmaxn08Tr9JSxmfBalrIRgJfJOO7XuCUC9m9I2bUKjv5HLK8iy5bzfpatjOt4idDaXsZwdA523eTl-cBj6l81L8Jt1dK3wqQ9lLwy-uYMElz2657_L-3UWkJfcOk);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        nav.scrolled {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-smooth {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .btn-smooth:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-smooth:active {
+            transform: scale(0.95);
+        }
+
+        .faq-answer-box {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-answer-box.open {
+            max-height: 500px;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px)
+            }
+
+            50% {
+                transform: translateY(-12px)
+            }
+        }
+
+        .float-card {
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            cursor: zoom-in;
+        }
+
+        .float-card:hover {
+            animation-play-state: paused;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+        }
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px);
+        }
+
+        #lightbox.active {
+            display: flex;
+        }
+
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 88vh;
+            border-radius: 16px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        #lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        #lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #31477F;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 20px rgba(49, 71, 127, 0.35);
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+            z-index: 9998;
+            pointer-events: none;
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        #back-to-top:hover {
+            background: #4A619D;
+        }
+    </style>
+    <script>
+        const T = {
+            zh: {
+                nav_home: '首页', nav_mgmt: '调查管理后台', nav_supplier: '供应商后台',
+                nav_station: '调查站系统', nav_pricing: '定价', nav_contact: '联系我们', nav_login: '登录/注册',
+                hero_title: '调查站系统',
+                hero_sub: '智能站点深度整合用户身份画像（含IP地址、系统环境及地理归属），实现待办任务、审核状态及配额进度的实时动态追踪。系统集成会员财资明细与交易审计功能，依托时程化数据智能中心，通过深度分析驱动核心业务机制的即时智能化，为决策层构建多维度的精准数据管理矩阵。',
+                hero_btn1: '申请免费试用', hero_btn2: '联系我们',
+                section_title: '我们的调查站系统',
+                s1_title: '全流程项目调查',
+                s1_desc: '实时可视化数据分析、全流程项目记录回溯，提供全维度分析能力，实现动态趋势可视化。',
+                s1_1: '数据看板：构建智能数据驾驶舱，集成全链路数据追踪，支持多维度时间轴筛选及可定制化轻量化可视化界面。',
+                s1_2: '项目调查：动态追踪任务进度，精准掌控已提交量与配额，实时监测会员终端各类特征，实现全流程可视化管控。',
+                s1_3: '调查记录：动态追踪会员全生命周期任务轨迹，涵盖待审、已完成、执行进度及多维展示，构建全链路数据资产。',
+                s1_4: '账单财务：实时查看当前会员下的财务、账单等信息，包含账单财务各类日志多维度筛选，全流程日志记录等。',
+                s1_btn: '联系我们',
+                cta_btn: '了解更多优惠信息',
+                faq_title: '常见问题解答',
+                faq_sub: '这里提供常见问题解答，确保您能尽快获得我们提供的各类服务。',
+                q1: 'Q1. 如何获取试用权限，试用周期是多久？',
+                a1: '我们提供为期7天的初始试用周期，您可点击页面上的"申请试用"按钮，提交试用申请，我们将在72小时内答复您的申请。',
+                q2: 'Q2. 试用到期后，若想继续试用，需如何进行操作？',
+                a2: '申请试用后，您将拥有专属的试用平台，当试用到期前，您可在后台申请延延期，我们在收到您的申请后的24小时内回复您的延长试用申请。同时您可根据实际业务需求在后台升级更高版本。',
+                q3: 'Q3. 我不是专业技术人员，该如何投放我的问卷？',
+                a3: '您可在官网点击"联系我们"进入页面，提交您的问卷投放请求，留下您的邮箱，我们会在72小时内回复您的请求，并提供专业的运营团队为您提供专业的指导，无需拥有技术人员。',
+                q4: 'Q4. 我需要搭建自己的专属站点，该如何操作，是否需要私有服务器？',
+                a4: '我们是SaaS化平台，提供零部署的平台，您无需私有服务器，同时平台提供个性化配置，通过简单配置，您即可拥有专属调查站点。',
+                q5: 'Q5. 我如何能保证使用平台过程中的数据安全以及问卷真实性？',
+                a5: '我们依托多重防欺诈技术，从源头杜绝无效数据，保障每一份数据的真实可靠。平台提供指纹验证、行为分析、IP检测验证和人工审核等多重防护，保障您的数据安全。',
+                footer_cta_title: '即刻开启调查新旅程', footer_cta_sub: '为您提供所需价值', footer_send: '发送',
+                footer_desc: '一站式全球化SaaS调查分发平台，助您高效精准对接优质客户及供应商，快速实现流量价值转化',
+                footer_addr: '中国安徽省六安市恒生阳光城A座1506',
+                footer_c1: '产品支持', footer_c1_1: '帮助文档', footer_c1_2: '引导手册', footer_c1_3: '意见反馈',
+                footer_c2: '公司信息', footer_c2_1: '关于我们', footer_c2_2: '发展历程', footer_c2_3: '联系我们',
+                footer_c3: '权益中心', footer_c3_1: '试用申请', footer_c3_2: '加入我们', footer_c3_3: '资讯获取',
+                footer_copy: '© 2024-2025 安徽省嘉禹企业服务有限公司版权所有',
+                email_ph: '您的邮箱',
+            },
+            en: {
+                nav_home: 'Home', nav_mgmt: 'Survey Management', nav_supplier: 'Supplier Backend',
+                nav_station: 'Survey Station', nav_pricing: 'Pricing', nav_contact: 'Contact Us', nav_login: 'Login / Register',
+                hero_title: 'Survey Station System',
+                hero_sub: 'The intelligent portal deeply consolidates user identity profiling—including IP addresses, system environments, and geographic origins—to facilitate real-time dynamic tracking of pending tasks, audit statuses, and quota allocations. By integrating membership financial details with transaction auditing and leveraging a chronological data intelligence center, the system employs deep analysis to drive the instantaneous intellectualization of core business mechanisms, constructing a multi-dimensional, high-precision data management matrix for executive decision-making',
+                hero_btn1: 'Apply for Free Trial', hero_btn2: 'Contact Us',
+                section_title: 'Our Survey Station System',
+                s1_title: 'Full-Process Project Survey',
+                s1_desc: 'Real-time visual data analysis, full-process project record traceability, comprehensive multi-dimensional analysis capabilities, and dynamic trend visualization.',
+                s1_1: 'Data Dashboard: Builds an intelligent data cockpit with full-chain data tracking, supporting multi-dimensional timeline filtering and a customizable lightweight visualization interface.',
+                s1_2: 'Project Survey: Dynamically tracks task progress, precisely controls submitted quantities and quotas, monitors member terminal characteristics in real time, achieving full-process visual management.',
+                s1_3: 'Survey Records: Dynamically tracks the full lifecycle task trajectory of members, covering pending review, completed, execution progress and multi-dimensional display, building full-chain data assets.',
+                s1_4: 'Billing & Finance: View financial and billing information for current members in real time, including multi-dimensional filtering of all financial logs and full-process log records.',
+                s1_btn: 'Contact Us',
+                cta_btn: 'Learn More About Our Plans',
+                faq_title: 'Frequently Asked Questions',
+                faq_sub: 'Find answers to common questions here to ensure you can quickly access the services we provide.',
+                q1: 'Q1. How do I get trial access and how long is the trial period?',
+                a1: 'We offer an initial 7-day trial period. Click the "Apply for Trial" button on the page, submit your application, and we will respond within 72 hours.',
+                q2: 'Q2. How do I extend my trial after it expires?',
+                a2: 'After applying for the trial, you will have a dedicated trial platform. Before the trial expires, you can apply for an extension in the backend. We will respond to your extension request within 24 hours of receiving your application. You can also upgrade to a higher version in the backend based on your actual business needs.',
+                q3: 'Q3. I am not a technical professional. How do I distribute my survey?',
+                a3: 'You can click "Contact Us" on the official website, submit your survey distribution request, and leave your email. We will respond within 72 hours and provide a professional operations team to guide you — no technical staff required.',
+                q4: 'Q4. How do I set up my own dedicated site? Do I need a private server?',
+                a4: 'We are a SaaS platform providing zero-deployment services. You do not need a private server. The platform also provides personalized configuration — with simple settings, you can have your own dedicated survey site.',
+                q5: 'Q5. How can I ensure data security and survey authenticity on the platform?',
+                a5: 'We rely on multiple anti-fraud technologies to eliminate invalid data at the source and ensure the authenticity of every piece of data. The platform provides multiple layers of protection including fingerprint verification, behavior analysis, IP detection and manual review to safeguard your data security.',
+                footer_cta_title: 'Start Your Survey Journey Now', footer_cta_sub: 'We provide the value you need', footer_send: 'Send',
+                footer_desc: 'One-stop global SaaS survey distribution platform, helping you efficiently connect with quality clients and suppliers to maximize traffic value.',
+                footer_addr: "Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China",
+                footer_c1: 'Product Support', footer_c1_1: 'Help Documentation', footer_c1_2: 'User Guide', footer_c1_3: 'Feedback',
+                footer_c2: 'Company Info', footer_c2_1: 'About Us', footer_c2_2: 'Our History', footer_c2_3: 'Contact Us',
+                footer_c3: 'Benefits Center', footer_c3_1: 'Trial Application', footer_c3_2: 'Join Us', footer_c3_3: 'News & Updates',
+                footer_copy: '© 2024-2025 Anhui Jiayu Enterprise Service Co., Ltd. All rights reserved.',
+                email_ph: 'Your email address',
+            },
+            hi: {
+                nav_home: 'होम', nav_mgmt: 'सर्वेक्षण प्रबंधन', nav_supplier: 'आपूर्तिकर्ता बैकएंड',
+                nav_station: 'सर्वेक्षण स्टेशन', nav_pricing: 'मूल्य निर्धारण', nav_contact: 'संपर्क करें', nav_login: 'लॉगिन / रजिस्टर',
+                hero_title: 'सर्वेक्षण स्टेशन प्रणाली',
+                hero_sub: 'यह स्मार्ट पोर्टल उपयोगकर्ता पहचान रूपरेखा (जिसमें IP पता, सिस्टम वातावरण और भौगोलिक स्थिति शामिल है) को गहराई से एकीकृत करता है, जिससे लंबित कार्यों, ऑडिट स्थिति और कोटा प्रगति की वास्तविक समय में निगरानी सुनिश्चित होती है। यह प्रणाली सदस्य वित्तीय विवरण और लेनदेन ऑडिट कार्यों को समाहित करती है। कालानुक्रमिक डेटा इंटेलिजेंस सेंटर के आधार पर, यह गहन विश्लेषण के माध्यम से मुख्य व्यावसायिक तंत्रों के तत्काल बुद्धिमानीकरण को बढ़ावा देता है, जिससे निर्णय लेने वालों के लिए एक बहु-आयामी सटीक डेटा प्रबंधन मैट्रिक्स का निर्माण होता है।',
+                hero_btn1: 'नि:शुल्क परीक्षण के लिए आवेदन करें', hero_btn2: 'संपर्क करें',
+                section_title: 'हमारी सर्वेक्षण स्टेशन प्रणाली',
+                s1_title: 'पूर्ण-प्रक्रिया परियोजना सर्वेक्षण',
+                s1_desc: 'रीयल-टाइम विज़ुअल डेटा विश्लेषण, पूर्ण-प्रक्रिया परियोजना रिकॉर्ड ट्रेसेबिलिटी, व्यापक बहु-आयामी विश्लेषण क्षमताएं और गतिशील प्रवृत्ति विज़ुअलाइज़ेशन।',
+                s1_1: 'डेटा डैशबोर्ड: पूर्ण-श्रृंखला डेटा ट्रैकिंग के साथ एक बुद्धिमान डेटा कॉकपिट बनाता है, बहु-आयामी टाइमलाइन फ़िल्टरिंग और अनुकूलन योग्य हल्के विज़ुअलाइज़ेशन इंटरफ़ेस का समर्थन करता है।',
+                s1_2: 'परियोजना सर्वेक्षण: कार्य प्रगति को गतिशील रूप से ट्रैक करता है, सबमिट की गई मात्राओं और कोटा को सटीक रूप से नियंत्रित करता है, सदस्य टर्मिनल विशेषताओं की रीयल-टाइम निगरानी करता है, पूर्ण-प्रक्रिया दृश्य प्रबंधन प्राप्त करता है।',
+                s1_3: 'सर्वेक्षण रिकॉर्ड: सदस्यों के पूर्ण जीवनचक्र कार्य प्रक्षेपवक्र को गतिशील रूप से ट्रैक करता है, जिसमें लंबित समीक्षा, पूर्ण, निष्पादन प्रगति और बहु-आयामी प्रदर्शन शामिल हैं, पूर्ण-श्रृंखला डेटा संपत्ति का निर्माण करता है।',
+                s1_4: 'बिलिंग और वित्त: वर्तमान सदस्यों की वित्तीय और बिलिंग जानकारी रीयल-टाइम में देखें, सभी वित्तीय लॉग की बहु-आयामी फ़िल्टरिंग और पूर्ण-प्रक्रिया लॉग रिकॉर्डिंग सहित।',
+                s1_btn: 'संपर्क करें',
+                cta_btn: 'हमारी योजनाओं के बारे में अधिक जानें',
+                faq_title: 'अक्सर पूछे जाने वाले प्रश्न',
+                faq_sub: 'यहाँ सामान्य प्रश्नों के उत्तर दिए गए हैं ताकि आप हमारी सेवाओं तक जल्द से जल्द पहुँच सकें।',
+                q1: 'Q1. परीक्षण पहुँच कैसे प्राप्त करें और परीक्षण अवधि कितनी लंबी है?',
+                a1: 'हम 7-दिवसीय प्रारंभिक परीक्षण अवधि प्रदान करते हैं। पृष्ठ पर "परीक्षण के लिए आवेदन करें" बटन पर क्लिक करें, अपना आवेदन जमा करें, और हम 72 घंटों के भीतर आपके आवेदन का उत्तर देंगे।',
+                q2: 'Q2. परीक्षण समाप्त होने के बाद यदि मैं जारी रखना चाहता हूं तो क्या करूं?',
+                a2: 'परीक्षण के लिए आवेदन करने के बाद, आपके पास एक समर्पित परीक्षण प्लेटफ़ॉर्म होगा। परीक्षण समाप्त होने से पहले, आप बैकएंड में विस्तार के लिए आवेदन कर सकते हैं। हम आपका आवेदन प्राप्त करने के 24 घंटे के भीतर जवाब देंगे। आप अपनी व्यावसायिक जरूरतों के अनुसार बैकएंड में उच्च संस्करण में अपग्रेड भी कर सकते हैं।',
+                q3: 'Q3. मैं तकनीकी विशेषज्ञ नहीं हूं, मैं अपना सर्वेक्षण कैसे वितरित करूं?',
+                a3: 'आप आधिकारिक वेबसाइट पर "संपर्क करें" पर क्लिक करें, अपना सर्वेक्षण वितरण अनुरोध जमा करें और अपना ईमेल छोड़ें। हम 72 घंटों के भीतर आपके अनुरोध का जवाब देंगे और पेशेवर मार्गदर्शन प्रदान करने के लिए एक पेशेवर संचालन टीम प्रदान करेंगे — कोई तकनीकी कर्मचारी आवश्यक नहीं।',
+                q4: 'Q4. मुझे अपनी समर्पित साइट बनानी है, मैं यह कैसे करूं, क्या मुझे निजी सर्वर चाहिए?',
+                a4: 'हम एक SaaS प्लेटफ़ॉर्म हैं जो शून्य-तैनाती सेवाएं प्रदान करता है। आपको निजी सर्वर की आवश्यकता नहीं है। प्लेटफ़ॉर्म व्यक्तिगत कॉन्फ़िगरेशन भी प्रदान करता है — सरल कॉन्फ़िगरेशन के साथ, आप अपना समर्पित सर्वेक्षण साइट प्राप्त कर सकते हैं।',
+                q5: 'Q5. मैं प्लेटफ़ॉर्म उपयोग के दौरान डेटा सुरक्षा और सर्वेक्षण प्रामाणिकता कैसे सुनिश्चित करूं?',
+                a5: 'हम अमान्य डेटा को स्रोत पर ही समाप्त करने और प्रत्येक डेटा की प्रामाणिकता सुनिश्चित करने के लिए कई एंटी-फ्रॉड तकनीकों पर निर्भर करते हैं। प्लेटफ़ॉर्म आपकी डेटा सुरक्षा सुनिश्चित करने के लिए फिंगरप्रिंट सत्यापन, व्यवहार विश्लेषण, IP डिटेक्शन सत्यापन और मैनुअल समीक्षा सहित कई सुरक्षा परतें प्रदान करता है।',
+                footer_cta_title: 'अभी अपनी सर्वेक्षण यात्रा शुरू करें', footer_cta_sub: 'हम आपको आवश्यक मूल्य प्रदान करते हैं', footer_send: 'भेजें',
+                footer_desc: 'वन-स्टॉप ग्लोबल SaaS सर्वेक्षण वितरण प्लेटफ़ॉर्म, जो आपको गुणवत्तापूर्ण ग्राहकों और आपूर्तिकर्ताओं से कुशलतापूर्वक जोड़कर ट्रैफ़िक मूल्य रूपांतरण को तेज़ करता है।',
+                footer_addr: 'कक्ष 1506, ब्लॉक A, हेंगशेंग सनशाइन सिटी, लू\'आन, अनहुई, चीन',
+                footer_c1: 'उत्पाद सहायता', footer_c1_1: 'सहायता दस्तावेज़', footer_c1_2: 'उपयोगकर्ता गाइड', footer_c1_3: 'सुझाव और प्रतिक्रिया',
+                footer_c2: 'कंपनी जानकारी', footer_c2_1: 'हमारे बारे में', footer_c2_2: 'विकास यात्रा', footer_c2_3: 'संपर्क करें',
+                footer_c3: 'लाभ केंद्र', footer_c3_1: 'परीक्षण आवेदन', footer_c3_2: 'हमसे जुड़ें', footer_c3_3: 'समाचार प्राप्त करें',
+                footer_copy: '© 2024-2025 Anhui Jiayu Enterprise Service Co., Ltd. सर्वाधिकार सुरक्षित।',
+                email_ph: 'आपका ईमेल पता',
+            }
+        };
+
+        let currentLang = 'zh';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+            });
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if (T[lang][key] !== undefined) el.placeholder = T[lang][key];
+            });
+            document.getElementById('lang-menu').classList.add('hidden');
+            ['lang-zh', 'lang-en', 'lang-hi'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('text-eco-teal', 'font-bold');
+            });
+            const activeId = lang === 'zh' ? 'lang-zh' : lang === 'en' ? 'lang-en' : 'lang-hi';
+            const activeEl = document.getElementById(activeId);
+            if (activeEl) activeEl.classList.add('text-eco-teal', 'font-bold');
+            localStorage.setItem('lang', lang);
+            // 切换调查站系统图片
+            const stationImg = document.querySelector('[data-station-img="s1"]');
+            if (stationImg) {
+                stationImg.src = lang === 'en'
+                    ? 'English版图片/调查站系统-全流程项目调查English.png'
+                    : 'https://media.base44.com/images/public/69dcab8d72704cd3dac9c94d/0b48b16e9_.png';
+            }
+            const docs = {
+                zh: {
+                    help: { href: 'docs/帮助文档1.0.docx', name: '帮助文档1.0.docx' },
+                    guide: { href: 'docs/引导手册1.0.docx', name: '引导手册1.0.docx' }
+                },
+                en: {
+                    help: { href: 'docs/Help documentation English language1.0.docx', name: 'Help documentation English language1.0.docx' },
+                    guide: { href: 'docs/Guidebook English language1.0.docx', name: 'Guidebook English language1.0.docx' }
+                },
+                hi: {
+                    help: { href: 'docs/सहायता दस्तावेज़ 1.0.docx', name: 'सहायता दस्तावेज़ 1.0.docx' },
+                    guide: { href: 'docs/मार्गदर्शन पुस्तिका 1.0.docx', name: 'मार्गदर्शन पुस्तिका 1.0.docx' }
+                }
+            };
+            const d = docs[lang];
+            const helpLink = document.getElementById('doc-help');
+            const guideLink = document.getElementById('doc-guide');
+            if (helpLink) { helpLink.href = d.help.href; helpLink.download = d.help.name; }
+            if (guideLink) { guideLink.href = d.guide.href; guideLink.download = d.guide.name; }
+        }
+
+        function toggleLangMenu() { document.getElementById('lang-menu').classList.toggle('hidden'); }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg && window.scrollY < 800) heroBg.style.transform = `scale(${1 + window.scrollY * 0.00015}) translateY(${window.scrollY * 0.12}px)`;
+            const btn = document.getElementById('back-to-top');
+            if (btn) { if (window.scrollY > 300) btn.classList.add('visible'); else btn.classList.remove('visible'); }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('lang');
+            if (savedLang) setLang(savedLang);
+            document.addEventListener('click', e => {
+                const sw = document.getElementById('lang-switcher');
+                if (sw && !sw.contains(e.target)) document.getElementById('lang-menu').classList.add('hidden');
+            });
+            document.querySelectorAll('.reveal').forEach(el => {
+                new IntersectionObserver(entries => {
+                    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+                }, { threshold: 0.15 }).observe(el);
+            });
+            document.getElementById('answer-faq-q1').classList.add('open');
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        });
+
+        let currentOpenFaq = 'faq-q1';
+        function toggleFaq(id) {
+            const answerBox = document.getElementById('answer-' + id);
+            const iconEl = document.getElementById('icon-' + id);
+            const questionSpan = document.getElementById('qtext-' + id);
+            if (currentOpenFaq && currentOpenFaq !== id) {
+                const prevAnswer = document.getElementById('answer-' + currentOpenFaq);
+                const prevIcon = document.getElementById('icon-' + currentOpenFaq);
+                const prevSpan = document.getElementById('qtext-' + currentOpenFaq);
+                prevAnswer.classList.remove('open');
+                prevSpan.classList.remove('text-blue-600');
+                prevSpan.classList.add('text-gray-800');
+                prevIcon.style.backgroundColor = '';
+                prevIcon.style.border = '2px solid #3B4FBF';
+                prevIcon.innerHTML = arrowUp('#3B4FBF');
+                currentOpenFaq = null;
+            }
+            if (!answerBox.classList.contains('open')) {
+                answerBox.classList.add('open');
+                questionSpan.classList.add('text-blue-600');
+                questionSpan.classList.remove('text-gray-800');
+                iconEl.style.backgroundColor = '#3B4FBF';
+                iconEl.style.border = 'none';
+                iconEl.innerHTML = arrowDown('white');
+                currentOpenFaq = id;
+            } else {
+                answerBox.classList.remove('open');
+                questionSpan.classList.remove('text-blue-600');
+                questionSpan.classList.add('text-gray-800');
+                iconEl.style.backgroundColor = '';
+                iconEl.style.border = '2px solid #3B4FBF';
+                iconEl.innerHTML = arrowUp('#3B4FBF');
+                currentOpenFaq = null;
+            }
+        }
+        function arrowDown(color) {
+            return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+        }
+        function arrowUp(color) {
+            return `<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 15l-6-6-6 6" stroke="${color}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+        }
+    </script>
+</head>
+
+<body class="bg-white text-gray-900">
+
+    <nav
+        class="fixed top-0 w-full z-50 bg-white/0 border-b border-transparent px-24 py-6 flex items-center justify-between transition-all duration-700 ease-in-out">
+        <div class="flex items-center gap-2">
+            <img src="https://media.base44.com/images/public/69dcab8d72704cd3dac9c94d/c6a353647_logo.png"
+                class="w-8 h-8 object-contain" alt="logo">
+            <span class="text-xl font-bold tracking-tight text-eco-dark">FenSvyG</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-12 text-sm font-medium text-gray-600">
+            <a class="hover:text-eco-teal transition-colors" href="首页.html" data-i18n="nav_home">首页</a>
+            <a class="hover:text-eco-teal transition-colors" href="调查管理后台.html" data-i18n="nav_mgmt">调查管理后台</a>
+            <a class="hover:text-eco-teal transition-colors" href="供应商后台.html" data-i18n="nav_supplier">供应商后台</a>
+            <a class="text-eco-teal font-bold" href="调查站系统.html" data-i18n="nav_station">调查站系统</a>
+            <a class="hover:text-eco-teal transition-colors" href="定价.html" data-i18n="nav_pricing">定价</a>
+            <a class="hover:text-eco-teal transition-colors" href="联系我们.html" data-i18n="nav_contact">联系我们</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button
+                class="px-6 py-2 border border-gray-300 rounded-full text-sm font-medium hover:bg-eco-teal hover:text-white hover:border-eco-teal transition-all duration-300 btn-smooth"
+                data-i18n="nav_login">登录/注册</button>
+            <div class="relative" id="lang-switcher">
+                <button onclick="toggleLangMenu()"
+                    class="px-3 h-10 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-100 transition-all gap-1.5">
+                    <span class="font-bold text-gray-800 text-sm">中</span>
+                    <span class="text-gray-300 text-xs font-light">|</span>
+                    <span class="font-bold text-gray-800 text-sm">EN</span>
+                    <span class="text-gray-300 text-xs font-light">|</span>
+                    <span class="font-bold text-gray-800 text-sm">हि</span>
+                </button>
+                <div id="lang-menu"
+                    class="hidden absolute right-0 top-12 bg-white border border-gray-200 rounded-xl shadow-lg w-36 z-50 py-1">
+                    <div id="lang-en" onclick="setLang('en')"
+                        class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">English</div>
+                    <div id="lang-zh" onclick="setLang('zh')"
+                        class="px-4 py-2 text-sm text-eco-teal font-bold cursor-pointer">中文(简体)</div>
+                    <div id="lang-hi" onclick="setLang('hi')"
+                        class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">हिन्दी</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section
+            class="hero-container relative h-[600px] flex flex-col items-center justify-center text-center text-white px-4 overflow-hidden">
+            <div class="hero-bg absolute inset-0 -z-10 origin-center"></div>
+            <div class="reveal">
+                <h1 class="text-6xl font-bold tracking-wide mb-6" data-i18n="hero_title">调查站系统</h1>
+                <p class="text-base text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed font-medium"
+                    data-i18n="hero_sub">
+                    智能站点深度整合用户身份画像（含IP地址、系统环境及地理归属），实现待办任务、审核状态及配额进度的实时动态追踪。系统集成会员财资明细与交易审计功能，依托时程化数据智能中心，通过深度分析驱动核心业务机制的即时智能化，为决策层构建多维度的精准数据管理矩阵。
+                </p>
+                <div class="flex gap-6 justify-center">
+                    <button
+                        class="px-10 py-4 bg-eco-teal rounded-full font-semibold hover:bg-eco-light-teal shadow-xl shadow-eco-teal/20 btn-smooth"
+                        data-i18n="hero_btn1">申请免费试用</button>
+                    <a href="联系我们.html"
+                        class="px-10 py-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-full font-semibold hover:bg-white/40 btn-smooth inline-flex items-center"
+                        data-i18n="hero_btn2">联系我们</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="pt-32 pb-16 px-24 text-center reveal">
+            <h2 class="text-4xl font-bold text-eco-dark" data-i18n="section_title">我们的调查站系统</h2>
+        </section>
+
+        <!-- Section 1 -->
+        <section class="py-20 px-24 flex gap-20 reveal items-center">
+            <div class="w-1/2">
+                <h3 class="text-3xl font-bold text-eco-dark mb-6" data-i18n="s1_title">全流程项目调查</h3>
+                <p class="text-gray-600 mb-8 leading-relaxed text-lg font-semibold" data-i18n="s1_desc">
+                    实时可视化数据分析、全流程项目记录回溯，提供全维度分析能力，实现动态趋势可视化。</p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex gap-3 text-base text-gray-700"><span class="text-eco-teal font-bold">01.</span><span
+                            data-i18n="s1_1">数据看板：构建智能数据驾驶舱，集成全链路数据追踪，支持多维度时间轴筛选及可定制化轻量化可视化界面。</span></li>
+                    <li class="flex gap-3 text-base text-gray-700"><span class="text-eco-teal font-bold">02.</span><span
+                            data-i18n="s1_2">项目调查：动态追踪任务进度，精准掌控已提交量与配额，实时监测会员终端各类特征，实现全流程可视化管控。</span></li>
+                    <li class="flex gap-3 text-base text-gray-700"><span class="text-eco-teal font-bold">03.</span><span
+                            data-i18n="s1_3">调查记录：动态追踪会员全生命周期任务轨迹，涵盖待审、已完成、执行进度及多维展示，构建全链路数据资产。</span></li>
+                    <li class="flex gap-3 text-base text-gray-700"><span class="text-eco-teal font-bold">04.</span><span
+                            data-i18n="s1_4">账单财务：实时查看当前会员下的财务、账单等信息，包含账单财务各类日志多维度筛选，全流程日志记录等。</span></li>
+                </ul>
+                <button
+                    class="px-8 py-2 border-2 border-eco-teal text-eco-teal rounded-full font-bold transition-all duration-300 hover:bg-eco-teal hover:text-white btn-smooth hidden"
+                    data-i18n="s1_btn">联系我们</button>
+            </div>
+            <div class="w-1/2 float-card h-[428px] overflow-hidden"
+                onclick="openLightbox(this.querySelector('img').src)">
+                <img alt="调查站系统" class="w-full h-full object-cover" data-station-img="s1"
+                    src="https://media.base44.com/images/public/69dcab8d72704cd3dac9c94d/0b48b16e9_.png" />
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="flex justify-center py-16 reveal">
+            <button
+                class="px-12 py-4 bg-[#31477F] text-white rounded-full font-bold shadow-lg hover:bg-[#4A619D] transition-all duration-300 transform hover:-translate-y-1 text-lg btn-smooth"
+                onclick="window.location.href='联系我们.html'">
+                <span data-i18n="cta_btn">了解更多优惠信息</span>
+            </button>
+        </div>
+
+        <!-- FAQ -->
+        <section class="py-20 px-24 reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4" data-i18n="faq_title">常见问题解答</h2>
+                <p class="text-gray-500 text-base" data-i18n="faq_sub">这里提供常见问题解答，确保您能尽快获得我们提供的各类服务。</p>
+            </div>
+            <div class="max-w-3xl mx-auto flex flex-col gap-3">
+                <div class="rounded-2xl overflow-hidden" style="background-color:#EEF0F8;">
+                    <button onclick="toggleFaq('faq-q1')"
+                        class="w-full flex items-center justify-between px-6 py-4 text-left">
+                        <span id="qtext-faq-q1" class="text-base font-semibold text-blue-600" data-i18n="q1">Q1.
+                            如何获取试用权限，试用周期是多久？</span>
+                        <span id="icon-faq-q1"
+                            class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
+                            style="background-color:#3B4FBF;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 9l6 6 6-6" stroke="white" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="answer-faq-q1" class="faq-answer-box">
+                        <p class="px-6 pb-5 text-gray-600 text-sm leading-relaxed" data-i18n="a1">
+                            我们提供为期7天的初始试用周期，您可点击页面上的"申请试用"按钮，提交试用申请，我们将在72小时内答复您的申请。</p>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden" style="background-color:#EEF0F8;">
+                    <button onclick="toggleFaq('faq-q2')"
+                        class="w-full flex items-center justify-between px-6 py-4 text-left">
+                        <span id="qtext-faq-q2" class="text-base font-semibold text-gray-800" data-i18n="q2">Q2.
+                            试用到期后，若想继续试用，需如何进行操作？</span>
+                        <span id="icon-faq-q2"
+                            class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
+                            style="border:2px solid #3B4FBF;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path d="M18 15l-6-6-6 6" stroke="#3B4FBF" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="answer-faq-q2" class="faq-answer-box">
+                        <p class="px-6 pb-5 text-gray-600 text-sm leading-relaxed" data-i18n="a2">
+                            申请试用后，您将拥有专属的试用平台，当试用到期前，您可在后台申请延延期，我们在收到您的申请后的24小时内回复您的延长试用申请。同时您可根据实际业务需求在后台升级更高版本。</p>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden" style="background-color:#EEF0F8;">
+                    <button onclick="toggleFaq('faq-q3')"
+                        class="w-full flex items-center justify-between px-6 py-4 text-left">
+                        <span id="qtext-faq-q3" class="text-base font-semibold text-gray-800" data-i18n="q3">Q3.
+                            我不是专业技术人员，该如何投放我的问卷？</span>
+                        <span id="icon-faq-q3"
+                            class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
+                            style="border:2px solid #3B4FBF;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path d="M18 15l-6-6-6 6" stroke="#3B4FBF" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="answer-faq-q3" class="faq-answer-box">
+                        <p class="px-6 pb-5 text-gray-600 text-sm leading-relaxed" data-i18n="a3">
+                            您可在官网点击"联系我们"进入页面，提交您的问卷投放请求，留下您的邮箱，我们会在72小时内回复您的请求，并提供专业的运营团队为您提供专业的指导，无需拥有技术人员。</p>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden" style="background-color:#EEF0F8;">
+                    <button onclick="toggleFaq('faq-q4')"
+                        class="w-full flex items-center justify-between px-6 py-4 text-left">
+                        <span id="qtext-faq-q4" class="text-base font-semibold text-gray-800" data-i18n="q4">Q4.
+                            我需要搭建自己的专属站点，该如何操作，是否需要私有服务器？</span>
+                        <span id="icon-faq-q4"
+                            class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
+                            style="border:2px solid #3B4FBF;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path d="M18 15l-6-6-6 6" stroke="#3B4FBF" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="answer-faq-q4" class="faq-answer-box">
+                        <p class="px-6 pb-5 text-gray-600 text-sm leading-relaxed" data-i18n="a4">
+                            我们是SaaS化平台，提供零部署的平台，您无需私有服务器，同时平台提供个性化配置，通过简单配置，您即可拥有专属调查站点。</p>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden" style="background-color:#EEF0F8;">
+                    <button onclick="toggleFaq('faq-q5')"
+                        class="w-full flex items-center justify-between px-6 py-4 text-left">
+                        <span id="qtext-faq-q5" class="text-base font-semibold text-gray-800" data-i18n="q5">Q5.
+                            我如何能保证使用平台过程中的数据安全以及问卷真实性？</span>
+                        <span id="icon-faq-q5"
+                            class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
+                            style="border:2px solid #3B4FBF;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path d="M18 15l-6-6-6 6" stroke="#3B4FBF" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div id="answer-faq-q5" class="faq-answer-box">
+                        <p class="px-6 pb-5 text-gray-600 text-sm leading-relaxed" data-i18n="a5">
+                            我们依托多重防欺诈技术，从源头杜绝无效数据，保障每一份数据的真实可靠。平台提供指纹验证、行为分析、IP检测验证和人工审核等多重防护，保障您的数据安全。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-bg pt-32 pb-16 px-24 reveal">
+        <div class="text-center mb-32">
+            <h2 class="text-5xl font-bold text-white mb-6" data-i18n="footer_cta_title">即刻开启调查新旅程</h2>
+            <p class="text-gray-300 mb-12" data-i18n="footer_cta_sub">为您提供所需价值</p>
+            <div class="flex max-w-xl mx-auto gap-4">
+                <input
+                    class="flex-1 bg-white/10 border border-white/20 rounded-full px-8 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-eco-teal transition-all"
+                    placeholder="您的邮箱" data-i18n-ph="email_ph" type="email" />
+                <button
+                    class="bg-eco-teal text-white px-10 py-4 rounded-full font-bold hover:bg-eco-light-teal transition-all duration-300 btn-smooth"
+                    data-i18n="footer_send">发送</button>
+            </div>
+        </div>
+        <div class="bg-white rounded-3xl px-16 pt-14 pb-0 reveal">
+            <div class="flex justify-between items-start pb-12 border-b border-gray-100">
+                <div class="w-1/3 pr-12">
+                    <div class="flex items-center gap-3 mb-5">
+                        <img src="https://media.base44.com/images/public/69dcab8d72704cd3dac9c94d/c6a353647_logo.png"
+                            class="w-9 h-9 object-contain" alt="logo">
+                        <span class="text-xl font-bold text-eco-dark">FenSvyG</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed" data-i18n="footer_desc">
+                        一站式全球化SaaS调查分发平台，助您高效精准对接优质客户及供应商，快速实现流量价值转化</p>
+                </div>
+                <div class="grid grid-cols-3 gap-24">
+                    <div>
+                        <h4 class="font-bold text-eco-dark mb-6" data-i18n="footer_c1">产品支持</h4>
+                        <ul class="space-y-4 text-gray-500 text-sm">
+                            <li><a id="doc-help" class="hover:text-eco-teal transition-colors" href="docs/帮助文档1.0.docx"
+                                    download="帮助文档1.0.docx" data-i18n="footer_c1_1">帮助文档</a></li>
+                            <li><a id="doc-guide" class="hover:text-eco-teal transition-colors" href="docs/引导手册1.0.docx"
+                                    download="引导手册1.0.docx" data-i18n="footer_c1_2">引导手册</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c1_3">意见反馈</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-eco-dark mb-6" data-i18n="footer_c2">公司信息</h4>
+                        <ul class="space-y-4 text-gray-500 text-sm">
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c2_1">关于我们</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c2_2">发展历程</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="联系我们.html"
+                                    data-i18n="footer_c2_3">联系我们</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-eco-dark mb-6" data-i18n="footer_c3">权益中心</h4>
+                        <ul class="space-y-4 text-gray-500 text-sm">
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c3_1">试用申请</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c3_2">加入我们</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c3_3">资讯获取</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center py-8 border-b border-gray-100">
+                <div class="flex items-center gap-3 text-gray-600 text-sm"><span
+                        class="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center">📞</span><span>400-660-0224</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-600 text-sm"><span
+                        class="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center">✉️</span><span>jiayu@surveysaas.com</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-600 text-sm"><span
+                        class="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center">📍</span><span
+                        data-i18n="footer_addr">中国安徽省六安市恒生阳光城A座1506</span></div>
+            </div>
+            <div class="py-6 text-center text-gray-400 text-xs">
+                <span data-i18n="footer_copy">© 2024-2025 安徽省嘉禹企业服务有限公司版权所有</span>
+                <a href="https://beian.miit.gov.cn/" target="_blank"
+                    class="hover:text-eco-teal transition-colors">皖ICP备2024045814号-2</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()" />
+    </div>
+
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <style>
+        @keyframes eunoFadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes eunoFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .euno-anim {
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        .euno-anim.euno-in {
+            animation: eunoFadeInUp .9s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+        .euno-anim-fade {
+            opacity: 0;
+        }
+
+        .euno-anim-fade.euno-in {
+            animation: eunoFadeIn 1.2s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+        #lightbox,
+        #lightbox * {
+            opacity: 1 !important;
+            animation: none !important;
+        }
+
+        #lightbox.active img {
+            animation: zoomIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        }
+    </style>
+    <script>
+        (function () {
+            function init() {
+                const upSel = 'h1,h2,h3,h4,blockquote';
+                const fadeSel = 'p,li,figure,img';
+                document.querySelectorAll(upSel).forEach(el => {
+                    if (el.closest('script,style,nav,header,#lightbox')) return;
+                    if (!el.textContent.trim() && el.tagName !== 'IMG') return;
+                    el.classList.add('euno-anim');
+                });
+                document.querySelectorAll(fadeSel).forEach(el => {
+                    if (el.closest('script,style,nav,header,button,#lightbox')) return;
+                    if (el.classList.contains('euno-anim')) return;
+                    el.classList.add('euno-anim-fade');
+                });
+                const io = new IntersectionObserver((es) => {
+                    es.forEach((e, i) => {
+                        if (e.isIntersecting) {
+                            setTimeout(() => e.target.classList.add('euno-in'), (i % 6) * 80);
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+                document.querySelectorAll('.euno-anim,.euno-anim-fade').forEach(el => io.observe(el));
+            }
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+        })();
+    </script>
+
+</body>
+
+</html>

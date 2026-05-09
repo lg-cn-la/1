@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1920" name="viewport" />
+    <title>联系我们 - FenSvyG</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-dark': '#0B3343', 'eco-teal': '#31477F',
+                        'eco-light-teal': '#4A619D', 'eco-gray': '#F3F4F6', 'eco-accent': '#66BB6A',
+                    },
+                    fontFamily: { manrope: ['Manrope', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Manrope", "Microsoft YaHei", sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuD1HBoM6Scw_Kaa_yUEczByB6qmD2lLbtqefHOcnhlJ4XAKW5j8pWryN7gUYHnjACoX6T__YFGbU24LP0HvkiRrLIhxyK1fwmggwxepzg3fCEHF3mgp7Jh0ZpkPe06o3LZj84ii10NFewkG8A2d0ef43Ptevny_fYv1zTdCRxR4aWqTUfXdRKdg5L9P1ZK_t0YOrcYiBh5hxeR5r6CTBjPWqM2O6zcawTm37cj6dptJHJH2Lf1SnsDc-H5fZ8pnHuOItiCMsCrU0NU);
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+
+        .footer-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuC17yLU6He1OEYCQePq5CuGLIaY1014rM8r-fVlYnxVCDfoZzeIjreRE1r32_uKoHHz_RxsAAM5RUlH3VLZe7UZTaQohUUdKllv1gldvRZgLRtAUcsGGUfXxvGrxHu8xOtpTBDvk_2jydOoUueHmaxn08Tr9JSxmfBalrIRgJfJOO7XuCUC9m9I2bUKjv5HLK8iy5bzfpatjOt4idDaXsZwdA523eTl-cBj6l81L8Jt1dK3wqQ9lLwy-uYMElz2657_L-3UWkJfcOk);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        nav.scrolled {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-smooth {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .btn-smooth:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-smooth:active {
+            transform: scale(0.95);
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #31477F;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 20px rgba(49, 71, 127, 0.35);
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+            z-index: 9998;
+            pointer-events: none;
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        #back-to-top:hover {
+            background: #4A619D;
+        }
+    </style>
+    <script>
+        const T = {
+            zh: {
+                nav_home: '首页', nav_mgmt: '调查管理后台', nav_supplier: '供应商后台',
+                nav_station: '调查站系统', nav_pricing: '定价', nav_contact: '联系我们', nav_login: '登录/注册',
+                hero_title: '快速开启沟通新旅程',
+                hero_sub: '我们提供多种联系渠道，随时为您解决业务需求，祝您快速连接客户和供应商，开启流量变现之路。请选择下方最适合您的联系渠道。',
+                hero_btn1: '申请免费试用',
+                about_title: '关于我们',
+                about_sub: 'Anhui Jiayu Enterprise Service Co., LTD',
+                about_p1: '安徽省嘉禹企业服务有限公司创立于2023年，专注于客户资源整合与市场调研服务。自主研发并运营全球化调查分发SaaS平台，日均处理来自全球90余个国家的数千份商业调查问卷。通过精准的数据分析与实时反馈机制，助力全球客户实现商业价值转化。',
+                about_p2: '系统架构租户管理面板、调查管理后台、供应商管理后台及调查站后台四大核心模块组成，采用多重安全防护体系与高精度算法引擎，构建全链路数据服务生态。',
+                company_name: '安徽省嘉禹企业服务有限公司',
+                company_name_en: 'Anhui Jiayu Enterprise Service Co., LTD',
+                contact_phone_label: '电话：', contact_email_label: '邮箱：',
+                contact_addr_label: '地址：', contact_addr: '中国安徽省六安市金安区六安路1508',
+                contact_web_label: '网址：', contact_web: 'jiayu@surveysaas.com',
+                qr_title: '关注微信公众号', qr_label: '嘉禹公众号',
+                hotline_title: '服务热线', hotline_number: '400-660-0224',
+                partner_title: '加盟合作', partner_number: 'jiayu@surveysaas.com',
+                service_time: '服务时间：周一至周日 09:00-18:00',
+                msg_title: '在线留言', msg_title_en: 'ONLINE MESSAGE',
+                msg_desc: '您可以在这里向我们发送关于嘉禹以及加盟的事宜',
+                msg_phone_label: '公司座机', msg_phone: '400-660-0224',
+                msg_email_label: '企业邮箱', msg_email: 'jiayu@surveysaas.com',
+                form_name: '请输入您的姓名', form_phone: '请输入您的电话',
+                form_email: '请输入您的邮箱', form_msg: '请描述您的内容', form_send: '提交',
+                cta_btn: '了解更多优惠信息',
+                footer_cta_title: '即刻开启调查新旅程', footer_cta_sub: '为您提供所需价值', footer_send: '发送',
+                footer_desc: '一站式全球化SaaS调查分发平台，助您高效精准对接优质客户及供应商，快速实现流量价值转化',
+                footer_addr: '中国安徽省六安市恒生阳光城A座1506',
+                footer_c1: '产品支持', footer_c1_1: '帮助文档', footer_c1_2: '引导手册', footer_c1_3: '意见反馈',
+                footer_c2: '公司信息', footer_c2_1: '关于我们', footer_c2_2: '发展历程', footer_c2_3: '联系我们',
+                footer_c3: '权益中心', footer_c3_1: '试用申请', footer_c3_2: '加入我们', footer_c3_3: '资讯获取',
+                footer_copy: '© 2024-2025 安徽省嘉禹企业服务有限公司版权所有',
+                email_ph: '您的邮箱',
+            },
+            en: {
+                nav_home: 'Home', nav_mgmt: 'Survey Management', nav_supplier: 'Supplier Backend',
+                nav_station: 'Survey Station', nav_pricing: 'Pricing', nav_contact: 'Contact Us', nav_login: 'Login / Register',
+                hero_title: 'Quickly Start a New Communication Journey',
+                hero_sub: 'We provide multiple contact channels to resolve your business needs at any time. Wishing you swift connections with clients and suppliers to start your traffic monetization journey. Please choose the most suitable contact channel below.',
+                hero_btn1: 'Apply for Free Trial',
+                about_title: 'About Us',
+                about_sub: 'Anhui Jiayu Enterprise Service Co., LTD',
+                about_p1: 'Founded in 2023, Anhui Jiayu Enterprise Service Co., Ltd. focuses on client resource integration and market research services. We independently developed and operate a global survey distribution SaaS platform, processing thousands of commercial survey questionnaires daily from over 90 countries worldwide. Through precise data analysis and real-time feedback mechanisms, we help global clients achieve business value conversion.',
+                about_p2: 'The system architecture consists of four core modules: tenant management panel, survey management backend, supplier management backend, and survey station backend, adopting a multi-layer security protection system and high-precision algorithm engine to build a full-chain data service ecosystem.',
+                company_name: 'Anhui Jiayu Enterprise Service Co., Ltd.',
+                company_name_en: 'Anhui Jiayu Enterprise Service Co., LTD',
+                contact_phone_label: 'Tel: ', contact_email_label: 'Email: ',
+                contact_addr_label: 'Address: ', contact_addr: "No.1508 Lu'an Rd, Jin'an District, Lu'an, Anhui, China",
+                contact_web_label: 'Web: ', contact_web: 'jiayu@surveysaas.com',
+                qr_title: 'Follow WeChat Official Account', qr_label: 'Jiayu Official Account',
+                hotline_title: 'Service Hotline', hotline_number: '400-660-0224',
+                partner_title: 'Partnership & Franchise', partner_number: 'jiayu@surveysaas.com',
+                service_time: 'Service Hours: Mon–Sun 09:00–18:00',
+                msg_title: 'Online Message', msg_title_en: 'ONLINE MESSAGE',
+                msg_desc: 'You can send us messages here regarding Jiayu and franchise cooperation inquiries.',
+                msg_phone_label: 'Company Phone', msg_phone: '400-660-0224',
+                msg_email_label: 'Corporate Email', msg_email: 'jiayu@surveysaas.com',
+                form_name: 'Please enter your name', form_phone: 'Please enter your phone number',
+                form_email: 'Please enter your email', form_msg: 'Please describe your needs', form_send: 'Submit',
+                cta_btn: 'Learn More About Our Plans',
+                footer_cta_title: 'Start Your Survey Journey Now', footer_cta_sub: 'We provide the value you need', footer_send: 'Send',
+                footer_desc: 'One-stop global SaaS survey distribution platform, helping you efficiently connect with quality clients and suppliers to maximize traffic value.',
+                footer_addr: "Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China",
+                footer_c1: 'Product Support', footer_c1_1: 'Help Documentation', footer_c1_2: 'User Guide', footer_c1_3: 'Feedback',
+                footer_c2: 'Company Info', footer_c2_1: 'About Us', footer_c2_2: 'Our History', footer_c2_3: 'Contact Us',
+                footer_c3: 'Benefits Center', footer_c3_1: 'Trial Application', footer_c3_2: 'Join Us', footer_c3_3: 'News & Updates',
+                footer_copy: '© 2024-2025 Anhui Jiayu Enterprise Service Co., Ltd. All rights reserved.',
+                email_ph: 'Your email address',
+            },
+            hi: {
+                nav_home: 'होम', nav_mgmt: 'सर्वेक्षण प्रबंधन', nav_supplier: 'आपूर्तिकर्ता बैकएंड',
+                nav_station: 'सर्वेक्षण स्टेशन', nav_pricing: 'मूल्य निर्धारण', nav_contact: 'संपर्क करें', nav_login: 'लॉगिन / रजिस्टर',
+                hero_title: 'शीघ्र एक नई संचार यात्रा शुरू करें',
+                hero_sub: 'हम आपकी व्यावसायिक जरूरतों को किसी भी समय हल करने के लिए कई संपर्क चैनल प्रदान करते हैं। आपको ग्राहकों और आपूर्तिकर्ताओं से शीघ्र जुड़ने और ट्रैफ़िक मुद्रीकरण की यात्रा शुरू करने की शुभकामनाएं। कृपया नीचे आपके लिए सबसे उपयुक्त संपर्क चैनल चुनें।',
+                hero_btn1: 'नि:शुल्क परीक्षण के लिए आवेदन करें',
+                about_title: 'हमारे बारे में',
+                about_sub: 'Anhui Jiayu Enterprise Service Co., LTD',
+                about_p1: '2023 में स्थापित, Anhui Jiayu Enterprise Service Co., Ltd. ग्राहक संसाधन एकीकरण और बाजार अनुसंधान सेवाओं पर केंद्रित है। हमने स्वतंत्र रूप से एक वैश्विक सर्वेक्षण वितरण SaaS प्लेटफ़ॉर्म विकसित और संचालित किया है, जो दुनिया भर के 90 से अधिक देशों से प्रतिदिन हजारों वाणिज्यिक सर्वेक्षण प्रश्नावली प्रोसेस करता है। सटीक डेटा विश्लेषण और रीयल-टाइम फीडबैक तंत्र के माध्यम से, हम वैश्विक ग्राहकों को व्यावसायिक मूल्य रूपांतरण प्राप्त करने में मदद करते हैं।',
+                about_p2: 'सिस्टम आर्किटेक्चर चार मुख्य मॉड्यूल से बना है: किरायेदार प्रबंधन पैनल, सर्वेक्षण प्रबंधन बैकएंड, आपूर्तिकर्ता प्रबंधन बैकएंड और सर्वेक्षण स्टेशन बैकएंड, पूर्ण-श्रृंखला डेटा सेवा पारिस्थितिकी तंत्र बनाने के लिए बहु-स्तरीय सुरक्षा प्रणाली और उच्च-परिशुद्धता एल्गोरिदम इंजन अपनाता है।',
+                company_name: 'Anhui Jiayu Enterprise Service Co., Ltd.',
+                company_name_en: 'Anhui Jiayu Enterprise Service Co., LTD',
+                contact_phone_label: 'फोन: ', contact_email_label: 'ईमेल: ',
+                contact_addr_label: 'पता: ', contact_addr: 'नं.1508 लू\'आन रोड, जिन\'आन जिला, लू\'आन, अनहुई, चीन',
+                contact_web_label: 'वेब: ', contact_web: 'jiayu@surveysaas.com',
+                qr_title: 'WeChat आधिकारिक खाता फॉलो करें', qr_label: 'Jiayu आधिकारिक खाता',
+                hotline_title: 'सेवा हॉटलाइन', hotline_number: '400-660-0224',
+                partner_title: 'फ्रेंचाइज़ी और साझेदारी', partner_number: 'jiayu@surveysaas.com',
+                service_time: 'सेवा समय: सोम–रवि 09:00–18:00',
+                msg_title: 'ऑनलाइन संदेश', msg_title_en: 'ONLINE MESSAGE',
+                msg_desc: 'आप यहां Jiayu और फ्रेंचाइज़ी सहयोग से संबंधित संदेश हमें भेज सकते हैं।',
+                msg_phone_label: 'कंपनी फोन', msg_phone: '400-660-0224',
+                msg_email_label: 'कॉर्पोरेट ईमेल', msg_email: 'jiayu@surveysaas.com',
+                form_name: 'कृपया अपना नाम दर्ज करें', form_phone: 'कृपया अपना फोन नंबर दर्ज करें',
+                form_email: 'कृपया अपना ईमेल दर्ज करें', form_msg: 'कृपया अपनी जरूरत बताएं', form_send: 'सबमिट करें',
+                cta_btn: 'हमारी योजनाओं के बारे में अधिक जानें',
+                footer_cta_title: 'अभी अपनी सर्वेक्षण यात्रा शुरू करें', footer_cta_sub: 'हम आपको आवश्यक मूल्य प्रदान करते हैं', footer_send: 'भेजें',
+                footer_desc: 'वन-स्टॉप ग्लोबल SaaS सर्वेक्षण वितरण प्लेटफ़ॉर्म, जो आपको गुणवत्तापूर्ण ग्राहकों और आपूर्तिकर्ताओं से कुशलतापूर्वक जोड़कर ट्रैफ़िक मूल्य रूपांतरण को तेज़ करता है।',
+                footer_addr: 'कक्ष 1506, ब्लॉक A, हेंगशेंग सनशाइन सिटी, लू\'आन, अनहुई, चीन',
+                footer_c1: 'उत्पाद सहायता', footer_c1_1: 'सहायता दस्तावेज़', footer_c1_2: 'उपयोगकर्ता गाइड', footer_c1_3: 'सुझाव और प्रतिक्रिया',
+                footer_c2: 'कंपनी जानकारी', footer_c2_1: 'हमारे बारे में', footer_c2_2: 'विकास यात्रा', footer_c2_3: 'संपर्क करें',
+                footer_c3: 'लाभ केंद्र', footer_c3_1: 'परीक्षण आवेदन', footer_c3_2: 'हमसे जुड़ें', footer_c3_3: 'समाचार प्राप्त करें',
+                footer_copy: '© 2024-2025 Anhui Jiayu Enterprise Service Co., Ltd. सर्वाधिकार सुरक्षित।',
+                email_ph: 'आपका ईमेल पता',
+            }
+        };
+
+        let currentLang = 'zh';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+            });
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if (T[lang][key] !== undefined) el.placeholder = T[lang][key];
+            });
+            document.getElementById('lang-menu').classList.add('hidden');
+            ['lang-zh', 'lang-en', 'lang-hi'].forEach(id => document.getElementById(id).classList.remove('text-eco-teal', 'font-bold'));
+            const activeId = lang === 'zh' ? 'lang-zh' : lang === 'en' ? 'lang-en' : 'lang-hi';
+            document.getElementById(activeId).classList.add('text-eco-teal', 'font-bold');
+            localStorage.setItem('lang', lang);
+            const docs = {
+                zh: {
+                    help: { href: 'docs/帮助文档1.0.docx', name: '帮助文档1.0.docx' },
+                    guide: { href: 'docs/引导手册1.0.docx', name: '引导手册1.0.docx' }
+                },
+                en: {
+                    help: { href: 'docs/Help documentation English language1.0.docx', name: 'Help documentation English language1.0.docx' },
+                    guide: { href: 'docs/Guidebook English language1.0.docx', name: 'Guidebook English language1.0.docx' }
+                },
+                hi: {
+                    help: { href: 'docs/सहायता दस्तावेज़ 1.0.docx', name: 'सहायता दस्तावेज़ 1.0.docx' },
+                    guide: { href: 'docs/मार्गदर्शन पुस्तिका 1.0.docx', name: 'मार्गदर्शन पुस्तिका 1.0.docx' }
+                }
+            };
+            const d = docs[lang];
+            const helpLink = document.getElementById('doc-help');
+            const guideLink = document.getElementById('doc-guide');
+            if (helpLink) { helpLink.href = d.help.href; helpLink.download = d.help.name; }
+            if (guideLink) { guideLink.href = d.guide.href; guideLink.download = d.guide.name; }
+        }
+
+        function toggleLangMenu() { document.getElementById('lang-menu').classList.toggle('hidden'); }
+
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg && window.scrollY < 800) heroBg.style.transform = `scale(${1 + window.scrollY * 0.00015}) translateY(${window.scrollY * 0.12}px)`;
+            const btn = document.getElementById('back-to-top');
+            if (btn) { if (window.scrollY > 300) btn.classList.add('visible'); else btn.classList.remove('visible'); }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('lang');
+            if (savedLang) setLang(savedLang);
+            document.addEventListener('click', e => {
+                const sw = document.getElementById('lang-switcher');
+                if (sw && !sw.contains(e.target)) document.getElementById('lang-menu').classList.add('hidden');
+            });
+            document.querySelectorAll('.reveal').forEach(el => {
+                new IntersectionObserver(entries => {
+                    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+                }, { threshold: 0.15 }).observe(el);
+            });
+        });
+    </script>
+</head>
+
+<body class="bg-white text-gray-900">
+
+    <nav
+        class="fixed top-0 w-full z-50 bg-white/0 border-b border-transparent px-24 py-6 flex items-center justify-between transition-all duration-700 ease-in-out">
+        <div class="flex items-center gap-2">
+            <img src="https://media.base44.com/images/public/69dcab8d72704cd3dac9c94d/c6a353647_logo.png"
+                class="w-8 h-8 object-contain" alt="logo">
+            <span class="text-xl font-bold tracking-tight text-eco-dark">FenSvyG</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-12 text-sm font-medium text-gray-600">
+            <a class="hover:text-eco-teal transition-colors" href="首页.html" data-i18n="nav_home">首页</a>
+            <a class="hover:text-eco-teal transition-colors" href="调查管理后台.html" data-i18n="nav_mgmt">调查管理后台</a>
+            <a class="hover:text-eco-teal transition-colors" href="供应商后台.html" data-i18n="nav_supplier">供应商后台</a>
+            <a class="hover:text-eco-teal transition-colors" href="调查站系统.html" data-i18n="nav_station">调查站系统</a>
+            <a class="hover:text-eco-teal transition-colors" href="定价.html" data-i18n="nav_pricing">定价</a>
+            <a class="hover:text-eco-teal transition-colors" href="联系我们.html" data-i18n="nav_contact">联系我们</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button
+                class="px-6 py-2 border border-gray-300 rounded-full text-sm font-medium hover:bg-eco-teal hover:text-white hover:border-eco-teal transition-all duration-300 btn-smooth"
+                data-i18n="nav_login">登录/注册</button>
+            <div class="relative" id="lang-switcher">
+                <button onclick="toggleLangMenu()"
+                    class="px-3 h-10 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-100 transition-all gap-1.5">
+                    <span class="font-bold text-gray-800 text-sm">中</span>
+                    <span class="text-gray-300 text-xs font-light">|</span>
+                    <span class="font-bold text-gray-800 text-sm">EN</span>
+                    <span class="text-gray-300 text-xs font-light">|</span>
+                    <span class="font-bold text-gray-800 text-sm">हि</span>
+                </button>
+                <div id="lang-menu"
+                    class="hidden absolute right-0 top-12 bg-white border border-gray-200 rounded-xl shadow-lg w-36 z-50 py-1">
+                    <div id="lang-en" onclick="setLang('en')"
+                        class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">English</div>
+                    <div id="lang-zh" onclick="setLang('zh')"
+                        class="px-4 py-2 text-sm text-eco-teal font-bold cursor-pointer">中文(简体)</div>
+                    <div id="lang-hi" onclick="setLang('hi')"
+                        class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">हिन्दी</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section
+            class="hero-container relative h-[600px] flex flex-col items-center justify-center text-center text-white px-4 overflow-hidden">
+            <div class="hero-bg absolute inset-0 -z-10 origin-center"></div>
+            <div class="reveal">
+                <h1 class="text-6xl font-bold tracking-wide mb-6" data-i18n="hero_title">快速开启沟通新旅程</h1>
+                <p class="text-base text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed font-medium"
+                    data-i18n="hero_sub">我们提供多种联系渠道，随时为您解决业务需求，祝您快速连接客户和供应商，开启流量变现之路。请选择下方最适合您的联系渠道。</p>
+                <div class="flex gap-6 justify-center">
+                    <button
+                        class="px-10 py-4 bg-eco-teal rounded-full font-semibold hover:bg-eco-light-teal shadow-xl shadow-eco-teal/20 btn-smooth"
+                        data-i18n="hero_btn1">申请免费试用</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us -->
+        <section class="py-16 px-24 reveal">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl font-bold text-gray-900 mb-1" data-i18n="about_title">关于我们</h2>
+                <p class="text-gray-400 text-sm mb-5" data-i18n="about_sub">Anhui Jiayu Enterprise Service Co., LTD</p>
+                <p class="text-gray-600 text-sm leading-relaxed mb-3" data-i18n="about_p1">
+                    安徽省嘉禹企业服务有限公司创立于2023年，专注于客户资源整合与市场调研服务。自主研发并运营全球化调查分发SaaS平台，日均处理来自全球90余个国家的数千份商业调查问卷。通过精准的数据分析与实时反馈机制，助力全球客户实现商业价值转化。
+                </p>
+                <p class="text-gray-600 text-sm leading-relaxed" data-i18n="about_p2">
+                    系统架构租户管理面板、调查管理后台、供应商管理后台及调查站后台四大核心模块组成，采用多重安全防护体系与高精度算法引擎，构建全链路数据服务生态。</p>
+            </div>
+        </section>
+
+        <!-- Contact Info Cards -->
+        <section class="py-10 px-24 reveal">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-3 gap-0 border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                    <div class="p-10 bg-white border-r border-gray-200">
+                        <h3 class="text-lg font-bold text-eco-teal mb-1" data-i18n="company_name">安徽省嘉禹企业服务有限公司</h3>
+                        <p class="text-gray-400 text-xs mb-6" data-i18n="company_name_en">Anhui Jiayu Enterprise Service
+                            Co., LTD</p>
+                        <div class="w-8 border-t border-gray-300 mb-6"></div>
+                        <div class="space-y-3 text-sm text-gray-600">
+                            <div class="flex gap-2"><span class="text-gray-400 flex-shrink-0"
+                                    data-i18n="contact_phone_label">电话：</span><span>400-660-0224</span></div>
+                            <div class="flex gap-2"><span class="text-gray-400 flex-shrink-0"
+                                    data-i18n="contact_email_label">邮箱：</span><span>jiayu@surveysaas.com</span></div>
+                            <div class="flex gap-2"><span class="text-gray-400 flex-shrink-0"
+                                    data-i18n="contact_addr_label">地址：</span><span
+                                    data-i18n="contact_addr">中国安徽省六安市金安区六安路1508</span></div>
+                            <div class="flex gap-2"><span class="text-gray-400 flex-shrink-0"
+                                    data-i18n="contact_web_label">网址：</span><span
+                                    data-i18n="contact_web">jiayu@surveysaas.com</span></div>
+                        </div>
+                    </div>
+                    <div class="p-10 bg-white border-r border-gray-200 flex flex-col">
+                        <h3 class="text-sm font-bold text-gray-700 mb-1" data-i18n="qr_title">关注微信公众号</h3>
+                        <div class="w-8 border-t border-gray-300 mb-6"></div>
+                        <div class="flex flex-col items-start gap-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-40 h-40 rounded-xl overflow-hidden flex-shrink-0 border border-gray-100">
+                                    <img src="https://media.base44.com/images/public/69dcab8d72704cd3dac9c94d/0c21094d5_.jpg"
+                                        alt="QR Code" class="w-full h-full object-cover" />
+                                </div>
+                                <span class="text-sm text-gray-500" data-i18n="qr_label">嘉禹公众号</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-10 flex flex-col justify-center" style="background-color:#31477F;">
+                        <p class="text-blue-200 text-sm mb-2" data-i18n="hotline_title">服务热线</p>
+                        <p class="text-white text-2xl font-bold mb-6" data-i18n="hotline_number">400-660-0224</p>
+                        <div class="w-8 border-t border-blue-400 mb-6"></div>
+                        <p class="text-blue-200 text-sm mb-2" data-i18n="partner_title">加盟合作</p>
+                        <p class="text-white text-sm font-semibold mb-6" data-i18n="partner_number">jiayu@surveysaas.com
+                        </p>
+                        <p class="text-blue-200 text-xs" data-i18n="service_time">服务时间：周一至周日 09:00-18:00</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Online Message Section -->
+        <section class="py-16 px-24 reveal">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-2 gap-16">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-1" data-i18n="msg_title">在线留言</h2>
+                        <p class="text-gray-400 text-sm tracking-widest uppercase mb-6" data-i18n="msg_title_en">ONLINE
+                            MESSAGE</p>
+                        <p class="text-gray-500 text-sm mb-10 leading-relaxed" data-i18n="msg_desc">
+                            您可以在这里向我们发送关于嘉禹以及加盟的事宜</p>
+                        <div class="border-t border-gray-200 pt-8">
+                            <div class="grid grid-cols-2 gap-8">
+                                <div>
+                                    <p class="text-gray-400 text-xs mb-2" data-i18n="msg_phone_label">公司座机</p>
+                                    <p class="text-gray-800 font-bold text-base" data-i18n="msg_phone">400-660-0224</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-xs mb-2" data-i18n="msg_email_label">企业邮箱</p>
+                                    <p class="text-gray-800 font-bold text-base" data-i18n="msg_email">
+                                        jiayu@surveysaas.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <input type="text" data-i18n-ph="form_name" placeholder="请输入您的姓名"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-eco-teal text-sm" />
+                            <input type="tel" data-i18n-ph="form_phone" placeholder="请输入您的电话"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-eco-teal text-sm" />
+                        </div>
+                        <input type="email" data-i18n-ph="form_email" placeholder="请输入您的邮箱"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-eco-teal text-sm mb-4" />
+                        <textarea data-i18n-ph="form_msg" placeholder="请描述您的内容" rows="6"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-eco-teal text-sm resize-none mb-4"></textarea>
+                        <button type="button"
+                            class="px-10 py-3 text-white rounded-full font-bold transition-all btn-smooth text-sm"
+                            style="background-color:#31477F;">
+                            <span data-i18n="form_send">提交</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex justify-center py-10 reveal">
+            <button
+                class="hidden px-12 py-4 bg-[#31477F] text-white rounded-full font-bold shadow-lg hover:bg-[#4A619D] transition-all duration-300 transform hover:-translate-y-1 text-lg btn-smooth"
+                onclick="window.location.href='联系我们.html'">
+                <span data-i18n="cta_btn">了解更多优惠信息</span>
+            </button>
+        </div>
+    </main>
+
+    <footer class="footer-bg pt-32 pb-16 px-24 reveal">
+        <div class="text-center mb-32">
+            <h2 class="text-5xl font-bold text-white mb-6" data-i18n="footer_cta_title">即刻开启调查新旅程</h2>
+            <p class="text-gray-300 mb-12" data-i18n="footer_cta_sub">为您提供所需价值</p>
+            <div class="flex max-w-xl mx-auto gap-4">
+                <input
+                    class="flex-1 bg-white/10 border border-white/20 rounded-full px-8 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-eco-teal transition-all"
+                    placeholder="您的邮箱" data-i18n-ph="email_ph" type="email" />
+                <button
+                    class="bg-eco-teal text-white px-10 py-4 rounded-full font-bold hover:bg-eco-light-teal transition-all duration-300 btn-smooth"
+                    data-i18n="footer_send">发送</button>
+            </div>
+        </div>
+        <div class="bg-white rounded-3xl px-16 pt-14 pb-0 reveal">
+            <div class="flex justify-between items-start pb-12 border-b border-gray-100">
+                <div class="w-1/3 pr-12">
+                    <div class="flex items-center gap-3 mb-5">
+                        <img src="https://media.base44.com/images/public/69dcab8d72704cd3dac9c94d/c6a353647_logo.png"
+                            class="w-9 h-9 object-contain" alt="logo">
+                        <span class="text-xl font-bold text-eco-dark">FenSvyG</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed" data-i18n="footer_desc">
+                        一站式全球化SaaS调查分发平台，助您高效精准对接优质客户及供应商，快速实现流量价值转化</p>
+                </div>
+                <div class="grid grid-cols-3 gap-24">
+                    <div>
+                        <h4 class="font-bold text-eco-dark mb-6" data-i18n="footer_c1">产品支持</h4>
+                        <ul class="space-y-4 text-gray-500 text-sm">
+                            <li><a id="doc-help" class="hover:text-eco-teal transition-colors" href="docs/帮助文档1.0.docx"
+                                    download="帮助文档1.0.docx" data-i18n="footer_c1_1">帮助文档</a></li>
+                            <li><a id="doc-guide" class="hover:text-eco-teal transition-colors" href="docs/引导手册1.0.docx"
+                                    download="引导手册1.0.docx" data-i18n="footer_c1_2">引导手册</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c1_3">意见反馈</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-eco-dark mb-6" data-i18n="footer_c2">公司信息</h4>
+                        <ul class="space-y-4 text-gray-500 text-sm">
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c2_1">关于我们</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c2_2">发展历程</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="联系我们.html"
+                                    data-i18n="footer_c2_3">联系我们</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-eco-dark mb-6" data-i18n="footer_c3">权益中心</h4>
+                        <ul class="space-y-4 text-gray-500 text-sm">
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c3_1">试用申请</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c3_2">加入我们</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c3_3">资讯获取</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center py-8 border-b border-gray-100">
+                <div class="flex items-center gap-3 text-gray-600 text-sm"><span
+                        class="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center">📞</span><span>400-660-0224</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-600 text-sm"><span
+                        class="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center">✉️</span><span>jiayu@surveysaas.com</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-600 text-sm"><span
+                        class="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center">📍</span><span
+                        data-i18n="footer_addr">中国安徽省六安市恒生阳光城A座1506</span></div>
+            </div>
+            <div class="py-6 text-center text-gray-400 text-xs">
+                <span data-i18n="footer_copy">© 2024-2025 安徽省嘉禹企业服务有限公司版权所有</span>
+                <a href="https://beian.miit.gov.cn/" target="_blank"
+                    class="hover:text-eco-teal transition-colors">皖ICP备2024045814号-2</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <style>
+        @keyframes eunoFadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes eunoFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .euno-anim {
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        .euno-anim.euno-in {
+            animation: eunoFadeInUp .9s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+        .euno-anim-fade {
+            opacity: 0;
+        }
+
+        .euno-anim-fade.euno-in {
+            animation: eunoFadeIn 1.2s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+        #lightbox,
+        #lightbox * {
+            opacity: 1 !important;
+            animation: none !important;
+        }
+
+        #lightbox.active img {
+            animation: zoomIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+        }
+    </style>
+    <script>
+        (function () {
+            function init() {
+                const upSel = 'h1,h2,h3,h4,blockquote';
+                const fadeSel = 'p,li,figure,img';
+                document.querySelectorAll(upSel).forEach(el => {
+                    if (el.closest('script,style,nav,header,#lightbox')) return;
+                    if (!el.textContent.trim() && el.tagName !== 'IMG') return;
+                    el.classList.add('euno-anim');
+                });
+                document.querySelectorAll(fadeSel).forEach(el => {
+                    if (el.closest('script,style,nav,header,button,#lightbox')) return;
+                    if (el.classList.contains('euno-anim')) return;
+                    el.classList.add('euno-anim-fade');
+                });
+                const io = new IntersectionObserver((es) => {
+                    es.forEach((e, i) => {
+                        if (e.isIntersecting) {
+                            setTimeout(() => e.target.classList.add('euno-in'), (i % 6) * 80);
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+                document.querySelectorAll('.euno-anim,.euno-anim-fade').forEach(el => io.observe(el));
+            }
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+        })();
+    </script>
+
+</body>
+
+</html>

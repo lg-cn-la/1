@@ -1,0 +1,31 @@
+# Temporary work folders
+.ai_review_pack_work_*/
+.demo_handbook_work_*/
+.skill_install_payload/
+
+# Browser test profiles and generated caches
+chrome_test_profile/
+edge_test_profile/
+**/chrome-profile/
+**/Crashpad/
+**/Code Cache/
+**/Cache/
+**/GPUCache/
+**/DawnWebGPUCache/
+
+# Archives and packaged exports
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+
+# System files
+Thumbs.db
+Desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+~$*

@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fensvyg — Survey Operations SaaS</title>
+  <meta name="description" content="Survey operations SaaS for fieldwork teams, supplier networks and research operations." />
+  <style>
+    :root{
+      --bg:#f7fbff;--paper:#ffffff;--paper2:#f3f7fd;--text:#07111f;--muted:#5d6c82;--line:#d9e4f2;
+      --accent:#0962ff;--accent2:#18a8ff;--deep:#07142f;--soft:#eef6ff;--shadow:0 24px 70px rgba(21,43,85,.10);--radius:30px;
+      --chip:#eef6ff;--active:#0962ff;
+    }
+    body.deep{--bg:#fbfcff;--paper:#ffffff;--paper2:#f4f7fb;--text:#061226;--muted:#56657c;--line:#dce5ef;--accent:#0b2d5c;--accent2:#2563eb;--deep:#061226;--soft:#eef4fb;--chip:#eef3fb;--active:#0b2d5c;--shadow:0 24px 70px rgba(6,18,38,.11)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans Devanagari","Noto Sans SC",sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision} 
+    a{color:inherit;text-decoration:none} button{font:inherit} img{max-width:100%;display:block}
+    .shell{width:min(1180px,calc(100% - 48px));margin:auto}.nav-wrap{position:sticky;top:0;z-index:40;padding:14px 0;background:color-mix(in srgb,var(--bg) 82%, transparent);backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid rgba(211,224,242,.7)}
+    .nav{height:58px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);background:rgba(255,255,255,.78);border-radius:999px;padding:0 12px 0 16px;box-shadow:0 8px 34px rgba(12,28,56,.06)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}.brand img{width:34px;height:34px;border-radius:11px}.brand span{letter-spacing:-.01em}.nav-links{display:flex;gap:8px;align-items:center;color:var(--muted);font-weight:700;font-size:14px}.nav-links a{position:relative;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:999px;color:var(--muted);transition:background .24s ease,color .24s ease,box-shadow .24s ease}.nav-links a::before{content:"";width:8px;height:8px;border-radius:50%;background:#6aa9ff;box-shadow:0 0 0 4px rgba(106,169,255,.12);margin-right:8px;display:none}.nav-links a:hover{color:var(--text);background:rgba(238,244,251,.72)}.nav-links a.active{background:#eef3f8;color:#3578ff;box-shadow:inset 0 1px 0 rgba(255,255,255,.95)}.nav-links a.active::before{display:block}.nav-actions{display:flex;align-items:center;gap:10px}.lang{display:flex;gap:4px;background:var(--paper2);border:1px solid var(--line);padding:4px;border-radius:999px}.lang button{border:0;background:transparent;border-radius:999px;padding:7px 10px;cursor:pointer;color:var(--muted);font-weight:750;font-size:12px}.lang button.active{background:var(--paper);color:var(--text);box-shadow:0 4px 12px rgba(12,28,56,.08)}
+    .nav-cta,.btn{border:0;border-radius:999px;padding:13px 20px;font-weight:800;cursor:pointer}.nav-cta,.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 12px 32px color-mix(in srgb,var(--accent) 26%, transparent)}.btn.secondary{background:var(--paper);border:1px solid var(--line);color:var(--text)}.btn.tertiary{background:transparent;color:var(--accent);padding-left:6px}.btn:hover,.nav-cta:hover{transform:translateY(-1px)}
+    .section{padding:112px 0}.hero{position:relative;overflow:hidden;padding:72px 0 82px}.hero:before{content:"";position:absolute;inset:-18% -14% auto -14%;height:560px;background:radial-gradient(circle at 20% 20%,color-mix(in srgb,var(--accent2) 18%, transparent),transparent 34%),radial-gradient(circle at 75% 10%,color-mix(in srgb,var(--accent) 14%, transparent),transparent 40%);pointer-events:none}.hero-grid{position:relative;display:grid;grid-template-columns:.92fr 1.08fr;gap:50px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);box-shadow:0 10px 28px rgba(12,28,56,.06);border-radius:999px;padding:9px 14px;color:var(--accent);font-weight:800;font-size:14px}.eyebrow:before{content:"";width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#36d399,var(--accent2));box-shadow:0 0 0 7px color-mix(in srgb,var(--accent2) 13%, transparent)}
+    h1,.display{margin:24px 0 0;font-size:clamp(52px,6vw,86px);line-height:.98;letter-spacing:-.045em;font-weight:880}.lead{margin:26px 0 0;color:var(--muted);font-size:20px;line-height:1.7;max-width:690px}.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}.proof{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.proof span{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:10px 15px;color:#35445b;font-weight:760;font-size:14px}
+    .product-stage{background:var(--paper);border:1px solid var(--line);border-radius:36px;box-shadow:var(--shadow);padding:14px}.browser{border-radius:24px;overflow:hidden;border:1px solid #cfdced;background:#fff}.browser-top{height:42px;display:flex;align-items:center;gap:8px;padding:0 18px;border-bottom:1px solid #e7edf5}.dot{width:12px;height:12px;border-radius:50%}.red{background:#ff5f57}.yellow{background:#ffbd2e}.green{background:#28c840}.screen-img{width:100%;height:auto;background:#fff;image-rendering:auto}.stage-caption{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.stat{border:1px solid var(--line);background:linear-gradient(180deg,#fff,var(--soft));border-radius:20px;padding:14px}.stat strong{display:block;font-size:24px;letter-spacing:-.02em}.stat span{font-size:13px;color:var(--muted);font-weight:700}.section-head{display:flex;justify-content:space-between;gap:38px;align-items:end;margin-bottom:42px}.section-head.center{display:block;text-align:center}.section-head h2{margin:0;font-size:clamp(42px,5.3vw,72px);line-height:1.02;letter-spacing:-.04em}.section-head p{margin:0;color:var(--muted);font-size:18px;line-height:1.65;max-width:520px}.section-head.center p{margin:18px auto 0}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 14px 50px rgba(12,28,56,.06);padding:30px;transition:.28s ease}.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.num,.icon{display:inline-grid;place-items:center;min-width:46px;height:46px;border-radius:16px;background:var(--chip);color:var(--accent);font-weight:900;margin-bottom:26px}.card h3{font-size:24px;line-height:1.18;margin:0 0 12px;letter-spacing:-.025em}.card p{margin:0;color:var(--muted);line-height:1.7;font-size:16.5px}.workflow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.workflow .card{padding:30px 26px}.showcase{display:grid;grid-template-columns:320px 1fr;gap:24px;align-items:start}.tabs{display:flex;flex-direction:column;gap:12px}.tabs button{border:1px solid var(--line);background:var(--paper);border-radius:22px;padding:18px;text-align:left;cursor:pointer;color:var(--muted);font-weight:760}.tabs button strong{display:block;color:var(--text);font-size:18px;margin-bottom:4px}.tabs button.active{border-color:color-mix(in srgb,var(--accent) 50%, var(--line));box-shadow:0 14px 42px color-mix(in srgb,var(--accent) 12%, transparent);color:var(--accent);background:linear-gradient(180deg,#fff,var(--soft))}.shot-frame{background:#fff;border:1px solid var(--line);border-radius:32px;padding:14px;box-shadow:var(--shadow);overflow:hidden}.shot-frame img{border-radius:20px;border:1px solid #e5edf7;width:100%;height:auto}.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.plan{position:relative;overflow:hidden;padding:30px;border:1px solid var(--line);border-radius:30px;background:rgba(255,255,255,.86);box-shadow:0 14px 45px rgba(12,28,56,.06);transition:.28s ease;cursor:pointer}.plan:before{content:"";position:absolute;inset:-1px;border-radius:30px;padding:1px;background:linear-gradient(135deg,transparent,color-mix(in srgb,var(--active) 58%, transparent),transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.3s}.plan.active{transform:translateY(-8px);box-shadow:0 30px 90px color-mix(in srgb,var(--active) 16%, transparent);background:linear-gradient(180deg,#fff,var(--soft))}.plan.active:before{opacity:1;animation:borderFlow 2.8s linear infinite}.badge{display:inline-flex;align-items:center;height:30px;padding:0 10px;border-radius:999px;background:var(--chip);color:var(--accent);font-weight:850;font-size:12px;margin-bottom:20px}.plan h3{font-size:28px;letter-spacing:-.025em;margin:0 0 12px}.plan p{min-height:88px;color:var(--muted);line-height:1.65;margin:0 0 18px}.plan ul{display:grid;gap:12px;margin:0 0 28px;padding:0;list-style:none}.plan li{font-weight:760;color:#263246}.plan li:before{content:"✓";color:#00a661;margin-right:10px}.plan .btn{width:100%;text-align:center}.stories{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.story{padding:26px}.person{display:flex;align-items:center;gap:14px;margin-bottom:22px}.person img{width:70px;height:70px;object-fit:cover;border-radius:22px;border:1px solid var(--line);box-shadow:0 12px 28px rgba(12,28,56,.08)}.person strong{display:block;font-size:18px}.person span{display:block;color:var(--muted);font-weight:650;font-size:13.5px;margin-top:3px}.quote{font-size:18px;line-height:1.62;color:#172033;margin:0}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.tags span{background:var(--chip);color:var(--accent);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:850}.faq{max-width:850px;margin:auto}.faq details{border-bottom:1px solid var(--line);padding:0}.faq summary{cursor:pointer;list-style:none;padding:24px 0;font-size:21px;font-weight:850;letter-spacing:-.01em;display:flex;justify-content:space-between;gap:20px}.faq summary:after{content:"+";color:var(--accent)}.faq details[open] summary:after{content:"–"}.faq p{margin:0 0 24px;color:var(--muted);font-size:17px;line-height:1.7}.final{padding:80px 0}.final-card{text-align:center;background:linear-gradient(135deg,var(--deep),color-mix(in srgb,var(--accent) 70%, #061226));color:#fff;border-radius:42px;padding:72px 28px;position:relative;overflow:hidden}.final-card:before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.18),transparent 28%),radial-gradient(circle at 70% 70%,rgba(24,168,255,.25),transparent 30%);animation:drift 10s ease-in-out infinite alternate}.final-card>*{position:relative}.final-card h2{font-size:clamp(42px,5vw,72px);line-height:1.04;margin:0 0 16px;letter-spacing:-.035em}.final-card p{margin:0 auto 28px;color:#d5e3f4;font-size:18px;line-height:1.65;max-width:700px}.footer{padding:34px 0 48px;color:var(--muted);font-size:14px}.footer .shell{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:28px}
+    @keyframes borderFlow{0%{filter:hue-rotate(0deg);opacity:.72}50%{opacity:1}100%{filter:hue-rotate(12deg);opacity:.72}}@keyframes drift{from{transform:translate3d(-1%,0,0)}to{transform:translate3d(1%,-1%,0)}}
+    html[lang^="zh"] h1,html[lang^="zh"] .display,html[lang^="zh"] h2{letter-spacing:-.018em;line-height:1.08} html[lang^="zh"] .section-head h2{line-height:1.08} html[lang^="hi"] h1,html[lang^="hi"] h2{letter-spacing:-.025em;line-height:1.08}
+    @media (max-width:980px){.nav-links{display:none}.hero-grid,.showcase{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:18px}.feature-grid,.workflow-grid,.plans,.stories{grid-template-columns:1fr 1fr}.stage-caption{grid-template-columns:1fr}.section{padding:78px 0}}
+    @media (max-width:640px){.shell{width:min(100% - 28px,1180px)}.nav{height:auto;padding:10px;gap:10px}.brand span{display:none}.nav-cta{display:none}.hero{padding-top:42px}.hero-grid{gap:28px}h1,.display{font-size:46px}.feature-grid,.workflow-grid,.plans,.stories{grid-template-columns:1fr}.section{padding:64px 0}.footer .shell{display:block}.lang button{padding:7px 8px}.cta-row .btn{width:100%;text-align:center}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  
+    /* === V10 hero layout + cleaner Apple-like states === */
+    .hero .shell{width:min(1460px,calc(100% - 34px))}
+    .hero-grid{
+      grid-template-columns:minmax(0,.72fr) minmax(760px,1.28fr);
+      gap:40px;
+      align-items:center;
+    }
+    .hero-grid>div:first-child{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:center;
+      padding-right:6px;
+    }
+    .product-stage{
+      display:flex;
+      flex-direction:column;
+      width:min(100%,820px);
+      margin-left:auto;
+      margin-right:-12px;
+      min-height:clamp(630px,44vw,790px);
+      border-radius:38px;
+      padding:16px;
+      transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;
+    }
+    .product-stage:hover{
+      transform:translateY(-3px);
+      border-color:color-mix(in srgb,var(--accent2) 18%,var(--line));
+      box-shadow:0 30px 84px rgba(28,116,255,.10),0 14px 34px rgba(12,28,56,.08);
+    }
+    .product-stage .browser{
+      flex:1 1 auto;
+      min-height:0;
+      display:flex;
+      flex-direction:column;
+      border-radius:25px;
+      background:#fff;
+    }
+    .product-stage .browser-top{flex:0 0 42px}
+    .product-stage .screen-img{
+      flex:1 1 auto;
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center top;
+      background:#fff;
+    }
+    .stage-caption{flex:0 0 auto}
+    .stage-caption .stat:hover{
+      transform:none;
+      border-color:var(--line);
+      box-shadow:none;
+      background:linear-gradient(180deg,#fff,var(--soft));
+    }
+    html[lang="zh-CN"] .hero-grid{grid-template-columns:minmax(0,.78fr) minmax(720px,1.22fr)}
+    html[lang="zh-CN"] .product-stage{min-height:clamp(590px,40vw,720px)}
+    html[lang="hi-IN"] .hero-grid{grid-template-columns:minmax(0,.84fr) minmax(720px,1.16fr)}
+    html[lang="hi-IN"] .product-stage{min-height:clamp(610px,41vw,740px)}
+    html[lang="hi-IN"] h1{font-size:clamp(46px,5.2vw,78px)}
+
+    .card,.plan,.tabs button{
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+      will-change:transform,box-shadow;
+    }
+    .card::before,.plan:after,.tabs button::after{display:none !important}
+    .card>*,.plan>*,.tabs button>*{position:relative;z-index:1}
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(39,137,255,.16);
+      box-shadow:0 22px 54px rgba(12,28,56,.07),0 8px 22px rgba(12,28,56,.05);
+      background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(247,250,255,.96));
+    }
+
+    .tabs button{
+      padding:19px 20px 19px 22px;
+      color:#5d6d84;
+      background:rgba(255,255,255,.92);
+      transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease,background .24s ease,color .24s ease;
+    }
+    .tabs button::before{
+      content:"";
+      position:absolute;
+      left:15px;
+      top:18px;
+      bottom:18px;
+      width:2px;
+      border-radius:999px;
+      background:linear-gradient(180deg,rgba(109,152,255,.84),rgba(109,152,255,.46));
+      opacity:0;
+      transition:opacity .24s ease;
+    }
+    .tabs button strong{color:#07111f}
+    .tabs button:hover{
+      transform:translateY(-2px);
+      border-color:rgba(160,184,214,.62);
+      box-shadow:0 12px 28px rgba(12,28,56,.06);
+      background:linear-gradient(180deg,#fff,#fbfdff);
+    }
+    .tabs button.active{
+      border-color:#c6d9f5;
+      color:#5b6b82;
+      background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(247,250,254,.96));
+      box-shadow:0 10px 24px rgba(12,28,56,.05), inset 0 1px 0 rgba(255,255,255,.98);
+    }
+    .tabs button.active strong{color:#07111f}
+    .tabs button.active::before{opacity:1}
+
+    .plans{align-items:stretch}
+    .plan{
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+      transition:transform .24s ease,border-color .24s ease,box-shadow .24s ease,background .24s ease;
+    }
+    .plan:before{
+      background:linear-gradient(135deg,transparent,rgba(121,162,232,.22),transparent);
+    }
+    .plan:hover{
+      transform:translateY(-7px);
+      border-color:rgba(39,137,255,.16);
+      box-shadow:0 24px 58px rgba(12,28,56,.08),0 8px 22px rgba(12,28,56,.05);
+      background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,251,255,.95));
+    }
+    .plan.active{
+      transform:none;
+      border-color:#cad9ec;
+      background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(248,250,253,.96));
+      box-shadow:0 18px 42px rgba(12,28,56,.07), inset 0 1px 0 rgba(255,255,255,.98);
+    }
+    .plan.active:hover{transform:translateY(-7px)}
+    .plan.active:before{opacity:.7;animation:none}
+    .plan .badge,.plan h3,.plan p,.plan ul,.plan .btn{position:relative;z-index:2}
+    .plan p{min-height:112px}
+    .plan ul{min-height:132px;align-content:start}
+    .plan .btn{
+      margin-top:auto;
+      width:100%;
+      min-height:49px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .nav-cta,.btn{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      overflow:hidden;
+      isolation:isolate;
+      transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,color .22s ease,background .22s ease;
+    }
+    .nav-cta:hover,.btn:hover{transform:translateY(-1px)}
+    .nav-cta:hover{box-shadow:0 14px 34px rgba(24,112,255,.14)}
+    .btn.secondary:hover{
+      border-color:#c7d8ee;
+      color:var(--text);
+      background:linear-gradient(180deg,#fff,#f7fbff);
+      box-shadow:0 10px 22px rgba(12,28,56,.06);
+    }
+    .plans .btn.secondary:hover{
+      color:#1d4ed8;
+      border-color:#c7d8ee;
+      background:linear-gradient(180deg,#fff,#f7fbff);
+      box-shadow:0 10px 22px rgba(12,28,56,.06);
+    }
+    .btn.tertiary:hover{
+      background:rgba(9,98,255,.05);
+      color:var(--accent);
+      box-shadow:none;
+    }
+
+    @media (max-width:1180px){
+      .hero-grid{grid-template-columns:minmax(0,.82fr) minmax(540px,1.18fr);gap:34px}
+      .product-stage{width:min(100%,760px);margin-right:0;min-height:clamp(560px,48vw,700px)}
+    }
+    @media (max-width:980px){
+      .hero .shell{width:min(1180px,calc(100% - 48px))}
+      .hero-grid,
+      html[lang="zh-CN"] .hero-grid,
+      html[lang="hi-IN"] .hero-grid{grid-template-columns:1fr;align-items:start}
+      .hero-grid>div:first-child{display:block}
+      .product-stage,
+      html[lang="zh-CN"] .product-stage,
+      html[lang="hi-IN"] .product-stage{min-height:auto}
+      .product-stage .screen-img{height:auto;object-fit:contain}
+      .plan p,.plan ul{min-height:0}
+    }
+    @media (max-width:640px){
+      .hero .shell{width:min(100% - 28px,1180px)}
+      .product-stage{padding:10px;border-radius:28px}
+    }
+
+  </style>
+</head>
+<body class="bright">
+  <header class="nav-wrap">
+    <div class="shell nav">
+      <a class="brand" href="#top"><img src="assets/logo.png" alt="Fensvyg logo"><span>Fensvyg</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#product" data-i18n="navProduct">Product</a><a href="#workflow" data-i18n="navWorkflow">Workflow</a><a href="#screens" data-i18n="navScreens">Screens</a><a href="#plans" data-i18n="navPlans">Plans</a><a href="#stories" data-i18n="navStories">Stories</a><a href="#faq" data-i18n="navFAQ">FAQ</a>
+      </nav>
+      <div class="nav-actions"><div class="lang"><button data-lang="en" class="active">EN</button><button data-lang="hi">हिन्दी</button><button data-lang="zh">中文</button></div><a class="nav-cta" href="#demo" data-i18n="navDemo">Book a demo</a></div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow" data-i18n="eyebrow">Built for Indian fieldwork teams and global research operations</div>
+          <h1 data-i18n="heroTitle">Run every survey project from one clean operating layer.</h1>
+          <p class="lead" data-i18n="heroSub">Fensvyg brings project setup, supplier distribution, callback control, wallet logs and settlement into one focused SaaS platform — without spreadsheets, fragmented chats or blind handoffs.</p>
+          <div class="cta-row"><a class="btn primary" href="#demo" data-i18n="ctaPrimary">Contact sales</a><a class="btn secondary" href="#product" data-i18n="ctaSecondary">Get started</a></div>
+          <div class="proof"><span data-i18n="proof1">Admin + supplier portal</span><span data-i18n="proof2">Callback / API ready</span><span data-i18n="proof3">Private deployment support</span></div>
+        </div>
+        <div class="product-stage" aria-label="Product screenshot preview">
+          <div class="browser"><div class="browser-top"><i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i></div><img class="screen-img" src="assets/screen_ops.webp" alt="Fensvyg operations analytics dashboard"></div>
+          <div class="stage-caption"><div class="stat"><strong>3</strong><span>Connected portals</span></div><div class="stat"><strong>API</strong><span>Callback ready</span></div><div class="stat"><strong>24/7</strong><span>Project visibility</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="product">
+      <div class="shell">
+        <div class="section-head"><h2 data-i18n="featuresTitle">Everything your survey operation needs, without the clutter.</h2><p data-i18n="featuresSub">A calm, structured product layer for teams that manage traffic, suppliers, members, rules, finance and customer callbacks every day.</p></div>
+        <div class="feature-grid">
+          <article class="card"><span class="icon">01</span><h3 data-i18n="f1t">Survey management admin</h3><p data-i18n="f1d">Manage customers, suppliers, employees, departments, roles, wallets, rules and project permissions from one backend.</p></article>
+          <article class="card"><span class="icon">02</span><h3 data-i18n="f2t">Supplier operations</h3><p data-i18n="f2d">Give suppliers a dedicated portal for project lists, member groups, quality logs, wallets and settlement records.</p></article>
+          <article class="card"><span class="icon">03</span><h3 data-i18n="f3t">Survey station tracking</h3><p data-i18n="f3d">Track visitor access, device signals, quota status, completes, rejects, project progress and financial activity.</p></article>
+          <article class="card"><span class="icon">04</span><h3 data-i18n="f4t">Callback and API control</h3><p data-i18n="f4d">Configure redirect rules, callback URLs, encrypted signatures, HMAC validation and automated workflow events.</p></article>
+          <article class="card"><span class="icon">05</span><h3 data-i18n="f5t">Finance and settlement</h3><p data-i18n="f5d">Keep wallet movement, pending funds, project bills, supplier invoices and internal audit notes traceable.</p></article>
+          <article class="card"><span class="icon">06</span><h3 data-i18n="f6t">Deployment configuration</h3><p data-i18n="f6d">Support custom domains, SMS, email, CDN, cloud storage, DNS records and secure environment configuration.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section workflow" id="workflow">
+      <div class="shell">
+        <div class="section-head"><h2 data-i18n="workflowTitle">From launch to settlement, every step remains visible.</h2><p data-i18n="workflowSub">A simple operational path: configure the project, route supplier traffic, watch quality signals, then close financial records.</p></div>
+        <div class="workflow-grid">
+          <article class="card"><span class="num">1</span><h3 data-i18n="w1t">Create project</h3><p data-i18n="w1d">Set CPI, audience, country, quota, IR/LOI, redirect conditions and supplier rules.</p></article>
+          <article class="card"><span class="num">2</span><h3 data-i18n="w2t">Assign suppliers</h3><p data-i18n="w2d">Distribute traffic, configure access logic, callback rules, redirect URLs and whitelist controls.</p></article>
+          <article class="card"><span class="num">3</span><h3 data-i18n="w3t">Monitor quality</h3><p data-i18n="w3d">Review completes, rejects, device signals, project status, quota pressure and abnormal access logs.</p></article>
+          <article class="card"><span class="num">4</span><h3 data-i18n="w4t">Settle finance</h3><p data-i18n="w4d">Review wallets, pending funds, supplier bills, employee logs and settlement notes.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="screens">
+      <div class="shell">
+        <div class="section-head"><h2 data-i18n="screensTitle">Real product screens, presented clearly.</h2><p data-i18n="screensSub">Large interface previews help buyers understand the operational flow before they book a demo or involve technical stakeholders.</p></div>
+        <div class="showcase">
+          <div class="tabs" role="tablist">
+            <button class="active" data-shot="screen_ops.webp"><strong data-i18n="s1">Operations analytics</strong>Project progress, completes, finance logs</button>
+            <button data-shot="screen_admin.webp"><strong data-i18n="s2">Admin console</strong>Customers, roles, wallets and rules</button>
+            <button data-shot="screen_supplier.webp"><strong data-i18n="s3">Supplier portal</strong>Supplier access and project lists</button>
+            <button data-shot="screen_callback.webp"><strong data-i18n="s4">Callback configuration</strong>Redirect, HMAC and status handling</button>
+          </div>
+          <div class="shot-frame"><img id="mainShot" src="assets/screen_ops.webp" alt="Fensvyg product screenshot"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="plans">
+      <div class="shell">
+        <div class="section-head center"><h2 data-i18n="plansTitle">Choose the edition that fits your operating model.</h2><p data-i18n="plansSub">All cards use the same visual language. The selected edition is highlighted with a subtle motion border instead of a disruptive dark block.</p></div>
+        <div class="plans">
+          <article class="plan"><span class="badge">A</span><h3 data-i18n="p1t">Studio edition</h3><p data-i18n="p1d">For small research teams running internal survey projects.</p><ul><li data-i18n="p1a">Project management</li><li data-i18n="p1b">Basic wallet logs</li><li data-i18n="p1c">Survey station access</li></ul><a class="btn secondary" href="#demo" data-i18n="p1cta">Consult studio</a></article>
+          <article class="plan"><span class="badge">B</span><h3 data-i18n="p2t">Supplier edition</h3><p data-i18n="p2d">For companies managing suppliers and distributed fieldwork traffic.</p><ul><li data-i18n="p2a">Supplier operations</li><li data-i18n="p2b">Wallet and settlement</li><li data-i18n="p2c">Role and department logic</li></ul><a class="btn secondary" href="#demo" data-i18n="p2cta">Consult supplier</a></article>
+          <article class="plan active"><span class="badge">Recommended</span><h3 data-i18n="p3t">Operations suite</h3><p data-i18n="p3d">For teams that need backend, supplier portal and survey station in one connected workflow.</p><ul><li data-i18n="p3a">Three core portals</li><li data-i18n="p3b">Callback / API setup</li><li data-i18n="p3c">Advanced analytics and finance logs</li></ul><a class="btn secondary" href="#demo" data-i18n="p3cta">Book suite demo</a></article>
+          <article class="plan"><span class="badge">D</span><h3 data-i18n="p4t">Private deployment</h3><p data-i18n="p4d">For enterprise teams with infrastructure, compliance or custom integration needs.</p><ul><li data-i18n="p4a">Independent deployment</li><li data-i18n="p4b">Custom domain and DNS</li><li data-i18n="p4c">Integration support</li></ul><a class="btn secondary" href="#demo" data-i18n="p4cta">Contact sales</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stories">
+      <div class="shell">
+        <div class="section-head center"><h2 data-i18n="storiesTitle">Built for India fieldwork and global research teams.</h2><p data-i18n="storiesSub">Three customer-style scenarios showing how fieldwork, supplier and global research teams can benefit from a cleaner operating layer.</p></div>
+        <div class="stories">
+          <article class="card story"><div class="tags"><span data-i18n="story1Tag">India fieldwork</span></div><div class="person"><img src="assets/customer_riya.jpg" alt="Riya Sharma"><div><strong data-i18n="story1Name">Riya Sharma</strong><span data-i18n="story1Role">Fieldwork Operations Lead · Mumbai</span></div></div><p class="quote" data-i18n="story1Quote">“Our project team can see supplier distribution, quota status and settlement notes in one place. We no longer chase updates across several chat groups.”</p><div class="tags"><span data-i18n="story1A">Faster launch</span><span data-i18n="story1B">Clear project logs</span></div></article>
+          <article class="card story"><div class="tags"><span data-i18n="story2Tag">India supplier network</span></div><div class="person"><img src="assets/customer_arjun.jpg" alt="Arjun Mehta"><div><strong data-i18n="story2Name">Arjun Mehta</strong><span data-i18n="story2Role">Supplier Network Manager · Bengaluru</span></div></div><p class="quote" data-i18n="story2Quote">“The supplier portal gives every partner a clear entry point while our head office still controls access rules, wallet activity and project permissions.”</p><div class="tags"><span data-i18n="story2A">Supplier visibility</span><span data-i18n="story2B">Role control</span></div></article>
+          <article class="card story"><div class="tags"><span data-i18n="story3Tag">Global operations</span></div><div class="person"><img src="assets/customer_sofia.jpg" alt="Sofia Laurent"><div><strong data-i18n="story3Name">Sofia Laurent</strong><span data-i18n="story3Role">Research Operations Director · London</span></div></div><p class="quote" data-i18n="story3Quote">“Callback configuration and financial logs help our global team explain exactly what happened on a project without digging through disconnected tools.”</p><div class="tags"><span data-i18n="story3A">Callback traceability</span><span data-i18n="story3B">Finance audit</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="shell"><div class="section-head center"><h2 data-i18n="faqTitle">Questions buyers usually ask.</h2></div><div class="faq">
+        <details open><summary data-i18n="q1">Can the platform support supplier and client portals together?</summary><p data-i18n="a1">Yes. The product can present backend management, supplier operations and survey station workflows as a connected operating layer.</p></details>
+        <details><summary data-i18n="q2">Can we use our own domain and deployment environment?</summary><p data-i18n="a2">Yes. The platform content references custom domain, DNS, cloud storage, CDN, SMS, email and private deployment configuration.</p></details>
+        <details><summary data-i18n="q3">Can the website be localized for India?</summary><p data-i18n="a3">Yes. The page supports English, Hindi and Chinese switching so sales teams can present the product story to India and overseas buyers.</p></details>
+        <details><summary data-i18n="q4">How does the demo turn into deployment?</summary><p data-i18n="a4">After a product walkthrough, the team can map required portals, roles, callback rules, domain setup and deployment scope into an implementation plan.</p></details>
+      </div></div>
+    </section>
+
+    <section class="final" id="demo"><div class="shell"><div class="final-card"><h2 data-i18n="finalTitle">Give every survey project a cleaner operating layer.</h2><p data-i18n="finalSub">Show buyers a calm, credible SaaS experience — built around your real product screens, your workflows and your sales story.</p><div class="cta-row" style="justify-content:center"><a class="btn primary" href="mailto:sales@example.com" data-i18n="ctaPrimary">Book a demo</a><a class="btn secondary" href="mailto:sales@example.com" data-i18n="ctaThird">Contact sales</a></div></div></div></section>
+  </main>
+  <footer class="footer"><div class="shell"><span>© 2026 Fensvyg</span><span data-i18n="footer">Survey operations SaaS for fieldwork teams, supplier networks and research operations.</span></div></footer>
+
+  <script>
+  
+const COPY = {
+  en: {
+    navProduct:'Product',navWorkflow:'Workflow',navScreens:'Screens',navPlans:'Plans',navStories:'Stories',navFAQ:'FAQ',navDemo:'Book a demo',
+    eyebrow:'Built for Indian fieldwork teams and global research operations',
+    heroTitle:'Run every survey project from one clean operating layer.',
+    heroSub:'Fensvyg brings project setup, supplier distribution, callback control, wallet logs and settlement into one focused SaaS platform — without spreadsheets, fragmented chats or blind handoffs.',
+    ctaPrimary:'Contact sales', ctaSecondary:'Get started', ctaThird:'Contact sales',
+    proof1:'Admin + supplier portal', proof2:'Callback / API ready', proof3:'Private deployment support',
+    featuresTitle:'Everything your survey operation needs, without the clutter.',
+    featuresSub:'A calm, structured product layer for teams that manage traffic, suppliers, members, rules, finance and customer callbacks every day.',
+    f1t:'Survey management admin', f1d:'Manage customers, suppliers, employees, departments, roles, wallets, rules and project permissions from one backend.',
+    f2t:'Supplier operations', f2d:'Give suppliers a dedicated portal for project lists, member groups, quality logs, wallets and settlement records.',
+    f3t:'Survey station tracking', f3d:'Track visitor access, device signals, quota status, completes, rejects, project progress and financial activity.',
+    f4t:'Callback and API control', f4d:'Configure redirect rules, callback URLs, encrypted signatures, HMAC validation and automated workflow events.',
+    f5t:'Finance and settlement', f5d:'Keep wallet movement, pending funds, project bills, supplier invoices and internal audit notes traceable.',
+    f6t:'Deployment configuration', f6d:'Support custom domains, SMS, email, CDN, cloud storage, DNS records and secure environment configuration.',
+    workflowTitle:'From launch to settlement, every step remains visible.',
+    workflowSub:'A simple operational path: configure the project, route supplier traffic, watch quality signals, then close financial records.',
+    w1t:'Create project', w1d:'Set CPI, audience, country, quota, IR/LOI, redirect conditions and supplier rules.',
+    w2t:'Assign suppliers', w2d:'Distribute traffic, configure access logic, callback rules, redirect URLs and whitelist controls.',
+    w3t:'Monitor quality', w3d:'Review completes, rejects, device signals, project status, quota pressure and abnormal access logs.',
+    w4t:'Settle finance', w4d:'Review wallets, pending funds, supplier bills, employee logs and settlement notes.',
+    screensTitle:'Real product screens, presented clearly.',
+    screensSub:'Large interface previews help buyers understand the operational flow before they book a demo or involve technical stakeholders.',
+    s1:'Operations analytics', s2:'Admin console', s3:'Supplier portal', s4:'Callback configuration',
+    plansTitle:'Choose the edition that fits your operating model.',
+    plansSub:'All cards use the same visual language. The selected edition is highlighted with a subtle motion border instead of a disruptive dark block.',
+    p1t:'Studio edition', p1d:'For small research teams running internal survey projects.', p1a:'Project management', p1b:'Basic wallet logs', p1c:'Survey station access', p1cta:'Consult studio',
+    p2t:'Supplier edition', p2d:'For companies managing suppliers and distributed fieldwork traffic.', p2a:'Supplier operations', p2b:'Wallet and settlement', p2c:'Role and department logic', p2cta:'Consult supplier',
+    p3t:'Operations suite', p3d:'For teams that need backend, supplier portal and survey station in one connected workflow.', p3a:'Three core portals', p3b:'Callback / API setup', p3c:'Advanced analytics and finance logs', p3cta:'Book suite demo',
+    p4t:'Private deployment', p4d:'For enterprise teams with infrastructure, compliance or custom integration needs.', p4a:'Independent deployment', p4b:'Custom domain and DNS', p4c:'Integration support', p4cta:'Contact sales',
+    storiesTitle:'Built for India fieldwork and global research teams.',
+    storiesSub:'Three customer-style scenarios showing how fieldwork, supplier and global research teams can benefit from a cleaner operating layer.',
+    story1Tag:'India fieldwork', story1Name:'Riya Sharma', story1Role:'Fieldwork Operations Lead · Mumbai', story1Quote:'“Our project team can see supplier distribution, quota status and settlement notes in one place. We no longer chase updates across several chat groups.”', story1A:'Faster launch', story1B:'Clear project logs',
+    story2Tag:'India supplier network', story2Name:'Arjun Mehta', story2Role:'Supplier Network Manager · Bengaluru', story2Quote:'“The supplier portal gives every partner a clear entry point while our head office still controls access rules, wallet activity and project permissions.”', story2A:'Supplier visibility', story2B:'Role control',
+    story3Tag:'Global operations', story3Name:'Sofia Laurent', story3Role:'Research Operations Director · London', story3Quote:'“Callback configuration and financial logs help our global team explain exactly what happened on a project without digging through disconnected tools.”', story3A:'Callback traceability', story3B:'Finance audit',
+    faqTitle:'Questions buyers usually ask.',
+    q1:'Can the platform support supplier and client portals together?', a1:'Yes. The product can present backend management, supplier operations and survey station workflows as a connected operating layer.',
+    q2:'Can we use our own domain and deployment environment?', a2:'Yes. The platform content references custom domain, DNS, cloud storage, CDN, SMS, email and private deployment configuration.',
+    q3:'Can the website be localized for India?', a3:'Yes. The page supports English, Hindi and Chinese switching so sales teams can present the product story to India and overseas buyers.',
+    q4:'How does the demo turn into deployment?', a4:'After a product walkthrough, the team can map required portals, roles, callback rules, domain setup and deployment scope into an implementation plan.',
+    finalTitle:'Give every survey project a cleaner operating layer.', finalSub:'Show buyers a calm, credible SaaS experience — built around your real product screens, your workflows and your sales story.',
+    footer:'Survey operations SaaS for fieldwork teams, supplier networks and research operations.'
+  },
+  zh: {
+    navProduct:'产品',navWorkflow:'流程',navScreens:'截图',navPlans:'版本',navStories:'案例',navFAQ:'问题',navDemo:'预约演示',
+    eyebrow:'面向印度 fieldwork 团队与全球调研运营团队',
+    heroTitle:'用一个清晰的运营层，管理每一个问卷项目。',
+    heroSub:'Fensvyg 将项目配置、供应商分发、回调控制、钱包日志和结算管理集中到一个 SaaS 平台里，减少表格、聊天群和信息断点。',
+    ctaPrimary:'联系销售', ctaSecondary:'开始使用', ctaThird:'联系销售',
+    proof1:'后台 + 供应商门户', proof2:'回调 / API 就绪', proof3:'支持私有化部署',
+    featuresTitle:'调查运营所需能力，集中而不臃肿。',
+    featuresSub:'为每天管理流量、供应商、会员、规则、财务和客户回调的团队，提供一个清晰稳定的产品层。',
+    f1t:'调查管理后台', f1d:'统一管理客户、供应商、员工、部门、角色、钱包、规则和项目权限。',
+    f2t:'供应商运营', f2d:'为供应商团队提供独立门户，用于查看项目列表、会员组、质量日志、钱包和结算记录。',
+    f3t:'调查站追踪', f3d:'追踪访问、设备信号、配额状态、完成、拒绝、项目进度和财务活动。',
+    f4t:'回调与 API 控制', f4d:'配置重定向规则、回调地址、加密签名、HMAC 校验和自动化事件。',
+    f5t:'财务与结算', f5d:'让钱包变动、待审资金、项目账单、供应商账单和审计备注都有迹可循。',
+    f6t:'部署配置', f6d:'支持自定义域名、短信、邮件、CDN、云存储、DNS 和安全环境配置。',
+    workflowTitle:'从启动到结算，每一步都保持可见。',
+    workflowSub:'清晰的运营路径：配置项目、分配供应商流量、监控质量信号，再关闭财务记录。',
+    w1t:'创建项目', w1d:'设置 CPI、目标人群、国家、配额、IR/LOI、跳转条件和供应商规则。',
+    w2t:'分配供应商', w2d:'分发流量，配置访问逻辑、回调规则、跳转地址和白名单控制。',
+    w3t:'监控质量', w3d:'查看完成、拒绝、设备信号、项目状态、配额压力和异常访问日志。',
+    w4t:'结算财务', w4d:'审核钱包、待审资金、供应商账单、员工日志和结算备注。',
+    screensTitle:'用清晰的大尺寸真实界面建立信任。',
+    screensSub:'大尺寸界面预览帮助买家在预约演示前理解产品流程，也方便技术和运营负责人参与评估。',
+    s1:'运营数据分析', s2:'管理后台', s3:'供应商门户', s4:'回调配置',
+    plansTitle:'选择适合你业务模式的版本。',
+    plansSub:'所有版本卡片保持统一视觉语言，选中版本使用轻微动态边框突出，不使用突兀深色块。',
+    p1t:'工作室版', p1d:'适合运行内部问卷项目的小型调研团队。', p1a:'项目管理', p1b:'基础钱包日志', p1c:'调查站访问', p1cta:'咨询工作室版',
+    p2t:'供应商版', p2d:'适合管理供应商和分布式 fieldwork 流量的公司。', p2a:'供应商运营', p2b:'钱包与结算', p2c:'角色与部门逻辑', p2cta:'咨询供应商版',
+    p3t:'运营套件版', p3d:'适合需要后台、供应商门户和调查站完整闭环的团队。', p3a:'三大核心端', p3b:'回调 / API 配置', p3c:'高级分析与财务日志', p3cta:'预约套件演示',
+    p4t:'私有化部署版', p4d:'适合有基础设施、合规或定制集成要求的企业团队。', p4a:'独立部署', p4b:'自定义域名和 DNS', p4c:'集成支持', p4cta:'联系销售',
+    storiesTitle:'面向印度实地团队与全球调研运营。',
+    storiesSub:'三组客户场景，展示 fieldwork、供应商网络和全球调研团队如何受益于更清晰的运营层。',
+    story1Tag:'印度 fieldwork', story1Name:'Riya Sharma', story1Role:'Fieldwork 运营负责人 · 孟买', story1Quote:'“项目团队可以直接看到供应商分发、配额状态和结算备注，不需要再在多个聊天群里追进度。”', story1A:'启动更快', story1B:'日志清晰',
+    story2Tag:'印度供应商网络', story2Name:'Arjun Mehta', story2Role:'供应商网络经理 · 班加罗尔', story2Quote:'“供应商门户让每个合作伙伴都有清晰的工作入口，同时总部仍然可以控制访问规则、钱包活动和项目权限。”', story2A:'供应商可见', story2B:'角色控制',
+    story3Tag:'全球运营', story3Name:'Sofia Laurent', story3Role:'Research Operations Director · London', story3Quote:'“回调配置和财务日志让全球团队能清楚解释每个项目发生了什么，不用再翻找分散的工具。”', story3A:'回调可追踪', story3B:'财务可审计',
+    faqTitle:'买家常问问题。',
+    q1:'平台能同时支持供应商和客户门户吗？', a1:'可以。产品可以把后台管理、供应商运营和调查站流程作为一个连接的运营层来呈现。',
+    q2:'能使用自己的域名和部署环境吗？', a2:'可以。平台内容包含自定义域名、DNS、云存储、CDN、短信、邮件和私有化部署配置。',
+    q3:'网站可以面向印度本地化吗？', a3:'可以。页面支持英文、印地语和中文切换，便于面向印度与海外买家展示产品价值。',
+    q4:'产品演示后如何进入部署？', a4:'产品演示后，可以把所需端口、角色权限、回调规则、域名配置和部署范围整理成实施方案。',
+    finalTitle:'让每一个问卷项目都有更清晰的运营层。', finalSub:'用真实产品界面、清晰工作流和可信销售叙事，向客户展示一个成熟的 SaaS 平台。',
+    footer:'面向 fieldwork 团队、供应商网络和调研运营团队的问卷运营 SaaS。'
+  },
+  hi: {
+    navProduct:'उत्पाद',navWorkflow:'वर्कफ़्लो',navScreens:'स्क्रीन',navPlans:'प्लान',navStories:'कहानियाँ',navFAQ:'FAQ',navDemo:'डेमो बुक करें',
+    eyebrow:'भारतीय fieldwork टीमों और वैश्विक research operations के लिए',
+    heroTitle:'हर survey project को एक साफ operating layer से चलाएं।',
+    heroSub:'Fensvyg project setup, supplier distribution, callback control, wallet logs और settlement को एक focused SaaS platform में लाता है — spreadsheets, chats और fragmented tools के बिना।',
+    ctaPrimary:'Contact sales', ctaSecondary:'Get started', ctaThird:'Contact sales',
+    proof1:'Admin + supplier portal', proof2:'Callback / API ready', proof3:'Private deployment support',
+    featuresTitle:'Survey operations के लिए जरूरी सब कुछ, बिना clutter के।',
+    featuresSub:'Traffic, suppliers, members, rules, finance और customer callbacks संभालने वाली teams के लिए एक structured product layer।',
+    f1t:'Survey management admin', f1d:'Customers, suppliers, employees, departments, roles, wallets, rules और permissions को एक backend से manage करें।',
+    f2t:'Supplier operations', f2d:'Suppliers को project lists, member groups, quality logs, wallets और settlement records के लिए dedicated portal दें।',
+    f3t:'Survey station tracking', f3d:'Visitor access, device signals, quota status, completes, rejects, progress और finance activity track करें।',
+    f4t:'Callback and API control', f4d:'Redirect rules, callback URLs, encrypted signatures, HMAC validation और automation events configure करें।',
+    f5t:'Finance and settlement', f5d:'Wallet movement, pending funds, project bills, supplier invoices और audit notes को traceable रखें।',
+    f6t:'Deployment configuration', f6d:'Custom domains, SMS, email, CDN, cloud storage, DNS और secure environment configuration support करें।',
+    workflowTitle:'Launch से settlement तक, हर step visible रहता है।',
+    workflowSub:'Configure the project, route supplier traffic, watch quality signals, फिर financial records close करें।',
+    w1t:'Create project', w1d:'CPI, audience, country, quota, IR/LOI, redirect conditions और supplier rules set करें।',
+    w2t:'Assign suppliers', w2d:'Traffic distribute करें, access logic, callback rules, redirect URLs और whitelist controls configure करें।',
+    w3t:'Monitor quality', w3d:'Completes, rejects, device signals, project status, quota pressure और abnormal logs review करें।',
+    w4t:'Settle finance', w4d:'Wallets, pending funds, supplier bills, employee logs और settlement notes review करें।',
+    screensTitle:'Real product screens, clearly presented.',
+    screensSub:'Large interface previews buyers को demo से पहले workflow समझने में मदद करते हैं।',
+    s1:'Operations analytics', s2:'Admin console', s3:'Supplier portal', s4:'Callback configuration',
+    plansTitle:'अपने operating model के लिए सही edition चुनें।',
+    plansSub:'Selected edition को subtle motion border से highlight किया गया है, disruptive dark block से नहीं।',
+    p1t:'Studio edition', p1d:'Internal survey projects चलाने वाली छोटी research teams के लिए।', p1a:'Project management', p1b:'Basic wallet logs', p1c:'Survey station access', p1cta:'Consult studio',
+    p2t:'Supplier edition', p2d:'Suppliers और distributed fieldwork traffic manage करने वाली कंपनियों के लिए।', p2a:'Supplier operations', p2b:'Wallet and settlement', p2c:'Role and department logic', p2cta:'Consult supplier',
+    p3t:'Operations suite', p3d:'Backend, supplier portal और survey station को connected workflow में चलाने वाली teams के लिए।', p3a:'Three core portals', p3b:'Callback / API setup', p3c:'Advanced analytics and finance logs', p3cta:'Book suite demo',
+    p4t:'Private deployment', p4d:'Infrastructure, compliance या custom integration needs वाली enterprise teams के लिए।', p4a:'Independent deployment', p4b:'Custom domain and DNS', p4c:'Integration support', p4cta:'Contact sales',
+    storiesTitle:'India fieldwork और global research teams के लिए।',
+    storiesSub:'तीन customer-style scenarios बताते हैं कि fieldwork, supplier और global research teams कैसे बेहतर operate कर सकती हैं।',
+    story1Tag:'India fieldwork', story1Name:'Riya Sharma', story1Role:'Fieldwork Operations Lead · Mumbai', story1Quote:'“हमारी project team supplier distribution, quota status और settlement notes को एक जगह देख सकती है।”', story1A:'Faster launch', story1B:'Clear logs',
+    story2Tag:'India supplier network', story2Name:'Arjun Mehta', story2Role:'Supplier Network Manager · Bengaluru', story2Quote:'“Supplier portal हर partner को clear entry point देता है, और head office access rules और wallet activity control करता है।”', story2A:'Supplier visibility', story2B:'Role control',
+    story3Tag:'Global operations', story3Name:'Sofia Laurent', story3Role:'Research Operations Director · London', story3Quote:'“Callback configuration और financial logs global team को project history explain करने में मदद करते हैं।”', story3A:'Callback traceability', story3B:'Finance audit',
+    faqTitle:'Buyers अक्सर ये पूछते हैं।',
+    q1:'क्या supplier और client portals साथ support होते हैं?', a1:'हाँ। Product backend management, supplier operations और survey station workflow को connected operating layer की तरह present कर सकता है।',
+    q2:'क्या own domain और deployment environment use कर सकते हैं?', a2:'हाँ। Platform custom domain, DNS, cloud storage, CDN, SMS, email और private deployment configuration support करता है।',
+    q3:'क्या website India के लिए localize हो सकती है?', a3:'हाँ। Page English, Hindi और Chinese switching support करता है ताकि sales team India और overseas buyers को product story दिखा सके।',
+    q4:'Demo के बाद deployment कैसे शुरू होता है?', a4:'Product walkthrough के बाद portals, roles, callback rules, domain setup और deployment scope को implementation plan में बदला जा सकता है।',
+    finalTitle:'Every survey project deserves a cleaner operating layer.', finalSub:'Real product screens, clear workflows and a credible SaaS story for serious buyers.',
+    footer:'Survey operations SaaS for fieldwork teams, supplier networks and research operations.'
+  }
+};
+
+  const root = document.documentElement;
+  const langButtons = [...document.querySelectorAll('[data-lang]')];
+  function setLang(lang){
+    const dict = COPY[lang] || COPY.en;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{ const key = el.getAttribute('data-i18n'); if(dict[key]) el.textContent = dict[key]; });
+    root.lang = lang === 'zh' ? 'zh-CN' : (lang === 'hi' ? 'hi-IN' : 'en-IN');
+    localStorage.setItem('fensvyg-lang', lang);
+    langButtons.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+  }
+  langButtons.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+  setLang(localStorage.getItem('fensvyg-lang') || 'en');
+
+  document.querySelectorAll('.tabs button').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('mainShot').src = 'assets/' + btn.dataset.shot;
+  }));
+
+  document.querySelectorAll('.plan').forEach(card=>card.addEventListener('click',()=>{
+    document.querySelectorAll('.plan').forEach(c=>c.classList.remove('active'));
+    card.classList.add('active');
+  }));
+
+  const navItems = [...document.querySelectorAll('.nav-links a')];
+  const navMap = new Map(navItems.map(link => [link.getAttribute('href').replace('#',''), link]));
+  function setActiveNav(id){
+    navItems.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+  }
+  navItems.forEach(link => link.addEventListener('click', ()=> setActiveNav(link.getAttribute('href').replace('#',''))));
+  const observedSections = ['product','workflow','screens','plans','stories','faq']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  if ('IntersectionObserver' in window && observedSections.length){
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActiveNav(visible.target.id);
+    }, {rootMargin:'-25% 0px -60% 0px', threshold:[0.15,0.35,0.6]});
+    observedSections.forEach(section => observer.observe(section));
+  } else {
+    setActiveNav('product');
+  }
+
+  </script>
+</body>
+</html>

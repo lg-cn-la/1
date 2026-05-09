@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1920" name="viewport" />
+    <title>定价 - FenSvyG</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'eco-dark': '#0B3343', 'eco-teal': '#31477F',
+                        'eco-light-teal': '#4A619D', 'eco-gray': '#F3F4F6', 'eco-accent': '#66BB6A',
+                    },
+                    fontFamily: { manrope: ['Manrope', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Manrope", "Microsoft YaHei", sans-serif;
+            overflow-x: hidden;
+        }
+
+        .footer-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuC17yLU6He1OEYCQePq5CuGLIaY1014rM8r-fVlYnxVCDfoZzeIjreRE1r32_uKoHHz_RxsAAM5RUlH3VLZe7UZTaQohUUdKllv1gldvRZgLRtAUcsGGUfXxvGrxHu8xOtpTBDvk_2jydOoUueHmaxn08Tr9JSxmfBalrIRgJfJOO7XuCUC9m9I2bUKjv5HLK8iy5bzfpatjOt4idDaXsZwdA523eTl-cBj6l81L8Jt1dK3wqQ9lLwy-uYMElz2657_L-3UWkJfcOk);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        nav.scrolled {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card-hover {
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .pricing-card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 40px 60px -15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-smooth {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .btn-smooth:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-smooth:active {
+            transform: scale(0.95);
+        }
+
+        .compare-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            border: 1px solid #e5e7eb;
+            padding: 10px 14px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .compare-table th {
+            background: #f9fafb;
+            font-weight: 600;
+        }
+
+        .compare-table td:first-child,
+        .compare-table td:nth-child(2) {
+            text-align: left;
+        }
+
+        .compare-table tr.section-header td {
+            font-weight: 700;
+            background: #f3f4f6;
+            text-align: center;
+        }
+
+        .col-basic {
+            color: #d97706;
+            font-weight: 700;
+        }
+
+        .col-advanced {
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .col-enterprise {
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .col-private {
+            color: #8b5cf6;
+            font-weight: 700;
+        }
+
+        .check {
+            color: #3b82f6;
+        }
+
+        .cross {
+            color: #ef4444;
+        }
+
+        .compare-wrap {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .compare-wrap.open {
+            max-height: 5000px;
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #31477F;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 20px rgba(49, 71, 127, 0.35);
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+            z-index: 9998;
+            pointer-events: none;
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        #back-to-top:hover {
+            background: #4A619D;
+        }
+    </style>
+    <script>
+        const T = {
+            zh: {
+                nav_home: '首页', nav_mgmt: '调查管理后台', nav_supplier: '供应商后台', nav_station: '调查站系统', nav_pricing: '定价', nav_contact: '联系我们', nav_login: '登录/注册',
+                pricing_title: '产品定价', pricing_sub: '多种版本和时长可供选择，您可根据自身业务需求选择版本、时长\n可选月付、季付、年付等多种选择',
+                p1_name: '版本 A- 工作室版', p2_name: '版本 B- 分包商版', p3_name: '版本 C- 完整版', p4_name: '私有化部署版',
+                p4_price: '面议', feat_title: '功能点说明：', per_month: '/月',
+                f_tenant: '独立租户系统', f_station: '独立调查站系统', f_data: '多维数据中心', f_client: '多客商管理',
+                f_sup0: '下属供应商席位', f_sup5: '下属供应商席位5', f_sup30: '下属供应商席位30', f_collab: '与其他租户进行合作',
+                f_enhance: '功能性增强', f_support: '7*24小时客服电话或邮件支持', f_server: '独立服务器',
+                f_custom_portal: '定制化门户设计和域名', f_custom_enhance: '定制化功能增强', f_custom_seats: '定制化供应商席位',
+                btn_activate: '联系我们', btn_contact: '联系我们',
+                compare_open: '查看对比', compare_close: '收起详细对比',
+                tbl_title: '版本权益', tbl_type: '类型', tbl_content: '内容',
+                tbl_basic: '版本 A- 工作室版', tbl_advanced: '版本 B- 分包商版', tbl_enterprise: '版本 C- 完整版', tbl_private: '私有化部署版',
+                tbl_product: '产品服务', tbl_discount: '优惠信息', tbl_disc1: '季付：赠送7天时长', tbl_disc2: '年付：9折', tbl_disc3: '两年付：8折', tbl_private_note: '详情面议',
+                tbl_basic_feat: '基础功能', tbl_datacenter: '数据中心', tbl_dashboard: '数据看板', tbl_clients: '客户管理',
+                tbl_supplier: '供应商', tbl_supplier_list: '供应商列表', tbl_sub_member: '子会员列表', tbl_supplier_level: '供应商等级',
+                tbl_project: '项目', tbl_project_list: '项目列表', tbl_project_settle: '项目结算', tbl_project_sched: '项目调度',
+                tbl_record: '记录', tbl_quality: '质量记录', tbl_oplog: '操作日志', tbl_stats: '统计记录', tbl_recruit: '招聘记录',
+                tbl_finance: '财务', tbl_sup_fin: '供应商财务日志', tbl_staff_fin: '员工财务日志', tbl_sup_bill: '供应商账单', tbl_staff_bill: '员工账单', tbl_invoice: '客户发票',
+                tbl_org: '组织', tbl_staff_mgmt: '员工管理', tbl_dept: '部门管理', tbl_role: '角色管理', tbl_invite: '邀请链接',
+                tbl_aux: '辅助功能', tbl_ip: 'IP内测', tbl_uid_parse: 'UID解析', tbl_uid_dist: 'UID分发', tbl_match: '匹配解析',
+                tbl_ind_station: '独立调查站', tbl_sub_sup: '下属供应商', tbl_seats5: '5席位', tbl_seats30: '30席位', tbl_seats_unlimited: '无限席位',
+                tbl_vip: '增值服务', tbl_brand_site: '供应商独立品牌站点', tbl_custom_domain: '自定义门户设计和域名', tbl_func_enhance: '功能性增强',
+                tbl_247: '7*24小时客户电话和邮件支持', tbl_priv_server: '独立服务器', tbl_custom_func: '定制化功能',
+                footer_cta_title: '即刻开启调查新旅程', footer_cta_sub: '为您提供所需价值', footer_send: '发送',
+                footer_desc: '一站式全球化SaaS调查分发平台，助您高效精准对接优质客户及供应商，快速实现流量价值转化',
+                footer_addr: '中国安徽省六安市恒生阳光城A座1506',
+                fc1: '产品支持', fc1_1: '帮助文档', fc1_2: '引导手册', fc1_3: '意见反馈',
+                fc2: '公司信息', fc2_1: '关于我们', fc2_2: '发展历程', fc2_3: '联系我们',
+                fc3: '权益中心', fc3_1: '试用申请', fc3_2: '加入我们', fc3_3: '资讯获取',
+                footer_copy: '© 2024-2025 安徽省嘉禹企业服务有限公司版权所有', email_ph: '您的邮箱',
+            },
+            en: {
+                nav_home: 'Home', nav_mgmt: 'Survey Management', nav_supplier: 'Supplier Backend', nav_station: 'Survey Station', nav_pricing: 'Pricing', nav_contact: 'Contact Us', nav_login: 'Login / Register',
+                pricing_title: 'Product Pricing', pricing_sub: 'Multiple editions and durations available. Choose the edition and billing cycle that suits your business.\nMonthly, quarterly, and annual billing options available.',
+                p1_name: 'Edition A - Studio', p2_name: 'Edition B - Subcontractor', p3_name: 'Edition C - Full', p4_name: 'Private Deployment',
+                p4_price: 'Negotiable', feat_title: 'Feature Description:', per_month: '/mo',
+                f_tenant: 'Independent Tenant System', f_station: 'Independent Survey Station', f_data: 'Multi-Dimensional Data Center', f_client: 'Multi-Client Management',
+                f_sup0: 'Sub-Supplier Seats', f_sup5: '5 Sub-Supplier Seats', f_sup30: '30 Sub-Supplier Seats', f_collab: 'Cross-Tenant Collaboration',
+                f_enhance: 'Feature Enhancement', f_support: '7×24 Phone & Email Customer Support', f_server: 'Dedicated Server',
+                f_custom_portal: 'Custom Portal Design & Domain', f_custom_enhance: 'Custom Feature Enhancement', f_custom_seats: 'Custom Supplier Seats',
+                btn_activate: 'Contact Us', btn_contact: 'Contact Us',
+                compare_open: 'View Comparison', compare_close: 'Collapse Comparison',
+                tbl_title: 'Edition Benefits', tbl_type: 'Category', tbl_content: 'Feature',
+                tbl_basic: 'Studio Edition', tbl_advanced: 'Edition B - Subcontractor', tbl_enterprise: 'Edition C - Full', tbl_private: 'Private Deployment',
+                tbl_product: 'Product & Service', tbl_discount: 'Discount Info', tbl_disc1: 'Quarterly: +7 bonus days', tbl_disc2: 'Annual: 10% off', tbl_disc3: '2-Year: 20% off', tbl_private_note: 'Details negotiable',
+                tbl_basic_feat: 'Core Features', tbl_datacenter: 'Data Center', tbl_dashboard: 'Data Dashboard', tbl_clients: 'Client Management',
+                tbl_supplier: 'Supplier', tbl_supplier_list: 'Supplier List', tbl_sub_member: 'Sub-Member List', tbl_supplier_level: 'Supplier Level',
+                tbl_project: 'Project', tbl_project_list: 'Project List', tbl_project_settle: 'Project Settlement', tbl_project_sched: 'Project Scheduling',
+                tbl_record: 'Records', tbl_quality: 'Quality Records', tbl_oplog: 'Operation Logs', tbl_stats: 'Statistics', tbl_recruit: 'Recruitment Records',
+                tbl_finance: 'Finance', tbl_sup_fin: 'Supplier Finance Log', tbl_staff_fin: 'Staff Finance Log', tbl_sup_bill: 'Supplier Bills', tbl_staff_bill: 'Staff Bills', tbl_invoice: 'Client Invoices',
+                tbl_org: 'Organization', tbl_staff_mgmt: 'Staff Management', tbl_dept: 'Department Management', tbl_role: 'Role Management', tbl_invite: 'Invite Links',
+                tbl_aux: 'Auxiliary Features', tbl_ip: 'IP Internal Test', tbl_uid_parse: 'UID Parsing', tbl_uid_dist: 'UID Distribution', tbl_match: 'Match Parsing',
+                tbl_ind_station: 'Independent Survey Station', tbl_sub_sup: 'Sub-Suppliers', tbl_seats5: '5 Seats', tbl_seats30: '30 Seats', tbl_seats_unlimited: 'Unlimited Seats',
+                tbl_vip: 'Value-Added Services', tbl_brand_site: 'Supplier Independent Brand Site', tbl_custom_domain: 'Custom Portal Design & Domain', tbl_func_enhance: 'Feature Enhancement',
+                tbl_247: '7×24 Phone & Email Customer Support', tbl_priv_server: 'Dedicated Server', tbl_custom_func: 'Custom Features',
+                footer_cta_title: 'Start Your Survey Journey Now', footer_cta_sub: 'We provide the value you need', footer_send: 'Send',
+                footer_desc: 'One-stop global SaaS survey distribution platform.', footer_addr: "Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China",
+                fc1: 'Product Support', fc1_1: 'Help Documentation', fc1_2: 'User Guide', fc1_3: 'Feedback',
+                fc2: 'Company Info', fc2_1: 'About Us', fc2_2: 'Our History', fc2_3: 'Contact Us',
+                fc3: 'Benefits Center', fc3_1: 'Trial Application', fc3_2: 'Join Us', fc3_3: 'News & Updates',
+                footer_copy: '© 2024-2025 Anhui Jiayu Enterprise Service Co., Ltd. All rights reserved.', email_ph: 'Your email address',
+            },
+            hi: {
+                nav_home: 'होम', nav_mgmt: 'सर्वेक्षण प्रबंधन', nav_supplier: 'आपूर्तिकर्ता बैकएंड', nav_station: 'सर्वेक्षण स्टेशन', nav_pricing: 'मूल्य निर्धारण', nav_contact: 'संपर्क करें', nav_login: 'लॉगिन / रजिस्टर',
+                pricing_title: 'उत्पाद मूल्य निर्धारण', pricing_sub: 'कई संस्करण और अवधि उपलब्ध हैं।\nमासिक, त्रैमासिक, वार्षिक भुगतान विकल्प उपलब्ध हैं।',
+                p1_name: 'संस्करण A - स्टूडियो', p2_name: 'संस्करण B - उपठेकेदार', p3_name: 'संस्करण C - पूर्ण', p4_name: 'निजी तैनाती',
+                p4_price: 'परामर्श योग्य', feat_title: 'फीचर विवरण:', per_month: '/माह',
+                f_tenant: 'स्वतंत्र किरायेदार प्रणाली', f_station: 'स्वतंत्र सर्वेक्षण स्टेशन', f_data: 'बहु-आयामी डेटा केंद्र', f_client: 'बहु-ग्राहक प्रबंधन',
+                f_sup0: 'उप-आपूर्तिकर्ता सीटें', f_sup5: '5 उप-आपूर्तिकर्ता सीटें', f_sup30: '30 उप-आपूर्तिकर्ता सीटें', f_collab: 'अन्य किरायेदारों के साथ सहयोग',
+                f_enhance: 'फीचर संवर्धन', f_support: '7×24 घंटे फोन व ईमेल ग्राहक सहायता', f_server: 'समर्पित सर्वर',
+                f_custom_portal: 'अनुकूलित पोर्टल डिज़ाइन और डोमेन', f_custom_enhance: 'अनुकूलित फीचर संवर्धन', f_custom_seats: 'अनुकूलित आपूर्तिकर्ता सीटें',
+                btn_activate: 'संपर्क करें', btn_contact: 'संपर्क करें',
+                compare_open: 'तुलना देखें', compare_close: 'तुलना संक्षिप्त करें',
+                tbl_title: 'संस्करण लाभ', tbl_type: 'श्रेणी', tbl_content: 'फीचर',
+                tbl_basic: 'स्टूडियो संस्करण', tbl_advanced: 'संस्करण B - उपठेकेदार', tbl_enterprise: 'संस्करण C - पूर्ण', tbl_private: 'निजी तैनाती',
+                tbl_product: 'उत्पाद और सेवा', tbl_discount: 'छूट जानकारी', tbl_disc1: 'त्रैमासिक: 7 बोनस दिन', tbl_disc2: 'वार्षिक: 10% छूट', tbl_disc3: '2 वर्ष: 20% छूट', tbl_private_note: 'विवरण परामर्श योग्य',
+                tbl_basic_feat: 'मुख्य फीचर', tbl_datacenter: 'डेटा केंद्र', tbl_dashboard: 'डेटा डैशबोर्ड', tbl_clients: 'ग्राहक प्रबंधन',
+                tbl_supplier: 'आपूर्तिकर्ता', tbl_supplier_list: 'आपूर्तिकर्ता सूची', tbl_sub_member: 'उप-सदस्य सूची', tbl_supplier_level: 'आपूर्तिकर्ता स्तर',
+                tbl_project: 'परियोजना', tbl_project_list: 'परियोजना सूची', tbl_project_settle: 'परियोजना निपटान', tbl_project_sched: 'परियोजना शेड्यूलिंग',
+                tbl_record: 'रिकॉर्ड', tbl_quality: 'गुणवत्ता रिकॉर्ड', tbl_oplog: 'संचालन लॉग', tbl_stats: 'सांख्यिकी', tbl_recruit: 'भर्ती रिकॉर्ड',
+                tbl_finance: 'वित्त', tbl_sup_fin: 'आपूर्तिकर्ता वित्त लॉग', tbl_staff_fin: 'कर्मचारी वित्त लॉग', tbl_sup_bill: 'आपूर्तिकर्ता बिल', tbl_staff_bill: 'कर्मचारी बिल', tbl_invoice: 'ग्राहक चालान',
+                tbl_org: 'संगठन', tbl_staff_mgmt: 'कर्मचारी प्रबंधन', tbl_dept: 'विभाग प्रबंधन', tbl_role: 'भूमिका प्रबंधन', tbl_invite: 'आमंत्रण लिंक',
+                tbl_aux: 'सहायक फीचर', tbl_ip: 'IP आंतरिक परीक्षण', tbl_uid_parse: 'UID पार्सिंग', tbl_uid_dist: 'UID वितरण', tbl_match: 'मिलान पार्सिंग',
+                tbl_ind_station: 'स्वतंत्र सर्वेक्षण स्टेशन', tbl_sub_sup: 'उप-आपूर्तिकर्ता', tbl_seats5: '5 सीटें', tbl_seats30: '30 सीटें', tbl_seats_unlimited: 'असीमित सीटें',
+                tbl_vip: 'मूल्य-वर्धित सेवाएं', tbl_brand_site: 'आपूर्तिकर्ता स्वतंत्र ब्रांड साइट', tbl_custom_domain: 'अनुकूलित पोर्टल डिज़ाइन और डोमेन', tbl_func_enhance: 'फीचर संवर्धन',
+                tbl_247: '7×24 घंटे फोन व ईमेल ग्राहक सहायता', tbl_priv_server: 'समर्पित सर्वर', tbl_custom_func: 'अनुकूलित फीचर',
+                footer_cta_title: 'अभी अपनी सर्वेक्षण यात्रा शुरू करें', footer_cta_sub: 'हम आपको आवश्यक मूल्य प्रदान करते हैं', footer_send: 'भेजें',
+                footer_desc: 'वन-स्टॉप ग्लोबल SaaS प्लेटफ़ॉर्म।', footer_addr: "कक्ष 1506, ब्लॉक A, लू'आन, अनहुई, चीन",
+                fc1: 'उत्पाद सहायता', fc1_1: 'सहायता दस्तावेज़', fc1_2: 'उपयोगकर्ता गाइड', fc1_3: 'सुझाव',
+                fc2: 'कंपनी जानकारी', fc2_1: 'हमारे बारे में', fc2_2: 'विकास यात्रा', fc2_3: 'संपर्क करें',
+                fc3: 'लाभ केंद्र', fc3_1: 'परीक्षण आवेदन', fc3_2: 'हमसे जुड़ें', fc3_3: 'समाचार',
+                footer_copy: '© 2024-2025 Anhui Jiayu Enterprise Service Co., Ltd. सर्वाधिकार सुरक्षित।', email_ph: 'आपका ईमेल पता',
+            }
+        };
+
+        let currentLang = 'zh';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+            });
+            document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+                const key = el.getAttribute('data-i18n-ph');
+                if (T[lang][key] !== undefined) el.placeholder = T[lang][key];
+            });
+            const btn = document.getElementById('compare-btn');
+            const wrap = document.getElementById('compare-wrap');
+            if (btn && wrap) {
+                const isOpen = wrap.classList.contains('open');
+                btn.innerHTML = isOpen ? `<span>${T[lang].compare_close}</span>` : T[lang].compare_open;
+            }
+            document.getElementById('lang-menu').classList.add('hidden');
+            ['lang-zh', 'lang-en', 'lang-hi'].forEach(id => document.getElementById(id).classList.remove('text-eco-teal', 'font-bold'));
+            const activeId = lang === 'zh' ? 'lang-zh' : lang === 'en' ? 'lang-en' : 'lang-hi';
+            document.getElementById(activeId).classList.add('text-eco-teal', 'font-bold');
+            localStorage.setItem('lang', lang);
+            const docs = {
+                zh: {
+                    help: { href: 'docs/帮助文档1.0.docx', name: '帮助文档1.0.docx' },
+                    guide: { href: 'docs/引导手册1.0.docx', name: '引导手册1.0.docx' }
+                },
+                en: {
+                    help: { href: 'docs/Help documentation English language1.0.docx', name: 'Help documentation English language1.0.docx' },
+                    guide: { href: 'docs/Guidebook English language1.0.docx', name: 'Guidebook English language1.0.docx' }
+                },
+                hi: {
+                    help: { href: 'docs/सहायता दस्तावेज़ 1.0.docx', name: 'सहायता दस्तावेज़ 1.0.docx' },
+                    guide: { href: 'docs/मार्गदर्शन पुस्तिका 1.0.docx', name: 'मार्गदर्शन पुस्तिका 1.0.docx' }
+                }
+            };
+            const d = docs[lang];
+            const helpLink = document.getElementById('doc-help');
+            const guideLink = document.getElementById('doc-guide');
+            if (helpLink) { helpLink.href = d.help.href; helpLink.download = d.help.name; }
+            if (guideLink) { guideLink.href = d.guide.href; guideLink.download = d.guide.name; }
+        }
+
+        function toggleLangMenu() { document.getElementById('lang-menu').classList.toggle('hidden'); }
+
+        function toggleCompareTable() {
+            const wrap = document.getElementById('compare-wrap');
+            const btn = document.getElementById('compare-btn');
+            if (wrap.classList.contains('open')) {
+                wrap.classList.remove('open');
+                btn.innerHTML = T[currentLang].compare_open;
+            } else {
+                wrap.classList.add('open');
+                btn.innerHTML = `<span>${T[currentLang].compare_close}</span>`;
+                setTimeout(() => wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+            }
+        }
+
+        window.addEventListener('scroll', function () {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+            const btn = document.getElementById('back-to-top');
+            if (window.scrollY > 300) btn.classList.add('visible'); else btn.classList.remove('visible');
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('lang');
+            if (savedLang) setLang(savedLang);
+            document.addEventListener('click', e => {
+                const sw = document.getElementById('lang-switcher');
+                if (sw && !sw.contains(e.target)) document.getElementById('lang-menu').classList.add('hidden');
+            });
+            document.querySelectorAll('.reveal').forEach(el => {
+                new IntersectionObserver(entries => {
+                    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+                }, { threshold: 0.1 }).observe(el);
+            });
+        });
+    </script>
+</head>
+
+<body class="bg-white text-gray-900">
+
+    <nav
+        class="fixed top-0 w-full z-50 bg-white border-b border-gray-100 px-24 py-6 flex items-center justify-between transition-all duration-700 ease-in-out">
+        <div class="flex items-center gap-2">
+            <img src="https://media.base44.com/images/public/69dcab8d72704cd3dac9c94d/c6a353647_logo.png"
+                class="w-8 h-8 object-contain" alt="logo">
+            <span class="text-xl font-bold tracking-tight text-eco-dark">FenSvyG</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-12 text-sm font-medium text-gray-600">
+            <a class="hover:text-eco-teal transition-colors" href="首页.html" data-i18n="nav_home">首页</a>
+            <a class="hover:text-eco-teal transition-colors" href="调查管理后台.html" data-i18n="nav_mgmt">调查管理后台</a>
+            <a class="hover:text-eco-teal transition-colors" href="供应商后台.html" data-i18n="nav_supplier">供应商后台</a>
+            <a class="hover:text-eco-teal transition-colors" href="调查站系统.html" data-i18n="nav_station">调查站系统</a>
+            <a class="text-eco-teal font-bold" href="定价.html" data-i18n="nav_pricing">定价</a>
+            <a class="hover:text-eco-teal transition-colors" href="联系我们.html" data-i18n="nav_contact">联系我们</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <button
+                class="px-6 py-2 border border-gray-300 rounded-full text-sm font-medium hover:bg-eco-teal hover:text-white hover:border-eco-teal transition-all duration-300 btn-smooth"
+                data-i18n="nav_login">登录/注册</button>
+            <div class="relative" id="lang-switcher">
+                <button onclick="toggleLangMenu()"
+                    class="px-3 h-10 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-100 transition-all gap-1.5">
+                    <span class="font-bold text-gray-800 text-sm">中</span>
+                    <span class="text-gray-300 text-xs font-light">|</span>
+                    <span class="font-bold text-gray-800 text-sm">EN</span>
+                    <span class="text-gray-300 text-xs font-light">|</span>
+                    <span class="font-bold text-gray-800 text-sm">हि</span>
+                </button>
+                <div id="lang-menu"
+                    class="hidden absolute right-0 top-12 bg-white border border-gray-200 rounded-xl shadow-lg w-36 z-50 py-1">
+                    <div id="lang-en" onclick="setLang('en')"
+                        class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">English</div>
+                    <div id="lang-zh" onclick="setLang('zh')"
+                        class="px-4 py-2 text-sm text-eco-teal font-bold cursor-pointer">中文(简体)</div>
+                    <div id="lang-hi" onclick="setLang('hi')"
+                        class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">हिन्दी</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32">
+        <section class="py-24 px-24 bg-white reveal">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-eco-dark mb-6" data-i18n="pricing_title">产品定价</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto leading-relaxed" data-i18n="pricing_sub">
+                    多种版本和时长可供选择，您可根据自身业务需求选择版本、时长<br />可选月付、季付、年付等多种选择</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 版本 A -->
+                <div
+                    class="flex flex-col rounded-[32px] overflow-hidden border border-gray-100 shadow-sm pricing-card-hover group">
+                    <div
+                        class="bg-[#FBE98E] p-10 h-56 flex flex-col justify-between group-hover:bg-[#f6df6e] transition-colors">
+                        <h3 class="text-2xl font-bold text-gray-800" data-i18n="p1_name">版本 A- 工作室版</h3>
+                        <div><span class="text-4xl font-bold text-gray-800">¥ ***</span><span class="text-gray-600 ml-1"
+                                data-i18n="per_month">/月</span></div>
+                    </div>
+                    <div class="p-10 bg-white flex-1 flex flex-col">
+                        <p class="font-bold text-gray-800 mb-6" data-i18n="feat_title">功能点说明：</p>
+                        <ul class="space-y-4 flex-1">
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_tenant">独立租户系统</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_station">独立调查站系统</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_data">多维数据中心</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_client">多客商管理</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-400"><span
+                                    class="text-red-400 mt-0.5">✕</span><span data-i18n="f_sup0">下属供应商席位</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-400"><span
+                                    class="text-red-400 mt-0.5">✕</span><span data-i18n="f_collab">与其他租户进行合作</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-400"><span
+                                    class="text-red-400 mt-0.5">✕</span><span data-i18n="f_enhance">功能性增强</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span
+                                    data-i18n="f_support">7*24小时客服电话或邮件支持</span></li>
+                        </ul>
+                        <button
+                            class="w-full mt-8 px-10 py-3 rounded-full border-2 border-eco-teal text-eco-dark font-semibold hover:bg-eco-teal hover:text-white transition-all duration-300 btn-smooth"
+                            onclick="window.location.href='联系我们.html#online-message'"
+                            data-i18n="btn_activate">联系我们</button>
+                    </div>
+                </div>
+                <!-- 版本 B -->
+                <div
+                    class="flex flex-col rounded-[32px] overflow-hidden border border-gray-100 shadow-sm pricing-card-hover group">
+                    <div
+                        class="bg-[#E3E9FF] p-10 h-56 flex flex-col justify-between group-hover:bg-[#d1daff] transition-colors">
+                        <h3 class="text-2xl font-bold text-gray-800" data-i18n="p2_name">版本 B- 分包商版</h3>
+                        <div><span class="text-4xl font-bold text-gray-800">¥ ***</span><span class="text-gray-600 ml-1"
+                                data-i18n="per_month">/月</span></div>
+                    </div>
+                    <div class="p-10 bg-white flex-1 flex flex-col">
+                        <p class="font-bold text-gray-800 mb-6" data-i18n="feat_title">功能点说明：</p>
+                        <ul class="space-y-4 flex-1">
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_tenant">独立租户系统</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_station">独立调查站系统</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_data">多维数据中心</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_client">多客商管理</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_sup5">下属供应商席位5</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-400"><span
+                                    class="text-red-400 mt-0.5">✕</span><span data-i18n="f_collab">与其他租户进行合作</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_enhance">功能性增强</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span
+                                    data-i18n="f_support">7*24小时客服电话或邮件支持</span></li>
+                        </ul>
+                        <button
+                            class="w-full mt-8 px-10 py-3 rounded-full border-2 border-eco-teal text-eco-dark font-semibold hover:bg-eco-teal hover:text-white transition-all duration-300 btn-smooth"
+                            onclick="window.location.href='联系我们.html#online-message'"
+                            data-i18n="btn_activate">联系我们</button>
+                    </div>
+                </div>
+                <!-- 版本 C -->
+                <div
+                    class="flex flex-col rounded-[32px] overflow-hidden border border-gray-100 shadow-sm pricing-card-hover group">
+                    <div
+                        class="bg-[#D1DDD1] p-10 h-56 flex flex-col justify-between group-hover:bg-[#c2cfc2] transition-colors">
+                        <h3 class="text-2xl font-bold text-gray-800" data-i18n="p3_name">版本 C- 完整版</h3>
+                        <div><span class="text-4xl font-bold text-gray-800">¥ ***</span><span class="text-gray-600 ml-1"
+                                data-i18n="per_month">/月</span></div>
+                    </div>
+                    <div class="p-10 bg-white flex-1 flex flex-col">
+                        <p class="font-bold text-gray-800 mb-6" data-i18n="feat_title">功能点说明：</p>
+                        <ul class="space-y-4 flex-1">
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_tenant">独立租户系统</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_station">独立调查站系统</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_data">多维数据中心</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_client">多客商管理</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_sup30">下属供应商席位30</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_collab">与其他租户进行合作</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_enhance">功能性增强</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span
+                                    data-i18n="f_support">7*24小时客服电话或邮件支持</span></li>
+                        </ul>
+                        <button
+                            class="w-full mt-8 px-10 py-3 rounded-full border-2 border-eco-teal text-eco-dark font-semibold hover:bg-eco-teal hover:text-white transition-all duration-300 btn-smooth"
+                            onclick="window.location.href='联系我们.html#online-message'"
+                            data-i18n="btn_activate">联系我们</button>
+                    </div>
+                </div>
+                <!-- 私有化部署版 -->
+                <div
+                    class="flex flex-col rounded-[32px] overflow-hidden border border-gray-100 shadow-sm pricing-card-hover group">
+                    <div
+                        class="bg-[#938AB2] p-10 h-56 flex flex-col justify-between group-hover:bg-[#857ca6] transition-colors">
+                        <h3 class="text-2xl font-bold text-gray-800" data-i18n="p4_name">私有化部署版</h3>
+                        <div><span class="text-4xl font-bold text-gray-800" data-i18n="p4_price">面议</span></div>
+                    </div>
+                    <div class="p-10 bg-white flex-1 flex flex-col">
+                        <p class="font-bold text-gray-800 mb-6" data-i18n="feat_title">功能点说明：</p>
+                        <ul class="space-y-4 flex-1">
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_tenant">独立租户系统</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_station">独立调查站系统</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_server">独立服务器</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span data-i18n="f_client">多客商管理</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span
+                                    data-i18n="f_custom_portal">定制化门户设计和域名</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span
+                                    data-i18n="f_custom_enhance">定制化功能增强</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span
+                                    data-i18n="f_custom_seats">定制化供应商席位</span></li>
+                            <li class="flex items-start gap-2 text-sm text-gray-600"><span
+                                    class="text-blue-500 mt-0.5">✓</span><span
+                                    data-i18n="f_support">7*24小时客服电话或邮件支持</span></li>
+                        </ul>
+                        <button
+                            class="w-full mt-8 px-10 py-3 rounded-full border-2 border-eco-teal text-eco-dark font-semibold hover:bg-eco-teal hover:text-white transition-all duration-300 btn-smooth"
+                            onclick="window.location.href='联系我们.html#online-message'"
+                            data-i18n="btn_contact">联系我们</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center mt-16">
+                <button id="compare-btn" onclick="toggleCompareTable()"
+                    class="px-12 py-4 bg-[#31477F] text-white rounded-full font-bold shadow-lg hover:bg-[#4A619D] transition-all duration-300 transform hover:-translate-y-1 text-lg btn-smooth">
+                    <span data-i18n="compare_open">查看对比</span>
+                </button>
+            </div>
+
+            <div id="compare-wrap" class="compare-wrap mt-10">
+                <div class="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th colspan="2" class="text-center text-base font-bold text-gray-800 py-4"
+                                    data-i18n="tbl_title">版本权益</th>
+                                <th class="col-basic py-4" data-i18n="tbl_basic">版本 A- 工作室版</th>
+                                <th class="col-advanced py-4" data-i18n="tbl_advanced">版本 B- 分包商版</th>
+                                <th class="col-enterprise py-4" data-i18n="tbl_enterprise">版本 C- 完整版</th>
+                                <th class="col-private py-4" data-i18n="tbl_private">私有化部署版</th>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="font-semibold text-gray-700" data-i18n="tbl_type">类型</td>
+                                <td class="font-semibold text-gray-700" data-i18n="tbl_content">内容</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-gray-600" data-i18n="tbl_product">产品服务</td>
+                                <td class="text-gray-600" data-i18n="tbl_discount">优惠信息</td>
+                                <td></td>
+                                <td class="text-center text-xs text-red-500 leading-relaxed">
+                                    <span data-i18n="tbl_disc1">季付：赠送7天时长</span><br />
+                                    <span data-i18n="tbl_disc2">年付：9折</span><br />
+                                    <span data-i18n="tbl_disc3">两年付：8折</span>
+                                </td>
+                                <td></td>
+                                <td class="text-blue-600 text-xs" data-i18n="tbl_private_note">详情面议</td>
+                            </tr>
+                            <tr class="section-header">
+                                <td rowspan="21" class="text-blue-600 font-bold text-sm" data-i18n="tbl_basic_feat">基础功能
+                                </td>
+                                <td class="font-bold" data-i18n="tbl_datacenter">数据中心</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_dashboard">数据看板</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_clients">客户管理</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" data-i18n="tbl_supplier">供应商</td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_supplier_list">供应商列表</td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_sub_member">子会员列表</td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_supplier_level">供应商等级</td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" data-i18n="tbl_project">项目</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_project_list">项目列表</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_project_settle">项目结算</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_project_sched">项目调度</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" data-i18n="tbl_record">记录</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_quality">质量记录</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_oplog">操作日志</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_stats">统计记录</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_recruit">招聘记录</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" data-i18n="tbl_finance">财务</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_sup_fin">供应商财务日志</td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_staff_fin">员工财务日志</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_sup_bill">供应商账单</td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_staff_bill">员工账单</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_invoice">客户发票</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold" data-i18n="tbl_org">组织</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td data-i18n="tbl_staff_mgmt">员工管理</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td data-i18n="tbl_dept">部门管理</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td data-i18n="tbl_role">角色管理</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td data-i18n="tbl_invite">邀请链接</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4" class="text-blue-600 font-bold text-sm" data-i18n="tbl_aux">辅助功能</td>
+                                <td data-i18n="tbl_ip">IP内测</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_uid_parse">UID解析</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_uid_dist">UID分发</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_match">匹配解析</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" class="text-blue-600 font-bold text-sm" data-i18n="tbl_ind_station">
+                                    独立调查站</td>
+                                <td data-i18n="tbl_ind_station">独立调查站</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_sub_sup">下属供应商</td>
+                                <td><span class="cross">✕</span></td>
+                                <td class="font-semibold text-blue-600" data-i18n="tbl_seats5">5席位</td>
+                                <td class="font-semibold text-green-600" data-i18n="tbl_seats30">30席位</td>
+                                <td class="font-semibold text-purple-600" data-i18n="tbl_seats_unlimited">无限席位</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="6" class="text-blue-600 font-bold text-sm" data-i18n="tbl_vip">增值服务</td>
+                                <td data-i18n="tbl_brand_site">供应商独立品牌站点</td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_custom_domain">自定义门户设计和域名</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_func_enhance">功能性增强</td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_247">7*24小时客户电话和邮件支持</td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_priv_server">独立服务器</td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td data-i18n="tbl_custom_func">定制化功能</td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="cross">✕</span></td>
+                                <td><span class="check">✓</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-bg pt-32 pb-16 px-24 reveal">
+        <div class="text-center mb-32">
+            <h2 class="text-5xl font-bold text-white mb-6" data-i18n="footer_cta_title">即刻开启调查新旅程</h2>
+            <p class="text-gray-300 mb-12" data-i18n="footer_cta_sub">为您提供所需价值</p>
+            <div class="flex max-w-xl mx-auto gap-4">
+                <input
+                    class="flex-1 bg-white/10 border border-white/20 rounded-full px-8 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-eco-teal transition-all"
+                    placeholder="您的邮箱" data-i18n-ph="email_ph" type="email" />
+                <button
+                    class="bg-eco-teal text-white px-10 py-4 rounded-full font-bold hover:bg-eco-light-teal transition-all duration-300 btn-smooth"
+                    data-i18n="footer_send">发送</button>
+            </div>
+        </div>
+        <div class="bg-white rounded-3xl px-16 pt-14 pb-0 reveal">
+            <div class="flex justify-between items-start pb-12 border-b border-gray-100">
+                <div class="w-1/3 pr-12">
+                    <div class="flex items-center gap-3 mb-5">
+                        <img src="https://media.base44.com/images/public/69dcab8d72704cd3dac9c94d/c6a353647_logo.png"
+                            class="w-9 h-9 object-contain" alt="logo">
+                        <span class="text-xl font-bold text-eco-dark">FenSvyG</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed" data-i18n="footer_desc">
+                        一站式全球化SaaS调查分发平台，助您高效精准对接优质客户及供应商，快速实现流量价值转化</p>
+                </div>
+                <div class="grid grid-cols-3 gap-24">
+                    <div>
+                        <h4 class="font-bold text-eco-dark mb-6" data-i18n="fc1">产品支持</h4>
+                        <ul class="space-y-4 text-gray-500 text-sm">
+                            <li><a id="doc-help" class="hover:text-eco-teal transition-colors" href="docs/帮助文档1.0.docx"
+                                    download="帮助文档1.0.docx" data-i18n="footer_c1_1">帮助文档</a></li>
+                            <li><a id="doc-guide" class="hover:text-eco-teal transition-colors" href="docs/引导手册1.0.docx"
+                                    download="引导手册1.0.docx" data-i18n="footer_c1_2">引导手册</a></li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#"
+                                    data-i18n="footer_c1_3">意见反馈</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-eco-dark mb-6" data-i18n="fc2">公司信息</h4>
+                        <ul class="space-y-4 text-gray-500 text-sm">
+                            <li><a class="hover:text-eco-teal transition-colors" href="#" data-i18n="fc2_1">关于我们</a>
+                            </li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#" data-i18n="fc2_2">发展历程</a>
+                            </li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="联系我们.html"
+                                    data-i18n="fc2_3">联系我们</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-eco-dark mb-6" data-i18n="fc3">权益中心</h4>
+                        <ul class="space-y-4 text-gray-500 text-sm">
+                            <li><a class="hover:text-eco-teal transition-colors" href="#" data-i18n="fc3_1">试用申请</a>
+                            </li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#" data-i18n="fc3_2">加入我们</a>
+                            </li>
+                            <li><a class="hover:text-eco-teal transition-colors" href="#" data-i18n="fc3_3">资讯获取</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center py-8 border-b border-gray-100">
+                <div class="flex items-center gap-3 text-gray-600 text-sm"><span
+                        class="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center text-eco-teal">📞</span><span>400-660-0224</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-600 text-sm"><span
+                        class="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center text-eco-teal">✉️</span><span>jiayu@surveysaas.com</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-600 text-sm"><span
+                        class="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center text-red-500">📍</span><span
+                        data-i18n="footer_addr">中国安徽省六安市恒生阳光城A座1506</span></div>
+            </div>
+            <div class="py-6 text-center text-gray-400 text-xs">
+                <span data-i18n="footer_copy">© 2024-2025 安徽省嘉禹企业服务有限公司版权所有</span>
+                <a href="https://beian.miit.gov.cn/" target="_blank"
+                    class="hover:text-eco-teal transition-colors">皖ICP备2024045814号-2</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <style>
+        @keyframes eunoFadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes eunoFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .euno-anim {
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        .euno-anim.euno-in {
+            animation: eunoFadeInUp .9s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+        .euno-anim-fade {
+            opacity: 0;
+        }
+
+        .euno-anim-fade.euno-in {
+            animation: eunoFadeIn 1.2s cubic-bezier(.22, 1, .36, 1) both;
+        }
+    </style>
+    <script>
+        (function () {
+            function init() {
+                const upSel = 'h1,h2,h3,h4,blockquote';
+                const fadeSel = 'p,li,figure,img';
+                document.querySelectorAll(upSel).forEach(el => {
+                    if (el.closest('script,style,nav,header,#lightbox')) return;
+                    if (!el.textContent.trim() && el.tagName !== 'IMG') return;
+                    el.classList.add('euno-anim');
+                });
+                document.querySelectorAll(fadeSel).forEach(el => {
+                    if (el.closest('script,style,nav,header,button,#lightbox')) return;
+                    if (el.classList.contains('euno-anim')) return;
+                    el.classList.add('euno-anim-fade');
+                });
+                const io = new IntersectionObserver((es) => {
+                    es.forEach((e, i) => {
+                        if (e.isIntersecting) {
+                            setTimeout(() => e.target.classList.add('euno-in'), (i % 6) * 80);
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+                document.querySelectorAll('.euno-anim,.euno-anim-fade').forEach(el => io.observe(el));
+            }
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+        })();
+    </script>
+</body>
+
+</html>

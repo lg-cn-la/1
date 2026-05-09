@@ -1,0 +1,136 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 网页评估入口</title>
+  <style>
+    :root { --bg:#0b1020; --panel:#121a2b; --card:#172033; --line:#263550; --text:#eef4ff; --muted:#8fa2ba; --blue:#4f9cff; --green:#26d0aa; --gold:#ffd166; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Microsoft YaHei", "PingFang SC", Arial, sans-serif; line-height:1.7; }
+    header { padding:46px 5vw 34px; background:linear-gradient(135deg,#0b1020,#10264a); border-bottom:1px solid var(--line); }
+    main { width:min(1280px,94vw); margin:24px auto 54px; }
+    h1 { margin:0 0 10px; font-size:34px; }
+    h2 { margin:0 0 12px; font-size:23px; }
+    p { color:var(--muted); margin:8px 0; }
+    section { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:22px; margin:18px 0; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+    .demo-card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:16px; }
+    .demo-top span { display:block; color:var(--green); font-size:12px; font-weight:800; letter-spacing:.06em; }
+    .demo-top b { display:block; font-size:18px; margin:2px 0 8px; }
+    ul { padding-left:20px; color:#cdd9ea; }
+    li { margin:5px 0; }
+    .open-btn { display:inline-block; margin-top:10px; padding:8px 12px; border-radius:6px; background:var(--blue); color:white; text-decoration:none; font-weight:800; }
+    .notice { border-color:rgba(255,209,102,.45); background:rgba(255,209,102,.08); color:#ffe1a0; }
+    .notice p { color:#ffe1a0; }
+    code { background:#0d1424; border:1px solid var(--line); border-radius:5px; padding:2px 5px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI 网页评估入口</h1>
+    <p>这个包是从原始 <code>网页.zip</code> 精简出来的：保留实际网页 HTML 和网页引用到的必要资源，移除了产品文档、原始嵌套 zip、未引用的大量资料文件。</p>
+    <p>使用方法：先看下面的评估口径和 Claude 参考结论，再逐个点击“打开实际 DEMO”查看真实页面，最后基于真实页面重新评分。</p>
+  </header>
+  <main>
+    <section class="notice">
+      <h2>重要说明</h2>
+      <p>不要只依据摘要下最终结论。网页设计最终要看真实 HTML：首屏、滚动节奏、模块连接、动效、导航状态和移动端表现都需要实际打开确认。</p>
+    </section>
+    <section>
+      <h2>统一评估维度</h2>
+      <ul>
+        <li>品牌识别度：Logo、品牌名、视觉符号是否容易记住。</li>
+        <li>视觉完成度：排版、色彩、间距、图片质量、模块一致性。</li>
+        <li>信息层级：首屏主张、功能解释、产品证据和 CTA 是否顺畅。</li>
+        <li>SaaS 产品可信度：是否传达专业、稳定、可交付、适合 B2B 决策。</li>
+        <li>首屏吸引力：第一眼是否有记忆点，并能说明产品做什么。</li>
+        <li>响应式/可读性风险：复杂图形、长文本、导航和卡片在小屏是否稳定。</li>
+        <li>定位匹配度：是否匹配 FenSvyG / SurveySaaS 的调查分发、项目运营、供应商协同定位。</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Claude 参考结论</h2>
+      <p>这是参考，不是最终结论。最终评估应以实际打开页面后的观察为准。</p>
+      <ol><li>1. 左右布局 / 不规则：视觉完成度最高，首屏冲击力强，最适合作为主迭代方向。</li>
+<li>2. 测试代码4(2) 多页完整站：信息架构最完整，适合作为内容骨架。</li>
+<li>3. 左右布局 / 同心圆：更稳定可信，适合作为 A/B 测试备选。</li>
+<li>4. 科技 / S-LOGO-上：响应式与标准 SaaS 感更稳。</li>
+<li>5. 科技 / S-logo-下：动效方向有潜力，但与上版差异不足。</li>
+<li>6. 极简 / F-LOGO：干净国际化，但记忆点弱。</li>
+<li>7. 极简 / 原LOGO：适合作为基准参考，不建议作为主方向。</li></ol>
+    </section>
+    <section>
+      <h2>打开实际 DEMO</h2>
+      <div class="grid">
+      <article class="demo-card">
+        <div class="demo-top">
+          <span>DEMO 1</span>
+          <b>完整多页站 / 测试代码4(2)</b>
+        </div>
+        <p>页面数：6 · 已保留网页引用资源：6</p>
+        <ul><li>调查管理后台 - FenSvyG / H1: 调查管理后台</li>
+<li>调查站系统 - FenSvyG / H1: 调查站系统</li>
+<li>定价 - FenSvyG</li>
+<li>供应商系统 - FenSvyG / H1: 供应商系统</li>
+<li>联系我们 - FenSvyG / H1: 快速开启沟通新旅程</li>
+<li>Editorial Ecology - 全球化调查分发SaaS平台 / H1: 全球化调查分发SaaS平台</li></ul>
+        <a class="open-btn" href="demos/01_完整多页站_测试代码4(2)/测试代码4/首页.html" target="_blank">打开实际 DEMO</a>
+      </article>      <article class="demo-card">
+        <div class="demo-top">
+          <span>DEMO 2</span>
+          <b>极简 / F-LOGO</b>
+        </div>
+        <p>页面数：1 · 已保留网页引用资源：5</p>
+        <ul><li>Fensvyg — Survey Operations SaaS / H1: Run every survey project from one clean operating layer.</li></ul>
+        <a class="open-btn" href="demos/02_极简_F-LOGO/fensvyg_fixed_v4/index.html" target="_blank">打开实际 DEMO</a>
+      </article>      <article class="demo-card">
+        <div class="demo-top">
+          <span>DEMO 3</span>
+          <b>极简 / 原LOGO</b>
+        </div>
+        <p>页面数：1 · 已保留网页引用资源：4</p>
+        <ul><li>SurveySaaS — Survey fieldwork operations platform / H1: Run survey fieldwork from one beautifully controlled operating layer.</li></ul>
+        <a class="open-btn" href="demos/03_极简_原LOGO/surveysaas_v29_logo_restored/surveysaas_v30_upgraded.html" target="_blank">打开实际 DEMO</a>
+      </article>      <article class="demo-card">
+        <div class="demo-top">
+          <span>DEMO 4</span>
+          <b>科技 / S-LOGO-上</b>
+        </div>
+        <p>页面数：1 · 已保留网页引用资源：4</p>
+        <ul><li>SurveySaaS — Survey fieldwork operations platform / H1: Run survey fieldwork from one beautifully controlled operating layer.</li></ul>
+        <a class="open-btn" href="demos/04_科技_S-LOGO-上/surveysaas_v50_clean_accessible_responsive/surveysaas_v50_clean_accessible_responsive/surveysaas_v30_upgraded.html" target="_blank">打开实际 DEMO</a>
+      </article>      <article class="demo-card">
+        <div class="demo-top">
+          <span>DEMO 5</span>
+          <b>科技 / S-logo-下</b>
+        </div>
+        <p>页面数：1 · 已保留网页引用资源：4</p>
+        <ul><li>SurveySaaS — Survey fieldwork operations platform / H1: Run survey fieldwork from one beautifully controlled operating layer.</li></ul>
+        <a class="open-btn" href="demos/05_科技_S-logo-下/surveysaas_v38_refined_flow_and_flyin (2)/surveysaas_v38_refined_flow_and_flyin/surveysaas_v38_refined_flow_and_flyin/surveysaas_v30_upgraded.html" target="_blank">打开实际 DEMO</a>
+      </article>      <article class="demo-card">
+        <div class="demo-top">
+          <span>DEMO 6</span>
+          <b>左右布局 / 不规则</b>
+        </div>
+        <p>页面数：1 · 已保留网页引用资源：8</p>
+        <ul><li>SurveySaaS — Survey fieldwork operations platform / H1: From Field to Insight, Seamless and Reliable.</li></ul>
+        <a class="open-btn" href="demos/06_左右布局_不规则/surveysaas_v66_doubled_outward_locked_orbit/index.html" target="_blank">打开实际 DEMO</a>
+      </article>      <article class="demo-card">
+        <div class="demo-top">
+          <span>DEMO 7</span>
+          <b>左右布局 / 同心圆</b>
+        </div>
+        <p>页面数：1 · 已保留网页引用资源：8</p>
+        <ul><li>SurveySaaS — Survey fieldwork operations platform / H1: From Field to Insight, Seamless and Reliable.</li></ul>
+        <a class="open-btn" href="demos/07_左右布局_同心圆/surveysaas_v63_concentric_orbit_stories_rectified/index.html" target="_blank">打开实际 DEMO</a>
+      </article>
+      </div>
+    </section>
+    <section>
+      <h2>建议给 AI 的最终评估提示词</h2>
+      <p>请逐个打开本评估包里的 7 个 DEMO 页面，不要只看入口页摘要。打开每个页面后，观察首屏、滚动模块、导航、图片质量、动效和移动端适配，然后按统一评估维度输出综合排名、每个方案的优点/风险/适用场景，以及如果只能选一个作为后续迭代基础的推荐。</p>
+    </section>
+  </main>
+</body>
+</html>
