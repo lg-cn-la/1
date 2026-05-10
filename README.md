@@ -6,7 +6,7 @@
 
 1. [PROJECT_HANDOFF.md](PROJECT_HANDOFF.md)：项目背景、目标客户、设计演进、当前判断和下一步建议。
 2. [补充资料归档/README.md](补充资料归档/README.md)：不在原始 Git 仓库里的桌面补充资料归档说明。
-3. [补充资料归档/operations-console/README.md](补充资料归档/operations-console/README.md)：当前 operations console 方向的 3 个版本说明。
+3. [补充资料归档/operations-console/README.md](补充资料归档/operations-console/README.md)：当前 operations console 方向的版本说明和 v4.7 方向资料。
 
 ## 当前主线
 
@@ -14,11 +14,15 @@
 
 > 国际 SaaS 正版感 + 运营密度 + 产品可信。
 
-当前主动迭代版本是：
+当前最新方向资料是：
 
-[补充资料归档/operations-console/11_v4_operations_console_product_loop.html](补充资料归档/operations-console/11_v4_operations_console_product_loop.html)
+[补充资料归档/operations-console/DESIGN_STRATEGY_v4.7.md](补充资料归档/operations-console/DESIGN_STRATEGY_v4.7.md)
 
-它是在 v3.5 hybrid 基础上做的 v4 产品运行短循环版本，目标是在“海外 B2B SaaS 可信感”“运营控制台记忆点”和“系统正在运行的视频感”之间取得平衡。
+配套方向 demo 是：
+
+[补充资料归档/operations-console/surveysaas_v47_direction_demo.html](补充资料归档/operations-console/surveysaas_v47_direction_demo.html)
+
+v4.7 是在 v4.6 之后的设计 / 迭代指导方案，目标是在“海外 B2B SaaS 可信感”“运营控制台记忆点”和“系统正在运行的视频感”之间继续收敛。
 
 对照基准是：
 
@@ -39,8 +43,8 @@
 不要从“7 个旧 demo 重新打分”开始。更有效的顺序是：
 
 1. 先读 `PROJECT_HANDOFF.md`。
-2. 打开 v4 当前候选页面。
-3. 对照 v3.5 和 `10_ops_console_overseas_saas_demo.html`，判断 SaaS 克制感、视觉记忆点和产品运行感是否平衡。
+2. 先读 v4.7 设计 / 迭代指导方案，再打开 v4.7 方向 demo。
+3. 对照 v4.6、v3.5 和 `10_ops_console_overseas_saas_demo.html`，判断 SaaS 克制感、视觉记忆点和产品运行感是否平衡。
 4. 再把真实业务内容替换进当前候选，而不是继续写设计说明类占位文案。
 
 ## 注意
