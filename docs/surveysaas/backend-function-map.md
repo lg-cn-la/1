@@ -66,7 +66,10 @@ The backend provides concrete proof for these capabilities:
   - Observed project examples include project code, numeric project ID, global region, unallocated status, CPI, IR, LOI, client, owner/account, created/updated time.
   - Analysis opens project analytics with OS/browser breakdown and participate/complete/audit-pass metrics. It includes tabs/sections such as main settings and sample analysis.
 - **Project Allocation**
-  - Allocation action exists from the project list. It should be treated as the core supplier-allocation surface. A deeper allocation-specific field audit is still recommended because the dialog is dynamic and was partially obscured during scanning.
+  - Allocation action opens a lightweight supplier assignment control.
+  - Observed fields/actions: assign supplier, supplier selector, confirm.
+  - In the current demo data, the supplier selector returned `No data`, so this screen did not expose supplier-specific CPI/price, blocking, quota, or routing controls.
+  - Practical interpretation: this screen confirms project-to-supplier assignment exists, but detailed supplier allocation policy may depend on eligible suppliers being available for the selected project.
 - **Hybrid API**
   - Filters/table fields: current pool, keyword/project ID, source, client, geography, status, project ID, project name, source, supplier, country, CPI, created time, refresh time, status, actions.
   - Actions: edit pool, create pool, refresh pool, filter.
@@ -93,7 +96,7 @@ The backend provides concrete proof for these capabilities:
   - Filters: bill ID, supplier, status.
   - Table fields: bill date, bill ID, supplier, currency, billing period, bill amount, fee, actual payment, bill status, actions.
   - Actions: create supplier bill, batch pay, batch reject, export.
-  - Create supplier settlement fields: settlement selection, all suppliers, specified supplier, amount. Minimum settlement amount提示: 50.
+  - Create supplier settlement fields: settlement selection, all suppliers, specified supplier, amount. Minimum settlement amount prompt: 50.
   - Batch pay/reject had no rows to operate on in the demo account, so detailed status transition could not be confirmed.
 - **Employee Bills**
   - Listed under finance; not deeply tested.
@@ -101,6 +104,7 @@ The backend provides concrete proof for these capabilities:
   - Filters: ID, invoice number, client, invoice status, invoice date.
   - Table fields: ID, client, invoice number, amount, amount received, fee, issuer, status, date, remarks, actions.
   - Actions: create client invoice, export.
+  - Create invoice fields: invoice number, client, invoice amount, actual received amount, fee, status, remarks.
 
 ### Records
 
@@ -133,7 +137,27 @@ This module supports the `Survey Station / Execution Unit` role described in `sa
 
 - **System Settings / Data Dictionary / Pre-screen Library / Third-party Configuration / Event Notification / Security Configuration**
   - These modules map to platform administration, integration setup, callback/event workflows, risk/security controls, and reusable pre-screen assets.
-  - They were only menu-scanned; detailed field-level review remains optional.
+- **System Settings**
+  - Fields/sections observed: preferred project currency, whether to use alias name, project alias prefix, mode switching, sample mode, studio mode.
+  - Section tabs: basic configuration, exchange-rate table, supplier configuration, site configuration, advanced configuration.
+- **Data Dictionary**
+  - Supports local dictionary maintenance and cloud dictionary sync.
+  - Observed dictionary groups/items include country codes, B2B project categories, common dictionary, industry/role examples, currency, medical, education, business decision makers, IT decision makers, finance decision makers, marketing decision makers, HR decision makers, and question-bank items.
+  - Actions: cloud sync dictionary data, create dictionary, keyword filtering.
+- **Pre-screen Library**
+  - Filters/table fields: questionnaire ID, title, country/region, global default, actions.
+  - Actions: cloud sync questionnaire library, create questionnaire, edit, delete.
+  - Create questionnaire opens a full questionnaire designer with logic, JSON editor, question toolbox, question bank, general settings, survey title, country, description, title visibility, read-only setting, default language, duplicate-run cookie, and width mode.
+- **Third-party Configuration**
+  - Cards/areas observed: SMS configuration, email configuration, DingTalk interface, WeChat/enterprise WeChat interface, cloud storage, third-party login, CDN acceleration.
+- **Event Notification**
+  - Table fields: event name, description, variables, channel configuration.
+  - Observed events: forgot password, registration verification, password change.
+  - Channels observed: email and SMS. Variable observed: `CODE`.
+- **Security Configuration**
+  - Table fields: priority, product name, frontend SDK configuration, credential configuration, default blocking rules, status, actions.
+  - Add configuration fields: security-check product, priority, enabled status.
+  - Page note: security products can be enabled in clients and projects; lower priority numbers run earlier.
 
 ### Partner Cloud Resources
 
@@ -152,14 +176,12 @@ Use the backend evidence to make the website more concrete:
 - **Support API and workspace-based project flow:** hybrid API pools, API-client source selection, local project pools, CPI rules, and scheduled refresh.
 - **Close the finance loop:** project settlement, audit workflow, supplier bills, client invoices, fees, payment status, and finance logs.
 - **Audit and debug delivery:** operation logs, callback records, termination records, UID tools, IP lookup, and link parsing.
+- **Configure reusable delivery infrastructure:** data dictionaries, pre-screen questionnaires, event notifications, third-party integrations, and security checks.
 - **Support panel and survey-station teams:** member management, member groups/levels, member finance, station projects, and station-specific roles.
 
 ## 4. Remaining Unknowns
 
-- Project allocation needs a focused review with a clean project state to confirm exact supplier selection, supplier blocking, and supplier-specific CPI/price fields.
+- Project allocation was opened, but the selected demo project returned no supplier options. Supplier-specific CPI/price, blocking, quota, or routing fields should be retested with a project that has eligible suppliers.
 - Batch supplier bill payment/rejection needs bill rows to confirm the full status flow.
-- Client invoice creation was observed only at list/action level; detailed invoice-form fields were not deeply reviewed.
-- Configuration pages were only scanned at menu level. Third-party configuration, event notification, pre-screen library, and security configuration can be audited later if the website needs technical proof points.
 - Permission differences across roles were intentionally skipped.
 - Partner cloud resources were intentionally not deep-dived because the feature is still under development.
-
