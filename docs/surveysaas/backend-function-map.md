@@ -97,7 +97,12 @@ The backend provides concrete proof for these capabilities:
   - Table fields: bill date, bill ID, supplier, currency, billing period, bill amount, fee, actual payment, bill status, actions.
   - Actions: create supplier bill, batch pay, batch reject, export.
   - Create supplier settlement fields: settlement selection, all suppliers, specified supplier, amount. Minimum settlement amount prompt: 50.
-  - Batch pay/reject had no rows to operate on in the demo account, so detailed status transition could not be confirmed.
+  - Statuses observed from user-supplied screenshots: pending processing (`待处理`) and paid (`已支付`).
+  - Pending bill row actions: edit, invoiced/received-invoice marker (`已收发票`), pay, reject.
+  - Paid bill row actions: edit only.
+  - Batch pay flow: after selecting bills, `批量支付` opens a confirmation modal with the prompt `确认支付选中账单吗？`, plus cancel and confirm buttons.
+  - Batch reject flow: after selecting bills, `批量拒绝` opens a confirmation modal with the prompt `确认拒绝选中账单吗？`, plus cancel and confirm buttons.
+  - Edit bill drawer fields: bill ID, bill amount, fee, actual payment, bill status, created time. The observed fields are read-only/disabled in the screenshot.
 - **Employee Bills**
   - Listed under finance; not deeply tested.
 - **Client Invoice**
@@ -182,6 +187,6 @@ Use the backend evidence to make the website more concrete:
 ## 4. Remaining Unknowns
 
 - Project allocation was opened, but the selected demo project returned no supplier options. Supplier-specific CPI/price, blocking, quota, or routing fields should be retested with a project that has eligible suppliers.
-- Batch supplier bill payment/rejection needs bill rows to confirm the full status flow.
+- Supplier bill batch pay/reject confirmation prompts were confirmed from screenshots. The final post-confirm status transition was not executed.
 - Permission differences across roles were intentionally skipped.
 - Partner cloud resources were intentionally not deep-dived because the feature is still under development.
