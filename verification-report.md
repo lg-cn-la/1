@@ -8,7 +8,7 @@ Staging root: `E:\claude work\.sampora-final-cleanup\public`
 
 ## Result
 
-Verification passed for the staged public package after scoped cleanup fixes.
+Verification passed for the staged public package after scoped cleanup fixes and final visual QA remediation.
 
 ## Static Checks
 
@@ -18,12 +18,12 @@ Verification passed for the staged public package after scoped cleanup fixes.
 - Redirect files use triple fallback: meta refresh, `location.replace`, and page link.
 - Official page links/canonicals avoid Chinese legacy paths and `products.html`.
 - Forbidden terms were not found: `Start trial ?`, `AI Value`, `Acceptance Index`, `lineargradient`, `Supplier Network Operations`, `Enterprise / Full Operations`.
-- Topology modal markers were not found in official pages: `Expand Topology`, `expanded topology`, `topologyHint`, `topologyAria`, `modal-source`.
+- Visible topology expansion copy/markers were not found in official pages: `Expand Topology`, `expanded topology`, `topologyHint`, `topologyAria`, `modal-source`.
 - Resources entry links resolve to:
   - `resource-manuals.html#doc/config`
   - `resource-manuals.html#doc/ops`
   - `resource-manuals.html#category/ops-station`
-- No remaining `$(...).forEach` misuse was found.
+- No remaining single-node `$(...).forEach` misuse was found.
 
 ## JavaScript Checks
 
@@ -45,12 +45,14 @@ Chrome headless was used against local file URLs.
 - Checked 72 combinations: 6 official pages x 4 viewport widths x 3 zoom levels.
 - Widths: 1440, 1366, 1200, 390.
 - Zoom levels simulated: 100%, 125%, 150%.
+- Final visual QA summary: 72 page states, 216 language switches, 108 topology opens, 28 screenshots, 0 console errors, 0 page errors, 0 failures.
 - EN / Chinese / Hindi language switches completed without JavaScript runtime errors.
 - Solutions Hindi controls passed: fit selector, topology modebar, workflow tabs, recommendation panel.
-- Resources passed: 3 static entry cards, correct detail links, topology mode switching, no expandable card behavior.
+- Solutions passed: solution card CTA alignment, topology open/reopen, Escape close, and close-button click at desktop/zoom combinations.
+- Resources passed: 3 static entry cards, correct detail links, topology mode switching, no expandable card behavior, body-level overlay open/reopen, Escape close, and close-button click.
 - Plans passed: Panel / Supplier Network / Enterprise naming, matrix headers, CTA alignment on desktop card row, centered matrix wrapper.
 - Contact language switcher and mobile layout passed.
-- No topology modal marker remained on Index / Solutions / Resources.
+- No visible `Expand Topology` marker remains on Index / Solutions / Resources.
 
 Note: 60 Google Fonts requests were blocked in local `file://` smoke testing by sandbox/network policy. These were external-font network failures only and were filtered from JavaScript error results.
 
