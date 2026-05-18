@@ -3,6 +3,16 @@
 .demo_handbook_work_*/
 .skill_install_payload/
 _visual_check/
+.claude/
+.npm-cache/
+.sampora-final-cleanup/
+output/
+test-results/
+playwright-local/
+sampora-website-public-reextract-check/
+sampora-website-delivery/
+最新的包1_解压/
+node_modules/
 
 # Browser test profiles and generated caches
 chrome_test_profile/

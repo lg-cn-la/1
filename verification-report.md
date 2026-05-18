@@ -1,69 +1,136 @@
-# Sampora Cleanup Verification Report
+# Sampora Website Verification Evidence Note
 
-Date: 2026-05-17
+Generated: 2026-05-18
 
-Source baseline: `E:\claude work\sampora-website-public-final.zip`
+Source folder: `E:\claude work\sampora-website-public`
 
-Staging root: `E:\claude work\.sampora-final-cleanup\public`
+Handoff folder: `E:\claude work\sampora-website-delivery\sampora-website-handoff`
 
-## Result
+## Status
 
-Verification passed for the staged public package after scoped cleanup fixes and final visual QA remediation.
+Recorded verification evidence exists from earlier static checks, browser checks, resource-manual checks, Lighthouse output, axe output, and terminology scans.
 
-## Static Checks
+This report is not a current release approval. During this Package E documentation-update pass, controller verification, browser QA, Lighthouse, axe, delivery sync, zip rebuild, and archive inspection were not rerun.
 
-- Public staging contains 6 official pages, 9 root redirect pages, `assets/`, and `README.md`.
-- Public staging does not contain `archive/`, `archive/reports/`, `original-documents/`, internal QA txt/json reports, or Word documents.
-- Root redirect files exist for Chinese legacy paths, `products.html`, and `pricing.html`.
-- Redirect files use triple fallback: meta refresh, `location.replace`, and page link.
-- Official page links/canonicals avoid Chinese legacy paths and `products.html`.
-- Forbidden terms were not found: `Start trial ?`, `AI Value`, `Acceptance Index`, `lineargradient`, `Supplier Network Operations`, `Enterprise / Full Operations`.
-- Visible topology expansion copy/markers were not found in official pages: `Expand Topology`, `expanded topology`, `topologyHint`, `topologyAria`, `modal-source`.
-- Resources entry links resolve to:
-  - `resource-manuals.html#doc/config`
-  - `resource-manuals.html#doc/ops`
-  - `resource-manuals.html#category/ops-station`
-- No remaining single-node `$(...).forEach` misuse was found.
+## Command and Artifact Evidence
 
-## JavaScript Checks
+- `node --check assets/resource-manuals/data.js`: exit 0
+- `node --check assets/resource-manuals/app.js`: exit 0
+- `node --check assets/i18n-sweep.js`: exit 0
+- `node qa-evidence/resource-manuals-language-smoke.mjs`: `resource manuals language smoke: OK`
+- `node qa-evidence/resource-manuals-browser-language-check.mjs`: `resource manuals browser language check: OK`
+- `node qa-evidence/page-layer-static-check.mjs`: earlier recorded static-check success for 15 HTML files
+- `node qa-evidence/page-layer-browser-check.mjs`: earlier recorded browser-check success with 42 screenshots
+- Historical Lighthouse artifact: `E:\claude work\sampora-website-public\qa-evidence\lighthouse-output.json`
+- Historical axe artifact: `E:\claude work\sampora-website-public\qa-evidence\axe-output.json`
+- Terminology scan across public pages/docs/manual scripts: no blocked hits in the recorded QA pass.
 
-- `node --check assets/i18n-sweep.js`: passed.
-- `node --check assets/resource-manuals/app.js`: passed.
-- `node --check assets/resource-manuals/data.js`: passed.
-- Inline scripts parsed successfully across:
-  - `index.html`
-  - `solutions.html`
-  - `resources.html`
-  - `resource-manuals.html`
-  - `plans.html`
-  - `contact.html`
+## Earlier Fixes Recorded
 
-## Browser Smoke Checks
+- Static page baseline: CSS style blocks are balanced; official pages have title, meta description, and absolute canonical coverage.
+- Legal baseline: old year text, mainland filing display text, and old company-name variants are removed; legal wording is standardized to `© 2026 Anhui Jiayu Enterprise Service Co., Ltd.` and `安徽省嘉禹企业服务有限公司`.
+- SEO baseline: official page title/meta/canonical checks pass.
+- Dynamic behavior: index workflow loops; index, solutions, and resources topology motion is active; homepage hero left vertical line is disabled; plans matrix is enlarged.
+- CTA/contact behavior: CTAs carry `intent` and land on `#contact-form`; contact form has backend-ready method/action/data-endpoint wiring, hidden context fields, and conservative pending behavior while the backend placeholder remains.
+- Content cleanup: resources page avoids region-only framing; resource manuals have module-specific business copy; Partner Network wording remains conservative.
 
-Chrome headless was used against local file URLs.
+## Historical Browser Evidence Summary
 
-- Checked 72 combinations: 6 official pages x 4 viewport widths x 3 zoom levels.
-- Widths: 1440, 1366, 1200, 390.
-- Zoom levels simulated: 100%, 125%, 150%.
-- Final visual QA summary: 72 page states, 216 language switches, 108 topology opens, 28 screenshots, 0 console errors, 0 page errors, 0 failures.
-- EN / Chinese / Hindi language switches completed without JavaScript runtime errors.
-- Solutions Hindi controls passed: fit selector, topology modebar, workflow tabs, recommendation panel.
-- Solutions passed: solution card CTA alignment, topology open/reopen, Escape close, and close-button click at desktop/zoom combinations.
-- Resources passed: 3 static entry cards, correct detail links, topology mode switching, no expandable card behavior, body-level overlay open/reopen, Escape close, and close-button click.
-- Plans passed: Panel / Supplier Network / Enterprise naming, matrix headers, CTA alignment on desktop card row, centered matrix wrapper.
-- Contact language switcher and mobile layout passed.
-- No visible `Expand Topology` marker remains on Index / Solutions / Resources.
+Primary browser evidence file:
 
-Note: 60 Google Fonts requests were blocked in local `file://` smoke testing by sandbox/network policy. These were external-font network failures only and were filtered from JavaScript error results.
+- `E:\claude work\sampora-website-public\qa-evidence\page-layer-browser-evidence.json`
 
-## Packaging Checks
+Assertions from that JSON:
 
-Final packaging overwrote:
+- `generatedAt: 2026-05-17T18:00:00.361Z`
+- no failures were recorded in that earlier artifact
+- `screenshots` contains 42 PNG screenshot entries.
+- Navigation evidence covers six official pages at 390, 1440, 1536, and 1920 widths.
+- Desktop navigation parity is restored across the official pages.
+- Index workflow records looped relay states at 0 ms, 1000 ms, 3000 ms, and 6000 ms.
+- Index topology evidence records active flow and scan animation.
+- Solutions topology evidence records active flow, scan, and packet states.
+- Resources topology evidence records active flow and scan animation.
+- Plans evidence records enlarged matrix dimensions.
+- Contact evidence records `method: "post"`, `action: "[BACKEND_CONTACT_ENDPOINT]"`, `data-endpoint: "[BACKEND_CONTACT_ENDPOINT]"`, required visible fields, hidden context fields, `Submit request`, and placeholder pending storage behavior.
+- Resource-manual evidence records doc/category routing for `#doc/config`, `#doc/ops`, and `#category/ops-station`, plus zero replacement-character, placeholder question-mark sequence, and empty-label failures.
 
-- `E:\claude work\sampora-website-public.zip`
-- `E:\claude work\sampora-website-handoff.zip`
+Resource-manual language evidence file:
 
-- Public zip entries use forward-slash paths.
-- Public zip does not contain staging parent folders.
-- Public zip does not contain `archive/`, `original-documents/`, Word documents, internal QA reports, or handoff-only markdown.
-- Handoff zip contains `verification-report.md`, `redirect-map.md`, `MODIFICATION_SUMMARY.md`, `DEPLOYMENT_NOTES.md`, `original-documents/`, and `source-reports/`.
+- `E:\claude work\sampora-website-public\qa-evidence\resource-manuals-browser-language-evidence.json`
+
+Assertions from that JSON:
+
+- no failures were recorded in that earlier artifact
+- Sampled states: en-doc-config, en-doc-ops, en-category-ops-station, zh-doc-config, hi-doc-config.
+- Sampled language states include expected English, Chinese, and Hindi/Hinglish rendering checks.
+
+## Historical Lighthouse Artifact
+
+Summary file:
+
+- `E:\claude work\sampora-website-public\qa-evidence\lighthouse-output.json`
+
+| Page | Performance | Accessibility | Best Practices | SEO |
+| --- | ---: | ---: | ---: | ---: |
+| index.html | 0.56 | 0.97 | 0.96 | 1.00 |
+| solutions.html | 1.00 | 0.98 | 0.96 | 1.00 |
+| resources.html | 0.99 | 0.98 | 0.96 | 1.00 |
+| resource-manuals.html | 0.79 | 0.98 | 0.96 | 0.91 |
+| plans.html | 1.00 | 0.98 | 0.96 | 1.00 |
+| contact.html | 1.00 | 1.00 | 1.00 | 1.00 |
+
+## Historical Axe Artifact
+
+Summary file:
+
+- `E:\claude work\sampora-website-public\qa-evidence\axe-output.json`
+
+Recorded status:
+
+- Blocking violations: 0
+- Total recorded non-blocking violations: 8
+
+## P0 / P1 / P2 Mapping
+
+### P0 - Package and static blockers
+
+Status: historical evidence only; current controller verification remains pending.
+
+Evidence:
+
+- Static checker output was previously recorded as successful for 15 HTML files.
+- CSS style-block balance is included in the static baseline.
+- Official title/meta/absolute canonical coverage is included in the static baseline.
+- README and deployment notes match the included legacy redirect files.
+
+### P1 - Page behavior and visual checks
+
+Status: historical evidence only; current browser QA remains pending.
+
+Evidence:
+
+- Browser checker output was previously recorded as successful with 42 screenshots.
+- Navigation evidence covers index, solutions, resources, resource manuals, plans, and contact at mobile and desktop widths.
+- Topology/workflow evidence records active motion on the relevant pages.
+- Contact form evidence verifies backend-ready fields and conservative placeholder behavior.
+- Resource-manual evidence verifies language views and the `#category/ops-station` route.
+
+### P2 - Copy, language cleanup, and docs
+
+Status: historical evidence only; current delivery review remains pending.
+
+Evidence:
+
+- Terminology scan in recorded QA pass has no blocked hits.
+- Contact submit copy is `Submit request`.
+- Resource-manual smoke and browser language checks pass.
+- Reports and package notes are updated to the backend-ready contact flow.
+
+## Remaining External Handoff Items
+
+These are not frontend blockers:
+
+- Replace `[BACKEND_CONTACT_ENDPOINT]` with the real backend endpoint.
+- Validate advanced allocation and Partner Network details during backend/product implementation.
+- Re-check deployed redirect behavior after upload or CDN rewrite configuration.

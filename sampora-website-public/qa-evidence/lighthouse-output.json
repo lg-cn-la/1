@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-05-18T00:26:10.021Z",
+  "baseUrl": "http://127.0.0.1:57092",
+  "chromeExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "pages": {
+    "index.html": {
+      "url": "http://127.0.0.1:57092/index.html",
+      "artifact": "lighthouse-index.json",
+      "categories": {
+        "performance": 0.56,
+        "accessibility": 0.97,
+        "best-practices": 0.96,
+        "seo": 1
+      },
+      "finalUrl": "http://127.0.0.1:57092/index.html",
+      "runtimeError": null
+    },
+    "solutions.html": {
+      "url": "http://127.0.0.1:57092/solutions.html",
+      "artifact": "lighthouse-solutions.json",
+      "categories": {
+        "performance": 1,
+        "accessibility": 0.98,
+        "best-practices": 0.96,
+        "seo": 1
+      },
+      "finalUrl": "http://127.0.0.1:57092/solutions.html",
+      "runtimeError": null
+    },
+    "resources.html": {
+      "url": "http://127.0.0.1:57092/resources.html",
+      "artifact": "lighthouse-resources.json",
+      "categories": {
+        "performance": 0.99,
+        "accessibility": 0.98,
+        "best-practices": 0.96,
+        "seo": 1
+      },
+      "finalUrl": "http://127.0.0.1:57092/resources.html",
+      "runtimeError": null
+    },
+    "resource-manuals.html": {
+      "url": "http://127.0.0.1:57092/resource-manuals.html",
+      "artifact": "lighthouse-resource-manuals.json",
+      "categories": {
+        "performance": 0.4,
+        "accessibility": 0.98,
+        "best-practices": 0.96,
+        "seo": 0.91
+      },
+      "finalUrl": "http://127.0.0.1:57092/resource-manuals.html",
+      "runtimeError": null
+    },
+    "plans.html": {
+      "url": "http://127.0.0.1:57092/plans.html",
+      "artifact": "lighthouse-plans.json",
+      "categories": {
+        "performance": 1,
+        "accessibility": 0.98,
+        "best-practices": 0.96,
+        "seo": 1
+      },
+      "finalUrl": "http://127.0.0.1:57092/plans.html",
+      "runtimeError": null
+    },
+    "contact.html": {
+      "url": "http://127.0.0.1:57092/contact.html",
+      "artifact": "lighthouse-contact.json",
+      "categories": {
+        "performance": 1,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "finalUrl": "http://127.0.0.1:57092/contact.html",
+      "runtimeError": null
+    }
+  },
+  "chromeCleanupWarning": "EPERM, Permission denied: \\\\?\\C:\\Users\\123\\AppData\\Local\\Temp\\lighthouse.97840988 '\\\\?\\C:\\Users\\123\\AppData\\Local\\Temp\\lighthouse.97840988'"
+}

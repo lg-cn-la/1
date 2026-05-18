@@ -1,0 +1,100 @@
+{
+  "failures": [],
+  "evidence": {
+    "en-doc-config": {
+      "hash": "#doc/config",
+      "htmlLang": "en",
+      "visibleViews": {
+        "home": false,
+        "doc": true,
+        "category": false,
+        "article": false,
+        "search": false
+      },
+      "docTitle": "Configuration Guide",
+      "categoryTitle": "Manual category",
+      "heroTitle": "Resources for online sample operations",
+      "questionMarkCount": 0,
+      "replacementCharCount": 0,
+      "emptyButtonCount": 0,
+      "hasCjk": true,
+      "hasDevanagari": true
+    },
+    "en-doc-ops": {
+      "hash": "#doc/ops",
+      "htmlLang": "en",
+      "visibleViews": {
+        "home": false,
+        "doc": true,
+        "category": false,
+        "article": false,
+        "search": false
+      },
+      "docTitle": "Supplier Backend & Survey Station Manual",
+      "categoryTitle": "Manual category",
+      "heroTitle": "Resources for online sample operations",
+      "questionMarkCount": 0,
+      "replacementCharCount": 0,
+      "emptyButtonCount": 0,
+      "hasCjk": true,
+      "hasDevanagari": true
+    },
+    "en-category-ops-station": {
+      "hash": "#category/ops-station",
+      "htmlLang": "en",
+      "visibleViews": {
+        "home": false,
+        "doc": false,
+        "category": true,
+        "article": false,
+        "search": false
+      },
+      "docTitle": "Configuration Guide",
+      "categoryTitle": "Logs and station",
+      "heroTitle": "Resources for online sample operations",
+      "questionMarkCount": 0,
+      "replacementCharCount": 0,
+      "emptyButtonCount": 0,
+      "hasCjk": true,
+      "hasDevanagari": true
+    },
+    "zh-doc-config": {
+      "hash": "#doc/config",
+      "htmlLang": "zh-CN",
+      "visibleViews": {
+        "home": false,
+        "doc": true,
+        "category": false,
+        "article": false,
+        "search": false
+      },
+      "docTitle": "配置指南",
+      "categoryTitle": "Manual category",
+      "heroTitle": "在线样本运营资源中心",
+      "questionMarkCount": 0,
+      "replacementCharCount": 0,
+      "emptyButtonCount": 0,
+      "hasCjk": true,
+      "hasDevanagari": true
+    },
+    "hi-doc-config": {
+      "hash": "#doc/config",
+      "htmlLang": "hi",
+      "visibleViews": {
+        "home": false,
+        "doc": true,
+        "category": false,
+        "article": false,
+        "search": false
+      },
+      "docTitle": "Configuration Guide",
+      "categoryTitle": "Manual category",
+      "heroTitle": "ऑनलाइन sample operations resources",
+      "questionMarkCount": 0,
+      "replacementCharCount": 0,
+      "emptyButtonCount": 0,
+      "hasCjk": true,
+      "hasDevanagari": true
+    }
+  }
+}
