@@ -1,0 +1,1633 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contact Sampora to submit a backend-ready request for trial, demo, sales, enterprise, or resource questions about online sample operations." />
+    <link rel="canonical" href="https://www.sampora.com/contact.html">
+    <title>Sampora Contact - Submit request</title>
+    <style>
+        :root {
+            --bg: #071120;
+            --bg2: #09192a;
+            --dark: #06101d;
+            --panel: #0b1b2d;
+            --panel2: #0d2136;
+            --line: rgba(129, 178, 214, .15);
+            --line2: rgba(57, 215, 255, .30);
+            --text: #edf6ff;
+            --body: #aebed2;
+            --muted: #6f8298;
+            --cyan: #39d7ff;
+            --cyan2: #61e7ff;
+            --amber: #ffbd5a;
+            --green: #a9ff5f;
+            --white: #ffffff;
+            --max: 1280px;
+            --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", "Noto Sans Devanagari", sans-serif;
+            --ease: cubic-bezier(.2, .85, .2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            font-family: var(--sans);
+            background:
+                radial-gradient(circle at 80% 6%, rgba(57, 215, 255, .12), transparent 30%),
+                linear-gradient(180deg, #06101d 0%, #071120 58%, #07101c 100%);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(88, 160, 208, .052) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(88, 160, 208, .052) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, .85), rgba(0, 0, 0, .25));
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        .top-strip {
+            height: 34px;
+            border-bottom: 1px solid var(--line);
+            background: rgba(5, 13, 24, .76);
+            backdrop-filter: blur(18px);
+            color: var(--body);
+            font: 12px var(--mono);
+            letter-spacing: .06em;
+        }
+
+        .container {
+            width: min(var(--max), calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .strip-inner {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .live-dot {
+            display: inline-flex;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 16px rgba(169, 255, 95, .8);
+            margin-right: 8px;
+        }
+
+        .nav {
+            height: 70px;
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            border-bottom: 1px solid var(--line);
+            background: rgba(6, 16, 29, .82);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-inner {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 180px;
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(57, 215, 255, .48);
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            color: var(--cyan2);
+            font-family: var(--mono);
+            background: rgba(10, 59, 85, .42);
+            box-shadow: inset 0 0 22px rgba(57, 215, 255, .12);
+        }
+
+        .brand-name {
+            display: block;
+            font-weight: 950;
+            font-size: 20px;
+            line-height: 1;
+            letter-spacing: .01em;
+        }
+
+        .brand-sub {
+            display: block;
+            margin-top: 4px;
+            color: var(--body);
+            font: 10px var(--mono);
+            letter-spacing: .18em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 26px;
+            align-items: center;
+            color: #cdd8e8;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 26px 0;
+            opacity: .86;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--cyan2);
+            opacity: 1;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 15px;
+            height: 2px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, transparent, var(--cyan2), transparent);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lang-switch {
+            display: inline-flex;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 3px;
+            background: rgba(7, 20, 35, .72);
+        }
+
+        .lang-btn {
+            border: 0;
+            background: transparent;
+            color: var(--body);
+            padding: 8px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: rgba(57, 215, 255, .18);
+            color: var(--cyan2);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 20px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: rgba(9, 25, 43, .68);
+            color: var(--text);
+            font-weight: 950;
+            cursor: pointer;
+            transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            border-color: rgba(57, 215, 255, .55);
+            background: rgba(12, 37, 60, .9);
+        }
+
+        .btn.primary {
+            color: #03101a;
+            background: linear-gradient(180deg, #64e3ff, #38c8f3);
+            border-color: rgba(99, 228, 255, .7);
+            box-shadow: 0 18px 42px rgba(57, 215, 255, .18);
+        }
+
+        .hero {
+            position: relative;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(57, 215, 255, .16), transparent 38%),
+                linear-gradient(180deg, rgba(7, 17, 32, .96), rgba(8, 22, 38, .90));
+            border-bottom: 1px solid var(--line);
+            min-height: 430px;
+            display: flex;
+            align-items: flex-start;
+            text-align: center;
+            overflow: visible;
+        }
+
+        .hero-inner {
+            padding: 110px 0 38px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            color: var(--cyan2);
+            font: 900 12px var(--mono);
+            letter-spacing: .24em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan2);
+            box-shadow: 0 0 16px rgba(57, 215, 255, .9);
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--white);
+            font-size: clamp(56px, 6.7vw, 92px);
+            line-height: 1.02;
+            letter-spacing: -.06em;
+            font-weight: 950;
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: 28px auto 0;
+            color: #c8d6e8;
+            font-size: 20px;
+            line-height: 1.75;
+        }
+
+        .contact-options {
+            margin-top: -155px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .option-card {
+            min-height: 275px;
+            border: 1px solid rgba(57, 215, 255, .18);
+            background: linear-gradient(180deg, rgba(15, 34, 55, .98), rgba(10, 24, 42, .98));
+            border-radius: 24px;
+            padding: 30px 28px;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, .22);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            transition: transform .22s var(--ease), border-color .22s var(--ease), background .22s var(--ease);
+        }
+
+        .option-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(57, 215, 255, .48);
+            background: linear-gradient(180deg, rgba(18, 43, 70, .98), rgba(11, 27, 45, .98));
+        }
+
+        .option-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            color: var(--cyan2);
+            border: 1px solid rgba(57, 215, 255, .28);
+            background: rgba(57, 215, 255, .08);
+            margin-bottom: 24px;
+        }
+
+        .option-card h3 {
+            margin: 0 0 16px;
+            font-size: 22px;
+            line-height: 1.12;
+            letter-spacing: -.03em;
+        }
+
+        .option-card p {
+            color: #b8c7da;
+            font-size: 15px;
+            line-height: 1.68;
+            margin: 0;
+        }
+
+        .option-card a {
+            margin-top: auto;
+            padding-top: 28px;
+            color: var(--cyan2);
+            font-weight: 950;
+        }
+
+        .contact-main {
+            padding: 42px 0 82px;
+            scroll-margin-top: 110px;
+        }
+
+        .form-layout {
+            display: grid;
+            grid-template-columns: .82fr 1.18fr;
+            gap: 72px;
+            align-items: start;
+        }
+
+        .side-copy {
+            padding-top: 34px;
+        }
+
+        .side-copy h2,
+        .more-ways h2,
+        .response h2 {
+            margin: 0;
+            font-size: clamp(38px, 4.4vw, 64px);
+            line-height: 1.02;
+            letter-spacing: -.055em;
+            font-weight: 950;
+        }
+
+        .side-copy p {
+            color: #b8c7da;
+            font-size: 18px;
+            line-height: 1.75;
+            margin: 22px 0 0;
+        }
+
+        .tick-list {
+            display: grid;
+            gap: 18px;
+            margin: 34px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .tick-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #e0ebf7;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .tick-list li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: 950;
+        }
+
+        .support-note {
+            margin-top: 36px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #d5e4f2;
+            line-height: 1.55;
+        }
+
+        .support-note a {
+            color: var(--cyan2);
+            font-weight: 900;
+        }
+
+        .form-card {
+            border: 1px solid rgba(57, 215, 255, .18);
+            background:
+                linear-gradient(180deg, rgba(14, 34, 55, .86), rgba(7, 18, 31, .92));
+            border-radius: 26px;
+            padding: 28px;
+            box-shadow: 0 28px 85px rgba(0, 0, 0, .26);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        label {
+            color: #dce8f5;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid rgba(129, 178, 214, .20);
+            border-radius: 12px;
+            background: rgba(5, 15, 27, .72);
+            color: var(--text);
+            padding: 14px 15px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 124px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: rgba(57, 215, 255, .56);
+            box-shadow: 0 0 0 3px rgba(57, 215, 255, .08);
+        }
+
+        .form-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .privacy {
+            color: #8194aa;
+            font-size: 12px;
+            line-height: 1.55;
+            max-width: 600px;
+            margin-top: 14px;
+        }
+
+        .more-ways {
+            padding: 86px 0;
+            border-top: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .more-ways p {
+            max-width: 720px;
+            margin: 20px auto 0;
+            color: #b8c7da;
+            font-size: 18px;
+            line-height: 1.75;
+        }
+
+        .direct-grid {
+            margin-top: 42px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            text-align: left;
+        }
+
+        .direct-card {
+            border: 1px solid rgba(57, 215, 255, .18);
+            background: rgba(10, 24, 42, .64);
+            border-radius: 24px;
+            padding: 30px;
+            min-height: 215px;
+            transition: transform .22s var(--ease), border-color .22s var(--ease);
+        }
+
+        .direct-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(57, 215, 255, .45);
+        }
+
+        .direct-card.amber {
+            border-color: rgba(255, 189, 90, .28);
+            background: linear-gradient(180deg, rgba(255, 189, 90, .08), rgba(10, 24, 42, .64));
+        }
+
+        .direct-icon {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(57, 215, 255, .28);
+            color: var(--cyan2);
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: rgba(57, 215, 255, .08);
+            margin-bottom: 22px;
+        }
+
+        .direct-card.amber .direct-icon {
+            border-color: rgba(255, 189, 90, .36);
+            color: var(--amber);
+            background: rgba(255, 189, 90, .09);
+        }
+
+        .direct-card h3 {
+            margin: 0 0 12px;
+            font-size: 24px;
+        }
+
+        .direct-card strong {
+            display: block;
+            font-size: 20px;
+            word-break: break-word;
+            margin-bottom: 14px;
+        }
+
+        .direct-card p {
+            margin: 0;
+            color: #b8c7da;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .response {
+            padding: 86px 0 92px;
+            border-top: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .response h2 {
+            margin: 0;
+            font-size: clamp(38px, 4.4vw, 64px);
+            line-height: 1.02;
+            letter-spacing: -.055em;
+            font-weight: 950;
+        }
+
+        .response-sub {
+            max-width: 720px;
+            margin: 20px auto 0;
+            color: #b8c7da;
+            font-size: 18px;
+            line-height: 1.75;
+        }
+
+        .response-grid {
+            margin-top: 42px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            text-align: left;
+        }
+
+        .response-card {
+            border: 1px solid rgba(57, 215, 255, .18);
+            background: rgba(10, 24, 42, .64);
+            border-radius: 24px;
+            padding: 30px;
+            min-height: 215px;
+            transition: transform .22s var(--ease), border-color .22s var(--ease);
+        }
+
+        .response-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(57, 215, 255, .45);
+        }
+
+        .response-icon {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(57, 215, 255, .28);
+            color: var(--cyan2);
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: rgba(57, 215, 255, .08);
+            margin-bottom: 22px;
+            font: 950 13px var(--mono);
+        }
+
+        .response-card h3 {
+            margin: 0 0 14px;
+            font-size: 24px;
+            line-height: 1.12;
+            letter-spacing: -.03em;
+        }
+
+        .response-card p {
+            margin: 0;
+            color: #b8c7da;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+
+        footer {
+            padding: 70px 0 34px;
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-card {
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: rgba(10, 24, 42, .58);
+            overflow: hidden;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.25fr .75fr .75fr .75fr;
+            gap: 28px;
+            padding: 36px 40px;
+        }
+
+        .footer-desc {
+            color: var(--body);
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 420px;
+            margin-top: 20px;
+        }
+
+        .footer-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .footer-tags span {
+            border: 1px solid rgba(57, 215, 255, .22);
+            color: var(--cyan2);
+            border-radius: 999px;
+            padding: 6px 10px;
+            font: 900 11px var(--mono);
+        }
+
+        .footer-col h4 {
+            margin: 0 0 16px;
+            font-size: 16px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--body);
+            margin: 12px 0;
+            font-size: 14px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .contact-item {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 0 32px;
+            border-right: 1px solid var(--line);
+            color: #cfd9e8;
+            font-weight: 800;
+        }
+
+        .contact-item:last-child {
+            border-right: 0;
+        }
+
+        .contact-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(57, 215, 255, .25);
+            color: var(--cyan2);
+            background: rgba(57, 215, 255, .07);
+        }
+
+        .copyright {
+            border-top: 1px solid var(--line);
+            padding: 18px 32px;
+            text-align: center;
+            color: var(--muted);
+            font: 12px var(--mono);
+        }
+
+        .toast {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 200;
+            border: 1px solid rgba(57, 215, 255, .35);
+            border-radius: 16px;
+            background: rgba(7, 18, 31, .96);
+            box-shadow: 0 20px 70px rgba(0, 0, 0, .35);
+            padding: 18px 20px;
+            max-width: 360px;
+            display: none;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast b {
+            display: block;
+            color: var(--cyan2);
+            margin-bottom: 8px;
+        }
+
+        .toast span {
+            color: var(--body);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        @media(max-width:1100px) {
+            .option-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-layout,
+            .response-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .side-copy {
+                padding-top: 0;
+            }
+        }
+
+        @media(max-width:860px) {
+            .container {
+                width: min(100% - 32px, var(--max));
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .top-strip {
+                font-size: 10px;
+            }
+
+            .strip-inner {
+                gap: 10px;
+            }
+
+            .strip-inner div:last-child {
+                display: none;
+            }
+
+            .hero-inner {
+                padding: 72px 0 185px;
+            }
+
+            h1 {
+                font-size: clamp(48px, 16vw, 74px);
+            }
+
+            .option-grid,
+            .form-row,
+            .direct-grid,
+            .footer-top,
+            .footer-bottom {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-options {
+                margin-top: -140px;
+            }
+
+            .direct-card,
+            .option-card {
+                min-height: auto;
+            }
+
+            .contact-item {
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .contact-item:last-child {
+                border-bottom: 0;
+            }
+        }
+    
+
+        /* 缁熶竴椤堕儴瀵艰埅锛氳鈥滆仈绯绘垜浠€濋〉涓庝骇鍝?/ 瑙ｅ喅鏂规 / 璧勬簮 / 鐗堟湰鏂规椤典繚鎸佸悓涓€濂?tab 鏍?*/
+        .top-strip {
+            position: sticky;
+            top: 0;
+            z-index: 80;
+            height: 34px;
+            background: rgba(6, 16, 31, .90);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+        }
+
+        .strip-inner {
+            justify-content: flex-start;
+            gap: 18px;
+            white-space: nowrap;
+            overflow: hidden;
+            color: var(--muted);
+            font: 11px var(--mono);
+            letter-spacing: .06em;
+        }
+
+        .strip-inner > div:last-child {
+            margin-left: auto;
+            color: var(--body);
+        }
+
+        .nav {
+            height: auto;
+            position: sticky;
+            top: 34px;
+            z-index: 79;
+            border-bottom: 1px solid var(--line);
+            background: rgba(10, 22, 40, .86);
+            backdrop-filter: blur(14px);
+        }
+
+        .nav-inner {
+            height: 66px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 24px;
+        }
+
+        .brand {
+            min-width: max-content;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: linear-gradient(160deg, #1a3a5f, #0e1b2f);
+            border: 1px solid rgba(57, 215, 255, .35);
+            color: var(--cyan);
+            box-shadow: none;
+            font: 800 13px var(--mono);
+        }
+
+        .brand-name {
+            font-weight: 900;
+            font-size: 16px;
+            line-height: 1;
+            letter-spacing: -.01em;
+        }
+
+        .brand-sub {
+            display: block;
+            margin-top: 3px;
+            color: var(--body);
+            font: 10px var(--mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-left: 18px;
+            color: #cdd8e8;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            padding: 8px 0;
+            opacity: 1;
+            border-bottom: 1px solid transparent;
+            transition: color .18s var(--ease), border-color .18s var(--ease);
+        }
+
+        .nav-links a::after {
+            display: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--cyan2);
+            border-color: var(--cyan);
+        }
+
+        .nav-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lang-switch {
+            display: flex;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            overflow: hidden;
+            background: rgba(6, 14, 28, .38);
+        }
+
+        .lang-btn {
+            height: 34px;
+            padding: 0 11px;
+            border: 0;
+            background: transparent;
+            color: var(--body);
+            font: 700 11px var(--mono);
+            letter-spacing: .04em;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: rgba(57, 215, 255, .14);
+            color: var(--cyan2);
+        }
+
+        .nav-actions .btn.primary {
+            min-height: 46px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+        }
+
+        @media (max-width: 1100px) {
+            .nav-links {
+                display: none;
+            }
+
+            .strip-inner > div:last-child {
+                display: none;
+            }
+        }
+
+    
+/* Sampora mobile canonical navigation */
+.mobile-nav-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:10px;background:rgba(6,14,28,.62);color:var(--fg,#E8EEF5);font:800 20px/1 var(--mono,monospace);cursor:pointer}
+.mobile-nav-drawer{display:none;position:fixed;left:16px;right:16px;top:92px;z-index:120;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:14px;background:rgba(6,16,31,.97);box-shadow:0 26px 80px rgba(0,0,0,.42);backdrop-filter:blur(16px);padding:10px}
+.mobile-nav-drawer a{display:flex;align-items:center;min-height:42px;padding:0 12px;border-radius:10px;color:var(--fg2,#C5D3E5);font-weight:800;text-decoration:none}
+.mobile-nav-drawer a.active,.mobile-nav-drawer a:hover{color:var(--cyan,#38D2FF);background:rgba(56,210,255,.08)}
+body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
+@media(max-width:760px){.mobile-nav-toggle{display:inline-flex}.header-actions,.nav-actions,.actions{gap:10px}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}}
+
+
+
+/* Unified footer link motion */
+.footer-card a,
+.site-footer a,
+.footer-col a,
+.sampora-footer-card a,
+.sampora-site-footer a,
+.sampora-footer-col a {
+  color: rgba(218, 230, 246, .72);
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease, text-shadow .2s ease;
+}
+
+.footer-card a:hover,
+.site-footer a:hover,
+.footer-col a:hover,
+.sampora-footer-card a:hover,
+.sampora-site-footer a:hover,
+.sampora-footer-col a:hover,
+.footer-card a:focus-visible,
+.site-footer a:focus-visible,
+.footer-col a:focus-visible,
+.sampora-footer-card a:focus-visible,
+.sampora-site-footer a:focus-visible,
+.sampora-footer-col a:focus-visible {
+  color: #38d8ff;
+  transform: translateX(3px);
+  text-shadow: 0 0 18px rgba(56, 216, 255, .28);
+}
+
+/* Package C: align Contact footer to the Sampora standard footer contract */
+.sampora-site-footer{border-top:1px solid rgba(129,178,214,.18)!important;padding:64px 0 54px!important;color:var(--body,#A9B9CE)!important;background:linear-gradient(180deg,rgba(6,16,31,.22),rgba(6,16,31,.42))!important}
+.sampora-footer-card{border:1px solid rgba(129,178,214,.22)!important;border-radius:24px!important;overflow:hidden!important;background:rgba(8,20,36,.72)!important;box-shadow:0 30px 90px rgba(0,0,0,.24)!important}
+.sampora-site-footer .sampora-footer-card{width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
+.sampora-footer-main{display:grid!important;grid-template-columns:1.45fr .72fr .72fr .72fr!important;gap:48px!important;padding:42px 48px 36px!important}
+.sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--text,#E8EEF5)!important;margin-bottom:22px!important}
+.sampora-footer-mark{width:34px!important;height:34px!important;border-radius:10px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.42)!important;background:linear-gradient(160deg,rgba(56,210,255,.16),rgba(14,27,47,.92))!important;font:800 14px var(--mono,monospace)!important}
+.sampora-footer-logo b{display:block!important;font-size:24px!important;line-height:1!important;letter-spacing:-.03em!important;color:var(--text,#E8EEF5)!important}
+.sampora-footer-logo small{display:block!important;margin-top:4px!important;font:800 10px var(--mono,monospace)!important;letter-spacing:.10em!important;color:var(--muted,#7E92AC)!important}
+.sampora-footer-brand p{margin:0!important;max-width:430px!important;color:var(--body,#A9B9CE)!important;font-size:16px!important;line-height:1.75!important}
+.sampora-footer-badges{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:24px!important}
+.sampora-footer-badges span{display:inline-flex!important;height:26px!important;align-items:center!important;padding:0 12px!important;border-radius:999px!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;color:var(--cyan2,#7BE3FF)!important;font:800 11px var(--mono,monospace)!important}
+.sampora-footer-col h3{margin:0 0 18px!important;padding-bottom:16px!important;border-bottom:1px solid rgba(129,178,214,.18)!important;color:var(--text,#E8EEF5)!important;font-size:18px!important;line-height:1.1!important;letter-spacing:-.02em!important}
+.sampora-footer-col a{display:block!important;margin:0 0 14px!important;color:var(--body,#A9B9CE)!important;font-size:15px!important;line-height:1.35!important;transition:color .18s var(--ease,cubic-bezier(.2,.7,.2,1)),transform .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
+.sampora-footer-col a:hover{color:var(--cyan,#38D2FF)!important;transform:translateX(3px)!important}
+.sampora-footer-contact{display:grid!important;grid-template-columns:repeat(3,1fr)!important;border-top:1px solid rgba(129,178,214,.18)!important}
+.sampora-footer-contact-item{display:flex!important;align-items:center!important;gap:18px!important;min-height:74px!important;padding:0 48px!important;border-right:1px solid rgba(129,178,214,.18)!important;color:var(--text,#E8EEF5)!important;font-size:16px!important;font-weight:760!important}
+.sampora-footer-contact-item:last-child{border-right:0!important}
+.sampora-footer-icon{width:34px!important;height:34px!important;border-radius:999px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;flex:0 0 auto!important;box-sizing:border-box!important;overflow:hidden!important;text-align:center!important;font:800 10.5px/1 var(--mono,monospace)!important;letter-spacing:.02em!important}
+.sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
+.sampora-footer-legal{display:flex!important;justify-content:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:1px solid rgba(129,178,214,.10)!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+@media(max-width:980px){.sampora-footer-main{grid-template-columns:1fr 1fr!important;padding:34px 28px!important}.sampora-footer-contact{grid-template-columns:1fr!important}.sampora-footer-contact-item{border-right:0!important;border-bottom:1px solid rgba(129,178,214,.18)!important;padding:18px 28px!important}.sampora-footer-contact-item:last-child{border-bottom:0!important}}
+@media(max-width:760px){.sampora-footer-main{grid-template-columns:1fr!important}}
+
+/* final cleanup: unified navigation and language switcher */
+.lang,.lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
+.lang button,.lang-btn{min-width:42px;height:34px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px/1 var(--mono,ui-monospace,monospace);letter-spacing:.03em;cursor:pointer;transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
+.lang button:hover,.lang button:focus-visible,.lang-btn:hover,.lang-btn:focus-visible{color:var(--cyan2,var(--cyan,#61e7ff));outline:0;box-shadow:0 0 0 1px rgba(56,210,255,.24)}
+.lang button.active,.lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
+html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 10px;font-family:var(--sans,system-ui,sans-serif);font-weight:800;letter-spacing:0}
+@media(max-width:1100px){.nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:none!important}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}.nav.sampora-nav-standard,.sampora-nav-standard{gap:28px!important}}
+@media(max-width:760px){.brand small{display:none!important}.mast .inner,.nav-inner{gap:14px!important}.response-grid{grid-template-columns:1fr}.response-card{min-height:auto}}
+@media(max-width:360px){.container{width:min(100% - 24px,var(--max))!important}.brand b{display:none!important}.lang button,.lang-btn{min-width:34px!important;padding:0 6px!important;font-size:10px!important}.mobile-nav-toggle{width:36px!important;height:36px!important}.header-actions,.nav-actions,.actions{gap:6px!important}}
+
+
+/* final cleanup: contact header alignment */
+.status{height:34px;border-bottom:1px solid var(--line);background:rgba(5,13,24,.76);backdrop-filter:blur(18px);color:var(--body);font:12px var(--mono);letter-spacing:.06em;position:sticky;top:0;z-index:61}.status .inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;overflow:hidden;white-space:nowrap}.status .live{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-weight:900;text-transform:uppercase}.status .live:before{content:"";display:inline-flex;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 16px rgba(169,255,95,.8)}.mast{height:70px;position:sticky;top:34px;z-index:60;border-bottom:1px solid var(--line);background:rgba(6,16,29,.82);backdrop-filter:blur(20px)}.mast .inner{height:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px}.mast .brand{display:inline-flex;align-items:center;gap:12px;min-width:max-content}.mast .mark{width:32px;height:32px;border:1px solid rgba(57,215,255,.48);border-radius:9px;display:grid;place-items:center;color:var(--cyan2);font-family:var(--mono);background:rgba(10,59,85,.42);box-shadow:inset 0 0 22px rgba(57,215,255,.12)}.mast .nav{height:auto;position:static;z-index:auto;border:0;background:transparent;backdrop-filter:none;display:flex;align-items:center;justify-content:center;gap:36px;color:#cdd8e8;font-size:14px;white-space:nowrap}.mast .nav a{position:relative;padding:26px 0;opacity:.86}.mast .nav a:hover,.mast .nav a.active{color:var(--cyan2);opacity:1}.mast .nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:15px;height:2px;border-radius:99px;background:linear-gradient(90deg,transparent,var(--cyan2),transparent)}.header-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px}@media(max-width:1100px){.mast .nav{display:none!important}.status .right{display:none}}@media(max-width:760px){.status{display:none}.mast{top:0}.mast .inner{display:flex;gap:14px}.header-actions .btn.primary{display:none!important}}@media(max-width:360px){.brand-name,.brand-sub{display:none!important}.footer-bottom{grid-template-columns:1fr!important}.contact-item{min-width:0!important;padding-left:14px!important;padding-right:14px!important;overflow-wrap:anywhere!important}}
+
+/* Worker A: unified desktop navigation */
+@media(min-width:1101px){
+  .mast{height:auto!important;top:34px!important}
+  .mast.compact{background:rgba(10,22,40,.82)!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important}
+  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:flex!important;align-items:center!important;justify-content:center!important;gap:32px!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
+  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;white-space:nowrap!important}
+  .header-actions,.nav-actions,.actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-left:0!important}
+}
+
+/* Worker F: measured desktop header parity */
+@media(min-width:1101px){
+  .status,.topline{height:auto!important}
+  .status .inner,.topline .inner{height:34px!important}
+  .status .container,.topline .container,.mast .container{width:min(1360px,calc(100% - 48px))!important}
+  .mast{height:auto!important;top:34px!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:167.36px minmax(0,1fr) 430px!important;align-items:center!important;gap:24px!important}
+  .mast .brand{width:167.36px!important;min-width:167.36px!important;gap:10px!important}
+  .mast .mark,.brand .mark{width:30px!important;height:30px!important}
+  .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:32px!important;margin:0!important;padding:0!important}
+  .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;white-space:nowrap!important}
+  .mast .nav.sampora-nav-standard a.active::after,.mast .nav-links.sampora-nav-standard a.active::after,.mast .sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,var(--cyan,#38D2FF),transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
+  .mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box!important;width:430px!important;min-width:430px!important;height:44.92px!important;align-self:center!important;justify-self:end!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;flex-wrap:nowrap!important;overflow:visible!important;margin-left:0!important}
+  .mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto!important;white-space:nowrap!important}
+}
+
+/* Package C: header Start trial visual parity with resources.html */
+.mast .header-actions > .btn.primary{
+  min-height:auto;
+  padding:12px 18px;
+  border:1px solid transparent;
+  border-radius:10px;
+  background:linear-gradient(135deg,#38D2FF,#7BE3FF);
+  color:#03111B;
+  font-weight:800;
+  font-size:13.5px;
+  line-height:1.56;
+  letter-spacing:.01em;
+  box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18);
+  transition:transform .14s cubic-bezier(.2,.7,.2,1),box-shadow .18s cubic-bezier(.2,.7,.2,1),background .18s cubic-bezier(.2,.7,.2,1),border-color .18s cubic-bezier(.2,.7,.2,1);
+}
+.mast .header-actions > .btn.primary:hover{
+  transform:translateY(-1px);
+  background:linear-gradient(135deg,#38D2FF,#7BE3FF);
+  border-color:transparent;
+  box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24);
+}
+
+/* Package C: fixed header stack for reliable top-block/footer scroll */
+body{padding-top:100px}
+.status{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:80!important;height:34px!important}
+.mast{position:fixed!important;top:34px!important;left:0!important;right:0!important;z-index:79!important}
+@media(min-width:761px){
+  .status,.mast,.mast .inner{transition:transform .26s var(--ease),opacity .22s var(--ease),height .26s var(--ease),top .26s var(--ease),background .26s var(--ease),box-shadow .26s var(--ease),border-color .26s var(--ease)}
+  body.nav-condensed .status{height:0!important;transform:translateY(-100%)!important;opacity:0!important;pointer-events:none!important;border-bottom-color:transparent!important;border-bottom-width:0!important;overflow:hidden!important}
+  body.nav-condensed .mast{top:0!important}
+}
+@media(max-width:760px){
+  body{padding-top:66px}
+  .status{display:none!important}
+  .mast{top:0!important}
+}
+
+</style>
+</head>
+
+<body>
+    <div aria-hidden="true" class="status">
+        <div class="container inner">
+            <div class="live" data-i18n="topLine">CONTACT CENTER / Live</div>
+            <div class="right" data-i18n="topRight">Trial, demo, sales, and resource requests</div>
+        </div>
+    </div>
+
+    <header class="mast">
+        <div class="container inner">
+            <a class="brand" href="index.html">
+                <span class="mark">S</span>
+                <span><span class="brand-name">Sampora</span><span class="brand-sub" data-i18n="brandSub">Operations console</span></span>
+            </a>
+            <nav class="nav sampora-nav-standard" aria-label="Primary navigation">
+                <a href="index.html" data-i18n="navProduct">Product</a>
+                <a href="solutions.html" data-i18n="navSolutions">Solutions</a>
+                <a href="resources.html" data-i18n="navResources">Resources</a>
+                <a href="plans.html" data-i18n="navPlans">Plans</a>
+                <a href="contact.html" class="active" data-i18n="navContact">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <div aria-label="Language" class="lang" data-i18n-aria-label="langSwitcher">
+                    <button class="active" data-lang="en" type="button">EN</button>
+                    <button data-lang="zh" type="button">中文</button>
+                    <button data-lang="hi" type="button">हिन्दी</button>
+                </div>
+                <a class="btn ghost" href="contact.html?intent=book_demo#contact-form" data-i18n="ctaDemo">Book a demo</a>
+                <a class="btn primary" href="contact.html?intent=start_trial#contact-form" data-i18n="ctaTop">Start trial</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="eyebrow" data-i18n="heroEyebrow">CONTACT CENTER</div>
+            <h1 data-i18n="heroTitle">Start a Sampora trial or book a demo.</h1>
+            <p data-i18n="heroSub">Submit your request and our sales team will follow up with trial access or a demo path for your sample operation setup.</p>
+        </div>
+    </section>
+
+    <main>
+        <section class="contact-main" id="contact-form">
+            <div class="container form-layout">
+                <div class="side-copy">
+                    <div class="eyebrow" data-i18n="formKicker">CONTACT FORM</div>
+                    <h2 data-i18n="formTitle">Submit request</h2>
+                    <p data-i18n="formIntro">Share your sample operation context so sales can route your trial, demo, enterprise, or resource request correctly.</p>
+                    <ul class="tick-list">
+                        <li data-i18n="bullet1">We keep the URL intent so start trial, demo, sales, enterprise, and resource requests stay separated.</li>
+                        <li data-i18n="bullet2">Required fields cover name, email, company, role, business type, and message.</li>
+                        <li data-i18n="bullet3">Hidden fields preserve source page, section, plan, and language for backend processing.</li>
+                        <li data-i18n="bullet4">Success is shown only after a real backend endpoint confirms the request.</li>
+                    </ul>
+                    <div class="support-note">
+                        <span>•</span>
+                        <span><span data-i18n="cardHelpTitle">Resources for online sample operations</span> / <a href="resources.html"
+                                data-i18n="cardHelpCta">View manuals</a></span>
+                    </div>
+                </div>
+
+                <form class="form-card" id="contactForm" method="post" action="[BACKEND_CONTACT_ENDPOINT]" data-endpoint="[BACKEND_CONTACT_ENDPOINT]">
+                    <input type="hidden" name="intent" id="intentField" value="contact_sales" />
+                    <input type="hidden" name="source_page" id="sourcePageField" value="contact.html" />
+                    <input type="hidden" name="source_section" id="sourceSectionField" value="contact-form" />
+                    <input type="hidden" name="plan" id="planField" value="" />
+                    <input type="hidden" name="lang" id="langField" value="en" />
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="name" data-i18n="nameLabel">Name*</label>
+                            <input id="name" name="name" autocomplete="name" required />
+                        </div>
+                        <div class="field">
+                            <label for="company" data-i18n="companyLabel">Company*</label>
+                            <input id="company" name="company" autocomplete="organization" required />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="email" data-i18n="emailLabel">Email*</label>
+                        <input id="email" type="email" name="email" autocomplete="email" required />
+                    </div>
+                    <div class="field">
+                        <label for="role" data-i18n="roleLabel">Role / business type*</label>
+                        <select id="role" name="role" required>
+                            <option value="" selected disabled data-i18n="rolePh">Select your role</option>
+                            <option value="Panel Provider" data-i18n="rolePanel">Panel Provider</option>
+                            <option value="Sample Supplier" data-i18n="roleSupplier">Sample Supplier</option>
+                            <option value="Sample Aggregator" data-i18n="roleAggregator">Sample Aggregator</option>
+                            <option value="Survey Station / Execution Unit" data-i18n="roleStation">Survey Station / Execution Unit</option>
+                            <option value="Research Subcontractor" data-i18n="roleSubcontractor">Research Subcontractor</option>
+                            <option value="API-connected Supplier" data-i18n="roleApi">API-connected Supplier</option>
+                            <option value="Other" data-i18n="roleOther">Other</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="business_type" data-i18n="businessTypeLabel">What is this request for?*</label>
+                        <select id="business_type" name="business_type" required>
+                            <option value="" selected disabled data-i18n="businessTypePh">Select request intent</option>
+                            <option value="start_trial" data-i18n="businessTrial">Start trial</option>
+                            <option value="book_demo" data-i18n="businessDemo">Book a demo</option>
+                            <option value="contact_sales" data-i18n="businessSales">Contact sales</option>
+                            <option value="enterprise_demo" data-i18n="businessEnterprise">Enterprise plan</option>
+                            <option value="resource_question" data-i18n="businessResource">Resources consult</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="message" data-i18n="msgLabel">Message</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn primary" type="submit" data-i18n="submit">Submit request</button>
+                    </div>
+                    <p class="privacy" data-i18n="privacy">No final success message is shown unless the backend actually responds successfully.</p>
+                </form>
+            </div>
+        </section>
+
+        <section class="response">
+            <div class="container">
+                <div class="eyebrow" data-i18n="nextStep">NEXT STEP</div>
+                <h2 data-i18n="responseTitle">What happens after submission?</h2>
+                <p class="response-sub" data-i18n="responseSub">The form is prepared for backend follow-up. Until the endpoint is live, the page only shows a conservative placeholder state.</p>
+
+                <div class="response-grid">
+                    <article class="response-card">
+                        <span class="response-icon">01</span>
+                        <h3 data-i18n="responseCard1Title">Keep routing explicit</h3>
+                        <p data-i18n="response1">The request keeps its URL intent so start trial, demo, sales, enterprise, and resource inquiries stay separated.</p>
+                    </article>
+                    <article class="response-card">
+                        <span class="response-icon">02</span>
+                        <h3 data-i18n="responseCard2Title">Preserve source context</h3>
+                        <p data-i18n="response2">Hidden fields keep the source page, section, plan, and language available for backend processing.</p>
+                    </article>
+                    <article class="response-card">
+                        <span class="response-icon">03</span>
+                        <h3 data-i18n="responseCard3Title">Hold the outcome conservative</h3>
+                        <p data-i18n="response3">The frontend does not claim a completed handoff until a real backend response is received.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="sampora-site-footer" id="footer">
+        <div class="container sampora-footer-card">
+            <div class="sampora-footer-main">
+                <div class="sampora-footer-brand">
+                    <a aria-label="Sampora home" class="sampora-footer-logo" href="index.html">
+                        <span class="sampora-footer-mark">S</span>
+                        <span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span>
+                    </a>
+                    <p data-i18n="footerDesc">An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.</p>
+                    <div class="sampora-footer-badges"><span data-i18n="tag1">Sample supply</span><span data-i18n="tag2">Review workflow</span><span data-i18n="tag3">Settlement ledger</span></div>
+                </div>
+                <div class="sampora-footer-col">
+                    <h3>Product</h3>
+                    <a href="index.html" data-i18n="navProduct">Product</a>
+                    <a href="solutions.html" data-i18n="navSolutions">Solutions</a>
+                    <a href="plans.html" data-i18n="navPlans">Plans</a>
+                </div>
+                <div class="sampora-footer-col">
+                    <h3 data-i18n="footerSupport">Product support</h3>
+                    <a href="resources.html" data-i18n="cardHelpTitle">Help center</a>
+                    <a href="resources.html#surfaces" data-i18n="cardSupportTitle">View manuals</a>
+                    <a href="contact.html?intent=contact_sales#contact-form" data-i18n="cardCommunityTitle">Talk to sales</a>
+                </div>
+                <div class="sampora-footer-col">
+                    <h3>Contact</h3>
+                    <a href="mailto:jiayu@surveysaas.com">jiayu@surveysaas.com</a>
+                    <a href="tel:4006600224">400-660-0224</a>
+                    <a href="contact.html?intent=contact_sales#contact-form" data-i18n="footerContactSales">Contact sales</a>
+                </div>
+            </div>
+            <div class="sampora-footer-contact">
+                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
+                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>jiayu@surveysaas.com</span></div>
+                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
+            </div>
+            <div class="sampora-footer-legal"><span data-i18n="footerCopyright">© 2026</span><span data-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"><b data-i18n="toastTitle">Backend placeholder</b><span data-i18n="toastText">The form is ready for backend wiring and is staying in a pending state for now.</span></div>
+    <div class="toast" id="toastSuccess"><b data-i18n="successTitle">Request submitted</b><span data-i18n="successText">Your request has been submitted. Our sales team will review your setup and follow up with trial access or a demo path.</span></div>
+    <div class="toast" id="toastFailure"><b data-i18n="failureTitle">Submission failed</b><span data-i18n="failureText">Submission failed. Please check your details or try again later.</span></div>
+
+    <script>
+(function(){
+  var currentLang = (function(){
+    try {
+      var saved = localStorage.getItem('sampora_lang');
+      return saved === 'zh' || saved === 'hi' ? saved : 'en';
+    } catch (e) {
+      return 'en';
+    }
+  })();
+  var $ = function(selector, root){ return (root || document).querySelector(selector); };
+  var $$ = function(selector, root){ return Array.from((root || document).querySelectorAll(selector)); };
+  var texts = {
+    en: { heroEyebrow: 'CONTACT CENTER', heroTitle: 'Start a Sampora trial or book a demo.', heroSub: 'Submit your request and our sales team will follow up with trial access or a demo path for your sample operation setup.', formKicker: 'CONTACT FORM', formTitle: 'Submit request', formIntro: 'Share your sample operation context so sales can route your trial, demo, enterprise, or resource request correctly.', submit: 'Submit request', privacy: 'No final success message is shown unless the backend actually responds successfully.', nextStep: 'NEXT STEP', responseTitle: 'What happens after submission?', responseSub: 'The form is prepared for backend follow-up. Until the endpoint is live, the page only shows a conservative placeholder state.', responseCard1Title: 'Keep routing explicit', responseCard2Title: 'Preserve source context', responseCard3Title: 'Hold the outcome conservative', response1: 'The request keeps its URL intent so start trial, demo, sales, enterprise, and resource inquiries stay separated.', response2: 'Hidden fields keep the source page, section, plan, and language available for backend processing.', response3: 'The frontend does not claim a completed handoff until a real backend response is received.', footerCopyright: '© 2026', footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.', legalStaticGuard: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.' },
+    zh: { heroEyebrow: '联系中心', heroTitle: '开始 Sampora 试用或预约演示。', heroSub: '提交请求后，我们的销售团队会根据你的样本运营场景，跟进试用权限或演示路径。', formKicker: '联系表单', formTitle: '提交请求', formIntro: '请分享你的样本运营背景，便于销售团队正确分流试用、演示、企业或资料咨询请求。', submit: '提交请求', privacy: '只有在后端真实成功响应后，才会显示最终成功状态。', nextStep: '下一步', responseTitle: '提交后会发生什么？', responseSub: '表单已为后端跟进做好准备。在接口上线前，页面只展示保守的待接入状态。', responseCard1Title: '保留明确路由', responseCard2Title: '保留来源上下文', responseCard3Title: '保持结果保守', response1: '请求会保留 URL intent，方便区分试用、演示、销售、企业和资料咨询。', response2: '隐藏字段会保留来源页面、区域、方案和语言，供后端处理。', response3: '只有在真实后端响应后，前端才会显示完成交付的状态。', footerCopyright: '© 2026', footerCompanyLegal: '安徽省嘉禹企业服务有限公司' },
+    hi: { heroEyebrow: 'CONTACT CENTER', heroTitle: 'Sampora trial शुरू करें या demo book करें।', heroSub: 'Request submit करें; हमारी sales team आपके sample operation setup के हिसाब से trial access या demo path follow up करेगी।', formKicker: 'CONTACT FORM', formTitle: 'अनुरोध सबमिट करें', formIntro: 'अपना sample operation context भेजें ताकि sales team trial, demo, enterprise या resource request को सही route कर सके।', submit: 'अनुरोध सबमिट करें', privacy: 'Final success केवल तब दिखेगा जब backend वास्तविक रूप से सफल response दे।', nextStep: 'NEXT STEP', responseTitle: 'Submission के बाद क्या होगा?', responseSub: 'Form backend follow-up के लिए तैयार है। Endpoint live होने तक केवल conservative placeholder state दिखती है।', responseCard1Title: 'Routing स्पष्ट रखें', responseCard2Title: 'Source context सुरक्षित रखें', responseCard3Title: 'Outcome conservative रखें', response1: 'URL intent start trial, demo, sales, enterprise और resource inquiries को अलग रखता है।', response2: 'Hidden fields source page, section, plan और language को backend के लिए सुरक्षित रखते हैं।', response3: 'Real backend response मिलने तक frontend completed handoff का दावा नहीं करेगा।', footerCopyright: '© 2026', footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.' }
+  };
+  var langLabels = {
+    en: { en: 'EN', zh: '中文', hi: 'हिन्दी' },
+    zh: { en: 'EN', zh: '中文', hi: 'हिन्दी' },
+    hi: { en: 'EN', zh: '中文', hi: 'हिन्दी' }
+  };
+  function apply(lang){
+    var copy = texts[lang] || texts.en;
+    document.documentElement.dataset.lang = lang;
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'hi' ? 'hi' : 'en';
+    $$('.lang button[data-lang]').forEach(function(btn){
+      btn.textContent = (langLabels[lang] || langLabels.en)[btn.dataset.lang] || btn.textContent;
+      var active = btn.dataset.lang === lang;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    ['heroEyebrow','heroTitle','heroSub','formKicker','formTitle','formIntro','submit','privacy','nextStep','responseTitle','responseSub','responseCard1Title','responseCard2Title','responseCard3Title','response1','response2','response3','footerCopyright','footerCompanyLegal'].forEach(function(key){
+      $$('[data-i18n="' + key + '"]').forEach(function(el){ el.textContent = copy[key]; });
+    });
+    try { localStorage.setItem('sampora_lang', lang); } catch (e) {}
+  }
+  function syncTopChrome(){
+    var compact = window.scrollY > 56;
+    var mast = document.querySelector('.mast');
+    if (mast) mast.classList.toggle('compact', compact);
+    document.body.classList.toggle('nav-condensed', compact);
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    apply(currentLang);
+    $$('.lang button[data-lang]').forEach(function(btn){ btn.addEventListener('click', function(){ apply(btn.dataset.lang); }); });
+    syncTopChrome();
+    window.addEventListener('scroll', syncTopChrome, { passive: true });
+  });
+})();
+</script>
+<script src="assets/i18n-sweep.js"></script>
+<script>
+(function () {
+  const translations = {
+    en: {
+      submit: 'Submit request',
+      privacy: 'This form is prepared for backend submission. Until the backend endpoint is wired, submissions stay in a pending placeholder state and do not imply a completed handoff.',
+      nameLabel: 'Name*',
+      companyLabel: 'Company*',
+      emailLabel: 'Email*',
+      roleLabel: 'Role / business type*',
+      businessTypeLabel: 'What is this request for?*',
+      rolePh: 'Select your role',
+      businessTypePh: 'Select request intent',
+      rolePanel: 'Panel Provider',
+      roleSupplier: 'Sample Supplier',
+      roleAggregator: 'Sample Aggregator',
+      roleStation: 'Survey Station / Execution Unit',
+      roleSubcontractor: 'Research Subcontractor',
+      roleApi: 'API-connected Supplier',
+      roleOther: 'Other',
+      businessTrial: 'Start trial',
+      businessDemo: 'Book a demo',
+      businessSales: 'Contact sales',
+      businessEnterprise: 'Enterprise plan',
+      businessResource: 'Resources consult',
+      formKicker: 'CONTACT FORM',
+      formTitle: 'Submit request',
+      formIntro: 'Send a backend-ready request and keep the status conservative until the contact endpoint is connected.',
+      bullet1: 'We keep the contact intent from the URL so routing stays explicit.',
+      bullet2: 'Required fields cover name, email, company, role, business type, and message.',
+      bullet3: 'Hidden fields preserve source page, section, plan, and language for backend handoff.',
+      bullet4: 'Pending state is shown until a real backend accepts the request.',
+      privacy: 'No final success message is shown unless the backend actually responds successfully.',
+      toastTitle: 'Backend placeholder',
+      toastText: 'The form is ready for backend wiring and is staying in a pending state for now.',
+      successTitle: 'Request submitted',
+      successText: 'Your request has been submitted. Our sales team will review your setup and follow up with trial access or a demo path.',
+      failureTitle: 'Submission failed',
+      failureText: 'Submission failed. Please check your details or try again later.',
+      nextStep: 'NEXT STEP',
+      responseTitle: 'What happens after submission?',
+      responseSub: 'The form is prepared for backend follow-up. Until the endpoint is live, the page only shows a conservative placeholder state.',
+      responseCard1Title: 'Keep routing explicit',
+      responseCard2Title: 'Preserve source context',
+      responseCard3Title: 'Hold the outcome conservative',
+      response1: 'The request keeps its URL intent so start trial, demo, sales, enterprise, and resource inquiries stay separated.',
+      response2: 'Hidden fields keep the source page, section, plan, and language available for backend processing.',
+      response3: 'The frontend does not claim a completed handoff until a real backend response is received.'
+    },
+    zh: {
+      submit: '提交请求',
+      privacy: '此表单已准备好对接后端。未接入真实接口前，只会显示保守的待接入状态，不会暗示销售团队已经收到请求。',
+      nameLabel: '姓名*',
+      companyLabel: '公司*',
+      emailLabel: '邮箱*',
+      roleLabel: '角色 / 业务类型*',
+      businessTypeLabel: '本次请求类型*',
+      rolePh: '请选择角色',
+      businessTypePh: '请选择请求意图',
+      rolePanel: 'Panel Provider',
+      roleSupplier: 'Sample Supplier',
+      roleAggregator: 'Sample Aggregator',
+      roleStation: 'Survey Station / Execution Unit',
+      roleSubcontractor: 'Research Subcontractor',
+      roleApi: 'API-connected Supplier',
+      roleOther: '其他',
+      businessTrial: '开始试用',
+      businessDemo: '预约演示',
+      businessSales: '联系销售',
+      businessEnterprise: '企业方案',
+      businessResource: '资料咨询',
+      formKicker: '联系表单',
+      formTitle: '提交请求',
+      formIntro: '提交一个可对接后端的请求，并在接口接通前保持保守状态。',
+      bullet1: 'URL 中的 intent 会被保留，方便明确路由。',
+      bullet2: '必填字段覆盖姓名、邮箱、公司、角色、业务类型和消息。',
+      bullet3: '隐藏字段保留来源页面、区域、方案和语言，便于后端接收。',
+      bullet4: '在真实后端接入前，页面只展示待接入状态。',
+      privacy: '只有在后端真实成功响应后，才会显示最终成功状态。',
+      toastTitle: '后端待接入',
+      toastText: '表单已准备好对接后端，目前保持待接入状态。',
+      successTitle: '请求已提交',
+      successText: '你的请求已提交。我们的销售团队会根据你的业务场景，跟进试用权限或演示路径。',
+      failureTitle: '提交失败',
+      failureText: '提交失败，请检查信息后稍后再试。',
+      nextStep: '下一步',
+      responseTitle: '提交后会发生什么？',
+      responseSub: '表单已为后端跟进做好准备。在接口上线前，页面只展示保守的待接入状态。',
+      responseCard1Title: '保留明确路由',
+      responseCard2Title: '保留来源上下文',
+      responseCard3Title: '保持结果保守',
+      response1: '请求会保留 URL intent，方便区分试用、演示、销售、企业和资料咨询。',
+      response2: '隐藏字段会保留来源页面、区域、方案和语言，供后端处理。',
+      response3: '只有在真实后端响应后，前端才会显示完成交付的状态。'
+    },
+    hi: {
+      submit: 'अनुरोध सबमिट करें',
+      privacy: 'यह फ़ॉर्म backend submission के लिए तैयार है। वास्तविक endpoint जुड़ने तक केवल pending placeholder state दिखेगी, final handoff का दावा नहीं किया जाएगा।',
+      nameLabel: 'नाम*',
+      companyLabel: 'कंपनी*',
+      emailLabel: 'ईमेल*',
+      roleLabel: 'भूमिका / business type*',
+      businessTypeLabel: 'यह अनुरोध किस लिए है?*',
+      rolePh: 'अपनी भूमिका चुनें',
+      businessTypePh: 'Request intent चुनें',
+      rolePanel: 'Panel Provider',
+      roleSupplier: 'Sample Supplier',
+      roleAggregator: 'Sample Aggregator',
+      roleStation: 'Survey Station / Execution Unit',
+      roleSubcontractor: 'Research Subcontractor',
+      roleApi: 'API-connected Supplier',
+      roleOther: 'अन्य',
+      businessTrial: 'Start trial',
+      businessDemo: 'Book a demo',
+      businessSales: 'Contact sales',
+      businessEnterprise: 'Enterprise plan',
+      businessResource: 'Resources consult',
+      formKicker: 'CONTACT FORM',
+      formTitle: 'अनुरोध सबमिट करें',
+      formIntro: 'Backend-ready request भेजें और endpoint जुड़ने तक status को conservative रखें।',
+      bullet1: 'URL intent बना रहता है, ताकि routing स्पष्ट रहे।',
+      bullet2: 'Mandatory fields में name, email, company, role, business type और message शामिल हैं।',
+      bullet3: 'Hidden fields source page, section, plan और language को backend handoff के लिए सुरक्षित रखते हैं।',
+      bullet4: 'Real backend के बिना final success message नहीं दिखाया जाएगा।',
+      privacy: 'Final success केवल तब दिखेगा जब backend वास्तविक रूप से सफल response दे।',
+      toastTitle: 'Backend placeholder',
+      toastText: 'Form backend wiring के लिए तैयार है और अभी pending state में है।',
+      successTitle: 'Request submitted',
+      successText: 'Your request has been submitted. Our sales team will review your setup and follow up with trial access or a demo path.',
+      failureTitle: 'Submission failed',
+      failureText: 'Submission failed. Please check your details or try again later.',
+      nextStep: 'NEXT STEP',
+      responseTitle: 'Submission के बाद क्या होगा?',
+      responseSub: 'Form backend follow-up के लिए तैयार है। Endpoint live होने तक केवल conservative placeholder state दिखती है।',
+      responseCard1Title: 'Routing स्पष्ट रखें',
+      responseCard2Title: 'Source context सुरक्षित रखें',
+      responseCard3Title: 'Outcome conservative रखें',
+      response1: 'URL intent start trial, demo, sales, enterprise और resource inquiries को अलग रखता है।',
+      response2: 'Hidden fields source page, section, plan और language को backend के लिए सुरक्षित रखते हैं।',
+      response3: 'Real backend response मिलने तक frontend completed handoff का दावा नहीं करेगा।'
+    }
+  };
+
+  const qs = new URLSearchParams(location.search);
+  const intentMap = {
+    start_trial: 'start_trial',
+    book_demo: 'book_demo',
+    contact_sales: 'contact_sales',
+    enterprise_demo: 'enterprise_demo',
+    resource_question: 'resource_question'
+  };
+
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const currentPageLang = () => (document.documentElement.dataset.lang || document.documentElement.lang || 'en').slice(0, 2);
+  const safeLang = (value) => ['en', 'zh', 'hi'].includes(value) ? value : 'en';
+  const lang = safeLang(qs.get('lang') || currentPageLang());
+  const copy = translations[lang] || translations.en;
+  const intent = intentMap[qs.get('intent')] || 'contact_sales';
+  const explicitPlan = qs.get('plan');
+  const sourcePage = qs.get('source_page') || 'contact.html';
+  const sourceSection = qs.get('source_section') || 'contact-form';
+  const backendEndpoint = form.getAttribute('data-endpoint') || form.getAttribute('action') || '[BACKEND_CONTACT_ENDPOINT]';
+  const isPlaceholder = backendEndpoint.includes('[BACKEND_CONTACT_ENDPOINT]');
+
+  function resolvePlan() {
+    if (explicitPlan) return explicitPlan;
+    if (intent === 'enterprise_demo') return 'enterprise';
+    const businessSelect = document.getElementById('business_type');
+    return businessSelect && businessSelect.value ? businessSelect.value : '';
+  }
+
+  function setHiddenFields() {
+    document.getElementById('intentField').value = intent;
+    document.getElementById('sourcePageField').value = sourcePage;
+    document.getElementById('sourceSectionField').value = sourceSection;
+    document.getElementById('planField').value = resolvePlan();
+    document.getElementById('langField').value = safeLang(qs.get('lang') || currentPageLang());
+  }
+  setHiddenFields();
+
+  const labelMap = ['nameLabel', 'companyLabel', 'emailLabel', 'roleLabel', 'businessTypeLabel', 'msgLabel'];
+  const labels = form.querySelectorAll('label');
+  labels.forEach((label, idx) => { if (copy[labelMap[idx]]) label.textContent = copy[labelMap[idx]]; });
+
+  const place = (id, key) => { const el = document.getElementById(id); if (el && copy[key]) el.placeholder = copy[key]; };
+  place('name', 'nameLabel');
+  place('company', 'companyLabel');
+  place('email', 'emailLabel');
+  place('message', 'privacy');
+
+  const submit = form.querySelector('button[type="submit"]');
+  if (submit && copy.submit) submit.textContent = copy.submit;
+  const privacy = form.querySelector('.privacy');
+  if (privacy && copy.privacy) privacy.textContent = copy.privacy;
+
+  const optionText = {
+    role: ['rolePh','rolePanel','roleSupplier','roleAggregator','roleStation','roleSubcontractor','roleApi','roleOther'],
+    business: ['businessTypePh','businessTrial','businessDemo','businessSales','businessEnterprise','businessResource']
+  };
+  const roleOptions = document.querySelectorAll('#role option');
+  roleOptions.forEach((opt, i) => { if (copy[optionText.role[i]]) opt.textContent = copy[optionText.role[i]]; });
+  const bizOptions = document.querySelectorAll('#business_type option');
+  bizOptions.forEach((opt, i) => { if (copy[optionText.business[i]]) opt.textContent = copy[optionText.business[i]]; });
+  const businessSelect = document.getElementById('business_type');
+  if (businessSelect && Array.from(businessSelect.options).some(opt => opt.value === intent)) businessSelect.value = intent;
+  setHiddenFields();
+
+  ['formKicker','formTitle','formIntro','bullet1','bullet2','bullet3','bullet4','nextStep','responseTitle','responseSub','responseCard1Title','responseCard2Title','responseCard3Title','response1','response2','response3'].forEach(key => {
+    document.querySelectorAll('[data-i18n="' + key + '"]').forEach(el => { if (copy[key]) el.textContent = copy[key]; });
+  });
+
+  const toast = document.getElementById('toast');
+  const toastSuccess = document.getElementById('toastSuccess');
+  const toastFailure = document.getElementById('toastFailure');
+  const show = (el) => { if (!el) return; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 3800); };
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    setHiddenFields();
+    const payload = new FormData(form);
+    const body = new URLSearchParams(payload);
+    try { sessionStorage.setItem('sampora_contact_pending', body.toString()); } catch (e) {}
+    if (isPlaceholder) {
+      show(toast);
+      return;
+    }
+    try {
+      const res = await fetch(backendEndpoint, { method: 'POST', body, headers: { 'X-Requested-With': 'fetch' } });
+      if (res.ok) show(toastSuccess); else show(toastFailure);
+    } catch (e) {
+      show(toastFailure);
+    }
+  });
+})();
+</script>
+
+</body>
+
+</html>

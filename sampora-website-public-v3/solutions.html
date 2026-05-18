@@ -1,0 +1,4219 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Sampora Solutions - Online sample operations layers</title>
+<meta content="Sampora solution layers for sample operations, supplier coordination, API-connected sample delivery, and multi-party settlement for panel providers and sample suppliers." name="description"/>
+<link rel="canonical" href="https://www.sampora.com/solutions.html">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --ink: #0A1628;
+      --deep: #06101F;
+      --panel: #0E1B2F;
+      --panel2: #142845;
+      --line: rgba(129, 178, 214, .18);
+      --line2: rgba(129, 178, 214, .10);
+      --cyan: #38D2FF;
+      --cyan2: #7BE3FF;
+      --lime: #B5F056;
+      --amber: #FFB454;
+      --saffron: #F6A93B;
+      --rose: #FF6B7A;
+      --fg: #E8EEF5;
+      --fg2: #BCCBE0;
+      --muted: #7E92AC;
+      --body: #A9B9CE;
+      --body2: #93A7C0;
+      --sans: "Inter", "Noto Sans SC", "Noto Sans Devanagari", "Helvetica Neue", Arial, sans-serif;
+      --mono: "JetBrains Mono", "Noto Sans SC", "Noto Sans Devanagari", SFMono-Regular, Menlo, Consolas, monospace;
+      --ease: cubic-bezier(.2, .7, .2, 1);
+      --shadow: 0 30px 78px rgba(0, 0, 0, .55)
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 104px
+    }
+
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.56;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      background-image: linear-gradient(rgba(120, 172, 216, .026) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 172, 216, .024) 1px, transparent 1px), radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%), radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .07) 0, transparent 64%), linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%);
+      background-size: 44px 44px, 44px 44px, auto, auto, auto
+    }
+
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(38% 28% at 18% 20%, rgba(56, 210, 255, .08), transparent 62%), radial-gradient(28% 24% at 86% 72%, rgba(246, 169, 59, .06), transparent 66%);
+      animation: bgDrift 14s ease-in-out 1 alternate;
+      z-index: -1
+    }
+
+    @keyframes bgDrift {
+      from {
+        transform: translate3d(-1%, 0, 0);
+        opacity: .7
+      }
+
+      to {
+        transform: translate3d(1.2%, 1%, 0);
+        opacity: 1
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      font: inherit
+    }
+
+    .container {
+      width: min(1360px, calc(100% - 48px));
+      margin: 0 auto
+    }
+
+    .section {
+      padding: 88px 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .status {
+      border-bottom: 1px solid var(--line);
+      background: rgba(6, 16, 31, .86);
+      color: var(--muted);
+      font: 11px var(--mono);
+      letter-spacing: .06em;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px)
+    }
+
+    .status .inner {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      overflow: hidden;
+      white-space: nowrap
+    }
+
+    .live {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--lime);
+      text-transform: uppercase;
+      font-weight: 700
+    }
+
+    .live:before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 0 rgba(181, 240, 86, .4);
+      animation: pulse 1.9s ease-out 1
+    }
+
+    .status .sep {
+      color: var(--muted)
+    }
+
+    .status .right {
+      margin-left: auto;
+      color: var(--fg2)
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(181, 240, 86, .48)
+      }
+
+      72% {
+        box-shadow: 0 0 0 9px rgba(181, 240, 86, 0)
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(181, 240, 86, 0)
+      }
+    }
+
+    .mast {
+      position: sticky;
+      top: 34px;
+      z-index: 49;
+      background: rgba(10, 22, 40, .82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      transition: background .2s var(--ease)
+    }
+
+    .mast.compact {
+      background: rgba(6, 16, 31, .91)
+    }
+
+    .mast .inner {
+      height: 66px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 24px;
+      transition: height .22s var(--ease)
+    }
+
+    .mast.compact .inner {
+      height: 56px
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: max-content
+    }
+
+    .mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: linear-gradient(160deg, #1a3a5f, #0e1b2f);
+      border: 1px solid rgba(56, 210, 255, .35);
+      display: grid;
+      place-items: center;
+      color: var(--cyan);
+      font: 800 13px var(--mono)
+    }
+
+    .brand b {
+      font-weight: 700;
+      letter-spacing: -.01em
+    }
+
+    .brand small {
+      display: block;
+      color: var(--body2);
+      font: 10px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      justify-self: center;
+      font-size: 13px;
+      color: var(--fg2);
+      position: relative
+    }
+
+    .nav a {
+      padding: 8px 0;
+      border-bottom: 1px solid transparent;
+      transition: color .18s var(--ease), border-color .18s var(--ease)
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--cyan2);
+      border-color: var(--cyan)
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .lang {
+      display: flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(6, 14, 28, .38)
+    }
+
+    .lang button {
+      height: 34px;
+      padding: 0 11px;
+      border: 0;
+      background: transparent;
+      color: var(--body2);
+      font: 700 11px var(--mono);
+      letter-spacing: .04em;
+      cursor: pointer
+    }
+
+    .lang button.active {
+      background: rgba(56, 210, 255, .14);
+      color: var(--cyan2)
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13.5px;
+      letter-spacing: .01em;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .14s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease)
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+      color: #03111B;
+      box-shadow: 0 0 0 1px rgba(56, 210, 255, .5), 0 12px 32px rgba(56, 210, 255, .18)
+    }
+
+    .btn.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 1px rgba(56, 210, 255, .56), 0 18px 42px rgba(56, 210, 255, .24)
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--fg);
+      border-color: var(--line)
+    }
+
+    .btn.ghost:hover {
+      transform: translateY(-1px);
+      border-color: rgba(56, 210, 255, .45);
+      color: var(--cyan2);
+      background: rgba(20, 40, 69, .22)
+    }
+
+    .hero {
+      position: relative;
+      padding: 82px 0 78px
+    }
+
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: 20px 0 auto 0;
+      height: 520px;
+      pointer-events: none;
+      background: radial-gradient(42% 34% at 64% 22%, rgba(56, 210, 255, .12), transparent 64%), radial-gradient(28% 26% at 30% 88%, rgba(246, 169, 59, .07), transparent 72%)
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, .82fr);
+      gap: 54px;
+      align-items: center
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font: 700 11px var(--mono);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #FFD39A;
+      padding: 7px 14px;
+      border: 1px solid rgba(246, 169, 59, .28);
+      border-radius: 999px;
+      background: rgba(246, 169, 59, .075)
+    }
+
+    .eyebrow:before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--saffron);
+      box-shadow: 0 0 14px rgba(246, 169, 59, .38)
+    }
+
+    h1 {
+      font-size: clamp(46px, 5vw, 76px);
+      line-height: 1;
+      letter-spacing: -.03em;
+      font-weight: 800;
+      margin: 22px 0 20px;
+      max-width: 840px
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--cyan)
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--body);
+      max-width: 700px;
+      margin: 0 0 30px;
+      line-height: 1.68
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    .solution-console {
+      position: relative
+    }
+
+    .console-window {
+      position: relative;
+      border: 1px solid rgba(56, 210, 255, .22);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(14, 27, 47, .92), rgba(7, 16, 31, .98));
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, .05);
+      overflow: hidden;
+      min-height: auto
+    }
+
+    .console-window:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(58% 46% at 72% 22%, rgba(56, 210, 255, .10), transparent 64%), radial-gradient(38% 30% at 18% 80%, rgba(246, 169, 59, .07), transparent 66%)
+    }
+
+    .window-bar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(129, 178, 214, .14);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0))
+    }
+
+    .lights {
+      display: flex;
+      gap: 8px
+    }
+
+    .lights i {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%
+    }
+
+    .lights i:nth-child(1) {
+      background: #FF6B7A
+    }
+
+    .lights i:nth-child(2) {
+      background: #F6A93B
+    }
+
+    .lights i:nth-child(3) {
+      background: #B5F056
+    }
+
+    .crumb {
+      font: 600 11px var(--mono);
+      letter-spacing: .08em;
+      color: var(--fg2);
+      text-transform: uppercase
+    }
+
+    .scope-pill {
+      margin-left: auto;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 210, 255, .22);
+      background: rgba(56, 210, 255, .08);
+      font: 700 11px var(--mono);
+      letter-spacing: .06em;
+      color: var(--cyan2)
+    }
+
+    .console-main {
+      position: relative;
+      z-index: 2;
+      padding: 20px 22px 18px
+    }
+
+    .console-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 16px
+    }
+
+    .console-summary h3 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.12;
+      letter-spacing: -.02em
+    }
+
+    .console-summary p {
+      margin: 0;
+      color: var(--body2);
+      font-size: 14px;
+      line-height: 1.62;
+      max-width: 520px
+    }
+
+    .console-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 210, 255, .20);
+      background: rgba(56, 210, 255, .07);
+      font: 700 10px var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--cyan2)
+    }
+
+    .tag.amber {
+      border-color: rgba(246, 169, 59, .22);
+      background: rgba(246, 169, 59, .08);
+      color: #FFD39A
+    }
+
+    .topo-headline {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      margin: 18px 0 10px
+    }
+
+    .topo-headline p {
+      margin: 0;
+      font: 700 11px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--fg2)
+    }
+
+    .legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font: 600 10px var(--mono);
+      letter-spacing: .06em
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .legend i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: block
+    }
+
+    .legend i.act {
+      background: var(--cyan);
+      box-shadow: 0 0 0 2px rgba(56, 210, 255, .15)
+    }
+
+    .legend i.mid {
+      background: #6FD8FF
+    }
+
+    .legend i.warn {
+      background: var(--amber);
+      box-shadow: 0 0 0 2px rgba(255, 180, 84, .15)
+    }
+
+    .topo-stage {
+      position: relative;
+      height: 280px;
+      border: 1px solid rgba(129, 178, 214, .12);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(7, 16, 31, .75), rgba(7, 16, 31, .35));
+      overflow: hidden;
+      cursor: zoom-in
+    }
+
+    .topo-stage:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(120, 172, 216, .02) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 172, 216, .02) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: .75
+    }
+
+    .topo-svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 1
+    }
+
+    .topo-col {
+      fill: var(--muted);
+      font: 600 10px var(--mono);
+      letter-spacing: .12em
+    }
+
+    .topo-svg .wire {
+      fill: none;
+      stroke: rgba(129, 178, 214, .14);
+      stroke-width: 1.2
+    }
+
+    .topo-svg .flow {
+      fill: none;
+      stroke: var(--cyan);
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-dasharray: 5 8;
+      stroke-dashoffset: 0;
+      animation: topoDash 2.4s linear infinite;
+      opacity: 0;
+      filter: drop-shadow(0 0 4px rgba(56, 210, 255, .35));
+      transition: opacity .28s var(--ease)
+    }
+
+    .topo-svg .flow.amber {
+      stroke: var(--amber);
+      animation-duration: 2.8s;
+      filter: drop-shadow(0 0 4px rgba(255, 180, 84, .28))
+    }
+
+    .topo-svg .flow.on {
+      opacity: 1;
+      animation: topoDash 2.4s linear infinite
+    }
+
+    .topo-svg .flow-group.on .flow {
+      opacity: 1;
+      animation: topoDash 2.4s linear infinite
+    }
+
+    .topo-svg .flow.amber.on,
+    .topo-svg .flow-group.on .flow.amber {
+      animation-duration: 2.8s
+    }
+
+    .topo-svg .labels-layer {
+      pointer-events: none
+    }
+
+    .topo-svg .hub rect,
+    .topo-svg .node rect {
+      fill: rgba(13, 34, 58, .92);
+      stroke: rgba(56, 210, 255, .28);
+      stroke-width: 1.2
+    }
+
+    .topo-svg .hub.origin-hub rect {
+      fill: url(#solutionHubGrad);
+      stroke: rgba(56, 210, 255, .58);
+      filter: drop-shadow(0 0 6px rgba(56, 210, 255, .28))
+    }
+
+    .topo-svg .hub.ctrl-hub rect,
+    .topo-svg .hub.evd-hub rect {
+      fill: rgba(9, 23, 40, .94)
+    }
+
+    .topo-svg .hub.origin-hub .pulse {
+      fill: none;
+      stroke: rgba(56, 210, 255, .65);
+      stroke-width: 1;
+      transform-origin: center;
+      opacity: .34
+    }
+
+    .topo-svg .hub-code {
+      fill: var(--fg);
+      font: 700 12px var(--mono);
+      letter-spacing: .04em
+    }
+
+    .topo-svg .brand-core-mark rect {
+      fill: url(#solutionBrandMarkGrad);
+      stroke: rgba(56, 210, 255, .35);
+      stroke-width: 1;
+      filter: drop-shadow(0 0 5px rgba(56, 210, 255, .24))
+    }
+
+    .topo-svg .brand-core-mark text {
+      fill: var(--cyan);
+      font: 800 13px var(--mono);
+      letter-spacing: 0
+    }
+
+    .topo-svg .origin-hub-label .hub-code {
+      fill: var(--cyan2);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .02em
+    }
+
+    .topo-svg .origin-hub-label .hub-role {
+      font-size: 7.4px;
+      letter-spacing: .08em
+    }
+
+    .topo-svg .hub-role {
+      fill: var(--muted);
+      font: 600 8.5px var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase
+    }
+
+    .topo-svg .hub-mini {
+      fill: var(--fg2);
+      font: 700 11px var(--mono);
+      letter-spacing: .06em
+    }
+
+    .topo-svg .node-title {
+      fill: var(--fg2);
+      font: 700 11px var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase
+    }
+
+    .topo-svg .node-role {
+      fill: var(--muted);
+      font: 600 9px var(--sans)
+    }
+
+    .topo-svg .node-code {
+      fill: var(--cyan2);
+      font: 700 11px var(--mono)
+    }
+
+    .topo-svg .node.active rect {
+      stroke: rgba(56, 210, 255, .55);
+      fill: rgba(16, 43, 74, .96);
+      filter: drop-shadow(0 0 10px rgba(56, 210, 255, .12))
+    }
+
+    .topo-svg .node.active .node-title,
+    .topo-svg .node.active .node-code {
+      fill: var(--cyan2)
+    }
+
+    .topo-svg .node.warn rect {
+      stroke: rgba(246, 169, 59, .48);
+      fill: rgba(39, 28, 18, .54);
+      filter: drop-shadow(0 0 10px rgba(255, 180, 84, .10))
+    }
+
+    .topo-svg .node.warn .node-title,
+    .topo-svg .node.warn .node-code {
+      fill: #FFD39A
+    }
+
+    .topo-svg .node.dim,
+    .topo-svg .node-label.dim {
+      opacity: .56
+    }
+
+    .topo-svg .node-label.active .node-title,
+    .topo-svg .node-label.active .node-code {
+      fill: var(--cyan2)
+    }
+
+    .topo-svg .node-label.warn .node-title,
+    .topo-svg .node-label.warn .node-code {
+      fill: #FFD39A
+    }
+
+    .topo-svg .hub.is-active rect {
+      stroke: rgba(56, 210, 255, .52);
+      filter: drop-shadow(0 0 10px rgba(56, 210, 255, .12))
+    }
+
+    .topo-svg .hub.is-warn rect {
+      stroke: rgba(246, 169, 59, .50);
+      filter: drop-shadow(0 0 10px rgba(255, 180, 84, .10))
+    }
+
+    .console-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px
+    }
+
+    .console-kpi {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(129, 178, 214, .14);
+      background: rgba(9, 20, 36, .58)
+    }
+
+    .console-kpi small {
+      display: block;
+      color: var(--muted);
+      font: 700 10px var(--mono);
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      margin-bottom: 8px
+    }
+
+    .console-kpi strong {
+      display: block;
+      font-size: 18px;
+      color: var(--fg)
+    }
+
+    .console-ticker {
+      position: relative;
+      z-index: 2;
+      padding: 12px 18px;
+      border-top: 1px solid rgba(129, 178, 214, .14);
+      color: var(--body2);
+      font: 600 11px var(--mono);
+      letter-spacing: .05em
+    }
+
+    .console-ticker:before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px rgba(56, 210, 255, .4);
+      margin-right: 10px;
+      vertical-align: middle
+    }
+
+    @keyframes topoDash {
+      to {
+        stroke-dashoffset: -48px
+      }
+    }
+
+    @keyframes hubPulse {
+      0% {
+        transform: scale(.8);
+        opacity: .9
+      }
+
+      72% {
+        transform: scale(2.2);
+        opacity: 0
+      }
+
+      100% {
+        transform: scale(2.2);
+        opacity: 0
+      }
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 36px;
+      align-items: end;
+      margin-bottom: 42px
+    }
+
+    .section-kicker {
+      font: 700 12px var(--mono);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--cyan2)
+    }
+
+    .section-head h2 {
+      margin: 14px 0 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.04;
+      letter-spacing: -.02em
+    }
+
+    .section-head h2 em {
+      font-style: normal;
+      color: var(--cyan)
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--body);
+      font-size: 16px;
+      max-width: 720px;
+      line-height: 1.68
+    }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px
+    }
+
+    .plan-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(129, 178, 214, .2);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(14, 27, 47, .92), rgba(10, 22, 40, .98));
+      padding: 24px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+      transition: transform .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease)
+    }
+
+    .plan-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 210, 255, .38);
+      box-shadow: 0 0 0 1px rgba(56, 210, 255, .1), 0 22px 52px rgba(0, 0, 0, .28)
+    }
+
+    .plan-card.active {
+      border-color: rgba(56, 210, 255, .38);
+      box-shadow: 0 0 0 1px rgba(56, 210, 255, .1), 0 22px 52px rgba(0, 0, 0, .22)
+    }
+
+    .plan-card.network:hover,
+    .plan-card.network.active {
+      border-color: rgba(246, 169, 59, .45)
+    }
+
+    .plan-card.enterprise {
+      border-color: rgba(56, 210, 255, .34);
+      box-shadow: 0 0 0 1px rgba(56, 210, 255, .10), 0 22px 52px rgba(0, 0, 0, .22)
+    }
+
+    .plan-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 20px
+    }
+
+    .plan-kicker {
+      font: 700 10px var(--mono);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--body2)
+    }
+
+    .plan-card h3 {
+      font-size: 24px;
+      margin: 8px 0 6px
+    }
+
+    .plan-card .short {
+      color: var(--cyan2);
+      font: 700 13px var(--mono)
+    }
+
+    .plan-card.network .short {
+      color: #FFD39A
+    }
+
+    .badge {
+      font: 700 10px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(56, 210, 255, .22);
+      border-radius: 999px;
+      color: var(--cyan2);
+      padding: 6px 9px;
+      background: rgba(56, 210, 255, .06)
+    }
+
+    .plan-card.network .badge {
+      color: #FFD39A;
+      border-color: rgba(246, 169, 59, .28);
+      background: rgba(246, 169, 59, .07)
+    }
+
+    .plan-card p {
+      color: var(--body);
+      font-size: 14.75px;
+      line-height: 1.64;
+      margin: 0 0 18px
+    }
+
+    .plan-card ul {
+      margin: 0 0 22px;
+      padding-left: 18px;
+      color: var(--fg2);
+      font-size: 13.75px;
+      line-height: 1.72
+    }
+
+    .plan-card li {
+      margin: 7px 0
+    }
+
+    .choose {
+      width: 100%;
+      margin-top: auto;
+      padding-left: 12px;
+      padding-right: 12px;
+      font-size: 12.5px;
+      white-space: nowrap
+    }
+
+    .plan-card.network {
+      border-color: rgba(246, 169, 59, .5);
+      box-shadow: 0 0 0 1px rgba(246, 169, 59, .09), 0 24px 54px rgba(0, 0, 0, .24)
+    }
+
+    .plan-card.network:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(52% 34% at 78% 0%, rgba(246, 169, 59, .10), transparent 70%);
+      pointer-events: none
+    }
+
+    .plan-card.network .badge {
+      box-shadow: 0 0 16px rgba(246, 169, 59, .12)
+    }
+
+    .fit-panel {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 20px;
+      align-items: stretch
+    }
+
+    .fit-selectors {
+      display: grid;
+      gap: 12px
+    }
+
+    .select-btn {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-align: left;
+      background: rgba(14, 27, 47, .74);
+      color: var(--fg);
+      cursor: pointer;
+      transition: transform .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease)
+    }
+
+    .select-btn:hover,
+    .select-btn.active {
+      transform: translateY(-2px);
+      border-color: rgba(56, 210, 255, .38);
+      background: rgba(20, 40, 69, .68)
+    }
+
+    .select-btn small {
+      display: block;
+      color: var(--cyan2);
+      font: 700 11px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 8px
+    }
+
+    .select-btn strong {
+      font-size: 18px
+    }
+
+    .select-btn span {
+      display: block;
+      margin-top: 6px;
+      color: var(--body);
+      font-size: 14px
+    }
+
+    .recommend {
+      border: 1px solid rgba(56, 210, 255, .24);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(14, 27, 47, .9), rgba(6, 14, 28, .82));
+      padding: 28px;
+      box-shadow: var(--shadow)
+    }
+
+    .recommend .label {
+      color: var(--saffron);
+      font: 700 11px var(--mono);
+      letter-spacing: .14em;
+      text-transform: uppercase
+    }
+
+    .recommend h3 {
+      font-size: 34px;
+      line-height: 1.05;
+      margin: 14px 0 12px
+    }
+
+    .recommend p {
+      color: var(--body);
+      font-size: 16px;
+      line-height: 1.68
+    }
+
+    .mini-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px
+    }
+
+    .mini-metrics div {
+      border: 1px solid var(--line2);
+      border-radius: 14px;
+      background: rgba(20, 40, 69, .22);
+      padding: 14px
+    }
+
+    .mini-metrics small {
+      display: block;
+      color: var(--muted);
+      font: 10px var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .mini-metrics strong {
+      display: block;
+      margin-top: 6px;
+      color: var(--cyan2);
+      font: 700 16px var(--mono)
+    }
+
+    .compare-wrap {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(14, 27, 47, .76)
+    }
+
+    table {
+      width: 100%;
+      min-width: 860px;
+      border-collapse: collapse
+    }
+
+    th,
+    td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line2);
+      text-align: left;
+      vertical-align: middle
+    }
+
+    th {
+      color: var(--fg);
+      font: 700 12px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      background: rgba(6, 14, 28, .42)
+    }
+
+    td {
+      color: var(--body);
+      font-size: 14px
+    }
+
+    .ok {
+      color: var(--lime);
+      font-weight: 800
+    }
+
+    .part {
+      color: var(--amber);
+      font-weight: 800
+    }
+
+    .no {
+      color: var(--muted)
+    }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px
+    }
+
+    .evidence-card {
+      position: relative;
+      border: 1px solid rgba(129, 178, 214, .2);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(14, 27, 47, .9), rgba(10, 22, 40, .98));
+      padding: 24px;
+      overflow: hidden;
+      min-height: 320px
+    }
+
+    .evidence-card:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .55), transparent);
+      opacity: .55
+    }
+
+    .evidence-card h3 {
+      font-size: 22px;
+      margin: 0 0 10px
+    }
+
+    .evidence-card p {
+      color: var(--body);
+      font-size: 14.5px;
+      line-height: 1.65
+    }
+
+    .screen {
+      margin-top: 22px;
+      border: 1px solid rgba(129, 178, 214, .14);
+      border-radius: 14px;
+      background: rgba(6, 14, 28, .44);
+      padding: 14px
+    }
+
+    .screen-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border-bottom: 1px solid rgba(129, 178, 214, .08);
+      padding: 9px 0;
+      color: var(--fg2);
+      font: 12px var(--mono)
+    }
+
+    .screen-row:last-child {
+      border-bottom: 0
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 10px rgba(56, 210, 255, .48);
+      flex: 0 0 auto
+    }
+
+    .evidence-card:nth-child(2) .dot {
+      background: var(--saffron);
+      box-shadow: 0 0 10px rgba(246, 169, 59, .44)
+    }
+
+    .workflow-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px
+    }
+
+    .workflow-tab {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(14, 27, 47, .64);
+      color: var(--body);
+      padding: 9px 14px;
+      font: 700 12px var(--mono);
+      cursor: pointer
+    }
+
+    .workflow-tab.active,
+    .workflow-tab:hover {
+      color: var(--cyan2);
+      border-color: rgba(56, 210, 255, .38);
+      background: rgba(56, 210, 255, .08)
+    }
+
+    .flow-line {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px
+    }
+
+    .flow-step {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(14, 27, 47, .78);
+      padding: 18px;
+      min-height: 160px
+    }
+
+    .flow-step:not(:last-child):after {
+      content: "";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      width: 14px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(56, 210, 255, .3), rgba(246, 169, 59, .25))
+    }
+
+    .flow-step small {
+      display: block;
+      color: var(--cyan2);
+      font: 700 12px var(--mono);
+      margin-bottom: 18px
+    }
+
+    .flow-step h3 {
+      font-size: 17px;
+      line-height: 1.18;
+      margin: 0 0 8px
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--body);
+      font-size: 13.5px;
+      line-height: 1.55
+    }
+
+    .site-footer {
+      padding: 70px 0 44px;
+      border-top: 1px solid var(--line);
+      background: rgba(6, 14, 28, .38)
+    }
+
+    .footer-card {
+      border: 1px solid rgba(129, 178, 214, .2);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(14, 27, 47, .9), rgba(10, 22, 40, .98));
+      overflow: hidden
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(3, .8fr);
+      gap: 28px;
+      padding: 30px
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px
+    }
+
+    .footer-logo .mark {
+      flex: 0 0 auto
+    }
+
+    .footer-logo b {
+      font-size: 24px
+    }
+
+    .footer-logo small {
+      display: block;
+      color: var(--body2);
+      font: 10px var(--mono);
+      letter-spacing: .18em;
+      text-transform: uppercase
+    }
+
+    .footer-brand p {
+      color: var(--body);
+      margin: 0 0 18px;
+      max-width: 420px
+    }
+
+    .footer-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .footer-pills span {
+      font: 700 11px var(--mono);
+      color: var(--cyan2);
+      border: 1px solid rgba(56, 210, 255, .22);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(56, 210, 255, .06)
+    }
+
+    .footer-col h4 {
+      margin: 0 0 14px;
+      font-size: 16px;
+      color: var(--fg)
+    }
+
+    .footer-col h4:after {
+      content: "";
+      display: block;
+      height: 1px;
+      background: var(--line);
+      margin-top: 12px
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--body);
+      margin: 10px 0;
+      font-size: 14px
+    }
+
+    .footer-contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.55fr;
+      border-top: 1px solid var(--line)
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 30px;
+      border-right: 1px solid var(--line);
+      color: var(--fg2);
+      font-weight: 700
+    }
+
+    .contact-item:last-child {
+      border-right: 0
+    }
+
+    .contact-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(56, 210, 255, .2);
+      background: rgba(56, 210, 255, .07);
+      color: var(--cyan2);
+      font: 700 14px var(--mono)
+    }
+
+    .footer-legal {
+      border-top: 1px solid var(--line2);
+      padding: 16px 30px;
+      text-align: center;
+      color: var(--muted);
+      font: 11px var(--mono);
+      letter-spacing: .05em
+    }
+
+    .sampora-site-footer {
+      border-top: 1px solid rgba(129, 178, 214, .18);
+      padding: 64px 0 54px;
+      color: var(--body);
+      background: linear-gradient(180deg, rgba(6, 16, 31, .22), rgba(6, 16, 31, .42))
+    }
+
+    .sampora-footer-card {
+      width: min(1360px, calc(100% - 48px));
+      margin: 0 auto;
+      border: 1px solid rgba(129, 178, 214, .22);
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(8, 20, 36, .72);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .24)
+    }
+
+    .sampora-footer-main {
+      display: grid;
+      grid-template-columns: 1.45fr .72fr .72fr .72fr;
+      gap: 48px;
+      padding: 42px 48px 36px
+    }
+
+    .sampora-footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--fg);
+      margin-bottom: 22px
+    }
+
+    .sampora-footer-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: var(--cyan);
+      border: 1px solid rgba(56, 210, 255, .42);
+      background: linear-gradient(160deg, rgba(56, 210, 255, .16), rgba(14, 27, 47, .92));
+      font: 800 14px var(--mono)
+    }
+
+    .sampora-footer-logo b {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: -.03em;
+      color: var(--fg)
+    }
+
+    .sampora-footer-logo small {
+      display: block;
+      margin-top: 4px;
+      font: 800 10px var(--mono);
+      letter-spacing: .10em;
+      color: var(--muted)
+    }
+
+    .sampora-footer-brand p {
+      margin: 0;
+      max-width: 430px;
+      color: var(--body);
+      font-size: 16px;
+      line-height: 1.75
+    }
+
+    .sampora-footer-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px
+    }
+
+    .sampora-footer-badges span {
+      display: inline-flex;
+      height: 26px;
+      align-items: center;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 210, 255, .28);
+      background: rgba(56, 210, 255, .08);
+      color: var(--cyan2);
+      font: 800 11px var(--mono)
+    }
+
+    .sampora-footer-col h3 {
+      margin: 0 0 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(129, 178, 214, .18);
+      color: var(--fg);
+      font-size: 18px;
+      line-height: 1.1;
+      letter-spacing: -.02em
+    }
+
+    .sampora-footer-col a {
+      display: block;
+      margin: 0 0 14px;
+      color: var(--body);
+      font-size: 15px;
+      line-height: 1.35;
+      transition: color .18s var(--ease), transform .18s var(--ease)
+    }
+
+    .sampora-footer-col a:hover {
+      color: var(--cyan);
+      transform: translateX(3px)
+    }
+
+    .sampora-footer-contact {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(129, 178, 214, .18)
+    }
+
+    .sampora-footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-height: 74px;
+      padding: 0 48px;
+      border-right: 1px solid rgba(129, 178, 214, .18);
+      color: var(--fg);
+      font-size: 16px;
+      font-weight: 760
+    }
+
+    .sampora-footer-contact-item:last-child {
+      border-right: 0
+    }
+
+    .sampora-footer-icon {
+      width: 34px;
+      height: 34px;
+      min-width: 34px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: var(--cyan);
+      border: 1px solid rgba(56, 210, 255, .28);
+      background: rgba(56, 210, 255, .08);
+      flex: 0 0 34px;
+      font: 800 10.5px/1 var(--mono);
+      letter-spacing: 0;
+      text-align: center;
+      overflow: hidden
+    }
+
+    .sampora-footer-icon--at {
+      font-size: 17px;
+      line-height: 1;
+      font-family: var(--sans);
+      font-weight: 800
+    }
+
+    .sampora-footer-legal {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      padding: 18px 24px;
+      border-top: 1px solid rgba(129, 178, 214, .10);
+      color: var(--muted);
+      font: 12px var(--mono);
+      letter-spacing: .04em
+    }
+
+    @media(max-width:1120px) {
+      .sampora-footer-main {
+        grid-template-columns: 1fr 1fr;
+        padding: 34px 28px
+      }
+
+      .sampora-footer-contact {
+        grid-template-columns: 1fr
+      }
+
+      .sampora-footer-contact-item {
+        border-right: 0;
+        border-bottom: 1px solid rgba(129, 178, 214, .18);
+        padding: 18px 28px
+      }
+
+      .sampora-footer-contact-item:last-child {
+        border-bottom: 0
+      }
+    }
+
+    @media(max-width:760px) {
+      .sampora-footer-main {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .55s var(--ease), transform .55s var(--ease)
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: none
+    }
+
+    @media(max-width:1100px) {
+
+      .hero-grid,
+      .section-head,
+      .fit-panel {
+        grid-template-columns: 1fr
+      }
+
+      .flow-line {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .flow-step:after {
+        display: none
+      }
+
+      .footer-main {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .footer-contact {
+        grid-template-columns: 1fr
+      }
+
+      .contact-item {
+        border-right: 0;
+        border-bottom: 1px solid var(--line)
+      }
+
+      .nav {
+        display: none
+      }
+
+      .status .right {
+        display: none
+      }
+    }
+
+    @media(max-width:680px) {
+      .container {
+        width: min(100% - 32px, 1320px)
+      }
+
+      .hero {
+        padding: 58px 0
+      }
+
+      .hero h1 {
+        font-size: clamp(38px, 12vw, 52px)
+      }
+
+      .section {
+        padding: 66px 0
+      }
+
+      .header-actions {
+        gap: 8px
+      }
+
+      .btn {
+        padding: 10px 12px
+      }
+
+      .brand small {
+        display: none
+      }
+
+      .stack-card {
+        grid-template-columns: auto 1fr
+      }
+    }
+
+    html[lang="zh"],
+    html[lang="zh-CN"] {
+      --zh-title-tracking: -.01em
+    }
+
+    html[lang="zh-CN"] body {
+      font-family: "Noto Sans SC", "Inter", var(--sans)
+    }
+
+    html[lang="zh"] h1,
+    html[lang="zh-CN"] h1 {
+      font-size: clamp(44px, 4.6vw, 66px);
+      line-height: 1.08;
+      letter-spacing: var(--zh-title-tracking);
+      max-width: 760px
+    }
+
+    html[lang="hi"] body {
+      font-family: "Noto Sans Devanagari", "Inter", var(--sans)
+    }
+
+    html[lang="hi"] h1 {
+      font-size: clamp(42px, 4.45vw, 64px);
+      line-height: 1.16;
+      letter-spacing: 0;
+      max-width: 780px
+    }
+
+    html[lang="hi"] .hero-sub,
+    html[lang="hi"] .section-head p,
+    html[lang="hi"] .plan-card p,
+    html[lang="hi"] .evidence-card p {
+      line-height: 1.78
+    }
+
+    @media(max-width:1100px) {
+      .hero-grid {
+        grid-template-columns: 1fr
+      }
+
+      .solution-console {
+        order: 2
+      }
+
+      .console-window {
+        min-height: auto
+      }
+
+      .topo-stage {
+        height: 260px
+      }
+    }
+
+    @media(max-width:720px) {
+      .console-summary {
+        grid-template-columns: 1fr
+      }
+
+      .console-tags {
+        justify-content: flex-start
+      }
+
+      .topo-headline {
+        align-items: flex-start;
+        flex-direction: column
+      }
+
+      .crumb {
+        max-width: 170px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      .scope-pill {
+        margin-left: 0
+      }
+    }
+
+    /* Refined dynamic topology console */
+    .topo-modebar {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0 0 14px
+    }
+
+    .topo-modebar button {
+      min-width: 0;
+      text-align: left;
+      border: 1px solid rgba(129, 178, 214, .16);
+      border-radius: 14px;
+      background: rgba(8, 20, 36, .56);
+      padding: 10px 11px;
+      cursor: pointer;
+      color: var(--body2);
+      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease), box-shadow .18s var(--ease)
+    }
+
+    .topo-modebar button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(56, 210, 255, .32);
+      background: rgba(14, 32, 55, .74)
+    }
+
+    .topo-modebar button.active {
+      border-color: rgba(56, 210, 255, .52);
+      background: linear-gradient(180deg, rgba(56, 210, 255, .13), rgba(8, 20, 36, .62));
+      box-shadow: 0 0 0 1px rgba(56, 210, 255, .08), 0 12px 28px rgba(56, 210, 255, .09)
+    }
+
+    .topo-modebar button[data-mode="network"].active {
+      border-color: rgba(246, 169, 59, .48);
+      background: linear-gradient(180deg, rgba(246, 169, 59, .12), rgba(8, 20, 36, .62));
+      box-shadow: 0 0 0 1px rgba(246, 169, 59, .08), 0 12px 28px rgba(246, 169, 59, .08)
+    }
+
+    .topo-modebar button small {
+      display: block;
+      font: 800 10px var(--mono);
+      letter-spacing: .12em;
+      color: var(--cyan2);
+      margin-bottom: 5px
+    }
+
+    .topo-modebar button[data-mode="network"] small {
+      color: #FFD39A
+    }
+
+    .topo-modebar button strong {
+      display: block;
+      font-size: 13px;
+      color: var(--fg);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .topo-modebar button span {
+      display: block;
+      margin-top: 3px;
+      font: 700 9px var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .topo-stage {
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .018), inset 0 0 46px rgba(56, 210, 255, .035)
+    }
+
+    .topo-stage:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(42% 46% at 24% 50%, rgba(56, 210, 255, .09), transparent 64%), radial-gradient(30% 36% at 88% 48%, rgba(246, 169, 59, .05), transparent 68%);
+      z-index: 1
+    }
+
+    .topo-scan {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -40%;
+      height: 34%;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent, rgba(56, 210, 255, .07), transparent);
+      filter: blur(.3px);
+      mix-blend-mode: screen;
+      opacity: .18;
+      z-index: 2;
+      animation: topoScan 4.2s ease-in-out infinite
+    }
+
+    @keyframes topoScan {
+      0% {
+        transform: translateY(-40%);
+        opacity: 0
+      }
+
+      12% {
+        opacity: .6
+      }
+
+      70% {
+        opacity: .25
+      }
+
+      100% {
+        transform: translateY(420%);
+        opacity: 0
+      }
+    }
+
+    .topo-stage>.topo-scan {
+      display: none !important;
+      height: 0 !important;
+      opacity: 0 !important;
+      animation: none !important
+    }
+
+    .topo-svg .wire {
+      stroke-dasharray: 2 10;
+      stroke-linecap: round
+    }
+
+    .topo-svg .flow {
+      stroke-width: 2;
+      stroke-dasharray: 5 10;
+      stroke-dashoffset: 0
+    }
+
+    .topo-svg .flow.end {
+      stroke-width: 2.2
+    }
+
+    .topo-svg .packet {
+      fill: var(--cyan);
+      opacity: 0;
+      filter: drop-shadow(0 0 6px rgba(56, 210, 255, .75));
+      transition: opacity .25s var(--ease);
+      pointer-events: none
+    }
+
+    .topo-svg .packet.amber {
+      fill: var(--amber);
+      filter: drop-shadow(0 0 6px rgba(255, 180, 84, .65))
+    }
+
+    .topo-svg .packet.on {
+      opacity: .85
+    }
+
+    @keyframes packetPulse {
+      0%,
+      100% {
+        transform: scale(.9)
+      }
+
+      50% {
+        transform: scale(1.24)
+      }
+    }
+
+    .topo-svg .node {
+      cursor: pointer;
+      transition: opacity .18s var(--ease)
+    }
+
+    .topo-svg .node rect {
+      transition: fill .24s var(--ease), stroke .24s var(--ease), filter .24s var(--ease), transform .24s var(--ease)
+    }
+
+    .topo-svg .node:hover rect {
+      stroke: rgba(56, 210, 255, .58);
+      filter: drop-shadow(0 0 12px rgba(56, 210, 255, .16))
+    }
+
+    .topo-svg .node.warn:hover rect {
+      stroke: rgba(255, 180, 84, .62);
+      filter: drop-shadow(0 0 12px rgba(255, 180, 84, .14))
+    }
+
+    .topo-svg .node.active rect,
+    .topo-svg .node.warn rect {
+      transform: translateY(-1px)
+    }
+
+    @keyframes nodeBreathe {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-1px)
+      }
+    }
+
+    .topo-svg .hub.is-active rect,
+    .topo-svg .hub.is-warn rect {
+      filter: drop-shadow(0 0 12px rgba(56, 210, 255, .14))
+    }
+
+    @keyframes hubBreathe {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 8px rgba(56, 210, 255, .10))
+      }
+
+      50% {
+        filter: drop-shadow(0 0 16px rgba(56, 210, 255, .20))
+      }
+    }
+
+    .console-window {
+      transform: translateZ(0);
+      cursor: zoom-in
+    }
+
+    .console-window:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, .035) 45%, transparent 60%);
+      transform: translateX(-120%);
+      z-index: 1
+    }
+
+    @keyframes consoleSheen {
+
+      0%,
+      65% {
+        transform: translateX(-120%)
+      }
+
+      85%,
+      100% {
+        transform: translateX(120%)
+      }
+    }
+
+    .topo-audit {
+      position: relative;
+      z-index: 3;
+      margin-top: 12px;
+      border: 1px solid rgba(129, 178, 214, .14);
+      border-radius: 16px;
+      background: rgba(6, 16, 31, .56);
+      overflow: hidden
+    }
+
+    .topo-audit-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(129, 178, 214, .12);
+      font: 800 10px var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--fg2)
+    }
+
+    .topo-audit-head b {
+      color: var(--lime);
+      font-weight: 800
+    }
+
+    .topo-audit ul {
+      list-style: none;
+      margin: 0;
+      padding: 7px 14px 10px;
+      display: grid;
+      gap: 2px
+    }
+
+    .topo-audit li {
+      display: grid;
+      grid-template-columns: 44px 74px 1fr 12px;
+      gap: 9px;
+      align-items: center;
+      min-height: 26px;
+      color: var(--body2);
+      font: 600 10.5px var(--mono);
+      border-bottom: 1px dashed rgba(129, 178, 214, .10)
+    }
+
+    .topo-audit li:last-child {
+      border-bottom: 0
+    }
+
+    .topo-audit .time {
+      color: var(--muted)
+    }
+
+    .topo-audit .code {
+      color: var(--fg);
+      font-weight: 800
+    }
+
+    .topo-audit li i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 10px rgba(181, 240, 86, .36)
+    }
+
+    .topo-audit li.flash {
+      animation: auditFlash .72s var(--ease) both
+    }
+
+    @keyframes auditFlash {
+      0% {
+        background: rgba(56, 210, 255, .12);
+        transform: translateX(-3px)
+      }
+
+      100% {
+        background: transparent;
+        transform: none
+      }
+    }
+
+    .console-kpi {
+      position: relative;
+      overflow: hidden
+    }
+
+    .console-kpi:after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 8px;
+      height: 2px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, rgba(56, 210, 255, .08), rgba(56, 210, 255, .55), rgba(181, 240, 86, .24));
+      transform-origin: left;
+      transform: scaleX(.42);
+      opacity: .45
+    }
+
+    .console-kpi:nth-child(2):after {
+      transform: scaleX(.72)
+    }
+
+    .console-kpi:nth-child(3):after {
+      transform: scaleX(.55);
+      background: linear-gradient(90deg, rgba(255, 180, 84, .08), rgba(255, 180, 84, .58), rgba(56, 210, 255, .22))
+    }
+
+    .console-ticker {
+      overflow: hidden
+    }
+
+    .console-ticker:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 68px;
+      background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .08), transparent);
+      animation: tickerSweep 4.8s linear infinite;
+      pointer-events: none
+    }
+
+    @keyframes tickerSweep {
+      from {
+        left: -80px
+      }
+
+      to {
+        left: 100%
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .console-ticker:after {
+        animation: none;
+        left: calc(100% - 68px);
+        opacity: .2
+      }
+    }
+
+    @media(max-width:720px) {
+      .topo-modebar {
+        grid-template-columns: 1fr
+      }
+
+      .topo-audit li {
+        grid-template-columns: 42px 66px 1fr
+      }
+
+      .topo-audit li i {
+        display: none
+      }
+    }
+
+
+    /* hero title rhythm + topology spacing tune */
+    .solution-console .topo-stage {
+      height: 224px
+    }
+
+    .solution-console .console-window {
+      min-height: 662px
+    }
+
+    .solution-console .console-summary {
+      min-height: 161px
+    }
+
+    .solution-console .topo-modebar {
+      min-height: 76px
+    }
+
+    .solution-console .console-ticker {
+      box-sizing: border-box;
+      min-height: 53px
+    }
+
+    .solution-console .topo-headline {
+      margin: 14px 0 8px
+    }
+
+    .solution-console .console-main {
+      padding-bottom: 14px
+    }
+
+    @media(max-width:1100px) {
+      .solution-console .topo-stage {
+        height: 230px
+      }
+    }
+
+    @media(max-width:720px) {
+      .solution-console .topo-stage {
+        height: 220px
+      }
+    }
+
+    .topology-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 140;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: clamp(10px, 2vw, 28px);
+      background: rgba(3, 8, 16, .78);
+      backdrop-filter: blur(12px);
+      overflow: auto
+    }
+
+    .topology-modal.open {
+      display: flex
+    }
+
+    .topology-modal__panel {
+      width: min(1120px, calc(100vw - 20px));
+      max-height: calc(100dvh - 20px);
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(129, 178, 214, .22);
+      border-radius: 16px;
+      background: rgba(6, 16, 31, .98);
+      box-shadow: var(--shadow)
+    }
+
+    .topology-modal__head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(6, 16, 31, .96)
+    }
+
+    .topology-modal__head h2 {
+      margin: 0;
+      min-width: 0;
+      font: 700 13px var(--mono);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+      color: var(--cyan2)
+    }
+
+    .topology-modal__close {
+      flex: 0 0 auto;
+      width: 36px;
+      height: 36px;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: rgba(20, 40, 69, .45);
+      color: var(--fg);
+      font: 800 18px/1 var(--mono);
+      cursor: pointer
+    }
+
+    .topology-modal__body {
+      padding: 18px;
+      overflow: auto
+    }
+
+    .topology-modal__body .solution-console,
+    .topology-modal__body .console-window {
+      cursor: default
+    }
+
+    .topology-modal__body .solution-console .topo-stage {
+      height: min(430px, 48vh);
+      cursor: default
+    }
+
+    .topology-modal__body .solution-console .console-window {
+      min-height: 0
+    }
+
+    .topology-modal__body .console-window:after {
+      display: none
+    }
+
+    body.topology-modal-open {
+      overflow: hidden
+    }
+
+/* Sampora mobile canonical navigation */
+.mobile-nav-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:10px;background:rgba(6,14,28,.62);color:var(--fg,#E8EEF5);font:800 20px/1 var(--mono,monospace);cursor:pointer}
+.mobile-nav-drawer{display:none;position:fixed;left:16px;right:16px;top:92px;z-index:120;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:14px;background:rgba(6,16,31,.97);box-shadow:0 26px 80px rgba(0,0,0,.42);backdrop-filter:blur(16px);padding:10px}
+.mobile-nav-drawer a{display:flex;align-items:center;min-height:42px;padding:0 12px;border-radius:10px;color:var(--fg2,#C5D3E5);font-weight:800;text-decoration:none}
+.mobile-nav-drawer a.active,.mobile-nav-drawer a:hover{color:var(--cyan,#38D2FF);background:rgba(56,210,255,.08)}
+body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
+@media(max-width:760px){.mobile-nav-toggle{display:inline-flex}.header-actions,.nav-actions,.actions{gap:10px}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}}
+
+
+/* final cleanup: unified navigation and language switcher */
+.lang,.lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
+.lang button,.lang-btn{min-width:42px;height:34px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px/1 var(--mono,ui-monospace,monospace);letter-spacing:.03em;cursor:pointer;transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
+.lang button:hover,.lang button:focus-visible,.lang-btn:hover,.lang-btn:focus-visible{color:var(--cyan2,var(--cyan,#61e7ff));outline:0;box-shadow:0 0 0 1px rgba(56,210,255,.24)}
+.lang button.active,.lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
+html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 10px;font-family:var(--sans,system-ui,sans-serif);font-weight:800;letter-spacing:0}
+@media(max-width:1100px){.nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:none!important}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}.nav.sampora-nav-standard,.sampora-nav-standard{gap:28px!important}}
+@media(max-width:760px){.status{display:none!important}.brand small{display:none!important}.mast .inner,.nav-inner{gap:14px!important}}
+@media(max-width:360px){.container{width:min(100% - 24px,1320px)!important}.brand b{display:none!important}.lang button,.lang-btn{min-width:34px!important;padding:0 6px!important;font-size:10px!important}.mobile-nav-toggle{width:36px!important;height:36px!important}.header-actions,.nav-actions,.actions{gap:6px!important}}
+
+</style>
+<style id="github-doc-solution-optimization">
+    /* GitHub docs based solution-page optimization */
+    .plan-card .plan-kicker,
+    .recommend .label,
+    .section-kicker {
+      text-wrap: balance;
+    }
+    .compare-wrap {
+      box-shadow: 0 18px 46px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.035);
+    }
+    .evidence-card {
+      min-height: 300px;
+    }
+    .evidence-card h3,
+    .plan-card h3,
+    .recommend h3 {
+      text-wrap: balance;
+    }
+    .flow-step {
+      border-color: rgba(56,210,255,.18);
+    }
+    .flow-step small {
+      color: var(--cyan2);
+    }
+    @media(max-width:1100px) {
+      table {
+        min-width: 940px;
+      }
+    }
+  </style>
+<style id="fix-console-language-wrap">
+    /* Fix: 英文 / 印地语右侧 console 文案被压成一列的问题 */
+    .solution-console,
+    .console-window,
+    .console-main,
+    .console-summary,
+    .console-summary > div {
+      min-width: 0;
+    }
+
+    .console-summary {
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 12px !important;
+      align-items: start !important;
+    }
+
+    .console-summary h3,
+    .console-summary p,
+    #topoTitle,
+    #topoText {
+      width: 100%;
+      max-width: 100% !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      hyphens: none !important;
+    }
+
+    #topoTitle {
+      line-height: 1.08 !important;
+    }
+
+    #topoText {
+      line-height: 1.58 !important;
+    }
+
+    .console-tags {
+      justify-content: flex-start !important;
+      max-width: 100% !important;
+    }
+
+    .console-tags .tag {
+      max-width: 100%;
+      white-space: nowrap;
+    }
+@media (max-width: 1280px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, .96fr) minmax(420px, .86fr);
+        gap: 42px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+<style id="fix-hindi-full-language">
+    html[lang="hi"] body,
+    html[lang="hi"] button,
+    html[lang="hi"] input,
+    html[lang="hi"] select,
+    html[lang="hi"] textarea {
+      font-family: "Noto Sans Devanagari", "Nirmala UI", "Mangal", "Inter", system-ui, sans-serif !important;
+    }
+
+    html[lang="hi"] h1,
+    html[lang="hi"] h2,
+    html[lang="hi"] h3 {
+      letter-spacing: -0.015em;
+      word-break: normal;
+      overflow-wrap: break-word;
+      text-wrap: balance;
+    }
+
+    html[lang="hi"] .mono,
+    html[lang="hi"] .eyebrow,
+    html[lang="hi"] .section-kicker,
+    html[lang="hi"] .topline,
+    html[lang="hi"] .plan-kicker {
+      letter-spacing: .04em;
+    }
+
+    html[lang="hi"] .hero-title {
+      font-size: clamp(48px, 5.2vw, 86px);
+      line-height: 1.05;
+    }
+
+    html[lang="hi"] .hero-sub,
+    html[lang="hi"] p,
+    html[lang="hi"] li,
+    html[lang="hi"] td,
+    html[lang="hi"] th,
+    html[lang="hi"] .select-btn span {
+      line-height: 1.72;
+    }
+
+    html[lang="hi"] .console-summary {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    html[lang="hi"] .console-summary p,
+    html[lang="hi"] #topoText {
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      white-space: normal !important;
+    }
+  
+
+/* Unified footer link motion */
+.footer-card a,
+.site-footer a,
+.footer-col a,
+.sampora-footer-card a,
+.sampora-site-footer a,
+.sampora-footer-col a {
+  color: rgba(218, 230, 246, .72);
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease, text-shadow .2s ease;
+}
+
+.footer-card a:hover,
+.site-footer a:hover,
+.footer-col a:hover,
+.sampora-footer-card a:hover,
+.sampora-site-footer a:hover,
+.sampora-footer-col a:hover,
+.footer-card a:focus-visible,
+.site-footer a:focus-visible,
+.footer-col a:focus-visible,
+.sampora-footer-card a:focus-visible,
+.sampora-site-footer a:focus-visible,
+.sampora-footer-col a:focus-visible {
+  color: #38d8ff;
+  transform: translateX(3px);
+  text-shadow: 0 0 18px rgba(56, 216, 255, .28);
+}
+</style>
+<style id="worker-a-unified-desktop-nav">
+@media(min-width:1101px){
+  .mast{height:auto!important;top:34px!important}
+  .mast.compact{background:rgba(10,22,40,.82)!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important}
+  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:flex!important;align-items:center!important;justify-content:center!important;gap:32px!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
+  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;white-space:nowrap!important}
+  .header-actions,.nav-actions,.actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-left:0!important}
+}
+</style>
+<style id="final-mobile-overflow-fix">
+@media(max-width:680px){.plans-grid{grid-template-columns:1fr}.plan-card,.fit-panel,.fit-selectors,.recommend{min-width:0;width:100%}.plan-top{display:grid;grid-template-columns:1fr;gap:8px}.badge{justify-self:start;max-width:100%;white-space:normal;overflow-wrap:anywhere}.select-btn{width:100%;min-width:0;overflow-wrap:anywhere}.select-btn small,.select-btn strong,.select-btn span{min-width:0;max-width:100%;overflow-wrap:anywhere}.mini-metrics{grid-template-columns:1fr}.mini-metrics div,.mini-metrics small,.mini-metrics strong{min-width:0;max-width:100%;overflow-wrap:anywhere}.compare-wrap{max-width:100%;overflow-x:auto}}
+@media(max-width:360px){.flow-line{grid-template-columns:1fr!important}.flow-step,.flow-step small,.flow-step h3,.flow-step p{min-width:0!important;max-width:100%!important;overflow-wrap:anywhere!important}.footer-main,.footer-contact{grid-template-columns:1fr!important}.footer-col,.footer-col a,.contact-item{min-width:0!important;padding-left:14px!important;padding-right:14px!important;overflow-wrap:anywhere!important}}
+
+/* Worker F: measured desktop header parity */
+@media(min-width:1101px){
+  .status,.topline{height:auto!important}
+  .status .inner,.topline .inner{height:34px!important}
+  .status .container,.topline .container,.mast .container{width:min(1360px,calc(100% - 48px))!important}
+  .mast{height:auto!important;top:35px!important}
+  body.nav-condensed .status{height:0!important;transform:translateY(-100%)!important;opacity:0!important;pointer-events:none!important;border-bottom-color:transparent!important;border-bottom-width:0!important;overflow:hidden!important}
+  body.nav-condensed .mast{top:0!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:167.36px minmax(0,1fr) 430px!important;align-items:center!important;gap:24px!important}
+  .mast .brand{width:167.36px!important;min-width:167.36px!important;gap:10px!important}
+  .mast .mark,.brand .mark{width:30px!important;height:30px!important}
+  .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:32px!important;margin:0!important;padding:0!important}
+  .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;white-space:nowrap!important}
+  .mast .nav.sampora-nav-standard a.active::after,.mast .nav-links.sampora-nav-standard a.active::after,.mast .sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,var(--cyan,#38D2FF),transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
+  .mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box!important;width:430px!important;min-width:430px!important;height:44.92px!important;align-self:center!important;justify-self:end!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;flex-wrap:nowrap!important;overflow:visible!important;margin-left:0!important}
+  .mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto!important;white-space:nowrap!important}
+}
+</style>
+</head>
+<body>
+<div aria-hidden="true" class="status">
+<div class="container inner"><span class="live" data-i18n="statusLive"></span><span class="sep">/</span><span data-i18n="statusMid"></span><span class="sep">/</span><span data-i18n="statusLast"></span><span class="right" data-i18n="statusRight"></span></div>
+</div>
+<header class="mast" id="mast">
+<div class="container inner"><a aria-label="Sampora home" class="brand" href="#top"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub"></small></span></a>
+<nav aria-label="Primary" class="nav sampora-nav-standard"><a data-i18n="navProduct" href="index.html">Product</a><a class="active" data-i18n="navSolutions" href="solutions.html">Solutions</a><a data-i18n="navResources" href="resources.html">Resources</a><a data-i18n="navPricing" href="plans.html">Plans</a><a data-i18n="navContact" href="contact.html">Contact</a></nav>
+<div class="header-actions">
+<div aria-label="Language" class="lang"><button data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button><button data-lang="hi" type="button">हिन्दी</button>
+</div><a class="btn ghost" data-i18n="headerBookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="headerStartTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
+</div>
+</div>
+</header>
+<main id="top">
+<section class="hero">
+<div class="container hero-grid">
+<div><span class="eyebrow" data-i18n="heroEyebrow"></span>
+<h1 data-i18n="heroTitle">Run sample operations, supplier coordination, and API-connected delivery - <em>find your sample operations layer.</em></h1>
+<p class="hero-sub" data-i18n="heroSub"></p>
+<div class="cta-row"><a class="btn primary" data-i18n="heroCta1" href="contact.html?intent=start_trial#contact-form">Start trial</a><a class="btn ghost" data-i18n="heroCta2" href="contact.html?intent=book_demo#contact-form">Book a demo</a></div>
+</div>
+<aside aria-label="Solution control topology" class="solution-console reveal">
+<div class="console-window">
+<div class="window-bar">
+<div class="lights"><i></i><i></i><i></i></div>
+<div class="crumb" id="topoCrumb">solutions / live / SUPNET</div>
+<span class="scope-pill" id="topoScope">Supplier Network</span>
+</div>
+<div class="console-main">
+<div class="console-summary">
+<div>
+<h3 id="topoTitle">Supplier Network</h3>
+<p id="topoText">Coordinate suppliers, pricing, finance and delivery tracking inside one
+                    visible control path.</p>
+</div>
+<div class="console-tags">
+<span class="tag" id="topoTag1">Suppliers</span>
+<span class="tag" id="topoTag2">Routing</span>
+<span class="tag amber" id="topoTag3">Ledger</span>
+</div>
+</div>
+<div aria-label="Solution topology mode switcher" class="topo-modebar" id="topoModebar">
+</div>
+<div class="topo-headline">
+<p id="topoSectionLabel">solution control topology</p>
+<div class="legend">
+<span><i class="act"></i><b id="legendActive">active flow</b></span>
+<span><i class="mid"></i><b id="legendControl">control point</b></span>
+<span><i class="warn"></i><b id="legendEvidence">evidence path</b></span>
+</div>
+</div>
+<div class="topo-stage">
+<div aria-hidden="true" class="topo-scan"></div>
+<svg aria-label="Solution topology map" class="topo-svg" role="group" viewBox="0 0 720 268">
+<defs>
+<linearGradient id="solutionHubGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0" stop-color="#163a5e"></stop>
+<stop offset="1" stop-color="#0a1a2e"></stop>
+</linearGradient>
+<linearGradient id="solutionBrandMarkGrad" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0" stop-color="#1a3a5f"></stop>
+<stop offset="1" stop-color="#0e1b2f"></stop>
+</linearGradient>
+<path d="M150 134 C178 134 194 58 236 58" id="s-origin-panel"></path>
+<path d="M150 134 C180 134 198 134 236 134" id="s-origin-network"></path>
+<path d="M150 134 C178 134 194 210 236 210" id="s-origin-enterprise"></path>
+<path d="M476 58 C508 58 516 134 540 134" id="s-panel-control"></path>
+<path d="M476 134 C508 134 516 134 540 134" id="s-network-control"></path>
+<path d="M476 210 C508 210 516 134 540 134" id="s-enterprise-control"></path>
+<path d="M598 134 C620 134 632 134 654 134" id="s-control-evidence"></path>
+</defs>
+<g class="background-wires-layer">
+<use class="wire" href="#s-origin-panel"></use>
+<use class="wire" href="#s-origin-network"></use>
+<use class="wire" href="#s-origin-enterprise"></use>
+<use class="wire" href="#s-panel-control"></use>
+<use class="wire" href="#s-network-control"></use>
+<use class="wire" href="#s-enterprise-control"></use>
+<use class="wire" href="#s-control-evidence"></use>
+</g>
+<g class="animated-flow-layer">
+<use class="flow path-panel" href="#s-origin-panel"></use>
+<use class="flow path-panel" href="#s-panel-control"></use>
+<use class="flow path-panel end" href="#s-control-evidence"></use>
+<use class="flow amber path-network" href="#s-origin-network"></use>
+<use class="flow amber path-network" href="#s-network-control"></use>
+<use class="flow amber path-network end" href="#s-control-evidence"></use>
+<use class="flow path-enterprise" href="#s-origin-panel"></use>
+<use class="flow path-enterprise" href="#s-origin-network"></use>
+<use class="flow path-enterprise" href="#s-origin-enterprise"></use>
+<use class="flow path-enterprise" href="#s-panel-control"></use>
+<use class="flow path-enterprise" href="#s-network-control"></use>
+<use class="flow path-enterprise" href="#s-enterprise-control"></use>
+<use class="flow path-enterprise end" href="#s-control-evidence"></use>
+</g>
+<g aria-hidden="true" class="packet-layer">
+<circle class="packet path-panel" r="3.6"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#s-origin-panel"></mpath></animateMotion></circle>
+<circle class="packet path-panel" r="3.6"><animateMotion begin=".18s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-panel-control"></mpath></animateMotion></circle>
+<circle class="packet path-panel end" r="3.6"><animateMotion begin=".36s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-control-evidence"></mpath></animateMotion></circle>
+<circle class="packet amber path-network" r="3.6"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#s-origin-network"></mpath></animateMotion></circle>
+<circle class="packet amber path-network" r="3.6"><animateMotion begin=".2s" dur="2.8s" repeatCount="indefinite"><mpath href="#s-network-control"></mpath></animateMotion></circle>
+<circle class="packet amber path-network end" r="3.6"><animateMotion begin=".4s" dur="2.8s" repeatCount="indefinite"><mpath href="#s-control-evidence"></mpath></animateMotion></circle>
+<circle class="packet path-enterprise" r="3.2"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#s-origin-panel"></mpath></animateMotion></circle>
+<circle class="packet amber path-enterprise" r="3.2"><animateMotion begin=".12s" dur="2.8s" repeatCount="indefinite"><mpath href="#s-origin-network"></mpath></animateMotion></circle>
+<circle class="packet path-enterprise" r="3.2"><animateMotion begin=".24s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-origin-enterprise"></mpath></animateMotion></circle>
+<circle class="packet path-enterprise" r="3.2"><animateMotion begin=".36s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-panel-control"></mpath></animateMotion></circle>
+<circle class="packet amber path-enterprise" r="3.2"><animateMotion begin=".48s" dur="2.8s" repeatCount="indefinite"><mpath href="#s-network-control"></mpath></animateMotion></circle>
+<circle class="packet path-enterprise" r="3.2"><animateMotion begin=".6s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-enterprise-control"></mpath></animateMotion></circle>
+<circle class="packet path-enterprise end" r="3.2"><animateMotion begin=".72s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-control-evidence"></mpath></animateMotion></circle>
+</g>
+<g class="nodes-layer">
+<g class="hub origin-hub" transform="translate(20,107)"><rect height="54" rx="12" width="130" x="0" y="0"></rect><circle class="pulse" cx="24" cy="27" r="7"></circle><g aria-hidden="true" class="brand-core-mark" data-no-i18n="true"><rect height="22" rx="6" width="22" x="13" y="16"></rect><text dominant-baseline="central" text-anchor="middle" x="24" y="27.5">S</text></g></g>
+<g aria-label="Panel solution layer" class="node" data-node="panel" role="button" tabindex="0" transform="translate(236,30)"><rect height="52" rx="12" width="240" x="0" y="0"></rect></g>
+<g aria-label="Supplier Network solution layer" class="node" data-node="network" role="button" tabindex="0" transform="translate(236,106)"><rect height="52" rx="12" width="240" x="0" y="0"></rect></g>
+<g aria-label="Enterprise solution layer" class="node" data-node="enterprise" role="button" tabindex="0" transform="translate(236,182)"><rect height="52" rx="12" width="240" x="0" y="0"></rect></g>
+<g class="hub ctrl-hub" data-hub="control" transform="translate(540,110)"><rect height="44" rx="12" width="50" x="0" y="0"></rect></g>
+<g class="hub evd-hub" data-hub="evidence" transform="translate(654,110)"><rect height="44" rx="12" width="52" x="0" y="0"></rect></g>
+</g>
+<g class="labels-layer">
+<text class="topo-col" id="colInput" x="36" y="22">INPUT</text><text class="topo-col" id="colLayer" x="284" y="22">SOLUTION LAYER</text><text class="topo-col" id="colControl" x="548" y="22">CONTROL</text><text class="topo-col" id="colEvidence" x="638" y="22">EVIDENCE</text>
+<g class="origin-hub-label" transform="translate(20,107)"><text class="hub-code" text-anchor="middle" x="76" y="24">Sampora</text><text class="hub-role" id="hubOriginRole" text-anchor="middle" x="76" y="40">Router Core</text></g>
+<g class="node-label" id="labelPanel" transform="translate(236,30)"><text class="node-code" x="16" y="22">01</text><text class="node-title" id="nodePanel" x="54" y="22">PANEL</text><text class="node-role" id="nodePanelRole" x="54" y="40">owned panel / station</text></g>
+<g class="node-label" id="labelNetwork" transform="translate(236,106)"><text class="node-code" x="16" y="22">02</text><text class="node-title" id="nodeNetwork" x="54" y="22">SUPPLIER NETWORK</text><text class="node-role" id="nodeNetworkRole" x="54" y="40">supplier coordination</text></g>
+<g class="node-label" id="labelEnterprise" transform="translate(236,182)"><text class="node-code" x="16" y="22">03</text><text class="node-title" id="nodeEnterprise" x="54" y="22">ENTERPRISE</text><text class="node-role" id="nodeEnterpriseRole" x="54" y="40">governance + settlement</text></g>
+<g transform="translate(540,110)"><text class="hub-mini" id="hubControl" text-anchor="middle" x="25" y="26">CTRL</text></g><g transform="translate(654,110)"><text class="hub-mini" id="hubEvidence" text-anchor="middle" x="26" y="26">EVD</text></g>
+</g>
+</svg>
+</div>
+</div>
+<div class="console-ticker" id="topoTicker">Supplier allocation active · supplier finance visible ·
+              settlement evidence ready</div>
+</div>
+</aside>
+</div>
+</section>
+<section class="section" id="solutions">
+<div class="container">
+<div class="section-head">
+<div>
+<div class="section-kicker" data-i18n="solutionsKicker"></div>
+<h2 data-i18n="solutionsTitle"></h2>
+</div>
+
+</div>
+<div class="plans-grid" id="solutionCards"></div>
+</div>
+</section>
+<section class="section" id="fit">
+<div class="container">
+<div class="section-head">
+<div>
+<div class="section-kicker" data-i18n="fitKicker"></div>
+<h2 data-i18n="fitTitle"></h2>
+</div>
+
+</div>
+<div class="fit-panel">
+<div class="fit-selectors" id="fitSelectors"></div>
+<div class="recommend reveal"><span class="label" data-i18n="recommendLabel"></span>
+<h3 id="recommendTitle"></h3>
+<p id="recommendText"></p>
+<div class="mini-metrics">
+<div><small data-i18n="recCell1"></small><strong id="r1"></strong></div>
+<div><small data-i18n="recCell2"></small><strong id="r2"></strong></div>
+<div><small data-i18n="recCell3"></small><strong id="r3"></strong></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="compare">
+<div class="container">
+<div class="section-head">
+<div>
+<div class="section-kicker" data-i18n="compareKicker"></div>
+<h2 data-i18n="compareTitle"></h2>
+</div>
+
+</div>
+<div class="compare-wrap reveal">
+<table id="compareTable"></table>
+</div>
+</div>
+</section>
+<section class="section" id="workflow">
+<div class="container">
+<div class="section-head">
+<div>
+<div class="section-kicker" data-i18n="workflowKicker"></div>
+<h2 data-i18n="workflowTitle"></h2>
+</div>
+
+</div>
+<div class="workflow-tabs" id="workflowTabs"></div>
+<div class="flow-line reveal" id="workflowLine"></div>
+</div>
+</section>
+</main>
+<div aria-hidden="true" aria-label="Expanded solution topology" class="topology-modal" id="topologyModal">
+<div aria-labelledby="solutionTopologyModalTitle" aria-modal="true" class="topology-modal__panel" role="dialog">
+<div class="topology-modal__head">
+<h2 id="solutionTopologyModalTitle">Solution topology</h2>
+<button aria-label="Close topology" class="topology-modal__close" title="Close topology" type="button">X</button>
+</div>
+<div class="topology-modal__body" id="topologyModalBody"></div>
+</div>
+</div>
+<footer class="sampora-site-footer">
+<div class="sampora-footer-card">
+<div class="sampora-footer-main">
+<div class="sampora-footer-brand">
+<div class="sampora-footer-logo"><span class="sampora-footer-mark">S</span><span><b>Sampora</b><small data-i18n="brandSub"></small></span></div>
+<p data-i18n="footerDesc"></p>
+<div class="sampora-footer-badges"><span data-i18n="footerTag1">Sample operations</span><span data-i18n="footerTag2">Supplier coordination</span><span data-i18n="footerTag3">Multi-party settlement</span></div>
+</div>
+<div class="sampora-footer-col">
+<h3 data-i18n="footerSupport">Product support</h3><a data-i18n="footerHelp" href="resources.html#surfaces">Operator manuals</a><a data-i18n="footerGuide" href="resource-manuals.html">Operations manuals</a><a data-i18n="footerFeedback" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+</div>
+<div class="sampora-footer-col">
+<h3 data-i18n="footerCompany">Company</h3><a data-i18n="footerAbout" href="index.html#platform">About us</a><a data-i18n="footerHistory" href="index.html#workflow">Implementation roadmap</a><a data-i18n="footerContact" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+</div>
+<div class="sampora-footer-col">
+<h3 data-i18n="footerAccess">Resources</h3><a data-i18n="footerTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a><a data-i18n="footerJoin" href="contact.html?intent=contact_sales#contact-form">Contact sales</a><a data-i18n="footerNews" href="resources.html#setup">Resources</a>
+</div>
+</div>
+<div class="sampora-footer-contact">
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>jiayu@surveysaas.com</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-i18n="footerAddress"></span></div>
+</div>
+<div class="sampora-footer-legal"><span data-i18n="footerLegal">© 2026 Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
+</div>
+</footer>
+<script>
+    const I18N = {
+      "en": {
+            "statusLive": "Solution loop · Live",
+            "statusMid": "Panel, Supplier Network and Enterprise fit",
+            "statusLast": "Operating role · interface entry · rollout path",
+            "statusRight": "API / workspace receiving · audit logs · settlement records",
+            "brandSub": "Operations console",
+            "navProduct": "Product",
+            "navSolutions": "Solutions",
+            "navResources": "Resources",
+            "navPricing": "Plans",
+            "navContact": "Contact",
+            "headerBookDemo": "Book a demo",
+            "headerStartTrial": "Start trial",
+            "heroEyebrow": "Solutions · operating-role fit",
+            "heroTitle": "Choose the right <em>sample operations layer</em> for your sample delivery team.",
+            "heroSub": "Map your business model — owned panel, sample supplier, survey station, subcontractor, or API-connected supplier — to the Sampora sample operations layer that fits your delivery loop.",
+            "heroCta1": "Start trial",
+            "heroCta2": "Book a demo", 
+            "solutionsKicker": "01 / Solution layers",
+            "solutionsTitle": "Three solution layers, <em>separated by operating reality.</em>",
+            "solutionsLead": "Map your team's operating model to the Sampora layer that fits how you deliver online sample projects: Panel, Supplier Network or Enterprise.",
+            "fitKicker": "02 / Operating fit",
+            "fitTitle": "Start with <em>who you coordinate.</em>",
+            "fitLead": "Choose the role closest to your team. Sampora then maps the right interface entry, control points and finance path.",
+            "recommendLabel": "Best-fit solution",
+            "recCell1": "Primary asset",
+            "recCell2": "Main workflow",
+            "recCell3": "Finance view",
+            "compareKicker": "03 / Decision matrix",
+            "compareTitle": "Compare by <em>business responsibility</em>, not by price.",
+            "compareLead": "",
+            "workflowKicker": "04 / Operating path",
+            "workflowTitle": "Each solution follows the same <em>delivery-to-settlement loop.</em>",
+            "workflowLead": "Use the same operating path across every solution: Intake → Configure → Allocate → Track / Review → Settle.",
+            "footerDesc": "An online sample operations platform for panel providers, sample suppliers, survey stations, and research subcontracting teams.",
+            "footerSupport": "Product support",
+            "footerHelp": "Operator manuals",
+            "footerGuide": "Operations manuals",
+            "footerFeedback": "Contact sales",
+            "footerCompany": "Company info",
+            "footerAbout": "About us",
+            "footerHistory": "Implementation roadmap",
+            "footerContact": "Contact sales",
+            "footerAccess": "Resources",
+            "footerTrial": "Start trial",
+            "footerJoin": "Contact sales",
+            "footerNews": "Resources",
+            "footerAddress": "A座1506, Hengyangguangcheng, Lu'an, Anhui, China"
+      },
+      "zh": {
+            "statusLive": "方案闭环 · 实时",
+            "statusMid": "样本库运营版、供应商网络运营版与企业版适配",
+            "statusLast": "运营角色 · 接口入口 · 上线路径",
+            "statusRight": "API / 工作台接收 · 审计日志 · 结算记录",
+            "brandSub": "操作控制台",
+            "navProduct": "产品",
+            "navSolutions": "解决方案",
+            "navResources": "资源",
+            "navPricing": "版本方案",
+            "navContact": "联系我们",
+            "headerBookDemo": "Book a demo",
+            "headerStartTrial": "开始试用",
+            "heroEyebrow": "解决方案 · 运营角色适配",
+            "heroTitle": "为你的样本交付团队选择合适的<em>运营层。</em>",
+            "heroSub": "将你的业务模式——自有 Panel、样本供应商、调查站、调研分包团队或 API 对接供应商——映射到最适合的 Sampora 运营层。",
+            "heroCta1": "对比方案层级 →", 
+            "solutionsKicker": "01 / 方案层级",
+            "solutionsTitle": "三个解决方案层级，<em>按真实运营场景拆分。</em>",
+            "solutionsLead": "根据团队实际运营责任，判断更适合样本库运营版、供应商网络运营版，还是企业版。",
+            "fitKicker": "02 / 运营适配",
+            "fitTitle": "先看你要<em>协调谁。</em>",
+            "fitLead": "选择最接近你团队的角色，Sampora 会把它映射到合适的接口入口、控制点和财务路径。",
+            "recommendLabel": "最适合的解决方案",
+            "recCell1": "核心资产",
+            "recCell2": "主工作流",
+            "recCell3": "财务视图",
+            "compareKicker": "03 / 决策矩阵",
+            "compareTitle": "按<em>业务责任</em>对比，而不是按价格对比。",
+            "compareLead": "",
+            "workflowKicker": "04 / 运营路径",
+            "workflowTitle": "每个方案都遵循同一个<em>交付到结算闭环。</em>",
+            "workflowLead": "每个方案都沿用同一条运营路径：接收 → 配置 → 分配 → 追踪 / 审核 → 结算。",
+            "footerDesc": "面向 Panel Provider、样本供应商、调查站和调研分包团队的在线样本运营平台。",
+            "footerSupport": "产品支持",
+            "footerHelp": "帮助文档",
+            "footerGuide": "引导手册",
+            "footerFeedback": "联系销售",
+            "footerCompany": "公司信息",
+            "footerAbout": "关于我们",
+            "footerHistory": "发展历程",
+            "footerContact": "联系销售",
+            "footerAccess": "资源",
+            "footerTrial": "开始试用",
+            "footerJoin": "联系销售",
+            "footerNews": "资源",
+            "footerAddress": "中国安徽省六安市恒阳光城A座1506"
+      },
+      "hi": {
+            "statusLive": "समाधान लूप · लाइव",
+            "statusMid": "Panel, Supplier Network और Enterprise अनुकूल",
+            "statusLast": "संचालन भूमिका · इंटरफ़ेस प्रवेश ·लॉन्च मार्ग",
+            "statusRight": "API / कार्यक्षेत्रप्राप्ति · ऑडिट लॉग · निपटान रिकॉर्ड",
+            "brandSub": "ऑपरेशंस कंसोल",
+            "navProduct": "उत्पाद",
+            "navSolutions": "समाधान",
+            "navResources": "संसाधन",
+            "navPricing": "संस्करण योजना",
+            "navContact": "संपर्क करें",
+            "headerBookDemo": "बुक डेमो",
+            "headerStartTrial": "ट्रायल शुरू करें",
+            "heroEyebrow": "समाधान · संचालन भूमिका अनुकूलन",
+            "heroTitle": "अपनी सैंपल डिलीवरी टीम के लिए सही <em>संचालन स्तर</em> चुनें।",
+            "heroSub": "अपने business model — owned panel, sample supplier, survey station, subcontractor या API-connected supplier — को सही Sampora sample operations layer से जोड़ें।",
+            "heroCta1": "समाधान स्तरों की तुलना करें →", 
+            "solutionsKicker": "01 / समाधान स्तर",
+            "solutionsTitle": "तीन समाधान स्तर, <em>वास्तविक संचालन स्थिति के अनुसार।</em>",
+            "solutionsLead": "टीम की real operating responsibility के आधार पर Panel, Supplier Network या Enterprise में से सही layer चुनें।",
+            "fitKicker": "02 / संचालन अनुकूलन",
+            "fitTitle": "पहले देखें कि आप <em>किन भूमिकाओं का समन्वय करते हैं।</em>",
+            "fitLead": "अपनी टीम के सबसे निकट भूमिका चुनें। Sampora उसके अनुसार इंटरफ़ेस प्रवेश, नियंत्रण बिंदु और वित्तीय मार्ग मैप करेगा।",
+            "recommendLabel": "सबसे उपयुक्त समाधान",
+            "recCell1": "मुख्य संसाधन",
+            "recCell2": "मुख्य कार्यप्रवाह",
+            "recCell3": "वित्तीय दृश्य",
+            "compareKicker": "03 / निर्णय मैट्रिक्स",
+            "compareTitle": "मूल्य नहीं, <em>व्यावसायिक जिम्मेदारी</em> के आधार पर तुलना करें।",
+            "compareLead": "",
+            "workflowKicker": "04 / संचालनमार्ग",
+            "workflowTitle": "हर समाधान एक ही <em>डिलीवरी से निपटान</em>चक्र का पालन करता है।",
+            "workflowLead": "हर solution में एक ही operating path चलता है: प्राप्ति → कॉन्फ़िगरेशन → आवंटन → ट्रैकिंग / समीक्षा → निपटान।",
+            "footerDesc": "पैनल प्रदाताओं, सैंपल आपूर्तिकर्ताओं, survey stations और शोध उप-ठेका टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।",
+            "footerSupport": "उत्पाद सहायता",
+            "footerHelp": "सहायता दस्तावेज़",
+            "footerGuide": "मार्गदर्शिका",
+            "footerFeedback": "Contact sales",
+            "footerCompany": "कंपनी जानकारी",
+            "footerAbout": "हमारे बारे में",
+            "footerHistory": "विकास इतिहास",
+            "footerContact": "Contact sales",
+            "footerAccess": "Resources",
+            "footerTrial": "Start trial",
+            "footerJoin": "Contact sales",
+            "footerNews": "Resources",
+            "footerAddress": "A座1506, Hengyangguangcheng, Lu’an, Anhui, China"
+      }
+};
+    const HERO_UI = {
+      "en": {
+            "crumbPrefix": "solutions / live /",
+            "section": "solution control topology",
+            "legendActive": "active flow",
+            "legendControl": "control point",
+            "legendEvidence": "evidence path",
+            "colInput": "INPUT",
+            "colLayer": "SOLUTION LAYER",
+            "colControl": "CONTROL",
+            "colEvidence": "EVIDENCE",
+            "originRole": "Router Core",
+            "nodePanel": "PANEL",
+            "nodePanelRole": "owned panel / station",
+            "nodeNetwork": "SAMPLE SUPPLY",
+            "nodeNetworkRole": "allocation + pricing",
+            "nodeEnterprise": "ENTERPRISE",
+            "nodeEnterpriseRole": "governance layer",
+            "hubControl": "REVIEW",
+            "hubEvidence": "SETTLE",
+            "ticker": {
+                  "panel": "Member records visible · survey station connected · payout records ready",
+                  "network": "Supplier allocation updated · API / workspace receiving active · settlement records ready",
+                  "enterprise": "Client + supplier + panel governance active · operation logs ready · rollout traceable"
+            }
+      },
+      "zh": {
+            "crumbPrefix": "解决方案 / 实时 /",
+            "section": "解决方案控制拓扑",
+            "legendActive": "活跃链路",
+            "legendControl": "控制节点",
+            "legendEvidence": "证据路径",
+            "colInput": "输入",
+            "colLayer": "方案层",
+            "colControl": "控制",
+            "colEvidence": "证据",
+            "originRole": "Router Core",
+            "nodePanel": "PANEL",
+            "nodePanelRole": "会员 + 调查站",
+            "nodeNetwork": "供应商网络运营版",
+            "nodeNetworkRole": "供应商 / API 协同",
+            "nodeEnterprise": "企业版",
+            "nodeEnterpriseRole": "治理层",
+            "hubControl": "审核",
+            "hubEvidence": "结算",
+            "ticker": {
+                  "panel": "会员记录可见 · 调查站已连接 · 激励记录就绪",
+                  "network": "供应商分配已更新 · API / 工作台接收已启动 · 结算记录就绪",
+                  "enterprise": "客户 + 供应商 + Panel 治理已启动 · 审计日志就绪 · 上线路径可追踪"
+            }
+      },
+      "hi": {
+            "crumbPrefix": "समाधान / लाइव /",
+            "badge": "संचालन स्तर",
+            "section": "समाधान नियंत्रण टोपोलॉजी",
+            "legendActive": "सक्रिय प्रवाह",
+            "legendControl": "नियंत्रण बिंदु",
+            "legendEvidence": "प्रमाण मार्ग",
+            "origin": "Sampora",
+            "originRole": "Router Core",
+            "nodePanel": "पैनल",
+            "nodePanelRole": "स्वयं का संसाधन",
+            "nodeNetwork": "सैंपल आपूर्ति",
+            "nodeNetworkRole": "आवंटन + मूल्य नियंत्रण",
+            "nodeEnterprise": "Enterprise",
+            "nodeEnterpriseRole": "गवर्नेंस स्तर",
+            "hubControl": "समीक्षा",
+            "hubEvidence": "निपटान",
+            "cardA": "पैनल",
+            "cardADesc": "सदस्य संचालन",
+            "cardB": "सैंपल आपूर्ति",
+            "cardBDesc": "आपूर्तिकर्ता समन्वय",
+            "cardC": "Enterprise",
+            "cardCDesc": "बहु-पक्षीय संचालन",
+            "ticker": {
+                  "panel": "सदस्य रिकॉर्ड उपलब्ध · सर्वे स्टेशन जुड़ा · भुगतान रिकॉर्ड तैयार",
+                  "network": "आपूर्तिकर्ता आवंटन अपडेट · API / कार्यक्षेत्र प्राप्ति सक्रिय · निपटान रिकॉर्ड तैयार",
+                  "enterprise": "ग्राहक + आपूर्तिकर्ता + पैनल गवर्नेंस सक्रिय · ऑडिट लॉग तैयार ·लॉन्च मार्ग ट्रैक योग्य"
+            }
+      }
+};
+    const TOPO_DETAIL = {
+      "en": {
+            "modePrefix": "Mode",
+            "auditTitle": "Operating feed",
+            "auditState": "Live",
+            "audit": {
+                  "panel": [
+                        [
+                              "17:42",
+                              "MEM_12",
+                              "profile sync completed"
+                        ],
+                        [
+                              "17:38",
+                              "STN_04",
+                              "survey station connected"
+                        ],
+                        [
+                              "17:31",
+                              "BILL_02",
+                              "member bill ready"
+                        ]
+                  ],
+                  "network": [
+                        [
+                              "17:42",
+                              "SUP_04",
+                              "supplier allocation updated"
+                        ],
+                        [
+                              "17:38",
+                              "API_03",
+                              "workspace receiving active"
+                        ],
+                        [
+                              "17:31",
+                              "FIN_07",
+                              "settlement record ready"
+                        ]
+                  ],
+                  "enterprise": [
+                        [
+                              "17:42",
+                              "CLIENT",
+                              "assignment mode synced"
+                        ],
+                        [
+                              "17:38",
+                              "ROLE_08",
+                              "permission review passed"
+                        ],
+                        [
+                              "17:31",
+                              "AUD_21",
+                              "exportable records ready"
+                        ]
+                  ]
+            }
+      },
+      "zh": {
+            "modePrefix": "模式",
+            "auditTitle": "运营记录",
+            "auditState": "实时",
+            "audit": {
+                  "panel": [
+                        [
+                              "17:42",
+                              "MEM_12",
+                              "会员画像已同步"
+                        ],
+                        [
+                              "17:38",
+                              "STN_04",
+                              "调查站已连接"
+                        ],
+                        [
+                              "17:31",
+                              "BILL_02",
+                              "会员账单就绪"
+                        ]
+                  ],
+                  "network": [
+                        [
+                              "17:42",
+                              "SUP_04",
+                              "供应商分配已更新"
+                        ],
+                        [
+                              "17:38",
+                              "API_03",
+                              "工作台接收已启动"
+                        ],
+                        [
+                              "17:31",
+                              "FIN_07",
+                              "结算记录就绪"
+                        ]
+                  ],
+                  "enterprise": [
+                        [
+                              "17:42",
+                              "CLIENT",
+                              "客户分配模式已同步"
+                        ],
+                        [
+                              "17:38",
+                              "ROLE_08",
+                              "权限复审通过"
+                        ],
+                        [
+                              "17:31",
+                              "AUD_21",
+                              "可导出记录就绪"
+                        ]
+                  ]
+            }
+      },
+      "hi": {
+            "crumb": {
+                  "panel": "समाधान / पैनल / पैनल संचालन",
+                  "network": "समाधान / सैंपल आपूर्ति / संचालन",
+                  "enterprise": "समाधान / Enterprise / ENT_03"
+            },
+            "title": {
+                  "panel": "पैनल संचालन",
+                  "network": "सैंपल आपूर्ति संचालन",
+                  "enterprise": "Enterprise"
+            },
+            "text": {
+                  "panel": "उन टीमों के लिए जो अपने सदस्य, सर्वे स्टेशन, भागीदारी रिकॉर्ड, भुगतान और बिलिंग प्रक्रिया को संभालती हैं।",
+                  "network": "उन टीमों के लिए जो बाहरी सैंपल आपूर्तिकर्ताओं, API भागीदारों, परियोजना प्राप्ति, आवंटन, समीक्षा और निपटान को संभालती हैं।",
+                  "enterprise": "उन टीमों के लिए जो ग्राहक, आपूर्तिकर्ता, पैनल, सर्वे स्टेशन, भूमिका, API डिलीवरी और वित्त को एक संचालन स्तर में संभालती हैं।"
+            },
+            "tags": {
+                  "panel": [
+                        "सदस्य रिकॉर्ड",
+                        "सर्वे स्टेशन",
+                        "बिलिंग"
+                  ],
+                  "network": [
+                        "आपूर्तिकर्ता आवंटन",
+                        "API प्राप्ति",
+                        "निपटान"
+                  ],
+                  "enterprise": [
+                        "बहु-इकाई संचालन",
+                        "एंड-टू-एंड डिलीवरी",
+                        "बहु-पक्षीय निपटान"
+                  ]
+            },
+            "statLabels": {
+                  "panel": [
+                        "सदस्य",
+                        "स्टेशन",
+                        "बिल"
+                  ],
+                  "network": [
+                        "आपूर्तिकर्ता",
+                        "API",
+                        "निपटान"
+                  ],
+                  "enterprise": [
+                        "ग्राहक",
+                        "भूमिका",
+                        "रिकॉर्ड"
+                  ]
+            },
+            "auditTitle": "संचालन रिकॉर्ड",
+            "audit": {
+                  "panel": [
+                        [
+                              "17:42",
+                              "MEM_12",
+                              "सदस्य प्रोफ़ाइल सिंक पूर्ण"
+                        ],
+                        [
+                              "17:38",
+                              "STN_04",
+                              "सर्वे स्टेशन जुड़ा"
+                        ],
+                        [
+                              "17:31",
+                              "BILL_02",
+                              "सदस्य बिल तैयार"
+                        ]
+                  ],
+                  "network": [
+                        [
+                              "17:42",
+                              "SUP_04",
+                              "आपूर्तिकर्ता आवंटन अपडेट"
+                        ],
+                        [
+                              "17:38",
+                              "API_03",
+                              "कार्यस्थान प्राप्ति सक्रिय"
+                        ],
+                        [
+                              "17:31",
+                              "FIN_07",
+                              "निपटान रिकॉर्ड तैयार"
+                        ]
+                  ],
+                  "enterprise": [
+                        [
+                              "17:42",
+                              "ग्राहक",
+                              "आवंटन मोड सिंक"
+                        ],
+                        [
+                              "17:38",
+                              "भूमिका",
+                              "अनुमति समीक्षा पास"
+                        ],
+                        [
+                              "17:31",
+                              "ऑडिट",
+                              "निर्यात योग्य रिकॉर्ड तैयार"
+                        ]
+                  ]
+            },
+            "caption": {
+                  "panel": "स्वयं का पैनल · सदस्य संचालन · बिल रिकॉर्ड",
+                  "network": "सैंपल आपूर्ति · आपूर्तिकर्ता आवंटन · API / कार्यक्षेत्र प्राप्ति",
+                  "enterprise": "Enterprise · ग्राहक / आपूर्तिकर्ता / पैनल · निपटान रिकॉर्ड"
+            }
+      }
+};
+
+    Object.keys(HERO_UI).forEach(lang => Object.assign(HERO_UI[lang], {
+      nodePanel: lang === 'zh' ? '样本库运营版' : (lang === 'hi' ? 'PANEL' : 'PANEL'),
+      nodePanelRole: lang === 'zh' ? '自有样本库 / 调查站' : (lang === 'hi' ? 'owned panel / station' : 'owned panel / station'),
+      nodeNetwork: lang === 'zh' ? '供应商网络运营版' : (lang === 'hi' ? 'SUPPLIER NETWORK' : 'SUPPLIER NETWORK'),
+      nodeNetworkRole: lang === 'zh' ? '供应商 / API 协同' : (lang === 'hi' ? 'supplier coordination' : 'supplier coordination'),
+      nodeEnterprise: lang === 'zh' ? '企业版' : (lang === 'hi' ? 'ENTERPRISE' : 'ENTERPRISE'),
+      nodeEnterpriseRole: lang === 'zh' ? '多实体治理 + 结算' : (lang === 'hi' ? 'governance + settlement' : 'governance + settlement')
+    }));
+    Object.assign(TOPO_DETAIL.hi, {
+      modePrefix: 'मोड',
+      auditTitle: 'संचालन फ़ीड',
+      auditState: 'लाइव'
+    });
+    Object.assign(HERO_UI.hi, {
+      nodePanel: 'PANEL',
+      nodePanelRole: 'स्वामित्व वाला पैनल / स्टेशन',
+      nodeNetwork: 'SUPPLIER NETWORK',
+      nodeNetworkRole: 'सप्लायर समन्वय',
+      nodeEnterprise: 'ENTERPRISE',
+      nodeEnterpriseRole: 'गवर्नेंस + निपटान'
+    });
+    delete TOPO_DETAIL.hi.modePrefix;
+    delete TOPO_DETAIL.hi.auditTitle;
+    delete TOPO_DETAIL.hi.auditState;
+    Object.assign(HERO_UI.hi, {
+      nodePanel: 'PANEL',
+      nodePanelRole: 'owned panel / station',
+      nodeNetwork: 'SUPPLIER NETWORK',
+      nodeNetworkRole: 'supplier coordination',
+      nodeEnterprise: 'ENTERPRISE',
+      nodeEnterpriseRole: 'governance + settlement'
+    });
+    const DATA = {
+      "en": {
+            "solutions": [
+                  {
+                        "id": "panel",
+                        "cn": "Owned respondent operations",
+                        "title": "Panel",
+                        "short": "Owned panel layer",
+                        "badge": "For panel teams",
+                        "text": "For teams that mainly operate their own respondent assets or survey stations. The solution centers on member records, groups, survey participation, wallet/bill records and station-side execution.",
+                        "lis": [
+                              "Member groups, levels and survey records",
+                              "Survey station projects and participation history",
+                              "Member wallet, bills and finance logs",
+                              "Partner Network path to find more buyers"
+                        ],
+                        "choose": "Choose Panel"
+                  },
+                  {
+                        "id": "network",
+                        "cn": "External sample supply operations",
+                        "title": "Supplier Network",
+                        "short": "Supplier network layer",
+                        "badge": "Recommended for sample suppliers",
+                        "text": "For teams coordinating external sample suppliers, aggregators, subcontractors or API-connected suppliers. The solution centers on project intake, supplier allocation, pricing, review and settlement.",
+                        "lis": [
+                              "Project intake and supplier assignment",
+                              "Block unsuitable suppliers and set supplier-specific prices",
+                              "API / workspace receiving for connected suppliers",
+                              "Supplier bills, settlement and finance records"
+                        ],
+                        "choose": "Choose Supplier Network"
+                  },
+                  {
+                        "id": "enterprise",
+                        "cn": "Multi-entity operations",
+                        "title": "Enterprise",
+                        "short": "Enterprise layer",
+                        "badge": "For multi-team operations",
+                        "text": "Manage clients, suppliers, panels, stations, roles, API delivery and finance in one sample operations layer.",
+                        "lis": [
+                              "Client, supplier, panel and station operations",
+                              "Role-based permissions and organization setup",
+                              "API intake/distribution and callback records",
+                              "Partner Network plus multi-party settlement"
+                        ],
+                        "choose": "Choose Enterprise"
+                  }
+            ],
+            "fit": [
+                  [
+                        "panel",
+                        "01",
+                        "I mainly manage owned respondents or a survey station",
+                        "Members, groups, participation history, incentives, wallets and bills."
+                  ],
+                  [
+                        "network",
+                        "02",
+                        "I coordinate external sample suppliers or API suppliers",
+                        "Project intake, supplier allocation, supplier pricing, review and settlement."
+                  ],
+                  [
+                        "enterprise",
+                        "03",
+                        "I manage clients, suppliers and panels together",
+                        "Client/supplier operations, API delivery, permissions, finance and Partner Network."
+                  ]
+            ],
+            "rec": {
+                  "panel": [
+                        "Panel",
+                        "Best when your main operating object is your own respondent asset or survey station, with member operations, station-side delivery and participation records handled in one layer.",
+                        "Owned panel / station",
+                        "Member participation",
+                        "Member wallet / bills"
+                  ],
+                  "network": [
+                        "Supplier Network",
+                        "Best when your team accepts projects from clients and distributes delivery to external suppliers, aggregators, subcontractors or API-connected partners.",
+                        "Supplier network",
+                        "Allocation + review",
+                        "Supplier settlement"
+                  ],
+                  "enterprise": [
+                        "Enterprise",
+                        "Best when your business is both buyer and supplier: you manage clients, suppliers, panels, roles, API delivery, settlement and Partner Network growth in one system.",
+                        "Multi-entity operations",
+                        "End-to-end delivery loop",
+                        "Multi-party settlement"
+                  ]
+            },
+            "tableHead": [
+                  "Decision point",
+                  "Panel",
+                  "Supplier Network",
+                  "Enterprise"
+            ],
+            "rows": [
+                  [
+                        "Primary operator",
+                        "Panel / station team",
+                        "Sample supplier / subcontractor",
+                        "Customer-supplier team"
+                  ],
+                  [
+                        "Main asset controlled",
+                        "Members and survey station",
+                        "External suppliers and API partners",
+                        "Clients + suppliers + panels"
+                  ],
+                  [
+                        "Project receiving path",
+                        "Station projects",
+                        "Client project intake",
+                        "Client + API/workspace intake"
+                  ],
+                  [
+                        "Supplier allocation & pricing",
+                        "Limited",
+                        "Core",
+                        "Advanced"
+                  ],
+                  [
+                        "Panel / member operations",
+                        "Core",
+                        "Partial",
+                        "Core"
+                  ],
+                  [
+                        "API / workspace receiving",
+                        "Optional",
+                        "Core",
+                        "Core"
+                  ],
+                  [
+                        "Review and traceability",
+                        "Survey records",
+                        "Callback + review records",
+                        "Audit logs + governance"
+                  ],
+                  [
+                        "Finance loop",
+                        "Member bills / wallet",
+                        "Supplier bills / settlement",
+                        "Client + supplier + member settlement"
+                  ],
+                  [
+                        "Partner Network",
+                        "Find buyers",
+                        "Find suppliers",
+                        "Find buyers and suppliers"
+                  ],
+                  [
+                        "Best next page",
+                        "Resources / station guide",
+                        "Product proof / demo",
+                        "Plans / implementation call"
+                  ]
+            ],
+
+            "workflowTabs": {
+                  "panel": "Panel",
+                  "network": "Supplier Network",
+                  "enterprise": "Enterprise"
+            },
+            "workflows": {
+                  "panel": [
+                        [
+                              "01",
+                              "Project intake",
+                              "Receive station projects or create projects for owned respondent delivery."
+                        ],
+                        [
+                              "02",
+                              "Configure members",
+                              "Use member groups, levels, profiles and station settings to define who can receive surveys."
+                        ],
+                        [
+                              "03",
+                              "Execute and track",
+                              "Track participation records, completes, termination records and member-side survey history."
+                        ],
+                        [
+                              "04",
+                              "Review records",
+                              "Review survey records, finance logs and station execution evidence."
+                        ],
+                        [
+                              "05",
+                              "Settle bills",
+                              "Close member wallets, bills and payout-related finance records."
+                        ]
+                  ],
+                  "network": [
+                        [
+                              "01",
+                              "Project intake",
+                              "Receive client projects or API project pools with CPI, IR, LOI, country and client context."
+                        ],
+                        [
+                              "02",
+                              "Configure delivery",
+                              "Set supplier eligibility, assignment mode, availability controls and supplier-specific pricing."
+                        ],
+                        [
+                              "03",
+                              "Allocate suppliers",
+                              "Assign selected suppliers or API-connected partners and block unsuitable suppliers."
+                        ],
+                        [
+                              "04",
+                              "Track and review",
+                              "Monitor participates, completes, rejects, callbacks and audit status."
+                        ],
+                        [
+                              "05",
+                              "Settle and bill",
+                              "Create project settlement, supplier bills and client invoice records."
+                        ]
+                  ],
+                  "enterprise": [
+                        [
+                              "01",
+                              "Map entities",
+                              "Set clients, suppliers, panels, stations, departments and roles in one sample operations layer."
+                        ],
+                        [
+                              "02",
+                              "Configure controls",
+                              "Define permissions, risk settings, callback/security configuration and delivery rules."
+                        ],
+                        [
+                              "03",
+                              "Receive and allocate",
+                              "Use API/workspace paths to receive projects and distribute them across internal and external supply."
+                        ],
+                        [
+                              "04",
+                              "Review operations",
+                              "Use audit logs, callback records and termination records to explain delivery decisions."
+                        ],
+                        [
+                              "05",
+                              "Close the loop",
+                              "Connect client invoices, supplier bills, member finance and Partner Network cooperation history."
+                        ]
+                  ]
+            }
+      },
+      "zh": {
+            "solutions": [
+                  {
+                        "id": "panel",
+                        "cn": "自有样本库与调查站",
+                        "title": "样本库运营版",
+                        "short": "样本库运营版",
+                        "badge": "适合自有样本库团队",
+                        "text": "适合运营自有样本库、调查站和会员体系的团队。重点是会员记录、会员组、调查参与、激励钱包 / 账单和站点侧执行。",
+                        "lis": [
+                              "会员组、等级和调查记录",
+                              "调查站项目与参与历史",
+                              "会员钱包、账单和财务日志",
+                              "通过合作资源寻找更多客户"
+                        ],
+                        "choose": "选择样本库运营版"
+                  },
+                  {
+                        "id": "network",
+                        "cn": "外部样本供应协同",
+                        "title": "供应商网络运营版",
+                        "short": "供应商网络运营版",
+                        "badge": "推荐给供应商网络团队",
+                        "text": "适合协调外部样本供应商、聚合商、分包团队或 API 对接供应商的团队。重点是项目接收、供应商分配、控价、审核和结算。",
+                        "lis": [
+                              "项目接收与供应商分配",
+                              "屏蔽不合适供应商并设置供应商级价格",
+                              "API / 工作台接收已对接供应商项目",
+                              "供应商账单、结算和财务记录"
+                        ],
+                        "choose": "选择供应商网络运营版"
+                  },
+                  {
+                        "id": "enterprise",
+                        "cn": "多实体运营",
+                        "title": "企业版",
+                        "short": "企业版",
+                        "badge": "适合客户-供应商双重身份团队",
+                        "text": "适合需要在一个运营层里同时管理客户、供应商、Panel、API、财务、权限和 Partner Network 的多实体团队。它不是单纯价格档位，而是更完整的运营模型。",
+                        "lis": [
+                              "客户、供应商、Panel 和调查站运营",
+                              "角色权限与组织配置",
+                              "API 接收 / 分发与回调记录",
+                              "合作资源网络 + 多方结算"
+                        ],
+                        "choose": "选择企业版"
+                  }
+            ],
+            "fit": [
+                  [
+                        "panel",
+                        "01",
+                        "我主要管理自有受访者或调查站",
+                        "会员、分组、参与历史、激励、钱包和账单。"
+                  ],
+                  [
+                        "network",
+                        "02",
+                        "我协调外部样本供应商或 API 供应商",
+                        "项目接收、供应商分配、供应商控价、审核和结算。"
+                  ],
+                  [
+                        "enterprise",
+                        "03",
+                        "我同时管理客户、供应商和 Panel",
+                        "客户 + 供应商 + Panel + API + 财务 + 权限 + Partner Network。"
+                  ]
+            ],
+            "rec": {
+                  "panel": [
+                        "样本库运营版",
+                        "当你的主要运营对象是自有受访者资产或调查站时最适合。这个层级应突出会员运营和站点侧交付，而不是外部供应商治理。",
+                        "自有 Panel / 调查站",
+                        "会员参与",
+                        "会员钱包 / 账单"
+                  ],
+                  "network": [
+                        "供应商网络运营版",
+                        "当团队从客户侧接收项目，并分发给外部供应商、聚合商、分包团队或 API 对接伙伴执行时最适合。",
+                        "供应商网络",
+                        "分配 + 审核",
+                        "供应商结算"
+                  ],
+                  "enterprise": [
+                        "企业版",
+                        "当你的业务需要同时管理客户、供应商、Panel、API、财务、权限和 Partner Network 时最适合。",
+                        "多实体运营",
+                        "端到端交付闭环",
+                        "多方结算"
+                  ]
+            },
+            "tableHead": [
+                  "决策点",
+                  "样本库运营版",
+                  "供应商网络运营版",
+                  "企业版"
+            ],
+            "rows": [
+                  [
+                        "主要运营方",
+                        "Panel / 调查站团队",
+                        "样本供应商 / 分包团队",
+                        "客户-供应商双重身份团队"
+                  ],
+                  [
+                        "主要控制资产",
+                        "会员与调查站",
+                        "外部供应商与 API 伙伴",
+                        "客户 + 供应商 + Panel"
+                  ],
+                  [
+                        "项目接收路径",
+                        "调查站项目",
+                        "客户项目接收",
+                        "客户 + API / 工作台接收"
+                  ],
+                  [
+                        "供应商分配与控价",
+                        "有限",
+                        "核心",
+                        "高级"
+                  ],
+                  [
+                        "Panel / 会员运营",
+                        "核心",
+                        "部分",
+                        "核心"
+                  ],
+                  [
+                        "API / 工作台接收",
+                        "可选",
+                        "核心",
+                        "核心"
+                  ],
+                  [
+                        "审核与可追踪",
+                        "调查记录",
+                        "回调 + 审核记录",
+                        "审计日志 + 治理"
+                  ],
+                  [
+                        "财务闭环",
+                        "会员账单 / 钱包",
+                        "供应商账单 / 结算",
+                        "客户 + 供应商 + 会员结算"
+                  ],
+                  [
+                        "合作资源",
+                        "找客户",
+                        "找供应商",
+                        "找客户 + 找供应商"
+                  ],
+                  [
+                        "推荐下一页",
+                        "资源 / 调查站指南",
+                        "产品证明 / Demo",
+                        "版本方案 / 实施沟通"
+                  ]
+            ],
+
+            "workflowTabs": {
+                  "panel": "样本库运营版",
+                  "network": "供应商网络运营版",
+                  "enterprise": "企业版"
+            },
+            "workflows": {
+                  "panel": [
+                        [
+                              "01",
+                              "项目接收",
+                              "接收调查站项目或创建面向自有受访者的项目。"
+                        ],
+                        [
+                              "02",
+                              "配置会员",
+                              "用会员组、等级、画像和站点设置定义谁能接收调查。"
+                        ],
+                        [
+                              "03",
+                              "执行与追踪",
+                              "追踪参与记录、完成记录、终止记录和会员侧调查历史。"
+                        ],
+                        [
+                              "04",
+                              "审核记录",
+                              "审核调查记录、财务日志和站点执行证据。"
+                        ],
+                        [
+                              "05",
+                              "结算账单",
+                              "关闭会员钱包、账单和激励相关财务记录。"
+                        ]
+                  ],
+                  "network": [
+                        [
+                              "01",
+                              "项目接收",
+                              "接收客户项目或 API 项目池，确认 CPI、IR、LOI、国家和客户信息。"
+                        ],
+                        [
+                              "02",
+                              "配置交付",
+                              "设置供应商资格、分配模式、可用区域和供应商级价格。"
+                        ],
+                        [
+                              "03",
+                              "分配供应商",
+                              "分配指定供应商或 API 对接伙伴，并屏蔽不合适供应商。"
+                        ],
+                        [
+                              "04",
+                              "追踪与审核",
+                              "监控参与、完成、拒绝、回调和审核状态。"
+                        ],
+                        [
+                              "05",
+                              "结算与账单",
+                              "创建项目结算、供应商账单和客户发票记录。"
+                        ]
+                  ],
+                  "enterprise": [
+                        [
+                              "01",
+                              "映射实体",
+                              "在一个运营层里配置客户、供应商、Panel、调查站、部门和角色。"
+                        ],
+                        [
+                              "02",
+                              "配置控制",
+                              "定义权限、风控设置、回调 / 安全配置和交付规则。"
+                        ],
+                        [
+                              "03",
+                              "接收与分配",
+                              "通过 API / 工作台接收项目，并分发给内部和外部供应。"
+                        ],
+                        [
+                              "04",
+                              "审核运营",
+                              "用审计日志、回调记录和终止记录解释交付决策。"
+                        ],
+                        [
+                              "05",
+                              "关闭闭环",
+                              "连接客户发票、供应商账单、会员财务和合作资源历史。"
+                        ]
+                  ]
+            }
+      },
+      "hi": {
+            "solutions": [
+                  {
+                        "id": "panel",
+                        "cn": "स्वयं के उत्तरदाता संचालन",
+                        "title": "पैनल संचालन",
+                        "short": "पैनल स्तर",
+                        "badge": "पैनल टीमों के लिए",
+                        "text": "उन टीमों के लिए जो अपने उत्तरदाता पैनल या सर्वे स्टेशन को संभालती हैं।मुख्य ध्यान सदस्य、समूह、भागीदारी रिकॉर्ड、वॉलेट और बिलिंग पर है.",
+                        "lis": [
+                              "सदस्य समूह, स्तर और सर्वे रिकॉर्ड",
+                              "सर्वे स्टेशन परियोजनाएँ और भागीदारी इतिहास",
+                              "सदस्यवॉलेट, बिल और वित्तीय रिकॉर्ड",
+                              "साझेदार नेटवर्क से अधिक खरीदार खोजें"
+                        ],
+                        "choose": "पैनल संचालन चुनें"
+                  },
+                  {
+                        "id": "network",
+                        "cn": "बाहरी सैंपल आपूर्ति संचालन",
+                        "title": "सैंपल आपूर्ति संचालन",
+                        "short": "आपूर्ति स्तर",
+                        "badge": "सैंपल आपूर्तिकर्ताओं के लिए",
+                        "text": "उन टीमों के लिए जो बाहरी सैंपल आपूर्तिकर्ता,एग्रीगेटर、उप-ठेका टीम या API से जुड़े भागीदारों का समन्वय करती हैं।मुख्य ध्यान परियोजनाप्राप्ति、आवंटन、समीक्षा और निपटान पर है.",
+                        "lis": [
+                              "परियोजना प्राप्ति और आपूर्तिकर्ता आवंटन",
+                              "अनुपयुक्त आपूर्तिकर्ताओं को ब्लॉक करें",
+                              "आपूर्तिकर्ता-स्तरीय मूल्य सेट करें",
+                              "API / कार्यक्षेत्र प्राप्ति और आपूर्तिकर्ता बिल"
+                        ],
+                        "choose": "सैंपल आपूर्ति चुनें"
+                  },
+                  {
+                        "id": "enterprise",
+                        "cn": "बहु-इकाई संचालन",
+                        "title": "Enterprise",
+                        "short": "उद्यम स्तर",
+                        "badge": "बहु-टीम संचालन",
+                        "text": "ग्राहक, आपूर्तिकर्ता, पैनल, सर्वे स्टेशन, भूमिकाएँ, API डिलीवरी और वित्त को एक संचालन स्तर में संभालें.",
+                        "lis": [
+                              "ग्राहक, आपूर्तिकर्ता, पैनल और स्टेशन संचालन",
+                              "भूमिका-आधारितअनुमतियाँ और संगठनकॉन्फ़िगरेशन",
+                              "API प्राप्ति / वितरण औरकॉलबैक रिकॉर्ड",
+                              "साझेदार नेटवर्क + बहु-पक्षीय निपटान"
+                        ],
+                        "choose": "Enterprise चुनें"
+                  }
+            ],
+            "fit": [
+                  [
+                        "panel",
+                        "01",
+                        "मैं मुख्य रूप से अपने उत्तरदाता या सर्वे स्टेशन संभालता/संभालती हूँ",
+                        "सदस्य,समूह、भागीदारी इतिहास、प्रोत्साहन、वॉलेट और बिल।"
+                  ],
+                  [
+                        "network",
+                        "02",
+                        "मैं बाहरी सैंपल आपूर्तिकर्ता या API आपूर्तिकर्ता समन्वय करता/करती हूँ",
+                        "परियोजना प्राप्ति、आपूर्तिकर्ता आवंटन、मूल्य、समीक्षा और निपटान।"
+                  ],
+                  [
+                        "enterprise",
+                        "03",
+                        "मैं ग्राहक, आपूर्तिकर्ता और पैनल साथ में संभालता/संभालती हूँ",
+                        "ग्राहक / आपूर्तिकर्ता संचालन、API डिलीवरी、अनुमतियाँ、वित्त और साझेदार नेटवर्क।"
+                  ]
+            ],
+            "rec": {
+                  "panel": [
+                        "पैनल संचालन",
+                        "जब आपका मुख्य संचालनऑब्जेक्ट अपना उत्तरदाता संसाधन या सर्वे स्टेशन हो, यह सबसे उपयुक्त है.",
+                        "अपना पैनल / स्टेशन",
+                        "सदस्य भागीदारी",
+                        "सदस्यवॉलेट / बिल"
+                  ],
+                  "network": [
+                        "सैंपल आपूर्ति संचालन",
+                        "जब आपकी टीम ग्राहक परियोजनाएँ प्राप्त कर उन्हें बाहरी आपूर्तिकर्ता,एग्रीगेटर、उप-ठेका टीम या API भागीदारों को देती है, यह उपयुक्त है.",
+                        "आपूर्तिकर्ता नेटवर्क",
+                        "आवंटन + समीक्षा",
+                        "आपूर्तिकर्ता निपटान"
+                  ],
+                  "enterprise": [
+                        "Enterprise",
+                        "जब व्यवसाय खरीदार और आपूर्तिकर्ता दोनों हो, और ग्राहक, आपूर्तिकर्ता, पैनल, भूमिकाएँ, API डिलीवरी और निपटान को एक सिस्टम में संभालना हो.",
+                        "बहु-इकाई संचालन",
+                        "एंड-टू-एंड डिलीवरी चक्र",
+                        "बहु-पक्षीय निपटान"
+                  ]
+            },
+            "tableHead": [
+                  "निर्णय बिंदु",
+                  "पैनल संचालन",
+                  "सैंपल आपूर्ति संचालन",
+                  "Enterprise"
+            ],
+            "rows": [
+                  [
+                        "मुख्य संचालन पक्ष",
+                        "पैनल / स्टेशन टीम",
+                        "सैंपल आपूर्तिकर्ता / उप-ठेका टीम",
+                        "ग्राहक-आपूर्तिकर्ता टीम"
+                  ],
+                  [
+                        "मुख्य नियंत्रित संसाधन",
+                        "सदस्य और सर्वे स्टेशन",
+                        "बाहरी आपूर्तिकर्ता और API भागीदार",
+                        "ग्राहक + आपूर्तिकर्ता + पैनल"
+                  ],
+                  [
+                        "परियोजना प्राप्ति मार्ग",
+                        "स्टेशन परियोजनाएँ",
+                        "ग्राहक परियोजना प्राप्ति",
+                        "ग्राहक + API / कार्यक्षेत्र प्राप्ति"
+                  ],
+                  [
+                        "आपूर्तिकर्ता आवंटन और मूल्य",
+                        "सीमित",
+                        "मुख्य",
+                        "उन्नत"
+                  ],
+                  [
+                        "पैनल / सदस्य संचालन",
+                        "मुख्य",
+                        "आंशिक",
+                        "मुख्य"
+                  ],
+                  [
+                        "API / कार्यक्षेत्र प्राप्ति",
+                        "वैकल्पिक",
+                        "मुख्य",
+                        "मुख्य"
+                  ],
+                  [
+                        "समीक्षा और ट्रेसबिलिटी",
+                        "सर्वे रिकॉर्ड",
+                        "कॉलबैक + समीक्षा रिकॉर्ड",
+                        "ऑडिट लॉग + गवर्नेंस"
+                  ],
+                  [
+                        "वित्तीय चक्र",
+                        "सदस्य बिल /वॉलेट",
+                        "आपूर्तिकर्ता बिल / निपटान",
+                        "ग्राहक + आपूर्तिकर्ता + सदस्य निपटान"
+                  ],
+                  [
+                        "साझेदार नेटवर्क",
+                        "खरीदार खोजें",
+                        "आपूर्तिकर्ता खोजें",
+                        "खरीदार और आपूर्तिकर्ता खोजें"
+                  ],
+                  [
+                        "अनुशंसित अगला पेज",
+                        "संसाधन / स्टेशन गाइड",
+                        "उत्पाद प्रमाण / डेमो",
+                        "संस्करण योजना / कार्यान्वयन कॉल"
+                  ]
+            ],
+
+            "workflowTabs": {
+                  "panel": "पैनल संचालन",
+                  "network": "सैंपल आपूर्ति",
+                  "enterprise": "Enterprise"
+            },
+            "workflows": {
+                  "panel": [
+                        [
+                              "01",
+                              "परियोजना प्राप्ति",
+                              "स्टेशन परियोजनाएँ प्राप्त करें या अपने उत्तरदाता डिलीवरी के लिए परियोजनाएँ बनाएँ."
+                        ],
+                        [
+                              "02",
+                              "सदस्यकॉन्फ़िगरेशन",
+                              "सदस्य समूह, स्तर, प्रोफ़ाइल और स्टेशनसेटिंग से तय करें कि कौन सर्वे प्राप्त कर सकता है."
+                        ],
+                        [
+                              "03",
+                              "निष्पादन और ट्रैकिंग",
+                              "भागीदारी रिकॉर्ड, पूर्ण रिकॉर्ड, समाप्ति रिकॉर्ड और सदस्य सर्वे इतिहास ट्रैक करें."
+                        ],
+                        [
+                              "04",
+                              "रिकॉर्ड समीक्षा",
+                              "सर्वे रिकॉर्ड, वित्तीयलॉग और स्टेशननिष्पादन प्रमाण की समीक्षा करें."
+                        ],
+                        [
+                              "05",
+                              "बिल निपटान",
+                              "सदस्यवॉलेट, बिल और भुगतान-संबंधित वित्तीय रिकॉर्ड बंद करें."
+                        ]
+                  ],
+                  "network": [
+                        [
+                              "01",
+                              "परियोजना प्राप्ति",
+                              "CPI、IR、LOI、देश और ग्राहक संदर्भ के साथ ग्राहक परियोजना या API परियोजनापूल प्राप्त करें."
+                        ],
+                        [
+                              "02",
+                              "डिलीवरीकॉन्फ़िगरेशन",
+                              "आपूर्तिकर्ता पात्रता,आवंटनमोड, उपलब्ध क्षेत्र और आपूर्तिकर्ता-स्तरीय मूल्य सेट करें."
+                        ],
+                        [
+                              "03",
+                              "आपूर्तिकर्ता आवंटन",
+                              "चयनित आपूर्तिकर्ता या API से जुड़े भागीदारआवंटन करें और अनुपयुक्त आपूर्तिकर्ताओं को ब्लॉक करें."
+                        ],
+                        [
+                              "04",
+                              "ट्रैकिंग और समीक्षा",
+                              "भागीदारी, पूर्णता, अस्वीकृति,कॉलबैक औरसमीक्षा स्थिति की निगरानी करें."
+                        ],
+                        [
+                              "05",
+                              "निपटान और बिल",
+                              "परियोजना निपटान, आपूर्तिकर्ता बिल और ग्राहक चालान रिकॉर्ड बनाएँ."
+                        ]
+                  ],
+                  "enterprise": [
+                        [
+                              "01",
+                              "इकाई मैपिंग",
+                              "ग्राहक, आपूर्तिकर्ता, पैनल, स्टेशन, विभाग और भूमिकाएँ एक संचालन स्तर में सेट करें."
+                        ],
+                        [
+                              "02",
+                              "नियंत्रणकॉन्फ़िगरेशन",
+                              "अनुमतियाँ, जोखिमसेटिंग,कॉलबैक / सुरक्षाकॉन्फ़िगरेशन और डिलीवरी नियम परिभाषित करें."
+                        ],
+                        [
+                              "03",
+                              "प्राप्ति और आवंटन",
+                              "API / कार्यक्षेत्र मार्ग से परियोजनाएँ प्राप्त करें और उन्हें आंतरिक / बाहरी आपूर्ति में वितरित करें."
+                        ],
+                        [
+                              "04",
+                              "संचालन समीक्षा",
+                              "ऑडिट लॉग,कॉलबैक रिकॉर्ड और समाप्ति रिकॉर्ड से डिलीवरी निर्णय स्पष्ट करें."
+                        ],
+                        [
+                              "05",
+                              "चक्र पूरा करें",
+                              "ग्राहक चालान, आपूर्तिकर्ता बिल, सदस्य वित्त और साझेदार नेटवर्क इतिहास को जोड़ें."
+                        ]
+                  ]
+            }
+      }
+};
+    Object.assign(I18N.en, {
+      footerTag1: 'Sample operations',
+      footerTag2: 'Supplier coordination',
+      footerTag3: 'Multi-party settlement',
+      footerLegal: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.'
+    });
+    Object.assign(I18N.zh, {
+      footerTag1: '样本运营',
+      footerTag2: '供应商协同',
+      footerTag3: '多方结算',
+      footerLegal: '© 2026 安徽省嘉禹企业服务有限公司'
+    });
+    const originalHiRuntime = { ...I18N.hi };
+    Object.assign(I18N.hi, {
+      headerBookDemo: 'डेमो बुक करें',
+      headerStartTrial: 'ट्रायल शुरू करें',
+      heroCta1: 'ट्रायल शुरू करें',
+      heroCta2: 'डेमो बुक करें',
+      footerDesc: 'पैनल प्रदाताओं, सैंपल सप्लायर्स, सर्वे स्टेशनों और रिसर्च सबकॉन्ट्रैक्ट टीमों के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफ़ॉर्म।',
+      footerTag1: 'सैंपल ऑपरेशंस',
+      footerTag2: 'सप्लायर समन्वय',
+      footerTag3: 'बहु-पक्षीय निपटान',
+      footerFeedback: 'सेल्स से बात करें',
+      footerContact: 'सेल्स से बात करें',
+      footerAccess: 'संसाधन',
+      footerTrial: 'ट्रायल शुरू करें',
+      footerJoin: 'सेल्स से बात करें',
+      footerNews: 'संसाधन',
+      footerAddress: 'कमरा 1506, ब्लॉक A, हेंगयांग गुआंगचेंग, लुआन, अनहुई, चीन',
+      footerLegal: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd. सर्वाधिकार सुरक्षित.'
+    });
+    Object.assign(I18N.hi, originalHiRuntime, {
+      footerTag1: 'Sample operations',
+      footerTag2: 'Supplier coordination',
+      footerTag3: 'Multi-party settlement',
+      footerLegal: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.'
+    });
+    let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network';
+    const $ = s => document.querySelector(s); const $$ = s => document.querySelectorAll(s);
+    function setLang(lang) { currentLang = I18N[lang] ? lang : 'en'; document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : currentLang; try { localStorage.setItem('sampora_lang', currentLang) } catch (e) { }; $$('[data-i18n]').forEach(el => { const v = I18N[currentLang][el.dataset.i18n]; if (v) el.innerHTML = v }); $$('.lang button').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang)); renderAll(); }
+    function renderAll() { renderHeroTopology(currentFit); renderSolutions(); renderFit(); renderRecommendation(currentFit); renderCompare(); renderWorkflowTabs(); renderWorkflow(currentWorkflow); }
+    function renderTopologyModebar(type) { const detail = TOPO_DETAIL[currentLang] || TOPO_DETAIL.en; const items = DATA[currentLang].solutions.map((s, i) => ({ id: s.id, num: String(i + 1).padStart(2, '0'), title: s.short, meta: s.badge })); const bar = $('#topoModebar'); if (!bar) return; bar.innerHTML = items.map(x => `<button type="button" class="${x.id === type ? 'active' : ''}" data-mode="${x.id}" aria-pressed="${x.id === type ? 'true' : 'false'}"><small>${detail.modePrefix} ${x.num}</small><strong>${x.title}</strong><span>${x.meta}</span></button>`).join(''); $$('[data-mode]').forEach(btn => btn.addEventListener('click', () => { currentFit = btn.dataset.mode; renderRecommendation(currentFit); })); }
+    function renderTopologyAudit(type) { const detail = TOPO_DETAIL[currentLang] || TOPO_DETAIL.en; const rows = (detail.audit && detail.audit[type]) || []; const title = $('#topoAuditTitle'), state = $('#topoAuditState'), list = $('#topoAuditList'); if (!list) return; if (title) title.textContent = detail.auditTitle; if (state) state.textContent = detail.auditState; list.innerHTML = rows.map((r, i) => `<li class="${i === 0 ? 'flash' : ''}"><span class="time">${r[0]}</span><span class="code">${r[1]}</span><span>${r[2]}</span><i></i></li>`).join(''); }
+    function renderHeroTopology(type) { const ui = HERO_UI[currentLang] || HERO_UI.en; const rec = DATA[currentLang].rec[type]; const sol = DATA[currentLang].solutions.find(s => s.id === type) || DATA[currentLang].solutions[0]; const code = { panel: 'PNL_01', network: 'SUP_02', enterprise: 'ENT_03' }[type] || 'SUP_02'; $('#topoCrumb').textContent = `${ui.crumbPrefix}${code}`; $('#topoScope').textContent = sol.short; $('#topoTitle').textContent = sol.title; $('#topoText').textContent = sol.text; $('#topoTag1').textContent = rec[2]; $('#topoTag2').textContent = rec[3]; $('#topoTag3').textContent = rec[4]; $('#topoSectionLabel').textContent = ui.section; $('#legendActive').textContent = ui.legendActive; $('#legendControl').textContent = ui.legendControl; $('#legendEvidence').textContent = ui.legendEvidence; $('#colInput').textContent = ui.colInput; $('#colLayer').textContent = ui.colLayer; $('#colControl').textContent = ui.colControl; $('#colEvidence').textContent = ui.colEvidence; $('#hubOriginRole').textContent = ui.originRole; $('#nodePanel').textContent = ui.nodePanel; $('#nodePanelRole').textContent = ui.nodePanelRole; $('#nodeNetwork').textContent = ui.nodeNetwork; $('#nodeNetworkRole').textContent = ui.nodeNetworkRole; $('#nodeEnterprise').textContent = ui.nodeEnterprise; $('#nodeEnterpriseRole').textContent = ui.nodeEnterpriseRole; $('#hubControl').textContent = ui.hubControl; $('#hubEvidence').textContent = ui.hubEvidence; $('#topoTicker').textContent = ui.ticker[type]; renderTopologyModebar(type); document.querySelectorAll('.topo-svg .flow').forEach(el => el.classList.remove('on')); document.querySelectorAll('.topo-svg .packet').forEach(el => el.classList.remove('on')); document.querySelectorAll('.topo-svg .node').forEach(el => el.classList.remove('active', 'warn', 'dim')); document.querySelectorAll('.topo-svg .node-label').forEach(el => el.classList.remove('active', 'warn', 'dim')); document.querySelectorAll('.topo-svg .hub[data-hub]').forEach(el => el.classList.remove('is-active', 'is-warn')); const panel = document.querySelector('.topo-svg .node[data-node="panel"]'); const network = document.querySelector('.topo-svg .node[data-node="network"]'); const enterprise = document.querySelector('.topo-svg .node[data-node="enterprise"]'); const control = document.querySelector('.topo-svg .hub[data-hub="control"]'); const evidence = document.querySelector('.topo-svg .hub[data-hub="evidence"]'); const panelLabel = document.querySelector('#labelPanel'); const networkLabel = document.querySelector('#labelNetwork'); const enterpriseLabel = document.querySelector('#labelEnterprise'); if (type === 'panel') { document.querySelectorAll('.path-panel').forEach(el => el.classList.add('on')); panel.classList.add('active'); network.classList.add('dim'); enterprise.classList.add('dim'); panelLabel?.classList.add('active'); networkLabel?.classList.add('dim'); enterpriseLabel?.classList.add('dim'); control.classList.add('is-active'); evidence.classList.add('is-active'); } else if (type === 'network') { document.querySelectorAll('.path-network').forEach(el => el.classList.add('on')); panel.classList.add('dim'); network.classList.add('warn'); enterprise.classList.add('dim'); panelLabel?.classList.add('dim'); networkLabel?.classList.add('warn'); enterpriseLabel?.classList.add('dim'); control.classList.add('is-warn'); evidence.classList.add('is-warn'); } else { document.querySelectorAll('.path-enterprise').forEach(el => el.classList.add('on')); panel.classList.add('active'); network.classList.add('warn'); enterprise.classList.add('active'); panelLabel?.classList.add('active'); networkLabel?.classList.add('warn'); enterpriseLabel?.classList.add('active'); control.classList.add('is-active'); evidence.classList.add('is-active'); } }
+
+    function renderSolutions() { const d = DATA[currentLang]; $('#solutionCards').innerHTML = d.solutions.map(s => `<article class="plan-card ${s.id} reveal ${s.id === currentFit ? 'active' : ''}" data-plan="${s.id}"><div class="plan-top"><div><span class="plan-kicker">${s.cn}</span><h3>${s.title}</h3><span class="short">${s.short}</span></div><span class="badge">${s.badge}</span></div><p>${s.text}</p><ul>${s.lis.map(li => `<li>${li}</li>`).join('')}</ul><button class="btn ghost choose" data-choose="${s.id}">${s.choose}</button></article>`).join(''); $$('[data-choose]').forEach(btn => btn.addEventListener('click', () => { setTopologyFit(btn.dataset.choose); $('#fit').scrollIntoView({ behavior: 'smooth' }); })); observeReveals(); }
+    function renderFit() { const d = DATA[currentLang]; $('#fitSelectors').innerHTML = d.fit.map(x => `<button class="select-btn ${x[0] === currentFit ? 'active' : ''}" data-fit="${x[0]}"><small>${x[1]}</small><strong>${x[2]}</strong><span>${x[3]}</span></button>`).join(''); $$('[data-fit]').forEach(btn => btn.addEventListener('click', () => { setTopologyFit(btn.dataset.fit); })); }
+    function renderRecommendation(type) { const r = DATA[currentLang].rec[type]; $('#recommendTitle').textContent = r[0]; $('#recommendText').textContent = r[1]; $('#r1').textContent = r[2]; $('#r2').textContent = r[3]; $('#r3').textContent = r[4]; $$('.select-btn').forEach(b => b.classList.toggle('active', b.dataset.fit === type)); $$('.plan-card').forEach(c => c.classList.toggle('active', c.dataset.plan === type)); renderHeroTopology(type); }
+    function renderCompare() { const d = DATA[currentLang]; $('#compareTable').innerHTML = `<thead><tr>${d.tableHead.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${d.rows.map(r => `<tr>${r.map((c, i) => `<td class="${i > 0 ? (c === '✓' ? 'ok' : c === '—' ? 'no' : 'part') : ''}">${c}</td>`).join('')}</tr>`).join('')}</tbody>` }
+
+    function renderWorkflowTabs() { const t = DATA[currentLang].workflowTabs; const tabs = $('#workflowTabs'); if (!tabs || !t) return; tabs.innerHTML = Object.keys(t).map(k => `<button class="workflow-tab ${k === currentWorkflow ? 'active' : ''}" data-workflow="${k}">${t[k]}</button>`).join(''); $$('[data-workflow]').forEach(btn => btn.addEventListener('click', () => { currentWorkflow = btn.dataset.workflow; renderWorkflow(currentWorkflow); })); }
+    function renderWorkflow(type) { const d = DATA[currentLang].workflows && DATA[currentLang].workflows[type]; const line = $('#workflowLine'); if (!line || !d) return; line.innerHTML = d.map(item => `<div class="flow-step"><small>${item[0]}</small><h3>${item[1]}</h3><p>${item[2]}</p></div>`).join(''); $$('.workflow-tab').forEach(b => b.classList.toggle('active', b.dataset.workflow === type)); }
+    const TOPO_ROUTE_ORDER = ['panel', 'network', 'enterprise'];
+    let topologyRouteTimer = null;
+    function normalizeTopologyType(type) { return TOPO_ROUTE_ORDER.includes(type) ? type : 'network'; }
+    function setTopoText(id, value) { document.querySelectorAll(`#${id}`).forEach(el => { el.textContent = value; }); }
+    function renderTopologyModebar(type) {
+      const activeType = normalizeTopologyType(type);
+      const detail = TOPO_DETAIL[currentLang] || TOPO_DETAIL.en;
+      const items = DATA[currentLang].solutions.map((s, i) => ({ id: s.id, num: String(i + 1).padStart(2, '0'), title: s.short, meta: s.badge }));
+      document.querySelectorAll('#topoModebar').forEach(bar => {
+        bar.innerHTML = items.map(x => `<button type="button" class="${x.id === activeType ? 'active' : ''}" data-mode="${x.id}" aria-pressed="${x.id === activeType ? 'true' : 'false'}"><small>${detail.modePrefix} ${x.num}</small><strong>${x.title}</strong><span>${x.meta}</span></button>`).join('');
+        bar.querySelectorAll('[data-mode]').forEach(btn => btn.addEventListener('click', () => setTopologyFit(btn.dataset.mode)));
+      });
+    }
+    function setTopologyClasses(type) {
+      const activeType = normalizeTopologyType(type);
+      document.querySelectorAll('.topo-svg .flow, .topo-svg .packet').forEach(el => el.classList.remove('on'));
+      document.querySelectorAll('.topo-svg .node, .topo-svg .node-label').forEach(el => el.classList.remove('active', 'warn', 'dim'));
+      document.querySelectorAll('.topo-svg .hub[data-hub]').forEach(el => el.classList.remove('is-active', 'is-warn'));
+      document.querySelectorAll(`.path-${activeType}`).forEach(el => el.classList.add('on'));
+      const apply = (selector, ...classes) => document.querySelectorAll(selector).forEach(el => el.classList.add(...classes));
+      if (activeType === 'panel') {
+        apply('.topo-svg .node[data-node="panel"], #labelPanel', 'active');
+        apply('.topo-svg .node[data-node="network"], #labelNetwork, .topo-svg .node[data-node="enterprise"], #labelEnterprise', 'dim');
+        apply('.topo-svg .hub[data-hub="control"], .topo-svg .hub[data-hub="evidence"]', 'is-active');
+      } else if (activeType === 'network') {
+        apply('.topo-svg .node[data-node="panel"], #labelPanel, .topo-svg .node[data-node="enterprise"], #labelEnterprise', 'dim');
+        apply('.topo-svg .node[data-node="network"], #labelNetwork', 'warn');
+        apply('.topo-svg .hub[data-hub="control"], .topo-svg .hub[data-hub="evidence"]', 'is-warn');
+      } else {
+        apply('.topo-svg .node[data-node="panel"], #labelPanel, .topo-svg .node[data-node="enterprise"], #labelEnterprise', 'active');
+        apply('.topo-svg .node[data-node="network"], #labelNetwork', 'warn');
+        apply('.topo-svg .hub[data-hub="control"], .topo-svg .hub[data-hub="evidence"]', 'is-active');
+      }
+    }
+    function renderHeroTopology(type) {
+      const activeType = normalizeTopologyType(type);
+      const ui = HERO_UI[currentLang] || HERO_UI.en;
+      const rec = DATA[currentLang].rec[activeType];
+      const sol = DATA[currentLang].solutions.find(s => s.id === activeType) || DATA[currentLang].solutions[0];
+      const code = { panel: 'PNL_01', network: 'SUP_02', enterprise: 'ENT_03' }[activeType] || 'SUP_02';
+      setTopoText('topoCrumb', `${ui.crumbPrefix}${code}`);
+      setTopoText('topoScope', sol.short);
+      setTopoText('topoTitle', sol.title);
+      setTopoText('topoText', sol.text);
+      setTopoText('topoTag1', rec[2]);
+      setTopoText('topoTag2', rec[3]);
+      setTopoText('topoTag3', rec[4]);
+      setTopoText('topoSectionLabel', ui.section);
+      setTopoText('legendActive', ui.legendActive);
+      setTopoText('legendControl', ui.legendControl);
+      setTopoText('legendEvidence', ui.legendEvidence);
+      setTopoText('colInput', ui.colInput);
+      setTopoText('colLayer', ui.colLayer);
+      setTopoText('colControl', ui.colControl);
+      setTopoText('colEvidence', ui.colEvidence);
+      setTopoText('hubOriginRole', ui.originRole);
+      setTopoText('nodePanel', ui.nodePanel);
+      setTopoText('nodePanelRole', ui.nodePanelRole);
+      setTopoText('nodeNetwork', ui.nodeNetwork);
+      setTopoText('nodeNetworkRole', ui.nodeNetworkRole);
+      setTopoText('nodeEnterprise', ui.nodeEnterprise);
+      setTopoText('nodeEnterpriseRole', ui.nodeEnterpriseRole);
+      setTopoText('hubControl', ui.hubControl);
+      setTopoText('hubEvidence', ui.hubEvidence);
+      setTopoText('topoTicker', ui.ticker[activeType]);
+      renderTopologyModebar(activeType);
+      setTopologyClasses(activeType);
+    }
+    function renderRecommendation(type) {
+      const activeType = normalizeTopologyType(type);
+      const r = DATA[currentLang].rec[activeType];
+      $('#recommendTitle').textContent = r[0];
+      $('#recommendText').textContent = r[1];
+      $('#r1').textContent = r[2];
+      $('#r2').textContent = r[3];
+      $('#r3').textContent = r[4];
+      $$('.select-btn').forEach(b => b.classList.toggle('active', b.dataset.fit === activeType));
+      $$('.plan-card').forEach(c => c.classList.toggle('active', c.dataset.plan === activeType));
+      renderHeroTopology(activeType);
+    }
+    function setTopologyFit(type, options = {}) {
+      currentFit = normalizeTopologyType(type);
+      renderRecommendation(currentFit);
+      if (options.resetCycle !== false) startTopologyRouteCycle();
+    }
+    function startTopologyRouteCycle() {
+      clearInterval(topologyRouteTimer);
+      topologyRouteTimer = setInterval(() => {
+        const next = TOPO_ROUTE_ORDER[(TOPO_ROUTE_ORDER.indexOf(currentFit) + 1) % TOPO_ROUTE_ORDER.length];
+        setTopologyFit(next, { resetCycle: false });
+      }, 3000);
+    }
+    function observeReveals() { if (!('IntersectionObserver' in window)) { return } const obs = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); obs.unobserve(entry.target) } }), { threshold: .12 }); $$('.reveal').forEach(el => { if (!el.classList.contains('in-view')) obs.observe(el) }); }
+    function initTopologyModal() { const modal = $('#topologyModal'); const body = $('#topologyModalBody'); const close = modal?.querySelector('.topology-modal__close'); if (!modal || !body || !close) return; const openModal = () => { const source = $('.solution-console'); if (!source) return; const clone = source.cloneNode(true); clone.querySelectorAll('[tabindex]').forEach(el => el.removeAttribute('tabindex')); body.replaceChildren(clone); renderHeroTopology(currentFit); modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('topology-modal-open'); close.focus({ preventScroll: true }); }; const closeModal = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('topology-modal-open'); body.replaceChildren(); }; document.addEventListener('click', e => { if (modal.classList.contains('open')) return; if (e.target.closest('button, a, input, select, textarea, [data-mode]')) return; if (e.target.closest('.solution-console, .console-window, .topo-stage, .topo-svg .node[data-node]')) openModal(); }); close.addEventListener('click', closeModal); modal.addEventListener('click', e => { if (e.target === modal) closeModal(); }); document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); }); }
+    $$('.lang button').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
+    document.addEventListener('click', e => { const node = e.target.closest('.topo-svg .node[data-node]'); if (node && !e.target.closest('.topology-modal')) { setTopologyFit(node.dataset.node); } });
+    document.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.closest && e.target.closest('.topo-svg .node[data-node]')) { e.preventDefault(); const node = e.target.closest('.topo-svg .node[data-node]'); setTopologyFit(node.dataset.node); } });
+    $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const target = document.querySelector(a.getAttribute('href')); if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); } }));
+    function syncTopChrome() { const compact = window.scrollY > 56; $('#mast')?.classList.toggle('compact', compact); document.body.classList.toggle('nav-condensed', compact); }
+    syncTopChrome();
+    window.addEventListener('scroll', syncTopChrome, { passive: true });
+    initTopologyModal(); let saved = 'en'; try { saved = localStorage.getItem('sampora_lang') || 'en' } catch (e) { } setLang(saved); startTopologyRouteCycle();
+  </script>
+<script>
+(function(){
+  const labels={en:['Product','Solutions','Resources','Plans','Contact'],zh:['产品','解决方案','资源','版本方案','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','संपर्क']};
+  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['contact.html','contact']];
+  function lang(){return localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
+  function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
+  if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}
+  const nav=document.querySelector('nav.nav, .nav-links');
+  const host=document.querySelector('.header-actions,.nav-actions,.actions') || nav?.parentElement;
+  if(!host)return;
+  const btn=document.createElement('button');btn.type='button';btn.className='mobile-nav-toggle';btn.setAttribute('aria-label','Open navigation');btn.setAttribute('aria-expanded','false');btn.innerHTML='&#9776;';
+  const drawer=document.createElement('nav');drawer.className='mobile-nav-drawer';drawer.setAttribute('aria-label','Mobile navigation');
+  const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  routes.forEach(([href,key],i)=>{const a=document.createElement('a');a.href=href;a.dataset.mobileNavLabel='';a.dataset.nav=key;if(current===href)a.className='active';drawer.appendChild(a);});
+  host.appendChild(btn);document.body.appendChild(drawer);
+  btn.addEventListener('click',()=>{const open=document.body.classList.toggle('mobile-nav-open');btn.setAttribute('aria-expanded',String(open));});
+  drawer.addEventListener('click',e=>{if(e.target.closest('a'))document.body.classList.remove('mobile-nav-open')});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('mobile-nav-open')});
+  bindLangSync();
+  sync();
+})();
+</script>
+<script src="assets/i18n-sweep.js"></script>
+</body>
+</html>

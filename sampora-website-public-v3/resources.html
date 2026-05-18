@@ -1,0 +1,2934 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Resources for online sample operations</title>
+<meta content="Operator manuals, regional rollout notes, and implementation references for sample delivery teams." name="description"/>
+<link rel="canonical" href="https://www.sampora.com/resources.html">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --ink: #0A1628;
+            --deep: #06101F;
+            --panel: #0E1B2F;
+            --panel2: #142845;
+            --line: rgba(129, 178, 214, .18);
+            --line2: rgba(129, 178, 214, .10);
+            --cyan: #38D2FF;
+            --cyan2: #7BE3FF;
+            --lime: #B5F056;
+            --amber: #FFB454;
+            --saffron: #F6A93B;
+            --fg: #E8EEF5;
+            --fg2: #BCCBE0;
+            --muted: #7E92AC;
+            --body: #A9B9CE;
+            --body2: #93A7C0;
+            --sans: "Inter", "Noto Sans SC", "Noto Sans Devanagari", "Helvetica Neue", Arial, sans-serif;
+            --mono: "JetBrains Mono", "Noto Sans SC", "Noto Sans Devanagari", SFMono-Regular, Menlo, Consolas, monospace;
+            --ease: cubic-bezier(.2, .7, .2, 1);
+            --shadow: 0 30px 78px rgba(0, 0, 0, .55)
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 104px
+        }
+
+        body {
+            margin: 0;
+            background: var(--ink);
+            color: var(--fg);
+            font-family: var(--sans);
+            line-height: 1.56;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(rgba(120, 172, 216, .026) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(120, 172, 216, .024) 1px, transparent 1px),
+                radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10), transparent 62%),
+                radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .07), transparent 64%),
+                linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%);
+            background-size: 44px 44px, 44px 44px, auto, auto, auto
+        }
+
+        body:before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(34% 24% at 18% 20%, rgba(56, 210, 255, .08), transparent 62%), radial-gradient(26% 22% at 86% 72%, rgba(246, 169, 59, .06), transparent 66%);
+            animation: bgDrift 14s ease-in-out 1 alternate
+        }
+
+        @keyframes bgDrift {
+            from {
+                transform: translate3d(-1%, 0, 0);
+                opacity: .72
+            }
+
+            to {
+                transform: translate3d(1.2%, 1%, 0);
+                opacity: 1
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        button,
+        input {
+            font: inherit
+        }
+
+        .container {
+            width: min(1360px, calc(100% - 48px));
+            margin: 0 auto
+        }
+
+        .section {
+            padding: 86px 0;
+            border-top: 1px solid var(--line)
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+            gap: 36px;
+            align-items: end;
+            margin-bottom: 36px
+        }
+
+        .section-kicker {
+            font: 800 11px var(--mono);
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--cyan2)
+        }
+
+        .section-head h2 {
+            margin: 14px 0 0;
+            font-size: clamp(32px, 4vw, 50px);
+            line-height: 1.04;
+            letter-spacing: -.03em;
+            max-width: 720px
+        }
+
+        .section-head h2 em,
+        h1 em {
+            font-style: normal;
+            color: var(--cyan)
+        }
+
+        .section-head p {
+            margin: 0;
+            color: var(--body);
+            font-size: 16px;
+            max-width: 760px;
+            line-height: 1.72
+        }
+
+        .status {
+            border-bottom: 1px solid var(--line);
+            background: rgba(6, 16, 31, .86);
+            color: var(--muted);
+            font: 11px var(--mono);
+            letter-spacing: .06em;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(8px)
+        }
+
+        .status .inner {
+            height: 34px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            overflow: hidden;
+            white-space: nowrap
+        }
+
+        .live {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--lime);
+            text-transform: uppercase;
+            font-weight: 800
+        }
+
+        .live:before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--lime);
+            animation: pulse 1.9s ease-out 1
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(181, 240, 86, .48)
+            }
+
+            72% {
+                box-shadow: 0 0 0 9px rgba(181, 240, 86, 0)
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(181, 240, 86, 0)
+            }
+        }
+
+        .status .sep {
+            color: var(--muted)
+        }
+
+        .status .right {
+            margin-left: auto;
+            color: var(--fg2)
+        }
+
+        .mast {
+            position: sticky;
+            top: 34px;
+            z-index: 49;
+            background: rgba(10, 22, 40, .82);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+            transition: background .2s var(--ease)
+        }
+
+        .mast.compact {
+            background: rgba(6, 16, 31, .92)
+        }
+
+        .mast .inner {
+            height: 66px;
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 24px;
+            transition: height .22s var(--ease)
+        }
+
+        .mast.compact .inner {
+            height: 56px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: max-content
+        }
+
+        .mark {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: linear-gradient(160deg, #1a3a5f, #0e1b2f);
+            border: 1px solid rgba(56, 210, 255, .35);
+            display: grid;
+            place-items: center;
+            color: var(--cyan);
+            font: 800 13px var(--mono)
+        }
+
+        .brand b {
+            font-weight: 800;
+            letter-spacing: -.01em
+        }
+
+        .brand small {
+            display: block;
+            color: var(--body2);
+            font: 10px var(--mono);
+            letter-spacing: .12em;
+            text-transform: uppercase
+        }
+
+        .nav {
+            display: flex;
+            gap: 28px;
+            justify-content: center;
+            justify-self: center;
+            font-size: 13px;
+            color: var(--fg2)
+        }
+
+        .nav a {
+            padding: 8px 0;
+            border-bottom: 1px solid transparent;
+            transition: color .18s var(--ease), border-color .18s var(--ease)
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--cyan2);
+            border-color: var(--cyan)
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-self: end
+        }
+
+        .lang {
+            display: flex;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            overflow: hidden;
+            background: rgba(6, 14, 28, .38)
+        }
+
+        .lang button {
+            height: 34px;
+            padding: 0 11px;
+            border: 0;
+            background: transparent;
+            color: var(--body2);
+            font: 800 11px var(--mono);
+            letter-spacing: .04em;
+            cursor: pointer
+        }
+
+        .lang button.active {
+            background: rgba(56, 210, 255, .14);
+            color: var(--cyan2)
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13.5px;
+            letter-spacing: .01em;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: transform .14s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease)
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+            color: #03111B;
+            box-shadow: 0 0 0 1px rgba(56, 210, 255, .5), 0 12px 32px rgba(56, 210, 255, .18)
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 0 1px rgba(56, 210, 255, .56), 0 18px 42px rgba(56, 210, 255, .24)
+        }
+
+        .btn.ghost {
+            background: transparent;
+            color: var(--fg);
+            border-color: var(--line)
+        }
+
+        .btn.ghost:hover {
+            transform: translateY(-1px);
+            border-color: rgba(56, 210, 255, .45);
+            color: var(--cyan2);
+            background: rgba(20, 40, 69, .22)
+        }
+
+        .hero {
+            position: relative;
+            padding: 82px 0 78px
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            inset: 20px 0 auto;
+            height: 560px;
+            pointer-events: none;
+            background: radial-gradient(42% 34% at 64% 22%, rgba(56, 210, 255, .12), transparent 64%), radial-gradient(28% 26% at 30% 88%, rgba(246, 169, 59, .07), transparent 72%)
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(430px, .86fr);
+            gap: 54px;
+            align-items: center
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font: 800 11px var(--mono);
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: #FFD39A;
+            padding: 7px 14px;
+            border: 1px solid rgba(246, 169, 59, .28);
+            border-radius: 999px;
+            background: rgba(246, 169, 59, .075)
+        }
+
+        .eyebrow:before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--saffron);
+            box-shadow: 0 0 14px rgba(246, 169, 59, .38)
+        }
+
+        h1 {
+            font-size: clamp(46px, 5.15vw, 76px);
+            line-height: 1;
+            letter-spacing: -.035em;
+            font-weight: 800;
+            margin: 22px 0 20px;
+            max-width: 850px
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            color: var(--body);
+            max-width: 720px;
+            margin: 0 0 30px;
+            line-height: 1.7
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px
+        }
+
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            max-width: 720px
+        }
+
+        .hero-metric {
+            position: relative;
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            align-items: center;
+            gap: 14px;
+            min-height: 76px;
+            border: 1px solid rgba(129, 178, 214, .18);
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(14, 27, 47, .60), rgba(7, 16, 31, .38));
+            padding: 14px 16px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025)
+        }
+
+        .hero-metric:before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(56, 210, 255, .52), rgba(56, 210, 255, .08), transparent)
+        }
+
+        .hero-metric:after {
+            content: "";
+            position: absolute;
+            right: 12px;
+            bottom: 10px;
+            width: 42px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .32));
+            opacity: .72
+        }
+
+        .hero-metric strong {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            color: var(--fg);
+            font: 800 20px/1 var(--mono);
+            letter-spacing: .02em;
+            background: rgba(56, 210, 255, .07);
+            border: 1px solid rgba(56, 210, 255, .20);
+            box-shadow: 0 0 0 1px rgba(56, 210, 255, .035), 0 12px 24px rgba(0, 0, 0, .16)
+        }
+
+        .hero-metric:nth-child(3) strong {
+            color: #FFD39A;
+            background: rgba(246, 169, 59, .08);
+            border-color: rgba(246, 169, 59, .24)
+        }
+
+        .hero-metric span {
+            display: block;
+            color: var(--fg2);
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.38;
+            letter-spacing: .01em
+        }
+
+        /* Shared console / topology */
+        .resource-console {
+            position: relative
+        }
+
+        .resource-console:not(.modal-open) .console-window,
+        .resource-console:not(.modal-open) .topo-stage {
+            cursor: zoom-in
+        }
+
+        body.topology-modal-open {
+            overflow: hidden
+        }
+
+        .resource-console.modal-open {
+            position: fixed;
+            inset: 0;
+            z-index: 140;
+            display: grid;
+            place-items: center;
+            opacity: 1;
+            transform: none;
+            padding: clamp(16px, 3vw, 42px);
+            background: rgba(3, 9, 18, .72);
+            backdrop-filter: blur(14px);
+            overflow: auto
+        }
+
+        .resource-console.modal-open .console-window {
+            width: min(1120px, calc(100vw - 20px));
+            max-height: calc(100dvh - 20px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 16px;
+            background: rgba(6, 16, 31, .98)
+        }
+
+        .resource-console.modal-open .window-bar {
+            position: relative;
+            flex: 0 0 auto;
+            z-index: 8;
+            background: rgba(6, 16, 31, .96)
+        }
+
+        .resource-console.modal-open .console-main {
+            flex: 1 1 auto;
+            min-height: 0;
+            padding: 18px
+        }
+
+        .resource-console.modal-open .topo-stage {
+            height: min(54vh, 520px)
+        }
+
+        .topology-close {
+            display: none;
+            margin-left: 10px;
+            width: 34px;
+            height: 34px;
+            border: 1px solid rgba(129, 178, 214, .18);
+            border-radius: 999px;
+            background: rgba(6, 14, 28, .62);
+            color: var(--fg2);
+            cursor: pointer;
+            font: 800 18px/1 var(--sans);
+            align-items: center;
+            justify-content: center
+        }
+
+        .resource-console.modal-open .topology-close {
+            display: inline-flex;
+            position: relative;
+            z-index: 9;
+            margin-left: 10px;
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: rgba(20, 40, 69, .45);
+            color: var(--fg)
+        }
+
+        .topology-close:hover,
+        .topology-close:focus-visible {
+            outline: 0;
+            color: var(--cyan2);
+            border-color: rgba(56, 210, 255, .42)
+        }
+
+        .console-window {
+            position: relative;
+            border: 1px solid rgba(56, 210, 255, .22);
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(14, 27, 47, .92), rgba(7, 16, 31, .98));
+            box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, .05);
+            overflow: hidden;
+            min-height: auto;
+            transform: translateZ(0)
+        }
+
+        .console-window:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(58% 46% at 72% 22%, rgba(56, 210, 255, .10), transparent 64%), radial-gradient(38% 30% at 18% 80%, rgba(246, 169, 59, .07), transparent 66%)
+        }
+
+        .console-window:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, .035) 45%, transparent 60%);
+            transform: none;
+            opacity: .22;
+            z-index: 1
+        }
+
+        @keyframes consoleSheen {
+
+            0%,
+            65% {
+                transform: translateX(-120%)
+            }
+
+            85%,
+            100% {
+                transform: translateX(120%)
+            }
+        }
+
+        .window-bar {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            border-bottom: 1px solid rgba(129, 178, 214, .14);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, 0))
+        }
+
+        .lights {
+            display: flex;
+            gap: 8px
+        }
+
+        .lights i {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%
+        }
+
+        .lights i:nth-child(1) {
+            background: #FF6B7A
+        }
+
+        .lights i:nth-child(2) {
+            background: #F6A93B
+        }
+
+        .lights i:nth-child(3) {
+            background: #B5F056
+        }
+
+        .crumb {
+            font: 800 11px var(--mono);
+            letter-spacing: .08em;
+            color: var(--fg2);
+            text-transform: uppercase
+        }
+
+        .scope-pill {
+            margin-left: auto;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(56, 210, 255, .22);
+            background: rgba(56, 210, 255, .08);
+            font: 800 11px var(--mono);
+            letter-spacing: .06em;
+            color: var(--cyan2);
+            text-transform: uppercase
+        }
+
+        .console-main {
+            position: relative;
+            z-index: 2;
+            padding: 20px 22px 16px
+        }
+
+        .console-summary {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 18px;
+            align-items: start;
+            margin-bottom: 16px
+        }
+
+        .console-summary h3 {
+            margin: 0 0 8px;
+            font-size: 28px;
+            line-height: 1.12;
+            letter-spacing: -.02em
+        }
+
+        .console-summary p {
+            margin: 0;
+            color: var(--body2);
+            font-size: 14px;
+            line-height: 1.62;
+            max-width: 520px
+        }
+
+        .console-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(56, 210, 255, .20);
+            background: rgba(56, 210, 255, .07);
+            font: 800 10px var(--mono);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--cyan2)
+        }
+
+        .tag.amber {
+            border-color: rgba(246, 169, 59, .22);
+            background: rgba(246, 169, 59, .08);
+            color: #FFD39A
+        }
+
+        .topo-modebar {
+            position: relative;
+            z-index: 3;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            margin: 0 0 14px
+        }
+
+        .topo-modebar button {
+            min-width: 0;
+            text-align: left;
+            border: 1px solid rgba(129, 178, 214, .16);
+            border-radius: 14px;
+            background: rgba(8, 20, 36, .56);
+            padding: 10px 11px;
+            cursor: pointer;
+            color: var(--body2);
+            transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease), box-shadow .18s var(--ease)
+        }
+
+        .topo-modebar button:hover {
+            transform: translateY(-1px);
+            border-color: rgba(56, 210, 255, .32);
+            background: rgba(14, 32, 55, .74)
+        }
+
+        .topo-modebar button.active {
+            border-color: rgba(56, 210, 255, .52);
+            background: linear-gradient(180deg, rgba(56, 210, 255, .13), rgba(8, 20, 36, .62));
+            box-shadow: 0 0 0 1px rgba(56, 210, 255, .08), 0 12px 28px rgba(56, 210, 255, .09)
+        }
+
+        .topo-modebar button[data-mode="supplier"].active {
+            border-color: rgba(246, 169, 59, .48);
+            background: linear-gradient(180deg, rgba(246, 169, 59, .12), rgba(8, 20, 36, .62));
+            box-shadow: 0 0 0 1px rgba(246, 169, 59, .08), 0 12px 28px rgba(246, 169, 59, .08)
+        }
+
+        .topo-modebar button small {
+            display: block;
+            font: 800 10px var(--mono);
+            letter-spacing: .12em;
+            color: var(--cyan2);
+            margin-bottom: 5px
+        }
+
+        .topo-modebar button[data-mode="supplier"] small {
+            color: #FFD39A
+        }
+
+        .topo-modebar button strong {
+            display: block;
+            font-size: 13px;
+            color: var(--fg);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .topo-modebar button span {
+            display: block;
+            margin-top: 3px;
+            font: 700 9px var(--mono);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .topo-headline {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: space-between;
+            margin: 14px 0 8px
+        }
+
+        .topo-headline p {
+            margin: 0;
+            font: 800 11px var(--mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--fg2)
+        }
+
+        .legend {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font: 700 10px var(--mono);
+            letter-spacing: .06em
+        }
+
+        .legend span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .legend i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: block
+        }
+
+        .legend i.act {
+            background: var(--cyan);
+            box-shadow: 0 0 0 2px rgba(56, 210, 255, .15)
+        }
+
+        .legend i.mid {
+            background: #6FD8FF
+        }
+
+        .legend i.warn {
+            background: var(--amber);
+            box-shadow: 0 0 0 2px rgba(255, 180, 84, .15)
+        }
+
+        .topo-stage {
+            position: relative;
+            height: 246px;
+            border: 1px solid rgba(129, 178, 214, .12);
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(7, 16, 31, .75), rgba(7, 16, 31, .35));
+            overflow: hidden;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .018), inset 0 0 46px rgba(56, 210, 255, .035);
+            cursor: zoom-in
+        }
+
+        .topo-stage:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(120, 172, 216, .02) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 172, 216, .02) 1px, transparent 1px);
+            background-size: 28px 28px;
+            opacity: .75
+        }
+
+        .topo-stage:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(42% 46% at 24% 50%, rgba(56, 210, 255, .09), transparent 64%), radial-gradient(30% 36% at 88% 48%, rgba(246, 169, 59, .05), transparent 68%);
+            z-index: 1
+        }
+
+        .topo-scan {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -40%;
+            height: 34%;
+            pointer-events: none;
+            background: linear-gradient(180deg, transparent, rgba(56, 210, 255, .07), transparent);
+            filter: blur(.3px);
+            mix-blend-mode: screen;
+            z-index: 2;
+            animation: topoScan 5.8s linear infinite
+        }
+
+        @keyframes topoScan {
+            0% {
+                transform: translateY(-40%);
+                opacity: 0
+            }
+
+            12% {
+                opacity: .6
+            }
+
+            70% {
+                opacity: .25
+            }
+
+            100% {
+                transform: translateY(420%);
+                opacity: 0
+            }
+        }
+
+        .topo-svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1
+        }
+
+        .topo-col {
+            fill: var(--muted);
+            font: 700 10px var(--mono);
+            letter-spacing: .12em
+        }
+
+        .topo-svg .wire {
+            fill: none;
+            stroke: rgba(129, 178, 214, .16);
+            stroke-width: 1.05;
+            stroke-dasharray: 2 11;
+            stroke-linecap: round
+        }
+
+        .topo-svg .flow {
+            fill: none;
+            stroke: var(--cyan);
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-dasharray: 4 13;
+            stroke-dashoffset: 0;
+            animation: topoDash 2.65s linear infinite, flowBreathe 2.9s ease-in-out infinite;
+            opacity: 0;
+            filter: drop-shadow(0 0 5px rgba(56, 210, 255, .34));
+            transition: opacity .28s var(--ease), stroke-width .24s var(--ease), filter .24s var(--ease)
+        }
+
+        .topo-svg .flow.amber {
+            stroke: var(--amber);
+            filter: drop-shadow(0 0 5px rgba(255, 180, 84, .30));
+            animation-duration: 2.95s, 2.9s
+        }
+
+        .topo-svg .flow.on {
+            opacity: .98;
+            animation: topoDash 2.65s linear infinite, flowBreathe 2.9s ease-in-out infinite
+        }
+
+        .topo-svg .flow-group.on .flow {
+            opacity: .98;
+            animation: topoDash 2.65s linear infinite, flowBreathe 2.9s ease-in-out infinite
+        }
+
+        .topo-svg .labels-layer {
+            pointer-events: none
+        }
+
+        @keyframes topoDash {
+            to {
+                stroke-dashoffset: -58
+            }
+        }
+
+        @keyframes flowBreathe {
+
+            0%,
+            100% {
+                stroke-width: 1.65;
+                filter: drop-shadow(0 0 4px rgba(56, 210, 255, .24))
+            }
+
+            50% {
+                stroke-width: 2.35;
+                filter: drop-shadow(0 0 10px rgba(56, 210, 255, .45))
+            }
+        }
+
+        @keyframes flowAmberBreathe {
+
+            0%,
+            100% {
+                stroke-width: 1.65;
+                filter: drop-shadow(0 0 4px rgba(255, 180, 84, .22))
+            }
+
+            50% {
+                stroke-width: 2.35;
+                filter: drop-shadow(0 0 10px rgba(255, 180, 84, .42))
+            }
+        }
+
+        .topo-svg .flow.amber.on,
+        .topo-svg .flow-group.on .flow.amber {
+            animation: topoDash 2.95s linear infinite, flowAmberBreathe 2.9s ease-in-out infinite
+        }
+
+        .topo-svg .hub rect,
+        .topo-svg .node rect {
+            fill: rgba(13, 34, 58, .92);
+            stroke: rgba(56, 210, 255, .28);
+            stroke-width: 1.2;
+            transition: fill .24s var(--ease), stroke .24s var(--ease), filter .24s var(--ease), transform .24s var(--ease)
+        }
+
+        .topo-svg .hub.origin-hub rect {
+            fill: rgba(10, 28, 48, .96);
+            stroke: rgba(56, 210, 255, .38);
+            filter: drop-shadow(0 0 12px rgba(56, 210, 255, .12))
+        }
+
+        .topo-svg .hub.ctrl-hub rect,
+        .topo-svg .hub.evd-hub rect {
+            fill: rgba(9, 23, 40, .94)
+        }
+
+        .topo-svg .hub.origin-hub .pulse {
+            fill: none;
+            stroke: rgba(56, 210, 255, .65);
+            stroke-width: 1;
+            transform-origin: center;
+            animation: hubPulse 2.4s ease-out infinite
+        }
+
+        @keyframes hubPulse {
+            0% {
+                transform: scale(.8);
+                opacity: .9
+            }
+
+            72%,
+            100% {
+                transform: scale(2.2);
+                opacity: 0
+            }
+        }
+
+        .topo-svg .hub-code {
+            fill: var(--fg);
+            font: 800 12px var(--mono);
+            letter-spacing: .04em
+        }
+
+        .topo-svg .hub-code.brand-label {
+            font-size: 11.5px;
+            letter-spacing: .01em
+        }
+
+        .topo-svg .hub-role {
+            fill: var(--muted);
+            font: 700 8.5px var(--mono);
+            letter-spacing: .08em;
+            text-transform: uppercase
+        }
+
+        .topo-svg .hub-mini {
+            fill: var(--fg2);
+            font: 800 11px var(--mono);
+            letter-spacing: .06em
+        }
+
+        .topo-svg .node-title {
+            fill: var(--fg2);
+            font: 800 11px var(--mono);
+            letter-spacing: .08em;
+            text-transform: uppercase
+        }
+
+        .topo-svg .node-role {
+            fill: var(--muted);
+            font: 700 9px var(--sans)
+        }
+
+        .topo-svg .node-code {
+            fill: var(--cyan2);
+            font: 800 11px var(--mono)
+        }
+
+        .topo-svg .node {
+            cursor: pointer;
+            transition: opacity .18s var(--ease)
+        }
+
+        .topo-svg .node:hover rect {
+            stroke: rgba(56, 210, 255, .58);
+            filter: drop-shadow(0 0 12px rgba(56, 210, 255, .16))
+        }
+
+        .topo-svg .node.active rect {
+            stroke: rgba(56, 210, 255, .55);
+            fill: rgba(16, 43, 74, .96);
+            filter: drop-shadow(0 0 12px rgba(56, 210, 255, .18))
+        }
+
+        .topo-svg .node.warn rect {
+            stroke: rgba(246, 169, 59, .48);
+            fill: rgba(39, 28, 18, .54);
+            filter: drop-shadow(0 0 12px rgba(255, 180, 84, .16))
+        }
+
+        .topo-svg .node.active .node-title,
+        .topo-svg .node.active .node-code {
+            fill: var(--cyan2)
+        }
+
+        .topo-svg .node.warn .node-title,
+        .topo-svg .node.warn .node-code {
+            fill: #FFD39A
+        }
+
+        .topo-svg .node.dim,
+        .topo-svg .node-label.dim {
+            opacity: .56
+        }
+
+        .topo-svg .node-label.active .node-title,
+        .topo-svg .node-label.active .node-code {
+            fill: var(--cyan2)
+        }
+
+        .topo-svg .node-label.warn .node-title,
+        .topo-svg .node-label.warn .node-code {
+            fill: #FFD39A
+        }
+
+        @keyframes nodeBreathe {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-1px)
+            }
+        }
+
+        .topo-svg .packet {
+            fill: var(--cyan);
+            opacity: 0;
+            filter: drop-shadow(0 0 7px rgba(56, 210, 255, .80));
+            transition: opacity .25s var(--ease), filter .25s var(--ease)
+        }
+
+        .topo-svg .packet.amber {
+            fill: var(--amber);
+            filter: drop-shadow(0 0 7px rgba(255, 180, 84, .68))
+        }
+
+        .topo-svg .packet.on {
+            opacity: .85
+        }
+
+        .topo-svg .packet-group.on .packet {
+            opacity: .85
+        }
+
+        .topo-stage:hover .topo-svg .flow.on {
+            stroke-width: 2.45
+        }
+
+        .topo-stage:hover .topo-svg .wire {
+            stroke: rgba(129, 178, 214, .20)
+        }
+
+        .console-ticker {
+            position: relative;
+            z-index: 2;
+            padding: 12px 18px;
+            border-top: 1px solid rgba(129, 178, 214, .14);
+            color: var(--body2);
+            font: 700 11px var(--mono);
+            letter-spacing: .05em;
+            overflow: hidden
+        }
+
+        .console-ticker:before {
+            content: "";
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 8px rgba(56, 210, 255, .4);
+            margin-right: 10px;
+            vertical-align: middle
+        }
+
+        .console-ticker:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -80px;
+            width: 68px;
+            background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .08), transparent)
+        }
+
+        @keyframes tickerSweep {
+            from {
+                left: -80px
+            }
+
+            to {
+                left: 100%
+            }
+        }
+
+        .zoom-icon {
+            font-size: 14px;
+            line-height: 1
+        }
+
+        .topology-placeholder {
+            display: none;
+            min-height: 510px;
+            border: 1px dashed rgba(56, 210, 255, .22);
+            border-radius: 24px;
+            background: rgba(6, 16, 31, .20)
+        }
+
+        .chip {
+            color: var(--body2);
+            border: 1px solid rgba(129, 178, 214, .14);
+            background: rgba(6, 16, 31, .30);
+            padding: 5px 8px;
+            border-radius: 999px;
+            font: 800 10px var(--mono);
+            letter-spacing: .04em
+        }
+
+        .chip.amber {
+            color: #FFD39A;
+            border-color: rgba(246, 169, 59, .22);
+            background: rgba(246, 169, 59, .07)
+        }
+
+        .guide-three-grid {
+            margin-top: 0;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .playbook-grid {
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+            gap: 24px
+        }
+
+        .check-panel,
+        .trust-panel {
+            border: 1px solid rgba(129, 178, 214, .16);
+            border-radius: 24px;
+            background: rgba(14, 27, 47, .48);
+            overflow: hidden
+        }
+
+        .check-item {
+            border-bottom: 1px solid rgba(129, 178, 214, .10)
+        }
+
+        .check-item:last-child {
+            border-bottom: 0
+        }
+
+        .check-button {
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            gap: 14px;
+            align-items: center;
+            padding: 18px;
+            border: 0;
+            background: transparent;
+            color: var(--fg);
+            text-align: left
+        }
+
+        .check-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: rgba(56, 210, 255, .08);
+            border: 1px solid rgba(56, 210, 255, .20);
+            color: var(--cyan2);
+            font: 800 11px var(--mono)
+        }
+
+        .check-button strong {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 3px
+        }
+
+        .check-button small {
+            color: var(--body2);
+            font-size: 12px
+        }
+
+        .check-state {
+            padding: 5px 8px;
+            border-radius: 999px;
+            font: 800 10px var(--mono);
+            color: var(--lime);
+            background: rgba(181, 240, 86, .08);
+            border: 1px solid rgba(181, 240, 86, .18)
+        }
+
+        .trust-panel {
+            padding: 26px
+        }
+
+        .trust-panel h3 {
+            margin: 0 0 12px;
+            font-size: 28px;
+            line-height: 1.1;
+            letter-spacing: -.02em
+        }
+
+        .trust-panel p {
+            color: var(--body);
+            margin: 0 0 18px;
+            line-height: 1.74
+        }
+
+        .mini-proof {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px
+        }
+
+        .mini-proof div {
+            border: 1px solid rgba(129, 178, 214, .12);
+            border-radius: 14px;
+            padding: 12px;
+            color: var(--body2);
+            background: rgba(14, 27, 47, .44);
+            font-size: 13px
+        }
+
+        .mini-proof b {
+            display: block;
+            color: var(--fg);
+            margin-bottom: 4px
+        }
+
+        .surfaces-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px
+        }
+
+        .surface-card {
+            border: 1px solid rgba(129, 178, 214, .16);
+            border-radius: 24px;
+            background: rgba(14, 27, 47, .48);
+            padding: 24px;
+            min-height: 342px;
+            overflow: hidden;
+            position: relative
+        }
+
+        .surface-card:after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            right: -80px;
+            top: -70px;
+            background: radial-gradient(circle, rgba(56, 210, 255, .11), transparent 64%)
+        }
+
+        .surface-card.supplier {
+            border-color: rgba(246, 169, 59, .30);
+            background: linear-gradient(180deg, rgba(42, 30, 18, .34), rgba(14, 27, 47, .48))
+        }
+
+        .surface-card .label {
+            color: var(--cyan2);
+            font: 800 11px var(--mono);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: 16px
+        }
+
+        .surface-card.supplier .label {
+            color: #FFD39A
+        }
+
+        .surface-card h3 {
+            margin: 0 0 12px;
+            font-size: 26px;
+            letter-spacing: -.02em;
+            line-height: 1.1
+        }
+
+        .surface-card p {
+            margin: 0 0 20px;
+            color: var(--body);
+            line-height: 1.7
+        }
+
+        .surface-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 10px
+        }
+
+        .surface-card li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: var(--fg2);
+            font-size: 14px
+        }
+
+        .surface-card li:before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            margin-top: 8px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 10px rgba(56, 210, 255, .38);
+            flex: 0 0 auto
+        }
+
+        .surface-card.supplier li:before {
+            background: var(--amber)
+        }
+
+        .cta-final {
+            text-align: center;
+            border: 1px solid rgba(56, 210, 255, .22);
+            border-radius: 30px;
+            padding: 52px 28px;
+            background: radial-gradient(46% 64% at 50% 0, rgba(56, 210, 255, .11), transparent 62%), linear-gradient(180deg, rgba(14, 27, 47, .56), rgba(7, 16, 31, .44))
+        }
+
+        .cta-final h2 {
+            margin: 0 auto 16px;
+            max-width: 760px;
+            font-size: clamp(34px, 4vw, 52px);
+            line-height: 1.05;
+            letter-spacing: -.03em
+        }
+
+        .cta-final p {
+            margin: 0 auto 28px;
+            color: var(--body);
+            max-width: 760px;
+            font-size: 16px;
+            line-height: 1.7
+        }
+
+        .sampora-site-footer {
+            border-top: 1px solid rgba(129, 178, 214, .18);
+            padding: 64px 0 54px;
+            color: var(--body);
+            background: linear-gradient(180deg, rgba(6, 16, 31, .22), rgba(6, 16, 31, .42))
+        }
+
+        .sampora-footer-card {
+            border: 1px solid rgba(129, 178, 214, .22);
+            border-radius: 24px;
+            overflow: hidden;
+            background: rgba(8, 20, 36, .72);
+            box-shadow: 0 30px 90px rgba(0, 0, 0, .24)
+        }
+
+        .sampora-site-footer .sampora-footer-card {
+            width: min(1360px, calc(100% - 48px));
+            margin: 0 auto
+        }
+
+        .sampora-footer-main {
+            display: grid;
+            grid-template-columns: 1.45fr .72fr .72fr .72fr;
+            gap: 48px;
+            padding: 42px 48px 36px
+        }
+
+        .sampora-footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--fg);
+            margin-bottom: 22px
+        }
+
+        .sampora-footer-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            color: var(--cyan);
+            border: 1px solid rgba(56, 210, 255, .42);
+            background: linear-gradient(160deg, rgba(56, 210, 255, .16), rgba(14, 27, 47, .92));
+            font: 800 14px var(--mono)
+        }
+
+        .sampora-footer-logo b {
+            display: block;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: -.03em;
+            color: var(--fg)
+        }
+
+        .sampora-footer-logo small {
+            display: block;
+            margin-top: 4px;
+            font: 800 10px var(--mono);
+            letter-spacing: .10em;
+            color: var(--muted)
+        }
+
+        .sampora-footer-brand p {
+            margin: 0;
+            max-width: 430px;
+            color: var(--body);
+            font-size: 16px;
+            line-height: 1.75
+        }
+
+        .sampora-footer-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px
+        }
+
+        .sampora-footer-badges span {
+            display: inline-flex;
+            height: 26px;
+            align-items: center;
+            padding: 0 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(56, 210, 255, .28);
+            background: rgba(56, 210, 255, .08);
+            color: var(--cyan2);
+            font: 800 11px var(--mono)
+        }
+
+        .sampora-footer-col h3 {
+            margin: 0 0 18px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(129, 178, 214, .18);
+            color: var(--fg);
+            font-size: 18px;
+            line-height: 1.1;
+            letter-spacing: -.02em
+        }
+
+        .sampora-footer-col a {
+            display: block;
+            margin: 0 0 14px;
+            color: var(--body);
+            font-size: 15px;
+            line-height: 1.35;
+            transition: color .18s var(--ease), transform .18s var(--ease)
+        }
+
+        .sampora-footer-col a:hover {
+            color: var(--cyan);
+            transform: translateX(3px)
+        }
+
+        .sampora-footer-contact {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(129, 178, 214, .18)
+        }
+
+        .sampora-footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            min-height: 74px;
+            padding: 0 48px;
+            border-right: 1px solid rgba(129, 178, 214, .18);
+            color: var(--fg);
+            font-size: 16px;
+            font-weight: 760
+        }
+
+        .sampora-footer-contact-item:last-child {
+            border-right: 0
+        }
+
+        .sampora-footer-icon {
+            box-sizing: border-box;
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            white-space: nowrap;
+            color: var(--cyan);
+            border: 1px solid rgba(56, 210, 255, .28);
+            background: rgba(56, 210, 255, .08);
+            font: 800 10.5px/1 var(--mono);
+            letter-spacing: 0;
+            overflow: hidden;
+            flex: 0 0 34px
+        }
+
+        .sampora-footer-icon--at {
+            font-size: 17px;
+            line-height: 1;
+            font-family: var(--sans);
+            font-weight: 800
+        }
+
+        .sampora-footer-legal {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            padding: 18px 24px;
+            border-top: 1px solid rgba(129, 178, 214, .10);
+            color: var(--muted);
+            font: 12px var(--mono);
+            letter-spacing: .04em
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .72s var(--ease), transform .72s var(--ease)
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: none
+        }
+
+        @media(max-width:1120px) {
+
+            .sampora-footer-main {
+                grid-template-columns: 1fr 1fr;
+                padding: 34px 28px
+            }
+
+            .sampora-footer-contact {
+                grid-template-columns: 1fr
+            }
+
+            .sampora-footer-contact-item {
+                border-right: 0;
+                border-bottom: 1px solid rgba(129, 178, 214, .18);
+                padding: 18px 28px
+            }
+
+            .sampora-footer-contact-item:last-child {
+                border-bottom: 0
+            }
+
+            .status .right {
+                display: none
+            }
+
+            .nav {
+                display: none
+            }
+        }
+
+        @media(max-width:860px) {
+            .container {
+                width: min(100% - 32px, 1360px)
+            }
+
+            .hero {
+                padding: 58px 0
+            }
+
+            .section {
+                padding: 66px 0
+            }
+
+            h1 {
+                font-size: clamp(40px, 11vw, 56px)
+            }
+
+            .hero-metric {
+                min-height: 68px
+            }
+
+            .hero-metric strong {
+                width: 44px;
+                height: 44px;
+                font-size: 18px
+            }
+
+            .sampora-footer-main {
+                grid-template-columns: 1fr
+            }
+
+            .header-actions .btn {
+                display: none
+            }
+
+            .resource-console {
+                min-width: 0
+            }
+
+            .console-summary {
+                grid-template-columns: 1fr
+            }
+
+            .console-tags {
+                justify-content: flex-start
+            }
+
+            .topo-modebar {
+                grid-template-columns: 1fr
+            }
+
+            .topo-stage {
+                height: 240px
+            }
+        }
+
+        html[lang="zh-CN"] body {
+            font-family: "Noto Sans SC", "Inter", var(--sans)
+        }
+
+        html[lang="zh-CN"] h1 {
+            font-size: clamp(44px, 4.6vw, 66px);
+            line-height: 1.08;
+            letter-spacing: -.01em;
+            max-width: 760px
+        }
+
+        html[lang="hi"] body {
+            font-family: "Noto Sans Devanagari", "Inter", var(--sans)
+        }
+
+        html[lang="hi"] h1 {
+            font-size: clamp(42px, 4.45vw, 64px);
+            line-height: 1.16;
+            letter-spacing: 0;
+            max-width: 780px
+        }
+    
+/* Sampora mobile canonical navigation */
+.mobile-nav-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:10px;background:rgba(6,14,28,.62);color:var(--fg,#E8EEF5);font:800 20px/1 var(--mono,monospace);cursor:pointer}
+.mobile-nav-drawer{display:none;position:fixed;left:16px;right:16px;top:92px;z-index:120;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:14px;background:rgba(6,16,31,.97);box-shadow:0 26px 80px rgba(0,0,0,.42);backdrop-filter:blur(16px);padding:10px}
+.mobile-nav-drawer a{display:flex;align-items:center;min-height:42px;padding:0 12px;border-radius:10px;color:var(--fg2,#C5D3E5);font-weight:800;text-decoration:none}
+.mobile-nav-drawer a.active,.mobile-nav-drawer a:hover{color:var(--cyan,#38D2FF);background:rgba(56,210,255,.08)}
+body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
+@media(max-width:760px){.mobile-nav-toggle{display:inline-flex}.header-actions,.nav-actions,.actions{gap:10px}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}}
+
+
+/* final cleanup: unified navigation and language switcher */
+.lang,.lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
+.lang button,.lang-btn{min-width:42px;height:34px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px/1 var(--mono,ui-monospace,monospace);letter-spacing:.03em;cursor:pointer;transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
+.lang button:hover,.lang button:focus-visible,.lang-btn:hover,.lang-btn:focus-visible{color:var(--cyan2,var(--cyan,#61e7ff));outline:0;box-shadow:0 0 0 1px rgba(56,210,255,.24)}
+.lang button.active,.lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
+html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 10px;font-family:var(--sans,system-ui,sans-serif);font-weight:800;letter-spacing:0}
+@media(max-width:1100px){.nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:none!important}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}.nav.sampora-nav-standard,.sampora-nav-standard{gap:28px!important}.hero-grid{grid-template-columns:1fr}.resource-console{width:100%;max-width:100%;justify-self:stretch}.console-window{width:100%;box-sizing:border-box}}
+@media(max-width:760px){.status{display:none!important}.brand small{display:none!important}.mast .inner,.nav-inner{gap:14px!important}}
+@media(max-width:360px){.container{width:min(100% - 24px,1360px)!important}.brand b{display:none!important}.lang button,.lang-btn{min-width:34px!important;padding:0 6px!important;font-size:10px!important}.mobile-nav-toggle{width:36px!important;height:36px!important}.header-actions,.nav-actions,.actions{gap:6px!important}}
+
+</style>
+<style id="language-consistency-fix">
+        html[lang="hi"] body,
+        html[lang="hi"] button,
+        html[lang="hi"] input,
+        html[lang="hi"] textarea,
+        html[lang="hi"] select {
+            font-family: "Noto Sans Devanagari", "Nirmala UI", "Mangal", "Inter", system-ui, sans-serif !important;
+        }
+        html[lang="hi"] p,
+        html[lang="hi"] li,
+        html[lang="hi"] .surface-card,
+        html[lang="hi"] .check-item,
+        html[lang="hi"] .mini-proof,
+        html[lang="hi"] .cta-final,
+        html[lang="hi"] footer {
+            line-height: 1.72;
+        }
+    </style>
+<style id="surface-jump-card-fix">
+        .surface-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform .22s cubic-bezier(.2,.7,.2,1), border-color .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s cubic-bezier(.2,.7,.2,1), background .22s cubic-bezier(.2,.7,.2,1);
+        }
+
+        .surface-link:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 210, 255, .42);
+            box-shadow: 0 22px 70px rgba(0, 0, 0, .24), 0 0 0 1px rgba(56, 210, 255, .06) inset;
+            background: linear-gradient(180deg, rgba(18, 36, 60, .58), rgba(7, 16, 31, .52));
+        }
+
+        .surface-link.supplier:hover {
+            border-color: rgba(246, 169, 59, .42);
+            box-shadow: 0 22px 70px rgba(0, 0, 0, .24), 0 0 0 1px rgba(246, 169, 59, .08) inset;
+        }
+
+        .surface-more {
+            position: absolute;
+            left: 24px;
+            bottom: 22px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--cyan2);
+            font: 800 12px var(--mono);
+            letter-spacing: .04em;
+            opacity: .82;
+            transition: transform .22s cubic-bezier(.2,.7,.2,1), opacity .22s cubic-bezier(.2,.7,.2,1);
+        }
+
+        .surface-link.supplier .surface-more {
+            color: #FFD39A;
+        }
+
+        .surface-link:hover .surface-more {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+
+        .surface-card ul {
+            padding-bottom: 28px;
+        }
+    
+
+/* Unified footer link motion */
+.footer-card a,
+.site-footer a,
+.footer-col a,
+.sampora-footer-card a,
+.sampora-site-footer a,
+.sampora-footer-col a {
+  color: rgba(218, 230, 246, .72);
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease, text-shadow .2s ease;
+}
+
+.footer-card a:hover,
+.site-footer a:hover,
+.footer-col a:hover,
+.sampora-footer-card a:hover,
+.sampora-site-footer a:hover,
+.sampora-footer-col a:hover,
+.footer-card a:focus-visible,
+.site-footer a:focus-visible,
+.footer-col a:focus-visible,
+.sampora-footer-card a:focus-visible,
+.sampora-site-footer a:focus-visible,
+.sampora-footer-col a:focus-visible {
+  color: #38d8ff;
+  transform: translateX(3px);
+  text-shadow: 0 0 18px rgba(56, 216, 255, .28);
+}
+</style>
+<style id="worker-a-unified-desktop-nav">
+@media(min-width:1101px){
+  .mast{height:auto!important;top:34px!important}
+  .mast.compact{background:rgba(10,22,40,.82)!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important}
+  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:flex!important;align-items:center!important;justify-content:center!important;gap:32px!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
+  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;white-space:nowrap!important}
+  .header-actions,.nav-actions,.actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-left:0!important}
+}
+
+/* Worker F: measured desktop header parity */
+@media(min-width:1101px){
+  .status,.topline{height:auto!important}
+  .status .inner,.topline .inner{height:34px!important}
+  .status .container,.topline .container,.mast .container{width:min(1360px,calc(100% - 48px))!important}
+  .mast{height:auto!important;top:34px!important}
+  body.nav-condensed .mast{top:0!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:167.36px minmax(0,1fr) 430px!important;align-items:center!important;gap:24px!important}
+  .mast .brand{width:167.36px!important;min-width:167.36px!important;gap:10px!important}
+  .mast .mark,.brand .mark{width:30px!important;height:30px!important}
+  .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:32px!important;margin:0!important;padding:0!important}
+  .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;white-space:nowrap!important}
+  .mast .nav.sampora-nav-standard a.active::after,.mast .nav-links.sampora-nav-standard a.active::after,.mast .sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,var(--cyan,#38D2FF),transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
+  .mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box!important;width:430px!important;min-width:430px!important;height:44.92px!important;align-self:center!important;justify-self:end!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;flex-wrap:nowrap!important;overflow:visible!important;margin-left:0!important}
+  .mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto!important;white-space:nowrap!important}
+}
+@media(min-width:761px){
+  .status,.mast,.mast .inner{transition:transform .26s var(--ease),opacity .22s var(--ease),height .26s var(--ease),top .26s var(--ease),background .26s var(--ease),box-shadow .26s var(--ease),border-color .26s var(--ease)}
+  body.nav-condensed .status{transform:translateY(-100%);opacity:0;pointer-events:none;border-bottom-color:transparent;overflow:hidden}
+  body.nav-condensed .mast{top:0!important;background:rgba(5,13,25,.92);box-shadow:0 18px 44px rgba(0,0,0,.28),0 1px 0 rgba(56,210,255,.08)}
+}
+</style>
+</head>
+<body>
+<div aria-hidden="true" class="status">
+<div class="container inner">
+<span class="live" data-i18n="statusLive"></span><span class="sep">/</span>
+<span data-i18n="statusA"></span><span class="sep">/</span>
+<span data-i18n="statusB"></span>
+<span class="right" data-i18n="statusRight"></span>
+</div>
+</div>
+<header class="mast" id="mast">
+<div class="container inner">
+<a aria-label="Sampora home" class="brand" href="index.html">
+<span class="mark">S</span>
+<span><b>Sampora</b><small data-i18n="brandSub"></small></span>
+</a>
+<nav aria-label="Main navigation" class="nav sampora-nav-standard">
+<a data-i18n="navProduct" href="index.html">Product</a>
+<a data-i18n="navSolutions" href="solutions.html">Solutions</a>
+<a class="active" data-i18n="navResources" href="resources.html">Resources</a>
+<a data-i18n="navPricing" href="plans.html">Plans</a>
+<a data-i18n="navContact" href="contact.html">Contact</a>
+</nav>
+<div class="header-actions">
+<div aria-label="Language switcher" class="lang">
+<button data-lang="en" type="button">EN</button>
+<button data-lang="zh" type="button">中文</button>
+<button data-lang="hi" type="button">हिन्दी</button>
+</div>
+<a class="btn ghost" data-i18n="headerBookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a>
+<a class="btn primary" data-i18n="headerStartTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
+</div>
+</div>
+</header>
+<main>
+<section class="hero">
+<div class="container hero-grid">
+<div class="reveal">
+<span class="eyebrow" data-i18n="heroKicker">RESOURCES - INTERFACE PLAYBOOKS</span>
+<h1 data-i18n="heroTitle">Resources for <em>online sample operations.</em></h1>
+<p class="hero-sub" data-i18n="heroSub">Operator manuals, regional rollout notes, and implementation references for sample delivery teams.</p>
+<div class="cta-row">
+<a class="btn ghost" data-i18n="heroCta1" href="resource-manuals.html">View manuals →</a>
+<a class="btn ghost" data-i18n="heroCta2" href="resource-manuals.html#rollout-notes">Read rollout notes →</a>
+</div>
+<div class="hero-metrics">
+<div class="hero-metric"><strong>06</strong><span data-i18n="metric1"></span></div>
+<div class="hero-metric"><strong>03</strong><span data-i18n="metric2"></span></div>
+<div class="hero-metric"><strong>REG</strong><span data-i18n="metric3">implementation references</span></div>
+</div>
+</div>
+<aside aria-label="Resource topology console" class="resource-console reveal" id="resourceConsole">
+<div class="console-window" id="resourceConsoleWindow">
+<div class="window-bar">
+<div class="lights"><i></i><i></i><i></i></div>
+<div class="crumb" data-i18n="consoleCrumb"></div>
+<span class="scope-pill" id="consoleScope"></span>
+<button aria-label="Close topology" class="topology-close" id="topologyClose" title="Close topology" type="button">X</button>
+</div>
+<div class="console-main">
+<div class="console-summary">
+<div>
+<h3 id="consoleTitle"></h3>
+<p id="consoleSub"></p>
+</div>
+<div class="console-tags" id="consoleTags"></div>
+</div>
+<div class="topo-modebar" id="topoModebar"></div>
+<div class="topo-headline">
+<p data-i18n="topologyTitle">documentation operating map</p>
+<div class="legend">
+<span><i class="act"></i><b data-i18n="legendA">guide path</b></span>
+<span><i class="mid"></i><b data-i18n="legendB">control point</b></span>
+<span><i class="warn"></i><b data-i18n="legendC">settlement path</b></span>
+</div>
+</div>
+<div class="topo-stage" id="topoStage">
+<div class="topo-scan"></div>
+<svg aria-label="Resource operating topology" class="topo-svg" viewBox="0 0 820 300">
+<defs>
+<path id="r-smp-setup" d="M124 158 C190 158 224 85 300 85"></path>
+<path id="r-smp-supplier" d="M124 158 C190 158 224 157 300 157"></path>
+<path id="r-smp-finance" d="M124 158 C190 158 224 229 300 229"></path>
+<path id="r-setup-review" d="M540 85 C580 85 596 158 620 158"></path>
+<path id="r-supplier-review" d="M540 157 C580 157 596 158 620 158"></path>
+<path id="r-finance-review" d="M540 229 C580 229 596 158 620 158"></path>
+<path id="r-review-records" d="M690 158 C708 158 720 158 738 158"></path>
+</defs>
+<g class="background-wires-layer">
+<use class="wire" href="#r-smp-setup"></use>
+<use class="wire" href="#r-smp-supplier"></use>
+<use class="wire" href="#r-smp-finance"></use>
+<use class="wire" href="#r-setup-review"></use>
+<use class="wire" href="#r-supplier-review"></use>
+<use class="wire" href="#r-finance-review"></use>
+<use class="wire" href="#r-review-records"></use>
+</g>
+<g class="animated-flow-layer">
+<g class="flow-group" id="flowSetup">
+<use class="flow" href="#r-smp-setup"></use>
+<use class="flow" href="#r-setup-review"></use>
+<use class="flow" href="#r-review-records"></use>
+</g>
+<g class="flow-group" id="flowSupplier">
+<use class="flow amber" href="#r-smp-supplier"></use>
+<use class="flow amber" href="#r-supplier-review"></use>
+<use class="flow amber" href="#r-review-records"></use>
+</g>
+<g class="flow-group" id="flowFinance">
+<use class="flow" href="#r-smp-finance"></use>
+<use class="flow" href="#r-finance-review"></use>
+<use class="flow" href="#r-review-records"></use>
+</g>
+<g aria-hidden="true" class="packet-layer">
+<g class="packet-group" id="packetSetup">
+<circle class="packet" r="4"><animateMotion dur="3.4s" repeatCount="indefinite"><mpath href="#r-smp-setup"></mpath></animateMotion></circle>
+<circle class="packet" r="4"><animateMotion begin=".75s" dur="3.2s" repeatCount="indefinite"><mpath href="#r-setup-review"></mpath></animateMotion></circle>
+<circle class="packet" r="4"><animateMotion begin="1.35s" dur="2.8s" repeatCount="indefinite"><mpath href="#r-review-records"></mpath></animateMotion></circle>
+</g>
+<g class="packet-group" id="packetSupplier">
+<circle class="packet amber" r="4"><animateMotion dur="3.1s" repeatCount="indefinite"><mpath href="#r-smp-supplier"></mpath></animateMotion></circle>
+<circle class="packet amber" r="4"><animateMotion begin=".7s" dur="3.0s" repeatCount="indefinite"><mpath href="#r-supplier-review"></mpath></animateMotion></circle>
+<circle class="packet amber" r="4"><animateMotion begin="1.25s" dur="2.7s" repeatCount="indefinite"><mpath href="#r-review-records"></mpath></animateMotion></circle>
+</g>
+<g class="packet-group" id="packetFinance">
+<circle class="packet" r="4"><animateMotion dur="3.8s" repeatCount="indefinite"><mpath href="#r-smp-finance"></mpath></animateMotion></circle>
+<circle class="packet" r="4"><animateMotion begin=".85s" dur="3.4s" repeatCount="indefinite"><mpath href="#r-finance-review"></mpath></animateMotion></circle>
+<circle class="packet" r="4"><animateMotion begin="1.45s" dur="3s" repeatCount="indefinite"><mpath href="#r-review-records"></mpath></animateMotion></circle>
+</g>
+</g>
+</g>
+<g class="nodes-layer">
+<g class="hub origin-hub" transform="translate(42,130)">
+<rect height="56" rx="14" width="82"></rect>
+<circle class="pulse" cx="41" cy="28" r="14"></circle>
+</g>
+<g aria-label="Setup resource layer" class="node" data-mode="setup" id="nodeSetup" role="button" tabindex="0" transform="translate(300,56)">
+<rect height="52" rx="12" width="240"></rect>
+</g>
+<g aria-label="Supplier resource layer" class="node warn" data-mode="supplier" id="nodeSupplier" role="button" tabindex="0" transform="translate(300,128)">
+<rect height="52" rx="12" width="240"></rect>
+</g>
+<g aria-label="Finance resource layer" class="node" data-mode="finance" id="nodeFinance" role="button" tabindex="0" transform="translate(300,200)">
+<rect height="52" rx="12" width="240"></rect>
+</g>
+<g class="hub ctrl-hub" transform="translate(620,132)">
+<rect height="48" rx="12" width="62"></rect>
+</g>
+<g class="hub evd-hub" transform="translate(738,132)">
+<rect height="48" rx="12" width="62"></rect>
+</g>
+</g>
+<g class="labels-layer">
+<text class="topo-col" data-i18n-svg="colInput" x="58" y="34"></text>
+<text class="topo-col" data-i18n-svg="colLayer" x="350" y="34"></text>
+<text class="topo-col" data-i18n-svg="colControl" x="612" y="34"></text>
+<text class="topo-col" data-i18n-svg="colEvidence" x="724" y="34"></text>
+<g transform="translate(42,130)">
+<text class="hub-code brand-label" text-anchor="middle" x="41" y="26">Sampora</text>
+<text class="hub-role" data-i18n-svg="nodeSmp" text-anchor="middle" x="41" y="42"></text>
+</g>
+<g class="node-label" id="labelSetup" transform="translate(300,56)">
+<text class="node-code" x="14" y="22">01</text>
+<text class="node-title" data-i18n-svg="nodeSetup" x="50" y="22"></text>
+<text class="node-role" data-i18n-svg="roleSetup" x="50" y="40"></text>
+</g>
+<g class="node-label warn" id="labelSupplier" transform="translate(300,128)">
+<text class="node-code" x="14" y="22">02</text>
+<text class="node-title" data-i18n-svg="nodeSupplier" x="50" y="22"></text>
+<text class="node-role" data-i18n-svg="roleSupplier" x="50" y="40"></text>
+</g>
+<g class="node-label" id="labelFinance" transform="translate(300,200)">
+<text class="node-code" x="14" y="22">03</text>
+<text class="node-title" data-i18n-svg="nodeFinance" x="50" y="22"></text>
+<text class="node-role" data-i18n-svg="roleFinance" x="50" y="40"></text>
+</g>
+<g transform="translate(620,132)">
+<text class="hub-mini" data-i18n-svg="nodeCtrl" text-anchor="middle" x="31" y="30"></text>
+</g>
+<g transform="translate(738,132)">
+<text class="hub-mini" data-i18n-svg="nodeEvd" text-anchor="middle" x="31" y="30"></text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+<div class="console-ticker" id="consoleTicker"></div>
+</div>
+</aside>
+</div>
+</section>
+<section class="section" id="surfaces">
+<div class="container">
+<div class="section-head reveal">
+<div>
+<span class="section-kicker" data-i18n="surfaceKicker"></span>
+<h2 data-i18n="surfaceTitle"></h2>
+</div>
+
+</div>
+<div class="surfaces-grid reveal" id="surfaceGrid"></div>
+</div>
+</section>
+<section class="section" id="setup">
+<div class="container">
+<div class="section-head reveal">
+<div>
+<span class="section-kicker" data-i18n="setupKicker"></span>
+<h2 data-i18n="setupTitle"></h2>
+</div>
+
+</div>
+<div class="playbook-grid">
+<div class="check-panel reveal" id="setupChecklist"></div>
+<div class="trust-panel reveal">
+<span class="section-kicker" data-i18n="proofKicker"></span>
+<h3 data-i18n="proofTitle"></h3>
+<p data-i18n="proofText"></p>
+<div class="mini-proof" id="proofGrid"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="sampora-site-footer" id="footer">
+<div class="container sampora-footer-card">
+<div class="sampora-footer-main">
+<div class="sampora-footer-brand">
+<a aria-label="Sampora home" class="sampora-footer-logo" href="index.html"><span class="sampora-footer-mark">S</span><span><b>Sampora</b><small data-i18n="brandSub2"></small></span></a>
+<p data-i18n="footerDesc">An online sample operations platform for panel providers, sample suppliers and research subcontracting teams.</p>
+<div class="sampora-footer-badges"><span data-i18n="footerTag1">Project intake</span><span data-i18n="footerTag2">Supplier allocation</span><span data-i18n="footerTag3">Settlement evidence</span></div>
+</div>
+<div class="sampora-footer-col">
+<h3 data-i18n="footerCol1">Product support</h3>
+<a data-i18n="footerHelp" href="resource-manuals.html">Operator manuals</a>
+<a data-i18n="footerGuide" href="resource-manuals.html#rollout-notes">Operations manuals</a>
+<a data-i18n="footerFeedback" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+</div>
+<div class="sampora-footer-col">
+<h3 data-i18n="footerCol2">Company</h3>
+<a data-i18n="footerAbout" href="index.html#platform">About us</a>
+<a data-i18n="footerHistory" href="index.html#workflow">Implementation roadmap</a>
+<a data-i18n="footerContact" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+</div>
+<div class="sampora-footer-col">
+<h3 data-i18n="footerCol3">Resources</h3>
+<a data-i18n="footerTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
+<a data-i18n="footerJoin" href="contact.html?intent=contact_sales#contact-form">Talk to sales</a>
+<a data-i18n="footerUpdates" href="#setup">Updates</a>
+</div>
+</div>
+<div class="sampora-footer-contact">
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>jiayu@surveysaas.com</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-i18n="footerAddress"></span></div>
+</div>
+<div class="sampora-footer-legal"><span data-i18n="footerCopyright">© 2026 Anhui Jiayu Enterprise Service Co., Ltd.</span><span data-i18n="footerCompanyLegal">安徽省嘉禹企业服务有限公司</span></div>
+</div>
+</footer>
+<script>
+        const $ = (s, r = document) => r.querySelector(s);
+        const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+        const COPY = {
+            "en": {
+                        "statusLive": "RESOURCE CENTER · LIVE",
+                        "statusA": "Interface-entry guides from backend map",
+                        "statusB": "Project · Supplier · API · Settlement · Partner Network",
+                        "statusRight": "Privacy workflow support · audit logs · settlement records",
+                        "brandSub": "OPERATIONS CONSOLE",
+                        "brandSub2": "OPERATIONS CONSOLE",
+                        "navProduct": "Product",
+                        "navSolutions": "Solutions",
+                        "navResources": "Resources",
+                        "navPricing": "Plans",
+                        "navContact": "Contact",
+                        "headerBookDemo": "Book a demo",
+                        "headerStartTrial": "Start trial",
+                        "heroKicker": "RESOURCES · INTERFACE PLAYBOOKS",
+                        "heroTitle": "Resources for <em>online sample operations.</em>",
+                        "heroSub": "Operator manuals, regional rollout notes, and implementation references for sample delivery teams.",
+                        "heroCta1": "View manuals →", 
+                        "heroCta2": "Read rollout notes →",
+                        "metric1": "manual sets",
+                        "metric2": "regional notes",
+                        "metric3": "implementation references",
+                        "consoleCrumb": "resources / backend map / live",
+                        "topologyTitle": "documentation operating map",
+                        "legendA": "guide path",
+                        "legendB": "control point",
+                        "legendC": "settlement path",
+                                                                        "colInput": "INTAKE",
+                        "colLayer": "GUIDE LAYER",
+                        "colControl": "REVIEW",
+                        "colEvidence": "RECORDS",
+                        "nodeSmp": "resource hub",
+                        "nodeSetup": "PROJECT",
+                        "roleSetup": "intake",
+                        "nodeSupplier": "SUPPLIER",
+                        "roleSupplier": "allocation",
+                        "nodeFinance": "SETTLEMENT",
+                        "roleFinance": "finance",
+                        "nodeCtrl": "REVIEW",
+                        "nodeEvd": "RECORDS",
+                        "setupKicker": "OPERATING PATH",
+                        "setupTitle": "Follow the <em>delivery-to-settlement</em> playbook path.",
+                        "setupText": "Follow a practical path from setup and project intake to supplier coordination, review, settlement, and team onboarding.",
+                        "proofKicker": "BACKEND EVIDENCE",
+                        "proofTitle": "Each guide is based on observed backend entries and documented product positioning.",
+                        "proofText": "Use Project, Supplier, Hybrid API, Settlement and Records guides to understand how operational data moves through Sampora. Advanced allocation and Partner Network details should be validated during implementation.",
+                        "surfaceKicker": "RESOURCE ENTRIES",
+                        "surfaceTitle": "Three stable resource entries, <em>one operating hub.</em>",
+                        "surfaceText": "Start with manuals, rollout notes, and implementation references before moving into detailed guides.",
+                        "footerDesc": "An online sample operations platform for panel providers, sample suppliers and research subcontracting teams.",
+                        "footerCol1": "Product support",
+                        "footerHelp": "Operator manuals",
+                        "footerGuide": "Operations manuals",
+                        "footerFeedback": "Contact sales",
+                        "footerCol2": "Company info",
+                        "footerAbout": "About us",
+                        "footerHistory": "Implementation roadmap",
+                        "footerContact": "Contact sales",
+                        "footerCol3": "Resources",
+                        "footerTrial": "Start trial",
+                        "footerJoin": "Talk to sales",
+                        "footerUpdates": "Information updates",
+                        "footerAddress": "Room 1506, Block A, Hengyangguangcheng, Lu'an, Anhui, China",
+                        "footerCopyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
+                        "footerCompanyLegal": "Anhui Jiayu Enterprise Service Co., Ltd.",
+                        "copyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
+                        "modes": {
+                                    "setup": [
+                                                "PROJECT",
+                                                "Intake",
+                                                "Project Delivery Management: intake, setup, allocation, online/offline actions, analysis and settlement.",
+                                                "Project",
+                                                "CPI / IR / LOI",
+                                                "Status",
+                                                "Project intake · delivery configuration · first allocation path"
+                                    ],
+                                    "supplier": [
+                                                "SUPPLIER",
+                                                "Allocation",
+                                                "Supplier Allocation & Pricing: assign suppliers, block unsuitable supply and manage workspace/API receiving.",
+                                                "Supplier",
+                                                "Pricing",
+                                                "Workspace",
+                                                "Supplier allocation · API/workspace receiving · delivery records visible"
+                                    ],
+                                    "finance": [
+                                                "SETTLEMENT",
+                                                "Records",
+                                                "Review & Settlement: audit records, callback logs, supplier bills, client invoices and finance evidence.",
+                                                "Review",
+                                                "Bills",
+                                                "Audit",
+                                                "Review records · settlement workflow · exportable finance evidence"
+                                    ]
+                        },
+                        "footerTag1": "Project intake",
+                        "footerTag2": "Supplier allocation",
+                        "footerTag3": "Settlement records"
+            },
+            "zh": {
+                        "statusLive": "资源中心 · 实时",
+                        "statusA": "基于后台功能地图的接口入口指南",
+                        "statusB": "项目 · 供应商 · API · 结算 · 合作资源",
+                        "statusRight": "隐私流程支持 · 审计日志 · 结算记录",
+                        "brandSub": "操作控制台",
+                        "brandSub2": "操作控制台",
+                        "navProduct": "产品",
+                        "navSolutions": "解决方案",
+                        "navResources": "资源",
+                        "navPricing": "版本方案",
+                        "navContact": "联系我们",
+                        "headerBookDemo": "预约演示",
+                        "headerStartTrial": "开始试用",
+                        "heroKicker": "资源中心 · 接口入口手册",
+                        "heroTitle": "面向<em>在线样本运营</em>的资源中心。",
+                        "heroSub": "面向样本交付团队的操作手册、区域上线说明和实施参考。",
+                        "heroCta1": "查看手册 →", 
+                        "heroCta2": "阅读上线说明 →",
+                        "metric1": "手册集",
+                        "metric2": "区域说明",
+                        "metric3": "实施参考",
+                        "consoleCrumb": "资源 / 后台地图 / 实时",
+                        "topologyTitle": "文档运营地图",
+                        "legendA": "指南路径",
+                        "legendB": "控制点",
+                        "legendC": "结算路径",
+                                                                        "colInput": "接收",
+                        "colLayer": "指南层",
+                        "colControl": "审核",
+                        "colEvidence": "记录",
+                        "nodeSmp": "资源中心",
+                        "nodeSetup": "项目",
+                        "roleSetup": "接收",
+                        "nodeSupplier": "供应商",
+                        "roleSupplier": "分配",
+                        "nodeFinance": "结算",
+                        "roleFinance": "财务",
+                        "nodeCtrl": "审核",
+                        "nodeEvd": "记录",
+                        "setupKicker": "运营路径",
+                        "setupTitle": "按照<em>交付到结算</em>的手册路径学习。",
+                        "setupText": "按照配置、项目接收、供应商协同、审核、结算和团队上线步骤，快速找到需要的操作资料。",
+                        "proofKicker": "后台证据",
+                        "proofTitle": "每一份指南都基于已观察到的后台入口和既有产品定位。",
+                        "proofText": "通过项目、供应商、Hybrid API、结算和记录指引，了解运营数据如何在 Sampora 中流转。高级分配和 Partner Network 细节应在实施阶段再次确认。",
+                        "surfaceKicker": "资源入口",
+                        "surfaceTitle": "三个稳定资源入口，<em>一个运营资料中心。</em>",
+                        "surfaceText": "先从手册、上线说明和实施参考进入，再查看更细的指南内容。",
+                        "footerDesc": "面向 Panel Provider、样本供应商和调研分包团队的在线样本运营平台。",
+                        "footerCol1": "产品支持",
+                        "footerHelp": "操作手册",
+                        "footerGuide": "运营手册",
+                        "footerFeedback": "联系销售",
+                        "footerCol2": "公司信息",
+                        "footerAbout": "关于我们",
+                        "footerHistory": "实施路线图",
+                        "footerContact": "联系销售",
+                        "footerCol3": "资源",
+                        "footerTrial": "开始试用",
+                        "footerJoin": "联系销售",
+                        "footerUpdates": "资讯获取",
+                        "footerAddress": "中国安徽省六安市恒阳光城A座1506",
+                        "footerCopyright": "© 2026",
+                        "footerCompanyLegal": "安徽省嘉禹企业服务有限公司",
+                        "copyright": "© 2026 安徽省嘉禹企业服务有限公司",
+                        "modes": {
+                                    "setup": [
+                                                "项目",
+                                                "接收",
+                                                "项目交付管理：项目接收、配置、分配、上线 / 下线、分析和结算。",
+                                                "项目",
+                                                "CPI / IR / LOI",
+                                                "状态",
+                                                "项目接收 · 交付配置 · 首次分配路径"
+                                    ],
+                                    "supplier": [
+                                                "供应商",
+                                                "分配",
+                                                "供应商分配与控价：分配供应商、屏蔽不合适供应方，并管理工作台 / API 接收。",
+                                                "供应商",
+                                                "控价",
+                                                "工作台",
+                                                "供应商分配 · API / 工作台接收 · 交付记录可见"
+                                    ],
+                                    "finance": [
+                                                "结算",
+                                                "记录",
+                                                "审核与结算：审核记录、回调日志、供应商账单、客户发票和财务证据。",
+                                                "审核",
+                                                "账单",
+                                                "审计",
+                                                "审核记录 · 结算流程 · 可导出财务证据"
+                                    ]
+                        },
+                        "footerTag1": "项目接收",
+                        "footerTag2": "供应商分配",
+                        "footerTag3": "结算记录"
+            },
+            "hi": {
+                        "statusLive": "संसाधन केंद्र · लाइव",
+                        "statusA": "बैकएंड इंटरफ़ेस प्रवेश गाइड",
+                        "statusB": "प्रोजेक्ट · सप्लायर · API · निपटान · साझेदार संसाधन",
+                        "statusRight": "गोपनीयता प्रक्रिया समर्थन · ऑडिट लॉग · निपटान रिकॉर्ड",
+                        "brandSub": "संचालन कंसोल",
+                        "brandSub2": "संचालन कंसोल",
+                        "navProduct": "उत्पाद",
+                        "navSolutions": "समाधान",
+                        "navResources": "संसाधन",
+                        "navPricing": "संस्करण योजना",
+                        "navContact": "संपर्क करें",
+                        "headerBookDemo": "Demo book करें",
+                        "headerStartTrial": "Trial start करें",
+                        "heroKicker": "संसाधन · इंटरफ़ेस गाइड",
+                        "heroTitle": "<em>online sample operations</em> के लिए संसाधन केंद्र।",
+                        "heroSub": "Sample delivery teams के लिए operator manuals, regional rollout notes, और implementation references खोजें।",
+                        "heroCta1": "मैनुअल देखें →", 
+                        "heroCta2": "रोलआउट नोट्स पढ़ें →",
+                        "metric1": "manual sets",
+                        "metric2": "regional notes",
+                        "metric3": "implementation references",
+                        "consoleCrumb": "संसाधन / बैकएंड मैप / लाइव",
+                        "topologyTitle": "दस्तावेज़ संचालन मानचित्र",
+                        "legendA": "गाइड पथ",
+                        "legendB": "नियंत्रण बिंदु",
+                        "legendC": "निपटान पथ",
+                                                                        "colInput": "प्राप्ति",
+                        "colLayer": "गाइड स्तर",
+                        "colControl": "समीक्षा",
+                        "colEvidence": "रिकॉर्ड",
+                        "nodeSmp": "संसाधन केंद्र",
+                        "nodeSetup": "प्रोजेक्ट",
+                        "roleSetup": "प्राप्ति",
+                        "nodeSupplier": "सप्लायर",
+                        "roleSupplier": "आवंटन",
+                        "nodeFinance": "निपटान",
+                        "roleFinance": "वित्त",
+                        "nodeCtrl": "समीक्षा",
+                        "nodeEvd": "रिकॉर्ड",
+                        "setupKicker": "संचालन पथ",
+                        "setupTitle": "<em>डिलीवरी से निपटान</em> तक मैनुअल पथ देखें।",
+                        "setupText": "Setup, project intake, supplier coordination, review, settlement और team onboarding के लिए जरूरी guides जल्दी खोजें।",
+                        "proofKicker": "बैकएंड प्रमाण",
+                        "proofTitle": "हर गाइड observed backend entries और documented product positioning पर आधारित है।",
+                        "proofText": "Project, Supplier, Hybrid API, Settlement और Records guides से समझें कि operational data Sampora में कैसे चलता है। Advanced allocation और Partner Network details को implementation के दौरान validate करें।",
+                        "surfaceKicker": "संसाधन प्रवेश",
+                        "surfaceTitle": "तीन स्थिर संसाधन प्रवेश, <em>एक संचालन केंद्र में।</em>",
+                        "surfaceText": "Manuals, rollout notes, और implementation references से शुरू करें, फिर detailed guides देखें.",
+                        "footerDesc": "पैनल providers, sample suppliers और research subcontracting teams के लिए online sample operations platform।",
+                        "footerCol1": "उत्पाद समर्थन",
+                        "footerHelp": "Operator manuals",
+                        "footerGuide": "Operations manuals",
+                        "footerFeedback": "Contact sales",
+                        "footerCol2": "कंपनी जानकारी",
+                        "footerAbout": "हमारे बारे में",
+                        "footerHistory": "Implementation roadmap",
+                        "footerContact": "Contact sales",
+                        "footerCol3": "संसाधन",
+                        "footerTrial": "Start trial",
+                        "footerJoin": "Talk to sales",
+                        "footerUpdates": "जानकारी अपडेट",
+                        "footerAddress": "कमरा 1506, ए ब्लॉक, हेंगयांग गुआंगचेंग, लुआन, आन्हुई, चीन",
+                        "footerCopyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
+                        "footerCompanyLegal": "Anhui Jiayu Enterprise Service Co., Ltd.",
+                        "copyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
+                        "modes": {
+                                    "setup": [
+                                                "प्रोजेक्ट",
+                                                "प्राप्ति",
+                                                "प्रोजेक्ट डिलीवरी प्रबंधन: प्राप्ति, सेटअप, आवंटन, ऑनलाइन / ऑफलाइन कार्रवाई, विश्लेषण और निपटान।",
+                                                "प्रोजेक्ट",
+                                                "CPI / IR / LOI",
+                                                "स्थिति",
+                                                "प्रोजेक्ट प्राप्ति · डिलीवरी कॉन्फ़िगरेशन · पहला आवंटन पथ"
+                                    ],
+                                    "supplier": [
+                                                "सप्लायर",
+                                                "आवंटन",
+                                                "सप्लायर आवंटन और मूल्य नियंत्रण: सप्लायर असाइन करें, अनुपयुक्त सप्लाई ब्लॉक करें और कार्यक्षेत्र / API प्राप्ति प्रबंधित करें।",
+                                                "सप्लायर",
+                                                "मूल्य नियंत्रण",
+                                                "कार्यक्षेत्र",
+                                                "सप्लायर आवंटन · API / कार्यक्षेत्र प्राप्ति · डिलीवरी रिकॉर्ड उपलब्ध"
+                                    ],
+                                    "finance": [
+                                                "निपटान",
+                                                "रिकॉर्ड",
+                                                "समीक्षा और निपटान: समीक्षा रिकॉर्ड, कॉलबैक लॉग, सप्लायर बिल, ग्राहक चालान और वित्तीय प्रमाण।",
+                                                "समीक्षा",
+                                                "बिल",
+                                                "ऑडिट",
+                                                "समीक्षा रिकॉर्ड · निपटान प्रक्रिया · निर्यात योग्य वित्तीय प्रमाण"
+                                    ]
+                        },
+                        "footerTag1": "प्रोजेक्ट प्राप्ति",
+                        "footerTag2": "सप्लायर आवंटन",
+                        "footerTag3": "निपटान रिकॉर्ड"
+            }
+};
+
+        const DATA = {
+            "en": {
+                        "setup": [
+                                    [
+                                                "01",
+                                                "Project intake",
+                                                "Receive or create a project with client, country, CPI, IR, LOI and status context."
+                                    ],
+                                    [
+                                                "02",
+                                                "Delivery configuration",
+                                                "Prepare delivery rules, payment settings, risk settings, dictionary and pre-screen assets."
+                                    ],
+                                    [
+                                                "03",
+                                                "Supplier allocation & pricing",
+                                                "Assign selected suppliers, block unsuitable suppliers and set supplier-level pricing where available."
+                                    ],
+                                    [
+                                                "04",
+                                                "API / workspace receiving",
+                                                "Explain whether suppliers receive projects through API integrations or inside Sampora workspaces."
+                                    ],
+                                    [
+                                                "05",
+                                                "Track, review and audit",
+                                                "Use participation, completes, rejection, callback, operation and termination records to support review."
+                                    ],
+                                    [
+                                                "06",
+                                                "Settlement and finance",
+                                                "Close project settlement, supplier bills, client invoices, finance logs and exportable records."
+                                    ]
+                        ],
+                        "proof": [
+                                    [
+                                                "Project",
+                                                "Project List, Intake, Scheduling, Allocation and Settlement."
+                                    ],
+                                    [
+                                                "Supplier",
+                                                "Supplier profiles, levels, availability controls and bills."
+                                    ],
+                                    [
+                                                "Hybrid API",
+                                                "API-client selection, pools, CPI rules and scheduled refresh."
+                                    ],
+                                    [
+                                                "Records",
+                                                "Operation logs, callback records and termination records."
+                                    ]
+                        ],
+                        "surfaces": [
+                                    [
+                                                "GUIDE",
+                                                "Configuration Guide",
+                                                "System setup, client/supplier configuration, risk settings and integration basics.",
+                                                [
+                                                            "System setup",
+                                                            "Client and supplier configuration",
+                                                            "Risk settings",
+                                                            "Integration basics"
+                                                ]
+                                    ],
+                                    [
+                                                "OPS",
+                                                "Operation Manual",
+                                                "Project intake, supplier allocation, delivery tracking, review and settlement workflows.",
+                                                [
+                                                            "Project intake",
+                                                            "Supplier allocation",
+                                                            "Delivery tracking",
+                                                            "Review and settlement"
+                                                ]
+                                    ],
+                                    [
+                                                "ROLLOUT",
+                                                "Rollout Notes",
+                                                "Deployment notes, backend entry groups, role manuals and rollout checklist.",
+                                                [
+                                                            "Deployment notes",
+                                                            "Backend entry groups",
+                                                            "Role manuals",
+                                                            "Rollout checklist"
+                                                ]
+                                    ]
+                        ]
+            },
+            "zh": {
+                        "setup": [
+                                    [
+                                                "01",
+                                                "项目接收",
+                                                "接收或创建项目，确认客户、国家、CPI、IR、LOI 和状态信息。"
+                                    ],
+                                    [
+                                                "02",
+                                                "交付配置",
+                                                "准备交付规则、付款设置、风控设置、数据字典和前置问卷资产。"
+                                    ],
+                                    [
+                                                "03",
+                                                "供应商分配与控价",
+                                                "分配指定供应商、屏蔽不合适供应商，并在可用时设置供应商级价格。"
+                                    ],
+                                    [
+                                                "04",
+                                                "API / 工作台接收",
+                                                "说明供应商是通过 API 对接接收项目，还是在 Sampora 工作台接收项目。"
+                                    ],
+                                    [
+                                                "05",
+                                                "追踪、审核与审计",
+                                                "用参与数、完成数、拒绝数、回调、操作和终止记录支撑审核。"
+                                    ],
+                                    [
+                                                "06",
+                                                "结算与财务",
+                                                "关闭项目结算、供应商账单、客户发票、财务日志和可导出记录。"
+                                    ]
+                        ],
+                        "proof": [
+                                    [
+                                                "项目",
+                                                "项目列表、接收、排期、分配和结算。"
+                                    ],
+                                    [
+                                                "供应商",
+                                                "供应商资料、等级、可用区域控制和账单。"
+                                    ],
+                                    [
+                                                "Hybrid API",
+                                                "API 客户选择、项目池、CPI 规则和定时刷新。"
+                                    ],
+                                    [
+                                                "记录",
+                                                "操作日志、回调记录和终止记录。"
+                                    ]
+                        ],
+                        "surfaces": [
+                                    [
+                                                "GUIDE",
+                                                "配置指南",
+                                                "系统设置、客户 / 供应商配置、风控设置和集成基础。",
+                                                [
+                                                            "系统设置",
+                                                            "客户与供应商配置",
+                                                            "风控设置",
+                                                            "集成基础"
+                                                ]
+                                    ],
+                                    [
+                                                "OPS",
+                                                "操作手册",
+                                                "项目接收、供应商分配、交付追踪、审核和结算流程。",
+                                                [
+                                                            "项目接收",
+                                                            "供应商分配",
+                                                            "交付追踪",
+                                                            "审核与结算"
+                                                ]
+                                    ],
+                                    [
+                                                "ROLLOUT",
+                                                "印度市场上线说明",
+                                                "部署说明、后台入口组、角色手册和上线检查清单。",
+                                                [
+                                                            "部署说明",
+                                                            "后台入口组",
+                                                            "角色手册",
+                                                            "上线检查清单"
+                                                ]
+                                    ]
+                        ]
+            },
+            "hi": {
+                        "setup": [
+                                    [
+                                                "01",
+                                                "प्रोजेक्ट प्राप्ति",
+                                                "ग्राहक, देश, CPI, IR, LOI और स्थिति संदर्भ के साथ प्रोजेक्ट प्राप्त या बनाएँ।"
+                                    ],
+                                    [
+                                                "02",
+                                                "डिलीवरी कॉन्फ़िगरेशन",
+                                                "डिलीवरी नियम, भुगतान सेटिंग, जोखिम सेटिंग, डेटा शब्दकोश और पूर्व-स्क्रीन सामग्री तैयार करें।"
+                                    ],
+                                    [
+                                                "03",
+                                                "सप्लायर आवंटन और मूल्य नियंत्रण",
+                                                "चुने हुए सप्लायर असाइन करें, अनुपयुक्त सप्लायर ब्लॉक करें और सप्लायर-स्तरीय मूल्य सेट करें।"
+                                    ],
+                                    [
+                                                "04",
+                                                "API / कार्यक्षेत्र प्राप्ति",
+                                                "बताएँ कि सप्लायर API इंटीग्रेशन से प्रोजेक्ट प्राप्त करते हैं या Sampora कार्यक्षेत्र में।"
+                                    ],
+                                    [
+                                                "05",
+                                                "ट्रैकिंग, समीक्षा और ऑडिट",
+                                                "भागीदारी, पूर्णता, अस्वीकृति, कॉलबैक, संचालन और समाप्ति रिकॉर्ड से समीक्षा को समर्थन दें।"
+                                    ],
+                                    [
+                                                "06",
+                                                "निपटान और वित्त",
+                                                "प्रोजेक्ट निपटान, सप्लायर बिल, ग्राहक चालान, वित्तीय लॉग और निर्यात योग्य रिकॉर्ड बंद करें।"
+                                    ]
+                        ],
+                        "proof": [
+                                    [
+                                                "प्रोजेक्ट",
+                                                "प्रोजेक्ट सूची, प्राप्ति, शेड्यूलिंग, आवंटन और निपटान।"
+                                    ],
+                                    [
+                                                "सप्लायर",
+                                                "सप्लायर प्रोफ़ाइल, स्तर, उपलब्धता नियंत्रण और बिल।"
+                                    ],
+                                    [
+                                                "Hybrid API",
+                                                "API ग्राहक चयन, पूल, CPI नियम और निर्धारित रिफ्रेश।"
+                                    ],
+                                    [
+                                                "रिकॉर्ड",
+                                                "संचालन लॉग, कॉलबैक रिकॉर्ड और समाप्ति रिकॉर्ड।"
+                                    ]
+                        ],
+                        "surfaces": [
+                                    [
+                                                "GUIDE",
+                                                "कॉन्फ़िगरेशन गाइड",
+                                                "System setup, client/supplier configuration, risk settings और integration basics.",
+                                                [
+                                                            "System setup",
+                                                            "Client / supplier configuration",
+                                                            "Risk settings",
+                                                            "Integration basics"
+                                                ]
+                                    ],
+                                    [
+                                                "OPS",
+                                                "ऑपरेशन मैनुअल",
+                                                "Project intake, supplier allocation, delivery tracking, review और settlement workflows.",
+                                                [
+                                                            "Project intake",
+                                                            "Supplier allocation",
+                                                            "Delivery tracking",
+                                                            "Review and settlement"
+                                                ]
+                                    ],
+                                    [
+                                                "ROLLOUT",
+                                                "Rollout Notes",
+                                                "Deployment notes, backend entry groups, role manuals और rollout checklist.",
+                                                [
+                                                            "Deployment notes",
+                                                            "Backend entry groups",
+                                                            "Role manuals",
+                                                            "Rollout checklist"
+                                                ]
+                                    ]
+                        ]
+            }
+};
+
+        const state = { lang: "en", category: "all", query: "", mode: "supplier" };
+
+        const t = key => COPY[state.lang][key] || COPY.en[key] || "";
+
+        function applyI18n() {
+            $$("[data-i18n]").forEach(el => { const v = t(el.dataset.i18n); if (v) el.innerHTML = v; });
+            $$("[data-i18n-svg]").forEach(el => { const v = t(el.dataset.i18nSvg); if (v) el.textContent = v; });
+            $$(".lang button").forEach(b => b.classList.toggle("active", b.dataset.lang === state.lang));
+            document.documentElement.lang = state.lang === "zh" ? "zh-CN" : state.lang === "hi" ? "hi" : "en";
+        }
+
+        function renderModebar() {
+            const modes = COPY[state.lang].modes;
+            $("#topoModebar").innerHTML = Object.entries(modes).map(([id, m], i) => `
+        <button type="button" data-mode="${id}" class="${state.mode === id ? 'active' : ''}">
+          <small>0${i + 1}</small><strong>${m[0]}</strong><span>${m[1]}</span>
+        </button>`).join("");
+            $$("#topoModebar button").forEach(btn => btn.addEventListener("click", () => { state.mode = btn.dataset.mode; renderTopology(); }));
+        }
+
+        function renderTopology() {
+            const m = COPY[state.lang].modes[state.mode];
+            $("#consoleScope").textContent = m[0];
+            $("#consoleTitle").textContent = m[0] + " " + m[1];
+            $("#consoleSub").textContent = m[2];
+            $("#consoleTags").innerHTML = m.slice(3, 6).map((x, i) => `<span class="tag ${state.mode === 'supplier' && i === 0 ? 'amber' : ''}">${x}</span>`).join("");
+            $("#consoleTicker").textContent = m[6];
+
+            ["setup", "supplier", "finance"].forEach(id => {
+                const on = id === state.mode;
+                const suffix = cap(id);
+                const node = $("#node" + suffix);
+                const label = $("#label" + suffix);
+                $("#flow" + suffix).classList.toggle("on", on);
+                $("#packet" + suffix).classList.toggle("on", on);
+                node.classList.toggle("active", on && id !== "supplier");
+                node.classList.toggle("warn", on && id === "supplier");
+                node.classList.toggle("dim", !on);
+                if (label) {
+                    label.classList.toggle("active", on && id !== "supplier");
+                    label.classList.toggle("warn", on && id === "supplier");
+                    label.classList.toggle("dim", !on);
+                }
+            });
+            renderModebar();
+        }
+
+        function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+        
+
+        function renderChecklist() {
+            $("#setupChecklist").innerHTML = DATA[state.lang].setup.map((item, idx) => `
+        <div class="check-item">
+          <div class="check-button">
+            <span class="check-num">${item[0]}</span>
+            <span><strong>${item[1]}</strong><small>${item[2]}</small></span>
+            <span class="check-state">${idx < 2 ? 'LIVE' : 'READY'}</span>
+          </div>
+        </div>`).join("");
+            $("#proofGrid").innerHTML = DATA[state.lang].proof.map(x => `<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join("");
+        }
+
+        function renderSurfaces() {
+            const detailLinks = [
+                "resource-manuals.html",
+                "resource-manuals.html#rollout-notes",
+                "resource-manuals.html"
+            ];
+            $("#surfaceGrid").innerHTML = DATA[state.lang].surfaces.map((s, idx) => `
+        <a class="surface-card surface-link ${idx === 1 ? 'supplier' : ''}" href="${detailLinks[idx]}" data-detail-link="${detailLinks[idx]}" aria-label="${s[1]}">
+          <div class="label">${s[0]}</div><h3>${s[1]}</h3><p>${s[2]}</p>
+          <ul>${s[3].map(x => `<li>${x}</li>`).join("")}</ul>
+          <span class="surface-more">${state.lang === "zh" ? "查看手册 →" : state.lang === "hi" ? "मैनुअल देखें →" : "View manual →"}</span>
+        </a>`).join("");
+            $$(".surface-link").forEach(a => a.addEventListener("click", () => {
+                try { localStorage.setItem("sampora_lang", state.lang); } catch (e) { }
+            }));
+        }
+
+
+        function renderAll() {
+            applyI18n();
+            renderModebar();
+            renderTopology();
+            renderChecklist();
+            renderSurfaces();
+            try { localStorage.setItem("sampora_lang", state.lang); } catch (e) { }
+        }
+        function openTopologyModal() {
+            const consoleEl = $("#resourceConsole");
+            const closeBtn = $("#topologyClose");
+            const windowBar = $("#resourceConsoleWindow .window-bar");
+            if (!consoleEl.__anchor && consoleEl.parentNode) {
+                consoleEl.__anchor = document.createComment("resource console anchor");
+                consoleEl.parentNode.insertBefore(consoleEl.__anchor, consoleEl);
+            }
+            document.body.appendChild(consoleEl);
+            consoleEl.classList.add("modal-open");
+            document.body.classList.add("topology-modal-open");
+            consoleEl.setAttribute("role", "dialog");
+            consoleEl.setAttribute("aria-modal", "true");
+            if (windowBar && closeBtn.parentElement !== windowBar) windowBar.appendChild(closeBtn);
+            closeBtn.focus({ preventScroll: true });
+        }
+
+        function closeTopologyModal() {
+            const consoleEl = $("#resourceConsole");
+            const closeBtn = $("#topologyClose");
+            const windowBar = $("#resourceConsoleWindow .window-bar");
+            consoleEl.classList.remove("modal-open");
+            document.body.classList.remove("topology-modal-open");
+            consoleEl.removeAttribute("role");
+            consoleEl.removeAttribute("aria-modal");
+            if (windowBar && closeBtn && closeBtn.parentElement !== windowBar) windowBar.appendChild(closeBtn);
+            if (consoleEl.__anchor && consoleEl.__anchor.parentNode) {
+                consoleEl.__anchor.parentNode.insertBefore(consoleEl, consoleEl.__anchor);
+                consoleEl.__anchor.remove();
+                consoleEl.__anchor = null;
+            }
+        }
+
+        $$(".lang button").forEach(btn => btn.addEventListener("click", () => { state.lang = btn.dataset.lang; renderAll(); }));
+        const shouldOpenTopology = event => !$("#resourceConsole").classList.contains("modal-open") && !event.target.closest("button, a, input, select, textarea, .node[data-mode]");
+        $("#resourceConsoleWindow").addEventListener("click", event => {
+            if (shouldOpenTopology(event)) openTopologyModal();
+        });
+        $("#topoStage").addEventListener("click", event => {
+            if (shouldOpenTopology(event)) openTopologyModal();
+        });
+        $("#resourceConsole").addEventListener("click", event => {
+            if (event.currentTarget.classList.contains("modal-open") && event.target === event.currentTarget) closeTopologyModal();
+        });
+        $("#topologyClose").addEventListener("click", closeTopologyModal);
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && $("#resourceConsole").classList.contains("modal-open")) closeTopologyModal();
+        });
+        $$(".topo-svg .node[data-mode]").forEach(n => {
+            n.addEventListener("click", event => {
+                event.stopPropagation();
+                state.mode = n.dataset.mode;
+                renderTopology();
+            });
+            n.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    state.mode = n.dataset.mode;
+                    renderTopology();
+                }
+            });
+        });
+
+        const updateHeaderState = () => {
+            const compact = window.scrollY > 56;
+            const mast = $("#mast");
+            if (mast) mast.classList.toggle("compact", compact);
+            document.body.classList.toggle("nav-condensed", compact);
+        };
+        updateHeaderState();
+        window.addEventListener("scroll", updateHeaderState, { passive: true });
+        const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("in-view"); observer.unobserve(entry.target); } }), { threshold: .12 });
+        $$(".reveal").forEach(el => observer.observe(el));
+
+        try { const saved = localStorage.getItem("sampora_lang"); if (saved && COPY[saved]) state.lang = saved; } catch (e) { }
+        renderAll();
+    </script>
+<script>
+(function(){
+  const labels={en:['Product','Solutions','Resources','Plans','Contact'],zh:['产品','解决方案','资源','版本方案','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','संपर्क']};
+  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['contact.html','contact']];
+  function lang(){return localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
+  function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
+  if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}
+  const nav=document.querySelector('nav.nav, .nav-links');
+  const host=document.querySelector('.header-actions,.nav-actions,.actions') || nav?.parentElement;
+  if(!host)return;
+  const btn=document.createElement('button');btn.type='button';btn.className='mobile-nav-toggle';btn.setAttribute('aria-label','Open navigation');btn.setAttribute('aria-expanded','false');btn.innerHTML='&#9776;';
+  const drawer=document.createElement('nav');drawer.className='mobile-nav-drawer';drawer.setAttribute('aria-label','Mobile navigation');
+  const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  routes.forEach(([href,key],i)=>{const a=document.createElement('a');a.href=href;a.dataset.mobileNavLabel='';a.dataset.nav=key;if(current===href)a.className='active';drawer.appendChild(a);});
+  host.appendChild(btn);document.body.appendChild(drawer);
+  btn.addEventListener('click',()=>{const open=document.body.classList.toggle('mobile-nav-open');btn.setAttribute('aria-expanded',String(open));});
+  drawer.addEventListener('click',e=>{if(e.target.closest('a'))document.body.classList.remove('mobile-nav-open')});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('mobile-nav-open')});
+  bindLangSync();
+  sync();
+})();
+</script>
+<script src="assets/i18n-sweep.js"></script>
+</body>
+</html>
