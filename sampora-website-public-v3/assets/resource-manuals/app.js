@@ -81,7 +81,7 @@ const damagedText = (v, targetLang = '') => {
   return false;
 };
 const clean = (v, targetLang = '') => damagedText(v, targetLang) ? '' : v;
-const u = (k) => clean(RESOURCE_UI[lang]?.[k], lang) || clean(UI[lang]?.[k], lang) || clean(RESOURCE_UI.en?.[k], 'en') || clean(UI.en?.[k], 'en') || '';
+const u = (k) => clean(UI[lang]?.[k], lang) || clean(RESOURCE_UI[lang]?.[k], lang) || clean(UI.en?.[k], 'en') || clean(RESOURCE_UI.en?.[k], 'en') || '';
 const uiList = (k) => {
   const source = Array.isArray(UI[lang]?.[k]) ? UI[lang][k] : UI.en?.[k] || [];
   return source.map((v, i) => clean(v, lang) || clean(UI.en?.[k]?.[i], 'en') || '');

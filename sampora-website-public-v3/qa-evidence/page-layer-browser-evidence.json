@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-18T12:42:40.594Z",
+  "generatedAt": "2026-05-19T03:40:30.397Z",
   "chromeExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "nav": {
     "390": {
@@ -13,7 +13,7 @@
         "brand": {
           "x": 16,
           "y": 52,
-          "width": 108.73,
+          "width": 109.94,
           "height": 30
         },
         "nav": {
@@ -23,9 +23,9 @@
           "height": 0
         },
         "actions": {
-          "x": 132.73,
+          "x": 133.94,
           "y": 34.86,
-          "width": 241.27,
+          "width": 240.06,
           "height": 64.28
         },
         "active": {
@@ -38,8 +38,8 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": true,
         "gaps": {
-          "brandToNav": -124.73,
-          "navToActions": 132.73
+          "brandToNav": -125.94,
+          "navToActions": 133.94
         }
       },
       "solutions.html": {
@@ -51,47 +51,8 @@
         },
         "brand": {
           "x": 16,
-          "y": 61.56,
-          "width": 108.73,
-          "height": 30
-        },
-        "nav": {
-          "x": 0,
-          "y": 0,
-          "width": 0,
-          "height": 0
-        },
-        "actions": {
-          "x": 138.73,
-          "y": 34,
-          "width": 221.27,
-          "height": 85.14
-        },
-        "active": {
-          "x": 0,
-          "y": 0,
-          "width": 0,
-          "height": 0
-        },
-        "activeAfterWidth": "auto",
-        "activeAfterBottom": "auto",
-        "mobileToggleVisible": true,
-        "gaps": {
-          "brandToNav": -124.73,
-          "navToActions": 138.73
-        }
-      },
-      "resources.html": {
-        "mast": {
-          "x": 0,
-          "y": 34,
-          "width": 390,
-          "height": 67
-        },
-        "brand": {
-          "x": 16,
           "y": 52,
-          "width": 109.64,
+          "width": 109.94,
           "height": 30
         },
         "nav": {
@@ -101,9 +62,9 @@
           "height": 0
         },
         "actions": {
-          "x": 165.31,
+          "x": 135.94,
           "y": 46,
-          "width": 194.69,
+          "width": 228.06,
           "height": 42
         },
         "active": {
@@ -116,8 +77,47 @@
         "activeAfterBottom": "auto",
         "mobileToggleVisible": true,
         "gaps": {
-          "brandToNav": -125.64,
-          "navToActions": 165.31
+          "brandToNav": -125.94,
+          "navToActions": 135.94
+        }
+      },
+      "resources.html": {
+        "mast": {
+          "x": 0,
+          "y": 34,
+          "width": 390,
+          "height": 67
+        },
+        "brand": {
+          "x": 16,
+          "y": 52,
+          "width": 111.77,
+          "height": 30
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "actions": {
+          "x": 164.14,
+          "y": 46,
+          "width": 195.86,
+          "height": 42
+        },
+        "active": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "activeAfterWidth": "auto",
+        "activeAfterBottom": "auto",
+        "mobileToggleVisible": true,
+        "gaps": {
+          "brandToNav": -127.77,
+          "navToActions": 164.14
         }
       },
       "resource-manuals.html": {
@@ -130,7 +130,7 @@
         "brand": {
           "x": 16,
           "y": 18,
-          "width": 109.86,
+          "width": 111.06,
           "height": 30
         },
         "nav": {
@@ -140,10 +140,10 @@
           "height": 0
         },
         "actions": {
-          "x": 139.86,
-          "y": -1.05,
-          "width": 284.28,
-          "height": 68.09
+          "x": 209.11,
+          "y": 12,
+          "width": 156.89,
+          "height": 42
         },
         "active": {
           "x": 0,
@@ -155,8 +155,8 @@
         "activeAfterBottom": "auto",
         "mobileToggleVisible": true,
         "gaps": {
-          "brandToNav": -125.86,
-          "navToActions": 139.86
+          "brandToNav": -127.06,
+          "navToActions": 209.11
         }
       },
       "plans.html": {
@@ -169,7 +169,7 @@
         "brand": {
           "x": 16,
           "y": 18.05,
-          "width": 108.73,
+          "width": 109.94,
           "height": 30
         },
         "nav": {
@@ -179,9 +179,9 @@
           "height": 0
         },
         "actions": {
-          "x": 138.73,
+          "x": 139.94,
           "y": 0,
-          "width": 280.02,
+          "width": 282.41,
           "height": 66.09
         },
         "active": {
@@ -194,8 +194,8 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": true,
         "gaps": {
-          "brandToNav": -124.73,
-          "navToActions": 138.73
+          "brandToNav": -125.94,
+          "navToActions": 139.94
         }
       },
       "contact.html": {
@@ -248,9 +248,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 40.09,
+          "y": 47.84,
           "width": 167.36,
-          "height": 55.8
+          "height": 40.3
         },
         "nav": {
           "x": 231.36,
@@ -265,9 +265,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 346.03,
+          "x": 346.2,
           "y": 35,
-          "width": 68.95,
+          "width": 69.97,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -287,9 +287,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 42.52,
+          "y": 40.52,
           "width": 167.36,
-          "height": 50.95
+          "height": 54.95
         },
         "nav": {
           "x": 231.36,
@@ -304,9 +304,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 449.31,
+          "x": 451.13,
           "y": 35,
-          "width": 77.08,
+          "width": 78.02,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -333,9 +333,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 42.52,
+          "y": 40.52,
           "width": 167.36,
-          "height": 50.95
+          "height": 54.95
         },
         "nav": {
           "x": 231.36,
@@ -350,9 +350,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 558.39,
+          "x": 561.14,
           "y": 35,
-          "width": 85.63,
+          "width": 82.3,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -379,9 +379,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 42.52,
+          "y": 40.52,
           "width": 167.36,
-          "height": 50.95
+          "height": 54.95
         },
         "nav": {
           "x": 231.36,
@@ -396,9 +396,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 558.39,
+          "x": 561.14,
           "y": 35,
-          "width": 85.63,
+          "width": 82.3,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -442,9 +442,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 677.09,
+          "x": 677.19,
           "y": 34,
-          "width": 52.86,
+          "width": 53.23,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -519,9 +519,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 40.09,
+          "y": 47.84,
           "width": 167.36,
-          "height": 55.8
+          "height": 40.3
         },
         "nav": {
           "x": 279.36,
@@ -536,9 +536,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 394.03,
+          "x": 394.2,
           "y": 35,
-          "width": 68.95,
+          "width": 69.97,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -558,9 +558,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 42.52,
+          "y": 40.52,
           "width": 167.36,
-          "height": 50.95
+          "height": 54.95
         },
         "nav": {
           "x": 279.36,
@@ -575,9 +575,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 497.31,
+          "x": 499.13,
           "y": 35,
-          "width": 77.08,
+          "width": 78.02,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -604,9 +604,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 42.52,
+          "y": 40.52,
           "width": 167.36,
-          "height": 50.95
+          "height": 54.95
         },
         "nav": {
           "x": 279.36,
@@ -621,9 +621,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 606.39,
+          "x": 609.14,
           "y": 35,
-          "width": 85.63,
+          "width": 82.3,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -650,9 +650,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 42.52,
+          "y": 40.52,
           "width": 167.36,
-          "height": 50.95
+          "height": 54.95
         },
         "nav": {
           "x": 279.36,
@@ -667,9 +667,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 606.39,
+          "x": 609.14,
           "y": 35,
-          "width": 85.63,
+          "width": 82.3,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -713,9 +713,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 725.09,
+          "x": 725.19,
           "y": 34,
-          "width": 52.86,
+          "width": 53.23,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -790,9 +790,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 40.09,
+          "y": 47.84,
           "width": 167.36,
-          "height": 55.8
+          "height": 40.3
         },
         "nav": {
           "x": 471.36,
@@ -807,9 +807,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 586.03,
+          "x": 586.2,
           "y": 35,
-          "width": 68.95,
+          "width": 69.97,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -829,9 +829,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 42.52,
+          "y": 40.52,
           "width": 167.36,
-          "height": 50.95
+          "height": 54.95
         },
         "nav": {
           "x": 471.36,
@@ -846,9 +846,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 689.31,
+          "x": 691.13,
           "y": 35,
-          "width": 77.08,
+          "width": 78.02,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -875,9 +875,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 42.52,
+          "y": 40.52,
           "width": 167.36,
-          "height": 50.95
+          "height": 54.95
         },
         "nav": {
           "x": 471.36,
@@ -892,9 +892,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 798.39,
+          "x": 801.14,
           "y": 35,
-          "width": 85.63,
+          "width": 82.3,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -921,9 +921,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 42.52,
+          "y": 40.52,
           "width": 167.36,
-          "height": 50.95
+          "height": 54.95
         },
         "nav": {
           "x": 471.36,
@@ -938,9 +938,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 798.39,
+          "x": 801.14,
           "y": 35,
-          "width": 85.63,
+          "width": 82.3,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -984,9 +984,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 917.09,
+          "x": 917.19,
           "y": 34,
-          "width": 52.86,
+          "width": 53.23,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -1054,7 +1054,7 @@
   },
   "sticky": {
     "index.html": {
-      "scrollY": 2627,
+      "scrollY": 2721,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1079,7 +1079,7 @@
       "yCloseToStatus": true
     },
     "solutions.html": {
-      "scrollY": 1690,
+      "scrollY": 1664,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1104,7 +1104,7 @@
       "yCloseToStatus": true
     },
     "resources.html": {
-      "scrollY": 1003,
+      "scrollY": 997,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1129,7 +1129,7 @@
       "yCloseToStatus": true
     },
     "resource-manuals.html": {
-      "scrollY": 479,
+      "scrollY": 485,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1154,7 +1154,7 @@
       "yCloseToStatus": true
     },
     "plans.html": {
-      "scrollY": 893,
+      "scrollY": 923,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1179,7 +1179,7 @@
       "yCloseToStatus": true
     },
     "contact.html": {
-      "scrollY": 730,
+      "scrollY": 739,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1249,15 +1249,15 @@
         "steps": [
           {
             "label": "Step 01",
-            "classes": "step relay-complete"
-          },
-          {
-            "label": "Step 02",
             "classes": "step relay-running"
           },
           {
-            "label": "Step 03",
+            "label": "Step 02",
             "classes": "step relay-receive"
+          },
+          {
+            "label": "Step 03",
+            "classes": "step relay-idle"
           },
           {
             "label": "Step 04",
@@ -1274,15 +1274,15 @@
           },
           {
             "label": "Step 02",
-            "classes": "step relay-complete"
-          },
-          {
-            "label": "Step 03",
             "classes": "step relay-running"
           },
           {
-            "label": "Step 04",
+            "label": "Step 03",
             "classes": "step relay-receive"
+          },
+          {
+            "label": "Step 04",
+            "classes": "step relay-idle"
           }
         ]
       },
@@ -1315,16 +1315,16 @@
         "delayMs": 0,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-6.06414px",
+        "flowStrokeDashoffset": "-5.338px",
         "scanAnimationName": "none",
         "packetOnCount": 8,
-        "packetOpacity": "0.747626"
+        "packetOpacity": "0.741642"
       },
       {
         "delayMs": 1000,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-26.4181px",
+        "flowStrokeDashoffset": "-25.69px",
         "scanAnimationName": "none",
         "packetOnCount": 8,
         "packetOpacity": "0.75"
@@ -1333,7 +1333,7 @@
         "delayMs": 3000,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-18.8841px",
+        "flowStrokeDashoffset": "-18.056px",
         "scanAnimationName": "none",
         "packetOnCount": 8,
         "packetOpacity": "0.75"
@@ -1342,7 +1342,7 @@
         "delayMs": 6000,
         "flowOnCount": 6,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-31.3321px",
+        "flowStrokeDashoffset": "-30.108px",
         "scanAnimationName": "none",
         "packetOnCount": 6,
         "packetOpacity": "0.75"
@@ -1353,7 +1353,7 @@
         "delayMs": 0,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-6.102px",
+        "flowStrokeDashoffset": "-5.67268px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
         "packetOpacity": "0.85"
@@ -1362,7 +1362,7 @@
         "delayMs": 1000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-26.192px",
+        "flowStrokeDashoffset": "-25.6887px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
         "packetOpacity": "0.85"
@@ -1371,7 +1371,7 @@
         "delayMs": 3000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-8.90856px",
+        "flowStrokeDashoffset": "-8.62173px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
         "packetOpacity": "0.85"
@@ -1380,7 +1380,7 @@
         "delayMs": 6000,
         "flowOnCount": 7,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-30.7033px",
+        "flowStrokeDashoffset": "-30.1107px",
         "scanAnimationName": "none",
         "packetOnCount": 7,
         "packetOpacity": "0.85"
@@ -1391,7 +1391,7 @@
         "delayMs": 0,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash, flowAmberBreathe",
-        "flowStrokeDashoffset": "-5.64075px",
+        "flowStrokeDashoffset": "-5.57524px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1400,7 +1400,7 @@
         "delayMs": 1000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash, flowAmberBreathe",
-        "flowStrokeDashoffset": "-25.6969px",
+        "flowStrokeDashoffset": "-25.25px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1409,7 +1409,7 @@
         "delayMs": 3000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash, flowAmberBreathe",
-        "flowStrokeDashoffset": "-7.29031px",
+        "flowStrokeDashoffset": "-6.93381px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1418,7 +1418,7 @@
         "delayMs": 6000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash, flowAmberBreathe",
-        "flowStrokeDashoffset": "-8.67444px",
+        "flowStrokeDashoffset": "-7.96995px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1508,7 +1508,7 @@
       "hasBackendPlaceholderCheck": true
     },
     "afterSubmit": {
-      "url": "file:///E:/%E7%BD%91%E9%A1%B5%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6/sampora-website-public-v3/contact.html#contact-form",
+      "url": "file:///E:/claude%20work/sampora-website-public-v3/contact.html#contact-form",
       "storedPending": "intent=contact_sales&source_page=contact.html&source_section=contact-form&plan=contact_sales&lang=en&name=QA+Reviewer&company=QA+Evidence+Co&email=qa%40example.com&role=Sample+Supplier&business_type=contact_sales&message=QA+evidence+backend+placeholder+check.",
       "pendingParams": {
         "intent": "contact_sales",

@@ -1271,6 +1271,8 @@
     .flow-line {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-auto-rows: minmax(184px, auto);
+      align-items: stretch;
       gap: 14px
     }
 
@@ -1280,7 +1282,8 @@
       border-radius: 16px;
       background: rgba(14, 27, 47, .78);
       padding: 18px;
-      min-height: 160px
+      min-height: 184px;
+      height: 100%
     }
 
     .flow-step:not(:last-child):after {
@@ -1655,7 +1658,14 @@
       }
 
       .flow-line {
-        grid-template-columns: 1fr 1fr
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: minmax(252px, auto);
+        align-items: stretch
+      }
+
+      .flow-step {
+        min-height: 252px;
+        height: 100%
       }
 
       .flow-step:after {
@@ -2544,6 +2554,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </style>
 <style id="final-mobile-overflow-fix">
 @media(max-width:680px){.plans-grid{grid-template-columns:1fr}.plan-card,.fit-panel,.fit-selectors,.recommend{min-width:0;width:100%}.plan-top{display:grid;grid-template-columns:1fr;gap:8px}.badge{justify-self:start;max-width:100%;white-space:normal;overflow-wrap:anywhere}.select-btn{width:100%;min-width:0;overflow-wrap:anywhere}.select-btn small,.select-btn strong,.select-btn span{min-width:0;max-width:100%;overflow-wrap:anywhere}.mini-metrics{grid-template-columns:1fr}.mini-metrics div,.mini-metrics small,.mini-metrics strong{min-width:0;max-width:100%;overflow-wrap:anywhere}.compare-wrap{max-width:100%;overflow-x:auto}}
+@media(max-width:480px){.header-actions>.btn.ghost,.nav-actions>.btn.ghost,.actions>.btn.ghost{display:none!important}.mast .inner,.mast.compact .inner,.nav-inner{gap:10px!important}.header-actions,.nav-actions,.actions{min-width:0!important;max-width:100%!important;gap:8px!important}}
 @media(max-width:360px){.flow-line{grid-template-columns:1fr!important}.flow-step,.flow-step small,.flow-step h3,.flow-step p{min-width:0!important;max-width:100%!important;overflow-wrap:anywhere!important}.footer-main,.footer-contact{grid-template-columns:1fr!important}.footer-col,.footer-col a,.contact-item{min-width:0!important;padding-left:14px!important;padding-right:14px!important;overflow-wrap:anywhere!important}}
 
 /* Worker F: measured desktop header parity */
@@ -2562,6 +2573,25 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   .mast .nav.sampora-nav-standard a.active::after,.mast .nav-links.sampora-nav-standard a.active::after,.mast .sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,var(--cyan,#38D2FF),transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
   .mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box!important;width:430px!important;min-width:430px!important;height:44.92px!important;align-self:center!important;justify-self:end!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;flex-wrap:nowrap!important;overflow:visible!important;margin-left:0!important}
   .mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto!important;white-space:nowrap!important}
+}
+/* Sampora current responsive footer fixes */
+@media(max-width:1180px) and (min-width:761px){
+  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
+  .sampora-footer-main{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:30px 34px!important;padding:36px 34px 32px!important}
+  .sampora-footer-brand{grid-column:1/-1!important;width:100%!important;max-width:none!important;justify-self:stretch!important}
+  .sampora-footer-brand p{max-width:760px!important}
+  .sampora-footer-badges{max-width:760px!important}
+  .sampora-footer-col{min-width:0!important}
+  .sampora-footer-col a{overflow-wrap:anywhere!important}
+  .sampora-footer-contact-item{min-width:0!important;padding:18px 28px!important}
+}
+@media(max-width:760px){
+  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
+  .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}
+  .sampora-footer-brand{grid-column:auto!important}
+  .sampora-footer-brand p,
+  .sampora-footer-col a,
+  .sampora-footer-contact-item{overflow-wrap:anywhere!important}
 }
 </style>
 </head>
@@ -2860,12 +2890,13 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "navResources": "资源",
             "navPricing": "版本方案",
             "navContact": "联系我们",
-            "headerBookDemo": "Book a demo",
+            "headerBookDemo": "预约演示",
             "headerStartTrial": "开始试用",
             "heroEyebrow": "解决方案 · 运营角色适配",
             "heroTitle": "为你的样本交付团队选择合适的<em>运营层。</em>",
-            "heroSub": "将你的业务模式——自有 Panel、样本供应商、调查站、调研分包团队或 API 对接供应商——映射到最适合的 Sampora 运营层。",
-            "heroCta1": "对比方案层级 →", 
+            "heroSub": "将你的业务模式——自有 Panel 供应商、样本供应方、样本聚合商、调查站 / 执行单元、调研分包执行团队或 API 对接供应商——映射到最适合的 Sampora 在线样本运营层。",
+            "heroCta1": "开始试用", 
+            "heroCta2": "预约演示",
             "solutionsKicker": "01 / 方案层级",
             "solutionsTitle": "三个解决方案层级，<em>按真实运营场景拆分。</em>",
             "solutionsLead": "根据团队实际运营责任，判断更适合样本库运营版、供应商网络运营版，还是企业版。",
@@ -2882,7 +2913,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "workflowKicker": "04 / 运营路径",
             "workflowTitle": "每个方案都遵循同一个<em>交付到结算闭环。</em>",
             "workflowLead": "每个方案都沿用同一条运营路径：接收 → 配置 → 分配 → 追踪 / 审核 → 结算。",
-            "footerDesc": "面向 Panel Provider、样本供应商、调查站和调研分包团队的在线样本运营平台。",
+            "footerDesc": "面向自有 Panel 供应商、样本供应商、调查站 / 执行单元和调研分包执行团队的在线样本运营平台。",
             "footerSupport": "产品支持",
             "footerHelp": "帮助文档",
             "footerGuide": "引导手册",
@@ -2898,27 +2929,28 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "footerAddress": "中国安徽省六安市恒阳光城A座1506"
       },
       "hi": {
-            "statusLive": "समाधान लूप · लाइव",
-            "statusMid": "Panel, Supplier Network और Enterprise अनुकूल",
-            "statusLast": "संचालन भूमिका · इंटरफ़ेस प्रवेश ·लॉन्च मार्ग",
-            "statusRight": "API / कार्यक्षेत्रप्राप्ति · ऑडिट लॉग · निपटान रिकॉर्ड",
-            "brandSub": "ऑपरेशंस कंसोल",
+            "statusLive": "समाधान चक्र · लाइव",
+            "statusMid": "Panel Provider, Sample Supplier और Enterprise संचालन के लिए",
+            "statusLast": "संचालन भूमिका · इंटरफ़ेस प्रवेश · लॉन्च मार्ग",
+            "statusRight": "API / कार्यक्षेत्र प्राप्ति · ऑडिट लॉग · निपटान रिकॉर्ड",
+            "brandSub": "संचालन कंसोल",
             "navProduct": "उत्पाद",
             "navSolutions": "समाधान",
             "navResources": "संसाधन",
-            "navPricing": "संस्करण योजना",
+            "navPricing": "योजनाएँ",
             "navContact": "संपर्क करें",
-            "headerBookDemo": "बुक डेमो",
+            "headerBookDemo": "डेमो बुक करें",
             "headerStartTrial": "ट्रायल शुरू करें",
             "heroEyebrow": "समाधान · संचालन भूमिका अनुकूलन",
             "heroTitle": "अपनी सैंपल डिलीवरी टीम के लिए सही <em>संचालन स्तर</em> चुनें।",
-            "heroSub": "अपने business model — owned panel, sample supplier, survey station, subcontractor या API-connected supplier — को सही Sampora sample operations layer से जोड़ें।",
-            "heroCta1": "समाधान स्तरों की तुलना करें →", 
+            "heroSub": "अपने संचालन मॉडल - स्वामित्व वाले Panel, Sample Supplier, सर्वे स्टेशन, रिसर्च सबकॉन्ट्रैक्ट टीम या API-connected Supplier - को Sampora के सही ऑनलाइन सैंपल संचालन स्तर से जोड़ें।",
+            "heroCta1": "ट्रायल शुरू करें",
+            "heroCta2": "डेमो बुक करें",
             "solutionsKicker": "01 / समाधान स्तर",
-            "solutionsTitle": "तीन समाधान स्तर, <em>वास्तविक संचालन स्थिति के अनुसार।</em>",
-            "solutionsLead": "टीम की real operating responsibility के आधार पर Panel, Supplier Network या Enterprise में से सही layer चुनें।",
+            "solutionsTitle": "तीन समाधान स्तर, <em>वास्तविक संचालन जिम्मेदारी के अनुसार।</em>",
+            "solutionsLead": "टीम की वास्तविक संचालन जिम्मेदारी के आधार पर Panel, Supplier Network या Enterprise में से सही स्तर चुनें।",
             "fitKicker": "02 / संचालन अनुकूलन",
-            "fitTitle": "पहले देखें कि आप <em>किन भूमिकाओं का समन्वय करते हैं।</em>",
+            "fitTitle": "पहले देखें कि आप <em>किसका समन्वय करते हैं।</em>",
             "fitLead": "अपनी टीम के सबसे निकट भूमिका चुनें। Sampora उसके अनुसार इंटरफ़ेस प्रवेश, नियंत्रण बिंदु और वित्तीय मार्ग मैप करेगा।",
             "recommendLabel": "सबसे उपयुक्त समाधान",
             "recCell1": "मुख्य संसाधन",
@@ -2927,23 +2959,23 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "compareKicker": "03 / निर्णय मैट्रिक्स",
             "compareTitle": "मूल्य नहीं, <em>व्यावसायिक जिम्मेदारी</em> के आधार पर तुलना करें।",
             "compareLead": "",
-            "workflowKicker": "04 / संचालनमार्ग",
-            "workflowTitle": "हर समाधान एक ही <em>डिलीवरी से निपटान</em>चक्र का पालन करता है।",
-            "workflowLead": "हर solution में एक ही operating path चलता है: प्राप्ति → कॉन्फ़िगरेशन → आवंटन → ट्रैकिंग / समीक्षा → निपटान।",
-            "footerDesc": "पैनल प्रदाताओं, सैंपल आपूर्तिकर्ताओं, survey stations और शोध उप-ठेका टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।",
+            "workflowKicker": "04 / संचालन मार्ग",
+            "workflowTitle": "हर समाधान एक ही <em>डिलीवरी से निपटान</em> चक्र का पालन करता है।",
+            "workflowLead": "हर समाधान में यही संचालन पथ रहता है: प्राप्ति → कॉन्फ़िगरेशन → आवंटन → ट्रैकिंग / समीक्षा → निपटान।",
+            "footerDesc": "Panel Provider, Sample Supplier, सर्वे स्टेशन और रिसर्च सबकॉन्ट्रैक्ट टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।",
             "footerSupport": "उत्पाद सहायता",
             "footerHelp": "सहायता दस्तावेज़",
-            "footerGuide": "मार्गदर्शिका",
-            "footerFeedback": "Contact sales",
+            "footerGuide": "संचालन मार्गदर्शिका",
+            "footerFeedback": "सेल्स से बात करें",
             "footerCompany": "कंपनी जानकारी",
             "footerAbout": "हमारे बारे में",
-            "footerHistory": "विकास इतिहास",
-            "footerContact": "Contact sales",
-            "footerAccess": "Resources",
-            "footerTrial": "Start trial",
-            "footerJoin": "Contact sales",
-            "footerNews": "Resources",
-            "footerAddress": "A座1506, Hengyangguangcheng, Lu’an, Anhui, China"
+            "footerHistory": "कार्यान्वयन रोडमैप",
+            "footerContact": "सेल्स से बात करें",
+            "footerAccess": "संसाधन",
+            "footerTrial": "ट्रायल शुरू करें",
+            "footerJoin": "सेल्स से बात करें",
+            "footerNews": "संसाधन",
+            "footerAddress": "कमरा 1506, ब्लॉक A, हेंगयांग गुआंगचेंग, लुआन, अनहुई, चीन"
       }
 };
     const HERO_UI = {
@@ -3004,26 +3036,30 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "legendActive": "सक्रिय प्रवाह",
             "legendControl": "नियंत्रण बिंदु",
             "legendEvidence": "प्रमाण मार्ग",
+            "colInput": "इनपुट",
+            "colLayer": "समाधान स्तर",
+            "colControl": "नियंत्रण",
+            "colEvidence": "प्रमाण",
             "origin": "Sampora",
-            "originRole": "Router Core",
+            "originRole": "राउटर कोर",
             "nodePanel": "पैनल",
-            "nodePanelRole": "स्वयं का संसाधन",
+            "nodePanelRole": "स्वयं का Panel / स्टेशन",
             "nodeNetwork": "सैंपल आपूर्ति",
-            "nodeNetworkRole": "आवंटन + मूल्य नियंत्रण",
-            "nodeEnterprise": "Enterprise",
-            "nodeEnterpriseRole": "गवर्नेंस स्तर",
+            "nodeNetworkRole": "आवंटन + मूल्य",
+            "nodeEnterprise": "एंटरप्राइज़",
+            "nodeEnterpriseRole": "शासन + निपटान",
             "hubControl": "समीक्षा",
             "hubEvidence": "निपटान",
             "cardA": "पैनल",
             "cardADesc": "सदस्य संचालन",
             "cardB": "सैंपल आपूर्ति",
             "cardBDesc": "आपूर्तिकर्ता समन्वय",
-            "cardC": "Enterprise",
+            "cardC": "एंटरप्राइज़",
             "cardCDesc": "बहु-पक्षीय संचालन",
             "ticker": {
                   "panel": "सदस्य रिकॉर्ड उपलब्ध · सर्वे स्टेशन जुड़ा · भुगतान रिकॉर्ड तैयार",
                   "network": "आपूर्तिकर्ता आवंटन अपडेट · API / कार्यक्षेत्र प्राप्ति सक्रिय · निपटान रिकॉर्ड तैयार",
-                  "enterprise": "ग्राहक + आपूर्तिकर्ता + पैनल गवर्नेंस सक्रिय · ऑडिट लॉग तैयार ·लॉन्च मार्ग ट्रैक योग्य"
+                  "enterprise": "ग्राहक + आपूर्तिकर्ता + पैनल शासन सक्रिय · ऑडिट लॉग तैयार · लॉन्च मार्ग ट्रैक योग्य"
             }
       }
 };
@@ -3145,15 +3181,18 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             }
       },
       "hi": {
+            "modePrefix": "मोड",
+            "auditTitle": "संचालन फ़ीड",
+            "auditState": "लाइव",
             "crumb": {
                   "panel": "समाधान / पैनल / पैनल संचालन",
                   "network": "समाधान / सैंपल आपूर्ति / संचालन",
-                  "enterprise": "समाधान / Enterprise / ENT_03"
+                  "enterprise": "समाधान / एंटरप्राइज़ / ENT_03"
             },
             "title": {
                   "panel": "पैनल संचालन",
                   "network": "सैंपल आपूर्ति संचालन",
-                  "enterprise": "Enterprise"
+                  "enterprise": "एंटरप्राइज़"
             },
             "text": {
                   "panel": "उन टीमों के लिए जो अपने सदस्य, सर्वे स्टेशन, भागीदारी रिकॉर्ड, भुगतान और बिलिंग प्रक्रिया को संभालती हैं।",
@@ -3251,42 +3290,26 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "caption": {
                   "panel": "स्वयं का पैनल · सदस्य संचालन · बिल रिकॉर्ड",
                   "network": "सैंपल आपूर्ति · आपूर्तिकर्ता आवंटन · API / कार्यक्षेत्र प्राप्ति",
-                  "enterprise": "Enterprise · ग्राहक / आपूर्तिकर्ता / पैनल · निपटान रिकॉर्ड"
+                  "enterprise": "एंटरप्राइज़ · ग्राहक / आपूर्तिकर्ता / पैनल · निपटान रिकॉर्ड"
             }
       }
 };
 
-    Object.keys(HERO_UI).forEach(lang => Object.assign(HERO_UI[lang], {
-      nodePanel: lang === 'zh' ? '样本库运营版' : (lang === 'hi' ? 'PANEL' : 'PANEL'),
-      nodePanelRole: lang === 'zh' ? '自有样本库 / 调查站' : (lang === 'hi' ? 'owned panel / station' : 'owned panel / station'),
-      nodeNetwork: lang === 'zh' ? '供应商网络运营版' : (lang === 'hi' ? 'SUPPLIER NETWORK' : 'SUPPLIER NETWORK'),
-      nodeNetworkRole: lang === 'zh' ? '供应商 / API 协同' : (lang === 'hi' ? 'supplier coordination' : 'supplier coordination'),
-      nodeEnterprise: lang === 'zh' ? '企业版' : (lang === 'hi' ? 'ENTERPRISE' : 'ENTERPRISE'),
-      nodeEnterpriseRole: lang === 'zh' ? '多实体治理 + 结算' : (lang === 'hi' ? 'governance + settlement' : 'governance + settlement')
-    }));
-    Object.assign(TOPO_DETAIL.hi, {
-      modePrefix: 'मोड',
-      auditTitle: 'संचालन फ़ीड',
-      auditState: 'लाइव'
+    Object.assign(HERO_UI.zh, {
+      nodePanel: '样本库运营版',
+      nodePanelRole: '自有样本库 / 调查站',
+      nodeNetwork: '供应商网络运营版',
+      nodeNetworkRole: '供应商 / API 协同',
+      nodeEnterprise: '企业版',
+      nodeEnterpriseRole: '多实体治理 + 结算'
     });
     Object.assign(HERO_UI.hi, {
-      nodePanel: 'PANEL',
-      nodePanelRole: 'स्वामित्व वाला पैनल / स्टेशन',
-      nodeNetwork: 'SUPPLIER NETWORK',
-      nodeNetworkRole: 'सप्लायर समन्वय',
-      nodeEnterprise: 'ENTERPRISE',
-      nodeEnterpriseRole: 'गवर्नेंस + निपटान'
-    });
-    delete TOPO_DETAIL.hi.modePrefix;
-    delete TOPO_DETAIL.hi.auditTitle;
-    delete TOPO_DETAIL.hi.auditState;
-    Object.assign(HERO_UI.hi, {
-      nodePanel: 'PANEL',
-      nodePanelRole: 'owned panel / station',
-      nodeNetwork: 'SUPPLIER NETWORK',
-      nodeNetworkRole: 'supplier coordination',
-      nodeEnterprise: 'ENTERPRISE',
-      nodeEnterpriseRole: 'governance + settlement'
+      nodePanel: 'पैनल',
+      nodePanelRole: 'स्वयं का Panel / स्टेशन',
+      nodeNetwork: 'सैंपल आपूर्ति',
+      nodeNetworkRole: 'आवंटन + मूल्य',
+      nodeEnterprise: 'एंटरप्राइज़',
+      nodeEnterpriseRole: 'शासन + निपटान'
     });
     const DATA = {
       "en": {
@@ -3791,88 +3814,88 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "solutions": [
                   {
                         "id": "panel",
-                        "cn": "स्वयं के उत्तरदाता संचालन",
+                        "cn": "स्वयं के Panel संचालन",
                         "title": "पैनल संचालन",
                         "short": "पैनल स्तर",
-                        "badge": "पैनल टीमों के लिए",
-                        "text": "उन टीमों के लिए जो अपने उत्तरदाता पैनल या सर्वे स्टेशन को संभालती हैं।मुख्य ध्यान सदस्य、समूह、भागीदारी रिकॉर्ड、वॉलेट और बिलिंग पर है.",
+                        "badge": "Panel Provider टीमों के लिए",
+                        "text": "उन टीमों के लिए जो अपना उत्तरदाता Panel या सर्वे स्टेशन संचालित करती हैं। यह स्तर सदस्य रिकॉर्ड, समूह, सर्वे भागीदारी, वॉलेट, बिल और स्टेशन-स्तर निष्पादन पर केंद्रित है।",
                         "lis": [
                               "सदस्य समूह, स्तर और सर्वे रिकॉर्ड",
                               "सर्वे स्टेशन परियोजनाएँ और भागीदारी इतिहास",
-                              "सदस्यवॉलेट, बिल और वित्तीय रिकॉर्ड",
-                              "साझेदार नेटवर्क से अधिक खरीदार खोजें"
+                              "सदस्य वॉलेट, बिल और वित्तीय रिकॉर्ड",
+                              "Partner Network से अधिक खरीदार खोजें"
                         ],
-                        "choose": "पैनल संचालन चुनें"
+                        "choose": "पैनल स्तर चुनें"
                   },
                   {
                         "id": "network",
                         "cn": "बाहरी सैंपल आपूर्ति संचालन",
                         "title": "सैंपल आपूर्ति संचालन",
-                        "short": "आपूर्ति स्तर",
-                        "badge": "सैंपल आपूर्तिकर्ताओं के लिए",
-                        "text": "उन टीमों के लिए जो बाहरी सैंपल आपूर्तिकर्ता,एग्रीगेटर、उप-ठेका टीम या API से जुड़े भागीदारों का समन्वय करती हैं।मुख्य ध्यान परियोजनाप्राप्ति、आवंटन、समीक्षा और निपटान पर है.",
+                        "short": "आपूर्ति नेटवर्क स्तर",
+                        "badge": "Sample Supplier टीमों के लिए",
+                        "text": "उन टीमों के लिए जो बाहरी सैंपल आपूर्तिकर्ता, सैंपल एग्रीगेटर, रिसर्च सबकॉन्ट्रैक्ट टीम या API-connected Supplier का समन्वय करती हैं। यह स्तर परियोजना प्राप्ति, आपूर्तिकर्ता आवंटन, मूल्य नियंत्रण, समीक्षा और निपटान पर केंद्रित है।",
                         "lis": [
                               "परियोजना प्राप्ति और आपूर्तिकर्ता आवंटन",
-                              "अनुपयुक्त आपूर्तिकर्ताओं को ब्लॉक करें",
-                              "आपूर्तिकर्ता-स्तरीय मूल्य सेट करें",
-                              "API / कार्यक्षेत्र प्राप्ति और आपूर्तिकर्ता बिल"
+                              "अनुपयुक्त आपूर्तिकर्ताओं को रोकें और आपूर्तिकर्ता-विशिष्ट मूल्य तय करें",
+                              "API / कार्यक्षेत्र प्राप्ति से जुड़े आपूर्तिकर्ताओं को परियोजना दें",
+                              "आपूर्तिकर्ता बिल, निपटान और वित्तीय रिकॉर्ड"
                         ],
-                        "choose": "सैंपल आपूर्ति चुनें"
+                        "choose": "आपूर्ति नेटवर्क चुनें"
                   },
                   {
                         "id": "enterprise",
                         "cn": "बहु-इकाई संचालन",
-                        "title": "Enterprise",
-                        "short": "उद्यम स्तर",
+                        "title": "एंटरप्राइज़",
+                        "short": "एंटरप्राइज़ स्तर",
                         "badge": "बहु-टीम संचालन",
-                        "text": "ग्राहक, आपूर्तिकर्ता, पैनल, सर्वे स्टेशन, भूमिकाएँ, API डिलीवरी और वित्त को एक संचालन स्तर में संभालें.",
+                        "text": "ग्राहक, आपूर्तिकर्ता, Panel, सर्वे स्टेशन, भूमिकाएँ, API डिलीवरी और वित्त को एक ही सैंपल संचालन स्तर में संभालें।",
                         "lis": [
-                              "ग्राहक, आपूर्तिकर्ता, पैनल और स्टेशन संचालन",
-                              "भूमिका-आधारितअनुमतियाँ और संगठनकॉन्फ़िगरेशन",
-                              "API प्राप्ति / वितरण औरकॉलबैक रिकॉर्ड",
-                              "साझेदार नेटवर्क + बहु-पक्षीय निपटान"
+                              "ग्राहक, आपूर्तिकर्ता, Panel और स्टेशन संचालन",
+                              "भूमिका-आधारित अनुमतियाँ और संगठन कॉन्फ़िगरेशन",
+                              "API प्राप्ति / वितरण और कॉलबैक रिकॉर्ड",
+                              "Partner Network + बहु-पक्षीय निपटान"
                         ],
-                        "choose": "Enterprise चुनें"
+                        "choose": "एंटरप्राइज़ चुनें"
                   }
             ],
             "fit": [
                   [
                         "panel",
                         "01",
-                        "मैं मुख्य रूप से अपने उत्तरदाता या सर्वे स्टेशन संभालता/संभालती हूँ",
-                        "सदस्य,समूह、भागीदारी इतिहास、प्रोत्साहन、वॉलेट और बिल।"
+                        "मैं मुख्य रूप से अपना Panel या सर्वे स्टेशन संभालता/संभालती हूँ",
+                        "सदस्य, समूह, भागीदारी इतिहास, प्रोत्साहन, वॉलेट और बिल।"
                   ],
                   [
                         "network",
                         "02",
                         "मैं बाहरी सैंपल आपूर्तिकर्ता या API आपूर्तिकर्ता समन्वय करता/करती हूँ",
-                        "परियोजना प्राप्ति、आपूर्तिकर्ता आवंटन、मूल्य、समीक्षा और निपटान।"
+                        "परियोजना प्राप्ति, आपूर्तिकर्ता आवंटन, मूल्य नियंत्रण, समीक्षा और निपटान।"
                   ],
                   [
                         "enterprise",
                         "03",
-                        "मैं ग्राहक, आपूर्तिकर्ता और पैनल साथ में संभालता/संभालती हूँ",
-                        "ग्राहक / आपूर्तिकर्ता संचालन、API डिलीवरी、अनुमतियाँ、वित्त और साझेदार नेटवर्क।"
+                        "मैं ग्राहक, आपूर्तिकर्ता और Panel साथ में संभालता/संभालती हूँ",
+                        "ग्राहक / आपूर्तिकर्ता संचालन, API डिलीवरी, अनुमतियाँ, वित्त और Partner Network।"
                   ]
             ],
             "rec": {
                   "panel": [
                         "पैनल संचालन",
-                        "जब आपका मुख्य संचालनऑब्जेक्ट अपना उत्तरदाता संसाधन या सर्वे स्टेशन हो, यह सबसे उपयुक्त है.",
-                        "अपना पैनल / स्टेशन",
+                        "जब आपका मुख्य संचालन अपने उत्तरदाता Panel या सर्वे स्टेशन पर केंद्रित हो, तब यह स्तर सबसे उपयुक्त है। यह सदस्य संचालन, स्टेशन-स्तर डिलीवरी और भागीदारी रिकॉर्ड को एक जगह रखता है।",
+                        "स्वयं का Panel / स्टेशन",
                         "सदस्य भागीदारी",
-                        "सदस्यवॉलेट / बिल"
+                        "सदस्य वॉलेट / बिल"
                   ],
                   "network": [
                         "सैंपल आपूर्ति संचालन",
-                        "जब आपकी टीम ग्राहक परियोजनाएँ प्राप्त कर उन्हें बाहरी आपूर्तिकर्ता,एग्रीगेटर、उप-ठेका टीम या API भागीदारों को देती है, यह उपयुक्त है.",
+                        "जब आपकी टीम ग्राहक परियोजनाएँ प्राप्त करके उन्हें बाहरी आपूर्तिकर्ताओं, एग्रीगेटर, सबकॉन्ट्रैक्ट टीम या API भागीदारों को देती है, तब यह स्तर उपयुक्त है।",
                         "आपूर्तिकर्ता नेटवर्क",
                         "आवंटन + समीक्षा",
                         "आपूर्तिकर्ता निपटान"
                   ],
                   "enterprise": [
-                        "Enterprise",
-                        "जब व्यवसाय खरीदार और आपूर्तिकर्ता दोनों हो, और ग्राहक, आपूर्तिकर्ता, पैनल, भूमिकाएँ, API डिलीवरी और निपटान को एक सिस्टम में संभालना हो.",
+                        "एंटरप्राइज़",
+                        "जब व्यवसाय खरीदार और आपूर्तिकर्ता दोनों हो, और ग्राहक, आपूर्तिकर्ता, Panel, भूमिकाएँ, API डिलीवरी, वित्त और Partner Network को एक सिस्टम में संभालना हो।",
                         "बहु-इकाई संचालन",
                         "एंड-टू-एंड डिलीवरी चक्र",
                         "बहु-पक्षीय निपटान"
@@ -3882,20 +3905,20 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                   "निर्णय बिंदु",
                   "पैनल संचालन",
                   "सैंपल आपूर्ति संचालन",
-                  "Enterprise"
+                  "एंटरप्राइज़"
             ],
             "rows": [
                   [
                         "मुख्य संचालन पक्ष",
-                        "पैनल / स्टेशन टीम",
-                        "सैंपल आपूर्तिकर्ता / उप-ठेका टीम",
+                        "Panel / स्टेशन टीम",
+                        "सैंपल आपूर्तिकर्ता / सबकॉन्ट्रैक्ट टीम",
                         "ग्राहक-आपूर्तिकर्ता टीम"
                   ],
                   [
                         "मुख्य नियंत्रित संसाधन",
                         "सदस्य और सर्वे स्टेशन",
                         "बाहरी आपूर्तिकर्ता और API भागीदार",
-                        "ग्राहक + आपूर्तिकर्ता + पैनल"
+                        "ग्राहक + आपूर्तिकर्ता + Panel"
                   ],
                   [
                         "परियोजना प्राप्ति मार्ग",
@@ -3904,13 +3927,13 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "ग्राहक + API / कार्यक्षेत्र प्राप्ति"
                   ],
                   [
-                        "आपूर्तिकर्ता आवंटन और मूल्य",
+                        "आपूर्तिकर्ता आवंटन और मूल्य नियंत्रण",
                         "सीमित",
                         "मुख्य",
                         "उन्नत"
                   ],
                   [
-                        "पैनल / सदस्य संचालन",
+                        "Panel / सदस्य संचालन",
                         "मुख्य",
                         "आंशिक",
                         "मुख्य"
@@ -3925,16 +3948,16 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "समीक्षा और ट्रेसबिलिटी",
                         "सर्वे रिकॉर्ड",
                         "कॉलबैक + समीक्षा रिकॉर्ड",
-                        "ऑडिट लॉग + गवर्नेंस"
+                        "ऑडिट लॉग + शासन"
                   ],
                   [
                         "वित्तीय चक्र",
-                        "सदस्य बिल /वॉलेट",
+                        "सदस्य बिल / वॉलेट",
                         "आपूर्तिकर्ता बिल / निपटान",
                         "ग्राहक + आपूर्तिकर्ता + सदस्य निपटान"
                   ],
                   [
-                        "साझेदार नेटवर्क",
+                        "Partner Network",
                         "खरीदार खोजें",
                         "आपूर्तिकर्ता खोजें",
                         "खरीदार और आपूर्तिकर्ता खोजें"
@@ -3943,95 +3966,95 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "अनुशंसित अगला पेज",
                         "संसाधन / स्टेशन गाइड",
                         "उत्पाद प्रमाण / डेमो",
-                        "संस्करण योजना / कार्यान्वयन कॉल"
+                        "योजना / कार्यान्वयन कॉल"
                   ]
             ],
 
             "workflowTabs": {
                   "panel": "पैनल संचालन",
                   "network": "सैंपल आपूर्ति",
-                  "enterprise": "Enterprise"
+                  "enterprise": "एंटरप्राइज़"
             },
             "workflows": {
                   "panel": [
                         [
                               "01",
                               "परियोजना प्राप्ति",
-                              "स्टेशन परियोजनाएँ प्राप्त करें या अपने उत्तरदाता डिलीवरी के लिए परियोजनाएँ बनाएँ."
+                              "स्टेशन परियोजनाएँ प्राप्त करें या अपने उत्तरदाता डिलीवरी के लिए परियोजनाएँ बनाएँ।"
                         ],
                         [
                               "02",
-                              "सदस्यकॉन्फ़िगरेशन",
-                              "सदस्य समूह, स्तर, प्रोफ़ाइल और स्टेशनसेटिंग से तय करें कि कौन सर्वे प्राप्त कर सकता है."
+                              "सदस्य कॉन्फ़िगरेशन",
+                              "सदस्य समूह, स्तर, प्रोफ़ाइल और स्टेशन सेटिंग से तय करें कि कौन सर्वे प्राप्त कर सकता है।"
                         ],
                         [
                               "03",
                               "निष्पादन और ट्रैकिंग",
-                              "भागीदारी रिकॉर्ड, पूर्ण रिकॉर्ड, समाप्ति रिकॉर्ड और सदस्य सर्वे इतिहास ट्रैक करें."
+                              "भागीदारी रिकॉर्ड, पूर्ण रिकॉर्ड, समाप्ति रिकॉर्ड और सदस्य सर्वे इतिहास ट्रैक करें।"
                         ],
                         [
                               "04",
                               "रिकॉर्ड समीक्षा",
-                              "सर्वे रिकॉर्ड, वित्तीयलॉग और स्टेशननिष्पादन प्रमाण की समीक्षा करें."
+                              "सर्वे रिकॉर्ड, वित्तीय लॉग और स्टेशन निष्पादन प्रमाण की समीक्षा करें।"
                         ],
                         [
                               "05",
                               "बिल निपटान",
-                              "सदस्यवॉलेट, बिल और भुगतान-संबंधित वित्तीय रिकॉर्ड बंद करें."
+                              "सदस्य वॉलेट, बिल और भुगतान-संबंधित वित्तीय रिकॉर्ड बंद करें।"
                         ]
                   ],
                   "network": [
                         [
                               "01",
                               "परियोजना प्राप्ति",
-                              "CPI、IR、LOI、देश और ग्राहक संदर्भ के साथ ग्राहक परियोजना या API परियोजनापूल प्राप्त करें."
+                              "CPI, IR, LOI, देश और ग्राहक संदर्भ के साथ ग्राहक परियोजना या API परियोजना पूल प्राप्त करें।"
                         ],
                         [
                               "02",
-                              "डिलीवरीकॉन्फ़िगरेशन",
-                              "आपूर्तिकर्ता पात्रता,आवंटनमोड, उपलब्ध क्षेत्र और आपूर्तिकर्ता-स्तरीय मूल्य सेट करें."
+                              "डिलीवरी कॉन्फ़िगरेशन",
+                              "आपूर्तिकर्ता पात्रता, आवंटन मोड, उपलब्ध क्षेत्र और आपूर्तिकर्ता-विशिष्ट मूल्य सेट करें।"
                         ],
                         [
                               "03",
                               "आपूर्तिकर्ता आवंटन",
-                              "चयनित आपूर्तिकर्ता या API से जुड़े भागीदारआवंटन करें और अनुपयुक्त आपूर्तिकर्ताओं को ब्लॉक करें."
+                              "चयनित आपूर्तिकर्ता या API से जुड़े भागीदार आवंटित करें और अनुपयुक्त आपूर्तिकर्ताओं को रोकें।"
                         ],
                         [
                               "04",
                               "ट्रैकिंग और समीक्षा",
-                              "भागीदारी, पूर्णता, अस्वीकृति,कॉलबैक औरसमीक्षा स्थिति की निगरानी करें."
+                              "भागीदारी, पूर्णता, अस्वीकृति, कॉलबैक और समीक्षा स्थिति की निगरानी करें।"
                         ],
                         [
                               "05",
                               "निपटान और बिल",
-                              "परियोजना निपटान, आपूर्तिकर्ता बिल और ग्राहक चालान रिकॉर्ड बनाएँ."
+                              "परियोजना निपटान, आपूर्तिकर्ता बिल और ग्राहक चालान रिकॉर्ड बनाएँ।"
                         ]
                   ],
                   "enterprise": [
                         [
                               "01",
                               "इकाई मैपिंग",
-                              "ग्राहक, आपूर्तिकर्ता, पैनल, स्टेशन, विभाग और भूमिकाएँ एक संचालन स्तर में सेट करें."
+                              "ग्राहक, आपूर्तिकर्ता, Panel, स्टेशन, विभाग और भूमिकाएँ एक संचालन स्तर में सेट करें।"
                         ],
                         [
                               "02",
-                              "नियंत्रणकॉन्फ़िगरेशन",
-                              "अनुमतियाँ, जोखिमसेटिंग,कॉलबैक / सुरक्षाकॉन्फ़िगरेशन और डिलीवरी नियम परिभाषित करें."
+                              "नियंत्रण कॉन्फ़िगरेशन",
+                              "अनुमतियाँ, जोखिम सेटिंग, कॉलबैक / सुरक्षा कॉन्फ़िगरेशन और डिलीवरी नियम परिभाषित करें।"
                         ],
                         [
                               "03",
                               "प्राप्ति और आवंटन",
-                              "API / कार्यक्षेत्र मार्ग से परियोजनाएँ प्राप्त करें और उन्हें आंतरिक / बाहरी आपूर्ति में वितरित करें."
+                              "API / कार्यक्षेत्र मार्ग से परियोजनाएँ प्राप्त करें और उन्हें आंतरिक / बाहरी आपूर्ति में वितरित करें।"
                         ],
                         [
                               "04",
                               "संचालन समीक्षा",
-                              "ऑडिट लॉग,कॉलबैक रिकॉर्ड और समाप्ति रिकॉर्ड से डिलीवरी निर्णय स्पष्ट करें."
+                              "ऑडिट लॉग, कॉलबैक रिकॉर्ड और समाप्ति रिकॉर्ड से डिलीवरी निर्णय स्पष्ट करें।"
                         ],
                         [
                               "05",
                               "चक्र पूरा करें",
-                              "ग्राहक चालान, आपूर्तिकर्ता बिल, सदस्य वित्त और साझेदार नेटवर्क इतिहास को जोड़ें."
+                              "ग्राहक चालान, आपूर्तिकर्ता बिल, सदस्य वित्त और Partner Network इतिहास को जोड़ें।"
                         ]
                   ]
             }
@@ -4049,15 +4072,15 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
       footerTag3: '多方结算',
       footerLegal: '© 2026 安徽省嘉禹企业服务有限公司'
     });
-    const originalHiRuntime = { ...I18N.hi };
     Object.assign(I18N.hi, {
       headerBookDemo: 'डेमो बुक करें',
       headerStartTrial: 'ट्रायल शुरू करें',
       heroCta1: 'ट्रायल शुरू करें',
       heroCta2: 'डेमो बुक करें',
-      footerDesc: 'पैनल प्रदाताओं, सैंपल सप्लायर्स, सर्वे स्टेशनों और रिसर्च सबकॉन्ट्रैक्ट टीमों के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफ़ॉर्म।',
-      footerTag1: 'सैंपल ऑपरेशंस',
-      footerTag2: 'सप्लायर समन्वय',
+      navPricing: 'योजनाएँ',
+      footerDesc: 'Panel Provider, Sample Supplier, सर्वे स्टेशन और रिसर्च सबकॉन्ट्रैक्ट टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।',
+      footerTag1: 'सैंपल संचालन',
+      footerTag2: 'आपूर्तिकर्ता समन्वय',
       footerTag3: 'बहु-पक्षीय निपटान',
       footerFeedback: 'सेल्स से बात करें',
       footerContact: 'सेल्स से बात करें',
@@ -4066,12 +4089,6 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
       footerJoin: 'सेल्स से बात करें',
       footerNews: 'संसाधन',
       footerAddress: 'कमरा 1506, ब्लॉक A, हेंगयांग गुआंगचेंग, लुआन, अनहुई, चीन',
-      footerLegal: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd. सर्वाधिकार सुरक्षित.'
-    });
-    Object.assign(I18N.hi, originalHiRuntime, {
-      footerTag1: 'Sample operations',
-      footerTag2: 'Supplier coordination',
-      footerTag3: 'Multi-party settlement',
       footerLegal: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.'
     });
     let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network';
@@ -4194,7 +4211,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   </script>
 <script>
 (function(){
-  const labels={en:['Product','Solutions','Resources','Plans','Contact'],zh:['产品','解决方案','资源','版本方案','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','संपर्क']};
+  const labels={en:['Product','Solutions','Resources','Plans','Contact'],zh:['产品','解决方案','资源','版本方案','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','संपर्क करें']};
   const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['contact.html','contact']];
   function lang(){return localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
   function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}

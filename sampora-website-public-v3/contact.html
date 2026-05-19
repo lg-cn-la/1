@@ -1146,6 +1146,25 @@ body{padding-top:100px}
   .mast{top:0!important}
 }
 
+/* Sampora current responsive footer fixes */
+@media(max-width:1180px) and (min-width:761px){
+  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
+  .sampora-footer-main{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:30px 34px!important;padding:36px 34px 32px!important}
+  .sampora-footer-brand{grid-column:1/-1!important;width:100%!important;max-width:none!important;justify-self:stretch!important}
+  .sampora-footer-brand p{max-width:760px!important}
+  .sampora-footer-badges{max-width:760px!important}
+  .sampora-footer-col{min-width:0!important}
+  .sampora-footer-col a{overflow-wrap:anywhere!important}
+  .sampora-footer-contact-item{min-width:0!important;padding:18px 28px!important}
+}
+@media(max-width:760px){
+  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
+  .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}
+  .sampora-footer-brand{grid-column:auto!important}
+  .sampora-footer-brand p,
+  .sampora-footer-col a,
+  .sampora-footer-contact-item{overflow-wrap:anywhere!important}
+}
 </style>
 </head>
 
@@ -1307,7 +1326,7 @@ body{padding-top:100px}
                     <div class="sampora-footer-badges"><span data-i18n="tag1">Sample supply</span><span data-i18n="tag2">Review workflow</span><span data-i18n="tag3">Settlement ledger</span></div>
                 </div>
                 <div class="sampora-footer-col">
-                    <h3>Product</h3>
+                    <h3 data-i18n="footerProduct">Product</h3>
                     <a href="index.html" data-i18n="navProduct">Product</a>
                     <a href="solutions.html" data-i18n="navSolutions">Solutions</a>
                     <a href="plans.html" data-i18n="navPlans">Plans</a>
@@ -1319,7 +1338,7 @@ body{padding-top:100px}
                     <a href="contact.html?intent=contact_sales#contact-form" data-i18n="cardCommunityTitle">Talk to sales</a>
                 </div>
                 <div class="sampora-footer-col">
-                    <h3>Contact</h3>
+                    <h3 data-i18n="footerContact">Contact</h3>
                     <a href="mailto:jiayu@surveysaas.com">jiayu@surveysaas.com</a>
                     <a href="tel:4006600224">400-660-0224</a>
                     <a href="contact.html?intent=contact_sales#contact-form" data-i18n="footerContactSales">Contact sales</a>
@@ -1338,69 +1357,46 @@ body{padding-top:100px}
     <div class="toast" id="toastSuccess"><b data-i18n="successTitle">Request submitted</b><span data-i18n="successText">Your request has been submitted. Our sales team will review your setup and follow up with trial access or a demo path.</span></div>
     <div class="toast" id="toastFailure"><b data-i18n="failureTitle">Submission failed</b><span data-i18n="failureText">Submission failed. Please check your details or try again later.</span></div>
 
-    <script>
+<script>
 (function(){
-  var currentLang = (function(){
-    try {
-      var saved = localStorage.getItem('sampora_lang');
-      return saved === 'zh' || saved === 'hi' ? saved : 'en';
-    } catch (e) {
-      return 'en';
-    }
-  })();
   var $ = function(selector, root){ return (root || document).querySelector(selector); };
   var $$ = function(selector, root){ return Array.from((root || document).querySelectorAll(selector)); };
+  var qs = new URLSearchParams(location.search);
   var texts = {
-    en: { heroEyebrow: 'CONTACT CENTER', heroTitle: 'Start a Sampora trial or book a demo.', heroSub: 'Submit your request and our sales team will follow up with trial access or a demo path for your sample operation setup.', formKicker: 'CONTACT FORM', formTitle: 'Submit request', formIntro: 'Share your sample operation context so sales can route your trial, demo, enterprise, or resource request correctly.', submit: 'Submit request', privacy: 'No final success message is shown unless the backend actually responds successfully.', nextStep: 'NEXT STEP', responseTitle: 'What happens after submission?', responseSub: 'The form is prepared for backend follow-up. Until the endpoint is live, the page only shows a conservative placeholder state.', responseCard1Title: 'Keep routing explicit', responseCard2Title: 'Preserve source context', responseCard3Title: 'Hold the outcome conservative', response1: 'The request keeps its URL intent so start trial, demo, sales, enterprise, and resource inquiries stay separated.', response2: 'Hidden fields keep the source page, section, plan, and language available for backend processing.', response3: 'The frontend does not claim a completed handoff until a real backend response is received.', footerCopyright: '© 2026', footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.', legalStaticGuard: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.' },
-    zh: { heroEyebrow: '联系中心', heroTitle: '开始 Sampora 试用或预约演示。', heroSub: '提交请求后，我们的销售团队会根据你的样本运营场景，跟进试用权限或演示路径。', formKicker: '联系表单', formTitle: '提交请求', formIntro: '请分享你的样本运营背景，便于销售团队正确分流试用、演示、企业或资料咨询请求。', submit: '提交请求', privacy: '只有在后端真实成功响应后，才会显示最终成功状态。', nextStep: '下一步', responseTitle: '提交后会发生什么？', responseSub: '表单已为后端跟进做好准备。在接口上线前，页面只展示保守的待接入状态。', responseCard1Title: '保留明确路由', responseCard2Title: '保留来源上下文', responseCard3Title: '保持结果保守', response1: '请求会保留 URL intent，方便区分试用、演示、销售、企业和资料咨询。', response2: '隐藏字段会保留来源页面、区域、方案和语言，供后端处理。', response3: '只有在真实后端响应后，前端才会显示完成交付的状态。', footerCopyright: '© 2026', footerCompanyLegal: '安徽省嘉禹企业服务有限公司' },
-    hi: { heroEyebrow: 'CONTACT CENTER', heroTitle: 'Sampora trial शुरू करें या demo book करें।', heroSub: 'Request submit करें; हमारी sales team आपके sample operation setup के हिसाब से trial access या demo path follow up करेगी।', formKicker: 'CONTACT FORM', formTitle: 'अनुरोध सबमिट करें', formIntro: 'अपना sample operation context भेजें ताकि sales team trial, demo, enterprise या resource request को सही route कर सके।', submit: 'अनुरोध सबमिट करें', privacy: 'Final success केवल तब दिखेगा जब backend वास्तविक रूप से सफल response दे।', nextStep: 'NEXT STEP', responseTitle: 'Submission के बाद क्या होगा?', responseSub: 'Form backend follow-up के लिए तैयार है। Endpoint live होने तक केवल conservative placeholder state दिखती है।', responseCard1Title: 'Routing स्पष्ट रखें', responseCard2Title: 'Source context सुरक्षित रखें', responseCard3Title: 'Outcome conservative रखें', response1: 'URL intent start trial, demo, sales, enterprise और resource inquiries को अलग रखता है।', response2: 'Hidden fields source page, section, plan और language को backend के लिए सुरक्षित रखते हैं।', response3: 'Real backend response मिलने तक frontend completed handoff का दावा नहीं करेगा।', footerCopyright: '© 2026', footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.' }
-  };
-  var langLabels = {
-    en: { en: 'EN', zh: '中文', hi: 'हिन्दी' },
-    zh: { en: 'EN', zh: '中文', hi: 'हिन्दी' },
-    hi: { en: 'EN', zh: '中文', hi: 'हिन्दी' }
-  };
-  function apply(lang){
-    var copy = texts[lang] || texts.en;
-    document.documentElement.dataset.lang = lang;
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'hi' ? 'hi' : 'en';
-    $$('.lang button[data-lang]').forEach(function(btn){
-      btn.textContent = (langLabels[lang] || langLabels.en)[btn.dataset.lang] || btn.textContent;
-      var active = btn.dataset.lang === lang;
-      btn.classList.toggle('active', active);
-      btn.setAttribute('aria-pressed', String(active));
-    });
-    ['heroEyebrow','heroTitle','heroSub','formKicker','formTitle','formIntro','submit','privacy','nextStep','responseTitle','responseSub','responseCard1Title','responseCard2Title','responseCard3Title','response1','response2','response3','footerCopyright','footerCompanyLegal'].forEach(function(key){
-      $$('[data-i18n="' + key + '"]').forEach(function(el){ el.textContent = copy[key]; });
-    });
-    try { localStorage.setItem('sampora_lang', lang); } catch (e) {}
-  }
-  function syncTopChrome(){
-    var compact = window.scrollY > 56;
-    var mast = document.querySelector('.mast');
-    if (mast) mast.classList.toggle('compact', compact);
-    document.body.classList.toggle('nav-condensed', compact);
-  }
-  document.addEventListener('DOMContentLoaded', function(){
-    apply(currentLang);
-    $$('.lang button[data-lang]').forEach(function(btn){ btn.addEventListener('click', function(){ apply(btn.dataset.lang); }); });
-    syncTopChrome();
-    window.addEventListener('scroll', syncTopChrome, { passive: true });
-  });
-})();
-</script>
-<script src="assets/i18n-sweep.js"></script>
-<script>
-(function () {
-  const translations = {
     en: {
-      submit: 'Submit request',
-      privacy: 'This form is prepared for backend submission. Until the backend endpoint is wired, submissions stay in a pending placeholder state and do not imply a completed handoff.',
+      topLine: 'CONTACT CENTER / Live',
+      topRight: 'Trial, demo, sales, and resource requests',
+      brandSub: 'Operations console',
+      navProduct: 'Product',
+      navSolutions: 'Solutions',
+      navResources: 'Resources',
+      navPlans: 'Plans',
+      navContact: 'Contact',
+      langSwitcher: 'Language',
+      ctaDemo: 'Book a demo',
+      ctaTop: 'Start trial',
+      heroEyebrow: 'CONTACT CENTER',
+      heroTitle: 'Start a Sampora trial or book a demo.',
+      heroSub: 'Submit your request and our sales team will follow up with trial access or a demo path for your sample operation setup.',
+      formKicker: 'CONTACT FORM',
+      formTitle: 'Submit request',
+      formIntro: 'Send a backend-ready request for trial access, demo scheduling, sales follow-up, enterprise planning, or resource guidance.',
+      bullet1: 'We keep the contact intent from the URL so routing stays explicit.',
+      bullet2: 'Required fields cover name, email, company, role, business type, and message.',
+      bullet3: 'Hidden fields preserve source page, section, plan, and language for backend handoff.',
+      bullet4: 'Pending state is shown until a real backend accepts the request.',
+      cardHelpTitle: 'Resource center',
+      cardHelpCta: 'View manuals',
       nameLabel: 'Name*',
       companyLabel: 'Company*',
       emailLabel: 'Email*',
       roleLabel: 'Role / business type*',
       businessTypeLabel: 'What is this request for?*',
+      msgLabel: 'Message',
+      namePlaceholder: 'Your name',
+      companyPlaceholder: 'Company or team',
+      emailPlaceholder: 'name@company.com',
+      messagePlaceholder: 'Tell us about your sample operation setup, supplier network, or demo needs.',
       rolePh: 'Select your role',
       businessTypePh: 'Select request intent',
       rolePanel: 'Panel Provider',
@@ -1415,123 +1411,270 @@ body{padding-top:100px}
       businessSales: 'Contact sales',
       businessEnterprise: 'Enterprise plan',
       businessResource: 'Resources consult',
-      formKicker: 'CONTACT FORM',
-      formTitle: 'Submit request',
-      formIntro: 'Send a backend-ready request and keep the status conservative until the contact endpoint is connected.',
-      bullet1: 'We keep the contact intent from the URL so routing stays explicit.',
-      bullet2: 'Required fields cover name, email, company, role, business type, and message.',
-      bullet3: 'Hidden fields preserve source page, section, plan, and language for backend handoff.',
-      bullet4: 'Pending state is shown until a real backend accepts the request.',
-      privacy: 'No final success message is shown unless the backend actually responds successfully.',
-      toastTitle: 'Backend placeholder',
-      toastText: 'The form is ready for backend wiring and is staying in a pending state for now.',
-      successTitle: 'Request submitted',
-      successText: 'Your request has been submitted. Our sales team will review your setup and follow up with trial access or a demo path.',
-      failureTitle: 'Submission failed',
-      failureText: 'Submission failed. Please check your details or try again later.',
+      submit: 'Submit request',
+      privacy: 'This form is prepared for backend submission. Until the real endpoint is wired, submissions stay in a pending placeholder state and do not imply a completed handoff.',
       nextStep: 'NEXT STEP',
       responseTitle: 'What happens after submission?',
       responseSub: 'The form is prepared for backend follow-up. Until the endpoint is live, the page only shows a conservative placeholder state.',
       responseCard1Title: 'Keep routing explicit',
       responseCard2Title: 'Preserve source context',
       responseCard3Title: 'Hold the outcome conservative',
-      response1: 'The request keeps its URL intent so start trial, demo, sales, enterprise, and resource inquiries stay separated.',
-      response2: 'Hidden fields keep the source page, section, plan, and language available for backend processing.',
-      response3: 'The frontend does not claim a completed handoff until a real backend response is received.'
+      response1: 'The request keeps its URL intent so trial, demo, sales, enterprise, and resource inquiries stay separated.',
+      response2: 'Hidden fields keep source page, section, plan, and language available for backend processing.',
+      response3: 'The frontend does not claim a completed handoff until a real backend response is received.',
+      footerDesc: 'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',
+      tag1: 'Sample supply',
+      tag2: 'Review workflow',
+      tag3: 'Settlement ledger',
+      footerProduct: 'Product',
+      footerSupport: 'Product support',
+      footerContact: 'Contact',
+      cardSupportTitle: 'View manuals',
+      cardCommunityTitle: 'Talk to sales',
+      footerContactSales: 'Contact sales',
+      addressText: 'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',
+      footerCopyright: '© 2026',
+      footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.',
+      toastTitle: 'Backend placeholder',
+      toastText: 'The form is ready for backend wiring and is staying in a pending state for now.',
+      successTitle: 'Request submitted',
+      successText: 'Your request has been submitted. Our sales team will review your setup and follow up with trial access or a demo path.',
+      failureTitle: 'Submission failed',
+      failureText: 'Submission failed. Please check your details or try again later.',
+      legalStaticGuard: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.'
     },
     zh: {
-      submit: '提交请求',
-      privacy: '此表单已准备好对接后端。未接入真实接口前，只会显示保守的待接入状态，不会暗示销售团队已经收到请求。',
+      topLine: '联系中心 / 在线',
+      topRight: '试用、演示、销售和资源咨询请求',
+      brandSub: '运营控制台',
+      navProduct: '产品',
+      navSolutions: '解决方案',
+      navResources: '资源',
+      navPlans: '版本方案',
+      navContact: '联系',
+      langSwitcher: '语言',
+      ctaDemo: '预约演示',
+      ctaTop: '开始试用',
+      heroEyebrow: '联系中心',
+      heroTitle: '开始 Sampora 试用或预约演示。',
+      heroSub: '提交请求后，我们会根据你的在线样本运营场景，跟进试用权限、演示路径或销售支持。',
+      formKicker: '联系表单',
+      formTitle: '提交请求',
+      formIntro: '提交一个可对接后端的请求，用于试用开通、演示预约、销售跟进、企业方案或资源咨询。',
+      bullet1: '页面会保留 URL 中的 contact intent，确保请求路由清晰。',
+      bullet2: '必填字段覆盖姓名、邮箱、公司、角色、业务类型和消息。',
+      bullet3: '隐藏字段会保留来源页面、区域、方案和语言，便于后端接收。',
+      bullet4: '只有真实后端接受请求后，页面才会显示最终成功状态。',
+      cardHelpTitle: '资源中心',
+      cardHelpCta: '查看手册',
       nameLabel: '姓名*',
       companyLabel: '公司*',
       emailLabel: '邮箱*',
       roleLabel: '角色 / 业务类型*',
       businessTypeLabel: '本次请求类型*',
+      msgLabel: '消息',
+      namePlaceholder: '你的姓名',
+      companyPlaceholder: '公司或团队名称',
+      emailPlaceholder: 'name@company.com',
+      messagePlaceholder: '请说明你的在线样本运营、供应商网络或演示需求。',
       rolePh: '请选择角色',
       businessTypePh: '请选择请求意图',
-      rolePanel: 'Panel Provider',
-      roleSupplier: 'Sample Supplier',
-      roleAggregator: 'Sample Aggregator',
-      roleStation: 'Survey Station / Execution Unit',
-      roleSubcontractor: 'Research Subcontractor',
-      roleApi: 'API-connected Supplier',
+      rolePanel: '自有 Panel 供应商',
+      roleSupplier: '样本供应商',
+      roleAggregator: '样本聚合商',
+      roleStation: '调查站 / 执行单元',
+      roleSubcontractor: '调研分包执行团队',
+      roleApi: 'API 对接供应商',
       roleOther: '其他',
       businessTrial: '开始试用',
       businessDemo: '预约演示',
       businessSales: '联系销售',
       businessEnterprise: '企业方案',
-      businessResource: '资料咨询',
-      formKicker: '联系表单',
-      formTitle: '提交请求',
-      formIntro: '提交一个可对接后端的请求，并在接口接通前保持保守状态。',
-      bullet1: 'URL 中的 intent 会被保留，方便明确路由。',
-      bullet2: '必填字段覆盖姓名、邮箱、公司、角色、业务类型和消息。',
-      bullet3: '隐藏字段保留来源页面、区域、方案和语言，便于后端接收。',
-      bullet4: '在真实后端接入前，页面只展示待接入状态。',
+      businessResource: '资源咨询',
+      submit: '提交请求',
       privacy: '只有在后端真实成功响应后，才会显示最终成功状态。',
-      toastTitle: '后端待接入',
-      toastText: '表单已准备好对接后端，目前保持待接入状态。',
-      successTitle: '请求已提交',
-      successText: '你的请求已提交。我们的销售团队会根据你的业务场景，跟进试用权限或演示路径。',
-      failureTitle: '提交失败',
-      failureText: '提交失败，请检查信息后稍后再试。',
       nextStep: '下一步',
       responseTitle: '提交后会发生什么？',
       responseSub: '表单已为后端跟进做好准备。在接口上线前，页面只展示保守的待接入状态。',
       responseCard1Title: '保留明确路由',
       responseCard2Title: '保留来源上下文',
       responseCard3Title: '保持结果保守',
-      response1: '请求会保留 URL intent，方便区分试用、演示、销售、企业和资料咨询。',
+      response1: '请求会保留 URL intent，方便区分试用、演示、销售、企业和资源咨询。',
       response2: '隐藏字段会保留来源页面、区域、方案和语言，供后端处理。',
-      response3: '只有在真实后端响应后，前端才会显示完成交付的状态。'
+      response3: '只有在真实后端响应后，前端才会显示完成交付的状态。',
+      footerDesc: 'Sampora 是面向自有 Panel 供应商与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',
+      tag1: '样本供给',
+      tag2: '审核流程',
+      tag3: '结算台账',
+      footerProduct: '产品',
+      footerSupport: '产品支持',
+      footerContact: '联系',
+      cardSupportTitle: '查看手册',
+      cardCommunityTitle: '联系销售',
+      footerContactSales: '联系销售',
+      addressText: '中国安徽省六安市恒阳广场 A 座 1506 室',
+      footerCopyright: '© 2026',
+      footerCompanyLegal: '安徽省嘉禹企业服务有限公司',
+      toastTitle: '后端待接入',
+      toastText: '表单已准备好对接后端，目前保持待接入状态。',
+      successTitle: '请求已提交',
+      successText: '你的请求已提交。销售团队会根据你的业务场景，跟进试用权限或演示路径。',
+      failureTitle: '提交失败',
+      failureText: '提交失败，请检查信息后稍后再试。'
     },
     hi: {
-      submit: 'अनुरोध सबमिट करें',
-      privacy: 'यह फ़ॉर्म backend submission के लिए तैयार है। वास्तविक endpoint जुड़ने तक केवल pending placeholder state दिखेगी, final handoff का दावा नहीं किया जाएगा।',
+      topLine: 'संपर्क केंद्र / लाइव',
+      topRight: 'ट्रायल, डेमो, बिक्री और संसाधन अनुरोध',
+      brandSub: 'संचालन कंसोल',
+      navProduct: 'उत्पाद',
+      navSolutions: 'समाधान',
+      navResources: 'संसाधन',
+      navPlans: 'योजनाएं',
+      navContact: 'संपर्क',
+      langSwitcher: 'भाषा',
+      ctaDemo: 'डेमो बुक करें',
+      ctaTop: 'ट्रायल शुरू करें',
+      heroEyebrow: 'संपर्क केंद्र',
+      heroTitle: 'Sampora का ट्रायल शुरू करें या डेमो बुक करें।',
+      heroSub: 'अपना अनुरोध भेजें; हमारी बिक्री टीम आपके ऑनलाइन नमूना संचालन के अनुसार ट्रायल पहुंच या डेमो मार्ग पर आगे बढ़ेगी।',
+      formKicker: 'संपर्क फ़ॉर्म',
+      formTitle: 'अनुरोध सबमिट करें',
+      formIntro: 'ट्रायल, डेमो, बिक्री, एंटरप्राइज योजना या संसाधन मार्गदर्शन के लिए बैकएंड-तैयार अनुरोध भेजें।',
+      bullet1: 'URL intent सुरक्षित रहता है, ताकि अनुरोध सही मार्ग से जाए।',
+      bullet2: 'ज़रूरी फ़ील्ड में नाम, ईमेल, कंपनी, भूमिका, व्यवसाय प्रकार और संदेश शामिल हैं।',
+      bullet3: 'छिपे हुए फ़ील्ड स्रोत पेज, सेक्शन, प्लान और भाषा को बैकएंड सुपुर्दगी के लिए सुरक्षित रखते हैं।',
+      bullet4: 'जब तक वास्तविक backend अनुरोध स्वीकार नहीं करता, पेज केवल प्रतीक्षा स्थिति दिखाता है।',
+      cardHelpTitle: 'संसाधन केंद्र',
+      cardHelpCta: 'मैनुअल देखें',
       nameLabel: 'नाम*',
       companyLabel: 'कंपनी*',
       emailLabel: 'ईमेल*',
-      roleLabel: 'भूमिका / business type*',
+      roleLabel: 'भूमिका / व्यवसाय प्रकार*',
       businessTypeLabel: 'यह अनुरोध किस लिए है?*',
+      msgLabel: 'संदेश',
+      namePlaceholder: 'आपका नाम',
+      companyPlaceholder: 'कंपनी या टीम का नाम',
+      emailPlaceholder: 'name@company.com',
+      messagePlaceholder: 'अपने नमूना संचालन, Supplier Network या डेमो जरूरतों के बारे में बताएं।',
       rolePh: 'अपनी भूमिका चुनें',
-      businessTypePh: 'Request intent चुनें',
-      rolePanel: 'Panel Provider',
-      roleSupplier: 'Sample Supplier',
-      roleAggregator: 'Sample Aggregator',
-      roleStation: 'Survey Station / Execution Unit',
-      roleSubcontractor: 'Research Subcontractor',
-      roleApi: 'API-connected Supplier',
+      businessTypePh: 'अनुरोध का उद्देश्य चुनें',
+      rolePanel: 'पैनल प्रदाता / अपना पैनल संचालक',
+      roleSupplier: 'नमूना आपूर्तिकर्ता / नमूना आपूर्ति टीम',
+      roleAggregator: 'नमूना एग्रीगेटर / नमूना स्रोत समेकक',
+      roleStation: 'सर्वे स्टेशन / निष्पादन इकाई',
+      roleSubcontractor: 'शोध उप-ठेका टीम',
+      roleApi: 'API से जुड़ा आपूर्तिकर्ता',
       roleOther: 'अन्य',
-      businessTrial: 'Start trial',
-      businessDemo: 'Book a demo',
-      businessSales: 'Contact sales',
-      businessEnterprise: 'Enterprise plan',
-      businessResource: 'Resources consult',
-      formKicker: 'CONTACT FORM',
-      formTitle: 'अनुरोध सबमिट करें',
-      formIntro: 'Backend-ready request भेजें और endpoint जुड़ने तक status को conservative रखें।',
-      bullet1: 'URL intent बना रहता है, ताकि routing स्पष्ट रहे।',
-      bullet2: 'Mandatory fields में name, email, company, role, business type और message शामिल हैं।',
-      bullet3: 'Hidden fields source page, section, plan और language को backend handoff के लिए सुरक्षित रखते हैं।',
-      bullet4: 'Real backend के बिना final success message नहीं दिखाया जाएगा।',
-      privacy: 'Final success केवल तब दिखेगा जब backend वास्तविक रूप से सफल response दे।',
-      toastTitle: 'Backend placeholder',
-      toastText: 'Form backend wiring के लिए तैयार है और अभी pending state में है।',
-      successTitle: 'Request submitted',
-      successText: 'Your request has been submitted. Our sales team will review your setup and follow up with trial access or a demo path.',
-      failureTitle: 'Submission failed',
-      failureText: 'Submission failed. Please check your details or try again later.',
-      nextStep: 'NEXT STEP',
-      responseTitle: 'Submission के बाद क्या होगा?',
-      responseSub: 'Form backend follow-up के लिए तैयार है। Endpoint live होने तक केवल conservative placeholder state दिखती है।',
-      responseCard1Title: 'Routing स्पष्ट रखें',
-      responseCard2Title: 'Source context सुरक्षित रखें',
-      responseCard3Title: 'Outcome conservative रखें',
-      response1: 'URL intent start trial, demo, sales, enterprise और resource inquiries को अलग रखता है।',
-      response2: 'Hidden fields source page, section, plan और language को backend के लिए सुरक्षित रखते हैं।',
-      response3: 'Real backend response मिलने तक frontend completed handoff का दावा नहीं करेगा।'
+      businessTrial: 'ट्रायल शुरू करें',
+      businessDemo: 'डेमो बुक करें',
+      businessSales: 'बिक्री टीम से संपर्क',
+      businessEnterprise: 'एंटरप्राइज योजना',
+      businessResource: 'संसाधन परामर्श',
+      submit: 'अनुरोध सबमिट करें',
+      privacy: 'अंतिम सफलता संदेश केवल तब दिखेगा जब बैकएंड वास्तव में सफल उत्तर देगा।',
+      nextStep: 'अगला चरण',
+      responseTitle: 'सबमिशन के बाद क्या होगा?',
+      responseSub: 'फ़ॉर्म बैकएंड अनुवर्ती कार्रवाई के लिए तैयार है। एंडपॉइंट लाइव होने तक पेज केवल सुरक्षित प्रतीक्षा स्थिति दिखाता है।',
+      responseCard1Title: 'रूटिंग स्पष्ट रखें',
+      responseCard2Title: 'स्रोत संदर्भ सुरक्षित रखें',
+      responseCard3Title: 'परिणाम पर दावा न करें',
+      response1: 'अनुरोध URL intent को सुरक्षित रखता है, ताकि ट्रायल, डेमो, बिक्री, एंटरप्राइज और संसाधन पूछताछ अलग रहें।',
+      response2: 'छिपे हुए फ़ील्ड स्रोत पेज, सेक्शन, प्लान और भाषा को बैकएंड प्रोसेसिंग के लिए उपलब्ध रखते हैं।',
+      response3: 'वास्तविक बैकएंड उत्तर मिलने तक फ़्रंटएंड पूरी सुपुर्दगी होने का दावा नहीं करता।',
+      footerDesc: 'Sampora, Panel Provider और Sample Supplier के लिए ऑनलाइन नमूना संचालन प्लेटफ़ॉर्म है, जो परियोजना वितरण, Supplier Allocation, समीक्षा रिकॉर्ड, वित्त, जोखिम नियंत्रण और Partner Network को साथ रखता है।',
+      tag1: 'नमूना आपूर्ति',
+      tag2: 'समीक्षा प्रक्रिया',
+      tag3: 'सेटलमेंट लेजर',
+      footerProduct: 'उत्पाद',
+      footerSupport: 'उत्पाद सहायता',
+      footerContact: 'संपर्क',
+      cardSupportTitle: 'मैनुअल देखें',
+      cardCommunityTitle: 'बिक्री टीम से बात करें',
+      footerContactSales: 'बिक्री टीम से संपर्क',
+      addressText: 'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',
+      footerCopyright: '© 2026',
+      footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.',
+      toastTitle: 'बैकएंड प्रतीक्षा स्थिति',
+      toastText: 'फ़ॉर्म बैकएंड से जोड़ने के लिए तैयार है और अभी प्रतीक्षा स्थिति में है।',
+      successTitle: 'अनुरोध सबमिट हुआ',
+      successText: 'आपका अनुरोध सबमिट हो गया है। हमारी बिक्री टीम आपकी सेटअप जानकारी देखकर ट्रायल पहुंच या डेमो मार्ग पर आगे बढ़ेगी।',
+      failureTitle: 'सबमिशन विफल रहा',
+      failureText: 'सबमिशन विफल रहा। कृपया जानकारी जांचें या थोड़ी देर बाद फिर कोशिश करें।'
     }
   };
+  window.__samporaContactTranslations = texts;
+  var langLabels = {
+    en: { en: 'EN', zh: '中文', hi: 'हिन्दी' },
+    zh: { en: 'EN', zh: '中文', hi: 'हिन्दी' },
+    hi: { en: 'EN', zh: '中文', hi: 'हिन्दी' }
+  };
+  function safeLang(lang){
+    var value = String(lang || '').toLowerCase();
+    if (value.indexOf('zh') === 0) return 'zh';
+    if (value.indexOf('hi') === 0) return 'hi';
+    return value === 'en' ? 'en' : 'en';
+  }
+  function savedLang(){
+    try {
+      var saved = localStorage.getItem('sampora_lang');
+      return saved === 'zh' || saved === 'hi' || saved === 'en' ? saved : '';
+    } catch (e) {
+      return '';
+    }
+  }
+  function currentLang(){
+    return safeLang(qs.get('lang') || savedLang() || document.documentElement.dataset.lang || (document.body && document.body.dataset ? document.body.dataset.lang : '') || document.documentElement.lang || 'en');
+  }
+  function syncHiddenLang(lang){
+    var field = $('#langField');
+    if (field) field.value = safeLang(lang);
+  }
+  function apply(lang){
+    lang = safeLang(lang);
+    var copy = texts[lang] || texts.en;
+    document.documentElement.dataset.lang = lang;
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'hi' ? 'hi' : 'en';
+    if (document.body) document.body.dataset.lang = lang;
+    $$('.lang button[data-lang]').forEach(function(btn){
+      btn.textContent = (langLabels[lang] || langLabels.en)[btn.dataset.lang] || btn.textContent;
+      var active = btn.dataset.lang === lang;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    $$('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if (Object.prototype.hasOwnProperty.call(copy, key)) el.textContent = copy[key];
+    });
+    $$('[data-i18n-aria-label]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-aria-label');
+      if (Object.prototype.hasOwnProperty.call(copy, key)) el.setAttribute('aria-label', copy[key]);
+    });
+    syncHiddenLang(lang);
+    try { localStorage.setItem('sampora_lang', lang); } catch (e) {}
+    return lang;
+  }
+  window.__samporaContactApplyLanguage = apply;
+  function syncTopChrome(){
+    var compact = window.scrollY > 56;
+    var mast = document.querySelector('.mast');
+    if (mast) mast.classList.toggle('compact', compact);
+    document.body.classList.toggle('nav-condensed', compact);
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    apply(currentLang());
+    $$('.lang button[data-lang]').forEach(function(btn){ btn.addEventListener('click', function(){ apply(btn.dataset.lang); }); });
+    syncTopChrome();
+    window.addEventListener('scroll', syncTopChrome, { passive: true });
+  });
+  window.addEventListener('sampora:languagechange', function(event){
+    apply(event.detail && event.detail.lang);
+  });
+})();
+</script>
+<script src="assets/i18n-sweep.js"></script>
+<script>
+(function () {
+  const translations = window.__samporaContactTranslations || {};
 
   const qs = new URLSearchParams(location.search);
   const intentMap = {
@@ -1545,21 +1688,34 @@ body{padding-top:100px}
   const form = document.getElementById('contactForm');
   if (!form) return;
 
-  const currentPageLang = () => (document.documentElement.dataset.lang || document.documentElement.lang || 'en').slice(0, 2);
-  const safeLang = (value) => ['en', 'zh', 'hi'].includes(value) ? value : 'en';
-  const lang = safeLang(qs.get('lang') || currentPageLang());
-  const copy = translations[lang] || translations.en;
+  const safeLang = (value) => {
+    const lang = String(value || '').toLowerCase();
+    if (lang.startsWith('zh')) return 'zh';
+    if (lang.startsWith('hi')) return 'hi';
+    return lang === 'en' ? 'en' : 'en';
+  };
+  const savedLang = () => {
+    try {
+      const saved = localStorage.getItem('sampora_lang');
+      return ['en', 'zh', 'hi'].includes(saved) ? saved : '';
+    } catch (e) {
+      return '';
+    }
+  };
+  const currentPageLang = () => safeLang(document.documentElement.dataset.lang || document.body?.dataset.lang || document.documentElement.lang || 'en');
+  let activeLang = safeLang(qs.get('lang') || savedLang() || currentPageLang());
+  let copy = translations[activeLang] || translations.en || {};
   const intent = intentMap[qs.get('intent')] || 'contact_sales';
   const explicitPlan = qs.get('plan');
   const sourcePage = qs.get('source_page') || 'contact.html';
   const sourceSection = qs.get('source_section') || 'contact-form';
   const backendEndpoint = form.getAttribute('data-endpoint') || form.getAttribute('action') || '[BACKEND_CONTACT_ENDPOINT]';
   const isPlaceholder = backendEndpoint.includes('[BACKEND_CONTACT_ENDPOINT]');
+  const businessSelect = document.getElementById('business_type');
 
   function resolvePlan() {
     if (explicitPlan) return explicitPlan;
     if (intent === 'enterprise_demo') return 'enterprise';
-    const businessSelect = document.getElementById('business_type');
     return businessSelect && businessSelect.value ? businessSelect.value : '';
   }
 
@@ -1568,40 +1724,44 @@ body{padding-top:100px}
     document.getElementById('sourcePageField').value = sourcePage;
     document.getElementById('sourceSectionField').value = sourceSection;
     document.getElementById('planField').value = resolvePlan();
-    document.getElementById('langField').value = safeLang(qs.get('lang') || currentPageLang());
+    document.getElementById('langField').value = currentPageLang();
   }
-  setHiddenFields();
 
   const labelMap = ['nameLabel', 'companyLabel', 'emailLabel', 'roleLabel', 'businessTypeLabel', 'msgLabel'];
   const labels = form.querySelectorAll('label');
-  labels.forEach((label, idx) => { if (copy[labelMap[idx]]) label.textContent = copy[labelMap[idx]]; });
 
   const place = (id, key) => { const el = document.getElementById(id); if (el && copy[key]) el.placeholder = copy[key]; };
-  place('name', 'nameLabel');
-  place('company', 'companyLabel');
-  place('email', 'emailLabel');
-  place('message', 'privacy');
 
   const submit = form.querySelector('button[type="submit"]');
-  if (submit && copy.submit) submit.textContent = copy.submit;
   const privacy = form.querySelector('.privacy');
-  if (privacy && copy.privacy) privacy.textContent = copy.privacy;
 
   const optionText = {
     role: ['rolePh','rolePanel','roleSupplier','roleAggregator','roleStation','roleSubcontractor','roleApi','roleOther'],
     business: ['businessTypePh','businessTrial','businessDemo','businessSales','businessEnterprise','businessResource']
   };
   const roleOptions = document.querySelectorAll('#role option');
-  roleOptions.forEach((opt, i) => { if (copy[optionText.role[i]]) opt.textContent = copy[optionText.role[i]]; });
   const bizOptions = document.querySelectorAll('#business_type option');
-  bizOptions.forEach((opt, i) => { if (copy[optionText.business[i]]) opt.textContent = copy[optionText.business[i]]; });
-  const businessSelect = document.getElementById('business_type');
-  if (businessSelect && Array.from(businessSelect.options).some(opt => opt.value === intent)) businessSelect.value = intent;
-  setHiddenFields();
 
-  ['formKicker','formTitle','formIntro','bullet1','bullet2','bullet3','bullet4','nextStep','responseTitle','responseSub','responseCard1Title','responseCard2Title','responseCard3Title','response1','response2','response3'].forEach(key => {
-    document.querySelectorAll('[data-i18n="' + key + '"]').forEach(el => { if (copy[key]) el.textContent = copy[key]; });
-  });
+  function applyRuntimeCopy(nextLang) {
+    activeLang = safeLang(nextLang || currentPageLang());
+    copy = translations[activeLang] || translations.en || {};
+    labels.forEach((label, idx) => { if (copy[labelMap[idx]]) label.textContent = copy[labelMap[idx]]; });
+    place('name', 'namePlaceholder');
+    place('company', 'companyPlaceholder');
+    place('email', 'emailPlaceholder');
+    place('message', 'messagePlaceholder');
+    if (submit && copy.submit) submit.textContent = copy.submit;
+    if (privacy && copy.privacy) privacy.textContent = copy.privacy;
+    roleOptions.forEach((opt, i) => { if (copy[optionText.role[i]]) opt.textContent = copy[optionText.role[i]]; });
+    bizOptions.forEach((opt, i) => { if (copy[optionText.business[i]]) opt.textContent = copy[optionText.business[i]]; });
+    const selectedRequest = businessSelect && businessSelect.value ? businessSelect.value : intent;
+    if (businessSelect && Array.from(businessSelect.options).some(opt => opt.value === selectedRequest)) businessSelect.value = selectedRequest;
+    if (window.__samporaContactApplyLanguage) window.__samporaContactApplyLanguage(activeLang);
+    setHiddenFields();
+  }
+  applyRuntimeCopy(activeLang);
+  window.addEventListener('sampora:languagechange', event => applyRuntimeCopy(event.detail && event.detail.lang));
+  document.addEventListener('DOMContentLoaded', () => applyRuntimeCopy(currentPageLang()));
 
   const toast = document.getElementById('toast');
   const toastSuccess = document.getElementById('toastSuccess');

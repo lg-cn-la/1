@@ -1362,6 +1362,46 @@
             margin-bottom: 4px
         }
 
+        .mode-fit-card {
+            margin-top: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 16px;
+            border: 1px solid rgba(56, 210, 255, .16);
+            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(56, 210, 255, .08), rgba(14, 27, 47, .42));
+        }
+
+        .mode-fit-copy {
+            min-width: 0;
+        }
+
+        .mode-fit-card h4 {
+            margin: 0;
+            color: var(--fg);
+            font-size: 16px;
+            line-height: 1.25;
+            letter-spacing: -.01em;
+        }
+
+        .mode-fit-tags {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 30px;
+            padding: 0 12px;
+            border: 1px solid rgba(129, 178, 214, .13);
+            border-radius: 999px;
+            background: rgba(6, 16, 31, .34);
+            color: var(--cyan2);
+            font: 800 11px/1 var(--mono);
+            letter-spacing: .02em;
+            white-space: nowrap;
+        }
+
         .surfaces-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1742,6 +1782,21 @@
             .topo-stage {
                 height: 240px
             }
+
+            .playbook-grid,
+            .mini-proof {
+                grid-template-columns: 1fr
+            }
+
+            .mode-fit-card {
+                align-items: flex-start;
+                flex-direction: column
+            }
+
+            .mode-fit-tags {
+                flex-wrap: wrap;
+                white-space: normal
+            }
         }
 
         html[lang="zh-CN"] body {
@@ -1799,6 +1854,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
         html[lang="hi"] .surface-card,
         html[lang="hi"] .check-item,
         html[lang="hi"] .mini-proof,
+        html[lang="hi"] .mode-fit-card,
         html[lang="hi"] .cta-final,
         html[lang="hi"] footer {
             line-height: 1.72;
@@ -1912,6 +1968,25 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   .status,.mast,.mast .inner{transition:transform .26s var(--ease),opacity .22s var(--ease),height .26s var(--ease),top .26s var(--ease),background .26s var(--ease),box-shadow .26s var(--ease),border-color .26s var(--ease)}
   body.nav-condensed .status{transform:translateY(-100%);opacity:0;pointer-events:none;border-bottom-color:transparent;overflow:hidden}
   body.nav-condensed .mast{top:0!important;background:rgba(5,13,25,.92);box-shadow:0 18px 44px rgba(0,0,0,.28),0 1px 0 rgba(56,210,255,.08)}
+}
+/* Sampora current responsive footer fixes */
+@media(max-width:1180px) and (min-width:761px){
+  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
+  .sampora-footer-main{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:30px 34px!important;padding:36px 34px 32px!important}
+  .sampora-footer-brand{grid-column:1/-1!important;width:100%!important;max-width:none!important;justify-self:stretch!important}
+  .sampora-footer-brand p{max-width:760px!important}
+  .sampora-footer-badges{max-width:760px!important}
+  .sampora-footer-col{min-width:0!important}
+  .sampora-footer-col a{overflow-wrap:anywhere!important}
+  .sampora-footer-contact-item{min-width:0!important;padding:18px 28px!important}
+}
+@media(max-width:760px){
+  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
+  .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}
+  .sampora-footer-brand{grid-column:auto!important}
+  .sampora-footer-brand p,
+  .sampora-footer-col a,
+  .sampora-footer-contact-item{overflow-wrap:anywhere!important}
 }
 </style>
 </head>
@@ -2133,6 +2208,12 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <h3 data-i18n="proofTitle"></h3>
 <p data-i18n="proofText"></p>
 <div class="mini-proof" id="proofGrid"></div>
+<div class="mode-fit-card">
+<div class="mode-fit-copy">
+<h4 data-i18n="modeFitTitle">One path, three operating modes</h4>
+</div>
+<div aria-label="Sampora operating modes" class="mode-fit-tags" data-i18n="modeFitTags">Panel · Supplier Network · Enterprise</div>
+</div>
 </div>
 </div>
 </div>
@@ -2222,8 +2303,10 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "setupTitle": "Follow the <em>delivery-to-settlement</em> playbook path.",
                         "setupText": "Follow a practical path from setup and project intake to supplier coordination, review, settlement, and team onboarding.",
                         "proofKicker": "BACKEND EVIDENCE",
-                        "proofTitle": "Each guide is based on observed backend entries and documented product positioning.",
-                        "proofText": "Use Project, Supplier, Hybrid API, Settlement and Records guides to understand how operational data moves through Sampora. Advanced allocation and Partner Network details should be validated during implementation.",
+                        "proofTitle": "Each path is grounded in real operating records and product workflows.",
+                        "proofText": "Use project, supplier, API, settlement, and records views to keep delivery decisions traceable from setup to finance.",
+                        "modeFitTitle": "One path, three operating modes",
+                        "modeFitTags": "Panel · Supplier Network · Enterprise",
                         "surfaceKicker": "RESOURCE ENTRIES",
                         "surfaceTitle": "Three stable resource entries, <em>one operating hub.</em>",
                         "surfaceText": "Start with manuals, rollout notes, and implementation references before moving into detailed guides.",
@@ -2321,12 +2404,14 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "setupTitle": "按照<em>交付到结算</em>的手册路径学习。",
                         "setupText": "按照配置、项目接收、供应商协同、审核、结算和团队上线步骤，快速找到需要的操作资料。",
                         "proofKicker": "后台证据",
-                        "proofTitle": "每一份指南都基于已观察到的后台入口和既有产品定位。",
-                        "proofText": "通过项目、供应商、Hybrid API、结算和记录指引，了解运营数据如何在 Sampora 中流转。高级分配和 Partner Network 细节应在实施阶段再次确认。",
+                        "proofTitle": "每条路径都基于真实运营记录和产品工作流。",
+                        "proofText": "通过项目、供应商、API、结算和记录视图，让交付决策从配置到财务都可追溯。",
+                        "modeFitTitle": "一条路径，三种运营模式",
+                        "modeFitTags": "Panel · Supplier Network · Enterprise",
                         "surfaceKicker": "资源入口",
                         "surfaceTitle": "三个稳定资源入口，<em>一个运营资料中心。</em>",
                         "surfaceText": "先从手册、上线说明和实施参考进入，再查看更细的指南内容。",
-                        "footerDesc": "面向 Panel Provider、样本供应商和调研分包团队的在线样本运营平台。",
+                        "footerDesc": "面向自有 Panel 供应商、样本供应商和调研分包执行团队的在线样本运营平台。",
                         "footerCol1": "产品支持",
                         "footerHelp": "操作手册",
                         "footerGuide": "运营手册",
@@ -2378,8 +2463,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             },
             "hi": {
                         "statusLive": "संसाधन केंद्र · लाइव",
-                        "statusA": "बैकएंड इंटरफ़ेस प्रवेश गाइड",
-                        "statusB": "प्रोजेक्ट · सप्लायर · API · निपटान · साझेदार संसाधन",
+                        "statusA": "बैकएंड मानचित्र से इंटरफ़ेस प्रवेश गाइड",
+                        "statusB": "प्रोजेक्ट · सप्लायर · API · निपटान · Partner Network",
                         "statusRight": "गोपनीयता प्रक्रिया समर्थन · ऑडिट लॉग · निपटान रिकॉर्ड",
                         "brandSub": "संचालन कंसोल",
                         "brandSub2": "संचालन कंसोल",
@@ -2388,17 +2473,17 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "navResources": "संसाधन",
                         "navPricing": "संस्करण योजना",
                         "navContact": "संपर्क करें",
-                        "headerBookDemo": "Demo book करें",
-                        "headerStartTrial": "Trial start करें",
+                        "headerBookDemo": "डेमो बुक करें",
+                        "headerStartTrial": "ट्रायल शुरू करें",
                         "heroKicker": "संसाधन · इंटरफ़ेस गाइड",
-                        "heroTitle": "<em>online sample operations</em> के लिए संसाधन केंद्र।",
-                        "heroSub": "Sample delivery teams के लिए operator manuals, regional rollout notes, और implementation references खोजें।",
+                        "heroTitle": "<em>ऑनलाइन सैंपल संचालन</em> के लिए संसाधन केंद्र।",
+                        "heroSub": "सैंपल डिलीवरी टीमों के लिए ऑपरेटर मैनुअल, क्षेत्रीय रोलआउट नोट्स और कार्यान्वयन संदर्भ खोजें।",
                         "heroCta1": "मैनुअल देखें →", 
                         "heroCta2": "रोलआउट नोट्स पढ़ें →",
-                        "metric1": "manual sets",
-                        "metric2": "regional notes",
-                        "metric3": "implementation references",
-                        "consoleCrumb": "संसाधन / बैकएंड मैप / लाइव",
+                        "metric1": "मैनुअल सेट",
+                        "metric2": "क्षेत्रीय नोट्स",
+                        "metric3": "कार्यान्वयन संदर्भ",
+                        "consoleCrumb": "संसाधन / बैकएंड मानचित्र / लाइव",
                         "topologyTitle": "दस्तावेज़ संचालन मानचित्र",
                         "legendA": "गाइड पथ",
                         "legendB": "नियंत्रण बिंदु",
@@ -2418,25 +2503,27 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "nodeEvd": "रिकॉर्ड",
                         "setupKicker": "संचालन पथ",
                         "setupTitle": "<em>डिलीवरी से निपटान</em> तक मैनुअल पथ देखें।",
-                        "setupText": "Setup, project intake, supplier coordination, review, settlement और team onboarding के लिए जरूरी guides जल्दी खोजें।",
+                        "setupText": "सेटअप, प्रोजेक्ट प्राप्ति, सप्लायर समन्वय, समीक्षा, निपटान और टीम ऑनबोर्डिंग के लिए जरूरी गाइड जल्दी खोजें।",
                         "proofKicker": "बैकएंड प्रमाण",
-                        "proofTitle": "हर गाइड observed backend entries और documented product positioning पर आधारित है।",
-                        "proofText": "Project, Supplier, Hybrid API, Settlement और Records guides से समझें कि operational data Sampora में कैसे चलता है। Advanced allocation और Partner Network details को implementation के दौरान validate करें।",
+                        "proofTitle": "हर पथ वास्तविक संचालन रिकॉर्ड और उत्पाद वर्कफ़्लो पर आधारित है।",
+                        "proofText": "प्रोजेक्ट, सप्लायर, API, निपटान और रिकॉर्ड व्यू से setup से finance तक delivery decisions traceable रखें।",
+                        "modeFitTitle": "एक पथ, तीन संचालन मोड",
+                        "modeFitTags": "Panel · Supplier Network · Enterprise",
                         "surfaceKicker": "संसाधन प्रवेश",
                         "surfaceTitle": "तीन स्थिर संसाधन प्रवेश, <em>एक संचालन केंद्र में।</em>",
-                        "surfaceText": "Manuals, rollout notes, और implementation references से शुरू करें, फिर detailed guides देखें.",
-                        "footerDesc": "पैनल providers, sample suppliers और research subcontracting teams के लिए online sample operations platform।",
+                        "surfaceText": "मैनुअल, रोलआउट नोट्स और कार्यान्वयन संदर्भ से शुरू करें, फिर विस्तृत गाइड देखें।",
+                        "footerDesc": "Panel Provider, Sample Supplier और शोध उप-ठेका टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।",
                         "footerCol1": "उत्पाद समर्थन",
-                        "footerHelp": "Operator manuals",
-                        "footerGuide": "Operations manuals",
-                        "footerFeedback": "Contact sales",
+                        "footerHelp": "ऑपरेटर मैनुअल",
+                        "footerGuide": "संचालन मैनुअल",
+                        "footerFeedback": "सेल्स से बात करें",
                         "footerCol2": "कंपनी जानकारी",
                         "footerAbout": "हमारे बारे में",
-                        "footerHistory": "Implementation roadmap",
-                        "footerContact": "Contact sales",
+                        "footerHistory": "कार्यान्वयन रोडमैप",
+                        "footerContact": "सेल्स से बात करें",
                         "footerCol3": "संसाधन",
-                        "footerTrial": "Start trial",
-                        "footerJoin": "Talk to sales",
+                        "footerTrial": "ट्रायल शुरू करें",
+                        "footerJoin": "सेल्स से बात करें",
                         "footerUpdates": "जानकारी अपडेट",
                         "footerAddress": "कमरा 1506, ए ब्लॉक, हेंगयांग गुआंगचेंग, लुआन, आन्हुई, चीन",
                         "footerCopyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
@@ -2455,7 +2542,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                                     "supplier": [
                                                 "सप्लायर",
                                                 "आवंटन",
-                                                "सप्लायर आवंटन और मूल्य नियंत्रण: सप्लायर असाइन करें, अनुपयुक्त सप्लाई ब्लॉक करें और कार्यक्षेत्र / API प्राप्ति प्रबंधित करें।",
+                                                "सप्लायर आवंटन और मूल्य नियंत्रण: चुने हुए सप्लायर जोड़ें, अनुपयुक्त आपूर्ति ब्लॉक करें और कार्यक्षेत्र / API प्राप्ति प्रबंधित करें।",
                                                 "सप्लायर",
                                                 "मूल्य नियंत्रण",
                                                 "कार्यक्षेत्र",
@@ -2667,7 +2754,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                                     [
                                                 "03",
                                                 "सप्लायर आवंटन और मूल्य नियंत्रण",
-                                                "चुने हुए सप्लायर असाइन करें, अनुपयुक्त सप्लायर ब्लॉक करें और सप्लायर-स्तरीय मूल्य सेट करें।"
+                                                "चुने हुए सप्लायर जोड़ें, अनुपयुक्त सप्लायर ब्लॉक करें और सप्लायर-स्तरीय मूल्य सेट करें।"
                                     ],
                                     [
                                                 "04",
@@ -2707,34 +2794,34 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                                     [
                                                 "GUIDE",
                                                 "कॉन्फ़िगरेशन गाइड",
-                                                "System setup, client/supplier configuration, risk settings और integration basics.",
+                                                "सिस्टम सेटअप, ग्राहक / सप्लायर कॉन्फ़िगरेशन, जोखिम सेटिंग और इंटीग्रेशन आधार।",
                                                 [
-                                                            "System setup",
-                                                            "Client / supplier configuration",
-                                                            "Risk settings",
-                                                            "Integration basics"
+                                                            "सिस्टम सेटअप",
+                                                            "ग्राहक / सप्लायर कॉन्फ़िगरेशन",
+                                                            "जोखिम सेटिंग",
+                                                            "इंटीग्रेशन आधार"
                                                 ]
                                     ],
                                     [
                                                 "OPS",
                                                 "ऑपरेशन मैनुअल",
-                                                "Project intake, supplier allocation, delivery tracking, review और settlement workflows.",
+                                                "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी ट्रैकिंग, समीक्षा और निपटान वर्कफ़्लो।",
                                                 [
-                                                            "Project intake",
-                                                            "Supplier allocation",
-                                                            "Delivery tracking",
-                                                            "Review and settlement"
+                                                            "प्रोजेक्ट प्राप्ति",
+                                                            "सप्लायर आवंटन",
+                                                            "डिलीवरी ट्रैकिंग",
+                                                            "समीक्षा और निपटान"
                                                 ]
                                     ],
                                     [
                                                 "ROLLOUT",
-                                                "Rollout Notes",
-                                                "Deployment notes, backend entry groups, role manuals और rollout checklist.",
+                                                "रोलआउट नोट्स",
+                                                "डिप्लॉयमेंट नोट्स, बैकएंड प्रवेश समूह, भूमिका मैनुअल और रोलआउट चेकलिस्ट।",
                                                 [
-                                                            "Deployment notes",
-                                                            "Backend entry groups",
-                                                            "Role manuals",
-                                                            "Rollout checklist"
+                                                            "डिप्लॉयमेंट नोट्स",
+                                                            "बैकएंड प्रवेश समूह",
+                                                            "भूमिका मैनुअल",
+                                                            "रोलआउट चेकलिस्ट"
                                                 ]
                                     ]
                         ]

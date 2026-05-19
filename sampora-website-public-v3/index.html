@@ -1237,7 +1237,7 @@
             color: var(--lime)
         }
 
-        @media(max-width:1000px) {
+        @media(max-width:1100px) {
             .modules {
                 grid-template-columns: 1fr 1fr
             }
@@ -2103,11 +2103,13 @@
         }
 
         .proof-panel .proof-stat strong {
-            color: var(--cyan2)
+            color: var(--cyan2);
+            font: 800 14px/1.2 var(--sans);
+            letter-spacing: -.01em
         }
 
-        .proof-stat.demo strong {
-            color: var(--saffron)
+        .proof-panel .proof-stat span {
+            font: 12.5px/1.55 var(--sans)
         }
 
         .reveal-card {
@@ -4014,6 +4016,40 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   .ribbon-inner,.chips{max-width:100%!important;min-width:0!important}
 }
 
+/* Sampora current responsive fixes */
+@media(max-width:1100px) and (min-width:721px){
+  .outcome-grid .outcome-card:last-child{grid-column:1/-1!important;min-height:190px}
+}
+@media(max-width:1100px) and (min-width:721px){
+  .modules .module:last-child{grid-column:1/-1!important;min-height:190px}
+  .modules .module:last-child p{max-width:62ch}
+}
+@media(max-width:720px){
+  .outcome-grid .outcome-card:last-child,
+  .modules .module:last-child{grid-column:auto!important}
+}
+@media(max-width:1180px) and (min-width:761px){
+  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
+  .sampora-footer-main{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:30px 34px!important;padding:36px 34px 32px!important}
+  .sampora-footer-brand{grid-column:1/-1!important;width:100%!important;max-width:none!important;justify-self:stretch!important}
+  .sampora-footer-brand p{max-width:760px!important}
+  .sampora-footer-badges{max-width:760px!important}
+  .sampora-footer-col{min-width:0!important}
+  .sampora-footer-col a{overflow-wrap:anywhere!important}
+  .sampora-footer-contact-item{min-width:0!important;padding:18px 28px!important}
+  .ribbon{overflow-x:hidden!important}
+  .ribbon-inner,
+  .chips{max-width:100%!important;min-width:0!important;overflow-x:hidden!important}
+  .chip{max-width:100%!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis}
+}
+@media(max-width:760px){
+  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
+  .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}
+  .sampora-footer-brand{grid-column:auto!important}
+  .sampora-footer-brand p,
+  .sampora-footer-col a,
+  .sampora-footer-contact-item{overflow-wrap:anywhere!important}
+}
 </style>
 </head>
 <body>
@@ -4392,45 +4428,43 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <article class="quote reveal-card">
 <div class="customer-top">
 <div class="anon-icon">SO</div>
-<div class="customer-meta"><strong data-i18n="customer1Name">Sample operations
-                                    manager</strong><span data-i18n="customer1Role">Project delivery lead</span></div>
+<div class="customer-meta"><strong data-i18n="customer1Name">Sample Operations
+                                    Manager</strong><span data-i18n="customer1Role">Project delivery lead</span></div>
 </div>
 <div class="type" data-i18n="customer1Type">Project delivery operations</div>
 <p data-i18n="customer1Quote">Needs one place to see project intake, supplier allocation,
                             delivery progress and review status before the client asks for an update.</p>
-<div class="impact" data-i18n="customer1Impact">Focus: intake -> allocation -> review</div>
+<div class="impact" data-i18n="customer1Impact">Focus: intake → allocation → review</div>
 </article>
 <article class="quote reveal-card">
 <div class="customer-top">
 <div class="anon-icon">SM</div>
-<div class="customer-meta"><strong data-i18n="customer2Name">Supplier manager</strong><span data-i18n="customer2Role">Supplier network operator</span></div>
+<div class="customer-meta"><strong data-i18n="customer2Name">Supplier Manager</strong><span data-i18n="customer2Role">Supplier network operator</span></div>
 </div>
 <div class="type" data-i18n="customer2Type">Supplier allocation &amp; pricing</div>
 <p data-i18n="customer2Quote">Needs to assign selected suppliers, block unsuitable suppliers,
                             set supplier-specific pricing and keep allocation logic explainable.</p>
-<div class="impact" data-i18n="customer2Impact">Focus: supplier control</div>
+<div class="impact" data-i18n="customer2Impact">Focus: allocation → pricing → control</div>
 </article>
 <article class="quote reveal-card">
 <div class="customer-top">
 <div class="anon-icon">FO</div>
-<div class="customer-meta"><strong data-i18n="customer3Name">Finance operator</strong><span data-i18n="customer3Role">Settlement and invoice owner</span></div>
+<div class="customer-meta"><strong data-i18n="customer3Name">Finance Operator</strong><span data-i18n="customer3Role">Settlement and invoice owner</span></div>
 </div>
-<div class="type">Finance &amp; settlement</div>
-<p>Needs project settlement, supplier bills, client invoices, payment status and finance logs
+<div class="type" data-i18n="customer3Type">Finance &amp; settlement</div>
+<p data-i18n="customer3Quote">Needs project settlement, supplier bills, client invoices, payment status and finance logs
                             connected to delivery evidence.</p>
-<div class="impact">Focus: bills and invoices</div>
+<div class="impact" data-i18n="customer3Impact">Focus: settlement → invoices → payment logs</div>
 </article>
 </div>
 <aside class="proof-panel reveal-card">
 <h3 data-i18n="proofPanelTitle">Built around operator workflows</h3>
 <p data-i18n="proofPanelText">See how operating teams coordinate delivery rules, supplier allocation, review evidence, settlement and reporting in one workflow.</p>
 <div class="proof-stats">
-<div class="proof-stat demo"><strong>Demo</strong><span>metric state until data is
-                                verified</span></div>
-<div class="proof-stat"><strong>3</strong><span>operating roles covered</span></div>
-<div class="proof-stat"><strong>1 loop</strong><span>intake -> allocate -> review -> settle</span>
-</div>
-<div class="proof-stat"><strong>IN</strong><span>traceability cues added</span></div>
+<div class="proof-stat"><strong data-i18n="proofNeed1Title">Project Setup</strong><span data-i18n="proofNeed1Text">Capture project demand, quotas, timelines, and launch rules before fieldwork starts.</span></div>
+<div class="proof-stat"><strong data-i18n="proofNeed2Title">Supplier Control</strong><span data-i18n="proofNeed2Text">Assign suppliers, block unsuitable partners, and manage supplier-specific pricing.</span></div>
+<div class="proof-stat"><strong data-i18n="proofNeed3Title">Delivery Verification</strong><span data-i18n="proofNeed3Text">Track progress, review signals, and exceptions before delivery moves forward.</span></div>
+<div class="proof-stat"><strong data-i18n="proofNeed4Title">Settlement Evidence</strong><span data-i18n="proofNeed4Text">Connect verified delivery to bills, invoices, payment status, and finance records.</span></div>
 </div>
 </aside>
 </div>
@@ -4573,18 +4607,21 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "chip5": "API <b>suppliers</b>",
           "contactSales": "Contact sales",
           "custom": "Custom",
-          "customer1Impact": "Focus: intake -> allocation -> review",
-          "customer1Name": "Sample operations manager",
+          "customer1Impact": "Focus: intake → allocation → review",
+          "customer1Name": "Sample Operations Manager",
           "customer1Quote": "Needs one place to see project intake, supplier allocation, delivery progress and review status before the client asks for an update.",
           "customer1Role": "Project delivery lead",
           "customer1Type": "Project delivery operations",
-          "customer2Impact": "Focus: supplier control",
-          "customer2Name": "Supplier manager",
+          "customer2Impact": "Focus: allocation → pricing → control",
+          "customer2Name": "Supplier Manager",
           "customer2Quote": "Needs to assign selected suppliers, block unsuitable suppliers, set supplier-specific pricing and keep allocation logic explainable.",
           "customer2Role": "Supplier network operator",
           "customer2Type": "Supplier allocation & pricing",
-          "customer3Name": "Finance operator",
+          "customer3Impact": "Focus: settlement → invoices → payment logs",
+          "customer3Name": "Finance Operator",
+          "customer3Quote": "Needs project settlement, supplier bills, client invoices, payment status and finance logs connected to delivery evidence.",
           "customer3Role": "Settlement and invoice owner",
+          "customer3Type": "Finance & settlement",
           "customersKicker": "05 / Role scenarios",
           "customersTitle": "Operating roles, <em>mapped to real workflow needs.</em>",
           "enterpriseRole": "For multi-team governance",
@@ -4670,8 +4707,16 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "product": "Product",
           "productSurfacesKicker": "04 / Product Surfaces",
           "productSurfacesTitle": "Three operating surfaces, <em>one platform story.</em>",
-          "proofPanelText": "Map each operating role to concrete workflow needs: delivery setup, supplier control, quality review, finance evidence and settlement visibility.",
-          "proofPanelTitle": "Operating roles and workflow needs",
+          "proofPanelText": "Sampora connects role-specific needs across project setup, supplier control, delivery verification, and settlement evidence.",
+          "proofPanelTitle": "Role needs, connected in one operating layer",
+          "proofNeed1Title": "Project Setup",
+          "proofNeed1Text": "Capture project demand, quotas, timelines, and launch rules before fieldwork starts.",
+          "proofNeed2Title": "Supplier Control",
+          "proofNeed2Text": "Assign suppliers, block unsuitable partners, and manage supplier-specific pricing.",
+          "proofNeed3Title": "Delivery Verification",
+          "proofNeed3Text": "Track progress, review signals, and exceptions before delivery moves forward.",
+          "proofNeed4Title": "Settlement Evidence",
+          "proofNeed4Text": "Connect verified delivery to bills, invoices, payment status, and finance records.",
           "quickAnswers": "Quick answers",
           "recommended": "Recommended",
           "resources": "Resources",
@@ -4761,18 +4806,21 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "chip5": "API <b>suppliers</b>",
           "contactSales": "Contact sales",
           "custom": "Custom",
-          "customer1Impact": "Focus: intake -> allocation -> review",
-          "customer1Name": "Sample operations manager",
-          "customer1Quote": "Needs one place to see project intake, supplier allocation, delivery progress and review status before the client asks for an update.",
-          "customer1Role": "Project delivery lead",
-          "customer1Type": "Project delivery operations",
-          "customer2Impact": "Focus: supplier control",
-          "customer2Name": "Supplier manager",
-          "customer2Quote": "Needs to assign selected suppliers, block unsuitable suppliers, set supplier-specific pricing and keep allocation logic explainable.",
-          "customer2Role": "Supplier network operator",
-          "customer2Type": "Supplier allocation & pricing",
-          "customer3Name": "Finance operator",
-          "customer3Role": "Settlement and invoice owner",
+          "customer1Impact": "关注：需求接收 → 分配 → 审核",
+          "customer1Name": "样本运营经理",
+          "customer1Quote": "需要在一个位置查看项目接收、供应商分配、交付进度和审核状态，先于客户追问掌握情况。",
+          "customer1Role": "项目交付负责人",
+          "customer1Type": "项目交付运营",
+          "customer2Impact": "关注：分配 → 定价 → 控制",
+          "customer2Name": "供应商经理",
+          "customer2Quote": "需要分配选定供应商、屏蔽不合适供应商、设置供应商级价格，并让分配逻辑可解释。",
+          "customer2Role": "供应商网络运营",
+          "customer2Type": "供应商分配与定价",
+          "customer3Impact": "关注：结算 → 发票 → 付款记录",
+          "customer3Name": "财务运营专员",
+          "customer3Quote": "需要把项目结算、供应商账单、客户发票、付款状态和财务日志连接到交付证据。",
+          "customer3Role": "结算与发票负责人",
+          "customer3Type": "财务与结算",
           "customersKicker": "05 / Role scenarios",
           "customersTitle": "Operating roles, <em>mapped to real workflow needs.</em>",
           "enterpriseRole": "For multi-team governance",
@@ -4858,8 +4906,16 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "product": "Product",
           "productSurfacesKicker": "04 / Product Surfaces",
           "productSurfacesTitle": "Three operating surfaces, <em>one platform story.</em>",
-          "proofPanelText": "Map each operating role to concrete workflow needs: delivery setup, supplier control, quality review, finance evidence and settlement visibility.",
-          "proofPanelTitle": "Operating roles and workflow needs",
+          "proofPanelText": "Sampora 将不同角色的具体需求连接到项目配置、供应商控制、交付核验和结算证据。",
+          "proofPanelTitle": "角色需求，连接在同一运营层",
+          "proofNeed1Title": "项目配置",
+          "proofNeed1Text": "在实地执行前记录项目需求、配额、时间线和上线规则。",
+          "proofNeed2Title": "供应商控制",
+          "proofNeed2Text": "分配供应商、屏蔽不合适的合作方，并管理供应商级价格。",
+          "proofNeed3Title": "交付核验",
+          "proofNeed3Text": "在交付继续推进前追踪进度、审核信号和异常情况。",
+          "proofNeed4Title": "结算证据",
+          "proofNeed4Text": "把已核验交付连接到账单、发票、付款状态和财务记录。",
           "quickAnswers": "Quick answers",
           "recommended": "Recommended",
           "resources": "Resources",
@@ -4949,18 +5005,21 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "chip5": "API <b>suppliers</b>",
           "contactSales": "Contact sales",
           "custom": "Custom",
-          "customer1Impact": "Focus: intake -> allocation -> review",
-          "customer1Name": "Sample operations manager",
-          "customer1Quote": "Needs one place to see project intake, supplier allocation, delivery progress and review status before the client asks for an update.",
+          "customer1Impact": "फोकस: intake → allocation → review",
+          "customer1Name": "Sample Operations Manager",
+          "customer1Quote": "Project intake, supplier allocation, delivery progress और review status को एक जगह देखना होता है, ताकि client के पूछने से पहले update तैयार रहे।",
           "customer1Role": "Project delivery lead",
           "customer1Type": "Project delivery operations",
-          "customer2Impact": "Focus: supplier control",
-          "customer2Name": "Supplier manager",
-          "customer2Quote": "Needs to assign selected suppliers, block unsuitable suppliers, set supplier-specific pricing and keep allocation logic explainable.",
+          "customer2Impact": "फोकस: allocation → pricing → control",
+          "customer2Name": "Supplier Manager",
+          "customer2Quote": "चुने हुए suppliers assign करने, unsuitable suppliers block करने, supplier-specific pricing सेट करने और allocation logic explainable रखने की जरूरत होती है।",
           "customer2Role": "Supplier network operator",
-          "customer2Type": "Supplier allocation & pricing",
-          "customer3Name": "Finance operator",
-          "customer3Role": "Settlement and invoice owner",
+          "customer2Type": "Supplier allocation और pricing",
+          "customer3Impact": "फोकस: settlement → invoices → payment logs",
+          "customer3Name": "Finance Operator",
+          "customer3Quote": "Project settlement, supplier bills, client invoices, payment status और finance logs को delivery evidence से जोड़ना होता है।",
+          "customer3Role": "Settlement और invoice owner",
+          "customer3Type": "Finance और settlement",
           "customersKicker": "05 / Role scenarios",
           "customersTitle": "Operating roles, <em>mapped to real workflow needs.</em>",
           "enterpriseRole": "For multi-team governance",
@@ -5046,8 +5105,16 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "product": "Product",
           "productSurfacesKicker": "04 / Product Surfaces",
           "productSurfacesTitle": "Three operating surfaces, <em>one platform story.</em>",
-          "proofPanelText": "Map each operating role to concrete workflow needs: delivery setup, supplier control, quality review, finance evidence and settlement visibility.",
-          "proofPanelTitle": "Operating roles and workflow needs",
+          "proofPanelText": "Sampora भूमिका-विशिष्ट जरूरतों को project setup, supplier control, delivery verification और settlement evidence से जोड़ता है।",
+          "proofPanelTitle": "भूमिका-आधारित जरूरतें, एक संचालन layer में जुड़ी",
+          "proofNeed1Title": "प्रोजेक्ट सेटअप",
+          "proofNeed1Text": "Fieldwork शुरू होने से पहले project demand, quotas, timelines और launch rules capture करें।",
+          "proofNeed2Title": "सप्लायर नियंत्रण",
+          "proofNeed2Text": "सप्लायर assign करें, unsuitable partners block करें और supplier-specific pricing manage करें।",
+          "proofNeed3Title": "डिलीवरी verification",
+          "proofNeed3Text": "Delivery आगे बढ़ने से पहले progress, review signals और exceptions track करें।",
+          "proofNeed4Title": "सेटलमेंट evidence",
+          "proofNeed4Text": "Verified delivery को bills, invoices, payment status और finance records से जोड़ें।",
           "quickAnswers": "Quick answers",
           "recommended": "Recommended",
           "resources": "Resources",
@@ -5575,12 +5642,9 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                     stepState[i] = state;
                 }
 
-                // Pre-warm: set idle state, then force another layout pass so
-                // the browser builds compositing layers before the first animation.
+                // Pre-warm idle layers only; the first visible relay state is applied by runStep().
                 steps.forEach((step, i) => applyState(step, i, 'relay-idle'));
                 workflow.offsetHeight; // second forced layout to commit layer promotion
-                applyState(steps[0], 0, 'relay-running');
-                if (steps[1]) applyState(steps[1], 1, 'relay-receive');
 
                 function clearTimer() {
                     if (timer) {
@@ -5666,9 +5730,6 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                     paused = true;
                     clearTimer();
                 }
-
-                workflow.addEventListener('mouseenter', pause);
-                workflow.addEventListener('mouseleave', start);
 
                 document.addEventListener('visibilitychange', () => {
                     if (document.hidden) {

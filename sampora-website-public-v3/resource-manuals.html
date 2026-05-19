@@ -96,6 +96,34 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <style id="worker-status-scroll">
 @media(min-width:761px){.status,.mast,.mast .inner{transition:transform .26s var(--ease),opacity .22s var(--ease),height .26s var(--ease),top .26s var(--ease),background .26s var(--ease),box-shadow .26s var(--ease),border-color .26s var(--ease)}body.nav-condensed .status{transform:translateY(-100%);opacity:0;pointer-events:none;border-bottom-color:transparent;overflow:hidden}body.nav-condensed .mast{top:0!important;background:rgba(5,13,25,.92);box-shadow:0 18px 44px rgba(0,0,0,.28),0 1px 0 rgba(56,210,255,.08)}}
 </style>
+<style id="sampora-current-responsive-fixes">
+@media(max-width:1180px) and (min-width:761px){
+  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
+  .sampora-footer-main{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:30px 34px!important;padding:36px 34px 32px!important}
+  .sampora-footer-brand{grid-column:1/-1!important;width:100%!important;max-width:none!important;justify-self:stretch!important}
+  .sampora-footer-brand p{max-width:760px!important}
+  .sampora-footer-badges{max-width:760px!important}
+  .sampora-footer-col{min-width:0!important}
+  .sampora-footer-col a{overflow-wrap:anywhere!important}
+  .sampora-footer-contact-item{min-width:0!important;padding:18px 28px!important}
+}
+@media(max-width:760px){
+  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
+  .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}
+  .sampora-footer-brand{grid-column:auto!important}
+  .sampora-footer-brand p,
+  .sampora-footer-col a,
+  .sampora-footer-contact-item{overflow-wrap:anywhere!important}
+}
+@media(max-width:430px){
+  .mast .inner{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;gap:8px!important}
+  .mast .brand{min-width:0!important}
+  .mast .header-actions{min-width:0!important;width:auto!important;justify-self:end!important;gap:6px!important;overflow:visible!important}
+  .mast .header-actions .btn{display:none!important}
+  .mast .lang button{min-width:34px!important;padding-left:6px!important;padding-right:6px!important;font-size:10px!important}
+  .mast .mobile-nav-toggle{width:36px!important;height:36px!important;flex:0 0 36px!important}
+}
+</style>
 </head><body><div aria-hidden="true" class="status"><div class="container inner"><span class="live" data-ui="status">LIVE</span><span>/</span><span data-ui="a">manuals</span><span>/</span><span data-ui="b">regional rollout</span><span class="right" data-ui="right">sample operations resources</span></div></div><header class="mast"><div class="container inner"><a class="brand" href="#home"><span class="mark">S</span><span><b>Sampora</b><small data-ui="brand">Online Sample Operations Platform</small></span></a><nav class="nav sampora-nav-standard" aria-label="Primary navigation"><a href="index.html" data-ui="product">Product</a><a href="solutions.html" data-ui="solutions">Solutions</a><a class="active" href="resources.html" data-ui="resources">Resources</a><a href="plans.html" data-ui="plans">Plans</a><a href="contact.html" data-ui="contact">Contact</a></nav><div class="header-actions"><div class="lang"><button data-lang="en">EN</button><button data-lang="zh">中文</button><button data-lang="hi">हिन्दी</button></div><a class="btn ghost" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" href="contact.html?intent=start_trial#contact-form">Start trial</a></div></div></header><div class="layout"><aside class="sidebar"><div class="sidebar-inner"><label class="side-search"><span>⌕</span><input id="sideSearch" type="search" aria-label="Search resource manuals and rollout notes" placeholder="Search manuals"></label><div class="doc-switch" id="docSwitch"></div><div class="side-label" data-ui="cat">Categories</div><nav aria-label="Manual categories" class="side-list" id="sideCategories"></nav><div class="side-label" data-ui="branches">Manuals</div><nav aria-label="Manual articles" class="side-list" id="sideArticles"></nav></div></aside><main class="main"><div class="main-inner"><section id="viewHome"><span id="home" aria-hidden="true"></span><div class="hero"><h1 data-ui="hero">Resources for online sample operations</h1><p data-ui="heroText">Operator manuals, regional rollout notes, and implementation references for sample delivery teams.</p><label class="big-search"><span>⌕</span><input id="globalSearch" type="search" aria-label="Search all manuals, rollout notes, and setup guides" placeholder="Search manuals"></label><div class="chips" id="popularChips"></div></div><section class="doc-entry" id="docCards"></section><section><div class="view-title"><div class="crumb" data-ui="using">Using these manuals</div><h2 data-ui="using">Using these manuals</h2><p data-ui="usingText">Choose a configuration or operations manual, then follow the module guidance with screenshots and action points.</p></div><div class="guide-grid" id="quickCards"></div></section></section><section id="viewDoc" class="hidden"><div class="view-title"><div class="crumb" id="docCrumb">Manuals</div><h2 id="docTitle">Resource manuals</h2><p id="docDesc">Choose a manual category to review Sampora setup and operations guidance.</p></div><div class="category-grid" id="categoryCards"></div></section><section id="viewCategory" class="hidden"><div class="view-title"><div class="crumb" id="categoryCrumb">Categories</div><h2 id="categoryTitle">Manual category</h2><p id="categoryDesc">Select an article to review module-specific steps.</p></div><div class="topic-list" id="articleList"></div></section><section id="viewArticle" class="hidden"><div class="reader"><div class="reader-head"><div><div class="path" id="readerPath">Manual</div><h2 id="readerTitle">Resource manual</h2><p id="readerDesc">Module guidance, screenshots, and action points for sample operations teams.</p></div><button class="btn ghost" id="backToCategory" data-ui="back" aria-label="Back to category view">Back to category</button></div><article class="article" id="readerArticle"></article></div></section><section id="viewSearch" class="hidden"><div class="view-title"><div class="crumb">SEARCH</div><h2 id="searchTitle">Search manuals</h2><p id="searchDesc">Search across resource manuals and rollout notes.</p></div><div class="topic-list" id="searchResults"></div></section></div></main></div><footer class="sampora-site-footer" id="site-footer"><div class="container sampora-footer-card"><div class="sampora-footer-main"><div class="sampora-footer-brand"><a aria-label="Sampora home" class="sampora-footer-logo" href="index.html"><span class="sampora-footer-mark">S</span><span><b>Sampora</b><small>Operations console</small></span></a><p>An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.</p><div class="sampora-footer-badges"><span>Sample supply</span><span>Review workflow</span><span>Settlement ledger</span></div></div><div class="sampora-footer-col"><h3>Product support</h3><a href="resource-manuals.html">Operator manuals</a><a href="resources.html">Resource center</a><a href="contact.html?intent=contact_sales#contact-form">Contact sales</a></div><div class="sampora-footer-col"><h3>Sales</h3><a href="contact.html?intent=start_trial#contact-form">Start trial</a><a href="contact.html?intent=book_demo#contact-form">Book a demo</a><a href="contact.html?intent=contact_sales#contact-form">Talk to sales</a></div><div class="sampora-footer-col"><h3>Resources</h3><a href="resource-manuals.html">View manuals</a><a href="resources.html#rollout">Read rollout notes</a><a href="contact.html?intent=contact_sales#contact-form">Contact sales</a></div></div><div class="sampora-footer-contact"><div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div><div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>jiayu@surveysaas.com</span></div><div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span>Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div></div><div class="sampora-footer-legal"><span>© 2026 Anhui Jiayu Enterprise Service Co., Ltd.</span><span>安徽省嘉禹企业服务有限公司</span></div></div></footer><div class="image-modal" id="imageModal" aria-hidden="true"><div class="image-modal-backdrop" data-close></div><div class="image-modal-panel"><button class="image-modal-close" id="imageModalClose" type="button" aria-label="Close image" title="Close image" data-no-i18n="true">X</button><img class="image-modal-img" id="imageModalImg" alt=""><div class="image-modal-caption" id="imageModalCaption"></div></div></div><script src="assets/resource-manuals/data.js"></script><script src="assets/resource-manuals/app.js"></script><script>
 (function(){
   const labels={en:['Product','Solutions','Resources','Plans','Contact'],zh:['产品','解决方案','资源','版本方案','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','संपर्क']};
@@ -121,6 +149,41 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <script src="assets/i18n-sweep.js"></script>
 <script>
 (function(){
+  const footerCopy = {
+    en: {
+      logoSmall: 'Operations console',
+      brand: 'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',
+      badges: ['Sample supply', 'Review workflow', 'Settlement ledger'],
+      columns: [
+        ['Product support', ['Operator manuals', 'Resource center', 'Contact sales']],
+        ['Sales', ['Start trial', 'Book a demo', 'Talk to sales']],
+        ['Resources', ['View manuals', 'Read rollout notes', 'Contact sales']]
+      ],
+      location: 'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China'
+    },
+    zh: {
+      logoSmall: '运营控制台',
+      brand: '面向 Panel Provider 和样本供应商的在线样本运营平台，覆盖项目交付、供应商分配、审核记录、财务和合作资源运营。',
+      badges: ['样本供给', '审核流程', '结算台账'],
+      columns: [
+        ['产品支持', ['操作手册', '资源中心', '联系销售']],
+        ['销售', ['开始试用', '预约演示', '联系销售']],
+        ['资源', ['查看手册', '阅读部署说明', '联系销售']]
+      ],
+      location: '中国安徽省六安市恒扬广成 A 座 1506 室'
+    },
+    hi: {
+      logoSmall: 'संचालन कंसोल',
+      brand: 'Panel Provider और Sample Supplier टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफॉर्म, जिसमें प्रोजेक्ट डिलीवरी, सप्लायर आवंटन, समीक्षा रिकॉर्ड, फाइनेंस और पार्टनर संचालन शामिल हैं।',
+      badges: ['सैंपल सप्लाई', 'समीक्षा वर्कफ्लो', 'सेटलमेंट लेजर'],
+      columns: [
+        ['उत्पाद सहायता', ['ऑपरेटर मैनुअल', 'संसाधन केंद्र', 'सेल्स से संपर्क']],
+        ['सेल्स', ['ट्रायल शुरू करें', 'डेमो बुक करें', 'सेल्स से संपर्क']],
+        ['संसाधन', ['मैनुअल देखें', 'रोलआउट नोट्स पढ़ें', 'सेल्स से संपर्क']]
+      ],
+      location: 'रूम 1506, ब्लॉक A, Hengyang Guangcheng, Luan, Anhui, China'
+    }
+  };
   const legalCopy = {
     en: ['\u00a9 2026 Anhui Jiayu Enterprise Service Co., Ltd.', 'Anhui Jiayu Enterprise Service Co., Ltd.'],
     zh: ['\u00a9 2026', '\u5b89\u5fbd\u7701\u5609\u79b9\u4f01\u4e1a\u670d\u52a1\u6709\u9650\u516c\u53f8'],
@@ -140,10 +203,33 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
     if (spans[0]) spans[0].textContent = copy[0];
     if (spans[1]) spans[1].textContent = copy[1];
   }
-  applyFooterLegal();
+  function setText(el, value){
+    if (el && value) el.textContent = value;
+  }
+  function applyFooterShell(nextLang){
+    const copy = footerCopy[footerCopy[nextLang] ? nextLang : currentLang()];
+    if (!copy) return;
+    setText(document.querySelector('.sampora-footer-logo small'), copy.logoSmall);
+    setText(document.querySelector('.sampora-footer-brand p'), copy.brand);
+    document.querySelectorAll('.sampora-footer-badges span').forEach((span, index) => setText(span, copy.badges[index]));
+    document.querySelectorAll('.sampora-footer-col').forEach((col, colIndex) => {
+      const colCopy = copy.columns[colIndex];
+      if (!colCopy) return;
+      setText(col.querySelector('h3'), colCopy[0]);
+      col.querySelectorAll('a').forEach((link, linkIndex) => setText(link, colCopy[1][linkIndex]));
+    });
+    const contacts = document.querySelectorAll('.sampora-footer-contact-item span:not(.sampora-footer-icon)');
+    setText(contacts[2], copy.location);
+  }
+  function applyFooter(nextLang){
+    applyFooterShell(nextLang);
+    applyFooterLegal(nextLang);
+  }
+  applyFooter();
   document.querySelectorAll('.lang button').forEach(btn => {
-    btn.addEventListener('click', () => setTimeout(() => applyFooterLegal(btn.dataset.lang), 0));
+    btn.addEventListener('click', () => setTimeout(() => applyFooter(btn.dataset.lang), 0));
   });
+  window.addEventListener('sampora:languagechange', event => applyFooter(event.detail && event.detail.lang));
 })();
 </script>
 <script>
