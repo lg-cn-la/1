@@ -926,11 +926,15 @@
     }
 
     .plan-top {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: minmax(max-content, 1fr) minmax(0, auto);
       gap: 12px;
       align-items: flex-start;
       margin-bottom: 20px
+    }
+
+    .plan-top > div {
+      min-width: 0
     }
 
     .plan-kicker {
@@ -942,7 +946,9 @@
 
     .plan-card h3 {
       font-size: 24px;
-      margin: 8px 0 6px
+      margin: 8px 0 6px;
+      white-space: nowrap;
+      text-wrap: nowrap
     }
 
     .plan-card .short {
@@ -962,7 +968,11 @@
       border-radius: 999px;
       color: var(--cyan2);
       padding: 6px 9px;
-      background: rgba(56, 210, 255, .06)
+      background: rgba(56, 210, 255, .06);
+      max-width: 100%;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      text-align: right
     }
 
     .plan-card.network .badge {
@@ -1071,6 +1081,9 @@
       border-radius: 20px;
       background: linear-gradient(180deg, rgba(14, 27, 47, .9), rgba(6, 14, 28, .82));
       padding: 28px;
+      display: grid;
+      grid-template-rows: auto auto auto minmax(132px, 1fr);
+      align-content: stretch;
       box-shadow: var(--shadow)
     }
 
@@ -1090,21 +1103,26 @@
     .recommend p {
       color: var(--body);
       font-size: 16px;
-      line-height: 1.68
+      line-height: 1.68;
+      margin: 0
     }
 
     .mini-metrics {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 24px
+      gap: 10px;
+      margin-top: clamp(24px, 4.2vw, 44px);
+      padding-top: 0
     }
 
     .mini-metrics div {
       border: 1px solid var(--line2);
       border-radius: 14px;
       background: rgba(20, 40, 69, .22);
-      padding: 14px
+      padding: 12px;
+      display: grid;
+      grid-template-rows: auto minmax(66px, 1fr);
+      align-items: start
     }
 
     .mini-metrics small {
@@ -1116,10 +1134,20 @@
     }
 
     .mini-metrics strong {
-      display: block;
+      display: grid;
+      align-content: space-evenly;
+      gap: 3px;
+      height: 100%;
       margin-top: 6px;
       color: var(--cyan2);
-      font: 700 16px var(--mono)
+      font: 700 15px var(--mono);
+      line-height: 1.16;
+      overflow-wrap: normal
+    }
+
+    .mini-metrics strong span {
+      display: block;
+      white-space: nowrap
     }
 
     .compare-wrap {
@@ -1133,6 +1161,27 @@
       width: 100%;
       min-width: 860px;
       border-collapse: collapse
+    }
+
+    #compareTable {
+      table-layout: fixed;
+      min-width: 960px
+    }
+
+    #compareTable th,
+    #compareTable td {
+      overflow-wrap: break-word;
+      word-break: normal
+    }
+
+    #compareTable th:first-child,
+    #compareTable td:first-child {
+      width: 24%
+    }
+
+    #compareTable th:not(:first-child),
+    #compareTable td:not(:first-child) {
+      width: 25.333%
     }
 
     th,
@@ -2387,7 +2436,6 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
       min-height: 300px;
     }
     .evidence-card h3,
-    .plan-card h3,
     .recommend h3 {
       text-wrap: balance;
     }
@@ -2553,7 +2601,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 }
 </style>
 <style id="final-mobile-overflow-fix">
-@media(max-width:680px){.plans-grid{grid-template-columns:1fr}.plan-card,.fit-panel,.fit-selectors,.recommend{min-width:0;width:100%}.plan-top{display:grid;grid-template-columns:1fr;gap:8px}.badge{justify-self:start;max-width:100%;white-space:normal;overflow-wrap:anywhere}.select-btn{width:100%;min-width:0;overflow-wrap:anywhere}.select-btn small,.select-btn strong,.select-btn span{min-width:0;max-width:100%;overflow-wrap:anywhere}.mini-metrics{grid-template-columns:1fr}.mini-metrics div,.mini-metrics small,.mini-metrics strong{min-width:0;max-width:100%;overflow-wrap:anywhere}.compare-wrap{max-width:100%;overflow-x:auto}}
+@media(max-width:680px){.plans-grid{grid-template-columns:1fr}.plan-card,.fit-panel,.fit-selectors,.recommend{min-width:0;width:100%}.plan-top{display:grid;grid-template-columns:1fr;gap:8px}.plan-card h3{white-space:normal;text-wrap:balance}.badge{justify-self:start;max-width:100%;white-space:normal;overflow-wrap:anywhere}.select-btn{width:100%;min-width:0;overflow-wrap:anywhere}.select-btn small,.select-btn strong,.select-btn span{min-width:0;max-width:100%;overflow-wrap:anywhere}.mini-metrics{grid-template-columns:1fr}.mini-metrics div,.mini-metrics small,.mini-metrics strong,.mini-metrics strong span{min-width:0;max-width:100%;overflow-wrap:anywhere}.mini-metrics strong span{white-space:normal}.compare-wrap{max-width:100%;overflow-x:auto}}
 @media(max-width:480px){.header-actions>.btn.ghost,.nav-actions>.btn.ghost,.actions>.btn.ghost{display:none!important}.mast .inner,.mast.compact .inner,.nav-inner{gap:10px!important}.header-actions,.nav-actions,.actions{min-width:0!important;max-width:100%!important;gap:8px!important}}
 @media(max-width:360px){.flow-line{grid-template-columns:1fr!important}.flow-step,.flow-step small,.flow-step h3,.flow-step p{min-width:0!important;max-width:100%!important;overflow-wrap:anywhere!important}.footer-main,.footer-contact{grid-template-columns:1fr!important}.footer-col,.footer-col a,.contact-item{min-width:0!important;padding-left:14px!important;padding-right:14px!important;overflow-wrap:anywhere!important}}
 
@@ -2894,7 +2942,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "headerStartTrial": "开始试用",
             "heroEyebrow": "解决方案 · 运营角色适配",
             "heroTitle": "为你的样本交付团队选择合适的<em>运营层。</em>",
-            "heroSub": "将你的业务模式——自有 Panel 供应商、样本供应方、样本聚合商、调查站 / 执行单元、调研分包执行团队或 API 对接供应商——映射到最适合的 Sampora 在线样本运营层。",
+            "heroSub": "将你的业务模式——自有样本运营方、样本供应方、样本聚合商、调查站 / 执行单元、调研分包执行团队或 API 对接供应商——映射到最适合的 Sampora 在线样本运营层。",
             "heroCta1": "开始试用", 
             "heroCta2": "预约演示",
             "solutionsKicker": "01 / 方案层级",
@@ -2913,7 +2961,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "workflowKicker": "04 / 运营路径",
             "workflowTitle": "每个方案都遵循同一个<em>交付到结算闭环。</em>",
             "workflowLead": "每个方案都沿用同一条运营路径：接收 → 配置 → 分配 → 追踪 / 审核 → 结算。",
-            "footerDesc": "面向自有 Panel 供应商、样本供应商、调查站 / 执行单元和调研分包执行团队的在线样本运营平台。",
+            "footerDesc": "面向自有样本运营方、样本供应商、调查站 / 执行单元和调研分包执行团队的在线样本运营平台。",
             "footerSupport": "产品支持",
             "footerHelp": "帮助文档",
             "footerGuide": "引导手册",
@@ -2930,7 +2978,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
       },
       "hi": {
             "statusLive": "समाधान चक्र · लाइव",
-            "statusMid": "Panel Provider, Sample Supplier और Enterprise संचालन के लिए",
+            "statusMid": "स्व-स्वामित्व वाले Panel संचालन, Sample Supplier और Enterprise संचालन के लिए",
             "statusLast": "संचालन भूमिका · इंटरफ़ेस प्रवेश · लॉन्च मार्ग",
             "statusRight": "API / कार्यक्षेत्र प्राप्ति · ऑडिट लॉग · निपटान रिकॉर्ड",
             "brandSub": "संचालन कंसोल",
@@ -2962,7 +3010,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "workflowKicker": "04 / संचालन मार्ग",
             "workflowTitle": "हर समाधान एक ही <em>डिलीवरी से निपटान</em> चक्र का पालन करता है।",
             "workflowLead": "हर समाधान में यही संचालन पथ रहता है: प्राप्ति → कॉन्फ़िगरेशन → आवंटन → ट्रैकिंग / समीक्षा → निपटान।",
-            "footerDesc": "Panel Provider, Sample Supplier, सर्वे स्टेशन और रिसर्च सबकॉन्ट्रैक्ट टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।",
+            "footerDesc": "पैनल प्रदाताओं, सैंपल आपूर्तिकर्ताओं, सर्वे स्टेशन और रिसर्च सबकॉन्ट्रैक्ट टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।",
             "footerSupport": "उत्पाद सहायता",
             "footerHelp": "सहायता दस्तावेज़",
             "footerGuide": "संचालन मार्गदर्शिका",
@@ -3316,16 +3364,16 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "solutions": [
                   {
                         "id": "panel",
-                        "cn": "Owned respondent operations",
+                        "cn": "Owned Panel Operations",
                         "title": "Panel",
                         "short": "Owned panel layer",
                         "badge": "For panel teams",
-                        "text": "For teams that mainly operate their own respondent assets or survey stations. The solution centers on member records, groups, survey participation, wallet/bill records and station-side execution.",
+                        "text": "For teams focused on Owned panel and survey site operations. The solution centers on member records, groups, survey participation, wallet/bill records and station-side execution.",
                         "lis": [
                               "Member groups, levels and survey records",
                               "Survey station projects and participation history",
-                              "Member wallet, bills and finance logs",
-                              "Partner Network path to find more buyers"
+                              "Member incentives, wallet records and finance logs",
+                              "Optional Partner Network exposure for sample demand"
                         ],
                         "choose": "Choose Panel"
                   },
@@ -3339,7 +3387,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "lis": [
                               "Project intake and supplier assignment",
                               "Block unsuitable suppliers and set supplier-specific prices",
-                              "API / workspace receiving for connected suppliers",
+                              "API or workspace-based project receiving for connected suppliers",
                               "Supplier bills, settlement and finance records"
                         ],
                         "choose": "Choose Supplier Network"
@@ -3348,14 +3396,14 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "id": "enterprise",
                         "cn": "Multi-entity operations",
                         "title": "Enterprise",
-                        "short": "Enterprise layer",
+                        "short": "Enterprise Layer",
                         "badge": "For multi-team operations",
-                        "text": "Manage clients, suppliers, panels, stations, roles, API delivery and finance in one sample operations layer.",
+                        "text": "For teams running client projects, owned panels, supplier networks, and API-connected delivery across multiple operating units. Includes Panel and Supplier Network workflows, plus enterprise governance and multi-party finance.",
                         "lis": [
-                              "Client, supplier, panel and station operations",
-                              "Role-based permissions and organization setup",
-                              "API intake/distribution and callback records",
-                              "Partner Network plus multi-party settlement"
+                              "Client, supplier, panel and station operations in one workspace",
+                              "Role-based permissions, organization setup and team-level controls",
+                              "API intake, delivery callbacks, review evidence and operation logs",
+                              "Client invoices, supplier bills, member finance and multi-party settlement"
                         ],
                         "choose": "Choose Enterprise"
                   }
@@ -3364,43 +3412,43 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                   [
                         "panel",
                         "01",
-                        "I mainly manage owned respondents or a survey station",
-                        "Members, groups, participation history, incentives, wallets and bills."
+                        "I mainly operate an owned Panel / survey station",
+                        "Members, groups, participation history, incentive wallets, and billing."
                   ],
                   [
                         "network",
                         "02",
-                        "I coordinate external sample suppliers or API suppliers",
+                        "I coordinate external sample suppliers or API-connected suppliers",
                         "Project intake, supplier allocation, supplier pricing, review and settlement."
                   ],
                   [
                         "enterprise",
                         "03",
-                        "I manage clients, suppliers and panels together",
-                        "Client/supplier operations, API delivery, permissions, finance and Partner Network."
+                        "I manage clients, suppliers, Panel, and API together",
+                        "Clients + suppliers + Panel + API + finance + permissions + Partner Network."
                   ]
             ],
             "rec": {
                   "panel": [
-                        "Panel",
-                        "Best when your main operating object is your own respondent asset or survey station, with member operations, station-side delivery and participation records handled in one layer.",
-                        "Owned panel / station",
-                        "Member participation",
-                        "Member wallet / bills"
+                        "Panel Operations Edition",
+                        "Designed for teams that mainly operate their own Panel, survey station, and member system. The focus is member records, participation history, incentive wallets, bills, and station-side execution.",
+                        "Owned Panel / survey station",
+                        "→ Member operations\n→ survey participation",
+                        "Member wallet / incentive billing"
                   ],
                   "network": [
-                        "Supplier Network",
-                        "Best when your team accepts projects from clients and distributes delivery to external suppliers, aggregators, subcontractors or API-connected partners.",
-                        "Supplier network",
-                        "Allocation + review",
-                        "Supplier settlement"
+                        "Network Operations Edition",
+                        "Designed for teams that receive projects from clients and distribute them to external sample suppliers, aggregators, subcontracting teams, or API-connected partners for execution.",
+                        "External suppliers / API partners",
+                        "→ Project intake\n→ allocation\n→ review",
+                        "Supplier bills / project settlement"
                   ],
                   "enterprise": [
-                        "Enterprise",
-                        "Best when your business is both buyer and supplier: you manage clients, suppliers, panels, roles, API delivery, settlement and Partner Network growth in one system.",
-                        "Multi-entity operations",
-                        "End-to-end delivery loop",
-                        "Multi-party settlement"
+                        "Enterprise Edition",
+                        "Designed for multi-entity teams managing clients, suppliers, Panel, API, permissions, finance, and Partner Network together.",
+                        "Panel\nClients\nSuppliers",
+                        "→ Intake\n→ distribution\n→ governance\n→ settlement",
+                        "Client invoices / supplier bills / member finance"
                   ]
             },
             "tableHead": [
@@ -3613,43 +3661,43 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                   [
                         "panel",
                         "01",
-                        "我主要管理自有受访者或调查站",
-                        "会员、分组、参与历史、激励、钱包和账单。"
+                        "我主要运营自有 Panel / 调查站",
+                        "会员、分组、参与历史、激励钱包和账单。"
                   ],
                   [
                         "network",
                         "02",
-                        "我协调外部样本供应商或 API 供应商",
+                        "我协调外部样本供应商或 API 对接供应商",
                         "项目接收、供应商分配、供应商控价、审核和结算。"
                   ],
                   [
                         "enterprise",
                         "03",
-                        "我同时管理客户、供应商和 Panel",
+                        "我同时管理客户、供应商、Panel 和 API",
                         "客户 + 供应商 + Panel + API + 财务 + 权限 + Partner Network。"
                   ]
             ],
             "rec": {
                   "panel": [
                         "样本库运营版",
-                        "当你的主要运营对象是自有受访者资产或调查站时最适合。这个层级应突出会员运营和站点侧交付，而不是外部供应商治理。",
+                        "适合主要运营自有 Panel、调查站和会员体系的团队。重点是会员记录、参与历史、激励钱包、账单和站点侧执行。",
                         "自有 Panel / 调查站",
-                        "会员参与",
-                        "会员钱包 / 账单"
+                        "→ 会员运营\n→ 调查参与",
+                        "会员钱包 / 激励账单"
                   ],
                   "network": [
                         "供应商网络运营版",
-                        "当团队从客户侧接收项目，并分发给外部供应商、聚合商、分包团队或 API 对接伙伴执行时最适合。",
-                        "供应商网络",
-                        "分配 + 审核",
-                        "供应商结算"
+                        "适合从客户侧接收项目，并分发给外部样本供应商、聚合商、分包团队或 API 对接伙伴执行的团队。",
+                        "外部供应商 / API 伙伴",
+                        "→ 项目接收\n→ 分配\n→ 审核",
+                        "供应商账单 / 项目结算"
                   ],
                   "enterprise": [
                         "企业版",
-                        "当你的业务需要同时管理客户、供应商、Panel、API、财务、权限和 Partner Network 时最适合。",
-                        "多实体运营",
-                        "端到端交付闭环",
-                        "多方结算"
+                        "适合同时管理客户、供应商、Panel、API、权限、财务和 Partner Network 的多实体团队。",
+                        "Panel\n客户\n供应商",
+                        "→ 接收\n→ 分发\n→ 治理\n→ 结算",
+                        "客户发票 / 供应商账单 / 会员财务"
                   ]
             },
             "tableHead": [
@@ -3817,7 +3865,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "cn": "स्वयं के Panel संचालन",
                         "title": "पैनल संचालन",
                         "short": "पैनल स्तर",
-                        "badge": "Panel Provider टीमों के लिए",
+                        "badge": "स्व-स्वामित्व वाले Panel संचालन टीमों के लिए",
                         "text": "उन टीमों के लिए जो अपना उत्तरदाता Panel या सर्वे स्टेशन संचालित करती हैं। यह स्तर सदस्य रिकॉर्ड, समूह, सर्वे भागीदारी, वॉलेट, बिल और स्टेशन-स्तर निष्पादन पर केंद्रित है।",
                         "lis": [
                               "सदस्य समूह, स्तर और सर्वे रिकॉर्ड",
@@ -3862,43 +3910,43 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                   [
                         "panel",
                         "01",
-                        "मैं मुख्य रूप से अपना Panel या सर्वे स्टेशन संभालता/संभालती हूँ",
-                        "सदस्य, समूह, भागीदारी इतिहास, प्रोत्साहन, वॉलेट और बिल।"
+                        "मैं मुख्य रूप से अपना Panel / सर्वे स्टेशन संचालित करता/करती हूँ",
+                        "सदस्य, समूह, भागीदारी इतिहास, प्रोत्साहन वॉलेट और बिलिंग।"
                   ],
                   [
                         "network",
                         "02",
-                        "मैं बाहरी सैंपल आपूर्तिकर्ता या API आपूर्तिकर्ता समन्वय करता/करती हूँ",
-                        "परियोजना प्राप्ति, आपूर्तिकर्ता आवंटन, मूल्य नियंत्रण, समीक्षा और निपटान।"
+                        "मैं बाहरी सैंपल आपूर्तिकर्ताओं या API से जुड़े आपूर्तिकर्ताओं का समन्वय करता/करती हूँ",
+                        "परियोजना प्राप्ति, आपूर्तिकर्ता आवंटन, आपूर्तिकर्ता मूल्य-नियंत्रण, समीक्षा और निपटान।"
                   ],
                   [
                         "enterprise",
                         "03",
-                        "मैं ग्राहक, आपूर्तिकर्ता और Panel साथ में संभालता/संभालती हूँ",
-                        "ग्राहक / आपूर्तिकर्ता संचालन, API डिलीवरी, अनुमतियाँ, वित्त और Partner Network।"
+                        "मैं ग्राहक, आपूर्तिकर्ता, Panel और API को साथ में प्रबंधित करता/करती हूँ",
+                        "ग्राहक + आपूर्तिकर्ता + Panel + API + वित्त + अनुमतियाँ + Partner Network।"
                   ]
             ],
             "rec": {
                   "panel": [
-                        "पैनल संचालन",
-                        "जब आपका मुख्य संचालन अपने उत्तरदाता Panel या सर्वे स्टेशन पर केंद्रित हो, तब यह स्तर सबसे उपयुक्त है। यह सदस्य संचालन, स्टेशन-स्तर डिलीवरी और भागीदारी रिकॉर्ड को एक जगह रखता है।",
-                        "स्वयं का Panel / स्टेशन",
-                        "सदस्य भागीदारी",
-                        "सदस्य वॉलेट / बिल"
+                        "Panel संचालन संस्करण",
+                        "उन टीमों के लिए जो मुख्य रूप से अपना Panel, सर्वे स्टेशन और सदस्य प्रणाली चलाती हैं। फोकस सदस्य रिकॉर्ड, भागीदारी इतिहास, प्रोत्साहन वॉलेट, बिल और स्टेशन-स्तर निष्पादन पर है।",
+                        "स्वयं का Panel / सर्वे स्टेशन",
+                        "→ सदस्य संचालन\n→ सर्वे भागीदारी",
+                        "सदस्य वॉलेट / प्रोत्साहन बिल"
                   ],
                   "network": [
-                        "सैंपल आपूर्ति संचालन",
-                        "जब आपकी टीम ग्राहक परियोजनाएँ प्राप्त करके उन्हें बाहरी आपूर्तिकर्ताओं, एग्रीगेटर, सबकॉन्ट्रैक्ट टीम या API भागीदारों को देती है, तब यह स्तर उपयुक्त है।",
-                        "आपूर्तिकर्ता नेटवर्क",
-                        "आवंटन + समीक्षा",
-                        "आपूर्तिकर्ता निपटान"
+                        "Supplier Network संचालन संस्करण",
+                        "उन टीमों के लिए जो ग्राहकों से परियोजनाएँ प्राप्त करती हैं और उन्हें निष्पादन के लिए बाहरी सैंपल आपूर्तिकर्ताओं, एग्रीगेटर, सबकॉन्ट्रैक्ट टीमों या API भागीदारों को वितरित करती हैं।",
+                        "बाहरी आपूर्तिकर्ता / API भागीदार",
+                        "→ परियोजना प्राप्ति\n→ आवंटन\n→ समीक्षा",
+                        "आपूर्तिकर्ता बिल / परियोजना निपटान"
                   ],
                   "enterprise": [
-                        "एंटरप्राइज़",
-                        "जब व्यवसाय खरीदार और आपूर्तिकर्ता दोनों हो, और ग्राहक, आपूर्तिकर्ता, Panel, भूमिकाएँ, API डिलीवरी, वित्त और Partner Network को एक सिस्टम में संभालना हो।",
-                        "बहु-इकाई संचालन",
-                        "एंड-टू-एंड डिलीवरी चक्र",
-                        "बहु-पक्षीय निपटान"
+                        "Enterprise संस्करण",
+                        "उन बहु-इकाई टीमों के लिए जो ग्राहक, आपूर्तिकर्ता, Panel, API, अनुमतियाँ, वित्त और Partner Network को साथ में संभालती हैं।",
+                        "Panel\nग्राहक\nआपूर्तिकर्ता",
+                        "→ प्राप्ति\n→ वितरण\n→ शासन\n→ निपटान",
+                        "ग्राहक इनवॉइस / आपूर्तिकर्ता बिल / सदस्य वित्त"
                   ]
             },
             "tableHead": [
@@ -4078,7 +4126,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
       heroCta1: 'ट्रायल शुरू करें',
       heroCta2: 'डेमो बुक करें',
       navPricing: 'योजनाएँ',
-      footerDesc: 'Panel Provider, Sample Supplier, सर्वे स्टेशन और रिसर्च सबकॉन्ट्रैक्ट टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।',
+      footerDesc: 'पैनल प्रदाताओं, सैंपल आपूर्तिकर्ताओं, सर्वे स्टेशन और रिसर्च सबकॉन्ट्रैक्ट टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।',
       footerTag1: 'सैंपल संचालन',
       footerTag2: 'आपूर्तिकर्ता समन्वय',
       footerTag3: 'बहु-पक्षीय निपटान',
@@ -4100,14 +4148,40 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
     function renderHeroTopology(type) { const ui = HERO_UI[currentLang] || HERO_UI.en; const rec = DATA[currentLang].rec[type]; const sol = DATA[currentLang].solutions.find(s => s.id === type) || DATA[currentLang].solutions[0]; const code = { panel: 'PNL_01', network: 'SUP_02', enterprise: 'ENT_03' }[type] || 'SUP_02'; $('#topoCrumb').textContent = `${ui.crumbPrefix}${code}`; $('#topoScope').textContent = sol.short; $('#topoTitle').textContent = sol.title; $('#topoText').textContent = sol.text; $('#topoTag1').textContent = rec[2]; $('#topoTag2').textContent = rec[3]; $('#topoTag3').textContent = rec[4]; $('#topoSectionLabel').textContent = ui.section; $('#legendActive').textContent = ui.legendActive; $('#legendControl').textContent = ui.legendControl; $('#legendEvidence').textContent = ui.legendEvidence; $('#colInput').textContent = ui.colInput; $('#colLayer').textContent = ui.colLayer; $('#colControl').textContent = ui.colControl; $('#colEvidence').textContent = ui.colEvidence; $('#hubOriginRole').textContent = ui.originRole; $('#nodePanel').textContent = ui.nodePanel; $('#nodePanelRole').textContent = ui.nodePanelRole; $('#nodeNetwork').textContent = ui.nodeNetwork; $('#nodeNetworkRole').textContent = ui.nodeNetworkRole; $('#nodeEnterprise').textContent = ui.nodeEnterprise; $('#nodeEnterpriseRole').textContent = ui.nodeEnterpriseRole; $('#hubControl').textContent = ui.hubControl; $('#hubEvidence').textContent = ui.hubEvidence; $('#topoTicker').textContent = ui.ticker[type]; renderTopologyModebar(type); document.querySelectorAll('.topo-svg .flow').forEach(el => el.classList.remove('on')); document.querySelectorAll('.topo-svg .packet').forEach(el => el.classList.remove('on')); document.querySelectorAll('.topo-svg .node').forEach(el => el.classList.remove('active', 'warn', 'dim')); document.querySelectorAll('.topo-svg .node-label').forEach(el => el.classList.remove('active', 'warn', 'dim')); document.querySelectorAll('.topo-svg .hub[data-hub]').forEach(el => el.classList.remove('is-active', 'is-warn')); const panel = document.querySelector('.topo-svg .node[data-node="panel"]'); const network = document.querySelector('.topo-svg .node[data-node="network"]'); const enterprise = document.querySelector('.topo-svg .node[data-node="enterprise"]'); const control = document.querySelector('.topo-svg .hub[data-hub="control"]'); const evidence = document.querySelector('.topo-svg .hub[data-hub="evidence"]'); const panelLabel = document.querySelector('#labelPanel'); const networkLabel = document.querySelector('#labelNetwork'); const enterpriseLabel = document.querySelector('#labelEnterprise'); if (type === 'panel') { document.querySelectorAll('.path-panel').forEach(el => el.classList.add('on')); panel.classList.add('active'); network.classList.add('dim'); enterprise.classList.add('dim'); panelLabel?.classList.add('active'); networkLabel?.classList.add('dim'); enterpriseLabel?.classList.add('dim'); control.classList.add('is-active'); evidence.classList.add('is-active'); } else if (type === 'network') { document.querySelectorAll('.path-network').forEach(el => el.classList.add('on')); panel.classList.add('dim'); network.classList.add('warn'); enterprise.classList.add('dim'); panelLabel?.classList.add('dim'); networkLabel?.classList.add('warn'); enterpriseLabel?.classList.add('dim'); control.classList.add('is-warn'); evidence.classList.add('is-warn'); } else { document.querySelectorAll('.path-enterprise').forEach(el => el.classList.add('on')); panel.classList.add('active'); network.classList.add('warn'); enterprise.classList.add('active'); panelLabel?.classList.add('active'); networkLabel?.classList.add('warn'); enterpriseLabel?.classList.add('active'); control.classList.add('is-active'); evidence.classList.add('is-active'); } }
 
     function renderSolutions() { const d = DATA[currentLang]; $('#solutionCards').innerHTML = d.solutions.map(s => `<article class="plan-card ${s.id} reveal ${s.id === currentFit ? 'active' : ''}" data-plan="${s.id}"><div class="plan-top"><div><span class="plan-kicker">${s.cn}</span><h3>${s.title}</h3><span class="short">${s.short}</span></div><span class="badge">${s.badge}</span></div><p>${s.text}</p><ul>${s.lis.map(li => `<li>${li}</li>`).join('')}</ul><button class="btn ghost choose" data-choose="${s.id}">${s.choose}</button></article>`).join(''); $$('[data-choose]').forEach(btn => btn.addEventListener('click', () => { setTopologyFit(btn.dataset.choose); $('#fit').scrollIntoView({ behavior: 'smooth' }); })); observeReveals(); }
-    function renderFit() { const d = DATA[currentLang]; $('#fitSelectors').innerHTML = d.fit.map(x => `<button class="select-btn ${x[0] === currentFit ? 'active' : ''}" data-fit="${x[0]}"><small>${x[1]}</small><strong>${x[2]}</strong><span>${x[3]}</span></button>`).join(''); $$('[data-fit]').forEach(btn => btn.addEventListener('click', () => { setTopologyFit(btn.dataset.fit); })); }
-    function renderRecommendation(type) { const r = DATA[currentLang].rec[type]; $('#recommendTitle').textContent = r[0]; $('#recommendText').textContent = r[1]; $('#r1').textContent = r[2]; $('#r2').textContent = r[3]; $('#r3').textContent = r[4]; $$('.select-btn').forEach(b => b.classList.toggle('active', b.dataset.fit === type)); $$('.plan-card').forEach(c => c.classList.toggle('active', c.dataset.plan === type)); renderHeroTopology(type); }
+    function renderFit() { const d = DATA[currentLang]; $('#fitSelectors').innerHTML = d.fit.map(x => `<button class="select-btn ${x[0] === currentFit ? 'active' : ''}" data-fit="${x[0]}"><small>${x[1]}</small><strong>${x[2]}</strong><span>${x[3]}</span></button>`).join(''); $$('[data-fit]').forEach(btn => btn.addEventListener('click', () => { setTopologyFit(btn.dataset.fit, { userSelectedFit: true }); })); }
+    function setMetricValue(id, value) { const el = $(id); if (!el) return; const lines = String(value).split('\n'); el.replaceChildren(...lines.map(line => { const span = document.createElement('span'); span.textContent = line; return span; })); }
+    function renderRecommendation(type) { const r = DATA[currentLang].rec[type]; $('#recommendTitle').textContent = r[0]; $('#recommendText').textContent = r[1]; setMetricValue('#r1', r[2]); setMetricValue('#r2', r[3]); setMetricValue('#r3', r[4]); $$('.select-btn').forEach(b => b.classList.toggle('active', b.dataset.fit === type)); $$('.plan-card').forEach(c => c.classList.toggle('active', c.dataset.plan === type)); renderHeroTopology(type); }
     function renderCompare() { const d = DATA[currentLang]; $('#compareTable').innerHTML = `<thead><tr>${d.tableHead.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${d.rows.map(r => `<tr>${r.map((c, i) => `<td class="${i > 0 ? (c === '✓' ? 'ok' : c === '—' ? 'no' : 'part') : ''}">${c}</td>`).join('')}</tr>`).join('')}</tbody>` }
 
-    function renderWorkflowTabs() { const t = DATA[currentLang].workflowTabs; const tabs = $('#workflowTabs'); if (!tabs || !t) return; tabs.innerHTML = Object.keys(t).map(k => `<button class="workflow-tab ${k === currentWorkflow ? 'active' : ''}" data-workflow="${k}">${t[k]}</button>`).join(''); $$('[data-workflow]').forEach(btn => btn.addEventListener('click', () => { currentWorkflow = btn.dataset.workflow; renderWorkflow(currentWorkflow); })); }
+    function renderWorkflowTabs() { const t = DATA[currentLang].workflowTabs; const tabs = $('#workflowTabs'); if (!tabs || !t) return; tabs.innerHTML = Object.keys(t).map(k => `<button class="workflow-tab ${k === currentWorkflow ? 'active' : ''}" data-workflow="${k}">${t[k]}</button>`).join(''); tabs.querySelectorAll('[data-workflow]').forEach(btn => btn.addEventListener('click', () => setWorkflowType(btn.dataset.workflow, { userSelectedWorkflow: true }))); }
     function renderWorkflow(type) { const d = DATA[currentLang].workflows && DATA[currentLang].workflows[type]; const line = $('#workflowLine'); if (!line || !d) return; line.innerHTML = d.map(item => `<div class="flow-step"><small>${item[0]}</small><h3>${item[1]}</h3><p>${item[2]}</p></div>`).join(''); $$('.workflow-tab').forEach(b => b.classList.toggle('active', b.dataset.workflow === type)); }
+    const WORKFLOW_ROUTE_ORDER = ['panel', 'network', 'enterprise'];
     const TOPO_ROUTE_ORDER = ['panel', 'network', 'enterprise'];
+    let workflowRouteTimer = null;
+    let workflowUserLocked = false;
     let topologyRouteTimer = null;
+    let topologyFitUserLocked = false;
+    function normalizeWorkflowType(type) { return WORKFLOW_ROUTE_ORDER.includes(type) ? type : 'network'; }
+    function setWorkflowType(type, options = {}) {
+      currentWorkflow = normalizeWorkflowType(type);
+      renderWorkflow(currentWorkflow);
+      if (options.userSelectedWorkflow) {
+        stopWorkflowRouteCycle();
+      }
+    }
+    function stopWorkflowRouteCycle() {
+      workflowUserLocked = true;
+      clearInterval(workflowRouteTimer);
+      workflowRouteTimer = null;
+    }
+    function startWorkflowRouteCycle() {
+      if (workflowUserLocked) return;
+      clearInterval(workflowRouteTimer);
+      workflowRouteTimer = setInterval(() => {
+        const next = WORKFLOW_ROUTE_ORDER[(WORKFLOW_ROUTE_ORDER.indexOf(currentWorkflow) + 1) % WORKFLOW_ROUTE_ORDER.length];
+        setWorkflowType(next, { cycleTick: true });
+      }, 3200);
+    }
     function normalizeTopologyType(type) { return TOPO_ROUTE_ORDER.includes(type) ? type : 'network'; }
     function setTopoText(id, value) { document.querySelectorAll(`#${id}`).forEach(el => { el.textContent = value; }); }
     function renderTopologyModebar(type) {
@@ -4179,9 +4253,9 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
       const r = DATA[currentLang].rec[activeType];
       $('#recommendTitle').textContent = r[0];
       $('#recommendText').textContent = r[1];
-      $('#r1').textContent = r[2];
-      $('#r2').textContent = r[3];
-      $('#r3').textContent = r[4];
+      setMetricValue('#r1', r[2]);
+      setMetricValue('#r2', r[3]);
+      setMetricValue('#r3', r[4]);
       $$('.select-btn').forEach(b => b.classList.toggle('active', b.dataset.fit === activeType));
       $$('.plan-card').forEach(c => c.classList.toggle('active', c.dataset.plan === activeType));
       renderHeroTopology(activeType);
@@ -4189,7 +4263,16 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
     function setTopologyFit(type, options = {}) {
       currentFit = normalizeTopologyType(type);
       renderRecommendation(currentFit);
-      if (options.resetCycle !== false) startTopologyRouteCycle();
+      if (options.userSelectedFit) {
+        stopTopologyRouteCycle();
+      } else if (!topologyFitUserLocked && options.resetCycle !== false) {
+        startTopologyRouteCycle();
+      }
+    }
+    function stopTopologyRouteCycle() {
+      topologyFitUserLocked = true;
+      clearInterval(topologyRouteTimer);
+      topologyRouteTimer = null;
     }
     function startTopologyRouteCycle() {
       clearInterval(topologyRouteTimer);
@@ -4207,7 +4290,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
     function syncTopChrome() { const compact = window.scrollY > 56; $('#mast')?.classList.toggle('compact', compact); document.body.classList.toggle('nav-condensed', compact); }
     syncTopChrome();
     window.addEventListener('scroll', syncTopChrome, { passive: true });
-    initTopologyModal(); let saved = 'en'; try { saved = localStorage.getItem('sampora_lang') || 'en' } catch (e) { } setLang(saved); startTopologyRouteCycle();
+    initTopologyModal(); let saved = 'en'; try { saved = localStorage.getItem('sampora_lang') || 'en' } catch (e) { } setLang(saved); startTopologyRouteCycle(); startWorkflowRouteCycle();
   </script>
 <script>
 (function(){

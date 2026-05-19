@@ -154,22 +154,7 @@
             height: 7px;
             border-radius: 50%;
             background: var(--lime);
-            box-shadow: 0 0 0 0 rgba(181, 240, 86, .4);
-            animation: pulse-lime 1.9s ease-out infinite
-        }
-
-        @keyframes pulse-lime {
-            0% {
-                box-shadow: 0 0 0 0 rgba(181, 240, 86, .48)
-            }
-
-            72% {
-                box-shadow: 0 0 0 9px rgba(181, 240, 86, 0)
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(181, 240, 86, 0)
-            }
+            box-shadow: 0 0 0 3px rgba(181, 240, 86, .12)
         }
 
         .status .sep {
@@ -680,13 +665,11 @@
         .topo-svg .wire.lit {
             stroke: rgba(56, 210, 255, .55);
             stroke-width: 1.4;
-            filter: drop-shadow(0 0 3px rgba(56, 210, 255, .35));
             transition: stroke .35s var(--ease)
         }
 
         .topo-svg .wire.warn {
-            stroke: rgba(255, 180, 84, .55);
-            filter: drop-shadow(0 0 3px rgba(255, 180, 84, .3))
+            stroke: rgba(255, 180, 84, .55)
         }
 
         .topo-svg .flow {
@@ -696,19 +679,24 @@
             stroke-dasharray: 4 8;
             stroke-linecap: round;
             stroke-dashoffset: 0;
-            animation: topoDash 2.4s linear infinite;
+            animation: none;
             opacity: 0;
             transition: opacity .35s var(--ease)
         }
 
         .topo-svg .flow.on,
         .topo-svg .flow-group.on .flow {
+            animation: topoDash 2.8s linear infinite;
             opacity: 1
         }
 
         .topo-svg .flow.amber {
-            stroke: var(--amber);
-            animation-duration: 2.8s
+            stroke: var(--amber)
+        }
+
+        .topo-svg .flow.on.amber,
+        .topo-svg .flow-group.on .flow.amber {
+            animation-duration: 3.1s
         }
 
         .topo-svg .packet {
@@ -752,13 +740,15 @@
         }
 
         .topo-svg .topo-card.active rect {
-            stroke: rgba(56, 210, 255, .82);
-            filter: drop-shadow(0 0 8px rgba(56, 210, 255, .32))
+            fill: rgba(8, 24, 44, .98);
+            stroke: rgba(92, 222, 255, .9);
+            stroke-width: 1.15
         }
 
         .topo-svg .topo-card.warn rect {
-            stroke: rgba(255, 180, 84, .82);
-            filter: drop-shadow(0 0 8px rgba(255, 180, 84, .28))
+            fill: rgba(35, 23, 11, .94);
+            stroke: rgba(255, 190, 96, .88);
+            stroke-width: 1.15
         }
 
         .topo-svg .topo-card text {
@@ -783,6 +773,24 @@
             fill: var(--muted2);
             font-size: 8px;
             letter-spacing: .02em
+        }
+
+        .topo-svg .topo-card[data-key="pool"] rect {
+            fill: rgba(9, 24, 43, .98);
+            stroke: rgba(76, 218, 255, .62)
+        }
+
+        .topo-svg .pool-node-label .node-title {
+            fill: var(--cyan2);
+            font-size: 10.2px;
+            letter-spacing: .025em
+        }
+
+        .topo-svg .pool-node-label .node-sub {
+            fill: var(--fg2);
+            font-size: 8.2px;
+            font-weight: 500;
+            letter-spacing: .025em
         }
 
         .topo-svg .topo-card.active .node-sub {
@@ -818,8 +826,7 @@
         .topo-svg .brand-core-mark rect {
             fill: url(#brandMarkGrad);
             stroke: rgba(56, 210, 255, .35);
-            stroke-width: 1;
-            filter: drop-shadow(0 0 5px rgba(56, 210, 255, .24))
+            stroke-width: 1
         }
 
         .topo-svg .brand-core-mark text {
@@ -831,8 +838,7 @@
         }
 
         .topo-svg .hub.brand-core rect {
-            stroke: rgba(56, 210, 255, .58);
-            filter: drop-shadow(0 0 6px rgba(56, 210, 255, .28));
+            stroke: rgba(72, 218, 255, .68);
         }
 
         .topo-svg .hub text.code {
@@ -843,10 +849,12 @@
         }
 
         .topo-svg .colhead {
-            fill: var(--muted2);
-            font-size: 8px;
-            letter-spacing: .14em;
-            text-transform: uppercase
+            fill: rgba(202, 226, 246, .72);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            dominant-baseline: middle
         }
 
         .topo-svg .pulse {
@@ -1053,10 +1061,12 @@
         }
 
         .audit-feed li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 4px 0;
+            display: grid;
+            grid-template-columns: 46px minmax(0, 1fr) minmax(64px, max-content);
+            align-items: center;
+            column-gap: 12px;
+            min-height: 38px;
+            padding: 7px 0;
             border-bottom: 1px dashed var(--line2)
         }
 
@@ -1067,24 +1077,41 @@
         .audit-feed .t {
             color: var(--muted);
             min-width: 42px;
-            font-size: 10.5px
+            font-size: 10.5px;
+            line-height: 1;
+            white-space: nowrap
         }
 
         .audit-feed .body {
-            flex: 1;
-            line-height: 1.5
+            min-width: 0;
+            display: grid;
+            grid-template-columns: minmax(68px, max-content) minmax(0, 1fr);
+            align-items: center;
+            column-gap: 10px;
+            line-height: 1.35
         }
 
         .audit-feed .body b {
             color: var(--fg);
-            font-weight: 600
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: .08em;
+            white-space: nowrap
+        }
+
+        .audit-feed .body span {
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis
         }
 
         .audit-feed .sig {
             font-size: 10px;
             color: var(--cyan2);
             letter-spacing: .05em;
-            flex-shrink: 0
+            justify-self: end;
+            text-align: right;
+            white-space: nowrap
         }
 
         .audit-feed .sig.warn {
@@ -1133,6 +1160,22 @@
         @media(max-width:740px) {
             .kpi-region {
                 grid-template-columns: repeat(2, 1fr)
+            }
+
+            .audit-feed li {
+                grid-template-columns: 42px minmax(0, 1fr);
+                row-gap: 3px
+            }
+
+            .audit-feed .sig {
+                grid-column: 2;
+                justify-self: start;
+                font-size: 9.5px
+            }
+
+            .audit-feed .body {
+                grid-template-columns: minmax(56px, max-content) minmax(0, 1fr);
+                column-gap: 8px
             }
         }
 
@@ -1453,7 +1496,10 @@
 
         .quote {
             padding: 20px 18px;
-            overflow: hidden
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 0
         }
 
         .customer-top {
@@ -1516,7 +1562,7 @@
         }
 
         .quote p {
-            margin: 0 0 16px;
+            margin: 0;
             color: var(--fg2);
             font-size: 15px;
             line-height: 1.6
@@ -1524,8 +1570,9 @@
 
         .quote .impact {
             margin-top: 14px;
-            font: 700 14px var(--mono);
-            color: var(--lime)
+            font: 700 11px var(--mono);
+            letter-spacing: .04em;
+            color: rgba(169, 185, 210, .74)
         }
 
         .proof-panel {
@@ -1654,11 +1701,18 @@
         .final-wrap {
             display: grid;
             grid-template-columns: 1.15fr .85fr;
-            gap: 18px
+            gap: 18px;
+            align-items: stretch
         }
 
         .final-cta {
             padding: 28px
+        }
+
+        #contact .final-cta {
+            display: flex;
+            flex-direction: column;
+            min-height: clamp(420px, 31vw, 454px)
         }
 
         .final-cta h2 {
@@ -1674,25 +1728,61 @@
             max-width: 58ch
         }
 
-        .faq-card {
-            padding: 22px
+        #contact .final-cta>p {
+            margin-bottom: 0
         }
 
-        .faq-card h3 {
+        #contact .final-steps {
+            display: grid;
+            gap: 12px;
+            margin-top: 26px;
+            padding-top: 0
+        }
+
+        #contact .final-steps p {
+            align-items: center;
+            border-left: 1px solid rgba(123, 227, 255, .24);
+            display: flex;
+            margin: 0;
+            min-height: 34px;
+            padding-left: 14px;
+            max-width: none
+        }
+
+        #contact .final-cta .cta-row {
+            margin-top: 26px;
+            margin-bottom: 0
+        }
+
+        #contact .faq-card {
+            padding: 22px;
+            display: flex;
+            flex-direction: column
+        }
+
+        #contact .faq-card h3 {
             margin: 0 0 14px;
             font-size: 20px
         }
 
-        .faq-list {
+        #contact .faq-list {
             display: grid;
-            gap: 12px
+            grid-template-rows: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            flex: 1;
+            min-height: 0
         }
 
-        .faq-item {
+        #contact .faq-item {
             padding: 14px;
             border: 1px solid var(--line2);
             border-radius: 12px;
-            background: rgba(20, 40, 69, .16)
+            background: rgba(20, 40, 69, .16);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 0;
+            overflow-wrap: anywhere
         }
 
         .faq-item strong {
@@ -1726,6 +1816,20 @@
         @media(max-width:980px) {
             .final-wrap {
                 grid-template-columns: 1fr
+            }
+
+            #contact .final-cta {
+                min-height: 0
+            }
+
+            #contact .final-steps {
+                margin-top: 24px;
+                padding-top: 0;
+                gap: 8px
+            }
+
+            #contact .final-cta .cta-row {
+                margin-top: 22px
             }
         }
 
@@ -1809,11 +1913,30 @@
         }
 
         .hero-copy {
-            position: relative
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start
         }
 
         .hero-copy::after {
             display: none !important
+        }
+
+        .hero-copy>.eyebrow {
+            margin: 0
+        }
+
+        .hero-copy>h1 {
+            margin: 22px 0 0
+        }
+
+        .hero-copy>.hero-sub {
+            margin: 20px 0 0
+        }
+
+        .hero-copy>.cta-row {
+            margin: 26px 0 0
         }
 
         .eyebrow.localized {
@@ -1844,12 +1967,18 @@
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 12px;
-            max-width: 650px;
-            margin-top: 8px
+            width: min(100%, 680px);
+            margin-top: 24px;
+            align-items: stretch
         }
 
         .proof-mini {
-            padding: 14px 14px;
+            display: grid;
+            grid-template-rows: auto auto;
+            align-content: center;
+            gap: 9px;
+            min-height: 92px;
+            padding: 14px 15px;
             border: 1px solid rgba(129, 178, 214, .16);
             border-radius: 14px;
             background: linear-gradient(180deg, rgba(14, 27, 47, .66), rgba(6, 14, 28, .42));
@@ -1858,17 +1987,18 @@
 
         .proof-mini strong {
             display: block;
-            font: 700 18px var(--mono);
+            font: 700 14px/1.25 var(--mono);
             color: var(--fg);
-            letter-spacing: -.02em
+            letter-spacing: 0
         }
 
         .proof-mini span {
             display: block;
-            margin-top: 6px;
-            font: 11px/1.45 var(--mono);
+            margin-top: 0;
+            max-width: 100%;
+            font: 11px/1.5 var(--mono);
             color: var(--muted);
-            letter-spacing: .035em
+            letter-spacing: .01em
         }
 
         .proof-mini.warm strong {
@@ -2151,7 +2281,15 @@
 
         @media(max-width:720px) {
             .hero-proof-grid {
-                grid-template-columns: 1fr
+                grid-template-columns: 1fr;
+                gap: 10px;
+                margin-top: 24px
+            }
+
+            .proof-mini {
+                min-height: auto;
+                align-content: center;
+                padding: 13px 15px
             }
 
             .outcome-grid {
@@ -3005,27 +3143,17 @@
             inset: 0;
             pointer-events: none;
             z-index: 0;
-            opacity: .62;
+            opacity: .36;
             background:
                 radial-gradient(620px 360px at 78% 18%, rgba(56, 210, 255, .075), transparent 68%),
                 radial-gradient(520px 300px at 18% 72%, rgba(246, 169, 59, .045), transparent 70%),
                 linear-gradient(115deg, transparent 0 35%, rgba(56, 210, 255, .035) 46%, transparent 57% 100%);
             transform: translate3d(0, 0, 0);
-            animation: ambientDrift 22s var(--ease) 1 alternate;
         }
 
         body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            opacity: .26;
-            background:
-                linear-gradient(90deg, transparent 0 49.7%, rgba(56, 210, 255, .045) 50%, transparent 50.3% 100%);
-            background-size: 420px 100%;
-            animation: signalSweep 18s linear 1;
-            mask-image: linear-gradient(180deg, transparent, #000 18%, #000 72%, transparent);
+            content: none;
+            display: none;
         }
 
         body>* {
@@ -3058,7 +3186,6 @@
                 radial-gradient(closest-side at 72% 38%, rgba(246, 169, 59, .075), transparent 72%);
             filter: blur(.2px);
             transform: translate3d(0, 0, 0);
-            animation: sectionBreath 16s var(--ease) 1 alternate;
         }
 
         #workflow::before {
@@ -3074,40 +3201,6 @@
             animation: none;
             transform: translateX(0);
             opacity: .36;
-        }
-
-        @keyframes ambientDrift {
-            0% {
-                transform: translate3d(-10px, -8px, 0) scale(1);
-                opacity: .50;
-            }
-
-            100% {
-                transform: translate3d(14px, 10px, 0) scale(1.035);
-                opacity: .68;
-            }
-        }
-
-        @keyframes signalSweep {
-            from {
-                background-position: 0 0;
-            }
-
-            to {
-                background-position: 420px 0;
-            }
-        }
-
-        @keyframes sectionBreath {
-            0% {
-                transform: translate3d(-18px, 0, 0) scale(1);
-                opacity: .22;
-            }
-
-            100% {
-                transform: translate3d(18px, 12px, 0) scale(1.04);
-                opacity: .38;
-            }
         }
 
         #workflow.workflow-animate-once::before { animation: workflowSignal 9s ease-in-out infinite; }
@@ -3967,22 +4060,89 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 @media(min-width:1101px) and (max-width:1240px){
   .hero{padding:56px 0 46px}
   .hero-grid{grid-template-columns:1fr;max-width:900px;gap:34px}
-  .hero h1{max-width:760px;font-size:clamp(44px,5.2vw,58px);line-height:1.03;margin:18px 0 16px}
-  .hero-sub{max-width:690px;margin-bottom:22px}
-  .hero-proof-grid{max-width:690px}
+  .hero h1{max-width:760px;font-size:clamp(44px,5.2vw,58px);line-height:1.03;margin:22px 0 0}
+  .hero-sub{max-width:690px;margin:20px 0 0}
+  .hero-copy>.cta-row{margin:26px 0 0}
+  .hero-proof-grid{width:min(100%,690px);margin-top:24px}
   .console{width:100%;max-width:none;justify-self:stretch;min-height:610px}
   .topo-grid{height:clamp(276px,26vw,318px)}
 }
 @media(min-width:1241px){
   .hero{padding:64px 0 48px}
   .hero-grid{grid-template-columns:minmax(540px,.94fr) minmax(560px,1.06fr);gap:32px;align-items:center}
-  .hero h1{font-size:clamp(46px,4.1vw,64px);line-height:1.02;letter-spacing:-.02em;max-width:680px;margin:18px 0 16px}
-  .hero-sub{max-width:630px;font-size:17px;line-height:1.58;margin-bottom:22px}
-  .cta-row{margin-bottom:24px}
-  .hero-proof-grid{max-width:630px;gap:10px}
+  .hero h1{font-size:clamp(46px,4.1vw,64px);line-height:1.02;letter-spacing:-.02em;max-width:680px;margin:22px 0 0}
+  .hero-sub{max-width:630px;font-size:17px;line-height:1.58;margin:20px 0 0}
+  .hero-copy>.cta-row{margin:26px 0 0}
+  .hero-proof-grid{width:min(100%,680px);gap:12px;margin-top:24px}
   .console{width:100%;max-width:820px;justify-self:end;min-height:620px}
   .topo{padding:18px 24px 18px}
   .topo-grid{height:clamp(276px,22vw,332px)}
+}
+
+/* Package A urgent hero-left rhythm: keep the left column using the desktop hero height without stretching it to the edges. */
+@media(min-width:1241px){
+  .hero-grid{align-items:stretch}
+  .hero-copy{
+    align-self:stretch;
+    justify-content:center;
+    --hero-gap-title:28px;
+    --hero-gap-sub:24px;
+    --hero-gap-cta:34px;
+    --hero-gap-proof:30px;
+  }
+  .hero-copy>h1{
+    margin:var(--hero-gap-title) 0 0;
+    max-width:700px;
+    font-size:clamp(48px,4.15vw,66px);
+    line-height:1.03;
+  }
+  .hero-copy>.hero-sub{
+    max-width:590px;
+    font-size:17px;
+    line-height:1.62;
+    margin:var(--hero-gap-sub) 0 0;
+  }
+  .hero-copy>.cta-row{margin:var(--hero-gap-cta) 0 0}
+  .hero-proof-grid{
+    width:min(100%,690px);
+    gap:14px;
+    margin-top:var(--hero-gap-proof);
+  }
+  .proof-mini{
+    min-height:128px;
+    padding:16px;
+    gap:10px;
+  }
+  .proof-mini span{
+    font-size:11.5px;
+    line-height:1.56;
+  }
+  html[lang="zh"] .hero-copy,
+  html[lang="zh-CN"] .hero-copy{
+    --hero-gap-title:34px;
+    --hero-gap-sub:28px;
+    --hero-gap-cta:40px;
+    --hero-gap-proof:36px;
+  }
+  html[lang="zh"] .hero h1,
+  html[lang="zh-CN"] .hero h1{
+    max-width:710px;
+    font-size:clamp(48px,4.75vw,68px);
+    line-height:1.1;
+  }
+  html[lang="zh"] .hero-sub,
+  html[lang="zh-CN"] .hero-sub{
+    max-width:540px;
+    line-height:1.7;
+  }
+  html[lang="hi"] .hero-copy{
+    --hero-gap-title:22px;
+    --hero-gap-sub:20px;
+    --hero-gap-cta:26px;
+    --hero-gap-proof:24px;
+  }
+  html[lang="hi"] .hero-copy>.hero-sub{max-width:630px}
+  html[lang="hi"] .proof-mini{min-height:106px}
 }
 
 /* Worker F: measured desktop header parity */
@@ -4066,7 +4226,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div aria-modal="true" class="topology-modal__panel" role="dialog">
 <div class="topology-modal__head">
 <h2 data-i18n="topologyModalTitle" id="topologyModalTitle">Operations topology</h2>
-<button aria-label="Close topology" class="topology-modal__close" data-no-i18n="true" title="Close topology" type="button">X</button>
+<button aria-label="Close topology" class="topology-modal__close" data-i18n-aria-label="closeTopologyLabel" data-i18n-title="closeTopologyLabel" data-no-i18n="true" title="Close topology" type="button">X</button>
 </div>
 <div class="topology-modal__body"></div>
 </div>
@@ -4076,23 +4236,23 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="hero-copy">
 <div class="eyebrow localized settle d1" data-i18n="eyebrow">Online sample operations platform / control console</div>
 <h1 class="settle d2" data-i18n-html="heroTitle">Online Sample Operations Platform for <em>Panel Providers &amp; Sample Suppliers.</em></h1>
-<p class="hero-sub settle d3" data-i18n-html="heroSub">Sampora is an online sample operations platform for panel providers, sample suppliers, survey stations and research subcontracting teams. Submit your request and our sales team will follow up with trial access or a demo path.</p>
+<p class="hero-sub settle d3" data-i18n-html="heroSub">Sampora helps panel providers and sample suppliers manage project intake, supplier allocation, delivery review, settlement records, and traceable finance workflows in one operating layer.</p>
 <div class="cta-row settle d3"><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a></div>
 <div class="hero-proof-grid settle d4">
-<div class="proof-mini cyan"><strong data-i18n="heroProof1Title">Example sample run</strong><span data-i18n="heroProof1Text">Project intake, supplier allocation and settlement records in one view</span></div>
-<div class="proof-mini"><strong id="heroProject">PROJECT_2158</strong><span data-i18n="heroProof2Text">Supplier allocation updated</span></div>
-<div class="proof-mini warm"><strong data-i18n="heroProof3Title">Traceability</strong><span data-i18n="heroProof3Text">Privacy settings 路 review evidence 路 exportable records</span></div>
+<div class="proof-mini cyan"><strong data-i18n="heroProof1Title">Project intake</strong><span data-i18n="heroProof1Text">Capture client, country, CPI, IR/LOI, quota, and launch rules.</span></div>
+<div class="proof-mini"><strong data-i18n="heroProof2Title">Supplier allocation</strong><span data-i18n="heroProof2Text">Assign selected suppliers, block unsuitable supply, and manage supplier pricing.</span></div>
+<div class="proof-mini warm"><strong data-i18n="heroProof3Title">Review &amp; settlement</strong><span data-i18n="heroProof3Text">Connect review evidence, callback logs, supplier bills, and client invoices.</span></div>
 </div>
 </div>
 <div aria-label="Open operations topology" class="console settle d4" data-i18n-aria-label="openTopologyLabel" data-i18n-title="openTopologyLabel" id="network" title="Open operations topology">
 <div class="console-head">
-<div class="dots"><i></i><i></i><i></i></div><span class="crumb"><b>operations</b> / runs / <b id="crumbProject">PROJECT_2158</b></span><span class="pill" id="regionPill">B2C 路
+<div class="dots"><i></i><i></i><i></i></div><span class="crumb"><span data-i18n="consoleCrumbOps">operations</span> / <span data-i18n="consoleCrumbRuns">runs</span> / <b id="crumbProject">PROJECT_2158</b></span><span class="pill" id="regionPill">B2C ·
                         IN+UK</span>
 </div>
 <div class="run">
 <div>
-<div class="title" id="runTitle">Supplier allocation updated 路 sample run</div>
-<div class="id mono">RUN_ID 2158-04 路 started 14m ago</div>
+<div class="title" id="runTitle">Supplier allocation updated · sample run</div>
+<div class="id mono">RUN_ID 2158-04 · started 14m ago</div>
 </div>
 <div class="meta"><span class="tag" id="metaQuota">42% delivery</span><span class="tag lime" id="metaPass">review active</span><span class="tag amber" id="metaState">allocation</span></div>
 </div>
@@ -4111,12 +4271,12 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <stop offset="0" stop-color="#1a3a5f"></stop>
 <stop offset="1" stop-color="#0e1b2f"></stop>
 </linearGradient>
-<path id="h-router-pool" d="M158 145 C180 145, 196 145, 218 145"></path>
-<path id="h-pool-panel" d="M408 145 C430 145, 440 52, 470 52"></path>
-<path id="h-pool-agg" d="M408 145 C430 145, 440 104, 470 104"></path>
-<path id="h-pool-stn" d="M408 145 C430 145, 440 156, 470 156"></path>
-<path id="h-pool-sub" d="M408 145 C430 145, 440 208, 470 208"></path>
-<path id="h-pool-api" d="M408 145 C430 145, 440 260, 470 260"></path>
+<path id="h-router-pool" d="M158 145 C180 145, 198 145, 220 145"></path>
+<path id="h-pool-panel" d="M380 145 C412 145, 438 52, 470 52"></path>
+<path id="h-pool-agg" d="M380 145 C412 145, 438 104, 470 104"></path>
+<path id="h-pool-stn" d="M380 145 C412 145, 438 156, 470 156"></path>
+<path id="h-pool-sub" d="M380 145 C412 145, 438 208, 470 208"></path>
+<path id="h-pool-api" d="M380 145 C412 145, 438 260, 470 260"></path>
 <path id="h-panel-qc" d="M660 52 C690 52, 700 156, 720 156"></path>
 <path id="h-agg-qc" d="M660 104 C690 104, 700 156, 720 156"></path>
 <path id="h-stn-qc" d="M660 156 C690 156, 700 156, 720 156"></path>
@@ -4159,16 +4319,11 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <circle class="packet" data-packet="pool-stn" r="4"><animateMotion begin=".24s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-pool-stn"></mpath></animateMotion></circle>
 <circle class="packet" data-packet="pool-sub" r="4"><animateMotion begin=".32s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-pool-sub"></mpath></animateMotion></circle>
 <circle class="packet" data-packet="pool-api" r="4"><animateMotion begin=".4s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-pool-api"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="panel-qc" r="4"><animateMotion begin=".2s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-panel-qc"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="agg-qc" r="4"><animateMotion begin=".28s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-agg-qc"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="stn-qc" r="4"><animateMotion begin=".36s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-stn-qc"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="sub-qc" r="4"><animateMotion begin=".44s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-sub-qc"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="api-qc" r="4"><animateMotion begin=".52s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-api-qc"></mpath></animateMotion></circle>
 <circle class="packet" data-packet="qc-ledger" r="4"><animateMotion begin=".1s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-qc-ledger"></mpath></animateMotion></circle>
 </g>
 <g class="nodes-layer">
 <g class="hub brand-core" transform="translate(28,118)"><rect height="54" rx="12" width="130" x="0" y="0"></rect><circle class="pulse" cx="24" cy="27" r="7"></circle><g class="brand-core-mark" data-no-i18n="true"><rect height="22" rx="6" width="22" x="13" y="16"></rect><text dominant-baseline="central" text-anchor="middle" x="24" y="27.5">S</text></g></g>
-<g class="topo-card node" data-key="pool" transform="translate(218,112)"><rect height="66" rx="12" width="190" x="0" y="0"></rect></g>
+<g class="topo-card node" data-key="pool" transform="translate(220,116)"><rect height="58" rx="10" width="160" x="0" y="0"></rect></g>
 <g class="topo-card node" data-key="panel" transform="translate(470,30)"><rect height="44" rx="10" width="190" x="0" y="0"></rect></g>
 <g class="topo-card node" data-key="agg" transform="translate(470,82)"><rect height="44" rx="10" width="190" x="0" y="0"></rect></g>
 <g class="topo-card node" data-key="stn" transform="translate(470,134)"><rect height="44" rx="10" width="190" x="0" y="0"></rect></g>
@@ -4178,9 +4333,9 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <g class="hub" transform="translate(820,128)"><rect height="56" rx="10" width="58" x="0" y="0"></rect></g>
 </g>
 <g class="labels-layer">
-<text class="colhead" data-i18n="topoRouterHead" text-anchor="middle" x="93" y="18">ROUTER</text><text class="colhead" data-i18n="topoLayersHead" text-anchor="middle" x="313" y="18">SAMPLE SUPPLY POOL</text><text class="colhead" data-i18n="topoSourcesHead" text-anchor="middle" x="565" y="18">SUPPLY SOURCES</text><text class="colhead" data-i18n="topoQcHead" text-anchor="middle" x="749" y="18">REVIEW</text><text class="colhead" data-i18n="topoLedgerHead" text-anchor="middle" x="849" y="18">SETTLEMENT</text>
+<text class="colhead" data-i18n="topoRouterHead" text-anchor="middle" x="93" y="21">ROUTER</text><text class="colhead" data-i18n="topoLayersHead" text-anchor="middle" x="313" y="21">SAMPLE SUPPLY POOL</text><text class="colhead" data-i18n="topoSourcesHead" text-anchor="middle" x="565" y="21">SUPPLY SOURCES</text><text class="colhead" data-i18n="topoQcHead" text-anchor="middle" x="749" y="21">REVIEW</text><text class="colhead" data-i18n="topoLedgerHead" text-anchor="middle" x="849" y="21">SETTLEMENT</text>
 <g class="hub" transform="translate(28,118)"><text class="brand-code" text-anchor="middle" x="76" y="24">Sampora</text><text class="brand-role" data-i18n="topoRouterRole" text-anchor="middle" x="76" y="40">Router Core</text></g>
-<g transform="translate(218,112)"><text class="node-title" data-i18n="topoPoolTitle" x="16" y="25">SAMPLE SUPPLY POOL</text><text class="node-sub" data-i18n="topoPoolRole" x="16" y="45">allocation settings</text></g>
+<g class="pool-node-label" transform="translate(220,116)"><text class="node-title" data-i18n="topoPoolTitle" text-anchor="middle" x="80" y="24">SAMPLE SUPPLY POOL</text><text class="node-sub" data-i18n="topoPoolRole" text-anchor="middle" x="80" y="40">allocation settings</text></g>
 <g transform="translate(470,30)"><text class="node-index" x="14" y="18">01</text><text class="node-title" data-i18n="topoPanelTitle" x="60" y="18">PANEL_01</text><text class="node-sub" data-i18n="topoPanelRole" x="60" y="34">owned panel</text></g>
 <g transform="translate(470,82)"><text class="node-index" x="14" y="18">02</text><text class="node-title" data-i18n="topoAggTitle" x="60" y="18">AGG_02</text><text class="node-sub" data-i18n="topoAggRole" x="60" y="34">sample aggregator</text></g>
 <g transform="translate(470,134)"><text class="node-index" x="14" y="18">03</text><text class="node-title" data-i18n="topoStnTitle" x="60" y="18">STN_03</text><text class="node-sub" data-i18n="topoStnRole" x="60" y="34">survey station</text></g>
@@ -4192,19 +4347,19 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </svg></div>
 </div>
 <div class="kpi-region">
-<div class="kpi"><small>Completes</small>
+<div class="kpi"><small data-i18n="kpiCompletes">Completes</small>
 <div class="val" id="kpiCompletes">1,280</div>
 <div class="trend up" id="kpiCompletesTr">+218 / 1h</div>
 </div>
-<div class="kpi"><small>QC pass</small>
+<div class="kpi"><small data-i18n="kpiQcPass">QC pass</small>
 <div class="val lime" id="kpiQc">96.8%</div>
 <div class="trend" id="kpiQcTr">14 reviewed</div>
 </div>
-<div class="kpi"><small>CPI avg</small>
+<div class="kpi"><small data-i18n="kpiCpiAvg">CPI avg</small>
 <div class="val cyan" id="kpiCpi">$3.42</div>
 <div class="trend" id="kpiCpiTr">vs $3.61 plan</div>
 </div>
-<div class="kpi"><small>Settlement</small>
+<div class="kpi"><small data-i18n="kpiSettlement">Settlement</small>
 <div class="val amber" id="kpiSettle">$0</div>
 <div class="trend" id="kpiSettleTr">held 路 in run</div>
 </div>
@@ -4214,9 +4369,9 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <h4 data-i18n="auditFeedTitle">Operation feed</h4><span class="count" data-i18n="auditFeedCount">latest activity</span>
 </div>
 <ul class="audit-feed">
-<li><span class="t">17:42</span><span class="body" id="feed1"><b>PROJECT</b> Project intake created</span><span class="sig">UPDATED</span></li>
-<li><span class="t">17:38</span><span class="body" id="feed2"><b>SUPPLIER</b> Supplier allocation updated</span><span class="sig warn">UPDATED</span></li>
-<li><span class="t">17:31</span><span class="body" id="feed3"><b>CALLBACK</b> Callback record received</span><span class="sig lime">RECORDED</span></li>
+<li><span class="t">17:42</span><span class="body" id="feed1"><b>PROJECT</b><span>Project intake created</span></span><span class="sig">UPDATED</span></li>
+<li><span class="t">17:38</span><span class="body" id="feed2"><b>SUPPLIER</b><span>Supplier allocation updated</span></span><span class="sig warn">UPDATED</span></li>
+<li><span class="t">17:31</span><span class="body" id="feed3"><b>CALLBACK</b><span>Callback record received</span></span><span class="sig lime">RECORDED</span></li>
 </ul>
 </div>
 <div class="ticker"><span class="dot"></span><span class="stream" id="tickerText"><b>PROJECT_2158</b>
@@ -4289,7 +4444,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <article class="module"><small>Capability 06</small><h3 data-i18n="m6Title">Partner Network</h3><p data-i18n="m6Text">Help buyers find suppliers and suppliers find buyers, then convert cooperation records into internal clients or suppliers.</p><div class="metric" data-i18n="m6Metric">Partner records</div></article>
 <article class="module"><small>Capability 07</small><h3 data-i18n="m7Title">API-based Project Intake &amp; Distribution</h3><p data-i18n="m7Text">Receive project intake from API or workspace flows and distribute delivery work to the right supplier operation path.</p><div class="metric" data-i18n="m7Metric">API/workspace intake</div></article>
 <article class="module"><small>Capability 08</small><h3 data-i18n="m8Title">Risk Control &amp; Traceability</h3><p data-i18n="m8Text">Keep review evidence, callback records, operation logs and exportable records connected to project delivery.</p><div class="metric lime" data-i18n="m8Metric">Review evidence</div></article>
-<article class="module"><small>Capability 09</small><h3 data-i18n="m9Title">Enter delivery and settlement</h3><p data-i18n="m9Text">Partner relationships can continue into project intake, supplier allocation, billing and settlement records.</p><div class="metric amber" data-i18n="m9Metric">Project + finance loop</div></article>
+<article class="module"><small>Capability 09</small><h3 data-i18n="m9Title">Workspace &amp; Role Governance</h3><p data-i18n="m9Text">Manage tenants, departments, roles, staff permissions, dictionaries, and operating rules for multi-team sample operations.</p><div class="metric amber" data-i18n="m9Metric">Governance controls</div></article>
 </div>
 </div>
 </section>
@@ -4396,10 +4551,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </div>
 </article>
 <article class="surface-card reveal-card"><small data-i18n="surface3Label">Survey Station</small>
-<h3 data-i18n="surface3Title">Member-side surveys and accounts</h3>
-<p data-i18n="surface3Text">For respondents and members accessing survey lists, records, finance
-                        logs, bills, profile
-                        settings and language/display tools.</p>
+<h3 data-i18n="surface3Title">Member / Respondent Portal</h3>
+<p data-i18n="surface3Text">Member-side surveys, records, finance logs, bills, profile settings, and language tools.</p>
 <div class="surface-screen">
 <div class="surface-row" data-i18n="surface3Row1"><span class="surface-dot"></span>My surveys +
                             participation records
@@ -4419,7 +4572,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="section-head">
 <div>
 <div class="section-kicker" data-i18n="customersKicker">05 / Role scenarios</div>
-<h2 data-i18n-html="customersTitle">Operator workflows <em>built for delivery teams.</em></h2>
+<h2 data-i18n-html="customersTitle">Operating roles, <em>mapped to real workflow needs.</em></h2>
 </div>
 
 </div>
@@ -4428,13 +4581,11 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <article class="quote reveal-card">
 <div class="customer-top">
 <div class="anon-icon">SO</div>
-<div class="customer-meta"><strong data-i18n="customer1Name">Sample Operations
-                                    Manager</strong><span data-i18n="customer1Role">Project delivery lead</span></div>
+<div class="customer-meta"><strong data-i18n="customer1Name">Sample Operations Manager</strong><span data-i18n="customer1Role">Project delivery lead</span></div>
 </div>
 <div class="type" data-i18n="customer1Type">Project delivery operations</div>
-<p data-i18n="customer1Quote">Needs one place to see project intake, supplier allocation,
-                            delivery progress and review status before the client asks for an update.</p>
-<div class="impact" data-i18n="customer1Impact">Focus: intake → allocation → review</div>
+<p data-i18n="customer1Quote">Manages project intake, supplier allocation, delivery progress, and review status before client updates are needed.</p>
+<div class="impact" data-i18n="customer1Impact">Intake → Allocation → Review</div>
 </article>
 <article class="quote reveal-card">
 <div class="customer-top">
@@ -4442,9 +4593,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="customer-meta"><strong data-i18n="customer2Name">Supplier Manager</strong><span data-i18n="customer2Role">Supplier network operator</span></div>
 </div>
 <div class="type" data-i18n="customer2Type">Supplier allocation &amp; pricing</div>
-<p data-i18n="customer2Quote">Needs to assign selected suppliers, block unsuitable suppliers,
-                            set supplier-specific pricing and keep allocation logic explainable.</p>
-<div class="impact" data-i18n="customer2Impact">Focus: allocation → pricing → control</div>
+<p data-i18n="customer2Quote">Controls which suppliers receive each project, which suppliers are blocked, and how supplier-specific pricing is applied.</p>
+<div class="impact" data-i18n="customer2Impact">Allocation → Pricing → Control</div>
 </article>
 <article class="quote reveal-card">
 <div class="customer-top">
@@ -4452,9 +4602,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="customer-meta"><strong data-i18n="customer3Name">Finance Operator</strong><span data-i18n="customer3Role">Settlement and invoice owner</span></div>
 </div>
 <div class="type" data-i18n="customer3Type">Finance &amp; settlement</div>
-<p data-i18n="customer3Quote">Needs project settlement, supplier bills, client invoices, payment status and finance logs
-                            connected to delivery evidence.</p>
-<div class="impact" data-i18n="customer3Impact">Focus: settlement → invoices → payment logs</div>
+<p data-i18n="customer3Quote">Connects verified delivery records to supplier bills, client invoices, payment status, and finance logs.</p>
+<div class="impact" data-i18n="customer3Impact">Settlement → Invoices → Payment</div>
 </article>
 </div>
 <aside class="proof-panel reveal-card">
@@ -4488,10 +4637,10 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <p data-i18n="panelText">For teams building a long-term respondent or member asset, with
                         recruitment, profile, wallet and activation workflows.</p>
 <ul>
-<li>Panel member management</li>
-<li>Member groups and levels</li>
-<li>Incentive / wallet workflows</li>
-<li>Survey station support</li>
+<li data-i18n="panelPlanLi1">Panel member management</li>
+<li data-i18n="panelPlanLi2">Member groups and levels</li>
+<li data-i18n="panelPlanLi3">Incentive / wallet workflows</li>
+<li data-i18n="panelPlanLi4">Survey station support</li>
 </ul><a class="btn ghost" data-i18n="talkSales" href="contact.html?intent=contact_sales#contact-form">Talk to sales</a>
 </article>
 <article class="pricing-card featured">
@@ -4500,10 +4649,10 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </div><span class="plan-position" data-i18n="supplierRole">For sample supplier operations</span>
 <p data-i18n="supplierText">For operators coordinating supplier relationships, supplier allocation, delivery tracking, review and settlement evidence.</p>
 <ul>
-<li>Supplier profiles and controls</li>
-<li>Allocation and pricing controls</li>
-<li>Review and callback records</li>
-<li>Supplier bills and settlement</li>
+<li data-i18n="supplierPlanLi1">Supplier profiles and controls</li>
+<li data-i18n="supplierPlanLi2">Allocation and pricing controls</li>
+<li data-i18n="supplierPlanLi3">Review and callback records</li>
+<li data-i18n="supplierPlanLi4">Supplier bills and settlement</li>
 </ul><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
 </article>
 <article class="pricing-card">
@@ -4513,10 +4662,10 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <p data-i18n="enterpriseText">For multi-entity operations that need governance, permissions, audit
                         controls, custom workflows and implementation support.</p>
 <ul>
-<li>Client + supplier + member operations</li>
-<li>Role-based permissions</li>
-<li>API intake and distribution</li>
-<li>Implementation support</li>
+<li data-i18n="enterprisePlanLi1">Client + supplier + member operations</li>
+<li data-i18n="enterprisePlanLi2">Role-based permissions</li>
+<li data-i18n="enterprisePlanLi3">API intake and distribution</li>
+<li data-i18n="enterprisePlanLi4">Implementation support</li>
 </ul><a class="btn ghost" data-i18n="contactSales" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
 </article>
 </div>
@@ -4526,8 +4675,13 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="container final-wrap">
 <div class="final-cta">
 <div class="section-kicker" data-i18n="finalKicker">07 / Start trial</div>
-<h2 data-i18n="finalTitle">See what your current supplier workflow looks like inside Sampora.</h2>
-<p data-i18n="finalText">Submit your request and our sales team will follow up with trial access or a demo path.</p>
+<h2 data-i18n="finalTitle">Bring your sample operations workflow into Sampora.</h2>
+<p data-i18n="finalText">Tell us how you manage project intake, supplier allocation, review, and settlement. Our team will map the right trial or demo path.</p>
+<div class="final-steps" aria-label="Final CTA workflow steps">
+<p data-i18n="finalStep1">01 Share your workflow</p>
+<p data-i18n="finalStep2">02 Map the right Sampora layer</p>
+<p data-i18n="finalStep3">03 Start trial or demo</p>
+</div>
 <div class="cta-row"><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a></div>
 </div>
 <aside class="faq-card">
@@ -4606,20 +4760,22 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "chip4": "Subcontractor <b>teams</b>",
           "chip5": "API <b>suppliers</b>",
           "contactSales": "Contact sales",
+          "consoleCrumbOps": "operations",
+          "consoleCrumbRuns": "runs",
           "custom": "Custom",
-          "customer1Impact": "Focus: intake → allocation → review",
+          "customer1Impact": "Intake → Allocation → Review",
           "customer1Name": "Sample Operations Manager",
-          "customer1Quote": "Needs one place to see project intake, supplier allocation, delivery progress and review status before the client asks for an update.",
+          "customer1Quote": "Manages project intake, supplier allocation, delivery progress, and review status before client updates are needed.",
           "customer1Role": "Project delivery lead",
           "customer1Type": "Project delivery operations",
-          "customer2Impact": "Focus: allocation → pricing → control",
+          "customer2Impact": "Allocation → Pricing → Control",
           "customer2Name": "Supplier Manager",
-          "customer2Quote": "Needs to assign selected suppliers, block unsuitable suppliers, set supplier-specific pricing and keep allocation logic explainable.",
+          "customer2Quote": "Controls which suppliers receive each project, which suppliers are blocked, and how supplier-specific pricing is applied.",
           "customer2Role": "Supplier network operator",
           "customer2Type": "Supplier allocation & pricing",
-          "customer3Impact": "Focus: settlement → invoices → payment logs",
+          "customer3Impact": "Settlement → Invoices → Payment",
           "customer3Name": "Finance Operator",
-          "customer3Quote": "Needs project settlement, supplier bills, client invoices, payment status and finance logs connected to delivery evidence.",
+          "customer3Quote": "Connects verified delivery records to supplier bills, client invoices, payment status, and finance logs.",
           "customer3Role": "Settlement and invoice owner",
           "customer3Type": "Finance & settlement",
           "customersKicker": "05 / Role scenarios",
@@ -4635,17 +4791,25 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "faq3A": "Enterprise deployments can include security review, export controls and implementation support.",
           "faq3Q": "Do you support security reviews?",
           "finalKicker": "07 / Start trial",
-          "finalText": "Submit your request and our sales team will follow up with trial access or a demo path.",
-          "finalTitle": "Map your sample delivery workflow into Sampora.",
+          "finalStep1": "01 Share your workflow",
+          "finalStep2": "02 Map the right Sampora layer",
+          "finalStep3": "03 Start trial or demo",
+          "finalText": "Tell us how you manage project intake, supplier allocation, review, and settlement. Our team will map the right trial or demo path.",
+          "finalTitle": "Bring your sample operations workflow into Sampora.",
           "footerDesc": "Online sample operations platform for panel providers and sample suppliers.",
-          "heroProof1Text": "Project intake, supplier allocation, review status and settlement state in one view.",
+          "heroProof1Text": "Capture client, country, CPI, IR/LOI, quota, and launch rules.",
           "heroProof1Title": "Project intake",
-          "heroProof2Text": "Supplier allocation updated",
-          "heroProof3Text": "Privacy settings / review evidence / exportable records",
-          "heroProof3Title": "Traceability",
-          "heroSub": "Sampora is an online sample operations platform for panel providers, sample suppliers, survey stations and research subcontracting teams. Submit your request and our sales team will follow up with trial access or a demo path.",
+          "heroProof2Text": "Assign selected suppliers, block unsuitable supply, and manage supplier pricing.",
+          "heroProof2Title": "Supplier allocation",
+          "heroProof3Text": "Connect review evidence, callback logs, supplier bills, and client invoices.",
+          "heroProof3Title": "Review & settlement",
+          "heroSub": "Sampora helps panel providers and sample suppliers manage project intake, supplier allocation, delivery review, settlement records, and traceable finance workflows in one operating layer.",
           "heroTitle": "Online Sample Operations Platform for <em>Panel Providers & Sample Suppliers.</em>",
           "idle": "idle",
+          "kpiCompletes": "Completes",
+          "kpiCpiAvg": "CPI avg",
+          "kpiQcPass": "QC pass",
+          "kpiSettlement": "Settlement",
           "langSwitcher": "Language switcher",
           "m1Metric": "Delivery workflow",
           "m1Text": "Manage online sample projects from intake and setup to allocation, tracking, review and settlement.",
@@ -4671,9 +4835,9 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "m8Metric": "Review evidence",
           "m8Text": "Keep review evidence, callback records, operation logs and exportable records connected to project delivery.",
           "m8Title": "Risk Control & Traceability",
-          "m9Metric": "Project + finance loop",
-          "m9Text": "Partner relationships can continue into project intake, supplier allocation, billing and settlement records.",
-          "m9Title": "Enter delivery and settlement",
+          "m9Metric": "Governance controls",
+          "m9Text": "Manage tenants, departments, roles, staff permissions, dictionaries, and operating rules for multi-team sample operations.",
+          "m9Title": "Workspace & Role Governance",
           "navContact": "Contact",
           "startTrial": "Start trial",
           "networkState": "Sample supply pool state",
@@ -4687,6 +4851,10 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "outcomeKicker": "01 / Pain / Outcome",
           "outcomeTitle": "Turn fragmented sample delivery into <em>visible operations control.</em>",
           "pageTitle": "Sampora - Online Sample Operations Platform for Panel Providers & Sample Suppliers",
+          "panelPlanLi1": "Panel member management",
+          "panelPlanLi2": "Member groups and levels",
+          "panelPlanLi3": "Incentive / wallet workflows",
+          "panelPlanLi4": "Survey station support",
           "pain1Text": "Client briefs, API feeds, and internal requests often come in different formats before operations teams can prepare delivery.",
           "pain1Title": "Projects arrive from different channels",
           "pain2Text": "CPI, IR/LOI, targeting, regional rules, and supplier-ready setup are often reviewed across multiple tools and spreadsheets.",
@@ -4728,6 +4896,10 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "statusLive": "Delivery workflow / Live",
           "statusNetworks": "sample operations",
           "supplierRole": "For supplier coordination teams",
+          "supplierPlanLi1": "Supplier profiles and controls",
+          "supplierPlanLi2": "Allocation and pricing controls",
+          "supplierPlanLi3": "Review and callback records",
+          "supplierPlanLi4": "Supplier bills and settlement",
           "supplierText": "For operators coordinating supplier relationships, supplier allocation, configured prices, review evidence and delivery visibility.",
           "surface1Label": "Admin Console",
           "surface1Row1": "Region + domain setup",
@@ -4745,8 +4917,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "surface3Row1": "My surveys + participation records",
           "surface3Row2": "Profile, language and display tools",
           "surface3Row3": "Finance logs and my bills",
-          "surface3Text": "For respondents and members accessing survey lists, records, finance logs, bills, profile settings and language/display tools.",
-          "surface3Title": "Member-side surveys and accounts",
+          "surface3Text": "Member-side surveys, records, finance logs, bills, profile settings, and language tools.",
+          "surface3Title": "Member / Respondent Portal",
           "talkSales": "Talk to sales",
           "topoAggRole": "sample aggregator",
           "topoAggTitle": "AGG_02",
@@ -4806,26 +4978,30 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "chip5": "API <b>suppliers</b>",
           "contactSales": "Contact sales",
           "custom": "Custom",
-          "customer1Impact": "关注：需求接收 → 分配 → 审核",
+          "customer1Impact": "项目接收 → 供应商分配 → 审核",
           "customer1Name": "样本运营经理",
           "customer1Quote": "需要在一个位置查看项目接收、供应商分配、交付进度和审核状态，先于客户追问掌握情况。",
           "customer1Role": "项目交付负责人",
           "customer1Type": "项目交付运营",
-          "customer2Impact": "关注：分配 → 定价 → 控制",
+          "customer2Impact": "供应商分配 → 定价 → 控制",
           "customer2Name": "供应商经理",
           "customer2Quote": "需要分配选定供应商、屏蔽不合适供应商、设置供应商级价格，并让分配逻辑可解释。",
           "customer2Role": "供应商网络运营",
           "customer2Type": "供应商分配与定价",
-          "customer3Impact": "关注：结算 → 发票 → 付款记录",
+          "customer3Impact": "结算 → 发票 → 付款",
           "customer3Name": "财务运营专员",
           "customer3Quote": "需要把项目结算、供应商账单、客户发票、付款状态和财务日志连接到交付证据。",
           "customer3Role": "结算与发票负责人",
           "customer3Type": "财务与结算",
           "customersKicker": "05 / Role scenarios",
-          "customersTitle": "Operating roles, <em>mapped to real workflow needs.</em>",
+          "customersTitle": "运营角色，<em>对应真实工作流需求。</em>",
           "enterpriseRole": "For multi-team governance",
           "enterpriseText": "For multi-entity operations that need governance, permissions, traceability controls, custom workflows and implementation support.",
           "entryLayer": "Entry layer",
+          "enterprisePlanLi1": "Client + supplier + member operations",
+          "enterprisePlanLi2": "Role-based permissions",
+          "enterprisePlanLi3": "API intake and distribution",
+          "enterprisePlanLi4": "Implementation support",
           "eyebrow": "Online sample operations platform / control console",
           "faq1A": "Yes. Panel and Supplier Network are positioned for different levels of operational complexity.",
           "faq1Q": "可以先从较小的 Sampora 层开始吗？",
@@ -4836,14 +5012,15 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "finalKicker": "07 / Start trial",
           "finalText": "Submit your request and our sales team will follow up with trial access or a demo path.",
           "finalTitle": "Map your sample delivery workflow into Sampora.",
-          "footerDesc": "Online sample operations platform for panel providers and sample suppliers.",
-          "heroProof1Text": "Project intake, supplier allocation, review status and settlement state in one view.",
-          "heroProof1Title": "Project intake",
-          "heroProof2Text": "Supplier allocation updated",
-          "heroProof3Text": "Privacy settings / review evidence / exportable records",
-          "heroProof3Title": "Traceability",
-          "heroSub": "Sampora is an online sample operations platform for panel providers, sample suppliers, survey stations and research subcontracting teams. Submit your request and our sales team will follow up with trial access or a demo path.",
-          "heroTitle": "Online Sample Operations Platform for <em>Panel Providers & Sample Suppliers.</em>",
+          "footerDesc": "面向自有样本运营方与在线样本供应商的在线样本运营平台。",
+          "heroProof1Text": "记录客户、国家、CPI、IR/LOI、配额和上线规则。",
+          "heroProof1Title": "项目接收",
+          "heroProof2Text": "为选定供应商分配项目，屏蔽不适配供给，并管理供应商定价。",
+          "heroProof2Title": "供应商分配",
+          "heroProof3Text": "连接审核证据、回调日志、供应商账单和客户发票。",
+          "heroProof3Title": "审核与结算",
+          "heroSub": "Sampora 面向自有样本运营方、在线样本供应商、调查站和研究分包团队，集中管理项目接收、供应商分配、交付跟踪、审核证据与结算记录。",
+          "heroTitle": "面向<em>自有样本运营方与在线样本供应商</em>的在线样本运营平台。",
           "idle": "idle",
           "langSwitcher": "Language switcher",
           "m1Metric": "Delivery workflow",
@@ -4872,7 +5049,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "m8Title": "Risk Control & Traceability",
           "m9Metric": "Project + finance loop",
           "m9Text": "Partner relationships can continue into project intake, supplier allocation, billing and settlement records.",
-          "m9Title": "Enter delivery and settlement",
+          "m9Title": "工作台与角色治理",
           "navContact": "Contact",
           "startTrial": "Start trial",
           "networkState": "Sample supply pool state",
@@ -4885,7 +5062,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "outcome5": "结果：财务与结算",
           "outcomeKicker": "01 / Pain / Outcome",
           "outcomeTitle": "把分散的样本交付工作变成<em>可见的运营控制。</em>",
-          "pageTitle": "Sampora - Online Sample Operations Platform for Panel Providers & Sample Suppliers",
+          "pageTitle": "Sampora - 面向自有样本运营方与在线样本供应商的在线样本运营平台",
           "pain1Text": "客户简报、API feeds 和内部请求常以不同格式进入，运营团队需要先整理信息，才能准备交付。",
           "pain1Title": "项目来自不同渠道",
           "pain2Text": "CPI、IR/LOI、目标人群、区域规则和供应商交付配置，常常需要跨多个工具和表格反复确认。",
@@ -4945,7 +5122,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "surface3Row2": "Profile, language and display tools",
           "surface3Row3": "Finance logs and my bills",
           "surface3Text": "For respondents and members accessing survey lists, records, finance logs, bills, profile settings and language/display tools.",
-          "surface3Title": "Member-side surveys and accounts",
+          "surface3Title": "会员 / 受访者门户",
           "talkSales": "Talk to sales",
           "topoAggRole": "sample aggregator",
           "topoAggTitle": "AGG_02",
@@ -4990,7 +5167,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "w4li2": "Supplier bills",
           "w4li3": "Client invoices",
           "workflowKicker": "03 / Workflow",
-          "workflowTitle": "Intake. Allocate. Track. <em>Settle.</em>"
+          "workflowTitle": "接收。分配。跟踪。<em>结算。</em>"
 },
               "hi": {
           "allocation": "allocation",
@@ -5005,23 +5182,23 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "chip5": "API <b>suppliers</b>",
           "contactSales": "Contact sales",
           "custom": "Custom",
-          "customer1Impact": "फोकस: intake → allocation → review",
+          "customer1Impact": "इनटेक → आवंटन → समीक्षा",
           "customer1Name": "Sample Operations Manager",
           "customer1Quote": "Project intake, supplier allocation, delivery progress और review status को एक जगह देखना होता है, ताकि client के पूछने से पहले update तैयार रहे।",
           "customer1Role": "Project delivery lead",
           "customer1Type": "Project delivery operations",
-          "customer2Impact": "फोकस: allocation → pricing → control",
+          "customer2Impact": "आवंटन → pricing → नियंत्रण",
           "customer2Name": "Supplier Manager",
           "customer2Quote": "चुने हुए suppliers assign करने, unsuitable suppliers block करने, supplier-specific pricing सेट करने और allocation logic explainable रखने की जरूरत होती है।",
           "customer2Role": "Supplier network operator",
           "customer2Type": "Supplier allocation और pricing",
-          "customer3Impact": "फोकस: settlement → invoices → payment logs",
+          "customer3Impact": "सेटलमेंट → invoices → भुगतान",
           "customer3Name": "Finance Operator",
           "customer3Quote": "Project settlement, supplier bills, client invoices, payment status और finance logs को delivery evidence से जोड़ना होता है।",
           "customer3Role": "Settlement और invoice owner",
           "customer3Type": "Finance और settlement",
           "customersKicker": "05 / Role scenarios",
-          "customersTitle": "Operating roles, <em>mapped to real workflow needs.</em>",
+          "customersTitle": "संचालन भूमिकाएं, <em>वास्तविक workflow जरूरतों से जुड़ी।</em>",
           "enterpriseRole": "For multi-team governance",
           "enterpriseText": "For multi-entity operations that need governance, permissions, traceability controls, custom workflows and implementation support.",
           "entryLayer": "Entry layer",
@@ -5036,11 +5213,12 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "finalText": "Submit your request and our sales team will follow up with trial access or a demo path.",
           "finalTitle": "Map your sample delivery workflow into Sampora.",
           "footerDesc": "Online sample operations platform for panel providers and sample suppliers.",
-          "heroProof1Text": "Project intake, supplier allocation, review status and settlement state in one view.",
-          "heroProof1Title": "Project intake",
-          "heroProof2Text": "Supplier allocation updated",
-          "heroProof3Text": "Privacy settings / review evidence / exportable records",
-          "heroProof3Title": "Traceability",
+          "heroProof1Text": "क्लाइंट, देश, CPI, IR/LOI, कोटा और लॉन्च नियम रिकॉर्ड करें।",
+          "heroProof1Title": "परियोजना इनटेक",
+          "heroProof2Text": "चुने हुए सप्लायर असाइन करें, अनुपयुक्त supply ब्लॉक करें, और supplier pricing संभालें।",
+          "heroProof2Title": "सप्लायर आवंटन",
+          "heroProof3Text": "समीक्षा साक्ष्य, callback logs, supplier bills और client invoices को जोड़ें।",
+          "heroProof3Title": "समीक्षा व सेटलमेंट",
           "heroSub": "Sampora is an online sample operations platform for panel providers, sample suppliers, survey stations and research subcontracting teams. Submit your request and our sales team will follow up with trial access or a demo path.",
           "heroTitle": "Online Sample Operations Platform for <em>Panel Providers & Sample Suppliers.</em>",
           "idle": "idle",
@@ -5193,35 +5371,293 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 }
             };
             Object.assign(translations.zh, {
+                allocation: "分配",
+                auditFeedCount: "最新动态",
+                auditFeedTitle: "运营动态",
                 bookDemo: "预约演示",
                 brandSub: "运营控制台",
-                footerDesc: "面向面板服务商与样本供应商的在线样本运营平台。",
-                heroSub: "Sampora 面向面板服务商、样本供应商、调查站和研究分包团队，集中管理项目录入、供应商分配、交付跟踪、审核证据与结算记录。提交需求后，销售团队会跟进试用或演示路径。",
-                heroTitle: "面向<em>面板服务商与样本供应商</em>的在线样本运营平台。",
+                chip1: "自有样本<b>运营方</b>",
+                chip2: "在线样本<b>供应商</b>",
+                chip3: "调查<b>站点</b>",
+                chip4: "分包<b>团队</b>",
+                chip5: "多实体<b>企业</b>",
+                closeTopologyLabel: "关闭拓扑",
+                consoleCrumbOps: "运营",
+                consoleCrumbRuns: "项目运行",
+                contactSales: "联系销售",
+                custom: "定制",
+                customer1Impact: "项目接收 → 供应商分配 → 审核",
+                customer1Name: "样本运营经理",
+                customer1Quote: "负责在客户追问前掌握项目接收、供应商分配、交付进度与审核状态。",
+                customer1Role: "项目交付负责人",
+                customer1Type: "项目交付运营",
+                customer2Impact: "供应商分配 → 定价 → 控制",
+                customer2Name: "供应商经理",
+                customer2Quote: "负责决定哪些供应商接收项目、哪些供应商需要屏蔽，以及如何应用供应商定价。",
+                customer2Role: "供应商网络运营",
+                customer2Type: "供应商分配与定价",
+                customer3Impact: "结算 → 发票 → 付款",
+                customer3Name: "财务运营专员",
+                customer3Quote: "把审核后的交付记录连接到供应商账单、客户发票、付款状态和财务日志。",
+                customer3Role: "结算与发票负责人",
+                customer3Type: "财务与结算",
+                customersKicker: "05 / 角色场景",
+                customersTitle: "运营角色，<em>对应真实工作流需求。</em>",
+                enterprisePlanLi1: "客户、供应商与会员运营",
+                enterprisePlanLi2: "基于角色的权限",
+                enterprisePlanLi3: "API 接收与分发",
+                enterprisePlanLi4: "实施支持",
+                enterpriseRole: "适合多团队治理",
+                enterpriseText: "适合需要治理、权限、可追溯控制、自定义工作流和实施支持的多实体运营。",
+                entryLayer: "入门层",
+                eyebrow: "在线样本运营平台 / 控制台",
+                faq1A: "可以。Panel 与 Supplier Network 面向不同复杂度的样本运营团队。",
+                faq1Q: "可以先从较小的 Sampora 层开始吗？",
+                faq2A: "不是。它是供应商角色、QC 节点和结算流的抽象运营视图。",
+                faq2Q: "网络拓扑代表地理位置吗？",
+                faq3A: "Enterprise 部署可以包含安全审查、导出控制和实施支持。",
+                faq3Q: "支持安全审查吗？",
+                finalKicker: "07 / 开始试用",
+                finalStep1: "01 说明你的工作流",
+                finalStep2: "02 匹配合适的 Sampora 层",
+                finalStep3: "03 开始试用或演示",
+                finalText: "告诉我们你如何处理项目接收、供应商分配、审核与结算。我们的团队会匹配合适的试用或演示路径。",
+                finalTitle: "把你的样本运营工作流接入 Sampora。",
+                footerDesc: "面向自有样本运营方与在线样本供应商的在线样本运营平台。",
+                heroSub: "Sampora 面向自有样本运营方、在线样本供应商、调查站和研究分包团队，集中管理项目接收、供应商分配、交付跟踪、审核证据与结算记录。",
+                heroTitle: "面向<em>自有样本运营方与在线样本供应商</em>的在线样本运营平台。",
+                idle: "空闲",
+                kpiCompletes: "完成量",
+                kpiCpiAvg: "平均 CPI",
+                kpiQcPass: "QC 通过",
+                kpiSettlement: "结算",
+                langSwitcher: "语言切换",
+                m9Metric: "治理控制",
+                m9Text: "管理租户、部门、角色、员工权限、字典和运营规则，支持多团队样本运营。",
+                m9Title: "工作台与角色治理",
+                networkState: "样本供给池状态",
                 navContact: "联系我们",
-                pageTitle: "Sampora - 面向面板服务商与样本供应商的在线样本运营平台",
+                operatingFor: "样本运营层服务于",
+                pageTitle: "Sampora - 面向自有样本运营方与在线样本供应商的在线样本运营平台",
+                panelPlanLi1: "样本会员管理",
+                panelPlanLi2: "会员分组与等级",
+                panelPlanLi3: "激励 / 钱包工作流",
+                panelPlanLi4: "调查站支持",
+                panelRole: "适合自有受访者团队",
+                panelText: "适合建设长期受访者或会员资产的团队，覆盖招募、档案、钱包与激活工作流。",
                 product: "产品",
+                productSurfacesKicker: "04 / 产品界面",
+                productSurfacesTitle: "三个运营界面，<em>一条平台主线。</em>",
+                quickAnswers: "快速回答",
+                recommended: "推荐",
                 resources: "资源",
+                review: "审核",
                 solutions: "解决方案",
                 plans: "版本方案",
+                plansKicker: "06 / 版本方案",
+                plansTitle: "选择匹配复杂度的<em>样本运营层。</em>",
                 startTrial: "开始试用",
-                w1Title: "项目录入",
-                workflowTitle: "录入。分配。跟踪。<em>结算。</em>"
+                supplierPlanLi1: "供应商档案与控制",
+                supplierPlanLi2: "分配与定价控制",
+                supplierPlanLi3: "审核与回调记录",
+                supplierPlanLi4: "供应商账单与结算",
+                supplierRole: "适合供应商协同团队",
+                supplierText: "适合协调供应商关系、供应商分配、配置价格、审核证据和交付可视化的运营团队。",
+                surface1Label: "管理控制台",
+                surface1Row1: "区域 + 域名配置",
+                surface1Row2: "角色、部门、员工",
+                surface1Row3: "项目上线基础",
+                surface1Text: "供管理员配置超级管理员账号、服务器区域、自定义域名、字典、部门、角色和员工。",
+                surface1Title: "租户配置、域名与治理",
+                surface2Label: "供应商工作台",
+                surface2Row1: "看板：完成量、收入、通过率",
+                surface2Row2: "项目记录 + 终止记录",
+                surface2Row3: "员工 / 会员财务与账单",
+                surface2Text: "供供应商运营管理数据分析、问卷列表、会员、员工账单、会员账单和导出工作流。",
+                surface2Title: "供应商看板、项目与财务",
+                surface3Label: "调查站",
+                surface3Row1: "我的问卷 + 参与记录",
+                surface3Row2: "档案、语言和显示工具",
+                surface3Row3: "财务日志和我的账单",
+                surface3Text: "面向会员和受访者访问问卷列表、记录、财务日志、账单、档案设置和语言 / 显示工具。",
+                surface3Title: "会员 / 受访者门户",
+                talkSales: "联系销售",
+                topologyModalTitle: "运营拓扑",
+                topoRouterRole: "路由核心",
+                topoPoolRole: "分配设置",
+                topoPanelRole: "自有样本",
+                topoAggRole: "样本聚合商",
+                topoStnRole: "调查站",
+                topoSubRole: "分包团队",
+                topoApiRole: "API 供应商",
+                topoReviewRole: "审核证据",
+                topoSettleRole: "结算台账",
+                w1Text: "接收或创建项目，在执行前记录 CPI、IR、LOI、国家、客户和交付规则。",
+                w1Title: "项目接收",
+                w1li1: "项目来源",
+                w1li2: "CPI / IR / LOI",
+                w1li3: "客户 + 国家",
+                w2Text: "用供应商分配、屏蔽和定价规则，把受访者流量分配到自有样本、聚合商和分包团队。",
+                w2Title: "分配供给",
+                w2li1: "分配供应商",
+                w2li2: "屏蔽供应商",
+                w2li3: "供应商定价",
+                w3Text: "监控参与、完成、拒绝、回调和审核状态，让运营团队清楚说明交付进度。",
+                w3Title: "跟踪与审核",
+                w3li1: "完成 / 拒绝",
+                w3li2: "回调记录",
+                w3li3: "审核状态",
+                w4Text: "批准结果、创建项目结算、生成供应商账单或客户发票，并保留可导出的证据。",
+                w4Title: "结算与开票",
+                w4li1: "项目结算",
+                w4li2: "供应商账单",
+                w4li3: "客户发票",
+                workflowKicker: "03 / 工作流",
+                workflowTitle: "接收。分配。跟踪。<em>结算。</em>"
             });
             Object.assign(translations.hi, {
+                allocation: "आवंटन",
+                auditFeedCount: "ताजा गतिविधि",
+                auditFeedTitle: "संचालन फीड",
                 bookDemo: "डेमो बुक करें",
                 brandSub: "ऑपरेशंस कंसोल",
-                footerDesc: "पैनल प्रदाताओं और सैंपल सप्लायरों के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म।",
-                heroSub: "Sampora पैनल प्रदाताओं, सैंपल सप्लायरों, सर्वे स्टेशनों और रिसर्च सबकॉन्ट्रैक्टिंग टीमों के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म है। अपना अनुरोध भेजें, हमारी सेल्स टीम ट्रायल एक्सेस या डेमो पथ के साथ फॉलो अप करेगी।",
-                heroTitle: "<em>पैनल प्रदाताओं और सैंपल सप्लायरों</em> के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म।",
+                chip1: "Panel <b>नेटवर्क</b>",
+                chip2: "सैंपल <b>सप्लायर</b>",
+                chip3: "सर्वे <b>स्टेशन</b>",
+                chip4: "सबकॉन्ट्रैक्टर <b>टीमें</b>",
+                chip5: "मल्टी-एंटिटी <b>एंटरप्राइज</b>",
+                closeTopologyLabel: "टोपोलॉजी बंद करें",
+                consoleCrumbOps: "संचालन",
+                consoleCrumbRuns: "रन",
+                contactSales: "सेल्स से संपर्क करें",
+                custom: "कस्टम",
+                customer1Impact: "इनटेक → आवंटन → समीक्षा",
+                customer1Name: "सैंपल ऑपरेशंस मैनेजर",
+                customer1Quote: "क्लाइंट अपडेट से पहले प्रोजेक्ट इनटेक, सप्लायर आवंटन, डिलीवरी प्रगति और समीक्षा स्थिति देखता है।",
+                customer1Role: "प्रोजेक्ट डिलीवरी लीड",
+                customer1Type: "प्रोजेक्ट डिलीवरी ऑपरेशंस",
+                customer2Impact: "आवंटन → pricing → नियंत्रण",
+                customer2Name: "सप्लायर मैनेजर",
+                customer2Quote: "कौन से सप्लायर प्रोजेक्ट पाएंगे, किस supply को ब्लॉक करना है, और supplier pricing कैसे लगेगी, यह नियंत्रित करता है।",
+                customer2Role: "सप्लायर नेटवर्क ऑपरेटर",
+                customer2Type: "सप्लायर आवंटन और pricing",
+                customer3Impact: "सेटलमेंट → invoices → भुगतान",
+                customer3Name: "फाइनेंस ऑपरेटर",
+                customer3Quote: "सत्यापित डिलीवरी रिकॉर्ड को supplier bills, client invoices, payment status और finance logs से जोड़ता है।",
+                customer3Role: "सेटलमेंट और invoice owner",
+                customer3Type: "फाइनेंस और सेटलमेंट",
+                customersKicker: "05 / भूमिका परिदृश्य",
+                customersTitle: "संचालन भूमिकाएं, <em>वास्तविक workflow जरूरतों से जुड़ी।</em>",
+                enterprisePlanLi1: "क्लाइंट + सप्लायर + सदस्य संचालन",
+                enterprisePlanLi2: "Role-based permissions",
+                enterprisePlanLi3: "API इनटेक और वितरण",
+                enterprisePlanLi4: "Implementation support",
+                enterpriseRole: "मल्टी-टीम governance के लिए",
+                enterpriseText: "उन मल्टी-एंटिटी ऑपरेशंस के लिए जिन्हें governance, permissions, traceability controls, custom workflows और implementation support चाहिए।",
+                entryLayer: "एंट्री लेयर",
+                eyebrow: "ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म / कंट्रोल कंसोल",
+                faq1A: "हां। Panel और Supplier Network अलग-अलग operational complexity के लिए रखे गए हैं।",
+                faq1Q: "क्या हम छोटे Sampora layer से शुरू कर सकते हैं?",
+                faq2A: "नहीं। यह supplier roles, QC gates और settlement flow का abstract operating view है।",
+                faq2Q: "क्या network topology geography दिखाती है?",
+                faq3A: "Enterprise deployments में security review, export controls और implementation support शामिल हो सकते हैं।",
+                faq3Q: "क्या आप security review support करते हैं?",
+                finalKicker: "07 / ट्रायल शुरू करें",
+                finalStep1: "01 अपना workflow बताएं",
+                finalStep2: "02 सही Sampora layer map करें",
+                finalStep3: "03 trial या demo शुरू करें",
+                finalText: "बताएं कि आप project intake, supplier allocation, review और settlement कैसे चलाते हैं। हमारी टीम सही trial या demo path map करेगी।",
+                finalTitle: "अपना sample operations workflow Sampora में लाएं।",
+                footerDesc: "स्व-स्वामित्व वाले सैंपल ऑपरेटरों और ऑनलाइन सैंपल सप्लायरों के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म।",
+                heroSub: "Sampora स्व-स्वामित्व वाले सैंपल ऑपरेटरों, ऑनलाइन सैंपल सप्लायरों, सर्वे स्टेशनों और रिसर्च सबकॉन्ट्रैक्टिंग टीमों को project intake, supplier allocation, delivery tracking, review evidence और settlement records एक operational layer में संभालने में मदद करता है।",
+                heroTitle: "<em>स्व-स्वामित्व वाले सैंपल ऑपरेटरों और ऑनलाइन सैंपल सप्लायरों</em> के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म।",
+                idle: "निष्क्रिय",
+                kpiCompletes: "पूर्णताएं",
+                kpiCpiAvg: "औसत CPI",
+                kpiQcPass: "QC पास",
+                kpiSettlement: "सेटलमेंट",
+                langSwitcher: "भाषा चयन",
+                m9Metric: "Governance controls",
+                m9Text: "मल्टी-टीम sample operations के लिए tenants, departments, roles, staff permissions, dictionaries और operating rules manage करें।",
+                m9Title: "वर्कस्पेस और भूमिका शासन",
+                networkState: "सैंपल सप्लाई पूल स्थिति",
                 navContact: "संपर्क",
-                pageTitle: "Sampora - पैनल प्रदाताओं और सैंपल सप्लायरों के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म",
+                operatingFor: "सैंपल ऑपरेशंस layer इनके लिए",
+                pageTitle: "Sampora - स्व-स्वामित्व वाले सैंपल ऑपरेटरों और ऑनलाइन सैंपल सप्लायरों के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म",
+                panelPlanLi1: "Panel member management",
+                panelPlanLi2: "Member groups और levels",
+                panelPlanLi3: "Incentive / wallet workflows",
+                panelPlanLi4: "Survey station support",
+                panelRole: "स्व-स्वामित्व वाली respondent teams के लिए",
+                panelText: "उन टीमों के लिए जो long-term respondent या member asset बनाती हैं, recruitment, profile, wallet और activation workflows के साथ।",
                 product: "प्रोडक्ट",
+                productSurfacesKicker: "04 / प्रोडक्ट सतहें",
+                productSurfacesTitle: "तीन संचालन surfaces, <em>एक platform story.</em>",
+                quickAnswers: "त्वरित जवाब",
+                recommended: "Recommended",
                 resources: "रिसोर्स",
+                review: "समीक्षा",
                 solutions: "समाधान",
                 plans: "प्लान",
+                plansKicker: "06 / प्लान",
+                plansTitle: "अपनी complexity के अनुसार <em>sample operations layer</em> चुनें।",
                 startTrial: "ट्रायल शुरू करें",
-                w1Title: "प्रोजेक्ट इनटेक",
+                supplierPlanLi1: "Supplier profiles और controls",
+                supplierPlanLi2: "Allocation और pricing controls",
+                supplierPlanLi3: "Review और callback records",
+                supplierPlanLi4: "Supplier bills और settlement",
+                supplierRole: "सप्लायर coordination teams के लिए",
+                supplierText: "Supplier relationships, supplier allocation, configured prices, review evidence और delivery visibility संभालने वाली teams के लिए।",
+                surface1Label: "Admin Console",
+                surface1Row1: "Region + domain setup",
+                surface1Row2: "Roles, departments, employees",
+                surface1Row3: "Project launch foundation",
+                surface1Text: "Admins के लिए super admin accounts, server region, custom domains, dictionaries, departments, roles और staff configure करने का surface.",
+                surface1Title: "Tenant setup, domains और governance",
+                surface2Label: "Supplier Workspace",
+                surface2Row1: "Dashboard: completes, income, pass rate",
+                surface2Row2: "Project records + termination records",
+                surface2Row3: "Staff/member finance और bills",
+                surface2Text: "Supplier operators के लिए data analysis, survey lists, members, staff bills, member bills और export workflows manage करने का Workspace.",
+                surface2Title: "Supplier dashboard, projects और finance",
+                surface3Label: "Survey Station",
+                surface3Row1: "My surveys + participation records",
+                surface3Row2: "Profile, language और display tools",
+                surface3Row3: "Finance logs और my bills",
+                surface3Text: "उत्तरदाता और members के लिए survey lists, records, finance logs, bills, profile settings और language/display tools.",
+                surface3Title: "सदस्य / उत्तरदाता पोर्टल",
+                talkSales: "सेल्स से बात करें",
+                topologyModalTitle: "ऑपरेशन टोपोलॉजी",
+                topoRouterRole: "राउटर कोर",
+                topoPoolRole: "आवंटन सेटिंग",
+                topoPanelRole: "स्वामित्व Panel",
+                topoAggRole: "सैंपल एग्रीगेटर",
+                topoStnRole: "सर्वे स्टेशन",
+                topoSubRole: "सब-कॉन्ट्रैक्टर",
+                topoApiRole: "API सप्लायर",
+                topoReviewRole: "समीक्षा प्रमाण",
+                topoSettleRole: "सेटलमेंट लेजर",
+                w1Text: "Execution से पहले projects receive या create करें और CPI, IR, LOI, country, client और delivery rules capture करें।",
+                w1Title: "Project intake",
+                w1li1: "Project source",
+                w1li2: "CPI / IR / LOI",
+                w1li3: "Client + country",
+                w2Text: "Supplier assignment, blocking और pricing rules से respondent flow को owned panels, aggregators और subcontractors तक route करें।",
+                w2Title: "Supply allocation",
+                w2li1: "Assign suppliers",
+                w2li2: "Block suppliers",
+                w2li3: "Supplier pricing",
+                w3Text: "Participates, completes, rejects, callbacks और review status monitor करें ताकि operations delivery progress साफ बता सकें।",
+                w3Title: "Track और review",
+                w3li1: "Completes / rejects",
+                w3li2: "Callback records",
+                w3li3: "Review status",
+                w4Text: "Results approve करें, project settlement बनाएं, supplier bills या client invoices generate करें, और exportable evidence रखें।",
+                w4Title: "Settle और bill",
+                w4li1: "Project settlement",
+                w4li2: "Supplier bills",
+                w4li3: "Client invoices",
+                workflowKicker: "03 / Workflow",
                 workflowTitle: "इनटेक। आवंटन। ट्रैकिंग। <em>सेटलमेंट।</em>"
             });
             const staticText = { en: {}, zh: {}, hi: {} };
@@ -5250,35 +5686,85 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             let currentLang = translations[getSavedLang()] ? getSavedLang() : 'en';
             let currentProject = 0;
             let timer = null;
-            const projectFeed = [
-                ['17:42', '<b>PROJECT</b> Project intake created', 'UPDATED', ''],
-                ['17:38', '<b>SUPPLIER</b> Supplier allocation updated', 'UPDATED', 'warn'],
-                ['17:31', '<b>CALLBACK</b> Callback record received', 'RECORDED', 'lime']
-            ];
+            const projectFeed = {
+                en: [
+                    ['17:42', '<b>PROJECT</b><span>Project intake created</span>', 'UPDATED', ''],
+                    ['17:38', '<b>SUPPLIER</b><span>Supplier allocation updated</span>', 'UPDATED', 'warn'],
+                    ['17:31', '<b>CALLBACK</b><span>Callback record received</span>', 'RECORDED', 'lime']
+                ],
+                zh: [
+                    ['17:42', '<b>项目</b><span>项目接收已创建</span>', '已更新', ''],
+                    ['17:38', '<b>供应商</b><span>供应商分配已更新</span>', '已更新', 'warn'],
+                    ['17:31', '<b>回调</b><span>回调记录已接收</span>', '已记录', 'lime']
+                ],
+                hi: [
+                    ['17:42', '<b>प्रोजेक्ट</b><span>प्रोजेक्ट इनटेक बनाया गया</span>', 'अपडेट', ''],
+                    ['17:38', '<b>सप्लायर</b><span>सप्लायर आवंटन अपडेट हुआ</span>', 'अपडेट', 'warn'],
+                    ['17:31', '<b>कॉलबैक</b><span>कॉलबैक रिकॉर्ड मिला</span>', 'रिकॉर्ड', 'lime']
+                ]
+            };
             const projects = {
                 en: [
                     {
-                        id: 'LIVE-4821', region: 'APAC / Consumer', title: 'Consumer pulse launch', run: 'RUN-4821',
+                        id: 'LIVE-4821', region: 'APAC / Consumer', title: 'Consumer pulse launch', run: 'RUN-4821 · started 14m ago',
                         quota: 'Quota 1,800', pass: 'QC pass 96.8%', state: 'Allocation live', statusRegion: 'APAC supplier pool',
                         kpi: { c: '1,280', cTr: '+218 / 1h', qc: '96.8%', qcTr: '14 reviewed', cpi: '$3.42', cpiTr: 'vs $3.61 plan', set: '$0', setTr: 'held in run' },
-                        feed: projectFeed, ticker: 'Panel and aggregator routes active. Review gate accepting evidence.', active: ['panel', 'agg'], warn: ['api'], ledger: true
+                        feed: projectFeed.en, ticker: 'Panel and aggregator routes active. Review gate accepting evidence.', active: ['panel', 'agg'], warn: ['api'], ledger: true
                     },
                     {
-                        id: 'LIVE-4822', region: 'EU / B2B', title: 'Supplier recovery path', run: 'RUN-4822',
+                        id: 'LIVE-4822', region: 'EU / B2B', title: 'Supplier recovery path', run: 'RUN-4822 · started 22m ago',
                         quota: 'Quota 950', pass: 'QC pass 94.1%', state: 'Review warming', statusRegion: 'EU supplier pool',
                         kpi: { c: '642', cTr: '+84 / 1h', qc: '94.1%', qcTr: '22 reviewed', cpi: '$5.18', cpiTr: 'vs $5.30 plan', set: '$1.8k', setTr: 'pending review' },
-                        feed: projectFeed, ticker: 'Survey station and subcontractor routes warming with review evidence queued.', active: ['stn'], warn: ['sub'], ledger: true
+                        feed: projectFeed.en, ticker: 'Survey station and subcontractor routes warming with review evidence queued.', active: ['stn'], warn: ['sub'], ledger: true
                     },
                     {
-                        id: 'LIVE-4823', region: 'US / Finance', title: 'Settlement audit pass', run: 'RUN-4823',
+                        id: 'LIVE-4823', region: 'US / Finance', title: 'Settlement audit pass', run: 'RUN-4823 · started 31m ago',
                         quota: 'Quota 2,400', pass: 'QC pass 97.4%', state: 'Settlement ready', statusRegion: 'US supplier pool',
                         kpi: { c: '2,108', cTr: '+305 / 1h', qc: '97.4%', qcTr: '31 reviewed', cpi: '$4.06', cpiTr: 'vs $4.20 plan', set: '$8.6k', setTr: 'ready to export' },
-                        feed: projectFeed, ticker: 'API and panel routes approved. Settlement ledger is ready for export.', active: ['api', 'panel'], warn: [], ledger: true
+                        feed: projectFeed.en, ticker: 'API and panel routes approved. Settlement ledger is ready for export.', active: ['api', 'panel'], warn: [], ledger: true
+                    }
+                ],
+                zh: [
+                    {
+                        id: 'LIVE-4821', region: '亚太 / 消费者', title: '消费者脉冲上线', run: 'RUN-4821 · 14 分钟前启动',
+                        quota: '配额 1,800', pass: 'QC 通过 96.8%', state: '分配进行中', statusRegion: '亚太供应商池',
+                        kpi: { c: '1,280', cTr: '+218 / 1 小时', qc: '96.8%', qcTr: '已审核 14', cpi: '$3.42', cpiTr: '计划 $3.61', set: '$0', setTr: '运行中暂挂' },
+                        feed: projectFeed.zh, ticker: 'Panel 与聚合商路径已启用，审核节点正在接收证据。', active: ['panel', 'agg'], warn: ['api'], ledger: true
+                    },
+                    {
+                        id: 'LIVE-4822', region: '欧洲 / B2B', title: '供应商恢复路径', run: 'RUN-4822 · 22 分钟前启动',
+                        quota: '配额 950', pass: 'QC 通过 94.1%', state: '审核预热', statusRegion: '欧洲供应商池',
+                        kpi: { c: '642', cTr: '+84 / 1 小时', qc: '94.1%', qcTr: '已审核 22', cpi: '$5.18', cpiTr: '计划 $5.30', set: '$1.8k', setTr: '待审核' },
+                        feed: projectFeed.zh, ticker: '调查站与分包路径正在预热，审核证据已排队。', active: ['stn'], warn: ['sub'], ledger: true
+                    },
+                    {
+                        id: 'LIVE-4823', region: '美国 / 金融', title: '结算审核通过', run: 'RUN-4823 · 31 分钟前启动',
+                        quota: '配额 2,400', pass: 'QC 通过 97.4%', state: '可结算', statusRegion: '美国供应商池',
+                        kpi: { c: '2,108', cTr: '+305 / 1 小时', qc: '97.4%', qcTr: '已审核 31', cpi: '$4.06', cpiTr: '计划 $4.20', set: '$8.6k', setTr: '可导出' },
+                        feed: projectFeed.zh, ticker: 'API 与 Panel 路径已批准，结算台账可导出。', active: ['api', 'panel'], warn: [], ledger: true
+                    }
+                ],
+                hi: [
+                    {
+                        id: 'LIVE-4821', region: 'APAC / Consumer', title: 'कंज्यूमर पल्स लॉन्च', run: 'RUN-4821 · 14 मिनट पहले शुरू',
+                        quota: 'कोटा 1,800', pass: 'QC पास 96.8%', state: 'आवंटन लाइव', statusRegion: 'APAC सप्लायर पूल',
+                        kpi: { c: '1,280', cTr: '+218 / 1 घंटा', qc: '96.8%', qcTr: '14 समीक्षा हुई', cpi: '$3.42', cpiTr: '$3.61 योजना के मुकाबले', set: '$0', setTr: 'रन में रोका गया' },
+                        feed: projectFeed.hi, ticker: 'Panel और एग्रीगेटर रूट सक्रिय हैं। समीक्षा गेट प्रमाण स्वीकार कर रहा है।', active: ['panel', 'agg'], warn: ['api'], ledger: true
+                    },
+                    {
+                        id: 'LIVE-4822', region: 'EU / B2B', title: 'सप्लायर रिकवरी पथ', run: 'RUN-4822 · 22 मिनट पहले शुरू',
+                        quota: 'कोटा 950', pass: 'QC पास 94.1%', state: 'समीक्षा वार्मिंग', statusRegion: 'EU सप्लायर पूल',
+                        kpi: { c: '642', cTr: '+84 / 1 घंटा', qc: '94.1%', qcTr: '22 समीक्षा हुई', cpi: '$5.18', cpiTr: '$5.30 योजना के मुकाबले', set: '$1.8k', setTr: 'समीक्षा प्रतीक्षित' },
+                        feed: projectFeed.hi, ticker: 'सर्वे स्टेशन और सब-कॉन्ट्रैक्टर रूट वार्मिंग में हैं। समीक्षा प्रमाण कतार में है।', active: ['stn'], warn: ['sub'], ledger: true
+                    },
+                    {
+                        id: 'LIVE-4823', region: 'US / Finance', title: 'सेटलमेंट समीक्षा पास', run: 'RUN-4823 · 31 मिनट पहले शुरू',
+                        quota: 'कोटा 2,400', pass: 'QC पास 97.4%', state: 'सेटलमेंट तैयार', statusRegion: 'US सप्लायर पूल',
+                        kpi: { c: '2,108', cTr: '+305 / 1 घंटा', qc: '97.4%', qcTr: '31 समीक्षा हुई', cpi: '$4.06', cpiTr: '$4.20 योजना के मुकाबले', set: '$8.6k', setTr: 'निर्यात के लिए तैयार' },
+                        feed: projectFeed.hi, ticker: 'API और Panel रूट स्वीकृत हैं। सेटलमेंट लेजर निर्यात के लिए तैयार है।', active: ['api', 'panel'], warn: [], ledger: true
                     }
                 ]
             };
-            projects.zh = projects.en;
-            projects.hi = projects.en;
             function applyTranslations(lang) {
                 const dict = translations[lang] || translations.en;
                 document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
@@ -5305,8 +5791,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             function updatePlanNames(lang) {
                 const names = {
                     en: { panel: 'Panel', supplier: 'Supplier Network', enterprise: 'Enterprise' },
-                    zh: { panel: 'Panel', supplier: 'Supplier Network', enterprise: 'Enterprise' },
-                    hi: { panel: 'Panel', supplier: 'Supplier Network', enterprise: 'Enterprise' }
+                    zh: { panel: 'Panel', supplier: '供应商网络', enterprise: 'Enterprise' },
+                    hi: { panel: 'Panel', supplier: 'सप्लायर नेटवर्क', enterprise: 'Enterprise' }
                 };
                 const pack = names[lang] || names.en;
                 $$('[data-plan-name]').forEach(el => {
@@ -5346,6 +5832,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                 root.querySelectorAll('.audit-feed li').forEach((li, i) => {
                     const row = p.feed[i];
                     if (!row) return;
+                    setText(li.querySelector('.t'), row[0]);
                     setText(li.querySelector('.body'), row[1], true);
                     const sig = li.querySelector('.sig');
                     if (sig) {
