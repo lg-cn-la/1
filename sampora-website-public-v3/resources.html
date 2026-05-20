@@ -67,19 +67,6 @@
             pointer-events: none;
             z-index: -1;
             background: radial-gradient(34% 24% at 18% 20%, rgba(56, 210, 255, .08), transparent 62%), radial-gradient(26% 22% at 86% 72%, rgba(246, 169, 59, .06), transparent 66%);
-            animation: bgDrift 14s ease-in-out 1 alternate
-        }
-
-        @keyframes bgDrift {
-            from {
-                transform: translate3d(-1%, 0, 0);
-                opacity: .72
-            }
-
-            to {
-                transform: translate3d(1.2%, 1%, 0);
-                opacity: 1
-            }
         }
 
         a {
@@ -100,6 +87,11 @@
         .section {
             padding: 86px 0;
             border-top: 1px solid var(--line)
+        }
+
+        .hero + .section,
+        #surfaces {
+            border-top: 0
         }
 
         .section-head {
@@ -489,6 +481,115 @@
             font-weight: 700;
             line-height: 1.38;
             letter-spacing: .01em
+        }
+
+        .resource-entry-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            max-width: 820px;
+            align-items: stretch;
+        }
+
+        .resource-entry {
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+            padding: 18px 18px 16px;
+            border-radius: 18px;
+            background:
+                radial-gradient(80% 120% at 10% 0%, rgba(56, 210, 255, .10), transparent 60%),
+                linear-gradient(180deg, rgba(14, 27, 47, .66), rgba(7, 16, 31, .42));
+            transition:
+                transform .18s var(--ease),
+                border-color .18s var(--ease),
+                background .18s var(--ease),
+                box-shadow .18s var(--ease);
+        }
+
+        .resource-entry::before,
+        .resource-entry-warm::before {
+            display: none;
+            background: none;
+        }
+
+        .resource-entry::after {
+            opacity: .18;
+        }
+
+        .resource-entry:hover {
+            transform: translateY(-2px);
+            border-color: rgba(56, 210, 255, .36);
+            background:
+                radial-gradient(80% 120% at 10% 0%, rgba(56, 210, 255, .14), transparent 60%),
+                linear-gradient(180deg, rgba(18, 36, 62, .74), rgba(7, 16, 31, .48));
+            box-shadow: 0 16px 38px rgba(0, 0, 0, .22);
+        }
+
+        .resource-entry strong {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            flex: 0 0 auto;
+        }
+
+        .resource-entry span {
+            display: block;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .resource-entry b {
+            display: block;
+            width: 100%;
+            color: var(--fg);
+            font-size: 15.5px;
+            line-height: 1.25;
+            font-weight: 800;
+            letter-spacing: -.01em;
+            margin: 0 0 8px;
+        }
+
+        .resource-entry small {
+            display: block;
+            width: 100%;
+            color: var(--body2);
+            font-size: 12.5px;
+            line-height: 1.55;
+            font-weight: 500;
+            letter-spacing: 0;
+        }
+
+        html[lang="zh-CN"] .resource-entry b,
+        html[lang="zh"] .resource-entry b {
+            font-size: 15px;
+            line-height: 1.3;
+        }
+
+        html[lang="zh-CN"] .resource-entry small,
+        html[lang="zh"] .resource-entry small {
+            font-size: 13px;
+            line-height: 1.58;
+            font-weight: 500;
+        }
+
+        .resource-entry-warm strong {
+            color: #FFD39A;
+            background: rgba(246, 169, 59, .08);
+            border-color: rgba(246, 169, 59, .24);
+        }
+
+        @media (max-width: 860px) {
+            .resource-entry-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+
+            .resource-entry {
+                min-height: auto;
+            }
         }
 
         /* Shared console / topology */
@@ -930,7 +1031,8 @@
         .topo-col {
             fill: var(--muted);
             font: 700 10px var(--mono);
-            letter-spacing: .12em
+            letter-spacing: .12em;
+            text-anchor: middle
         }
 
         .topo-svg .wire {
@@ -959,12 +1061,12 @@
 
         .topo-svg .flow.on {
             opacity: .98;
-            animation: topoDash 2.65s linear infinite
+            animation: topoDash 2.4s linear infinite
         }
 
         .topo-svg .flow-group.on .flow {
             opacity: .98;
-            animation: topoDash 2.65s linear infinite
+            animation: topoDash 2.4s linear infinite
         }
 
         .topo-svg .labels-layer {
@@ -973,13 +1075,13 @@
 
         @keyframes topoDash {
             to {
-                stroke-dashoffset: -58
+                stroke-dashoffset: -68
             }
         }
 
         .topo-svg .flow.amber.on,
         .topo-svg .flow-group.on .flow.amber {
-            animation: topoDash 2.95s linear infinite
+            animation: topoDash 2.4s linear infinite
         }
 
         .topo-svg .hub rect,
@@ -1060,7 +1162,12 @@
 
         .topo-svg .node-code {
             fill: var(--cyan2);
-            font: 800 11px var(--mono)
+            font: 800 11px var(--mono);
+            text-anchor: middle
+        }
+
+        .topo-svg .node-label {
+            text-anchor: middle
         }
 
         .topo-svg .node {
@@ -1240,8 +1347,17 @@
             overflow: hidden
         }
 
+        .check-panel {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%
+        }
+
         .check-item {
-            border-bottom: 1px solid rgba(129, 178, 214, .10)
+            border-bottom: 1px solid rgba(129, 178, 214, .10);
+            display: flex;
+            flex: 1 1 0;
+            min-height: 0
         }
 
         .check-item:last-child {
@@ -1254,7 +1370,8 @@
             grid-template-columns: auto minmax(0, 1fr) auto;
             gap: 14px;
             align-items: center;
-            padding: 18px;
+            min-height: 100%;
+            padding: 18px 20px;
             border: 0;
             background: transparent;
             color: var(--fg);
@@ -1280,8 +1397,10 @@
         }
 
         .check-button small {
+            display: block;
             color: var(--body2);
-            font-size: 12px
+            font-size: 12px;
+            line-height: 1.48
         }
 
         .check-state {
@@ -1294,11 +1413,19 @@
         }
 
         .trust-panel {
-            padding: 26px
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px
+        }
+
+        .proof-heading {
+            display: grid;
+            gap: 12px
         }
 
         .trust-panel h3 {
-            margin: 0 0 12px;
+            margin: 0;
             font-size: 28px;
             line-height: 1.1;
             letter-spacing: -.02em
@@ -1306,41 +1433,59 @@
 
         .trust-panel p {
             color: var(--body);
-            margin: 0 0 18px;
+            margin: 0;
             line-height: 1.74
         }
 
         .mini-proof {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px
+            gap: 0;
+            padding: 2px;
+            border: 1px solid rgba(129, 178, 214, .12);
+            border-radius: 16px;
+            background: rgba(6, 16, 31, .24);
+            overflow: hidden
         }
 
         .mini-proof div {
-            border: 1px solid rgba(129, 178, 214, .12);
-            border-radius: 14px;
-            padding: 12px;
+            border: 0;
+            border-radius: 0;
+            padding: 16px;
+            min-height: 98px;
             color: var(--body2);
-            background: rgba(14, 27, 47, .44);
-            font-size: 13px
+            background: transparent;
+            font-size: 13px;
+            line-height: 1.55
+        }
+
+        .mini-proof div:nth-child(even) {
+            border-left: 1px solid rgba(129, 178, 214, .10)
+        }
+
+        .mini-proof div:nth-child(n+3) {
+            border-top: 1px solid rgba(129, 178, 214, .10)
         }
 
         .mini-proof b {
             display: block;
             color: var(--fg);
-            margin-bottom: 4px
+            margin-bottom: 7px;
+            line-height: 1.25
         }
 
         .mode-fit-card {
-            margin-top: 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 16px;
-            padding: 14px 16px;
-            border: 1px solid rgba(56, 210, 255, .16);
-            border-radius: 16px;
-            background: linear-gradient(145deg, rgba(56, 210, 255, .08), rgba(14, 27, 47, .42));
+            min-height: 0;
+            padding: 12px 0;
+            border: 0;
+            border-top: 1px solid rgba(129, 178, 214, .10);
+            border-bottom: 1px solid rgba(129, 178, 214, .10);
+            border-radius: 0;
+            background: transparent;
         }
 
         .mode-fit-copy {
@@ -1361,14 +1506,107 @@
             align-items: center;
             gap: 8px;
             min-height: 30px;
-            padding: 0 12px;
-            border: 1px solid rgba(129, 178, 214, .13);
-            border-radius: 999px;
-            background: rgba(6, 16, 31, .34);
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
             color: var(--cyan2);
             font: 800 11px/1 var(--mono);
             letter-spacing: .02em;
             white-space: nowrap;
+        }
+
+        .proof-output {
+            display: grid;
+            gap: 0;
+            padding: 2px 0 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+        }
+
+        .proof-output > div {
+            display: grid;
+            gap: 0;
+        }
+
+        .proof-output-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 0;
+            color: var(--fg);
+            font-size: 14.5px;
+            line-height: 1.25;
+            letter-spacing: -.01em;
+        }
+
+        .proof-output-title:after {
+            content: "";
+            height: 1px;
+            flex: 1 1 auto;
+            background: linear-gradient(90deg, rgba(129, 178, 214, .18), rgba(129, 178, 214, .04));
+        }
+
+        .proof-output-row {
+            display: grid;
+            grid-template-columns: 38px minmax(0, 1fr);
+            gap: 15px;
+            align-items: flex-start;
+            border: 0;
+            border-top: 1px solid rgba(129, 178, 214, .10);
+            border-radius: 0;
+            min-height: 0;
+            padding: 17px 0 18px;
+            color: var(--body2);
+            background: transparent;
+            font-size: 13.5px;
+        }
+
+        .proof-output-row:first-child {
+            border-top: 0;
+        }
+
+        .proof-output-num {
+            position: relative;
+            width: 38px;
+            height: auto;
+            min-height: 28px;
+            border-radius: 0;
+            display: grid;
+            align-items: start;
+            justify-items: start;
+            padding-top: 2px;
+            color: var(--cyan2);
+            background: transparent;
+            border: 0;
+            font: 800 11px/1 var(--mono);
+            letter-spacing: .08em;
+        }
+
+        .proof-output-row:not(:last-child) .proof-output-num:after {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 22px;
+            bottom: -18px;
+            width: 1px;
+            background: linear-gradient(180deg, rgba(56, 210, 255, .28), rgba(129, 178, 214, .06));
+        }
+
+        .proof-output-row strong {
+            display: block;
+            color: var(--fg);
+            font-size: 14.5px;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .proof-output-row span {
+            display: block;
+            color: var(--body2);
+            line-height: 1.64;
+            min-width: 0;
         }
 
         .surfaces-grid {
@@ -1673,6 +1911,158 @@
             }
         }
 
+        @media(min-width:1400px) and (max-width:1499.98px) {
+            .resource-console:not(.modal-open) .topo-stage {
+                height: 348px;
+                margin-bottom: -48px
+            }
+        }
+
+        @media(min-width:1500px) {
+            .resource-console:not(.modal-open) .topo-stage {
+                height: 348px;
+                margin-bottom: -48px
+            }
+        }
+
+        /* Hero intro alignment: keep the eyebrow level with the resource console top on desktop. */
+        @media(min-width:1101px) {
+            .hero-grid {
+                align-items: start
+            }
+
+            .hero .eyebrow + h1 {
+                margin-top: var(--resource-hero-title-gap, 38px);
+                margin-bottom: var(--resource-hero-title-bottom-gap, 20px)
+            }
+
+            .hero-sub {
+                margin-bottom: var(--resource-hero-sub-gap, 30px)
+            }
+
+            .cta-row {
+                margin-bottom: var(--resource-hero-cta-gap, 30px)
+            }
+
+            html[lang="zh-CN"],
+            html[lang="zh"] {
+                --resource-hero-title-gap: 48px;
+                --resource-hero-title-bottom-gap: 31px;
+                --resource-hero-sub-gap: 44px;
+                --resource-hero-cta-gap: 45px
+            }
+
+            html[lang="hi"] {
+                --resource-hero-title-gap: 46px;
+                --resource-hero-title-bottom-gap: 28px;
+                --resource-hero-sub-gap: 40px;
+                --resource-hero-cta-gap: 41px
+            }
+
+            @media(min-width:1400px) and (max-width:1499.98px) {
+
+                html[lang="en"] {
+                    --resource-hero-title-gap: 58px;
+                    --resource-hero-title-bottom-gap: 40px;
+                    --resource-hero-sub-gap: 50px;
+                    --resource-hero-cta-gap: 49px
+                }
+
+                html[lang="zh-CN"],
+                html[lang="zh"] {
+                    --resource-hero-title-gap: 66px;
+                    --resource-hero-title-bottom-gap: 50px;
+                    --resource-hero-sub-gap: 62px;
+                    --resource-hero-cta-gap: 68px
+                }
+
+                html[lang="hi"] {
+                    --resource-hero-title-gap: 62px;
+                    --resource-hero-title-bottom-gap: 46px;
+                    --resource-hero-sub-gap: 58px;
+                    --resource-hero-cta-gap: 63px
+                }
+            }
+
+            @media(min-width:1500px) {
+
+                html[lang="zh-CN"],
+                html[lang="zh"] {
+                    --resource-hero-title-gap: 66px;
+                    --resource-hero-title-bottom-gap: 50px;
+                    --resource-hero-sub-gap: 62px;
+                    --resource-hero-cta-gap: 68px
+                }
+
+                html[lang="hi"] {
+                    --resource-hero-title-gap: 62px;
+                    --resource-hero-title-bottom-gap: 46px;
+                    --resource-hero-sub-gap: 58px;
+                    --resource-hero-cta-gap: 63px
+                }
+            }
+
+            @media(max-width:1399.98px) {
+
+                html[lang="en"] {
+                    --resource-hero-title-gap: 48px;
+                    --resource-hero-title-bottom-gap: 28px;
+                    --resource-hero-sub-gap: 42px;
+                    --resource-hero-cta-gap: 43px
+                }
+
+                html[lang="zh-CN"],
+                html[lang="zh"] {
+                    --resource-hero-title-gap: 48px;
+                    --resource-hero-title-bottom-gap: 30px;
+                    --resource-hero-sub-gap: 42px;
+                    --resource-hero-cta-gap: 43px
+                }
+
+                html[lang="hi"] {
+                    --resource-hero-title-gap: 44px;
+                    --resource-hero-title-bottom-gap: 26px;
+                    --resource-hero-sub-gap: 36px;
+                    --resource-hero-cta-gap: 36px
+                }
+            }
+
+            @media(min-width:1321px) and (max-width:1399.98px) {
+
+                html[lang="en"] {
+                    --resource-hero-title-gap: 38px;
+                    --resource-hero-title-bottom-gap: 20px;
+                    --resource-hero-sub-gap: 30px;
+                    --resource-hero-cta-gap: 39px
+                }
+            }
+
+            @media(min-width:1200px) and (max-width:1320px) {
+
+                html[lang="en"],
+                html[lang="zh-CN"],
+                html[lang="zh"],
+                html[lang="hi"] {
+                    --resource-hero-cta-gap: 66px
+                }
+
+                html[lang="zh-CN"],
+                html[lang="zh"] {
+                    --resource-hero-title-gap: 54px;
+                    --resource-hero-title-bottom-gap: 36px;
+                    --resource-hero-sub-gap: 50px;
+                    --resource-hero-cta-gap: 76px
+                }
+
+                html[lang="hi"] {
+                    --resource-hero-title-gap: 50px;
+                    --resource-hero-title-bottom-gap: 31px;
+                    --resource-hero-sub-gap: 43px;
+                    --resource-hero-cta-gap: 72px
+                }
+            }
+        }
+
         @media(max-width:1120px) {
 
             .sampora-footer-main {
@@ -1730,6 +2120,16 @@
                 font-size: 18px
             }
 
+            .resource-entry {
+                min-height: auto
+            }
+
+            .resource-entry strong {
+                width: 48px;
+                height: 48px;
+                font-size: 16px
+            }
+
             .sampora-footer-main {
                 grid-template-columns: 1fr
             }
@@ -1764,14 +2164,89 @@
                 grid-template-columns: 1fr
             }
 
+            .check-panel {
+                display: block;
+                min-height: 0
+            }
+
+            .check-item {
+                display: block;
+                flex: 0 0 auto;
+                min-height: auto
+            }
+
+            .check-button {
+                min-height: 0
+            }
+
+            .trust-panel {
+                padding: 24px;
+                gap: 18px
+            }
+
+            .proof-heading {
+                gap: 10px
+            }
+
+            .mini-proof {
+                gap: 0;
+                padding: 2px
+            }
+
+            .mini-proof div {
+                min-height: 0;
+                padding: 15px
+            }
+
+            .mini-proof div:nth-child(even) {
+                border-left: 0
+            }
+
+            .mini-proof div:nth-child(n+2) {
+                border-top: 1px solid rgba(129, 178, 214, .10)
+            }
+
             .mode-fit-card {
                 align-items: flex-start;
-                flex-direction: column
+                flex-direction: column;
+                min-height: 0;
+                padding: 12px 0;
+                gap: 8px
             }
 
             .mode-fit-tags {
-                flex-wrap: wrap;
-                white-space: normal
+                display: block;
+                width: 100%;
+                min-height: 0;
+                font-size: 10px;
+                line-height: 1.55;
+                white-space: normal;
+                overflow-wrap: anywhere
+            }
+
+            .proof-output {
+                gap: 0;
+                padding: 2px 0 0
+            }
+
+            .proof-output > div {
+                gap: 0
+            }
+
+            .proof-output-row {
+                min-height: 0;
+                grid-template-columns: 34px minmax(0, 1fr);
+                gap: 12px;
+                padding: 15px 0 16px
+            }
+
+            .proof-output-num {
+                width: 34px;
+                min-height: 26px
+            }
+
+            .proof-output-row:not(:last-child) .proof-output-num:after {
+                bottom: -16px
             }
         }
 
@@ -1986,6 +2461,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <a data-i18n="navSolutions" href="solutions.html">Solutions</a>
 <a class="active" data-i18n="navResources" href="resources.html">Resources</a>
 <a data-i18n="navPricing" href="plans.html">Plans</a>
+<a data-i18n="navAbout" href="about_sampora_issues_fixed.html">About</a>
 <a data-i18n="navContact" href="contact.html">Contact</a>
 </nav>
 <div class="header-actions">
@@ -2010,10 +2486,30 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <a class="btn ghost" data-i18n="heroCta1" href="resource-manuals.html">View manuals →</a>
 <a class="btn ghost" data-i18n="heroCta2" href="resource-manuals.html#rollout-notes">Read rollout notes →</a>
 </div>
-<div class="hero-metrics">
-<div class="hero-metric"><strong>06</strong><span data-i18n="metric1"></span></div>
-<div class="hero-metric"><strong>03</strong><span data-i18n="metric2"></span></div>
-<div class="hero-metric"><strong>REG</strong><span data-i18n="metric3">implementation references</span></div>
+<div class="hero-metrics resource-entry-grid">
+<a class="hero-metric resource-entry" href="resource-manuals.html#configuration-guide">
+<strong>01</strong>
+<span>
+<b data-i18n="metric1Title">Configuration Guide</b>
+<small data-i18n="metric1Text">Setup, client/supplier configuration, risk rules, and integration basics.</small>
+</span>
+</a>
+
+<a class="hero-metric resource-entry" href="resource-manuals.html#operation-manual">
+<strong>02</strong>
+<span>
+<b data-i18n="metric2Title">Operation Manual</b>
+<small data-i18n="metric2Text">Project intake, supplier allocation, delivery review, and settlement workflows.</small>
+</span>
+</a>
+
+<a class="hero-metric resource-entry resource-entry-warm" href="resource-manuals.html#rollout-notes">
+<strong>03</strong>
+<span>
+<b data-i18n="metric3Title">Rollout Notes</b>
+<small data-i18n="metric3Text">Deployment notes, role guides, backend entries, and rollout checks.</small>
+</span>
+</a>
 </div>
 </div>
 <aside aria-label="Resource topology console" class="resource-console reveal" id="resourceConsole">
@@ -2118,28 +2614,28 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </g>
 </g>
 <g class="labels-layer">
-<text class="topo-col" data-i18n-svg="colInput" x="58" y="34"></text>
-<text class="topo-col" data-i18n-svg="colLayer" x="350" y="34"></text>
-<text class="topo-col" data-i18n-svg="colControl" x="612" y="34"></text>
-<text class="topo-col" data-i18n-svg="colEvidence" x="724" y="34"></text>
+<text class="topo-col" data-i18n-svg="colInput" x="83" y="34"></text>
+<text class="topo-col" data-i18n-svg="colLayer" x="420" y="34"></text>
+<text class="topo-col" data-i18n-svg="colControl" x="651" y="34"></text>
+<text class="topo-col" data-i18n-svg="colEvidence" x="769" y="34"></text>
 <g transform="translate(42,130)">
 <text class="hub-code brand-label" text-anchor="middle" x="41" y="26">Sampora</text>
 <text class="hub-role" data-i18n-svg="nodeSmp" text-anchor="middle" x="41" y="42"></text>
 </g>
-<g class="node-label" id="labelSetup" transform="translate(300,56)">
-<text class="node-code" x="14" y="22">01</text>
-<text class="node-title" data-i18n-svg="nodeSetup" x="50" y="22"></text>
-<text class="node-role" data-i18n-svg="roleSetup" x="50" y="40"></text>
+<g class="node-label" id="labelSetup" transform="translate(316,56)">
+<text class="node-code" x="42" y="22">01</text>
+<text class="node-title" data-i18n-svg="nodeSetup" x="142" y="22"></text>
+<text class="node-role" data-i18n-svg="roleSetup" x="142" y="40"></text>
 </g>
-<g class="node-label warn" id="labelSupplier" transform="translate(300,128)">
-<text class="node-code" x="14" y="22">02</text>
-<text class="node-title" data-i18n-svg="nodeSupplier" x="50" y="22"></text>
-<text class="node-role" data-i18n-svg="roleSupplier" x="50" y="40"></text>
+<g class="node-label warn" id="labelSupplier" transform="translate(316,128)">
+<text class="node-code" x="42" y="22">02</text>
+<text class="node-title" data-i18n-svg="nodeSupplier" x="142" y="22"></text>
+<text class="node-role" data-i18n-svg="roleSupplier" x="142" y="40"></text>
 </g>
-<g class="node-label" id="labelFinance" transform="translate(300,200)">
-<text class="node-code" x="14" y="22">03</text>
-<text class="node-title" data-i18n-svg="nodeFinance" x="50" y="22"></text>
-<text class="node-role" data-i18n-svg="roleFinance" x="50" y="40"></text>
+<g class="node-label" id="labelFinance" transform="translate(316,200)">
+<text class="node-code" x="42" y="22">03</text>
+<text class="node-title" data-i18n-svg="nodeFinance" x="142" y="22"></text>
+<text class="node-role" data-i18n-svg="roleFinance" x="142" y="40"></text>
 </g>
 <g transform="translate(620,132)">
 <text class="hub-mini" data-i18n-svg="nodeCtrl" text-anchor="middle" x="31" y="30"></text>
@@ -2180,15 +2676,21 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="playbook-grid">
 <div class="check-panel reveal" id="setupChecklist"></div>
 <div class="trust-panel reveal">
+<div class="proof-heading">
 <span class="section-kicker" data-i18n="proofKicker"></span>
 <h3 data-i18n="proofTitle"></h3>
 <p data-i18n="proofText"></p>
+</div>
 <div class="mini-proof" id="proofGrid"></div>
 <div class="mode-fit-card">
 <div class="mode-fit-copy">
 <h4 data-i18n="modeFitTitle">One path, three operating modes</h4>
 </div>
 <div aria-label="Sampora operating modes" class="mode-fit-tags" data-i18n="modeFitTags">Panel · Supplier Network · Enterprise</div>
+</div>
+<div class="proof-output">
+<h4 class="proof-output-title" data-i18n="proofOutputTitle">What this path produces</h4>
+<div id="proofOutput"></div>
 </div>
 </div>
 </div>
@@ -2200,7 +2702,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="sampora-footer-main">
 <div class="sampora-footer-brand">
 <a aria-label="Sampora home" class="sampora-footer-logo" href="index.html"><span class="sampora-footer-mark">S</span><span><b>Sampora</b><small data-i18n="brandSub2"></small></span></a>
-<p data-i18n="footerDesc">An online sample operations platform for panel providers, sample suppliers and research subcontracting teams.</p>
+<p data-i18n="footerDesc">Online sample operations platform for panel providers and sample suppliers.</p>
 <div class="sampora-footer-badges"><span data-i18n="footerTag1">Project intake</span><span data-i18n="footerTag2">Supplier allocation</span><span data-i18n="footerTag3">Settlement evidence</span></div>
 </div>
 <div class="sampora-footer-col">
@@ -2246,6 +2748,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "navSolutions": "Solutions",
                         "navResources": "Resources",
                         "navPricing": "Plans",
+                        "navAbout": "About",
                         "navContact": "Contact",
                         "headerBookDemo": "Book a demo",
                         "headerStartTrial": "Start trial",
@@ -2254,9 +2757,12 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "heroSub": "Operator manuals, regional rollout notes, and implementation references for sample delivery teams.",
                         "heroCta1": "View manuals →", 
                         "heroCta2": "Read rollout notes →",
-                        "metric1": "manual sets",
-                        "metric2": "regional notes",
-                        "metric3": "implementation references",
+                        "metric1Title": "Configuration Guide",
+                        "metric1Text": "Setup, client/supplier configuration, risk rules, and integration basics.",
+                        "metric2Title": "Operation Manual",
+                        "metric2Text": "Project intake, supplier allocation, delivery review, and settlement workflows.",
+                        "metric3Title": "Rollout Notes",
+                        "metric3Text": "Deployment notes, role guides, backend entries, and rollout checks.",
                         "consoleCrumb": "resources / backend map / live",
                         "topologyTitle": "documentation operating map",
                         "legendA": "guide path",
@@ -2278,15 +2784,16 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "setupKicker": "OPERATING PATH",
                         "setupTitle": "Follow the <em>delivery-to-settlement</em> playbook path.",
                         "setupText": "Follow a practical path from setup and project intake to supplier coordination, review, settlement, and team onboarding.",
-                        "proofKicker": "BACKEND EVIDENCE",
-                        "proofTitle": "Each path is grounded in real operating records and product workflows.",
-                        "proofText": "Use project, supplier, API, settlement, and records views to keep delivery decisions traceable from setup to finance.",
+                        "proofKicker": "OPERATING EVIDENCE",
+                        "proofTitle": "Every guide maps back to real operating records.",
+                        "proofText": "Use project, supplier, API, review, settlement, and records views to keep each delivery decision traceable from setup to finance.",
                         "modeFitTitle": "One path, three operating modes",
                         "modeFitTags": "Panel · Supplier Network · Enterprise",
+                        "proofOutputTitle": "What this path produces",
                         "surfaceKicker": "RESOURCE ENTRIES",
                         "surfaceTitle": "Three stable resource entries, <em>one operating hub.</em>",
                         "surfaceText": "Start with manuals, rollout notes, and implementation references before moving into detailed guides.",
-                        "footerDesc": "An online sample operations platform for panel providers, sample suppliers and research subcontracting teams.",
+                        "footerDesc": "Online sample operations platform for panel providers and sample suppliers.",
                         "footerCol1": "Product support",
                         "footerHelp": "Operator manuals",
                         "footerGuide": "Operations manuals",
@@ -2347,6 +2854,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "navSolutions": "解决方案",
                         "navResources": "资源",
                         "navPricing": "版本方案",
+                        "navAbout": "关于",
                         "navContact": "联系我们",
                         "headerBookDemo": "预约演示",
                         "headerStartTrial": "开始试用",
@@ -2355,9 +2863,12 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "heroSub": "面向样本交付团队的操作手册、区域上线说明和实施参考。",
                         "heroCta1": "查看手册 →", 
                         "heroCta2": "阅读上线说明 →",
-                        "metric1": "手册集",
-                        "metric2": "区域说明",
-                        "metric3": "实施参考",
+                        "metric1Title": "配置指南",
+                        "metric1Text": "系统设置、客户与供应商配置、风控规则和集成基础。",
+                        "metric2Title": "操作手册",
+                        "metric2Text": "项目接收、供应商分配、交付审核和结算流程。",
+                        "metric3Title": "上线说明",
+                        "metric3Text": "部署步骤、角色手册、后台入口和上线检查清单。",
                         "consoleCrumb": "资源 / 后台地图 / 实时",
                         "topologyTitle": "文档运营地图",
                         "legendA": "指南路径",
@@ -2379,15 +2890,16 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "setupKicker": "运营路径",
                         "setupTitle": "按照<em>交付到结算</em>的手册路径学习。",
                         "setupText": "按照配置、项目接收、供应商协同、审核、结算和团队上线步骤，快速找到需要的操作资料。",
-                        "proofKicker": "后台证据",
-                        "proofTitle": "每条路径都基于真实运营记录和产品工作流。",
-                        "proofText": "通过项目、供应商、API、结算和记录视图，让交付决策从配置到财务都可追溯。",
+                        "proofKicker": "运营证据",
+                        "proofTitle": "每一份指南都能回到真实运营记录。",
+                        "proofText": "通过项目、供应商、API、审核、结算和记录视图，让每个交付决策从配置到财务都可追溯。",
                         "modeFitTitle": "一条路径，三种运营模式",
                         "modeFitTags": "Panel · Supplier Network · Enterprise",
+                        "proofOutputTitle": "这条路径产出的内容",
                         "surfaceKicker": "资源入口",
                         "surfaceTitle": "三个稳定资源入口，<em>一个运营资料中心。</em>",
                         "surfaceText": "先从手册、上线说明和实施参考进入，再查看更细的指南内容。",
-                        "footerDesc": "面向自有样本运营方、样本供应商和调研分包执行团队的在线样本运营平台。",
+                        "footerDesc": "面向自有样本运营方和在线样本供应商的在线样本运营平台。",
                         "footerCol1": "产品支持",
                         "footerHelp": "操作手册",
                         "footerGuide": "运营手册",
@@ -2448,6 +2960,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "navSolutions": "समाधान",
                         "navResources": "संसाधन",
                         "navPricing": "संस्करण योजना",
+                        "navAbout": "हमारे बारे में",
                         "navContact": "संपर्क करें",
                         "headerBookDemo": "डेमो बुक करें",
                         "headerStartTrial": "ट्रायल शुरू करें",
@@ -2456,9 +2969,12 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "heroSub": "सैंपल डिलीवरी टीमों के लिए ऑपरेटर मैनुअल, क्षेत्रीय रोलआउट नोट्स और कार्यान्वयन संदर्भ खोजें।",
                         "heroCta1": "मैनुअल देखें →", 
                         "heroCta2": "रोलआउट नोट्स पढ़ें →",
-                        "metric1": "मैनुअल सेट",
-                        "metric2": "क्षेत्रीय नोट्स",
-                        "metric3": "कार्यान्वयन संदर्भ",
+                        "metric1Title": "कॉन्फ़िगरेशन गाइड",
+                        "metric1Text": "सिस्टम सेटअप, क्लाइंट-सप्लायर कॉन्फ़िगरेशन, जोखिम नियम और इंटीग्रेशन आधार।",
+                        "metric2Title": "ऑपरेशन मैनुअल",
+                        "metric2Text": "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी समीक्षा और सेटलमेंट वर्कफ़्लो।",
+                        "metric3Title": "रोलआउट नोट्स",
+                        "metric3Text": "डिप्लॉयमेंट स्टेप्स, रोल गाइड, बैकएंड एंट्री और रोलआउट चेक।",
                         "consoleCrumb": "संसाधन / बैकएंड मानचित्र / लाइव",
                         "topologyTitle": "दस्तावेज़ संचालन मानचित्र",
                         "legendA": "गाइड पथ",
@@ -2480,15 +2996,16 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "setupKicker": "संचालन पथ",
                         "setupTitle": "<em>डिलीवरी से निपटान</em> तक मैनुअल पथ देखें।",
                         "setupText": "सेटअप, प्रोजेक्ट प्राप्ति, सप्लायर समन्वय, समीक्षा, निपटान और टीम ऑनबोर्डिंग के लिए जरूरी गाइड जल्दी खोजें।",
-                        "proofKicker": "बैकएंड प्रमाण",
-                        "proofTitle": "हर पथ वास्तविक संचालन रिकॉर्ड और उत्पाद वर्कफ़्लो पर आधारित है।",
-                        "proofText": "प्रोजेक्ट, सप्लायर, API, निपटान और रिकॉर्ड व्यू से setup से finance तक delivery decisions traceable रखें।",
+                        "proofKicker": "ऑपरेटिंग एविडेंस",
+                        "proofTitle": "हर गाइड वास्तविक संचालन रिकॉर्ड से जुड़ता है।",
+                        "proofText": "प्रोजेक्ट, सप्लायर, API, समीक्षा, सेटलमेंट और रिकॉर्ड व्यू से हर डिलीवरी निर्णय को सेटअप से फाइनेंस तक ट्रेसेबल रखें।",
                         "modeFitTitle": "एक पथ, तीन संचालन मोड",
                         "modeFitTags": "Panel · Supplier Network · Enterprise",
+                        "proofOutputTitle": "यह पथ क्या देता है",
                         "surfaceKicker": "संसाधन प्रवेश",
                         "surfaceTitle": "तीन स्थिर संसाधन प्रवेश, <em>एक संचालन केंद्र में।</em>",
                         "surfaceText": "मैनुअल, रोलआउट नोट्स और कार्यान्वयन संदर्भ से शुरू करें, फिर विस्तृत गाइड देखें।",
-                        "footerDesc": "पैनल प्रदाताओं, सैंपल आपूर्तिकर्ताओं और शोध उप-ठेका टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।",
+                        "footerDesc": "पैनल प्रदाताओं और सैंपल आपूर्तिकर्ताओं के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म।",
                         "footerCol1": "उत्पाद समर्थन",
                         "footerHelp": "ऑपरेटर मैनुअल",
                         "footerGuide": "संचालन मैनुअल",
@@ -2577,19 +3094,36 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "proof": [
                                     [
                                                 "Project",
-                                                "Project List, Intake, Scheduling, Allocation and Settlement."
+                                                "Project intake, scheduling, allocation, delivery progress, review, and settlement records."
                                     ],
                                     [
                                                 "Supplier",
-                                                "Supplier profiles, levels, availability controls and bills."
+                                                "Supplier profiles, assignment rules, blocking, supplier-specific pricing, and bills."
                                     ],
                                     [
-                                                "Hybrid API",
-                                                "API-client selection, pools, CPI rules and scheduled refresh."
+                                                "API / Workspace",
+                                                "API intake, supplier receiving, CPI rules, project pools, and scheduled refresh."
                                     ],
                                     [
                                                 "Records",
-                                                "Operation logs, callback records and termination records."
+                                                "Operation logs, callback records, review evidence, termination records, and exportable finance records."
+                                    ]
+                        ],
+                        "proofOutput": [
+                                    [
+                                                "01",
+                                                "Configured project record",
+                                                "Project intake, delivery rules, supplier assignment, and review status kept in one traceable record."
+                                    ],
+                                    [
+                                                "02",
+                                                "Supplier delivery trail",
+                                                "Supplier handoff, pricing, progress, callbacks, rejection, and termination records connected to the project."
+                                    ],
+                                    [
+                                                "03",
+                                                "Settlement-ready evidence",
+                                                "Verified delivery records connected to supplier bills, client invoices, finance logs, and exportable records."
                                     ]
                         ],
                         "surfaces": [
@@ -2664,19 +3198,36 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "proof": [
                                     [
                                                 "项目",
-                                                "项目列表、接收、排期、分配和结算。"
+                                                "项目接收、排期、分配、交付进度、审核与结算记录。"
                                     ],
                                     [
                                                 "供应商",
-                                                "供应商资料、等级、可用区域控制和账单。"
+                                                "供应商资料、分配规则、屏蔽、供应商专属定价和账单。"
                                     ],
                                     [
-                                                "Hybrid API",
-                                                "API 客户选择、项目池、CPI 规则和定时刷新。"
+                                                "API / 工作台",
+                                                "API 接收、供应商接收、CPI 规则、项目池和定时刷新。"
                                     ],
                                     [
                                                 "记录",
-                                                "操作日志、回调记录和终止记录。"
+                                                "操作日志、回调记录、审核证据、终止记录和可导出财务记录。"
+                                    ]
+                        ],
+                        "proofOutput": [
+                                    [
+                                                "01",
+                                                "配置完成的项目记录",
+                                                "项目接收、交付规则、供应商分配和审核状态保存在一条可追溯记录中。"
+                                    ],
+                                    [
+                                                "02",
+                                                "供应商交付轨迹",
+                                                "供应商交接、定价、进度、回调、拒绝和终止记录都关联到项目。"
+                                    ],
+                                    [
+                                                "03",
+                                                "可结算证据",
+                                                "经验证的交付记录关联到供应商账单、客户发票、财务日志和可导出记录。"
                                     ]
                         ],
                         "surfaces": [
@@ -2751,19 +3302,36 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "proof": [
                                     [
                                                 "प्रोजेक्ट",
-                                                "प्रोजेक्ट सूची, प्राप्ति, शेड्यूलिंग, आवंटन और निपटान।"
+                                                "प्रोजेक्ट प्राप्ति, शेड्यूलिंग, आवंटन, डिलीवरी प्रगति, समीक्षा और सेटलमेंट रिकॉर्ड।"
                                     ],
                                     [
                                                 "सप्लायर",
-                                                "सप्लायर प्रोफ़ाइल, स्तर, उपलब्धता नियंत्रण और बिल।"
+                                                "सप्लायर प्रोफ़ाइल, असाइनमेंट नियम, ब्लॉकिंग, सप्लायर-विशिष्ट प्राइसिंग और बिल।"
                                     ],
                                     [
-                                                "Hybrid API",
-                                                "API ग्राहक चयन, पूल, CPI नियम और निर्धारित रिफ्रेश।"
+                                                "API / Workspace",
+                                                "API इंटेक, सप्लायर रिसीविंग, CPI नियम, प्रोजेक्ट पूल और निर्धारित रिफ्रेश।"
                                     ],
                                     [
                                                 "रिकॉर्ड",
-                                                "संचालन लॉग, कॉलबैक रिकॉर्ड और समाप्ति रिकॉर्ड।"
+                                                "ऑपरेशन लॉग, कॉलबैक रिकॉर्ड, समीक्षा एविडेंस, टर्मिनेशन रिकॉर्ड और एक्सपोर्ट योग्य फाइनेंस रिकॉर्ड।"
+                                    ]
+                        ],
+                        "proofOutput": [
+                                    [
+                                                "01",
+                                                "कॉन्फ़िगर किया गया प्रोजेक्ट रिकॉर्ड",
+                                                "प्रोजेक्ट प्राप्ति, डिलीवरी नियम, सप्लायर असाइनमेंट और समीक्षा स्थिति एक ट्रेसेबल रिकॉर्ड में रखी जाती है।"
+                                    ],
+                                    [
+                                                "02",
+                                                "सप्लायर डिलीवरी ट्रेल",
+                                                "सप्लायर हैंडऑफ, प्राइसिंग, प्रगति, कॉलबैक, रिजेक्शन और टर्मिनेशन रिकॉर्ड प्रोजेक्ट से जुड़े रहते हैं।"
+                                    ],
+                                    [
+                                                "03",
+                                                "सेटलमेंट-तैयार एविडेंस",
+                                                "सत्यापित डिलीवरी रिकॉर्ड सप्लायर बिल, क्लाइंट इनवॉइस, फाइनेंस लॉग और एक्सपोर्ट योग्य रिकॉर्ड से जुड़े रहते हैं।"
                                     ]
                         ],
                         "surfaces": [
@@ -2815,13 +3383,57 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             document.documentElement.lang = state.lang === "zh" ? "zh-CN" : state.lang === "hi" ? "hi" : "en";
         }
 
+        const modeOrder = ["setup", "supplier", "finance"];
+        let topologyCycleTimer = null;
+        let topologyUserLocked = false;
+        let modebarSignature = "";
+
         function renderModebar() {
             const modes = COPY[state.lang].modes;
-            $("#topoModebar").innerHTML = Object.entries(modes).map(([id, m], i) => `
+            const entries = Object.entries(modes);
+            const bar = $("#topoModebar");
+            const signature = `${state.lang}:${entries.map(([id]) => id).join("|")}`;
+            if (modebarSignature !== signature || bar.querySelectorAll("button").length !== entries.length) {
+                bar.innerHTML = entries.map(([id, m], i) => `
         <button type="button" data-mode="${id}" class="${state.mode === id ? 'active' : ''}">
           <small>0${i + 1}</small><strong>${m[0]}</strong><span>${m[1]}</span>
         </button>`).join("");
-            $$("#topoModebar button").forEach(btn => btn.addEventListener("click", () => { state.mode = btn.dataset.mode; renderTopology(); }));
+                bar.querySelectorAll("button").forEach(btn => btn.addEventListener("click", () => setTopologyMode(btn.dataset.mode, { userSelected: true })));
+                modebarSignature = signature;
+            }
+            bar.querySelectorAll("button").forEach(btn => {
+                const active = btn.dataset.mode === state.mode;
+                btn.classList.toggle("active", active);
+                btn.setAttribute("aria-pressed", active ? "true" : "false");
+            });
+        }
+
+        function setTopologyMode(mode, options = {}) {
+            if (!COPY[state.lang].modes[mode]) return;
+            state.mode = mode;
+            renderTopology();
+            if (options.userSelected) {
+                stopTopologyCycle();
+            } else if (!topologyUserLocked && options.resetCycle !== false) {
+                restartTopologyCycle();
+            }
+        }
+
+        function stopTopologyCycle() {
+            topologyUserLocked = true;
+            if (topologyCycleTimer) window.clearInterval(topologyCycleTimer);
+            topologyCycleTimer = null;
+        }
+
+        function restartTopologyCycle() {
+            if (topologyUserLocked) return;
+            if (topologyCycleTimer) window.clearInterval(topologyCycleTimer);
+            topologyCycleTimer = window.setInterval(() => {
+                if (document.hidden || $("#resourceConsole").classList.contains("modal-open")) return;
+                const index = modeOrder.indexOf(state.mode);
+                const nextMode = modeOrder[(index + 1) % modeOrder.length] || modeOrder[0];
+                setTopologyMode(nextMode, { resetCycle: false });
+            }, 3600);
         }
 
         function renderTopology() {
@@ -2865,13 +3477,18 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           </div>
         </div>`).join("");
             $("#proofGrid").innerHTML = DATA[state.lang].proof.map(x => `<div><b>${x[0]}</b><span>${x[1]}</span></div>`).join("");
+            $("#proofOutput").innerHTML = DATA[state.lang].proofOutput.map(x => `
+        <div class="proof-output-row">
+          <span class="proof-output-num">${x[0]}</span>
+          <span><strong>${x[1]}</strong><span>${x[2]}</span></span>
+        </div>`).join("");
         }
 
         function renderSurfaces() {
             const detailLinks = [
-                "resource-manuals.html",
-                "resource-manuals.html#rollout-notes",
-                "resource-manuals.html"
+                "resource-manuals.html#configuration-guide",
+                "resource-manuals.html#operation-manual",
+                "resource-manuals.html#rollout-notes"
             ];
             $("#surfaceGrid").innerHTML = DATA[state.lang].surfaces.map((s, idx) => `
         <a class="surface-card surface-link ${idx === 1 ? 'supplier' : ''}" href="${detailLinks[idx]}" data-detail-link="${detailLinks[idx]}" aria-label="${s[1]}">
@@ -2944,14 +3561,12 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
         $$(".topo-svg .node[data-mode]").forEach(n => {
             n.addEventListener("click", event => {
                 event.stopPropagation();
-                state.mode = n.dataset.mode;
-                renderTopology();
+                setTopologyMode(n.dataset.mode, { userSelected: true });
             });
             n.addEventListener("keydown", event => {
                 if (event.key === "Enter" || event.key === " ") {
                     event.preventDefault();
-                    state.mode = n.dataset.mode;
-                    renderTopology();
+                    setTopologyMode(n.dataset.mode, { userSelected: true });
                 }
             });
         });
@@ -2969,11 +3584,12 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 
         try { const saved = localStorage.getItem("sampora_lang"); if (saved && COPY[saved]) state.lang = saved; } catch (e) { }
         renderAll();
+        restartTopologyCycle();
     </script>
 <script>
 (function(){
-  const labels={en:['Product','Solutions','Resources','Plans','Contact'],zh:['产品','解决方案','资源','版本方案','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','संपर्क']};
-  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['contact.html','contact']];
+  const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','हमारे बारे में','संपर्क']};
+  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about_sampora_issues_fixed.html','about'],['contact.html','contact']];
   function lang(){return localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
   function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
   if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}

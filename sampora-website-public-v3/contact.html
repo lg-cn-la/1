@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Contact Sampora to submit a backend-ready request for trial, demo, sales, enterprise, or resource questions about online sample operations." />
+    <meta name="description" content="Contact Sampora to discuss trial, demo, sales, enterprise, or resource questions for online sample operations." />
     <link rel="canonical" href="https://www.sampora.com/contact.html">
     <title>Sampora Contact - Submit request</title>
     <style>
@@ -577,6 +577,12 @@
             font-size: 20px;
             word-break: break-word;
             margin-bottom: 14px;
+            line-height: 1.35;
+        }
+
+        .direct-card a {
+            color: var(--cyan2);
+            font-weight: 900;
         }
 
         .direct-card p {
@@ -1187,6 +1193,7 @@ body{padding-top:100px}
                 <a href="solutions.html" data-i18n="navSolutions">Solutions</a>
                 <a href="resources.html" data-i18n="navResources">Resources</a>
                 <a href="plans.html" data-i18n="navPlans">Plans</a>
+                <a href="about_sampora_issues_fixed.html" data-i18n="navAbout">About</a>
                 <a href="contact.html" class="active" data-i18n="navContact">Contact</a>
             </nav>
             <div class="header-actions">
@@ -1204,8 +1211,8 @@ body{padding-top:100px}
     <section class="hero">
         <div class="container hero-inner">
             <div class="eyebrow" data-i18n="heroEyebrow">CONTACT CENTER</div>
-            <h1 data-i18n="heroTitle">Start a Sampora trial or book a demo.</h1>
-            <p data-i18n="heroSub">Submit your request and our sales team will follow up with trial access or a demo path for your sample operation setup.</p>
+            <h1 data-i18n="heroTitle">Talk to us about your sample operations.</h1>
+            <p data-i18n="heroSub">Tell us how you manage panels, suppliers, API delivery, review, and settlement. We will route your request to the right trial, demo, or sales path.</p>
         </div>
     </section>
 
@@ -1214,13 +1221,13 @@ body{padding-top:100px}
             <div class="container form-layout">
                 <div class="side-copy">
                     <div class="eyebrow" data-i18n="formKicker">CONTACT FORM</div>
-                    <h2 data-i18n="formTitle">Submit request</h2>
-                    <p data-i18n="formIntro">Share your sample operation context so sales can route your trial, demo, enterprise, or resource request correctly.</p>
+                    <h2 data-i18n="formTitle">Submit a request</h2>
+                    <p data-i18n="formIntro">Share your company, role, and operating model so we can understand the right Sampora path for your team.</p>
                     <ul class="tick-list">
-                        <li data-i18n="bullet1">We keep the URL intent so start trial, demo, sales, enterprise, and resource requests stay separated.</li>
-                        <li data-i18n="bullet2">Required fields cover name, email, company, role, business type, and message.</li>
-                        <li data-i18n="bullet3">Hidden fields preserve source page, section, plan, and language for backend processing.</li>
-                        <li data-i18n="bullet4">Success is shown only after a real backend endpoint confirms the request.</li>
+                        <li data-i18n="bullet1">Tell us whether you operate an owned panel, supplier network, API delivery, or multi-entity workflow.</li>
+                        <li data-i18n="bullet2">Share the project, supplier, review, and settlement workflows you want Sampora to support.</li>
+                        <li data-i18n="bullet3">Choose the request type so we can route trial, demo, sales, enterprise, or resource questions correctly.</li>
+                        <li data-i18n="bullet4">Our team will follow up with the next step based on your sample operations setup.</li>
                     </ul>
                     <div class="support-note">
                         <span>•</span>
@@ -1255,10 +1262,9 @@ body{padding-top:100px}
                             <option value="" selected disabled data-i18n="rolePh">Select your role</option>
                             <option value="Panel Provider" data-i18n="rolePanel">Panel Provider</option>
                             <option value="Sample Supplier" data-i18n="roleSupplier">Sample Supplier</option>
-                            <option value="Sample Aggregator" data-i18n="roleAggregator">Sample Aggregator</option>
-                            <option value="Survey Station / Execution Unit" data-i18n="roleStation">Survey Station / Execution Unit</option>
-                            <option value="Research Subcontractor" data-i18n="roleSubcontractor">Research Subcontractor</option>
+                            <option value="Sample Aggregator / Network Operator" data-i18n="roleAggregator">Sample Aggregator / Network Operator</option>
                             <option value="API-connected Supplier" data-i18n="roleApi">API-connected Supplier</option>
+                            <option value="Enterprise / Multi-entity Team" data-i18n="roleEnterprise">Enterprise / Multi-entity Team</option>
                             <option value="Other" data-i18n="roleOther">Other</option>
                         </select>
                     </div>
@@ -1266,11 +1272,11 @@ body{padding-top:100px}
                         <label for="business_type" data-i18n="businessTypeLabel">What is this request for?*</label>
                         <select id="business_type" name="business_type" required>
                             <option value="" selected disabled data-i18n="businessTypePh">Select request intent</option>
-                            <option value="start_trial" data-i18n="businessTrial">Start trial</option>
+                            <option value="start_trial" data-i18n="businessTrial">Start a trial</option>
                             <option value="book_demo" data-i18n="businessDemo">Book a demo</option>
-                            <option value="contact_sales" data-i18n="businessSales">Contact sales</option>
-                            <option value="enterprise_demo" data-i18n="businessEnterprise">Enterprise plan</option>
-                            <option value="resource_question" data-i18n="businessResource">Resources consult</option>
+                            <option value="contact_sales" data-i18n="businessSales">Talk to sales</option>
+                            <option value="enterprise_demo" data-i18n="businessEnterprise">Enterprise plan discussion</option>
+                            <option value="resource_question" data-i18n="businessResource">Resource or implementation question</option>
                         </select>
                     </div>
                     <div class="field">
@@ -1280,7 +1286,7 @@ body{padding-top:100px}
                     <div class="form-actions">
                         <button class="btn primary" type="submit" data-i18n="submit">Submit request</button>
                     </div>
-                    <p class="privacy" data-i18n="privacy">No final success message is shown unless the backend actually responds successfully.</p>
+                    <p class="privacy" data-i18n="privacy">We use your details only to review this request and follow up with the right Sampora next step.</p>
                 </form>
             </div>
         </section>
@@ -1289,23 +1295,54 @@ body{padding-top:100px}
             <div class="container">
                 <div class="eyebrow" data-i18n="nextStep">NEXT STEP</div>
                 <h2 data-i18n="responseTitle">What happens after submission?</h2>
-                <p class="response-sub" data-i18n="responseSub">The form is prepared for backend follow-up. Until the endpoint is live, the page only shows a conservative placeholder state.</p>
+                <p class="response-sub" data-i18n="responseSub">We review your operating model and route the request to the right Sampora path.</p>
 
                 <div class="response-grid">
                     <article class="response-card">
                         <span class="response-icon">01</span>
-                        <h3 data-i18n="responseCard1Title">Keep routing explicit</h3>
-                        <p data-i18n="response1">The request keeps its URL intent so start trial, demo, sales, enterprise, and resource inquiries stay separated.</p>
+                        <h3 data-i18n="responseCard1Title">Request review</h3>
+                        <p data-i18n="response1">We review your company, role, request type, and sample operation setup.</p>
                     </article>
                     <article class="response-card">
                         <span class="response-icon">02</span>
-                        <h3 data-i18n="responseCard2Title">Preserve source context</h3>
-                        <p data-i18n="response2">Hidden fields keep the source page, section, plan, and language available for backend processing.</p>
+                        <h3 data-i18n="responseCard2Title">Workflow mapping</h3>
+                        <p data-i18n="response2">We map your needs to Panel, Supplier Network, or Enterprise based on your workflow ownership.</p>
                     </article>
                     <article class="response-card">
                         <span class="response-icon">03</span>
-                        <h3 data-i18n="responseCard3Title">Hold the outcome conservative</h3>
-                        <p data-i18n="response3">The frontend does not claim a completed handoff until a real backend response is received.</p>
+                        <h3 data-i18n="responseCard3Title">Trial or demo follow-up</h3>
+                        <p data-i18n="response3">Our team follows up with trial access, a product walkthrough, or sales guidance.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="more-ways" id="other-ways">
+            <div class="container">
+                <div class="eyebrow" data-i18n="otherWaysKicker">OTHER WAYS</div>
+                <h2 data-i18n="otherWaysTitle">Other ways to reach us</h2>
+                <p data-i18n="otherWaysSub">Choose the route that best matches your current question.</p>
+
+                <div class="direct-grid">
+                    <article class="direct-card">
+                        <span class="direct-icon">S</span>
+                        <h3 data-i18n="directSalesTitle">Sales</h3>
+                        <strong><a href="mailto:sales@sampora.com">sales@sampora.com</a></strong>
+                        <p data-i18n="directSalesText">For trial, demo, pricing, and enterprise discussions.</p>
+                    </article>
+
+                    <article class="direct-card amber">
+                        <span class="direct-icon">D</span>
+                        <h3 data-i18n="directDemoTitle">Demo path</h3>
+                        <strong><a href="contact.html?intent=book_demo#contact-form" data-i18n="directDemoStrong">Book a product walkthrough</a></strong>
+                        <p data-i18n="directDemoText">For teams that want to review project intake, supplier allocation, review, and settlement workflows.</p>
+                    </article>
+
+                    <article class="direct-card">
+                        <span class="direct-icon">R</span>
+                        <h3 data-i18n="directResourceTitle">Resources</h3>
+                        <strong><a href="resources.html" data-i18n="directResourceStrong">View manuals</a></strong>
+                        <p data-i18n="directResourceText">For configuration guides, operation manuals, rollout notes, and implementation questions.</p>
                     </article>
                 </div>
             </div>
@@ -1327,35 +1364,38 @@ body{padding-top:100px}
                 </div>
                 <div class="sampora-footer-col">
                     <h3 data-i18n="footerProduct">Product</h3>
-                    <a href="index.html" data-i18n="navProduct">Product</a>
+                    <a href="index.html" data-i18n="footerPlatformOverview">Platform overview</a>
                     <a href="solutions.html" data-i18n="navSolutions">Solutions</a>
                     <a href="plans.html" data-i18n="navPlans">Plans</a>
+                    <a href="contact.html" data-i18n="navContact">Contact</a>
                 </div>
                 <div class="sampora-footer-col">
-                    <h3 data-i18n="footerSupport">Product support</h3>
-                    <a href="resources.html" data-i18n="cardHelpTitle">Help center</a>
-                    <a href="resources.html#surfaces" data-i18n="cardSupportTitle">View manuals</a>
-                    <a href="contact.html?intent=contact_sales#contact-form" data-i18n="cardCommunityTitle">Talk to sales</a>
+                    <h3 data-i18n="footerResources">Resources</h3>
+                    <a href="resources.html" data-i18n="footerResourcesOverview">Resources overview</a>
+                    <a href="resource-manuals.html#configuration-guide" data-i18n="footerConfigurationGuide">Configuration guide</a>
+                    <a href="resource-manuals.html#operation-manual" data-i18n="footerOperationManual">Operation manual</a>
+                    <a href="resource-manuals.html#rollout-notes" data-i18n="footerRolloutNotes">Rollout notes</a>
                 </div>
                 <div class="sampora-footer-col">
-                    <h3 data-i18n="footerContact">Contact</h3>
-                    <a href="mailto:jiayu@surveysaas.com">jiayu@surveysaas.com</a>
-                    <a href="tel:4006600224">400-660-0224</a>
-                    <a href="contact.html?intent=contact_sales#contact-form" data-i18n="footerContactSales">Contact sales</a>
+                    <h3 data-i18n="footerGetStarted">Get started</h3>
+                    <a href="contact.html?intent=start_trial#contact-form" data-i18n="ctaTop">Start trial</a>
+                    <a href="contact.html?intent=book_demo#contact-form" data-i18n="ctaDemo">Book a demo</a>
+                    <a href="contact.html?intent=contact_sales#contact-form" data-i18n="footerTalkToSales">Talk to sales</a>
+                    <a href="contact.html" data-i18n="navContact">Contact</a>
                 </div>
             </div>
             <div class="sampora-footer-contact">
                 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
-                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>jiayu@surveysaas.com</span></div>
+                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@sampora.com</span></div>
                 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
             </div>
             <div class="sampora-footer-legal"><span data-i18n="footerCopyright">© 2026</span><span data-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
         </div>
     </footer>
 
-    <div class="toast" id="toast"><b data-i18n="toastTitle">Backend placeholder</b><span data-i18n="toastText">The form is ready for backend wiring and is staying in a pending state for now.</span></div>
-    <div class="toast" id="toastSuccess"><b data-i18n="successTitle">Request submitted</b><span data-i18n="successText">Your request has been submitted. Our sales team will review your setup and follow up with trial access or a demo path.</span></div>
-    <div class="toast" id="toastFailure"><b data-i18n="failureTitle">Submission failed</b><span data-i18n="failureText">Submission failed. Please check your details or try again later.</span></div>
+    <div class="toast" id="toast"><b data-i18n="toastTitle">Form connection pending</b><span data-i18n="toastText">Online submission is not connected yet. Please email sales@sampora.com or use the contact details below.</span></div>
+    <div class="toast" id="toastSuccess"><b data-i18n="successTitle">Request submitted</b><span data-i18n="successText">Your request has been submitted. Our team will review your setup and follow up with the right next step.</span></div>
+    <div class="toast" id="toastFailure"><b data-i18n="failureTitle">Submission failed</b><span data-i18n="failureText">We could not send the request. Please try again or contact sales@sampora.com.</span></div>
 
 <script>
 (function(){
@@ -1371,20 +1411,21 @@ body{padding-top:100px}
       navSolutions: 'Solutions',
       navResources: 'Resources',
       navPlans: 'Plans',
+      navAbout: 'About',
       navContact: 'Contact',
       langSwitcher: 'Language',
       ctaDemo: 'Book a demo',
       ctaTop: 'Start trial',
       heroEyebrow: 'CONTACT CENTER',
-      heroTitle: 'Start a Sampora trial or book a demo.',
-      heroSub: 'Submit your request and our sales team will follow up with trial access or a demo path for your sample operation setup.',
+      heroTitle: 'Talk to us about your sample operations.',
+      heroSub: 'Tell us how you manage panels, suppliers, API delivery, review, and settlement. We will route your request to the right trial, demo, or sales path.',
       formKicker: 'CONTACT FORM',
-      formTitle: 'Submit request',
-      formIntro: 'Send a backend-ready request for trial access, demo scheduling, sales follow-up, enterprise planning, or resource guidance.',
-      bullet1: 'We keep the contact intent from the URL so routing stays explicit.',
-      bullet2: 'Required fields cover name, email, company, role, business type, and message.',
-      bullet3: 'Hidden fields preserve source page, section, plan, and language for backend handoff.',
-      bullet4: 'Pending state is shown until a real backend accepts the request.',
+      formTitle: 'Submit a request',
+      formIntro: 'Share your company, role, and operating model so we can understand the right Sampora path for your team.',
+      bullet1: 'Tell us whether you operate an owned panel, supplier network, API delivery, or multi-entity workflow.',
+      bullet2: 'Share the project, supplier, review, and settlement workflows you want Sampora to support.',
+      bullet3: 'Choose the request type so we can route trial, demo, sales, enterprise, or resource questions correctly.',
+      bullet4: 'Our team will follow up with the next step based on your sample operations setup.',
       cardHelpTitle: 'Resource center',
       cardHelpCta: 'View manuals',
       nameLabel: 'Name*',
@@ -1401,46 +1442,61 @@ body{padding-top:100px}
       businessTypePh: 'Select request intent',
       rolePanel: 'Panel Provider',
       roleSupplier: 'Sample Supplier',
-      roleAggregator: 'Sample Aggregator',
-      roleStation: 'Survey Station / Execution Unit',
-      roleSubcontractor: 'Research Subcontractor',
+      roleAggregator: 'Sample Aggregator / Network Operator',
       roleApi: 'API-connected Supplier',
+      roleEnterprise: 'Enterprise / Multi-entity Team',
       roleOther: 'Other',
-      businessTrial: 'Start trial',
+      businessTrial: 'Start a trial',
       businessDemo: 'Book a demo',
-      businessSales: 'Contact sales',
-      businessEnterprise: 'Enterprise plan',
-      businessResource: 'Resources consult',
+      businessSales: 'Talk to sales',
+      businessEnterprise: 'Enterprise plan discussion',
+      businessResource: 'Resource or implementation question',
       submit: 'Submit request',
-      privacy: 'This form is prepared for backend submission. Until the real endpoint is wired, submissions stay in a pending placeholder state and do not imply a completed handoff.',
+      privacy: 'We use your details only to review this request and follow up with the right Sampora next step.',
       nextStep: 'NEXT STEP',
       responseTitle: 'What happens after submission?',
-      responseSub: 'The form is prepared for backend follow-up. Until the endpoint is live, the page only shows a conservative placeholder state.',
-      responseCard1Title: 'Keep routing explicit',
-      responseCard2Title: 'Preserve source context',
-      responseCard3Title: 'Hold the outcome conservative',
-      response1: 'The request keeps its URL intent so trial, demo, sales, enterprise, and resource inquiries stay separated.',
-      response2: 'Hidden fields keep source page, section, plan, and language available for backend processing.',
-      response3: 'The frontend does not claim a completed handoff until a real backend response is received.',
+      responseSub: 'We review your operating model and route the request to the right Sampora path.',
+      responseCard1Title: 'Request review',
+      responseCard2Title: 'Workflow mapping',
+      responseCard3Title: 'Trial or demo follow-up',
+      response1: 'We review your company, role, request type, and sample operation setup.',
+      response2: 'We map your needs to Panel, Supplier Network, or Enterprise based on your workflow ownership.',
+      response3: 'Our team follows up with trial access, a product walkthrough, or sales guidance.',
+      otherWaysKicker: 'OTHER WAYS',
+      otherWaysTitle: 'Other ways to reach us',
+      otherWaysSub: 'Choose the route that best matches your current question.',
+      directSalesTitle: 'Sales',
+      directSalesText: 'For trial, demo, pricing, and enterprise discussions.',
+      directDemoTitle: 'Demo path',
+      directDemoStrong: 'Book a product walkthrough',
+      directDemoText: 'For teams that want to review project intake, supplier allocation, review, and settlement workflows.',
+      directResourceTitle: 'Resources',
+      directResourceStrong: 'View manuals',
+      directResourceText: 'For configuration guides, operation manuals, rollout notes, and implementation questions.',
       footerDesc: 'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',
       tag1: 'Sample supply',
       tag2: 'Review workflow',
       tag3: 'Settlement ledger',
       footerProduct: 'Product',
-      footerSupport: 'Product support',
-      footerContact: 'Contact',
+      footerPlatformOverview: 'Platform overview',
+      footerResources: 'Resources',
+      footerResourcesOverview: 'Resources overview',
+      footerConfigurationGuide: 'Configuration guide',
+      footerOperationManual: 'Operation manual',
+      footerRolloutNotes: 'Rollout notes',
+      footerGetStarted: 'Get started',
+      footerTalkToSales: 'Talk to sales',
       cardSupportTitle: 'View manuals',
       cardCommunityTitle: 'Talk to sales',
-      footerContactSales: 'Contact sales',
       addressText: 'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',
       footerCopyright: '© 2026',
       footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.',
-      toastTitle: 'Backend placeholder',
-      toastText: 'The form is ready for backend wiring and is staying in a pending state for now.',
+      toastTitle: 'Form connection pending',
+      toastText: 'Online submission is not connected yet. Please email sales@sampora.com or use the contact details below.',
       successTitle: 'Request submitted',
-      successText: 'Your request has been submitted. Our sales team will review your setup and follow up with trial access or a demo path.',
+      successText: 'Your request has been submitted. Our team will review your setup and follow up with the right next step.',
       failureTitle: 'Submission failed',
-      failureText: 'Submission failed. Please check your details or try again later.',
+      failureText: 'We could not send the request. Please try again or contact sales@sampora.com.',
       legalStaticGuard: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.'
     },
     zh: {
@@ -1451,20 +1507,21 @@ body{padding-top:100px}
       navSolutions: '解决方案',
       navResources: '资源',
       navPlans: '版本方案',
+      navAbout: '关于',
       navContact: '联系',
       langSwitcher: '语言',
       ctaDemo: '预约演示',
       ctaTop: '开始试用',
       heroEyebrow: '联系中心',
-      heroTitle: '开始 Sampora 试用或预约演示。',
-      heroSub: '提交请求后，我们会根据你的在线样本运营场景，跟进试用权限、演示路径或销售支持。',
+      heroTitle: '告诉我们你的样本运营场景。',
+      heroSub: '说明你如何管理 Panel、供应商、API 交付、审核与结算，我们会将请求匹配到合适的试用、演示或销售路径。',
       formKicker: '联系表单',
       formTitle: '提交请求',
-      formIntro: '提交一个可对接后端的请求，用于试用开通、演示预约、销售跟进、企业方案或资源咨询。',
-      bullet1: '页面会保留 URL 中的 contact intent，确保请求路由清晰。',
-      bullet2: '必填字段覆盖姓名、邮箱、公司、角色、业务类型和消息。',
-      bullet3: '隐藏字段会保留来源页面、区域、方案和语言，便于后端接收。',
-      bullet4: '只有真实后端接受请求后，页面才会显示最终成功状态。',
+      formIntro: '填写你的公司、角色和运营模式，方便我们判断最适合你团队的 Sampora 路径。',
+      bullet1: '说明你主要运营自有 Panel、供应商网络、API 交付，还是多实体运营流程。',
+      bullet2: '说明你希望 Sampora 支持哪些项目、供应商、审核和结算流程。',
+      bullet3: '选择请求类型，方便我们正确区分试用、演示、销售、企业方案或资源咨询。',
+      bullet4: '我们会根据你的样本运营场景跟进下一步。',
       cardHelpTitle: '资源中心',
       cardHelpCta: '查看手册',
       nameLabel: '姓名*',
@@ -1479,48 +1536,63 @@ body{padding-top:100px}
       messagePlaceholder: '请说明你的在线样本运营、供应商网络或演示需求。',
       rolePh: '请选择角色',
       businessTypePh: '请选择请求意图',
-      rolePanel: '自有样本运营方',
+      rolePanel: 'Panel 服务商 / 自有样本运营方',
       roleSupplier: '样本供应商',
-      roleAggregator: '样本聚合商',
-      roleStation: '调查站 / 执行单元',
-      roleSubcontractor: '调研分包执行团队',
+      roleAggregator: '样本聚合商 / 供应网络运营方',
       roleApi: 'API 对接供应商',
+      roleEnterprise: '企业 / 多实体运营团队',
       roleOther: '其他',
       businessTrial: '开始试用',
       businessDemo: '预约演示',
-      businessSales: '联系销售',
-      businessEnterprise: '企业方案',
-      businessResource: '资源咨询',
+      businessSales: '咨询销售',
+      businessEnterprise: '企业方案咨询',
+      businessResource: '资源或实施问题',
       submit: '提交请求',
-      privacy: '只有在后端真实成功响应后，才会显示最终成功状态。',
+      privacy: '我们仅使用这些信息来评估本次请求，并跟进合适的 Sampora 下一步。',
       nextStep: '下一步',
       responseTitle: '提交后会发生什么？',
-      responseSub: '表单已为后端跟进做好准备。在接口上线前，页面只展示保守的待接入状态。',
-      responseCard1Title: '保留明确路由',
-      responseCard2Title: '保留来源上下文',
-      responseCard3Title: '保持结果保守',
-      response1: '请求会保留 URL intent，方便区分试用、演示、销售、企业和资源咨询。',
-      response2: '隐藏字段会保留来源页面、区域、方案和语言，供后端处理。',
-      response3: '只有在真实后端响应后，前端才会显示完成交付的状态。',
+      responseSub: '我们会根据你的运营模式，将请求匹配到合适的 Sampora 路径。',
+      responseCard1Title: '请求审核',
+      responseCard2Title: '工作流匹配',
+      responseCard3Title: '试用或演示跟进',
+      response1: '我们会查看你的公司、角色、请求类型和样本运营场景。',
+      response2: '我们会根据你管理的工作流，将需求匹配到 Panel、Supplier Network 或 Enterprise。',
+      response3: '团队会继续跟进试用权限、产品演示或销售咨询。',
+      otherWaysKicker: '其他方式',
+      otherWaysTitle: '也可以通过这些方式联系我们',
+      otherWaysSub: '根据你当前的问题选择合适入口。',
+      directSalesTitle: '销售咨询',
+      directSalesText: '适用于试用、演示、价格和企业方案咨询。',
+      directDemoTitle: '演示路径',
+      directDemoStrong: '预约产品演示',
+      directDemoText: '适用于希望查看项目接收、供应商分配、审核和结算流程的团队。',
+      directResourceTitle: '资源中心',
+      directResourceStrong: '查看手册',
+      directResourceText: '适用于配置指南、操作手册、上线说明和实施问题。',
       footerDesc: 'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',
       tag1: '样本供给',
       tag2: '审核流程',
       tag3: '结算台账',
       footerProduct: '产品',
-      footerSupport: '产品支持',
-      footerContact: '联系',
+      footerPlatformOverview: '平台概览',
+      footerResources: '资源',
+      footerResourcesOverview: '资源概览',
+      footerConfigurationGuide: '配置指南',
+      footerOperationManual: '操作手册',
+      footerRolloutNotes: '上线说明',
+      footerGetStarted: '开始使用',
+      footerTalkToSales: '咨询销售',
       cardSupportTitle: '查看手册',
       cardCommunityTitle: '联系销售',
-      footerContactSales: '联系销售',
       addressText: '中国安徽省六安市恒阳广场 A 座 1506 室',
       footerCopyright: '© 2026',
       footerCompanyLegal: '安徽省嘉禹企业服务有限公司',
-      toastTitle: '后端待接入',
-      toastText: '表单已准备好对接后端，目前保持待接入状态。',
+      toastTitle: '在线提交暂未接通',
+      toastText: '当前表单提交接口尚未接通，请通过 sales@sampora.com 或页面底部联系方式联系我们。',
       successTitle: '请求已提交',
-      successText: '你的请求已提交。销售团队会根据你的业务场景，跟进试用权限或演示路径。',
+      successText: '你的请求已提交。我们会根据你的业务场景跟进合适的下一步。',
       failureTitle: '提交失败',
-      failureText: '提交失败，请检查信息后稍后再试。'
+      failureText: '请求未能发送，请稍后再试，或通过 sales@sampora.com 联系我们。'
     },
     hi: {
       topLine: 'संपर्क केंद्र / लाइव',
@@ -1530,20 +1602,21 @@ body{padding-top:100px}
       navSolutions: 'समाधान',
       navResources: 'संसाधन',
       navPlans: 'योजनाएं',
+      navAbout: 'हमारे बारे में',
       navContact: 'संपर्क',
       langSwitcher: 'भाषा',
       ctaDemo: 'डेमो बुक करें',
       ctaTop: 'ट्रायल शुरू करें',
       heroEyebrow: 'संपर्क केंद्र',
-      heroTitle: 'Sampora का ट्रायल शुरू करें या डेमो बुक करें।',
-      heroSub: 'अपना अनुरोध भेजें; हमारी बिक्री टीम आपके ऑनलाइन नमूना संचालन के अनुसार ट्रायल पहुंच या डेमो मार्ग पर आगे बढ़ेगी।',
+      heroTitle: 'अपने सैंपल ऑपरेशंस के बारे में हमसे बात करें।',
+      heroSub: 'बताएं कि आप Panel, सप्लायर, API डिलीवरी, समीक्षा और सेटलमेंट कैसे चलाते हैं। हम आपके अनुरोध को सही ट्रायल, डेमो या सेल्स पथ से जोड़ेंगे।',
       formKicker: 'संपर्क फ़ॉर्म',
       formTitle: 'अनुरोध सबमिट करें',
-      formIntro: 'ट्रायल, डेमो, बिक्री, एंटरप्राइज योजना या संसाधन मार्गदर्शन के लिए बैकएंड-तैयार अनुरोध भेजें।',
-      bullet1: 'URL intent सुरक्षित रहता है, ताकि अनुरोध सही मार्ग से जाए।',
-      bullet2: 'ज़रूरी फ़ील्ड में नाम, ईमेल, कंपनी, भूमिका, व्यवसाय प्रकार और संदेश शामिल हैं।',
-      bullet3: 'छिपे हुए फ़ील्ड स्रोत पेज, सेक्शन, प्लान और भाषा को बैकएंड सुपुर्दगी के लिए सुरक्षित रखते हैं।',
-      bullet4: 'जब तक वास्तविक backend अनुरोध स्वीकार नहीं करता, पेज केवल प्रतीक्षा स्थिति दिखाता है।',
+      formIntro: 'अपनी कंपनी, भूमिका और ऑपरेटिंग मॉडल साझा करें ताकि हम आपकी टीम के लिए सही Sampora पथ समझ सकें।',
+      bullet1: 'बताएं कि आप अपना Panel, सप्लायर नेटवर्क, API डिलीवरी या बहु-इकाई वर्कफ़्लो चलाते हैं।',
+      bullet2: 'बताएं कि आप Sampora से कौन से प्रोजेक्ट, सप्लायर, समीक्षा और सेटलमेंट वर्कफ़्लो संभालना चाहते हैं।',
+      bullet3: 'अनुरोध प्रकार चुनें ताकि हम ट्रायल, डेमो, सेल्स, एंटरप्राइज या संसाधन प्रश्न सही तरह से रूट कर सकें।',
+      bullet4: 'हम आपकी सैंपल ऑपरेशंस सेटअप के आधार पर अगले कदम पर संपर्क करेंगे।',
       cardHelpTitle: 'संसाधन केंद्र',
       cardHelpCta: 'मैनुअल देखें',
       nameLabel: 'नाम*',
@@ -1558,48 +1631,63 @@ body{padding-top:100px}
       messagePlaceholder: 'अपने नमूना संचालन, Supplier Network या डेमो जरूरतों के बारे में बताएं।',
       rolePh: 'अपनी भूमिका चुनें',
       businessTypePh: 'अनुरोध का उद्देश्य चुनें',
-      rolePanel: 'पैनल प्रदाता / अपना पैनल संचालक',
-      roleSupplier: 'नमूना आपूर्तिकर्ता / नमूना आपूर्ति टीम',
-      roleAggregator: 'नमूना एग्रीगेटर / नमूना स्रोत समेकक',
-      roleStation: 'सर्वे स्टेशन / निष्पादन इकाई',
-      roleSubcontractor: 'शोध उप-ठेका टीम',
-      roleApi: 'API से जुड़ा आपूर्तिकर्ता',
+      rolePanel: 'Panel Provider / अपना Panel संचालक',
+      roleSupplier: 'Sample Supplier',
+      roleAggregator: 'Sample Aggregator / Network Operator',
+      roleApi: 'API-connected Supplier',
+      roleEnterprise: 'Enterprise / बहु-इकाई टीम',
       roleOther: 'अन्य',
       businessTrial: 'ट्रायल शुरू करें',
       businessDemo: 'डेमो बुक करें',
-      businessSales: 'बिक्री टीम से संपर्क',
-      businessEnterprise: 'एंटरप्राइज योजना',
-      businessResource: 'संसाधन परामर्श',
+      businessSales: 'सेल्स से बात करें',
+      businessEnterprise: 'Enterprise योजना चर्चा',
+      businessResource: 'संसाधन या इम्प्लीमेंटेशन प्रश्न',
       submit: 'अनुरोध सबमिट करें',
-      privacy: 'अंतिम सफलता संदेश केवल तब दिखेगा जब बैकएंड वास्तव में सफल उत्तर देगा।',
-      nextStep: 'अगला चरण',
+      privacy: 'हम इन विवरणों का उपयोग केवल इस अनुरोध की समीक्षा और सही Sampora अगले कदम के लिए करेंगे।',
+      nextStep: 'अगला कदम',
       responseTitle: 'सबमिशन के बाद क्या होगा?',
-      responseSub: 'फ़ॉर्म बैकएंड अनुवर्ती कार्रवाई के लिए तैयार है। एंडपॉइंट लाइव होने तक पेज केवल सुरक्षित प्रतीक्षा स्थिति दिखाता है।',
-      responseCard1Title: 'रूटिंग स्पष्ट रखें',
-      responseCard2Title: 'स्रोत संदर्भ सुरक्षित रखें',
-      responseCard3Title: 'परिणाम पर दावा न करें',
-      response1: 'अनुरोध URL intent को सुरक्षित रखता है, ताकि ट्रायल, डेमो, बिक्री, एंटरप्राइज और संसाधन पूछताछ अलग रहें।',
-      response2: 'छिपे हुए फ़ील्ड स्रोत पेज, सेक्शन, प्लान और भाषा को बैकएंड प्रोसेसिंग के लिए उपलब्ध रखते हैं।',
-      response3: 'वास्तविक बैकएंड उत्तर मिलने तक फ़्रंटएंड पूरी सुपुर्दगी होने का दावा नहीं करता।',
+      responseSub: 'हम आपके ऑपरेटिंग मॉडल की समीक्षा करेंगे और अनुरोध को सही Sampora पथ से जोड़ेंगे।',
+      responseCard1Title: 'अनुरोध समीक्षा',
+      responseCard2Title: 'वर्कफ़्लो मैपिंग',
+      responseCard3Title: 'ट्रायल या डेमो फॉलो-अप',
+      response1: 'हम आपकी कंपनी, भूमिका, अनुरोध प्रकार और सैंपल ऑपरेशन सेटअप की समीक्षा करेंगे।',
+      response2: 'हम आपके वर्कफ़्लो स्वामित्व के आधार पर जरूरतों को Panel, Supplier Network या Enterprise से मैप करेंगे।',
+      response3: 'हमारी टीम ट्रायल एक्सेस, प्रोडक्ट वॉकथ्रू या सेल्स गाइडेंस के साथ आगे संपर्क करेगी।',
+      otherWaysKicker: 'अन्य तरीके',
+      otherWaysTitle: 'हमसे संपर्क करने के अन्य तरीके',
+      otherWaysSub: 'अपने वर्तमान प्रश्न के अनुसार सही मार्ग चुनें।',
+      directSalesTitle: 'सेल्स',
+      directSalesText: 'ट्रायल, डेमो, प्राइसिंग और Enterprise चर्चा के लिए।',
+      directDemoTitle: 'डेमो पथ',
+      directDemoStrong: 'प्रोडक्ट वॉकथ्रू बुक करें',
+      directDemoText: 'उन टीमों के लिए जो प्रोजेक्ट इनटेक, सप्लायर आवंटन, समीक्षा और सेटलमेंट वर्कफ़्लो देखना चाहती हैं।',
+      directResourceTitle: 'संसाधन',
+      directResourceStrong: 'मैनुअल देखें',
+      directResourceText: 'कॉन्फ़िगरेशन गाइड, ऑपरेशन मैनुअल, रोलआउट नोट्स और इम्प्लीमेंटेशन प्रश्नों के लिए।',
       footerDesc: 'Sampora स्वामित्व वाले Panel संचालकों और Sample Supplier टीमों के लिए ऑनलाइन नमूना संचालन प्लेटफ़ॉर्म है, जो परियोजना वितरण, Supplier Allocation, समीक्षा रिकॉर्ड, वित्त, जोखिम नियंत्रण और Partner Network को साथ रखता है।',
       tag1: 'नमूना आपूर्ति',
       tag2: 'समीक्षा प्रक्रिया',
       tag3: 'सेटलमेंट लेजर',
       footerProduct: 'उत्पाद',
-      footerSupport: 'उत्पाद सहायता',
-      footerContact: 'संपर्क',
+      footerPlatformOverview: 'प्लेटफ़ॉर्म अवलोकन',
+      footerResources: 'संसाधन',
+      footerResourcesOverview: 'संसाधन अवलोकन',
+      footerConfigurationGuide: 'कॉन्फ़िगरेशन गाइड',
+      footerOperationManual: 'ऑपरेशन मैनुअल',
+      footerRolloutNotes: 'रोलआउट नोट्स',
+      footerGetStarted: 'शुरू करें',
+      footerTalkToSales: 'सेल्स से बात करें',
       cardSupportTitle: 'मैनुअल देखें',
       cardCommunityTitle: 'बिक्री टीम से बात करें',
-      footerContactSales: 'बिक्री टीम से संपर्क',
       addressText: 'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',
       footerCopyright: '© 2026',
       footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.',
-      toastTitle: 'बैकएंड प्रतीक्षा स्थिति',
-      toastText: 'फ़ॉर्म बैकएंड से जोड़ने के लिए तैयार है और अभी प्रतीक्षा स्थिति में है।',
+      toastTitle: 'फ़ॉर्म कनेक्शन अभी तैयार नहीं है',
+      toastText: 'ऑनलाइन सबमिशन अभी कनेक्ट नहीं है। कृपया sales@sampora.com पर ईमेल करें या नीचे दिए गए संपर्क विवरण का उपयोग करें।',
       successTitle: 'अनुरोध सबमिट हुआ',
-      successText: 'आपका अनुरोध सबमिट हो गया है। हमारी बिक्री टीम आपकी सेटअप जानकारी देखकर ट्रायल पहुंच या डेमो मार्ग पर आगे बढ़ेगी।',
+      successText: 'आपका अनुरोध सबमिट हो गया है। हमारी टीम आपकी सेटअप जानकारी देखकर अगले कदम पर संपर्क करेगी।',
       failureTitle: 'सबमिशन विफल रहा',
-      failureText: 'सबमिशन विफल रहा। कृपया जानकारी जांचें या थोड़ी देर बाद फिर कोशिश करें।'
+      failureText: 'हम अनुरोध भेज नहीं सके। कृपया फिर कोशिश करें या sales@sampora.com पर संपर्क करें।'
     }
   };
   window.__samporaContactTranslations = texts;
@@ -1660,7 +1748,50 @@ body{padding-top:100px}
     if (mast) mast.classList.toggle('compact', compact);
     document.body.classList.toggle('nav-condensed', compact);
   }
+  function ensureMobileNav(){
+    if ($('.mobile-nav-toggle') || $('.mobile-nav-drawer')) return;
+    var actions = $('.header-actions');
+    var routes = [
+      ['index.html', 'navProduct'],
+      ['solutions.html', 'navSolutions'],
+      ['resources.html', 'navResources'],
+      ['plans.html', 'navPlans'],
+      ['about_sampora_issues_fixed.html', 'navAbout'],
+      ['contact.html', 'navContact']
+    ];
+    if (!actions) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'mobile-nav-toggle';
+    btn.setAttribute('aria-label', 'Open navigation');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = '\u2630';
+    var drawer = document.createElement('nav');
+    drawer.className = 'mobile-nav-drawer';
+    drawer.setAttribute('aria-label', 'Mobile navigation');
+    routes.forEach(function(route){
+      var a = document.createElement('a');
+      a.href = route[0];
+      a.setAttribute('data-i18n', route[1]);
+      if (route[0] === 'contact.html') a.className = 'active';
+      drawer.appendChild(a);
+    });
+    actions.appendChild(btn);
+    document.body.appendChild(drawer);
+    btn.addEventListener('click', function(){
+      var open = document.body.classList.toggle('mobile-nav-open');
+      btn.setAttribute('aria-expanded', String(open));
+      if (open) drawer.querySelector('a')?.focus();
+    });
+    drawer.addEventListener('click', function(event){
+      if (event.target.closest('a')) document.body.classList.remove('mobile-nav-open');
+    });
+    document.addEventListener('keydown', function(event){
+      if (event.key === 'Escape') document.body.classList.remove('mobile-nav-open');
+    });
+  }
   document.addEventListener('DOMContentLoaded', function(){
+    ensureMobileNav();
     apply(currentLang());
     $$('.lang button[data-lang]').forEach(function(btn){ btn.addEventListener('click', function(){ apply(btn.dataset.lang); }); });
     syncTopChrome();
@@ -1710,6 +1841,7 @@ body{padding-top:100px}
   const sourcePage = qs.get('source_page') || 'contact.html';
   const sourceSection = qs.get('source_section') || 'contact-form';
   const backendEndpoint = form.getAttribute('data-endpoint') || form.getAttribute('action') || '[BACKEND_CONTACT_ENDPOINT]';
+  // Keep success feedback behind a real endpoint response; the placeholder path shows the customer fallback toast.
   const isPlaceholder = backendEndpoint.includes('[BACKEND_CONTACT_ENDPOINT]');
   const businessSelect = document.getElementById('business_type');
 
@@ -1736,7 +1868,7 @@ body{padding-top:100px}
   const privacy = form.querySelector('.privacy');
 
   const optionText = {
-    role: ['rolePh','rolePanel','roleSupplier','roleAggregator','roleStation','roleSubcontractor','roleApi','roleOther'],
+    role: ['rolePh','rolePanel','roleSupplier','roleAggregator','roleApi','roleEnterprise','roleOther'],
     business: ['businessTypePh','businessTrial','businessDemo','businessSales','businessEnterprise','businessResource']
   };
   const roleOptions = document.querySelectorAll('#role option');

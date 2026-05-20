@@ -148,13 +148,28 @@
             font-weight: 700
         }
 
-        .live:before {
+        .status .live::before {
             content: "";
             width: 7px;
             height: 7px;
             border-radius: 50%;
             background: var(--lime);
-            box-shadow: 0 0 0 3px rgba(181, 240, 86, .12)
+            box-shadow: 0 0 0 0 rgba(181, 240, 86, .4);
+            animation: pulse-lime 1.9s ease-out infinite
+        }
+
+        @keyframes pulse-lime {
+            0% {
+                box-shadow: 0 0 0 0 rgba(181, 240, 86, .48)
+            }
+
+            72% {
+                box-shadow: 0 0 0 9px rgba(181, 240, 86, 0)
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(181, 240, 86, 0)
+            }
         }
 
         .status .sep {
@@ -686,7 +701,7 @@
 
         .topo-svg .flow.on,
         .topo-svg .flow-group.on .flow {
-            animation: topoDash 2.8s linear infinite;
+            animation: topoDash 2.4s linear infinite;
             opacity: 1
         }
 
@@ -696,7 +711,7 @@
 
         .topo-svg .flow.on.amber,
         .topo-svg .flow-group.on .flow.amber {
-            animation-duration: 3.1s
+            animation-duration: 2.4s
         }
 
         .topo-svg .packet {
@@ -1499,14 +1514,14 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            gap: 0
+            gap: 14px
         }
 
         .customer-top {
             display: flex;
             align-items: center;
             gap: 14px;
-            margin-bottom: 16px
+            margin-bottom: 0
         }
 
         .avatar {
@@ -1550,7 +1565,7 @@
             letter-spacing: .12em;
             text-transform: uppercase;
             color: var(--cyan2);
-            margin-bottom: 14px
+            margin-bottom: 0
         }
 
         .quote .type::before {
@@ -1565,11 +1580,13 @@
             margin: 0;
             color: var(--fg2);
             font-size: 15px;
-            line-height: 1.6
+            line-height: 1.6;
+            flex: 1 1 auto
         }
 
         .quote .impact {
-            margin-top: 14px;
+            margin-top: auto;
+            padding-top: 6px;
             font: 700 11px var(--mono);
             letter-spacing: .04em;
             color: rgba(169, 185, 210, .74)
@@ -1715,6 +1732,10 @@
             min-height: clamp(420px, 31vw, 454px)
         }
 
+        #contact .final-cta>.section-kicker {
+            margin-bottom: clamp(18px, 1.6vw, 24px)
+        }
+
         .final-cta h2 {
             margin: 0 0 12px;
             font-size: 36px;
@@ -1734,8 +1755,8 @@
 
         #contact .final-steps {
             display: grid;
-            gap: 12px;
-            margin-top: 26px;
+            gap: 13px;
+            margin-top: clamp(28px, 2.6vw, 34px);
             padding-top: 0
         }
 
@@ -1750,7 +1771,7 @@
         }
 
         #contact .final-cta .cta-row {
-            margin-top: 26px;
+            margin-top: clamp(30px, 3vw, 38px);
             margin-bottom: 0
         }
 
@@ -4079,12 +4100,13 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   .topo-grid{height:clamp(276px,22vw,332px)}
 }
 
-/* Package A urgent hero-left rhythm: keep the left column using the desktop hero height without stretching it to the edges. */
+/* Package A hero proof-row alignment: make the card row bottom share the desktop console baseline. */
 @media(min-width:1241px){
   .hero-grid{align-items:stretch}
   .hero-copy{
     align-self:stretch;
-    justify-content:center;
+    min-height:100%;
+    justify-content:space-between;
     --hero-gap-title:28px;
     --hero-gap-sub:24px;
     --hero-gap-cta:34px;
@@ -4104,6 +4126,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   }
   .hero-copy>.cta-row{margin:var(--hero-gap-cta) 0 0}
   .hero-proof-grid{
+    align-self:stretch;
     width:min(100%,690px);
     gap:14px;
     margin-top:var(--hero-gap-proof);
@@ -4218,7 +4241,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </div>
 <header class="mast">
 <div class="container inner"><a class="brand" href="index.html#top"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a>
-<nav aria-label="Primary navigation" class="nav product-nav sampora-nav-standard"><span aria-hidden="true" class="nav-indicator"></span><a class="nav-link active" data-i18n="product" data-sampora-nav="product" href="index.html">Product</a><a class="nav-link" data-i18n="solutions" data-sampora-nav="solutions" href="solutions.html">Solutions</a><a class="nav-link" data-i18n="resources" data-sampora-nav="resources" href="resources.html">Resources</a><a class="nav-link" data-i18n="plans" data-sampora-nav="plans" href="plans.html">Plans</a><a class="nav-link" data-i18n="navContact" data-sampora-nav="contact" href="contact.html">Contact</a></nav>
+<nav aria-label="Primary navigation" class="nav product-nav sampora-nav-standard"><span aria-hidden="true" class="nav-indicator"></span><a class="nav-link active" data-i18n="product" data-sampora-nav="product" href="index.html">Product</a><a class="nav-link" data-i18n="solutions" data-sampora-nav="solutions" href="solutions.html">Solutions</a><a class="nav-link" data-i18n="resources" data-sampora-nav="resources" href="resources.html">Resources</a><a class="nav-link" data-i18n="plans" data-sampora-nav="plans" href="plans.html">Plans</a><a class="nav-link" data-i18n="navAbout" data-sampora-nav="about" href="about_sampora_issues_fixed.html">About</a><a class="nav-link" data-i18n="navContact" data-sampora-nav="contact" href="contact.html">Contact</a></nav>
 <div class="header-actions"><div aria-label="Language" class="lang" data-i18n-aria-label="langSwitcher"><button class="active" data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button><button data-lang="hi" type="button">हिन्दी</button></div><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a></div>
 </div>
 </header>
@@ -4333,7 +4356,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <g class="hub" transform="translate(820,128)"><rect height="56" rx="10" width="58" x="0" y="0"></rect></g>
 </g>
 <g class="labels-layer">
-<text class="colhead" data-i18n="topoRouterHead" text-anchor="middle" x="93" y="21">ROUTER</text><text class="colhead" data-i18n="topoLayersHead" text-anchor="middle" x="313" y="21">SAMPLE SUPPLY POOL</text><text class="colhead" data-i18n="topoSourcesHead" text-anchor="middle" x="565" y="21">SUPPLY SOURCES</text><text class="colhead" data-i18n="topoQcHead" text-anchor="middle" x="749" y="21">REVIEW</text><text class="colhead" data-i18n="topoLedgerHead" text-anchor="middle" x="849" y="21">SETTLEMENT</text>
+<text class="colhead" data-i18n="topoRouterHead" text-anchor="middle" x="93" y="21">ROUTER</text><text class="colhead" data-i18n="topoLayersHead" text-anchor="middle" x="300" y="21">SAMPLE SUPPLY POOL</text><text class="colhead" data-i18n="topoSourcesHead" text-anchor="middle" x="565" y="21">SUPPLY SOURCES</text><text class="colhead" data-i18n="topoQcHead" text-anchor="middle" x="749" y="21">REVIEW</text><text class="colhead" data-i18n="topoLedgerHead" text-anchor="middle" x="849" y="21">SETTLEMENT</text>
 <g class="hub" transform="translate(28,118)"><text class="brand-code" text-anchor="middle" x="76" y="24">Sampora</text><text class="brand-role" data-i18n="topoRouterRole" text-anchor="middle" x="76" y="40">Router Core</text></g>
 <g class="pool-node-label" transform="translate(220,116)"><text class="node-title" data-i18n="topoPoolTitle" text-anchor="middle" x="80" y="24">SAMPLE SUPPLY POOL</text><text class="node-sub" data-i18n="topoPoolRole" text-anchor="middle" x="80" y="40">allocation settings</text></g>
 <g transform="translate(470,30)"><text class="node-index" x="14" y="18">01</text><text class="node-title" data-i18n="topoPanelTitle" x="60" y="18">PANEL_01</text><text class="node-sub" data-i18n="topoPanelRole" x="60" y="34">owned panel</text></g>
@@ -4436,15 +4459,15 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </div>
 </div>
 <div class="modules">
-<article class="module"><small>Capability 01</small><h3 data-i18n="m1Title">Project Delivery Management</h3><p data-i18n="m1Text">Manage online sample projects from intake and setup to allocation, tracking, review and settlement.</p><div class="metric" data-i18n="m1Metric">Delivery workflow</div></article>
-<article class="module"><small>Capability 02</small><h3 data-i18n="m2Title">Supplier Allocation &amp; Pricing</h3><p data-i18n="m2Text">Assign selected suppliers, block unsuitable suppliers and set supplier-level prices through configured delivery rules.</p><div class="metric" data-i18n="m2Metric">Allocation settings</div></article>
-<article class="module"><small>Capability 03</small><h3 data-i18n="m3Title">Client &amp; Supplier Management</h3><p data-i18n="m3Text">Keep client profiles, supplier profiles, settlement cycles, assignment rules and supplier availability records in one sample operations layer.</p><div class="metric" data-i18n="m3Metric">Profile records</div></article>
-<article class="module"><small>Capability 04</small><h3 data-i18n="m4Title">Panel &amp; Member Operations</h3><p data-i18n="m4Text">Support owned panels and survey stations with member groups, levels, survey records, wallets, bills and station execution records.</p><div class="metric lime" data-i18n="m4Metric">Member records</div></article>
-<article class="module"><small>Capability 05</small><h3 data-i18n="m5Title">Finance &amp; Multi-party Settlement</h3><p data-i18n="m5Text">Close the loop with project settlement, supplier bills, client invoices, fees, payment status and finance logs.</p><div class="metric amber" data-i18n="m5Metric">Bills &amp; invoices</div></article>
-<article class="module"><small>Capability 06</small><h3 data-i18n="m6Title">Partner Network</h3><p data-i18n="m6Text">Help buyers find suppliers and suppliers find buyers, then convert cooperation records into internal clients or suppliers.</p><div class="metric" data-i18n="m6Metric">Partner records</div></article>
-<article class="module"><small>Capability 07</small><h3 data-i18n="m7Title">API-based Project Intake &amp; Distribution</h3><p data-i18n="m7Text">Receive project intake from API or workspace flows and distribute delivery work to the right supplier operation path.</p><div class="metric" data-i18n="m7Metric">API/workspace intake</div></article>
-<article class="module"><small>Capability 08</small><h3 data-i18n="m8Title">Risk Control &amp; Traceability</h3><p data-i18n="m8Text">Keep review evidence, callback records, operation logs and exportable records connected to project delivery.</p><div class="metric lime" data-i18n="m8Metric">Review evidence</div></article>
-<article class="module"><small>Capability 09</small><h3 data-i18n="m9Title">Workspace &amp; Role Governance</h3><p data-i18n="m9Text">Manage tenants, departments, roles, staff permissions, dictionaries, and operating rules for multi-team sample operations.</p><div class="metric amber" data-i18n="m9Metric">Governance controls</div></article>
+<article class="module"><small data-i18n="cap1Label">Capability 01</small><h3 data-i18n="m1Title">Project Delivery Management</h3><p data-i18n="m1Text">Manage online sample projects from intake and setup to allocation, tracking, review and settlement.</p><div class="metric" data-i18n="m1Metric">Delivery workflow</div></article>
+<article class="module"><small data-i18n="cap2Label">Capability 02</small><h3 data-i18n="m2Title">Supplier Allocation &amp; Pricing</h3><p data-i18n="m2Text">Assign selected suppliers, block unsuitable suppliers and set supplier-level prices through configured delivery rules.</p><div class="metric" data-i18n="m2Metric">Allocation settings</div></article>
+<article class="module"><small data-i18n="cap3Label">Capability 03</small><h3 data-i18n="m3Title">Client &amp; Supplier Management</h3><p data-i18n="m3Text">Keep client profiles, supplier profiles, settlement cycles, assignment rules and supplier availability records in one sample operations layer.</p><div class="metric" data-i18n="m3Metric">Profile records</div></article>
+<article class="module"><small data-i18n="cap4Label">Capability 04</small><h3 data-i18n="m4Title">Panel &amp; Member Operations</h3><p data-i18n="m4Text">Support owned panels and survey stations with member groups, levels, survey records, wallets, bills and station execution records.</p><div class="metric lime" data-i18n="m4Metric">Member records</div></article>
+<article class="module"><small data-i18n="cap5Label">Capability 05</small><h3 data-i18n="m5Title">Finance &amp; Multi-party Settlement</h3><p data-i18n="m5Text">Close the loop with project settlement, supplier bills, client invoices, fees, payment status and finance logs.</p><div class="metric amber" data-i18n="m5Metric">Bills &amp; invoices</div></article>
+<article class="module"><small data-i18n="cap6Label">Capability 06</small><h3 data-i18n="m6Title">Partner Network</h3><p data-i18n="m6Text">Help buyers find suppliers and suppliers find buyers, then convert cooperation records into internal clients or suppliers.</p><div class="metric" data-i18n="m6Metric">Partner records</div></article>
+<article class="module"><small data-i18n="cap7Label">Capability 07</small><h3 data-i18n="m7Title">API-based Project Intake &amp; Distribution</h3><p data-i18n="m7Text">Receive project intake from API or workspace flows and distribute delivery work to the right supplier operation path.</p><div class="metric" data-i18n="m7Metric">API/workspace intake</div></article>
+<article class="module"><small data-i18n="cap8Label">Capability 08</small><h3 data-i18n="m8Title">Risk Control &amp; Traceability</h3><p data-i18n="m8Text">Keep review evidence, callback records, operation logs and exportable records connected to project delivery.</p><div class="metric lime" data-i18n="m8Metric">Review evidence</div></article>
+<article class="module"><small data-i18n="cap9Label">Capability 09</small><h3 data-i18n="m9Title">Workspace &amp; Role Governance</h3><p data-i18n="m9Text">Manage tenants, departments, roles, staff permissions, dictionaries, and operating rules for multi-team sample operations.</p><div class="metric amber" data-i18n="m9Metric">Governance controls</div></article>
 </div>
 </div>
 </section>
@@ -4760,6 +4783,15 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "chip4": "Subcontractor <b>teams</b>",
           "chip5": "API <b>suppliers</b>",
           "contactSales": "Contact sales",
+          "cap1Label": "Capability 01",
+          "cap2Label": "Capability 02",
+          "cap3Label": "Capability 03",
+          "cap4Label": "Capability 04",
+          "cap5Label": "Capability 05",
+          "cap6Label": "Capability 06",
+          "cap7Label": "Capability 07",
+          "cap8Label": "Capability 08",
+          "cap9Label": "Capability 09",
           "consoleCrumbOps": "operations",
           "consoleCrumbRuns": "runs",
           "custom": "Custom",
@@ -4838,6 +4870,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "m9Metric": "Governance controls",
           "m9Text": "Manage tenants, departments, roles, staff permissions, dictionaries, and operating rules for multi-team sample operations.",
           "m9Title": "Workspace & Role Governance",
+          "navAbout": "About",
           "navContact": "Contact",
           "startTrial": "Start trial",
           "networkState": "Sample supply pool state",
@@ -5021,38 +5054,48 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "heroProof3Title": "审核与结算",
           "heroSub": "Sampora 面向自有样本运营方、在线样本供应商、调查站和研究分包团队，集中管理项目接收、供应商分配、交付跟踪、审核证据与结算记录。",
           "heroTitle": "面向<em>自有样本运营方与在线样本供应商</em>的在线样本运营平台。",
-          "idle": "idle",
-          "langSwitcher": "Language switcher",
-          "m1Metric": "Delivery workflow",
-          "m1Text": "Manage online sample projects from intake and setup to allocation, tracking, review and settlement.",
-          "m1Title": "Project Delivery Management",
-          "m2Metric": "Allocation settings",
+          "idle": "空闲",
+          "langSwitcher": "语言切换",
+          "cap1Label": "能力 01",
+          "cap2Label": "能力 02",
+          "cap3Label": "能力 03",
+          "cap4Label": "能力 04",
+          "cap5Label": "能力 05",
+          "cap6Label": "能力 06",
+          "cap7Label": "能力 07",
+          "cap8Label": "能力 08",
+          "cap9Label": "能力 09",
+          "m1Metric": "交付工作流",
+          "m1Text": "管理在线样本项目从接收、配置到分配、跟踪、审核与结算的完整链路。",
+          "m1Title": "项目交付管理",
+          "m2Metric": "分配设置",
           "m2Text": "为项目选择供应商、屏蔽不合适的供应商，并按供应商设置交付价格。",
-          "m2Title": "Supplier Allocation & Pricing",
-          "m3Metric": "Profile records",
+          "m2Title": "供应商分配与定价",
+          "m3Metric": "档案记录",
           "m3Text": "把客户档案、供应商档案、结算周期、分配规则和供应商可用记录放在同一个样本运营层中。",
-          "m3Title": "Client & Supplier Management",
-          "m4Metric": "Member records",
-          "m4Text": "Support owned panels and survey stations with member groups, levels, survey records, wallets, bills and station execution records.",
-          "m4Title": "Panel & Member Operations",
-          "m5Metric": "Bills & invoices",
-          "m5Text": "Close the loop with project settlement, supplier bills, client invoices, fees, payment status and finance logs.",
-          "m5Title": "Finance & Multi-party Settlement",
-          "m6Metric": "Partner records",
-          "m6Text": "Help buyers find suppliers and suppliers find buyers, then convert cooperation records into internal clients or suppliers.",
-          "m6Title": "Partner Network",
-          "m7Metric": "API/workspace intake",
-          "m7Text": "Receive project intake from API or workspace flows and distribute delivery work to the right supplier operation path.",
-          "m7Title": "API-based Project Intake & Distribution",
-          "m8Metric": "Review evidence",
-          "m8Text": "Keep review evidence, callback records, operation logs and exportable records connected to project delivery.",
-          "m8Title": "Risk Control & Traceability",
-          "m9Metric": "Project + finance loop",
-          "m9Text": "Partner relationships can continue into project intake, supplier allocation, billing and settlement records.",
+          "m3Title": "客户与供应商管理",
+          "m4Metric": "会员记录",
+          "m4Text": "支持自有样本库与调查站的会员分组、等级、问卷记录、钱包、账单和站点执行记录。",
+          "m4Title": "样本库与会员运营",
+          "m5Metric": "账单与发票",
+          "m5Text": "把项目结算、供应商账单、客户发票、费用、付款状态和财务日志连成闭环。",
+          "m5Title": "财务与多方结算",
+          "m6Metric": "合作记录",
+          "m6Text": "帮助采购方找到供应商，也帮助供应商找到采购方，并把合作记录转化为内部客户或供应商。",
+          "m6Title": "合作网络",
+          "m7Metric": "API / 工作台接收",
+          "m7Text": "从 API 或工作台流程接收项目，并把交付工作分发到合适的供应商运营路径。",
+          "m7Title": "API / 工作台项目接收与分发",
+          "m8Metric": "审核证据",
+          "m8Text": "把审核证据、回调日志、操作记录和可导出记录与项目交付保持连接。",
+          "m8Title": "风控与可追溯",
+          "m9Metric": "治理控制",
+          "m9Text": "管理租户、部门、角色、员工权限、字典和运营规则，支持多团队样本运营。",
           "m9Title": "工作台与角色治理",
-          "navContact": "Contact",
-          "startTrial": "Start trial",
-          "networkState": "Sample supply pool state",
+          "navAbout": "关于",
+          "navContact": "联系我们",
+          "startTrial": "开始试用",
+          "networkState": "样本供给池状态",
           "openTopologyLabel": "打开运营拓扑",
           "operatingFor": "样本运营层：",
           "outcome1": "结果：项目接收",
@@ -5075,13 +5118,13 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "pain5Title": "结算与对账耗时过长",
           "panelRole": "For owned respondent teams",
           "panelText": "For teams building a long-term respondent or member asset, with recruitment, profile, wallet and activation workflows.",
-          "plans": "Plans",
-          "plansKicker": "06 / Plans",
+          "plans": "版本方案",
+          "plansKicker": "06 / 版本方案",
           "plansTitle": "选择匹配复杂度的<em>样本运营层。</em>",
-          "platformKicker": "02 / Platform",
-          "platformTitle": "Nine product capabilities, <em>one sample operations layer.</em>",
-          "product": "Product",
-          "productSurfacesKicker": "04 / Product Surfaces",
+          "platformKicker": "02 / 产品能力",
+          "platformTitle": "九项产品能力，<em>共用一层样本运营底座。</em>",
+          "product": "产品",
+          "productSurfacesKicker": "04 / 产品界面",
           "productSurfacesTitle": "Three operating surfaces, <em>one platform story.</em>",
           "proofPanelText": "Sampora 将不同角色的具体需求连接到项目配置、供应商控制、交付核验和结算证据。",
           "proofPanelTitle": "角色需求，连接在同一运营层",
@@ -5093,14 +5136,14 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "proofNeed3Text": "在交付继续推进前追踪进度、审核信号和异常情况。",
           "proofNeed4Title": "结算证据",
           "proofNeed4Text": "把已核验交付连接到账单、发票、付款状态和财务记录。",
-          "quickAnswers": "Quick answers",
-          "recommended": "Recommended",
-          "resources": "Resources",
-          "review": "review",
-          "reviewModules": "Review platform modules",
-          "solutions": "Solutions",
-          "statusControls": "Privacy, review and export controls",
-          "statusDemoLabel": "API-ready",
+          "quickAnswers": "快速回答",
+          "recommended": "推荐",
+          "resources": "资源",
+          "review": "审核",
+          "reviewModules": "审核平台模块",
+          "solutions": "解决方案",
+          "statusControls": "隐私、审核与导出控制",
+          "statusDemoLabel": "API 就绪",
           "statusLive": "交付流程 / 实时",
           "statusNetworks": "sample operations",
           "supplierRole": "For supplier coordination teams",
@@ -5219,37 +5262,47 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "heroProof2Title": "सप्लायर आवंटन",
           "heroProof3Text": "समीक्षा साक्ष्य, callback logs, supplier bills और client invoices को जोड़ें।",
           "heroProof3Title": "समीक्षा व सेटलमेंट",
-          "heroSub": "Sampora is an online sample operations platform for panel providers, sample suppliers, survey stations and research subcontracting teams. Submit your request and our sales team will follow up with trial access or a demo path.",
-          "heroTitle": "Online Sample Operations Platform for <em>Panel Providers & Sample Suppliers.</em>",
-          "idle": "idle",
-          "langSwitcher": "Language switcher",
-          "m1Metric": "Delivery workflow",
-          "m1Text": "Manage online sample projects from intake and setup to allocation, tracking, review and settlement.",
-          "m1Title": "Project Delivery Management",
-          "m2Metric": "Allocation settings",
-          "m2Text": "Selected suppliers assign karo, unsuitable suppliers block karo, aur supplier-specific prices configured delivery rules se set karo.",
-          "m2Title": "Supplier Allocation & Pricing",
-          "m3Metric": "Profile records",
-          "m3Text": "Client profiles, supplier profiles, settlement cycles, assignment rules aur supplier availability records ko one sample operations layer mein rakho.",
-          "m3Title": "Client & Supplier Management",
-          "m4Metric": "Member records",
-          "m4Text": "Support owned panels and survey stations with member groups, levels, survey records, wallets, bills and station execution records.",
-          "m4Title": "Panel & Member Operations",
-          "m5Metric": "Bills & invoices",
-          "m5Text": "Close the loop with project settlement, supplier bills, client invoices, fees, payment status and finance logs.",
-          "m5Title": "Finance & Multi-party Settlement",
-          "m6Metric": "Partner records",
-          "m6Text": "Help buyers find suppliers and suppliers find buyers, then convert cooperation records into internal clients or suppliers.",
+          "heroSub": "Sampora स्व-स्वामित्व वाले सैंपल ऑपरेटरों, ऑनलाइन सैंपल सप्लायरों, सर्वे स्टेशनों और रिसर्च सबकॉन्ट्रैक्टिंग टीमों को project intake, supplier allocation, delivery tracking, review evidence और settlement records एक operational layer में संभालने में मदद करता है।",
+          "heroTitle": "<em>स्व-स्वामित्व वाले सैंपल ऑपरेटरों और ऑनलाइन सैंपल सप्लायरों</em> के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म।",
+          "idle": "निष्क्रिय",
+          "langSwitcher": "भाषा चयन",
+          "cap1Label": "क्षमता 01",
+          "cap2Label": "क्षमता 02",
+          "cap3Label": "क्षमता 03",
+          "cap4Label": "क्षमता 04",
+          "cap5Label": "क्षमता 05",
+          "cap6Label": "क्षमता 06",
+          "cap7Label": "क्षमता 07",
+          "cap8Label": "क्षमता 08",
+          "cap9Label": "क्षमता 09",
+          "m1Metric": "डिलीवरी workflow",
+          "m1Text": "ऑनलाइन sample projects को intake, setup, allocation, tracking, review और settlement तक manage करें।",
+          "m1Title": "प्रोजेक्ट डिलीवरी प्रबंधन",
+          "m2Metric": "आवंटन सेटिंग्स",
+          "m2Text": "चुने हुए suppliers assign करें, unsuitable suppliers block करें और supplier-specific prices configured delivery rules से set करें।",
+          "m2Title": "सप्लायर आवंटन और मूल्य निर्धारण",
+          "m3Metric": "प्रोफाइल रिकॉर्ड",
+          "m3Text": "client profiles, supplier profiles, settlement cycles, assignment rules और supplier availability records को एक sample operations layer में रखें।",
+          "m3Title": "क्लाइंट और सप्लायर प्रबंधन",
+          "m4Metric": "सदस्य रिकॉर्ड",
+          "m4Text": "owned panels और survey stations को member groups, levels, survey records, wallets, bills और station execution records के साथ support करें।",
+          "m4Title": "Panel और सदस्य संचालन",
+          "m5Metric": "बिल और इनवॉइस",
+          "m5Text": "project settlement, supplier bills, client invoices, fees, payment status और finance logs को एक loop में जोड़ें।",
+          "m5Title": "वित्त और बहु-पक्षीय सेटलमेंट",
+          "m6Metric": "पार्टनर रिकॉर्ड",
+          "m6Text": "buyers को suppliers खोजने और suppliers को buyers खोजने में मदद करें, फिर cooperation records को internal clients या suppliers में बदलें।",
           "m6Title": "Partner Network",
-          "m7Metric": "API/workspace intake",
-          "m7Text": "Receive project intake from API or workspace flows and distribute delivery work to the right supplier operation path.",
-          "m7Title": "API-based Project Intake & Distribution",
-          "m8Metric": "Review evidence",
-          "m8Text": "Keep review evidence, callback records, operation logs and exportable records connected to project delivery.",
-          "m8Title": "Risk Control & Traceability",
-          "m9Metric": "Project + finance loop",
-          "m9Text": "Partner relationships can continue into project intake, supplier allocation, billing and settlement records.",
-          "m9Title": "Enter delivery and settlement",
+          "m7Metric": "API / Workspace इनटेक",
+          "m7Text": "API या Workspace flows से project intake लें और delivery work को सही supplier operations path में distribute करें।",
+          "m7Title": "API / Workspace प्रोजेक्ट इनटेक और वितरण",
+          "m8Metric": "समीक्षा साक्ष्य",
+          "m8Text": "review evidence, callback records, operation logs और exportable records को project delivery से connected रखें।",
+          "m8Title": "जोखिम नियंत्रण और ट्रेसबिलिटी",
+          "m9Metric": "शासन नियंत्रण",
+          "m9Text": "multi-team sample operations के लिए tenants, departments, roles, staff permissions, dictionaries और operating rules manage करें।",
+          "m9Title": "Workspace और भूमिका शासन",
+          "navAbout": "हमारे बारे में",
           "navContact": "Contact",
           "startTrial": "Start trial",
           "networkState": "Sample supply pool state",
@@ -5278,8 +5331,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
           "plans": "Plans",
           "plansKicker": "06 / Plans",
           "plansTitle": "Apni complexity ke hisab se <em>sample operations layer</em> chuno.",
-          "platformKicker": "02 / Platform",
-          "platformTitle": "Nine product capabilities, <em>one sample operations layer.</em>",
+          "platformKicker": "02 / प्रोडक्ट क्षमताएं",
+          "platformTitle": "नौ उत्पाद क्षमताएं, <em>एक sample operations layer.</em>",
           "product": "Product",
           "productSurfacesKicker": "04 / Product Surfaces",
           "productSurfacesTitle": "Three operating surfaces, <em>one platform story.</em>",
@@ -5436,6 +5489,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                 m9Text: "管理租户、部门、角色、员工权限、字典和运营规则，支持多团队样本运营。",
                 m9Title: "工作台与角色治理",
                 networkState: "样本供给池状态",
+                navAbout: "关于",
                 navContact: "联系我们",
                 operatingFor: "样本运营层服务于",
                 pageTitle: "Sampora - 面向自有样本运营方与在线样本供应商的在线样本运营平台",
@@ -5577,10 +5631,11 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                 kpiQcPass: "QC पास",
                 kpiSettlement: "सेटलमेंट",
                 langSwitcher: "भाषा चयन",
-                m9Metric: "Governance controls",
+                m9Metric: "शासन नियंत्रण",
                 m9Text: "मल्टी-टीम sample operations के लिए tenants, departments, roles, staff permissions, dictionaries और operating rules manage करें।",
                 m9Title: "वर्कस्पेस और भूमिका शासन",
                 networkState: "सैंपल सप्लाई पूल स्थिति",
+                navAbout: "हमारे बारे में",
                 navContact: "संपर्क",
                 operatingFor: "सैंपल ऑपरेशंस layer इनके लिए",
                 pageTitle: "Sampora - स्व-स्वामित्व वाले सैंपल ऑपरेटरों और ऑनलाइन सैंपल सप्लायरों के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म",
@@ -5791,8 +5846,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             function updatePlanNames(lang) {
                 const names = {
                     en: { panel: 'Panel', supplier: 'Supplier Network', enterprise: 'Enterprise' },
-                    zh: { panel: 'Panel', supplier: '供应商网络', enterprise: 'Enterprise' },
-                    hi: { panel: 'Panel', supplier: 'सप्लायर नेटवर्क', enterprise: 'Enterprise' }
+                    zh: { panel: '样本库运营版', supplier: '供应商网络运营版', enterprise: '企业版' },
+                    hi: { panel: 'Panel ऑपरेशंस संस्करण', supplier: 'सप्लायर नेटवर्क ऑपरेशंस संस्करण', enterprise: 'एंटरप्राइज संस्करण' }
                 };
                 const pack = names[lang] || names.en;
                 $$('[data-plan-name]').forEach(el => {
@@ -6040,7 +6095,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                     product: '\u0909\u0924\u094d\u092a\u093e\u0926', solutions: '\u0938\u092e\u093e\u0927\u093e\u0928', resources: '\u0938\u0902\u0938\u093e\u0927\u0928', plans: '\u092f\u094b\u091c\u0928\u093e\u090f\u0901', contact: '\u0938\u0902\u092a\u0930\u094d\u0915',
                     brandSub: 'Operations console',
                     productSupport: 'Product support', help: 'Help documents', guide: 'View manuals', feedback: 'Contact sales',
-                    company: 'Company', about: 'About', history: 'Workflow', contactUs: 'Contact sales',
+                    company: 'Company', about: 'हमारे बारे में', history: 'Workflow', contactUs: 'Contact sales',
                     rights: 'Start trial', trial: 'Start trial', join: 'Contact sales', news: 'Resources',
                     copyright: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.', companyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.', icp: ''
                 }
@@ -6259,8 +6314,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
     </script>
 <script>
 (function(){
-  const labels={en:['Product','Solutions','Resources','Plans','Contact'],zh:['\u4ea7\u54c1','\u89e3\u51b3\u65b9\u6848','\u8d44\u6e90','\u7248\u672c\u65b9\u6848','\u8054\u7cfb\u6211\u4eec'],hi:['\u0909\u0924\u094d\u092a\u093e\u0926','\u0938\u092e\u093e\u0927\u093e\u0928','\u0938\u0902\u0938\u093e\u0927\u0928','\u092f\u094b\u091c\u0928\u093e\u090f\u0901','\u0938\u0902\u092a\u0930\u094d\u0915']};
-  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['contact.html','contact']];
+  const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['\u4ea7\u54c1','\u89e3\u51b3\u65b9\u6848','\u8d44\u6e90','\u7248\u672c\u65b9\u6848','\u5173\u4e8e','\u8054\u7cfb\u6211\u4eec'],hi:['\u0909\u0924\u094d\u092a\u093e\u0926','\u0938\u092e\u093e\u0927\u093e\u0928','\u0938\u0902\u0938\u093e\u0927\u0928','\u092f\u094b\u091c\u0928\u093e\u090f\u0901','\u0939\u092e\u093e\u0930\u0947 \u092c\u093e\u0930\u0947 \u092e\u0947\u0902','\u0938\u0902\u092a\u0930\u094d\u0915']};
+  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about_sampora_issues_fixed.html','about'],['contact.html','contact']];
   function lang(){return localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
   function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
   if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}
