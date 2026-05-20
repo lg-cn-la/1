@@ -18,6 +18,26 @@ Detailed historical logs are archived in:
 
 Read the log only when tracing history, debugging a regression, or checking why a previous change was made.
 
+## Sampora intake file index
+
+Use this index before classifying or dispatching Sampora work. It exists so new controllers and subagents do not miss supporting handoff files.
+
+Always read or check:
+
+- `SAMPORA_LATEST_REPAIR_HANDOFF.md`: active control document, scope, current source of truth, package boundaries, and latest handoff notes.
+- `ACCEPTANCE_TESTS.md`: acceptance categories, issue-status workflow, validation tiers, and required proof before delivery claims.
+- `ISSUE_LEDGER.md`: stable recurring issue IDs, current status, last evidence, and allowed action.
+- `SAMPORA_TERMINOLOGY_GLOSSARY.md`: required before changing EN/ZH/HI visible copy, i18n keys, topology labels, workflow copy, pricing/FAQ/footer/CTA copy, dynamic sample/project data, or resource-manual language.
+
+Read only when relevant:
+
+- `SAMPORA_LATEST_REPAIR_LOG.md`: detailed history, old evidence, and regression tracing. Do not use it as current proof.
+- `redirect-map.md`: redirect, deployment, package, or legacy-route work.
+- `sampora-website-public-v3/README.md`, `DEPLOYMENT_NOTES.md`, `QA_REPORT.md`, `verification-report.md`, `backend-form-handoff.md`, `content-audit-fixes.md`, and `visual-animation-fixes.md`: public-package docs and prior QA notes for the active source tree. Verify current files before relying on them.
+- `archives/`, `动态/`, and other local reference/demo folders when present: historical/reference material only. They can guide checks but cannot prove current page state.
+
+Before dispatching a subagent, paste the specific files from this index that are relevant to that subagent's scope. Do not assume subagents will discover them on their own.
+
 For Sampora repair work:
 
 - Treat `SAMPORA_LATEST_REPAIR_HANDOFF.md` as the control document and single working handoff source.

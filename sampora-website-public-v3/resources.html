@@ -687,7 +687,8 @@
             grid-template-columns: minmax(0, 1fr) auto;
             gap: 18px;
             align-items: start;
-            margin-bottom: 16px
+            margin-bottom: 16px;
+            min-height: 112px
         }
 
         .console-summary h3 {
@@ -947,26 +948,23 @@
             stroke-linecap: round;
             stroke-dasharray: 4 13;
             stroke-dashoffset: 0;
-            animation: topoDash 2.65s linear infinite, flowBreathe 2.9s ease-in-out infinite;
+            animation: none;
             opacity: 0;
-            filter: drop-shadow(0 0 5px rgba(56, 210, 255, .34));
-            transition: opacity .28s var(--ease), stroke-width .24s var(--ease), filter .24s var(--ease)
+            transition: opacity .28s var(--ease), stroke-width .24s var(--ease)
         }
 
         .topo-svg .flow.amber {
-            stroke: var(--amber);
-            filter: drop-shadow(0 0 5px rgba(255, 180, 84, .30));
-            animation-duration: 2.95s, 2.9s
+            stroke: var(--amber)
         }
 
         .topo-svg .flow.on {
             opacity: .98;
-            animation: topoDash 2.65s linear infinite, flowBreathe 2.9s ease-in-out infinite
+            animation: topoDash 2.65s linear infinite
         }
 
         .topo-svg .flow-group.on .flow {
             opacity: .98;
-            animation: topoDash 2.65s linear infinite, flowBreathe 2.9s ease-in-out infinite
+            animation: topoDash 2.65s linear infinite
         }
 
         .topo-svg .labels-layer {
@@ -979,37 +977,9 @@
             }
         }
 
-        @keyframes flowBreathe {
-
-            0%,
-            100% {
-                stroke-width: 1.65;
-                filter: drop-shadow(0 0 4px rgba(56, 210, 255, .24))
-            }
-
-            50% {
-                stroke-width: 2.35;
-                filter: drop-shadow(0 0 10px rgba(56, 210, 255, .45))
-            }
-        }
-
-        @keyframes flowAmberBreathe {
-
-            0%,
-            100% {
-                stroke-width: 1.65;
-                filter: drop-shadow(0 0 4px rgba(255, 180, 84, .22))
-            }
-
-            50% {
-                stroke-width: 2.35;
-                filter: drop-shadow(0 0 10px rgba(255, 180, 84, .42))
-            }
-        }
-
         .topo-svg .flow.amber.on,
         .topo-svg .flow-group.on .flow.amber {
-            animation: topoDash 2.95s linear infinite, flowAmberBreathe 2.9s ease-in-out infinite
+            animation: topoDash 2.95s linear infinite
         }
 
         .topo-svg .hub rect,
@@ -1155,13 +1125,11 @@
         .topo-svg .packet {
             fill: var(--cyan);
             opacity: 0;
-            filter: drop-shadow(0 0 7px rgba(56, 210, 255, .80));
-            transition: opacity .25s var(--ease), filter .25s var(--ease)
+            transition: opacity .25s var(--ease)
         }
 
         .topo-svg .packet.amber {
-            fill: var(--amber);
-            filter: drop-shadow(0 0 7px rgba(255, 180, 84, .68))
+            fill: var(--amber)
         }
 
         .topo-svg .packet.on {
@@ -1188,6 +1156,7 @@
             color: var(--body2);
             font: 700 11px var(--mono);
             letter-spacing: .05em;
+            min-height: 55px;
             overflow: hidden
         }
 
@@ -1698,6 +1667,12 @@
             transform: none
         }
 
+        @media(max-width:1320px) and (min-width:861px) {
+            .console-summary {
+                min-height: 164px
+            }
+        }
+
         @media(max-width:1120px) {
 
             .sampora-footer-main {
@@ -1768,7 +1743,8 @@
             }
 
             .console-summary {
-                grid-template-columns: 1fr
+                grid-template-columns: 1fr;
+                min-height: 160px
             }
 
             .console-tags {

@@ -20,6 +20,27 @@
 - Do not create compatibility folders or symlinks for legacy absolute paths.
 - New handoff entries should use repo-relative paths unless quoting a command output or historical artifact exactly.
 
+## Required Intake File Index
+
+Use this index before classifying, dispatching, repairing, or reviewing Sampora work. It prevents controllers and subagents from reading only the main three files and missing supporting handoff material.
+
+Always read or check:
+
+- `AGENTS.md` for workspace-level Sampora process rules and the intake file index.
+- `SAMPORA_LATEST_REPAIR_HANDOFF.md` for active scope, source of truth, package boundaries, pitfalls, and latest notes.
+- `ACCEPTANCE_TESTS.md` for acceptance categories, issue-status workflow, validation tiers, and required proof.
+- `ISSUE_LEDGER.md` for stable recurring IDs, status, evidence, and allowed action.
+- `SAMPORA_TERMINOLOGY_GLOSSARY.md` before any visible-copy, i18n, topology-label, workflow-copy, CTA/footer/FAQ/pricing, dynamic data, or resource-manual language change.
+
+Read only when relevant:
+
+- `SAMPORA_LATEST_REPAIR_LOG.md` for detailed history or regression tracing. It is not current proof.
+- `redirect-map.md` for redirect, deployment, package, or legacy-route work.
+- `sampora-website-public-v3/README.md`, `DEPLOYMENT_NOTES.md`, `QA_REPORT.md`, `verification-report.md`, `backend-form-handoff.md`, `content-audit-fixes.md`, and `visual-animation-fixes.md` for active-source package docs and prior QA notes. Verify current files before relying on them.
+- `archives/`, `动态/`, and other local reference/demo folders, when present, for historical/reference context only. Do not treat archived reports, reference HTML, screenshots, or old QA JSON as current proof.
+
+When dispatching subagents, paste the subset of this index that matches their assignment. Do not assume a subagent will discover supporting handoff files without being told.
+
 ## Current Status Summary
 
 **Current closeout as of 2026-05-18 20:35 CST:** all controller-thread subagent tasks have completed and were controller-reviewed. The total review blockers found during this round (cross-page footer legal/icon consistency and homepage workflow motion fallback) are repaired and verified in the active working source `sampora-website-public-v3/`. No active controller-thread task queue remains, and no new task is queued by this handoff. Do not run compression, zip, packaging, v4 creation, or zip rebuild steps unless the user explicitly asks for packaging. The older timestamped summary below is historical context and must not be used as permission to package.
@@ -286,7 +307,76 @@ Historical detailed update-log entries that previously made this active handoff 
 - Old handoff entries, old screenshots, old reports, and old QA JSON are never current proof. Rerun the mapped scoped check before claiming a repair.
 - Package ownership remains the map above; page source, QA evidence outputs, delivery folders, and zips are out of scope for Package E docs-only strategy tasks unless explicitly assigned.
 - Terminology governance now lives in `SAMPORA_TERMINOLOGY_GLOSSARY.md`; future language workers must use it as the source of truth before changing role names, workflow terms, topology labels, Hindi SaaS terms, or Chinese equivalents.
+- The required intake file index now lives in both `AGENTS.md` and this handoff. Controllers must use it during intake and paste the relevant subset into subagent prompts.
 - Latest archived active entries before this cleanup included Package E async subagent wait rule sync, Package A FAQ layout balance, Package B Solutions card/fit-cycle repair, multilingual copy sync policy, and topology ledger evidence. Read the detailed log only when tracing those decisions.
+
+### 2026-05-20 JST - Package B Solutions compare table column balance
+
+**Files changed:** `sampora-website-public-v3/solutions.html` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. No `resources.html`, `index.html`, other pages, visible copy/i18n, CTA/footer/legal, topology behavior, QA evidence outputs, delivery folders, zips, README files, staging, commit, push, or packaging files were intentionally changed. `ISSUE_LEDGER.md` was intentionally left unchanged because this is not a recurring ledger issue.
+
+**Audit item addressed:** `[CONFIRMED]` Package B `solutions.html` visual layout issue from the newest user message: the `#compare` decision matrix outer `.compare-wrap` was centered, but the three business columns inherited left alignment from global table cells, leaving text tight to the left and empty on the right. The repair adds a narrow `#compareTable th:not(:first-child), #compareTable td:not(:first-child) { text-align: center }` override while preserving the first decision-point column as left aligned.
+
+**Verification run:** red Playwright geometry before editing showed `.compare-wrap` centered with no document overflow, but non-first first-row cells computed `text-align:left`; at 1280px business-column imbalances were `138.91px`, `53.03px`, and `106.02px`, and at 1440px they were `171.33px`, `85.45px`, and `138.45px`. Post-repair Playwright geometry passed at 1280px and 1440px: business columns computed `text-align:center` with left/right text-gap imbalance `0-0.02px`, header aligns were `left/center/center/center`, first column remained `left`, `.compare-wrap` remained centered, and document overflow stayed `0`. Mobile 390px kept document overflow `0`, table width `960px`, and `.compare-wrap` horizontal scroll overflow `604px`. Static guards passed: `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS; `git diff --check` -> exit 0 with CRLF warnings only.
+
+**Remaining failures:** none found in this scoped Package B decision-matrix layout task. Existing dirty workspace changes outside this assigned scope were not reviewed, reverted, staged, committed, packaged, or synced.
+
+**Notes for next handoff:** future `solutions.html` compare-table visual checks should measure internal text gaps and computed `text-align`, not only outer container centering. Keep the first column left aligned for row-label scanability unless a future audit explicitly assigns that behavior.
+
+**Follow-up note:** verifier follow-up confirmed the user's "leave space on both sides" request also applied to the desktop/tablet `.compare-wrap` width, not only internal cell alignment. Files changed in the follow-up: `sampora-website-public-v3/solutions.html` and this handoff only; `ISSUE_LEDGER.md` stayed unchanged because this remains a one-off visual layout issue. Red Playwright check before the follow-up showed 1280px and 1440px `.compare-wrap` container inner margins were `0/0` while mobile 390px had document overflow `0`, table width `960px`, and wrap scroll overflow `604px`. The follow-up added `#compare .compare-wrap { max-width: 1120px; margin-inline: auto }`, preserving `#compareTable` min-width `960px` and non-first-column center alignment. Green Playwright check passed: 1280px viewport margins `80/80`, container inner margins `56/56`; 1440px viewport margins `160/160`, container inner margins `120/120`; 390px document overflow `0`, wrap `356` client / `960` scroll / `604` overflow; first column remained `left`, business columns and headers remained `center`. Static checks passed: `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS; `git diff --check` -> exit 0 with CRLF warnings only. Remaining failures: none in this scoped follow-up.
+
+### 2026-05-20 JST - Package B Solutions hero seam visual fix
+
+**Files changed:** `sampora-website-public-v3/solutions.html` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. No copy/i18n labels, CTA/footer/legal/routes, topology behavior, assets, QA evidence outputs, delivery folders, zips, screenshots, or other pages were intentionally changed. `ISSUE_LEDGER.md` was intentionally left untouched because this is not a recurring ledger issue.
+
+**Audit item addressed:** `[CONFIRMED]` Package B `solutions.html` visual issue from the newest user message: the global `.section { border-top: 1px solid var(--line) }` created a horizontal separator between the hero and the first `01 / Solution layers` section. Added a narrow `.hero + .section { border-top: 0 }` override only for the hero-adjacent first section, leaving the global section border and other separators intact.
+
+**Verification run:** required red check failed before editing with `FAIL: first solutions section inherits global section border-top after hero`. Post-repair red check passed with `PASS: first solutions section border override present or no inherited border`. Source grep confirmed the global `.section` border remains and the `.hero + .section` override exists. Static guards passed: `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS and `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS.
+
+**Remaining failures:** none found in this scoped visual fix. Browser screenshot verification, Lighthouse/axe, QA evidence refresh, delivery sync, zip rebuild, and packaging were intentionally not run.
+
+**Notes for next handoff:** if future hero-to-section seam work is requested, keep it scoped to the affected page and first section unless a fresh audit explicitly assigns broader section-border behavior.
+
+### 2026-05-20 JST - Package B topology performance smoothing
+
+**Files changed:** `sampora-website-public-v3/solutions.html`, `sampora-website-public-v3/resources.html`, `SAMPORA_LATEST_REPAIR_HANDOFF.md`, and `ISSUE_LEDGER.md` for scoped `TOPOLOGY-001` evidence. No `index.html`, `plans.html`, `contact.html`, `resource-manuals.html`, assets, QA evidence outputs, delivery folders, zips, redirect docs, visible copy/i18n labels, CTA/footer/legal behavior, or package artifacts were intentionally changed.
+
+**Audit items addressed:** `[CONFIRMED]` Package B topology performance smoothing for `solutions.html` and `resources.html`. The repair followed the previous homepage smoothing pattern: inactive base topology flows no longer run `topoDash`; active `.flow.on` and `.flow-group.on .flow` still animate; moving packet `animateMotion` primitives remain; moving flow/packet drop-shadow filters were removed; and Resources active flows no longer run the extra `flowBreathe` / `flowAmberBreathe` animations. Solutions highlight-only `.topo-scan` remains intentionally disabled; Resources required topology scan/business motion was not disabled.
+
+**Verification run:** red browser sampling at 1440x900 confirmed current cost patterns while business motion worked. Before repair, `solutions.html` had 13 animated flows, 10 animated inactive flows, 31 topology computed filters, 13 `animateMotion` packets, active `topoDash`, dash offset change, packet movement, route cycle `network -> enterprise -> panel -> network`, close text `X`, and modal body children `1 -> 0 -> 1` across open/close/reopen. Before repair, `resources.html` had 9 animated flows, 6 animated inactive flows, 20 topology computed filters, 9 `animateMotion` packets, `flowBreathe`/`flowAmberBreathe` on all flows, active dash offset change, packet movement, setup/supplier/finance modes working, close text `X`, and close inside `.window-bar`. Local rAF in this worker did not reproduce the controller's stable 33ms median, measuring about 17-18ms p50/p95 before repair; the static cost pattern and controller conflict evidence drove the scoped repair. Post-repair browser sampling passed: Solutions now has 3 animated flows, 0 animated inactive flows, 5 topology computed filters, 13 `animateMotion` packets, active `topoDash`, dash offset `-26.2453px -> -43.5393px`, packet center movement, route cycle preserved, close `X`, and controlled modal clone count. Resources now has 3 animated flows, 0 animated inactive flows, 2 topology computed filters, 9 `animateMotion` packets, 0 `flowBreathe` animations, active `topoDash`, dash offset `-19.2147px -> -35.8873px`, packet center movement, setup/supplier/finance modes preserved, and close remains in `.window-bar`. Post-repair local rAF remained about 17-18ms p50/p95. Static guards passed: `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS and `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS.
+
+**Remaining failures:** none found in this scoped topology smoothing pass. Page-level `bgDrift` / background animations remain `[VERIFY-FIRST]` and out of scope for this worker. Full screenshot browser suite, Lighthouse/axe, QA evidence refresh, delivery sync, zip rebuild, and packaging were intentionally not run.
+
+**Notes for next handoff:** keep Package B topology smoothing scoped to active business motion. Future topology edits should verify animated inactive flow count, computed filter count, active dash offset changes, packet movement, route/mode behavior, and modal close/placement before and after changes. Do not re-enable Solutions highlight-only scan/sheens without explicit user request, and do not pursue page-level background animation changes without a new scoped authorization.
+
+### 2026-05-20 JST - Package B Solutions topology layout stability
+
+**Files changed:** `sampora-website-public-v3/solutions.html`, `SAMPORA_LATEST_REPAIR_HANDOFF.md`, and `ISSUE_LEDGER.md` for scoped `TOPOLOGY-001` evidence. No visible copy, translations, other pages, QA evidence outputs, delivery folders, zips, README files, staging, commit, push, or packaging files were intentionally changed.
+
+**Audit item addressed:** `[CONFIRMED]` Package B `solutions.html` topology/solution-layer mode layout stability. Current browser red check at 1280x932 showed EN and HI mode switching changed `#topoText` height by `22.11px` and moved hero/grid/console/next section by `22.11px`; SVG stage and modebar heights stayed stable. The repair reserves stable height for topology summary text, tags, and narrow-screen header/ticker wrapping, while preserving mode-specific active flows and packet motion.
+
+**Verification run:** post-repair Chromium geometry checks passed for EN/ZH/HI across `network`, `panel`, and `enterprise`: 1280x932 and 1440x900 desktop had `0px` delta for hero/grid/window/main/summary/next-section/text/tags/header/ticker/modebar; 390x900 mobile smoke stayed within `0-1.34px` next-section tolerance with stable console/window heights. Active mode paths still changed to `path-network`, `path-panel`, and `path-enterprise`; active flow/packet counts remained `3/3/7`. Motion sampling passed with enterprise `topoDash` offset changing `0px -> -12.3347px` and packet center moving. `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS; `git diff --check` -> exit 0 with CRLF warnings only.
+
+**Remaining failures:** none found in this scoped Package B topology layout stability task. Existing dirty workspace changes outside this assigned scope were not reviewed, reverted, staged, committed, packaged, or synced.
+
+**Notes for next handoff:** future `solutions.html` topology edits should measure geometry by language and mode, including `#topoText`, `.console-tags`, `.window-bar`, `.console-ticker`, `.console-window`, `.hero-grid`, and `.hero + .section`, and should continue verifying active path classes plus dash/packet motion.
+
+### 2026-05-20 JST - Package E required intake file index
+
+**Files changed:** `AGENTS.md`, `SAMPORA_LATEST_REPAIR_HANDOFF.md`, `ACCEPTANCE_TESTS.md`, and `ISSUE_LEDGER.md`. No HTML page source, JS/CSS assets, QA evidence outputs, delivery folders, zips, staging, commit, push, or packaging files were intentionally changed.
+
+**Audit item addressed:** `[STRATEGY]` controller handoff governance. The mandatory entry files now include a required intake file index so controllers and subagents can see supporting handoff material beyond the main handoff/acceptance/ledger trio. The index covers always-read files, relevant-on-demand files, public-package docs, detailed history, `archives/`, `动态/`, and local reference/demo folders, while preserving the rule that reference/history files are not current proof.
+
+**Verification run:** scoped docs/process checks passed after this edit: `Select-String` in `AGENTS.md` and this handoff found `Sampora intake file index` / `Required Intake File Index`, `SAMPORA_TERMINOLOGY_GLOSSARY.md`, `redirect-map.md`, `archives/`, `动态/`, and the subagent prompt instruction; `Select-String` in `ACCEPTANCE_TESTS.md` found `required file index`; `Select-String` in `ISSUE_LEDGER.md` found `HANDOFF-003`.
+
+**Remaining failures:** none known for this docs/process strategy task. Existing page source and QA artifacts were intentionally left untouched.
+
+**Notes for next handoff:** during intake, do not stop at the main three docs. Use the index to decide which supporting docs are relevant, then paste those exact file requirements into any subagent prompt. Archive/reference files may guide checks but cannot prove current page behavior.
+
+- **Pitfall / symptom:** a controller read only the main handoff/acceptance/ledger files and missed supporting handoff files that were already present locally.
+- **Root cause:** the mandatory entry files did not expose a clear, compact index of all supporting intake files and relevant-on-demand references.
+- **Prevention rule:** use the required intake file index in `AGENTS.md` and `SAMPORA_LATEST_REPAIR_HANDOFF.md` before classifying work, and include the relevant indexed files in every subagent prompt.
+- **Verification:** `Select-String` checks find the index headings and supporting file names in `AGENTS.md`, `SAMPORA_LATEST_REPAIR_HANDOFF.md`, `ACCEPTANCE_TESTS.md`, and `ISSUE_LEDGER.md`.
+- **Owner package:** Package E handoff policy / controller intake.
 
 ### 2026-05-19 CST - Package E controller subagent completion closeout rule
 
@@ -569,3 +659,27 @@ Historical detailed update-log entries that previously made this active handoff 
 **Remaining failures:** none found in scoped source/static/resource-manual verification for the assigned terminology conflicts. Runtime DOM overflow checks for `contact.html`, `plans.html`, and `resources.html` were not completed because the local Playwright module was not available and the CLI eval path failed; no browser-only failure evidence was observed.
 
 **Notes for next handoff:** keep EN `panel providers` / form option values as natural English unless a future audit explicitly scopes English wording. Future non-home terminology work should continue to verify both source strings and, when the browser tool is available, EN/ZH/HI runtime text without writing screenshot artifacts.
+
+### 2026-05-20 JST - Package B resources topology mode-switch layout stability
+
+**Files changed:** `sampora-website-public-v3/resources.html`, `SAMPORA_LATEST_REPAIR_HANDOFF.md`, and `ISSUE_LEDGER.md` for scoped `TOPOLOGY-001` evidence. No `solutions.html`, `index.html`, QA scripts, QA evidence outputs, delivery folders, zips, README files, staging, commit, push, or packaging files were intentionally changed.
+
+**Audit item addressed:** `[CONFIRMED]` Package B `resources.html` topology/resource mode switching vertical reflow. Red Playwright geometry against current files showed EN desktop setup/supplier/finance changed hero/console/next section by `22.67px`, HI desktop by `24.08px`, and HI mobile by `39.08px`; `.topo-stage` stayed stable while `.console-summary`, `#consoleSub`, and mobile ticker text height changed. The repair adds scoped CSS height reserves for the resource console summary and ticker, with a 1280px desktop reserve and a mobile reserve, without changing visible copy or topology JavaScript.
+
+**Verification run:** post-repair Playwright geometry passed for EN/ZH/HI across setup/supplier/finance at 1280x932, 1440x900, and 390x900: hero height, console/window height, and next-section offset deltas were `0px`; `.topo-stage` stayed `246px` desktop and `240px` mobile. Active flow groups still switched to `flowSetup`, `flowSupplier`, and `flowFinance`. Motion sampling passed after the final CSS change: active `topoDash` remained present, dash offsets changed for all three modes, and packet centers moved. Static checks passed: `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS; `git diff --check` -> exit 0 with CRLF warnings only.
+
+**Remaining failures:** none found in this assigned `resources.html` topology layout stability scope. Existing dirty workspace changes outside the assigned file/docs evidence were not reviewed, reverted, staged, committed, packaged, or synced.
+
+**Notes for next handoff:** keep validating resources topology with live browser geometry, not screenshots only. If future copy changes lengthen mode summary or ticker text, rerun EN/ZH/HI setup/supplier/finance geometry at 1280px, 1440px, and 390px and confirm active `topoDash` plus packet movement remain intact.
+
+### 2026-05-20 JST - Package C plans matrix side whitespace
+
+**Files changed:** `sampora-website-public-v3/plans.html`, `ACCEPTANCE_TESTS.md`, and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. No other pages, visible copy/i18n strings, CTA hrefs, footer/legal behavior, contact backend behavior, QA evidence outputs, delivery folders, zips, README/deployment docs, staging, commit, push, or packaging files were intentionally changed. `ISSUE_LEDGER.md` was intentionally left unchanged because this was a one-off visual layout issue, not a recurring ledger item.
+
+**Audit item addressed:** `[CONFIRMED]` Package C `plans.html` `section#matrix` pricing matrix side whitespace. Red browser geometry showed `.matrix-wrap` filled or nearly filled the section container at desktop/tablet sizes: 1280px inner margins `0/0`, 1440px `20/20`, and 1750px `20/20`, while 390px mobile already had document overflow `0` and internal matrix scroll `356/960`. The repair adds a scoped `#matrix .matrix-wrap` desktop/tablet cap of `1120px` with a matching mobile override that preserves `width:100%`, `max-width:100%`, `overflow-x:auto`, and `overflow-y:hidden`. `#matrixTable` keeps `min-width:960px`.
+
+**Verification run:** post-repair Playwright geometry against current `sampora-website-public-v3/plans.html` passed: 1280px container/wrap `1232/1120` with inner margins `56/56`; 1440px `1360/1120` with `120/120`; 1750px `1360/1120` with `120/120`; all desktop/tablet samples had document overflow `0`. Mobile 390px passed with document overflow `0`, wrap client/scroll `356/960`, table min-width `960px`, computed wrap max-width `100%`, `overflow-x:auto`, and `overflow-y:hidden`. Static checks passed: `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS; `git diff --check` -> exit 0 with CRLF warnings only.
+
+**Remaining failures:** none found in this scoped Package C visual layout repair. Existing dirty workspace changes outside the assigned file/docs evidence were not reviewed, reverted, staged, committed, packaged, or synced.
+
+**Notes for next handoff:** keep the matrix wrapper centered and narrower than the section container on desktop/tablet, and keep validating 390px as no document horizontal overflow plus internal `.matrix-wrap` horizontal scroll. If future work changes the matrix width, table min-width, or mobile overflow rule, rerun the same 1280/1440/1750/390 geometry check.

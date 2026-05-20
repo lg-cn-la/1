@@ -98,6 +98,10 @@
       border-top: 1px solid var(--line)
     }
 
+    .hero + .section {
+      border-top: 0
+    }
+
     .status {
       border-bottom: 1px solid var(--line);
       background: rgba(6, 16, 31, .86);
@@ -611,16 +615,13 @@
       stroke-linecap: round;
       stroke-dasharray: 5 8;
       stroke-dashoffset: 0;
-      animation: topoDash 2.4s linear infinite;
+      animation: none;
       opacity: 0;
-      filter: drop-shadow(0 0 4px rgba(56, 210, 255, .35));
       transition: opacity .28s var(--ease)
     }
 
     .topo-svg .flow.amber {
-      stroke: var(--amber);
-      animation-duration: 2.8s;
-      filter: drop-shadow(0 0 4px rgba(255, 180, 84, .28))
+      stroke: var(--amber)
     }
 
     .topo-svg .flow.on {
@@ -1157,6 +1158,11 @@
       background: rgba(14, 27, 47, .76)
     }
 
+    #compare .compare-wrap {
+      max-width: 1120px;
+      margin-inline: auto
+    }
+
     table {
       width: 100%;
       min-width: 860px;
@@ -1181,7 +1187,8 @@
 
     #compareTable th:not(:first-child),
     #compareTable td:not(:first-child) {
-      width: 25.333%
+      width: 25.333%;
+      text-align: center
     }
 
     th,
@@ -2002,14 +2009,12 @@
     .topo-svg .packet {
       fill: var(--cyan);
       opacity: 0;
-      filter: drop-shadow(0 0 6px rgba(56, 210, 255, .75));
       transition: opacity .25s var(--ease);
       pointer-events: none
     }
 
     .topo-svg .packet.amber {
-      fill: var(--amber);
-      filter: drop-shadow(0 0 6px rgba(255, 180, 84, .65))
+      fill: var(--amber)
     }
 
     .topo-svg .packet.on {
@@ -2485,16 +2490,37 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 
     #topoText {
       line-height: 1.58 !important;
+      min-height: calc(1em * 1.58 * 4);
     }
 
     .console-tags {
       justify-content: flex-start !important;
       max-width: 100% !important;
+      min-height: 105px;
     }
 
     .console-tags .tag {
       max-width: 100%;
       white-space: nowrap;
+    }
+
+    @media (max-width: 720px) {
+      .solution-console .window-bar {
+        box-sizing: border-box;
+        min-height: 78px;
+      }
+
+      .solution-console #topoText {
+        min-height: calc(1em * 1.58 * 6);
+      }
+
+      .solution-console .console-tags {
+        min-height: 109px;
+      }
+
+      .solution-console .console-ticker {
+        min-height: 67px;
+      }
     }
 @media (max-width: 1280px) {
       .hero-grid {
