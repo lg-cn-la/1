@@ -22,6 +22,16 @@
 - Do not create compatibility folders or symlinks for legacy absolute paths.
 - New handoff entries should use repo-relative paths unless quoting a command output or historical artifact exactly.
 
+## Cross-Machine Git Push Policy
+
+When the user expects GitHub to be pulled on another computer for continued work, each push must include the files needed to reconstruct the working context, not just the latest visible page edit.
+
+- **Class 1 / must push:** current page/source files that changed, active handoff docs, acceptance/ledger/glossary/policy docs touched in the round, repair scripts used by the workflow, and any small code/config file needed for the site or QA commands to run on another machine.
+- **Class 2 / should push:** QA scripts and compact QA evidence files such as `.json` outputs that describe current checks, browser geometry, language evidence, Lighthouse/axe results, or page-layer results. These are lightweight working context and should travel with the branch when updated.
+- **Class 3 / push only when needed:** screenshot/image/video QA evidence. Screenshots are useful for visual handoff and final delivery proof, but they are large and change often. Do not include new screenshot churn in ordinary small repair pushes unless the user asks for visual proof, a final handoff needs it, or the screenshot itself is the accepted evidence artifact.
+- Before committing, inspect the staged file list and separate unrelated delivery-package deletions, old public package deletions, temp browser folders, and untracked historical/reference folders from the source/QA/context push unless the user explicitly assigns packaging or cleanup.
+- If a relevant Class 1 or Class 2 file already exists on the remote and did not change in the current round, it does not need a new commit, but the final report should say it is already present when the user asks.
+
 ## Required Intake File Index
 
 Use this index before classifying, dispatching, repairing, or reviewing Sampora work. It prevents controllers and subagents from reading only the main three files and missing supporting handoff material.
@@ -323,6 +333,7 @@ Historical detailed update-log entries that previously made this active handoff 
 - Visible-copy changes must stay synchronized across EN/ZH/HI primary source data unless the newest user message explicitly grants a single-language exception.
 - Old handoff entries, old screenshots, old reports, and old QA JSON are never current proof. Rerun the mapped scoped check before claiming a repair.
 - Package ownership remains the map above; page source, QA evidence outputs, delivery folders, and zips are out of scope for Package E docs-only strategy tasks unless explicitly assigned.
+- GitHub pushes for cross-machine continuation must follow the Cross-Machine Git Push Policy above: include changed Class 1 must-push files and changed Class 2 JSON/script context, keep screenshot evidence separate unless needed, and avoid staging unrelated old package/zip/temp-folder churn.
 - Terminology governance now lives in `SAMPORA_TERMINOLOGY_GLOSSARY.md`; future language workers must use it as the source of truth before changing role names, workflow terms, topology labels, Hindi SaaS terms, or Chinese equivalents.
 - The required intake file index now lives in both `AGENTS.md` and this handoff. Controllers must use it during intake and paste the relevant subset into subagent prompts. The index includes current v3 package docs, product/backend positioning references, local design references, and historical repair/result reports with strict current-proof boundaries.
 - `VISUAL-QA-001` records the strategy risk that visual acceptance was previously treated too loosely. Future visual/layout/component/interaction/style tasks must separate technical/static PASS, runtime geometry PASS, and visual acceptance PASS before final completion claims.
@@ -1853,3 +1864,15 @@ Historical detailed update-log entries that previously made this active handoff 
 **Acceptance status separation:** technical/static PASS; runtime geometry PASS; real visual perception / 真实观感 PASS. A normal user should now clearly see the three main plan cards enter a selected state on hover/focus, with visible lift, border emphasis, deeper background, and glow, while the recommended card's lime highlight remains distinct and Enterprise remains visually coherent.
 
 **Remaining failures / next agent:** none for this scoped `plans.html` card hover selected-state task. Packaging, Lighthouse/axe, delivery sync, zip rebuild, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-21 CST - Package E cross-machine Git push policy
+
+**Files changed:** `SAMPORA_LATEST_REPAIR_HANDOFF.md` and `ISSUE_LEDGER.md`. No page source, QA output artifacts, screenshots, JSON evidence, delivery folders, zips, temp browser folders, old public-package deletions, staging, packaging, or site behavior files were intentionally changed.
+
+**Strategy item addressed:** `[STRATEGY]` `HANDOFF-007` created after the user clarified that future GitHub pushes must carry the Class 1/Class 2 files needed to pull the branch on another computer and keep working. Screenshot evidence should be handled more tightly than QA scripts/JSON.
+
+**Policy summary:** future cross-machine continuation pushes must include changed Class 1 must-push files: page/source files, active handoff/acceptance/ledger/glossary/policy docs, repair scripts, and small code/config needed for the site or QA commands. They should also include changed Class 2 files: QA scripts and compact `.json` evidence such as page-layer, language, Lighthouse, and axe outputs. Screenshot/image/video evidence is Class 3: useful for visual proof and final handoff, but not part of ordinary small repair pushes unless explicitly needed or requested.
+
+**Verification run:** `git diff --check -- SAMPORA_LATEST_REPAIR_HANDOFF.md ISSUE_LEDGER.md` must pass before committing. Next controller should inspect staged files before push and exclude unrelated old package deletions, zip deletions, temp browser folders, untracked historical/reference folders, and screenshot churn unless the user explicitly assigns those files.
+
+**Remaining failures / next agent:** none for this docs/process policy update. Existing unrelated dirty workspace deletions and untracked folders remain intentionally untouched.
