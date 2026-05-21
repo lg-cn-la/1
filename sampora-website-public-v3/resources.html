@@ -376,18 +376,24 @@
             position: relative;
             z-index: 1;
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(430px, .86fr);
+            grid-template-columns: minmax(0, 1fr) minmax(360px, .82fr);
             gap: 54px;
             align-items: center
         }
 
         .eyebrow {
             display: inline-flex;
+            align-self: flex-start;
             align-items: center;
             gap: 10px;
+            width: fit-content;
+            max-width: 100%;
             font: 800 11px var(--mono);
             letter-spacing: .14em;
             text-transform: uppercase;
+            white-space: nowrap;
+            overflow-wrap: normal;
+            word-break: normal;
             color: #FFD39A;
             padding: 7px 14px;
             border: 1px solid rgba(246, 169, 59, .28);
@@ -795,7 +801,7 @@
         .console-main {
             position: relative;
             z-index: 2;
-            padding: 20px 22px 16px
+            padding: 20px 22px 12px
         }
 
         .console-summary {
@@ -1273,25 +1279,29 @@
         .console-ticker {
             position: relative;
             z-index: 2;
-            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 18px;
             border-top: 1px solid rgba(129, 178, 214, .14);
             color: var(--body2);
             font: 700 11px var(--mono);
             letter-spacing: .05em;
-            min-height: 55px;
+            line-height: 1.35;
+            min-height: 44px;
             overflow: hidden
         }
 
         .console-ticker:before {
             content: "";
-            display: inline-block;
+            display: block;
+            flex: 0 0 7px;
             width: 7px;
             height: 7px;
             border-radius: 50%;
             background: var(--cyan);
             box-shadow: 0 0 8px rgba(56, 210, 255, .4);
-            margin-right: 10px;
-            vertical-align: middle
+            margin: 0
         }
 
         .console-ticker:after {
@@ -1299,9 +1309,10 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            left: -80px;
-            width: 68px;
-            background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .08), transparent);
+            left: -48px;
+            width: 34px;
+            opacity: .36;
+            background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .055), transparent);
             animation: tickerSweep 4.8s linear infinite;
             pointer-events: none
         }
@@ -1773,17 +1784,7 @@
             margin-bottom: 22px
         }
 
-        .sampora-footer-mark {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            display: grid;
-            place-items: center;
-            color: var(--cyan);
-            border: 1px solid rgba(56, 210, 255, .42);
-            background: linear-gradient(160deg, rgba(56, 210, 255, .16), rgba(14, 27, 47, .92));
-            font: 800 14px var(--mono)
-        }
+        .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
 
         .sampora-footer-logo b {
             display: block;
@@ -1931,28 +1932,42 @@
 
         /* Hero intro alignment: distribute the left column without leaving a dead band before the next section. */
         @media(min-width:1101px) {
+            .hero {
+                padding-top: 64px
+            }
+
             .hero-grid {
                 align-items: stretch
             }
 
             .hero-grid > .reveal:not(.resource-console) {
                 align-self: stretch;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 100%;
-                min-height: 0
+                display: grid;
+                grid-template-rows: auto auto auto auto minmax(150px, auto);
+                align-content: space-between;
+                row-gap: clamp(16px, 2vh, 24px);
+                min-height: 100%
             }
 
             .resource-console:not(.modal-open) .topo-stage {
-                height: auto;
-                aspect-ratio: 820 / 270;
+                height: 224px;
+                aspect-ratio: auto;
                 margin-bottom: 0
             }
 
+            .resource-console:not(.modal-open) {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end
+            }
+
+            .resource-console:not(.modal-open) .console-window {
+                min-height: 626px
+            }
+
             .hero .eyebrow + h1 {
-                margin-top: 0;
-                margin-bottom: 0
+                margin-top: clamp(12px, 1.7vh, 18px);
+                margin-bottom: clamp(12px, 1.7vh, 18px)
             }
 
             .hero-sub {
@@ -1967,7 +1982,7 @@
         @media (prefers-reduced-motion: reduce) {
             #consoleTicker:after {
                 animation: none;
-                left: calc(100% - 68px);
+                left: calc(100% - 34px);
                 opacity: .2
             }
         }
@@ -2072,8 +2087,8 @@
                 grid-template-columns: 1fr
             }
 
-            .topo-stage {
-                height: 240px
+            .resource-console:not(.modal-open) .topo-stage {
+                height: 220px
             }
 
             .playbook-grid,
@@ -2368,6 +2383,35 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 @media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
 @media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
 </style>
+<style id="sampora-horizontal-line-cleanup">
+body {
+    background-image:
+        radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
+        radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .07) 0, transparent 64%),
+        linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%) !important;
+    background-size: auto !important;
+}
+body::before {
+    content: none !important;
+    display: none !important;
+}
+.section,
+#setup,
+.sampora-site-footer,
+.sampora-footer-contact,
+.sampora-footer-legal {
+    border-top: 0 !important;
+}
+.sampora-footer-col h3,
+.sampora-footer-col h4 {
+    border-bottom: 1px solid rgba(129, 178, 214, .18) !important;
+    padding-bottom: 16px !important;
+}
+.sampora-footer-contact-item {
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="status">
@@ -2407,7 +2451,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <section class="hero">
 <div class="container hero-grid">
 <div class="reveal">
-<span class="eyebrow" data-i18n="heroKicker">RESOURCES</span>
+<span class="eyebrow" data-i18n="heroKicker">RESOURCES · INTERFACE PLAYBOOKS</span>
 <h1 data-i18n="heroTitle">Resources for <em>online sample operations.</em></h1>
 <p class="hero-sub" data-i18n="heroSub">Operator manuals, regional rollout notes, and implementation references for sample delivery teams.</p>
 <div class="cta-row">
@@ -2504,19 +2548,19 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </g>
 <g aria-hidden="true" class="packet-layer">
 <g class="packet-group" id="packetSetup">
-<circle class="packet" r="4"><animateMotion dur="3.4s" repeatCount="indefinite"><mpath href="#r-smp-setup"></mpath></animateMotion></circle>
-<circle class="packet" r="4"><animateMotion begin=".75s" dur="3.2s" repeatCount="indefinite"><mpath href="#r-setup-review"></mpath></animateMotion></circle>
-<circle class="packet" r="4"><animateMotion begin="1.35s" dur="2.8s" repeatCount="indefinite"><mpath href="#r-review-records"></mpath></animateMotion></circle>
+<circle class="packet" cx="124" cy="158" data-duration="3.4" data-path="r-smp-setup" data-phase=".08" r="4"></circle>
+<circle class="packet" cx="540" cy="85" data-duration="3.2" data-path="r-setup-review" data-phase=".24" r="4"></circle>
+<circle class="packet" cx="690" cy="158" data-duration="2.8" data-path="r-review-records" data-phase=".48" r="4"></circle>
 </g>
 <g class="packet-group" id="packetSupplier">
-<circle class="packet amber" r="4"><animateMotion dur="3.1s" repeatCount="indefinite"><mpath href="#r-smp-supplier"></mpath></animateMotion></circle>
-<circle class="packet amber" r="4"><animateMotion begin=".7s" dur="3.0s" repeatCount="indefinite"><mpath href="#r-supplier-review"></mpath></animateMotion></circle>
-<circle class="packet amber" r="4"><animateMotion begin="1.25s" dur="2.7s" repeatCount="indefinite"><mpath href="#r-review-records"></mpath></animateMotion></circle>
+<circle class="packet amber" cx="124" cy="158" data-duration="3.1" data-path="r-smp-supplier" data-phase=".10" r="4"></circle>
+<circle class="packet amber" cx="540" cy="157" data-duration="3.0" data-path="r-supplier-review" data-phase=".32" r="4"></circle>
+<circle class="packet amber" cx="690" cy="158" data-duration="2.7" data-path="r-review-records" data-phase=".56" r="4"></circle>
 </g>
 <g class="packet-group" id="packetFinance">
-<circle class="packet" r="4"><animateMotion dur="3.8s" repeatCount="indefinite"><mpath href="#r-smp-finance"></mpath></animateMotion></circle>
-<circle class="packet" r="4"><animateMotion begin=".85s" dur="3.4s" repeatCount="indefinite"><mpath href="#r-finance-review"></mpath></animateMotion></circle>
-<circle class="packet" r="4"><animateMotion begin="1.45s" dur="3s" repeatCount="indefinite"><mpath href="#r-review-records"></mpath></animateMotion></circle>
+<circle class="packet" cx="124" cy="158" data-duration="3.8" data-path="r-smp-finance" data-phase=".08" r="4"></circle>
+<circle class="packet" cx="540" cy="229" data-duration="3.4" data-path="r-finance-review" data-phase=".28" r="4"></circle>
+<circle class="packet" cx="690" cy="158" data-duration="3" data-path="r-review-records" data-phase=".52" r="4"></circle>
 </g>
 </g>
 </g>
@@ -2629,35 +2673,41 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="container sampora-footer-card">
 <div class="sampora-footer-main">
 <div class="sampora-footer-brand">
-<a aria-label="Sampora home" class="sampora-footer-logo" href="index.html"><span class="sampora-footer-mark">S</span><span><b>Sampora</b><small data-i18n="brandSub2"></small></span></a>
-<p data-i18n="footerDesc">Online sample operations platform for panel providers and sample suppliers.</p>
-<div class="sampora-footer-badges"><span data-i18n="footerTag1">Project intake</span><span data-i18n="footerTag2">Supplier allocation</span><span data-i18n="footerTag3">Settlement evidence</span></div>
+<a aria-label="Sampora home" class="sampora-footer-logo" href="index.html">
+<span class="sampora-footer-mark">S</span>
+<span><b>Sampora</b><small data-footer-i18n="brandSub">Operations console</small></span>
+</a>
+<p data-footer-i18n="footerDesc">An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.</p>
+<div class="sampora-footer-badges"><span data-footer-i18n="tag1">Sample supply</span><span data-footer-i18n="tag2">Review workflow</span><span data-footer-i18n="tag3">Settlement ledger</span></div>
 </div>
 <div class="sampora-footer-col">
-<h3 data-i18n="footerCol1">Product support</h3>
-<a data-i18n="footerHelp" href="resource-manuals.html">Operator manuals</a>
-<a data-i18n="footerGuide" href="resource-manuals.html#rollout-notes">Operations manuals</a>
-<a data-i18n="footerFeedback" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+<h3 data-footer-i18n="footerProduct">Product</h3>
+<a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
+<a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
+<a href="plans.html" data-footer-i18n="navPlans">Plans</a>
+<a href="contact.html" data-footer-i18n="navContact">Contact</a>
 </div>
 <div class="sampora-footer-col">
-<h3 data-i18n="footerCol2">Company</h3>
-<a data-i18n="footerAbout" href="index.html#platform">About us</a>
-<a data-i18n="footerHistory" href="index.html#workflow">Implementation roadmap</a>
-<a data-i18n="footerContact" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+<h3 data-footer-i18n="footerResources">Resources</h3>
+<a href="resources.html" data-footer-i18n="footerResourcesOverview">Resources overview</a>
+<a href="resource-manuals.html#configuration-guide" data-footer-i18n="footerConfigurationGuide">Configuration guide</a>
+<a href="resource-manuals.html#operation-manual" data-footer-i18n="footerOperationManual">Operation manual</a>
+<a href="resource-manuals.html#rollout-notes" data-footer-i18n="footerRolloutNotes">Rollout notes</a>
 </div>
 <div class="sampora-footer-col">
-<h3 data-i18n="footerCol3">Resources</h3>
-<a data-i18n="footerTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
-<a data-i18n="footerJoin" href="contact.html?intent=contact_sales#contact-form">Talk to sales</a>
-<a data-i18n="footerUpdates" href="#setup">Updates</a>
+<h3 data-footer-i18n="footerGetStarted">Get started</h3>
+<a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
+<a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
+<a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
+<a href="contact.html" data-footer-i18n="navContact">Contact</a>
 </div>
 </div>
 <div class="sampora-footer-contact">
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>jiayu@surveysaas.com</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-i18n="footerAddress"></span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@sampora.com</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
 </div>
-<div class="sampora-footer-legal"><span data-i18n="footerCopyright">© 2026 Anhui Jiayu Enterprise Service Co., Ltd.</span><span data-i18n="footerCompanyLegal">安徽省嘉禹企业服务有限公司</span></div>
+<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
 </div>
 </footer>
 <script>
@@ -2680,7 +2730,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "navContact": "Contact",
                         "headerBookDemo": "Book a demo",
                         "headerStartTrial": "Start trial",
-                        "heroKicker": "RESOURCES",
+                        "heroKicker": "RESOURCES · INTERFACE PLAYBOOKS",
                         "heroTitle": "Resources for <em>online sample operations.</em>",
                         "heroSub": "Operator manuals, regional rollout notes, and implementation references for sample delivery teams.",
                         "heroCta1": "View manuals →", 
@@ -2786,7 +2836,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "navContact": "联系我们",
                         "headerBookDemo": "预约演示",
                         "headerStartTrial": "开始试用",
-                        "heroKicker": "资源",
+                        "heroKicker": "资源中心 · 接口入口手册",
                         "heroTitle": "面向<em>在线样本运营</em>的资源中心。",
                         "heroSub": "面向样本交付团队的操作手册、区域上线说明和实施参考。",
                         "heroCta1": "查看手册 →", 
@@ -2892,7 +2942,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "navContact": "संपर्क",
                         "headerBookDemo": "डेमो बुक करें",
                         "headerStartTrial": "ट्रायल शुरू करें",
-                        "heroKicker": "संसाधन",
+                        "heroKicker": "संसाधन · इंटरफ़ेस गाइड",
                         "heroTitle": "<em>ऑनलाइन सैंपल संचालन</em> के लिए संसाधन केंद्र।",
                         "heroSub": "सैंपल डिलीवरी टीमों के लिए ऑपरेटर मैनुअल, क्षेत्रीय रोलआउट नोट्स और कार्यान्वयन संदर्भ खोजें।",
                         "heroCta1": "मैनुअल देखें →", 
@@ -3300,7 +3350,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             }
 };
 
-        const state = { lang: "en", category: "all", query: "", mode: "supplier" };
+        const state = { lang: "en", category: "all", query: "", mode: "setup" };
 
         const t = key => COPY[state.lang][key] || COPY.en[key] || "";
 
@@ -3389,6 +3439,28 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                 }
             });
             renderModebar();
+        }
+
+        let packetMotionFrame = null;
+        function updatePacketPositions(now) {
+            const time = Number.isFinite(now) ? now : performance.now();
+            $$(".topo-svg .packet[data-path]").forEach(packet => {
+                const path = document.getElementById(packet.dataset.path);
+                if (!path || typeof path.getTotalLength !== "function") return;
+                const duration = Math.max(parseFloat(packet.dataset.duration) || 3, .1);
+                const phase = parseFloat(packet.dataset.phase) || 0;
+                const length = path.getTotalLength();
+                const progress = ((time / 1000 / duration) + phase) % 1;
+                const point = path.getPointAtLength(progress * length);
+                packet.setAttribute("cx", point.x.toFixed(2));
+                packet.setAttribute("cy", point.y.toFixed(2));
+            });
+            packetMotionFrame = requestAnimationFrame(updatePacketPositions);
+        }
+
+        function startPacketMotion() {
+            if (packetMotionFrame) return;
+            updatePacketPositions(performance.now());
         }
 
         function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
@@ -3511,6 +3583,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
         $$(".reveal").forEach(el => observer.observe(el));
 
         try { const saved = localStorage.getItem("sampora_lang"); if (saved && COPY[saved]) state.lang = saved; } catch (e) { }
+        startPacketMotion();
         renderAll();
         restartTopologyCycle();
     </script>
@@ -3537,5 +3610,35 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 })();
 </script>
 <script src="assets/i18n-sweep.js"></script>
+<script id="sampora-standard-footer-i18n">
+(function(){
+  const copy={
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
+    hi:{brandSub:'संचालन कंसोल',footerDesc:'Sampora स्वामित्व वाले Panel संचालकों और Sample Supplier टीमों के लिए ऑनलाइन नमूना संचालन प्लेटफ़ॉर्म है, जो परियोजना वितरण, Supplier Allocation, समीक्षा रिकॉर्ड, वित्त, जोखिम नियंत्रण और Partner Network को साथ रखता है।',tag1:'नमूना आपूर्ति',tag2:'समीक्षा प्रक्रिया',tag3:'सेटलमेंट लेजर',footerProduct:'उत्पाद',footerPlatformOverview:'प्लेटफ़ॉर्म अवलोकन',navSolutions:'समाधान',navPlans:'योजनाएँ',navContact:'संपर्क',footerResources:'संसाधन',footerResourcesOverview:'संसाधन अवलोकन',footerConfigurationGuide:'कॉन्फ़िगरेशन गाइड',footerOperationManual:'ऑपरेशन मैनुअल',footerRolloutNotes:'रोलआउट नोट्स',footerGetStarted:'शुरू करें',ctaTop:'ट्रायल शुरू करें',ctaDemo:'डेमो बुक करें',footerTalkToSales:'सेल्स से बात करें',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'}
+  };
+  function lang(explicit){
+    const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
+    if(copy[explicitRaw])return explicitRaw;
+    try{const saved=localStorage.getItem('sampora_lang');if(copy[saved])return saved;}catch(e){}
+    const raw=(document.documentElement.dataset.lang||document.documentElement.lang||'en').toLowerCase().slice(0,2);
+    return copy[raw]?raw:'en';
+  }
+  function apply(explicit){
+    const dict=copy[lang(explicit)]||copy.en;
+    document.querySelectorAll('.sampora-site-footer [data-footer-i18n]').forEach(el=>{
+      const value=dict[el.dataset.footerI18n];
+      if(value!==undefined)el.textContent=value;
+    });
+  }
+  apply();
+  document.addEventListener('DOMContentLoaded',()=>apply());
+  window.addEventListener('load',()=>apply());
+  document.querySelectorAll('.lang button,[data-lang-btn]').forEach(btn=>{
+    btn.addEventListener('click',()=>setTimeout(()=>apply(btn.dataset.lang||btn.dataset.langBtn),30));
+  });
+  new MutationObserver(()=>apply()).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-lang']});
+})();
+</script>
 </body>
 </html>
