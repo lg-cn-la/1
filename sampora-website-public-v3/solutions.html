@@ -89,6 +89,47 @@
       border-top: 0
     }
 
+    #compare {
+      padding-bottom: 52px
+    }
+
+    #compare + #workflow {
+      border-top: 0;
+      padding-top: 52px
+    }
+
+    #compare,
+    #compare + #workflow {
+      position: relative
+    }
+
+    #compare>.container,
+    #compare + #workflow>.container {
+      position: relative;
+      z-index: 1
+    }
+
+    /* Mask only this spacer so the global body grid cannot read as a divider. */
+    #compare::after,
+    #compare + #workflow::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 52px;
+      pointer-events: none;
+      z-index: 0;
+      background: rgba(7, 18, 33, .985)
+    }
+
+    #compare::after {
+      bottom: 0
+    }
+
+    #compare + #workflow::before {
+      top: 0
+    }
+
     .status {
       border-bottom: 1px solid var(--line);
       background: rgba(6, 16, 31, .86);
@@ -106,6 +147,7 @@
       display: flex;
       align-items: center;
       gap: 18px;
+      padding-left: 10px;
       overflow: hidden;
       white-space: nowrap
     }
@@ -126,7 +168,7 @@
       border-radius: 50%;
       background: var(--lime);
       box-shadow: 0 0 0 0 rgba(181, 240, 86, .4);
-      animation: pulse 1.9s ease-out 1
+      animation: pulse 1.9s ease-out infinite
     }
 
     .status .sep {
@@ -135,7 +177,11 @@
 
     .status .right {
       margin-left: auto;
-      color: var(--fg2)
+      color: var(--fg2);
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
     }
 
     @keyframes pulse {
@@ -958,10 +1004,12 @@
       color: var(--cyan2);
       padding: 6px 9px;
       background: rgba(56, 210, 255, .06);
+      width: fit-content;
       max-width: 100%;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      text-align: right
+      white-space: nowrap;
+      overflow-wrap: normal;
+      word-break: normal;
+      text-align: left
     }
 
     .plan-card.network .badge {
@@ -1013,6 +1061,30 @@
 
     .plan-card.network .badge {
       box-shadow: 0 0 16px rgba(246, 169, 59, .12)
+    }
+
+    #solutionCards .plan-top {
+      grid-template-columns: minmax(0, 1fr) max-content;
+      gap: 12px
+    }
+
+    #solutionCards .badge {
+      justify-self: end;
+      align-self: start;
+      flex: 0 0 auto;
+      max-width: none
+    }
+
+    @media(max-width:680px) {
+      #solutionCards .plan-top {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px
+      }
+
+      #solutionCards .badge {
+        justify-self: start;
+        max-width: 100%
+      }
     }
 
     .fit-panel {
@@ -1179,7 +1251,7 @@
     #compareTable th:first-child,
     #compareTable td:first-child {
       width: 20%;
-      text-align: left
+      text-align: center
     }
 
     #compareTable th:not(:first-child),
@@ -1218,6 +1290,10 @@
     #compareTable td {
       font-size: 14.25px;
       color: #c2d0df
+    }
+
+    #compareTable td.part {
+      color: var(--amber)
     }
 
     #compareTable tbody td:first-child {
@@ -1723,7 +1799,51 @@
       .hero-grid,
       .section-head,
       .fit-panel {
-        grid-template-columns: 1fr
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .fit-panel,
+      .fit-selectors,
+      .recommend {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box
+      }
+
+      .fit-selectors {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .select-btn {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        overflow-wrap: anywhere
+      }
+
+      .select-btn small,
+      .select-btn strong,
+      .select-btn span,
+      .recommend h3,
+      .recommend p,
+      .mini-metrics,
+      .mini-metrics div,
+      .mini-metrics small,
+      .mini-metrics strong,
+      .mini-metrics strong span {
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: anywhere
+      }
+
+      .mini-metrics {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+      }
+
+      .mini-metrics strong span {
+        white-space: normal
       }
 
       .flow-line {
@@ -1778,6 +1898,19 @@
 
       .section {
         padding: 66px 0
+      }
+
+      #compare {
+        padding-bottom: 44px
+      }
+
+      #compare + #workflow {
+        padding-top: 44px
+      }
+
+      #compare::after,
+      #compare + #workflow::before {
+        height: 44px
       }
 
       .header-actions {
@@ -2449,6 +2582,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 @media(max-width:1100px){.nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:none!important}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}.nav.sampora-nav-standard,.sampora-nav-standard{gap:28px!important}}
 @media(max-width:760px){.status{display:none!important}.brand small{display:none!important}.mast .inner,.nav-inner{gap:14px!important}}
 @media(max-width:360px){.container{width:min(100% - 24px,1320px)!important}.brand b{display:none!important}.lang button,.lang-btn{min-width:34px!important;padding:0 6px!important;font-size:10px!important}.mobile-nav-toggle{width:36px!important;height:36px!important}.header-actions,.nav-actions,.actions{gap:6px!important}}
+@media(max-width:980px){.status [data-i18n="statusMid"] + .sep,.status [data-i18n="statusLast"]{display:none}}
 
 </style>
 <style id="github-doc-solution-optimization">
@@ -2655,7 +2789,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 }
 </style>
 <style id="final-mobile-overflow-fix">
-@media(max-width:680px){.plans-grid{grid-template-columns:1fr}.plan-card,.fit-panel,.fit-selectors,.recommend{min-width:0;width:100%}.plan-top{display:grid;grid-template-columns:1fr;gap:8px}.plan-card h3{white-space:normal;text-wrap:balance}.badge{justify-self:start;max-width:100%;white-space:normal;overflow-wrap:anywhere}.select-btn{width:100%;min-width:0;overflow-wrap:anywhere}.select-btn small,.select-btn strong,.select-btn span{min-width:0;max-width:100%;overflow-wrap:anywhere}.mini-metrics{grid-template-columns:1fr}.mini-metrics div,.mini-metrics small,.mini-metrics strong,.mini-metrics strong span{min-width:0;max-width:100%;overflow-wrap:anywhere}.mini-metrics strong span{white-space:normal}.compare-wrap{max-width:100%;overflow-x:auto}}
+@media(max-width:680px){.plans-grid{grid-template-columns:1fr}.plan-card,.fit-panel,.fit-selectors,.recommend{min-width:0;width:100%}.plan-top{display:grid;grid-template-columns:1fr;gap:8px}.plan-card h3{white-space:normal;text-wrap:balance}.badge{justify-self:start;width:fit-content;max-width:100%;white-space:nowrap;overflow-wrap:normal;word-break:normal}.select-btn{width:100%;min-width:0;overflow-wrap:anywhere}.select-btn small,.select-btn strong,.select-btn span{min-width:0;max-width:100%;overflow-wrap:anywhere}.mini-metrics{grid-template-columns:1fr}.mini-metrics div,.mini-metrics small,.mini-metrics strong,.mini-metrics strong span{min-width:0;max-width:100%;overflow-wrap:anywhere}.mini-metrics strong span{white-space:normal}.compare-wrap{max-width:100%;overflow-x:auto}}
 @media(max-width:480px){.header-actions>.btn.ghost,.nav-actions>.btn.ghost,.actions>.btn.ghost{display:none!important}.mast .inner,.mast.compact .inner,.nav-inner{gap:10px!important}.header-actions,.nav-actions,.actions{min-width:0!important;max-width:100%!important;gap:8px!important}}
 @media(max-width:360px){.flow-line{grid-template-columns:1fr!important}.flow-step,.flow-step small,.flow-step h3,.flow-step p{min-width:0!important;max-width:100%!important;overflow-wrap:anywhere!important}.footer-main,.footer-contact{grid-template-columns:1fr!important}.footer-col,.footer-col a,.contact-item{min-width:0!important;padding-left:14px!important;padding-right:14px!important;overflow-wrap:anywhere!important}}
 
@@ -2695,6 +2829,23 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   .sampora-footer-col a,
   .sampora-footer-contact-item{overflow-wrap:anywhere!important}
 }
+/* Header actions parity with resources.html */
+.mast .lang,.mast .lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
+.mast .lang button,.mast .lang-btn{height:34px;min-width:42px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px var(--mono,ui-monospace,monospace);transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
+.mast .lang button.active,.mast .lang button[aria-pressed="true"],.mast .lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
+.mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:transparent;border-color:var(--line,rgba(129,178,214,.18))}
+.mast .header-actions .btn.ghost:hover,.mast .nav-actions .btn.ghost:hover,.mast .actions .btn.ghost:hover,.mast .header-actions .btn.ghost:focus-visible,.mast .nav-actions .btn.ghost:focus-visible,.mast .actions .btn.ghost:focus-visible{transform:translateY(-1px);color:var(--cyan2,var(--cyan,#61e7ff));border-color:rgba(56,210,255,.45);background:rgba(20,40,69,.22)}
+.mast .header-actions .btn.primary,.mast .nav-actions .btn.primary,.mast .actions .btn.primary{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
+.mast .header-actions .btn.primary:hover,.mast .nav-actions .btn.primary:hover,.mast .actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible,.mast .nav-actions .btn.primary:focus-visible,.mast .actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:active,.mast .nav-actions .btn.primary:active,.mast .actions .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
+@media(min-width:1101px){.mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box;width:430px;min-width:430px;align-self:center;justify-self:end;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:nowrap;overflow:visible}.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto;white-space:nowrap}}
+</style>
+<style id="header-brand-visual-parity">
+.mast .brand{display:flex!important;align-items:center!important;gap:10px!important}
+.mast .brand .mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+.mast .brand b,.mast .brand .brand-name{display:block!important;font-size:16px!important;font-weight:800!important;line-height:1.56!important;letter-spacing:-.01em!important}
+.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+@media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
+@media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
 </style>
 </head>
 <body>
@@ -2702,7 +2853,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="container inner"><span class="live" data-i18n="statusLive"></span><span class="sep">/</span><span data-i18n="statusMid"></span><span class="sep">/</span><span data-i18n="statusLast"></span><span class="right" data-i18n="statusRight"></span></div>
 </div>
 <header class="mast" id="mast">
-<div class="container inner"><a aria-label="Sampora home" class="brand" href="#top"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub"></small></span></a>
+<div class="container inner"><a aria-label="Sampora home" class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub"></small></span></a>
 <nav aria-label="Primary" class="nav sampora-nav-standard"><a data-i18n="navProduct" href="index.html">Product</a><a class="active" data-i18n="navSolutions" href="solutions.html">Solutions</a><a data-i18n="navResources" href="resources.html">Resources</a><a data-i18n="navPricing" href="plans.html">Plans</a><a data-i18n="navAbout" href="about_sampora_issues_fixed.html">About</a><a data-i18n="navContact" href="contact.html">Contact</a></nav>
 <div class="header-actions">
 <div aria-label="Language" class="lang"><button data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button><button data-lang="hi" type="button">हिन्दी</button>
@@ -3043,7 +3194,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
             "navResources": "संसाधन",
             "navPricing": "योजनाएँ",
             "navAbout": "हमारे बारे में",
-            "navContact": "संपर्क करें",
+            "navContact": "संपर्क",
             "headerBookDemo": "डेमो बुक करें",
             "headerStartTrial": "ट्रायल शुरू करें",
             "heroEyebrow": "समाधान · संचालन भूमिका अनुकूलन",
@@ -3439,7 +3590,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "cn": "External sample supply operations",
                         "title": "Supplier Network",
                         "short": "Supplier network layer",
-                        "badge": "Recommended for sample suppliers",
+                        "badge": "For supplier teams",
                         "text": "For teams coordinating external sample suppliers, aggregators, subcontractors or API-connected suppliers. The solution centers on project intake, supplier allocation, pricing, review and settlement.",
                         "lis": [
                               "Project intake and supplier assignment",
@@ -3688,7 +3839,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "cn": "外部样本供应协同",
                         "title": "供应商网络运营版",
                         "short": "供应商网络运营版",
-                        "badge": "推荐给供应商网络团队",
+                        "badge": "面向供应商团队",
                         "text": "适合协调外部样本供应商、聚合商、分包团队或 API 对接供应商的团队。重点是项目接收、供应商分配、控价、审核和结算。",
                         "lis": [
                               "项目接收与供应商分配",
@@ -3937,7 +4088,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                         "cn": "बाहरी सैंपल आपूर्ति संचालन",
                         "title": "सैंपल आपूर्ति संचालन",
                         "short": "आपूर्ति नेटवर्क स्तर",
-                        "badge": "Sample Supplier टीमों के लिए",
+                        "badge": "Supplier टीमों के लिए",
                         "text": "उन टीमों के लिए जो बाहरी सैंपल आपूर्तिकर्ता, सैंपल एग्रीगेटर, रिसर्च सबकॉन्ट्रैक्ट टीम या API-connected Supplier का समन्वय करती हैं। यह स्तर परियोजना प्राप्ति, आपूर्तिकर्ता आवंटन, मूल्य नियंत्रण, समीक्षा और निपटान पर केंद्रित है।",
                         "lis": [
                               "परियोजना प्राप्ति और आपूर्तिकर्ता आवंटन",
@@ -4358,7 +4509,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   </script>
 <script>
 (function(){
-  const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','हमारे बारे में','संपर्क करें']};
+  const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','हमारे बारे में','संपर्क']};
   const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about_sampora_issues_fixed.html','about'],['contact.html','contact']];
   function lang(){return localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
   function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}

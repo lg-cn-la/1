@@ -135,6 +135,7 @@
             display: flex;
             align-items: center;
             gap: 18px;
+            padding-left: 10px;
             overflow: hidden;
             white-space: nowrap
         }
@@ -4233,6 +4234,23 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   .sampora-footer-col a,
   .sampora-footer-contact-item{overflow-wrap:anywhere!important}
 }
+/* Header actions parity with resources.html */
+.mast .lang,.mast .lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
+.mast .lang button,.mast .lang-btn{height:34px;min-width:42px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px var(--mono,ui-monospace,monospace);transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
+.mast .lang button.active,.mast .lang button[aria-pressed="true"],.mast .lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
+.mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:transparent;border-color:var(--line,rgba(129,178,214,.18))}
+.mast .header-actions .btn.ghost:hover,.mast .nav-actions .btn.ghost:hover,.mast .actions .btn.ghost:hover,.mast .header-actions .btn.ghost:focus-visible,.mast .nav-actions .btn.ghost:focus-visible,.mast .actions .btn.ghost:focus-visible{transform:translateY(-1px);color:var(--cyan2,var(--cyan,#61e7ff));border-color:rgba(56,210,255,.45);background:rgba(20,40,69,.22)}
+.mast .header-actions .btn.primary,.mast .nav-actions .btn.primary,.mast .actions .btn.primary{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
+.mast .header-actions .btn.primary:hover,.mast .nav-actions .btn.primary:hover,.mast .actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible,.mast .nav-actions .btn.primary:focus-visible,.mast .actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:active,.mast .nav-actions .btn.primary:active,.mast .actions .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
+@media(min-width:1101px){.mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box;width:430px;min-width:430px;align-self:center;justify-self:end;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:nowrap;overflow:visible}.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto;white-space:nowrap}}
+</style>
+<style id="header-brand-visual-parity">
+.mast .brand{display:flex!important;align-items:center!important;gap:10px!important}
+.mast .brand .mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+.mast .brand b,.mast .brand .brand-name{display:block!important;font-size:16px!important;font-weight:800!important;line-height:1.56!important;letter-spacing:-.01em!important}
+.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+@media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
+@media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
 </style>
 </head>
 <body>
@@ -4240,7 +4258,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="container inner"><span class="live" data-i18n="statusLive">Delivery workflow / Live</span><span class="sep">/</span><span><b data-i18n="statusDemoLabel">Multi-source</b> <span data-i18n="statusNetworks">sample operations</span></span><span class="sep">/</span><span id="statusRegion">review controls active</span><span class="right" data-i18n="statusControls">Privacy, review and export controls</span></div>
 </div>
 <header class="mast">
-<div class="container inner"><a class="brand" href="index.html#top"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a>
+<div class="container inner"><a class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a>
 <nav aria-label="Primary navigation" class="nav product-nav sampora-nav-standard"><span aria-hidden="true" class="nav-indicator"></span><a class="nav-link active" data-i18n="product" data-sampora-nav="product" href="index.html">Product</a><a class="nav-link" data-i18n="solutions" data-sampora-nav="solutions" href="solutions.html">Solutions</a><a class="nav-link" data-i18n="resources" data-sampora-nav="resources" href="resources.html">Resources</a><a class="nav-link" data-i18n="plans" data-sampora-nav="plans" href="plans.html">Plans</a><a class="nav-link" data-i18n="navAbout" data-sampora-nav="about" href="about_sampora_issues_fixed.html">About</a><a class="nav-link" data-i18n="navContact" data-sampora-nav="contact" href="contact.html">Contact</a></nav>
 <div class="header-actions"><div aria-label="Language" class="lang" data-i18n-aria-label="langSwitcher"><button class="active" data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button><button data-lang="hi" type="button">हिन्दी</button></div><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a></div>
 </div>
@@ -5428,7 +5446,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                 auditFeedCount: "最新动态",
                 auditFeedTitle: "运营动态",
                 bookDemo: "预约演示",
-                brandSub: "运营控制台",
+                brandSub: "操作控制台",
                 chip1: "自有样本<b>运营方</b>",
                 chip2: "在线样本<b>供应商</b>",
                 chip3: "调查<b>站点</b>",
@@ -5574,7 +5592,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                 auditFeedCount: "ताजा गतिविधि",
                 auditFeedTitle: "संचालन फीड",
                 bookDemo: "डेमो बुक करें",
-                brandSub: "ऑपरेशंस कंसोल",
+                brandSub: "संचालन कंसोल",
                 chip1: "Panel <b>नेटवर्क</b>",
                 chip2: "सैंपल <b>सप्लायर</b>",
                 chip3: "सर्वे <b>स्टेशन</b>",
@@ -6085,7 +6103,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                 },
                 zh: {
                     product: '产品', solutions: '解决方案', resources: '资源', plans: '版本方案', contact: '联系我们',
-                    brandSub: '运营控制台',
+                    brandSub: '操作控制台',
                     productSupport: '产品支持', help: '帮助文档', guide: '查看手册', feedback: '联系销售',
                     company: '公司', about: '关于', history: '工作流', contactUs: '联系销售',
                     rights: '开始试用', trial: '开始试用', join: '联系销售', news: '资源',
