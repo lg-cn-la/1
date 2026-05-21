@@ -1065,19 +1065,92 @@
 
     #solutionCards .plan-top {
       grid-template-columns: minmax(0, 1fr) max-content;
-      gap: 12px
+      grid-template-areas:
+        "kicker badge"
+        "title title"
+        "short short";
+      gap: 8px 8px
+    }
+
+    #solutionCards .plan-kicker {
+      grid-area: kicker;
+      min-width: 0;
+      align-self: center;
+      white-space: nowrap;
+      text-wrap: nowrap;
+      overflow-wrap: normal;
+      word-break: normal
     }
 
     #solutionCards .badge {
+      grid-area: badge;
       justify-self: end;
       align-self: start;
       flex: 0 0 auto;
-      max-width: none
+      max-width: none;
+      letter-spacing: .08em;
+      padding: 6px 8px
+    }
+
+    #solutionCards .plan-card h3 {
+      grid-area: title
+    }
+
+    #solutionCards .plan-card .short {
+      grid-area: short;
+      display: block;
+      min-width: 0;
+      white-space: nowrap;
+      overflow-wrap: normal;
+      word-break: normal
+    }
+
+    #solutionCards .plan-card.panel {
+      border-color: rgba(56, 210, 255, .34);
+      box-shadow: 0 0 0 1px rgba(56, 210, 255, .10), 0 22px 52px rgba(0, 0, 0, .22)
+    }
+
+    #solutionCards .plan-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 210, 255, .52);
+      box-shadow: 0 0 0 1px rgba(56, 210, 255, .18), 0 28px 64px rgba(0, 0, 0, .32);
+      background: linear-gradient(180deg, rgba(18, 34, 58, .96), rgba(10, 22, 40, .99))
+    }
+
+    #solutionCards .plan-card.active {
+      border-color: inherit;
+      box-shadow: inherit
+    }
+
+    #solutionCards .plan-card.panel.active {
+      border-color: rgba(56, 210, 255, .34);
+      box-shadow: 0 0 0 1px rgba(56, 210, 255, .10), 0 22px 52px rgba(0, 0, 0, .22)
+    }
+
+    #solutionCards .plan-card.network.active {
+      border-color: rgba(246, 169, 59, .5);
+      box-shadow: 0 0 0 1px rgba(246, 169, 59, .09), 0 24px 54px rgba(0, 0, 0, .24)
+    }
+
+    #solutionCards .plan-card.enterprise.active {
+      border-color: rgba(56, 210, 255, .34);
+      box-shadow: 0 0 0 1px rgba(56, 210, 255, .10), 0 22px 52px rgba(0, 0, 0, .22)
+    }
+
+    #solutionCards .plan-card.network:hover,
+    #solutionCards .plan-card.network.active:hover {
+      border-color: rgba(246, 169, 59, .62);
+      box-shadow: 0 0 0 1px rgba(246, 169, 59, .18), 0 18px 42px rgba(246, 169, 59, .10), 0 28px 64px rgba(0, 0, 0, .32)
     }
 
     @media(max-width:680px) {
       #solutionCards .plan-top {
         grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+          "kicker"
+          "badge"
+          "title"
+          "short";
         gap: 8px
       }
 
@@ -1619,17 +1692,7 @@
       margin-bottom: 22px
     }
 
-    .sampora-footer-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      color: var(--cyan);
-      border: 1px solid rgba(56, 210, 255, .42);
-      background: linear-gradient(160deg, rgba(56, 210, 255, .16), rgba(14, 27, 47, .92));
-      font: 800 14px var(--mono)
-    }
+    .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
 
     .sampora-footer-logo b {
       display: block;
@@ -2847,6 +2910,40 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 @media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
 @media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
 </style>
+<style id="sampora-horizontal-line-cleanup">
+body {
+    background-image:
+        radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
+        radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .07) 0, transparent 64%),
+        linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%) !important;
+    background-size: auto !important;
+}
+body::before {
+    content: none !important;
+    display: none !important;
+}
+.section,
+#compare + #workflow,
+#compare + #workflow::before,
+.sampora-site-footer,
+.sampora-footer-contact,
+.sampora-footer-legal {
+    border-top: 0 !important;
+}
+#compare + #workflow::before {
+    content: none !important;
+    display: none !important;
+}
+.sampora-footer-col h3,
+.sampora-footer-col h4 {
+    border-bottom: 1px solid rgba(129, 178, 214, .18) !important;
+    padding-bottom: 16px !important;
+}
+.sampora-footer-contact-item {
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="status">
@@ -3055,30 +3152,45 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <div class="topology-modal__body" id="topologyModalBody"></div>
 </div>
 </div>
-<footer class="sampora-site-footer">
-<div class="sampora-footer-card">
+<footer class="sampora-site-footer" id="footer">
+<div class="container sampora-footer-card">
 <div class="sampora-footer-main">
 <div class="sampora-footer-brand">
-<div class="sampora-footer-logo"><span class="sampora-footer-mark">S</span><span><b>Sampora</b><small data-i18n="brandSub"></small></span></div>
-<p data-i18n="footerDesc"></p>
-<div class="sampora-footer-badges"><span data-i18n="footerTag1">Sample operations</span><span data-i18n="footerTag2">Supplier coordination</span><span data-i18n="footerTag3">Multi-party settlement</span></div>
+<a aria-label="Sampora home" class="sampora-footer-logo" href="index.html">
+<span class="sampora-footer-mark">S</span>
+<span><b>Sampora</b><small data-footer-i18n="brandSub">Operations console</small></span>
+</a>
+<p data-footer-i18n="footerDesc">An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.</p>
+<div class="sampora-footer-badges"><span data-footer-i18n="tag1">Sample supply</span><span data-footer-i18n="tag2">Review workflow</span><span data-footer-i18n="tag3">Settlement ledger</span></div>
 </div>
 <div class="sampora-footer-col">
-<h3 data-i18n="footerSupport">Product support</h3><a data-i18n="footerHelp" href="resources.html#surfaces">Operator manuals</a><a data-i18n="footerGuide" href="resource-manuals.html">Operations manuals</a><a data-i18n="footerFeedback" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+<h3 data-footer-i18n="footerProduct">Product</h3>
+<a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
+<a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
+<a href="plans.html" data-footer-i18n="navPlans">Plans</a>
+<a href="contact.html" data-footer-i18n="navContact">Contact</a>
 </div>
 <div class="sampora-footer-col">
-<h3 data-i18n="footerCompany">Company</h3><a data-i18n="footerAbout" href="index.html#platform">About us</a><a data-i18n="footerHistory" href="index.html#workflow">Implementation roadmap</a><a data-i18n="footerContact" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+<h3 data-footer-i18n="footerResources">Resources</h3>
+<a href="resources.html" data-footer-i18n="footerResourcesOverview">Resources overview</a>
+<a href="resource-manuals.html#configuration-guide" data-footer-i18n="footerConfigurationGuide">Configuration guide</a>
+<a href="resource-manuals.html#operation-manual" data-footer-i18n="footerOperationManual">Operation manual</a>
+<a href="resource-manuals.html#rollout-notes" data-footer-i18n="footerRolloutNotes">Rollout notes</a>
 </div>
 <div class="sampora-footer-col">
-<h3 data-i18n="footerAccess">Resources</h3><a data-i18n="footerTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a><a data-i18n="footerJoin" href="contact.html?intent=contact_sales#contact-form">Contact sales</a><a data-i18n="footerNews" href="resources.html#setup">Resources</a>
+<h3 data-footer-i18n="footerGetStarted">Get started</h3>
+<a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
+<a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
+<a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
+<a href="contact.html" data-footer-i18n="navContact">Contact</a>
 </div>
 </div>
 <div class="sampora-footer-contact">
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>jiayu@surveysaas.com</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-i18n="footerAddress"></span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@sampora.com</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
 </div>
-<div class="sampora-footer-legal"><span data-i18n="footerLegal">© 2026 Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
+<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
 </div>
 </footer>
 <script>
@@ -3587,10 +3699,10 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                   },
                   {
                         "id": "network",
-                        "cn": "External sample supply operations",
+                        "cn": "External sample supply",
                         "title": "Supplier Network",
-                        "short": "Supplier network layer",
-                        "badge": "For supplier teams",
+                        "short": "External supplier coordination layer",
+                        "badge": "For supplier operations teams",
                         "text": "For teams coordinating external sample suppliers, aggregators, subcontractors or API-connected suppliers. The solution centers on project intake, supplier allocation, pricing, review and settlement.",
                         "lis": [
                               "Project intake and supplier assignment",
@@ -3836,10 +3948,10 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                   },
                   {
                         "id": "network",
-                        "cn": "外部样本供应协同",
+                        "cn": "外部样本供应",
                         "title": "供应商网络运营版",
-                        "short": "供应商网络运营版",
-                        "badge": "面向供应商团队",
+                        "short": "外部供应商协同层",
+                        "badge": "面向供应商运营团队",
                         "text": "适合协调外部样本供应商、聚合商、分包团队或 API 对接供应商的团队。重点是项目接收、供应商分配、控价、审核和结算。",
                         "lis": [
                               "项目接收与供应商分配",
@@ -4085,10 +4197,10 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
                   },
                   {
                         "id": "network",
-                        "cn": "बाहरी सैंपल आपूर्ति संचालन",
+                        "cn": "बाहरी सैंपल आपूर्ति",
                         "title": "सैंपल आपूर्ति संचालन",
-                        "short": "आपूर्ति नेटवर्क स्तर",
-                        "badge": "Supplier टीमों के लिए",
+                        "short": "बाहरी आपूर्तिकर्ता समन्वय स्तर",
+                        "badge": "Supplier operations टीमों के लिए",
                         "text": "उन टीमों के लिए जो बाहरी सैंपल आपूर्तिकर्ता, सैंपल एग्रीगेटर, रिसर्च सबकॉन्ट्रैक्ट टीम या API-connected Supplier का समन्वय करती हैं। यह स्तर परियोजना प्राप्ति, आपूर्तिकर्ता आवंटन, मूल्य नियंत्रण, समीक्षा और निपटान पर केंद्रित है।",
                         "lis": [
                               "परियोजना प्राप्ति और आपूर्तिकर्ता आवंटन",
@@ -4355,10 +4467,10 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
     function renderTopologyAudit(type) { const detail = TOPO_DETAIL[currentLang] || TOPO_DETAIL.en; const rows = (detail.audit && detail.audit[type]) || []; const title = $('#topoAuditTitle'), state = $('#topoAuditState'), list = $('#topoAuditList'); if (!list) return; if (title) title.textContent = detail.auditTitle; if (state) state.textContent = detail.auditState; list.innerHTML = rows.map((r, i) => `<li class="${i === 0 ? 'flash' : ''}"><span class="time">${r[0]}</span><span class="code">${r[1]}</span><span>${r[2]}</span><i></i></li>`).join(''); }
     function renderHeroTopology(type) { const ui = HERO_UI[currentLang] || HERO_UI.en; const rec = DATA[currentLang].rec[type]; const sol = DATA[currentLang].solutions.find(s => s.id === type) || DATA[currentLang].solutions[0]; const code = { panel: 'PNL_01', network: 'SUP_02', enterprise: 'ENT_03' }[type] || 'SUP_02'; $('#topoCrumb').textContent = `${ui.crumbPrefix}${code}`; $('#topoScope').textContent = sol.short; $('#topoTitle').textContent = sol.title; $('#topoText').textContent = sol.text; $('#topoTag1').textContent = rec[2]; $('#topoTag2').textContent = rec[3]; $('#topoTag3').textContent = rec[4]; $('#topoSectionLabel').textContent = ui.section; $('#legendActive').textContent = ui.legendActive; $('#legendControl').textContent = ui.legendControl; $('#legendEvidence').textContent = ui.legendEvidence; $('#colInput').textContent = ui.colInput; $('#colLayer').textContent = ui.colLayer; $('#colControl').textContent = ui.colControl; $('#colEvidence').textContent = ui.colEvidence; $('#hubOriginRole').textContent = ui.originRole; $('#nodePanel').textContent = ui.nodePanel; $('#nodePanelRole').textContent = ui.nodePanelRole; $('#nodeNetwork').textContent = ui.nodeNetwork; $('#nodeNetworkRole').textContent = ui.nodeNetworkRole; $('#nodeEnterprise').textContent = ui.nodeEnterprise; $('#nodeEnterpriseRole').textContent = ui.nodeEnterpriseRole; $('#hubControl').textContent = ui.hubControl; $('#hubEvidence').textContent = ui.hubEvidence; $('#topoTicker').textContent = ui.ticker[type]; renderTopologyModebar(type); document.querySelectorAll('.topo-svg .flow').forEach(el => el.classList.remove('on')); document.querySelectorAll('.topo-svg .packet').forEach(el => el.classList.remove('on')); document.querySelectorAll('.topo-svg .node').forEach(el => el.classList.remove('active', 'warn', 'dim')); document.querySelectorAll('.topo-svg .node-label').forEach(el => el.classList.remove('active', 'warn', 'dim')); document.querySelectorAll('.topo-svg .hub[data-hub]').forEach(el => el.classList.remove('is-active', 'is-warn')); const panel = document.querySelector('.topo-svg .node[data-node="panel"]'); const network = document.querySelector('.topo-svg .node[data-node="network"]'); const enterprise = document.querySelector('.topo-svg .node[data-node="enterprise"]'); const control = document.querySelector('.topo-svg .hub[data-hub="control"]'); const evidence = document.querySelector('.topo-svg .hub[data-hub="evidence"]'); const panelLabel = document.querySelector('#labelPanel'); const networkLabel = document.querySelector('#labelNetwork'); const enterpriseLabel = document.querySelector('#labelEnterprise'); if (type === 'panel') { document.querySelectorAll('.path-panel').forEach(el => el.classList.add('on')); panel.classList.add('active'); network.classList.add('dim'); enterprise.classList.add('dim'); panelLabel?.classList.add('active'); networkLabel?.classList.add('dim'); enterpriseLabel?.classList.add('dim'); control.classList.add('is-active'); evidence.classList.add('is-active'); } else if (type === 'network') { document.querySelectorAll('.path-network').forEach(el => el.classList.add('on')); panel.classList.add('dim'); network.classList.add('warn'); enterprise.classList.add('dim'); panelLabel?.classList.add('dim'); networkLabel?.classList.add('warn'); enterpriseLabel?.classList.add('dim'); control.classList.add('is-warn'); evidence.classList.add('is-warn'); } else { document.querySelectorAll('.path-enterprise').forEach(el => el.classList.add('on')); panel.classList.add('active'); network.classList.add('warn'); enterprise.classList.add('active'); panelLabel?.classList.add('active'); networkLabel?.classList.add('warn'); enterpriseLabel?.classList.add('active'); control.classList.add('is-active'); evidence.classList.add('is-active'); } }
 
-    function renderSolutions() { const d = DATA[currentLang]; $('#solutionCards').innerHTML = d.solutions.map(s => `<article class="plan-card ${s.id} reveal ${s.id === currentFit ? 'active' : ''}" data-plan="${s.id}"><div class="plan-top"><div><span class="plan-kicker">${s.cn}</span><h3>${s.title}</h3><span class="short">${s.short}</span></div><span class="badge">${s.badge}</span></div><p>${s.text}</p><ul>${s.lis.map(li => `<li>${li}</li>`).join('')}</ul><button class="btn ghost choose" data-choose="${s.id}">${s.choose}</button></article>`).join(''); $$('[data-choose]').forEach(btn => btn.addEventListener('click', () => { setTopologyFit(btn.dataset.choose); $('#fit').scrollIntoView({ behavior: 'smooth' }); })); observeReveals(); }
+    function renderSolutions() { const d = DATA[currentLang]; $('#solutionCards').innerHTML = d.solutions.map(s => `<article class="plan-card ${s.id} reveal" data-plan="${s.id}"><div class="plan-top"><span class="plan-kicker">${s.cn}</span><span class="badge">${s.badge}</span><h3>${s.title}</h3><span class="short">${s.short}</span></div><p>${s.text}</p><ul>${s.lis.map(li => `<li>${li}</li>`).join('')}</ul><button class="btn ghost choose" data-choose="${s.id}">${s.choose}</button></article>`).join(''); $$('[data-choose]').forEach(btn => btn.addEventListener('click', () => { setTopologyFit(btn.dataset.choose); $('#fit').scrollIntoView({ behavior: 'smooth' }); })); observeReveals(); }
     function renderFit() { const d = DATA[currentLang]; $('#fitSelectors').innerHTML = d.fit.map(x => `<button class="select-btn ${x[0] === currentFit ? 'active' : ''}" data-fit="${x[0]}"><small>${x[1]}</small><strong>${x[2]}</strong><span>${x[3]}</span></button>`).join(''); $$('[data-fit]').forEach(btn => btn.addEventListener('click', () => { setTopologyFit(btn.dataset.fit, { userSelectedFit: true }); })); }
     function setMetricValue(id, value) { const el = $(id); if (!el) return; const lines = String(value).split('\n'); el.replaceChildren(...lines.map(line => { const span = document.createElement('span'); span.textContent = line; return span; })); }
-    function renderRecommendation(type) { const r = DATA[currentLang].rec[type]; $('#recommendTitle').textContent = r[0]; $('#recommendText').textContent = r[1]; setMetricValue('#r1', r[2]); setMetricValue('#r2', r[3]); setMetricValue('#r3', r[4]); $$('.select-btn').forEach(b => b.classList.toggle('active', b.dataset.fit === type)); $$('.plan-card').forEach(c => c.classList.toggle('active', c.dataset.plan === type)); renderHeroTopology(type); }
+    function renderRecommendation(type) { const r = DATA[currentLang].rec[type]; $('#recommendTitle').textContent = r[0]; $('#recommendText').textContent = r[1]; setMetricValue('#r1', r[2]); setMetricValue('#r2', r[3]); setMetricValue('#r3', r[4]); $$('.select-btn').forEach(b => b.classList.toggle('active', b.dataset.fit === type)); $$('#solutionCards .plan-card').forEach(c => c.classList.remove('active')); renderHeroTopology(type); }
     function renderCompare() { const d = DATA[currentLang]; $('#compareTable').innerHTML = `<thead><tr>${d.tableHead.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${d.rows.map(r => `<tr>${r.map((c, i) => `<td class="${i > 0 ? (c === '✓' ? 'ok' : c === '—' ? 'no' : 'part') : ''}">${c}</td>`).join('')}</tr>`).join('')}</tbody>` }
 
     function renderWorkflowTabs() { const t = DATA[currentLang].workflowTabs; const tabs = $('#workflowTabs'); if (!tabs || !t) return; tabs.innerHTML = Object.keys(t).map(k => `<button class="workflow-tab ${k === currentWorkflow ? 'active' : ''}" data-workflow="${k}">${t[k]}</button>`).join(''); tabs.querySelectorAll('[data-workflow]').forEach(btn => btn.addEventListener('click', () => setWorkflowType(btn.dataset.workflow, { userSelectedWorkflow: true }))); }
@@ -4465,7 +4577,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
       setMetricValue('#r2', r[3]);
       setMetricValue('#r3', r[4]);
       $$('.select-btn').forEach(b => b.classList.toggle('active', b.dataset.fit === activeType));
-      $$('.plan-card').forEach(c => c.classList.toggle('active', c.dataset.plan === activeType));
+      $$('#solutionCards .plan-card').forEach(c => c.classList.remove('active'));
       renderHeroTopology(activeType);
     }
     function setTopologyFit(type, options = {}) {
@@ -4530,5 +4642,35 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 })();
 </script>
 <script src="assets/i18n-sweep.js"></script>
+<script id="sampora-standard-footer-i18n">
+(function(){
+  const copy={
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
+    hi:{brandSub:'संचालन कंसोल',footerDesc:'Sampora स्वामित्व वाले Panel संचालकों और Sample Supplier टीमों के लिए ऑनलाइन नमूना संचालन प्लेटफ़ॉर्म है, जो परियोजना वितरण, Supplier Allocation, समीक्षा रिकॉर्ड, वित्त, जोखिम नियंत्रण और Partner Network को साथ रखता है।',tag1:'नमूना आपूर्ति',tag2:'समीक्षा प्रक्रिया',tag3:'सेटलमेंट लेजर',footerProduct:'उत्पाद',footerPlatformOverview:'प्लेटफ़ॉर्म अवलोकन',navSolutions:'समाधान',navPlans:'योजनाएँ',navContact:'संपर्क',footerResources:'संसाधन',footerResourcesOverview:'संसाधन अवलोकन',footerConfigurationGuide:'कॉन्फ़िगरेशन गाइड',footerOperationManual:'ऑपरेशन मैनुअल',footerRolloutNotes:'रोलआउट नोट्स',footerGetStarted:'शुरू करें',ctaTop:'ट्रायल शुरू करें',ctaDemo:'डेमो बुक करें',footerTalkToSales:'सेल्स से बात करें',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'}
+  };
+  function lang(explicit){
+    const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
+    if(copy[explicitRaw])return explicitRaw;
+    try{const saved=localStorage.getItem('sampora_lang');if(copy[saved])return saved;}catch(e){}
+    const raw=(document.documentElement.dataset.lang||document.documentElement.lang||'en').toLowerCase().slice(0,2);
+    return copy[raw]?raw:'en';
+  }
+  function apply(explicit){
+    const dict=copy[lang(explicit)]||copy.en;
+    document.querySelectorAll('.sampora-site-footer [data-footer-i18n]').forEach(el=>{
+      const value=dict[el.dataset.footerI18n];
+      if(value!==undefined)el.textContent=value;
+    });
+  }
+  apply();
+  document.addEventListener('DOMContentLoaded',()=>apply());
+  window.addEventListener('load',()=>apply());
+  document.querySelectorAll('.lang button,[data-lang-btn]').forEach(btn=>{
+    btn.addEventListener('click',()=>setTimeout(()=>apply(btn.dataset.lang||btn.dataset.langBtn),30));
+  });
+  new MutationObserver(()=>apply()).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-lang']});
+})();
+</script>
 </body>
 </html>

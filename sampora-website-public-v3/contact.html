@@ -256,7 +256,7 @@
             background:
                 radial-gradient(circle at 50% 0%, rgba(57, 215, 255, .16), transparent 38%),
                 linear-gradient(180deg, rgba(7, 17, 32, .96), rgba(8, 22, 38, .90));
-            border-bottom: 1px solid var(--line);
+            border-bottom: 0;
             min-height: 430px;
             display: flex;
             align-items: flex-start;
@@ -1057,7 +1057,7 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
 .sampora-site-footer .sampora-footer-card{width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
 .sampora-footer-main{display:grid!important;grid-template-columns:1.45fr .72fr .72fr .72fr!important;gap:48px!important;padding:42px 48px 36px!important}
 .sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--text,#E8EEF5)!important;margin-bottom:22px!important}
-.sampora-footer-mark{width:34px!important;height:34px!important;border-radius:10px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.42)!important;background:linear-gradient(160deg,rgba(56,210,255,.16),rgba(14,27,47,.92))!important;font:800 14px var(--mono,monospace)!important}
+.sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
 .sampora-footer-logo b{display:block!important;font-size:24px!important;line-height:1!important;letter-spacing:-.03em!important;color:var(--text,#E8EEF5)!important}
 .sampora-footer-logo small{display:block!important;margin-top:4px!important;font:800 10px var(--mono,monospace)!important;letter-spacing:.10em!important;color:var(--muted,#7E92AC)!important}
 .sampora-footer-brand p{margin:0!important;max-width:430px!important;color:var(--body,#A9B9CE)!important;font-size:16px!important;line-height:1.75!important}
@@ -1200,6 +1200,36 @@ body{padding-top:100px}
 .mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
 @media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
 @media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
+</style>
+<style id="sampora-horizontal-line-cleanup">
+body {
+    background-image:
+        radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
+        radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .07) 0, transparent 64%),
+        linear-gradient(180deg, var(--ink, #0A1628), #06111F 42%, #08172A 100%) !important;
+    background-size: auto !important;
+}
+body::before {
+    content: none !important;
+    display: none !important;
+}
+.section,
+.response,
+.more-ways,
+.sampora-site-footer,
+.sampora-footer-contact,
+.sampora-footer-legal {
+    border-top: 0 !important;
+}
+.sampora-footer-col h3,
+.sampora-footer-col h4 {
+    border-bottom: 1px solid rgba(129, 178, 214, .18) !important;
+    padding-bottom: 16px !important;
+}
+.sampora-footer-contact-item {
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+}
 </style>
 </head>
 

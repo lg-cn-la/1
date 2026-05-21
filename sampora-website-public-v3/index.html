@@ -3339,17 +3339,7 @@
             margin-bottom: 22px !important;
         }
 
-        .sampora-footer-mark {
-            width: 34px !important;
-            height: 34px !important;
-            border-radius: 10px !important;
-            display: grid !important;
-            place-items: center !important;
-            color: var(--cyan, #38D2FF) !important;
-            border: 1px solid rgba(56, 210, 255, .42) !important;
-            background: linear-gradient(160deg, rgba(56, 210, 255, .16), rgba(14, 27, 47, .92)) !important;
-            font: 800 14px var(--mono, monospace) !important;
-        }
+        .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
 
         .sampora-footer-logo b {
             display: block !important;
@@ -4252,6 +4242,46 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 @media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
 @media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
 </style>
+<style id="sampora-horizontal-line-cleanup">
+body {
+    background-image:
+        radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
+        radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .070) 0, transparent 64%),
+        linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%) !important;
+    background-size: auto !important;
+}
+body::before,
+#workflow::before {
+    content: none !important;
+    display: none !important;
+}
+.section,
+.sampora-site-footer,
+.sampora-footer-contact,
+.sampora-footer-legal {
+    border-top: 0 !important;
+}
+.sampora-footer-col h3,
+.sampora-footer-col h4 {
+    border-bottom: 1px solid rgba(129, 178, 214, .18) !important;
+    padding-bottom: 16px !important;
+}
+.sampora-footer-contact-item {
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+}
+.modules {
+    gap: 16px !important;
+    background: transparent !important;
+    border: 0 !important;
+    overflow: visible !important;
+}
+.module {
+    border: 1px solid rgba(129, 178, 214, .12) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, .16) !important;
+}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="status">
@@ -4740,48 +4770,45 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </aside>
 </div>
 </section>
-<footer class="sampora-site-footer" id="site-footer">
+<footer class="sampora-site-footer" id="footer">
 <div class="container sampora-footer-card">
 <div class="sampora-footer-main">
 <div class="sampora-footer-brand">
 <a aria-label="Sampora home" class="sampora-footer-logo" href="index.html">
 <span class="sampora-footer-mark">S</span>
-<span><b>Sampora</b><small data-sampora-footer="brandSub">Operations platform</small></span>
+<span><b>Sampora</b><small data-footer-i18n="brandSub">Operations console</small></span>
 </a>
-<p data-i18n="footerDesc" data-sampora-footer="desc">Online sample operations platform for panel providers and sample suppliers.</p>
-<div class="sampora-footer-badges">
-<span data-sampora-footer="badge1">Sample operations</span>
-<span data-sampora-footer="badge2">Supplier allocation</span>
-<span data-sampora-footer="badge3">Review records</span>
-</div>
+<p data-footer-i18n="footerDesc">An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.</p>
+<div class="sampora-footer-badges"><span data-footer-i18n="tag1">Sample supply</span><span data-footer-i18n="tag2">Review workflow</span><span data-footer-i18n="tag3">Settlement ledger</span></div>
 </div>
 <div class="sampora-footer-col">
-<h3 data-sampora-footer="productSupport">Resources</h3>
-<a data-sampora-footer="help" href="resources.html">Resources</a>
-<a data-sampora-footer="guide" href="resources.html#surfaces">View manuals</a>
-<a data-sampora-footer="feedback" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+<h3 data-footer-i18n="footerProduct">Product</h3>
+<a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
+<a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
+<a href="plans.html" data-footer-i18n="navPlans">Plans</a>
+<a href="contact.html" data-footer-i18n="navContact">Contact</a>
 </div>
 <div class="sampora-footer-col">
-<h3 data-sampora-footer="company">Company</h3>
-<a data-sampora-footer="about" href="index.html#platform">About</a>
-<a data-sampora-footer="history" href="index.html#workflow">Workflow</a>
-<a data-sampora-footer="contactUs" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+<h3 data-footer-i18n="footerResources">Resources</h3>
+<a href="resources.html" data-footer-i18n="footerResourcesOverview">Resources overview</a>
+<a href="resource-manuals.html#configuration-guide" data-footer-i18n="footerConfigurationGuide">Configuration guide</a>
+<a href="resource-manuals.html#operation-manual" data-footer-i18n="footerOperationManual">Operation manual</a>
+<a href="resource-manuals.html#rollout-notes" data-footer-i18n="footerRolloutNotes">Rollout notes</a>
 </div>
 <div class="sampora-footer-col">
-<h3 data-sampora-footer="rights">Start trial</h3>
-<a data-sampora-footer="trial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
-<a data-sampora-footer="join" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
-<a data-sampora-footer="news" href="resources.html">Resources</a>
+<h3 data-footer-i18n="footerGetStarted">Get started</h3>
+<a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
+<a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
+<a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
+<a href="contact.html" data-footer-i18n="navContact">Contact</a>
 </div>
 </div>
 <div class="sampora-footer-contact">
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--tel">TEL</span><span>400-660-0224</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>jiayu@surveysaas.com</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--loc">LOC</span><span>Anhui, China</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@sampora.com</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
 </div>
-<div class="sampora-footer-legal">
-<span data-sampora-footer="copyright">© 2026 Anhui Jiayu Enterprise Service Co., Ltd.</span><span data-sampora-footer="companyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span>
-</div>
+<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
 </div>
 </footer>
 <script>
@@ -6353,5 +6380,35 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 })();
 </script>
 <script src="assets/i18n-sweep.js"></script>
+<script id="sampora-standard-footer-i18n">
+(function(){
+  const copy={
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
+    hi:{brandSub:'संचालन कंसोल',footerDesc:'Sampora स्वामित्व वाले Panel संचालकों और Sample Supplier टीमों के लिए ऑनलाइन नमूना संचालन प्लेटफ़ॉर्म है, जो परियोजना वितरण, Supplier Allocation, समीक्षा रिकॉर्ड, वित्त, जोखिम नियंत्रण और Partner Network को साथ रखता है।',tag1:'नमूना आपूर्ति',tag2:'समीक्षा प्रक्रिया',tag3:'सेटलमेंट लेजर',footerProduct:'उत्पाद',footerPlatformOverview:'प्लेटफ़ॉर्म अवलोकन',navSolutions:'समाधान',navPlans:'योजनाएँ',navContact:'संपर्क',footerResources:'संसाधन',footerResourcesOverview:'संसाधन अवलोकन',footerConfigurationGuide:'कॉन्फ़िगरेशन गाइड',footerOperationManual:'ऑपरेशन मैनुअल',footerRolloutNotes:'रोलआउट नोट्स',footerGetStarted:'शुरू करें',ctaTop:'ट्रायल शुरू करें',ctaDemo:'डेमो बुक करें',footerTalkToSales:'सेल्स से बात करें',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'}
+  };
+  function lang(explicit){
+    const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
+    if(copy[explicitRaw])return explicitRaw;
+    try{const saved=localStorage.getItem('sampora_lang');if(copy[saved])return saved;}catch(e){}
+    const raw=(document.documentElement.dataset.lang||document.documentElement.lang||'en').toLowerCase().slice(0,2);
+    return copy[raw]?raw:'en';
+  }
+  function apply(explicit){
+    const dict=copy[lang(explicit)]||copy.en;
+    document.querySelectorAll('.sampora-site-footer [data-footer-i18n]').forEach(el=>{
+      const value=dict[el.dataset.footerI18n];
+      if(value!==undefined)el.textContent=value;
+    });
+  }
+  apply();
+  document.addEventListener('DOMContentLoaded',()=>apply());
+  window.addEventListener('load',()=>apply());
+  document.querySelectorAll('.lang button,[data-lang-btn]').forEach(btn=>{
+    btn.addEventListener('click',()=>setTimeout(()=>apply(btn.dataset.lang||btn.dataset.langBtn),30));
+  });
+  new MutationObserver(()=>apply()).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-lang']});
+})();
+</script>
 </body>
 </html>
