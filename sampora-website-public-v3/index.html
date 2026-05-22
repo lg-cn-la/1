@@ -4334,10 +4334,12 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <style id="sampora-horizontal-line-cleanup">
 body {
     background-image:
+        linear-gradient(rgba(120, 172, 216, .026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 172, 216, .024) 1px, transparent 1px),
         radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
         radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .070) 0, transparent 64%),
         linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%) !important;
-    background-size: auto !important;
+    background-size: 44px 44px, 44px 44px, auto, auto, auto !important;
 }
 body::before,
 #workflow::before {
@@ -4358,6 +4360,26 @@ body::before,
 .sampora-footer-contact-item {
     border-right: 0 !important;
     border-bottom: 0 !important;
+}
+#footer.sampora-site-footer {
+    border-top: 0 !important;
+}
+#footer .sampora-footer-card {
+    border-color: rgba(129, 178, 214, .10) !important;
+    border-top-color: rgba(129, 178, 214, .04) !important;
+    background: rgba(8, 20, 36, .62) !important;
+}
+#footer .sampora-footer-contact,
+#footer .sampora-footer-legal {
+    border-top: 0 !important;
+}
+#footer .sampora-footer-contact-item {
+    border-bottom: 0 !important;
+}
+@media(max-width:1180px) {
+    #footer .sampora-footer-contact-item {
+        border-bottom: 0 !important;
+    }
 }
 .modules {
     gap: 16px !important;

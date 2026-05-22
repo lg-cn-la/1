@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-05-19T06:26:52.964Z",
+  "generatedAt": "2026-05-22T08:06:26.715Z",
   "chromeExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "nav": {
     "390": {
       "index.html": {
         "mast": {
           "x": 0,
-          "y": 34,
+          "y": 0,
           "width": 390,
           "height": 67
         },
         "brand": {
           "x": 16,
-          "y": 52,
-          "width": 108.73,
+          "y": 18.14,
+          "width": 109.64,
           "height": 30
         },
         "nav": {
@@ -23,10 +23,10 @@
           "height": 0
         },
         "actions": {
-          "x": 132.73,
-          "y": 34.86,
-          "width": 241.27,
-          "height": 64.28
+          "x": 133.64,
+          "y": 0,
+          "width": 240.36,
+          "height": 66.28
         },
         "active": {
           "x": 0,
@@ -38,21 +38,21 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": true,
         "gaps": {
-          "brandToNav": -124.73,
-          "navToActions": 132.73
+          "brandToNav": -125.64,
+          "navToActions": 133.64
         }
       },
       "solutions.html": {
         "mast": {
           "x": 0,
-          "y": 34,
+          "y": 0,
           "width": 390,
           "height": 67
         },
         "brand": {
           "x": 16,
-          "y": 52,
-          "width": 108.73,
+          "y": 18,
+          "width": 109.64,
           "height": 30
         },
         "nav": {
@@ -62,9 +62,9 @@
           "height": 0
         },
         "actions": {
-          "x": 134.73,
-          "y": 46,
-          "width": 229.27,
+          "x": 135.64,
+          "y": 12,
+          "width": 228.36,
           "height": 42
         },
         "active": {
@@ -77,20 +77,20 @@
         "activeAfterBottom": "auto",
         "mobileToggleVisible": true,
         "gaps": {
-          "brandToNav": -124.73,
-          "navToActions": 134.73
+          "brandToNav": -125.64,
+          "navToActions": 135.64
         }
       },
       "resources.html": {
         "mast": {
           "x": 0,
-          "y": 34,
+          "y": 0,
           "width": 390,
           "height": 67
         },
         "brand": {
           "x": 16,
-          "y": 52,
+          "y": 18,
           "width": 109.64,
           "height": 30
         },
@@ -102,7 +102,7 @@
         },
         "actions": {
           "x": 165.31,
-          "y": 46,
+          "y": 12,
           "width": 194.69,
           "height": 42
         },
@@ -140,9 +140,9 @@
           "height": 0
         },
         "actions": {
-          "x": 210,
+          "x": 175.31,
           "y": 12,
-          "width": 156,
+          "width": 190.69,
           "height": 42
         },
         "active": {
@@ -156,7 +156,7 @@
         "mobileToggleVisible": true,
         "gaps": {
           "brandToNav": -125.86,
-          "navToActions": 210
+          "navToActions": 175.31
         }
       },
       "plans.html": {
@@ -168,8 +168,8 @@
         },
         "brand": {
           "x": 16,
-          "y": 18.05,
-          "width": 108.73,
+          "y": 18,
+          "width": 109.64,
           "height": 30
         },
         "nav": {
@@ -179,10 +179,10 @@
           "height": 0
         },
         "actions": {
-          "x": 138.73,
-          "y": 0,
-          "width": 280.02,
-          "height": 66.09
+          "x": 190,
+          "y": 12,
+          "width": 170,
+          "height": 42
         },
         "active": {
           "x": 0,
@@ -194,8 +194,8 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": true,
         "gaps": {
-          "brandToNav": -124.73,
-          "navToActions": 138.73
+          "brandToNav": -125.64,
+          "navToActions": 190
         }
       },
       "contact.html": {
@@ -207,9 +207,9 @@
         },
         "brand": {
           "x": 16,
-          "y": 18.5,
-          "width": 164.58,
-          "height": 32
+          "y": 19.5,
+          "width": 110.66,
+          "height": 30
         },
         "nav": {
           "x": 0,
@@ -218,10 +218,10 @@
           "height": 0
         },
         "actions": {
-          "x": 194.58,
-          "y": 3.5,
-          "width": 246.03,
-          "height": 62
+          "x": 204,
+          "y": 13.5,
+          "width": 170,
+          "height": 42
         },
         "active": {
           "x": 0,
@@ -231,10 +231,10 @@
         },
         "activeAfterWidth": "auto",
         "activeAfterBottom": "15px",
-        "mobileToggleVisible": false,
+        "mobileToggleVisible": true,
         "gaps": {
-          "brandToNav": -180.58,
-          "navToActions": 194.58
+          "brandToNav": -126.66,
+          "navToActions": 204
         }
       }
     },
@@ -248,9 +248,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 40.09,
-          "width": 167.36,
-          "height": 55.8
+          "y": 47.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 231.36,
@@ -265,7 +265,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 346.03,
+          "x": 301.52,
           "y": 35,
           "width": 68.95,
           "height": 66
@@ -274,7 +274,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         }
       },
@@ -287,9 +287,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 42.52,
-          "width": 167.36,
-          "height": 50.95
+          "y": 47.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 231.36,
@@ -304,7 +304,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 449.31,
+          "x": 405.56,
           "y": 35,
           "width": 77.08,
           "height": 66
@@ -313,7 +313,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 0,
@@ -333,9 +333,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 42.52,
-          "width": 167.36,
-          "height": 50.95
+          "y": 47.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 231.36,
@@ -350,7 +350,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 558.39,
+          "x": 514.64,
           "y": 35,
           "width": 85.63,
           "height": 66
@@ -359,7 +359,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 0,
@@ -396,7 +396,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 558.39,
+          "x": 514.64,
           "y": 35,
           "width": 85.63,
           "height": 66
@@ -412,7 +412,7 @@
         "navMaxDiffVsIndex": 0,
         "actionsMaxDiffVsIndex": 0,
         "gapDiffsVsIndex": {
-          "brandToNav": 0,
+          "brandToNav": 2.25,
           "navToActions": 0
         }
       },
@@ -425,9 +425,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 38.92,
-          "width": 167.36,
-          "height": 56.14
+          "y": 46.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 231.36,
@@ -442,7 +442,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 677.09,
+          "x": 632.58,
           "y": 34,
           "width": 52.86,
           "height": 66
@@ -451,7 +451,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
@@ -471,9 +471,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 51.5,
-          "width": 167.36,
-          "height": 31
+          "y": 46.63,
+          "width": 170.13,
+          "height": 40.75
         },
         "nav": {
           "x": 231.36,
@@ -488,7 +488,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 759.2,
+          "x": 803.97,
           "y": 34,
           "width": 68.09,
           "height": 66
@@ -497,14 +497,14 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.23,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
         "navMaxDiffVsIndex": 1,
         "actionsMaxDiffVsIndex": 1,
         "gapDiffsVsIndex": {
-          "brandToNav": 0,
+          "brandToNav": 0.52,
           "navToActions": 0
         }
       }
@@ -519,9 +519,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 40.09,
-          "width": 167.36,
-          "height": 55.8
+          "y": 47.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 279.36,
@@ -536,7 +536,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 394.03,
+          "x": 349.52,
           "y": 35,
           "width": 68.95,
           "height": 66
@@ -545,7 +545,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         }
       },
@@ -558,9 +558,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 42.52,
-          "width": 167.36,
-          "height": 50.95
+          "y": 47.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 279.36,
@@ -575,7 +575,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 497.31,
+          "x": 453.56,
           "y": 35,
           "width": 77.08,
           "height": 66
@@ -584,7 +584,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 0,
@@ -604,9 +604,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 42.52,
-          "width": 167.36,
-          "height": 50.95
+          "y": 47.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 279.36,
@@ -621,7 +621,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 606.39,
+          "x": 562.64,
           "y": 35,
           "width": 85.63,
           "height": 66
@@ -630,7 +630,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 0,
@@ -667,7 +667,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 606.39,
+          "x": 562.64,
           "y": 35,
           "width": 85.63,
           "height": 66
@@ -683,7 +683,7 @@
         "navMaxDiffVsIndex": 0,
         "actionsMaxDiffVsIndex": 0,
         "gapDiffsVsIndex": {
-          "brandToNav": 0,
+          "brandToNav": 2.25,
           "navToActions": 0
         }
       },
@@ -696,9 +696,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 38.92,
-          "width": 167.36,
-          "height": 56.14
+          "y": 46.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 279.36,
@@ -713,7 +713,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 725.09,
+          "x": 680.58,
           "y": 34,
           "width": 52.86,
           "height": 66
@@ -722,7 +722,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
@@ -742,9 +742,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 51.5,
-          "width": 167.36,
-          "height": 31
+          "y": 46.63,
+          "width": 170.13,
+          "height": 40.75
         },
         "nav": {
           "x": 279.36,
@@ -759,7 +759,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 807.2,
+          "x": 851.97,
           "y": 34,
           "width": 68.09,
           "height": 66
@@ -768,14 +768,14 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.23,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
         "navMaxDiffVsIndex": 1,
         "actionsMaxDiffVsIndex": 1,
         "gapDiffsVsIndex": {
-          "brandToNav": 0,
+          "brandToNav": 0.52,
           "navToActions": 0
         }
       }
@@ -790,9 +790,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 40.09,
-          "width": 167.36,
-          "height": 55.8
+          "y": 47.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 471.36,
@@ -807,7 +807,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 586.03,
+          "x": 541.52,
           "y": 35,
           "width": 68.95,
           "height": 66
@@ -816,7 +816,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         }
       },
@@ -829,9 +829,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 42.52,
-          "width": 167.36,
-          "height": 50.95
+          "y": 47.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 471.36,
@@ -846,7 +846,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 689.31,
+          "x": 645.56,
           "y": 35,
           "width": 77.08,
           "height": 66
@@ -855,7 +855,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 0,
@@ -875,9 +875,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 42.52,
-          "width": 167.36,
-          "height": 50.95
+          "y": 47.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 471.36,
@@ -892,7 +892,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 798.39,
+          "x": 754.64,
           "y": 35,
           "width": 85.63,
           "height": 66
@@ -901,7 +901,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 0,
@@ -938,7 +938,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 798.39,
+          "x": 754.64,
           "y": 35,
           "width": 85.63,
           "height": 66
@@ -954,7 +954,7 @@
         "navMaxDiffVsIndex": 0,
         "actionsMaxDiffVsIndex": 0,
         "gapDiffsVsIndex": {
-          "brandToNav": 0,
+          "brandToNav": 2.25,
           "navToActions": 0
         }
       },
@@ -967,9 +967,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 38.92,
-          "width": 167.36,
-          "height": 56.14
+          "y": 46.63,
+          "width": 169.61,
+          "height": 40.75
         },
         "nav": {
           "x": 471.36,
@@ -984,7 +984,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 917.09,
+          "x": 872.58,
           "y": 34,
           "width": 52.86,
           "height": 66
@@ -993,7 +993,7 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
@@ -1013,9 +1013,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 51.5,
-          "width": 167.36,
-          "height": 31
+          "y": 46.63,
+          "width": 170.13,
+          "height": 40.75
         },
         "nav": {
           "x": 471.36,
@@ -1030,7 +1030,7 @@
           "height": 44.91
         },
         "active": {
-          "x": 999.2,
+          "x": 1043.97,
           "y": 34,
           "width": 68.09,
           "height": 66
@@ -1039,14 +1039,14 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.23,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
         "navMaxDiffVsIndex": 1,
         "actionsMaxDiffVsIndex": 1,
         "gapDiffsVsIndex": {
-          "brandToNav": 0,
+          "brandToNav": 0.52,
           "navToActions": 0
         }
       }
@@ -1054,7 +1054,7 @@
   },
   "sticky": {
     "index.html": {
-      "scrollY": 2682,
+      "scrollY": 2683,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1079,7 +1079,7 @@
       "yCloseToStatus": true
     },
     "solutions.html": {
-      "scrollY": 1699,
+      "scrollY": 1731,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1104,7 +1104,7 @@
       "yCloseToStatus": true
     },
     "resources.html": {
-      "scrollY": 1003,
+      "scrollY": 1120,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1129,7 +1129,7 @@
       "yCloseToStatus": true
     },
     "resource-manuals.html": {
-      "scrollY": 479,
+      "scrollY": 692,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1154,7 +1154,7 @@
       "yCloseToStatus": true
     },
     "plans.html": {
-      "scrollY": 893,
+      "scrollY": 1335,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1179,7 +1179,7 @@
       "yCloseToStatus": true
     },
     "contact.html": {
-      "scrollY": 739,
+      "scrollY": 1003,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1210,11 +1210,11 @@
       "heroCopyAfterDisplay": "none",
       "heroGrid": {
         "width": 1360,
-        "height": 802.41
+        "height": 838.66
       },
       "console": {
         "width": 703.83,
-        "height": 802.41
+        "height": 838.66
       },
       "topoGrid": {
         "width": 653.83,
@@ -1315,36 +1315,36 @@
         "delayMs": 0,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-6.00064px",
+        "flowStrokeDashoffset": "-5.6628px",
         "scanAnimationName": "none",
-        "packetOnCount": 8,
-        "packetOpacity": "0.747268"
+        "packetOnCount": 5,
+        "packetOpacity": "0.744857"
       },
       {
         "delayMs": 1000,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-26.6673px",
+        "flowStrokeDashoffset": "-25.9968px",
         "scanAnimationName": "none",
-        "packetOnCount": 8,
+        "packetOnCount": 5,
         "packetOpacity": "0.75"
       },
       {
         "delayMs": 3000,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-19.0053px",
+        "flowStrokeDashoffset": "-18.6661px",
         "scanAnimationName": "none",
-        "packetOnCount": 8,
+        "packetOnCount": 5,
         "packetOpacity": "0.75"
       },
       {
         "delayMs": 6000,
         "flowOnCount": 6,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-31.6633px",
+        "flowStrokeDashoffset": "-32.3341px",
         "scanAnimationName": "none",
-        "packetOnCount": 6,
+        "packetOnCount": 4,
         "packetOpacity": "0.75"
       }
     ],
@@ -1353,7 +1353,7 @@
         "delayMs": 0,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-4.9968px",
+        "flowStrokeDashoffset": "-6.33978px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
         "packetOpacity": "0.85"
@@ -1362,7 +1362,7 @@
         "delayMs": 1000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-25.3281px",
+        "flowStrokeDashoffset": "-27.0038px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
         "packetOpacity": "0.85"
@@ -1371,7 +1371,7 @@
         "delayMs": 3000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-8.2801px",
+        "flowStrokeDashoffset": "-9.66154px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
         "packetOpacity": "0.85"
@@ -1380,7 +1380,7 @@
         "delayMs": 6000,
         "flowOnCount": 7,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-30.3261px",
+        "flowStrokeDashoffset": "-10.0021px",
         "scanAnimationName": "none",
         "packetOnCount": 7,
         "packetOpacity": "0.85"
@@ -1390,8 +1390,8 @@
       {
         "delayMs": 0,
         "flowOnCount": 3,
-        "flowAnimationName": "topoDash, flowAmberBreathe",
-        "flowStrokeDashoffset": "-5.89241px",
+        "flowAnimationName": "topoDash",
+        "flowStrokeDashoffset": "-9.93367px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1399,8 +1399,8 @@
       {
         "delayMs": 1000,
         "flowOnCount": 3,
-        "flowAnimationName": "topoDash, flowAmberBreathe",
-        "flowStrokeDashoffset": "-25.8831px",
+        "flowAnimationName": "topoDash",
+        "flowStrokeDashoffset": "-40.6158px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1408,8 +1408,8 @@
       {
         "delayMs": 3000,
         "flowOnCount": 3,
-        "flowAnimationName": "topoDash, flowAmberBreathe",
-        "flowStrokeDashoffset": "-8.19011px",
+        "flowAnimationName": "topoDash",
+        "flowStrokeDashoffset": "-30.2345px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1417,8 +1417,8 @@
       {
         "delayMs": 6000,
         "flowOnCount": 3,
-        "flowAnimationName": "topoDash, flowAmberBreathe",
-        "flowStrokeDashoffset": "-9.5002px",
+        "flowAnimationName": "topoDash",
+        "flowStrokeDashoffset": "-16.5293px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1427,12 +1427,12 @@
   },
   "plans": {
     "matrix": {
-      "wrapWidth": 1320,
-      "tableWidth": 1318,
-      "thPadding": "14px 18px",
-      "tdPadding": "14px 18px",
+      "wrapWidth": 1360,
+      "tableWidth": 1358,
+      "thPadding": "18px 28px",
+      "tdPadding": "18px 28px",
       "thFontSize": "12px",
-      "tdFontSize": "14.5px"
+      "tdFontSize": "14.25px"
     }
   },
   "contact": {
@@ -1648,5 +1648,9 @@
     "resource-manuals-zh-doc-config-1440.png",
     "resource-manuals-hi-doc-config-1440.png"
   ],
-  "failures": []
+  "failures": [
+    "desktop nav brandToNav gap mismatch at 1440px for resource-manuals.html: 2.25px",
+    "desktop nav brandToNav gap mismatch at 1536px for resource-manuals.html: 2.25px",
+    "desktop nav brandToNav gap mismatch at 1920px for resource-manuals.html: 2.25px"
+  ]
 }

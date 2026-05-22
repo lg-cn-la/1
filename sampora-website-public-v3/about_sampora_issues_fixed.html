@@ -31,6 +31,11 @@
 
 /* Status live-dot clearance */
 .status .inner{padding-left:10px}
+.status .live{text-transform:none}
+@media(min-width:641px){
+body.nav-condensed .status{height:0;transform:translateY(-100%);opacity:0;pointer-events:none;overflow:hidden}
+body.nav-condensed .mast{top:0}
+}
 
 /* Heading cleanup: remove secondary descriptions and let main titles use the full row. */
 .section-head.title-only{grid-template-columns:1fr;align-items:start;margin-bottom:44px;}
@@ -39,6 +44,11 @@
 html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head.title-only h2{white-space:nowrap;font-size:clamp(34px,3.05vw,52px);}
 @media(max-width:1180px){html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head.title-only h2{white-space:normal;font-size:clamp(31px,5vw,46px);}}
 @media(max-width:640px){.section-head.title-only{margin-bottom:30px}.solo-head.title-only{margin-bottom:30px}}
+
+/* About #what -> #timeline boundary: reduce only the adjacent empty edges and fade the alt band out. */
+#what.section.alt{padding-bottom:64px;background:linear-gradient(180deg,rgba(255,255,255,.018) 0%,rgba(255,255,255,.016) 62%,rgba(255,255,255,0) 100%);}
+#timeline.section{padding-top:56px;}
+@media(max-width:640px){#what.section.alt{padding-bottom:48px}#timeline.section{padding-top:44px}}
 
 /* Chinese hero typography: reduce overly tight tracking from the global H1 and improve line rhythm */
 html[data-lang="zh"] .hero h1{
@@ -107,6 +117,31 @@ html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head
 .flow-row{grid-template-columns:minmax(118px,150px) minmax(0,1fr) minmax(66px,auto);}
 .flow-row span:nth-child(2){min-width:0;overflow-wrap:anywhere;}
 @media(max-width:1024px){.flow-row{grid-template-columns:1fr;}}
+
+/* Worker B: About hero rhythm and Plans-like console card */
+@media(min-width:1181px){
+  .hero{padding-top:64px;}
+  .hero-grid{grid-template-columns:minmax(0,.94fr) minmax(430px,1.06fr);gap:42px;align-items:stretch;}
+  .hero-grid > :first-child{display:flex;min-height:100%;flex-direction:column;align-items:flex-start;}
+}
+.hero .console-card{display:flex;min-height:100%;flex-direction:column;border:1px solid rgba(129,178,214,.18);border-radius:18px;background:linear-gradient(180deg,rgba(14,27,47,.84),rgba(9,24,42,.70));box-shadow:0 26px 80px rgba(0,0,0,.28);isolation:isolate;}
+.hero .console-head{height:52px;justify-content:flex-start;gap:14px;padding:0 18px;background:linear-gradient(180deg,rgba(11,28,48,.92),rgba(8,20,36,.82));color:var(--fg2);}
+.hero .console-head .traffic{flex:0 0 auto;}
+.hero .console-head [data-i18n="consolePath"]{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--fg2);font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+.hero .console-body{display:flex;flex:1;flex-direction:column;padding:24px;}
+.hero .metric-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:12px;}
+.hero .metric{display:flex;min-width:0;min-height:104px;flex-direction:column;justify-content:flex-start;gap:12px;padding:16px 15px;border:1px solid rgba(129,178,214,.11);border-radius:14px;background:rgba(6,16,31,.38);}
+.hero .metric small{min-height:28px;line-height:1.35;color:rgba(159,178,200,.82);overflow-wrap:anywhere;}
+.hero .metric b{margin-top:0;font-size:clamp(18px,1.55vw,22px);line-height:1.12;overflow-wrap:anywhere;}
+.hero .metric:nth-child(1) b{color:var(--cyan2);}
+.hero .metric .ok{color:rgba(181,240,86,.92);}
+.hero .flow-row{border-color:rgba(129,178,214,.11);background:rgba(6,16,31,.30);padding:13px 14px;}
+.hero .flow-row:hover,.hero .flow-row:focus-within{transform:translateY(-2px);border-color:rgba(56,210,255,.34);background:rgba(20,40,69,.42);box-shadow:0 14px 34px rgba(0,0,0,.20);}
+@media(max-width:1024px){
+  .hero .console-card{min-height:0;}
+  .hero .metric-grid{grid-template-columns:1fr;}
+  .hero .metric{min-height:0;}
+}
 /* Header actions parity with resources.html */
 .mast .lang,.mast .lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
 .mast .lang button,.mast .lang-btn{height:34px;min-width:42px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px var(--mono,ui-monospace,monospace);transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
@@ -115,6 +150,9 @@ html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head
 .mast .header-actions .btn.ghost:hover,.mast .nav-actions .btn.ghost:hover,.mast .actions .btn.ghost:hover,.mast .header-actions .btn.ghost:focus-visible,.mast .nav-actions .btn.ghost:focus-visible,.mast .actions .btn.ghost:focus-visible{transform:translateY(-1px);color:var(--cyan2,var(--cyan,#61e7ff));border-color:rgba(56,210,255,.45);background:rgba(20,40,69,.22)}
 .mast .header-actions .btn.primary,.mast .nav-actions .btn.primary,.mast .actions .btn.primary{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
 .mast .header-actions .btn.primary:hover,.mast .nav-actions .btn.primary:hover,.mast .actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible,.mast .nav-actions .btn.primary:focus-visible,.mast .actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:active,.mast .nav-actions .btn.primary:active,.mast .actions .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
+/* Bottom CTA primary reuses the header primary selected motion. */
+.cta-section .btn.primary{background:linear-gradient(135deg,var(--cyan),var(--cyan2));transition:transform .12s var(--ease),box-shadow .18s var(--ease),color .18s var(--ease),border-color .18s var(--ease)}
+.cta-section .btn.primary:hover,.cta-section .btn.primary:focus-visible,.cta-section .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
 @media(min-width:1101px){.mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box;width:430px;min-width:430px;align-self:center;justify-self:end;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:nowrap;overflow:visible}.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto;white-space:nowrap}}
 @media(max-width:640px){.mast .inner{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px}.mast .brand{min-width:0;overflow:hidden}.mast .brand small{display:none}.mast .header-actions{min-width:0;width:auto;justify-self:end;gap:6px;overflow:visible}.mast .lang{min-width:0;flex:0 1 auto}.mast .lang button{min-width:34px;padding-left:6px;padding-right:6px;font-size:10px}.mast .mobile-nav-toggle{width:36px;height:36px;flex:0 0 36px}}
 </style>
@@ -163,10 +201,12 @@ html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head
 <style id="sampora-horizontal-line-cleanup">
 body {
     background-image:
+        linear-gradient(rgba(120, 172, 216, .026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 172, 216, .024) 1px, transparent 1px),
         radial-gradient(68% 50% at 78% 0%, rgba(56,210,255,.14), transparent 60%),
         radial-gradient(54% 42% at 18% 8%, rgba(181,240,86,.06), transparent 58%),
         linear-gradient(180deg, #0A1628 0%, #06101F 55%, #08172A 100%) !important;
-    background-size: auto !important;
+    background-size: 44px 44px, 44px 44px, auto, auto, auto !important;
 }
 body::before {
     content: none !important;
@@ -188,10 +228,30 @@ body::before {
     border-right: 0 !important;
     border-bottom: 0 !important;
 }
+#footer.sampora-site-footer {
+    border-top: 0 !important;
+}
+#footer .sampora-footer-card {
+    border-color: rgba(129, 178, 214, .10) !important;
+    border-top-color: rgba(129, 178, 214, .04) !important;
+    background: rgba(8, 20, 36, .62) !important;
+}
+#footer .sampora-footer-contact,
+#footer .sampora-footer-legal {
+    border-top: 0 !important;
+}
+#footer .sampora-footer-contact-item {
+    border-bottom: 0 !important;
+}
+@media(max-width:1180px) {
+    #footer .sampora-footer-contact-item {
+        border-bottom: 0 !important;
+    }
+}
 </style>
 </head>
 <body>
-<div class="status"><div class="container inner"><span class="live" data-i18n="statusLive">Product loop · Live</span><span class="sep">/</span><span><b data-i18n="statusDemoLabel">API-ready</b> <span data-i18n="statusNetworks">sample operations</span></span><span class="sep">/</span><span data-i18n="statusRegion">allocation settings active</span><span class="right" data-i18n="statusControls">Privacy, review and export controls</span></div></div>
+<div class="status"><div class="container inner"><span class="live" data-i18n="statusLive">About Sampora · Live</span><span class="sep">/</span><span data-i18n="statusDemoLabel">Sample operations platform</span><span class="right" data-i18n="statusControls">Traceable delivery, review and settlement</span></div></div>
 <header class="mast" id="mast"><div class="container inner"><a aria-label="Sampora home" data-i18n-aria-label="ariaHome" class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a><nav aria-label="Primary navigation" class="nav" data-i18n-aria-label="ariaPrimaryNav"><a data-i18n="navProduct" href="index.html">Product</a><a data-i18n="navSolutions" href="solutions.html">Solutions</a><a data-i18n="navResources" href="resources.html">Resources</a><a data-i18n="navPlans" href="plans.html">Plans</a><a class="active" data-i18n="navAboutShort" href="about_sampora_issues_fixed.html">About</a><a data-i18n="navContact" href="contact.html">Contact</a></nav><div class="header-actions"><div aria-label="Language switcher" class="lang" data-i18n-aria-label="ariaLanguageSwitcher"><button class="active" data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button><button data-lang="hi" type="button">हिन्दी</button></div><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a><button aria-expanded="false" aria-label="Open navigation" class="mobile-nav-toggle" data-i18n-aria-label="ariaOpenNav" type="button">☰</button></div></div></header>
 <main>
 <section class="hero" id="top"><div class="container hero-grid"><div><span class="eyebrow" data-i18n="heroEyebrow">ABOUT SAMPORA</span><h1><span data-i18n="heroTitleBefore">Sampora turns sample operations into </span><span class="grad" data-i18n="heroTitleHighlight">traceable workflows</span><span data-i18n="heroTitleAfter">.</span></h1><p class="lead" data-i18n="heroDesc">Sampora helps panel providers and sample suppliers manage project intake, supplier allocation, review records, risk controls, settlement evidence, and API / workspace handoff in one operating layer.</p><div class="hero-actions"><a class="btn primary" data-i18n="heroPrimary" href="contact.html?intent=start_trial#contact-form">Start trial →</a><a class="btn ghost" data-i18n="heroSecondary" href="#timeline">See operating principles</a></div><div class="tags"><span class="tag" data-i18n="tagSurvey">Panel providers</span><span class="tag" data-i18n="tagOps">Sample suppliers</span><span class="tag" data-i18n="tagReview">Review records</span><span class="tag" data-i18n="tagSettlement">Settlement evidence</span></div></div><aside aria-label="Sampora operating layer preview" class="console-card" data-i18n-aria-label="ariaConsolePreview"><div class="console-head"><span><span class="traffic"><i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i></span></span><span data-i18n="consolePath">sample operations / about / Sampora layer</span></div><div class="console-body"><div class="metric-grid"><div class="metric"><small data-i18n="metric1Label">Operating focus</small><b data-i18n="metric1Value">Panel + supply</b></div><div class="metric"><small data-i18n="metric2Label">Core workflow</small><b class="ok" data-i18n="metric2Value">Review + settle</b></div><div class="metric"><small data-i18n="metric3Label">Evidence layer</small><b data-i18n="metric3Value">Traceable</b></div></div><div class="layer-flow"><div class="flow-row"><strong data-i18n="consoleRow1Title">PROJECT INTAKE</strong><span data-i18n="flow1">client, country, CPI, IR, LOI, quota and launch context captured</span><span data-i18n="consoleStatusEmbedded">CAPTURED</span></div><div class="flow-row"><strong data-i18n="consoleRow2Title">SUPPLIER ALLOCATION</strong><span data-i18n="flow2">selected suppliers, blocked supply and supplier-specific pricing controlled</span><span data-i18n="consoleStatusEnabled">CONTROLLED</span></div><div class="flow-row"><strong data-i18n="consoleRow3Title">REVIEW RECORDS</strong><span data-i18n="flow3">progress, completes, rejects, callbacks and exceptions retained</span><span data-i18n="consoleStatusRunning">RECORDED</span></div><div class="flow-row"><strong data-i18n="consoleRow4Title">SETTLEMENT EVIDENCE</strong><span data-i18n="flow4">verified delivery connected to supplier bills and client invoices</span><span data-i18n="consoleStatusConnected">LINKED</span></div><div class="flow-row"><strong data-i18n="consoleRow5Title">API / WORKSPACE HANDOFF</strong><span data-i18n="flow5">projects can be received through API integration or Sampora workspaces</span><span data-i18n="consoleStatusSynced">READY</span></div></div></div></aside></div></section>
@@ -248,11 +308,9 @@ const LANG_KEY='sampora_lang';
 const I18N={
   "en": {
     "jsonLdDescription": "Sampora is an online sample operations platform for panel providers and sample suppliers, connecting project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows.",
-    "statusLive": "Product loop · Live",
-    "statusDemoLabel": "API-ready",
-    "statusNetworks": "sample operations",
-    "statusRegion": "allocation settings active",
-    "statusControls": "Privacy, review and export controls",
+    "statusLive": "About Sampora · Live",
+    "statusDemoLabel": "Sample operations platform",
+    "statusControls": "Traceable delivery, review and settlement",
     "brandSub": "Operations console",
     "navProduct": "Product",
     "navSolutions": "Solutions",
@@ -382,11 +440,9 @@ const I18N={
     "ogDescription": "Sampora 将项目接收、供应商分配、审核记录、风控规则和结算依据连接为面向自有样本运营方与在线样本供应商的可追踪工作流。",
     "twitterTitle": "关于 Sampora",
     "twitterDescription": "Sampora 将项目接收、供应商分配、审核记录、风控规则和结算依据连接为面向自有样本运营方与在线样本供应商的可追踪工作流。",
-    "statusLive": "产品闭环 · 实时",
-    "statusDemoLabel": "API-ready",
-    "statusNetworks": "样本运营",
-    "statusRegion": "分配设置已启用",
-    "statusControls": "隐私、审核与导出控制",
+    "statusLive": "关于 Sampora · 实时",
+    "statusDemoLabel": "在线样本运营平台",
+    "statusControls": "可追踪的交付、审核与结算",
     "brandSub": "操作控制台",
     "navProduct": "产品",
     "navSolutions": "解决方案",
@@ -510,11 +566,9 @@ const I18N={
     "ogDescription": "Sampora panel providers और sample suppliers के लिए project intake, supplier allocation, review records, risk controls और settlement evidence को traceable workflows में जोड़ता है।",
     "twitterTitle": "Sampora के बारे में",
     "twitterDescription": "Sampora panel providers और sample suppliers के लिए project intake, supplier allocation, review records, risk controls और settlement evidence को traceable workflows में जोड़ता है।",
-    "statusLive": "उत्पाद चक्र · लाइव",
-    "statusDemoLabel": "API के लिए तैयार",
-    "statusNetworks": "नमूना संचालन",
-    "statusRegion": "आवंटन सेटिंग सक्रिय",
-    "statusControls": "गोपनीयता, समीक्षा और निर्यात नियंत्रण",
+    "statusLive": "Sampora के बारे में · लाइव",
+    "statusDemoLabel": "ऑनलाइन नमूना संचालन प्लेटफॉर्म",
+    "statusControls": "ट्रेस करने योग्य डिलीवरी, समीक्षा और सेटलमेंट",
     "brandSub": "संचालन कंसोल",
     "navProduct": "उत्पाद",
     "navSolutions": "समाधान",
@@ -642,6 +696,10 @@ function currentDict(){return I18N[document.documentElement.dataset.lang]||I18N.
 function updateMobileNavButton(){if(!mobileBtn)return;const open=document.body.classList.contains('mobile-nav-open');const dict=currentDict();mobileBtn.textContent=open?'×':'☰';mobileBtn.setAttribute('aria-label',open?(dict.ariaCloseNav||'Close navigation'):(dict.ariaOpenNav||'Open navigation'));mobileBtn.setAttribute('aria-expanded',String(open));}
 function setMobileNav(open){document.body.classList.toggle('mobile-nav-open',open);updateMobileNavButton();if(open)mobileDrawer?.querySelector('a')?.focus();else mobileBtn?.focus();}
 if(mobileBtn){mobileBtn.addEventListener('click',e=>{e.stopPropagation();setMobileNav(!document.body.classList.contains('mobile-nav-open'));});mobileDrawer?.addEventListener('click',e=>{if(e.target.closest('a'))setMobileNav(false);});document.addEventListener('keydown',e=>{if(e.key==='Escape')setMobileNav(false);});document.addEventListener('click',e=>{if(!document.body.classList.contains('mobile-nav-open'))return;if(!e.target.closest('.mobile-nav-drawer')&&!e.target.closest('.mobile-nav-toggle'))setMobileNav(false);});}
+function syncTopChrome(){const wasCompact=document.body.classList.contains('nav-condensed');const compact=window.innerWidth>640&&(wasCompact?window.scrollY>20:window.scrollY>56);document.body.classList.toggle('nav-condensed',compact);}
+window.addEventListener('scroll',syncTopChrome,{passive:true});
+window.addEventListener('resize',syncTopChrome);
+syncTopChrome();
 applyLang(initialLang());
 </script>
 <script id="sampora-standard-footer-i18n">
