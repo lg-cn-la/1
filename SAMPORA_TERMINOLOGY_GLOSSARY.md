@@ -76,7 +76,14 @@
 - Do not revert topology terminology to `SUPPLIER POOL` when the current positioning needs `SAMPLE SUPPLY POOL`.
 - Do not use `Audience Source` or `Audience Owner` as the primary Sampora audience positioning unless the user explicitly asks for broader ecosystem language.
 
-## 4. Hindi Style
+## 4. Front-of-Site Display Policy
+
+- Current approved P0-2 strategy is homepage/front-of-site display terminology governance only, not a backend data-model change and not a topology/workflow animation logic change.
+- Homepage and other front-of-site surfaces may use neutral supply-side display labels such as `RESP_03 / respondent ops`, `PARTNER_04 / delivery partner`, and `Supplier pool active` to reduce the visual prominence of `Survey Station` and `Subcontractor`.
+- `Survey Station` and `Subcontractor` are not deleted from the business taxonomy. They may still exist as supply sources, backend business roles, or topology source concepts where the assigned task and current evidence require them.
+- Future agents must not classify `RESP_03`, `respondent ops`, `PARTNER_04`, `delivery partner`, or `Supplier pool active` as a terminology regression by themselves. Treat them as allowed front-of-site display wording unless fresh current evidence shows a page-specific glossary conflict.
+
+## 5. Hindi Style
 
 - Use Devanagari-first Hindi for body, status, and explanatory copy.
 - Keep `Sampora`, `API`, `QC`, `CPI`, `IR/LOI`, `Panel`, `SaaS`, and compact dashboard metrics in English where they are expected industry/product terms.
@@ -84,7 +91,7 @@
 - Product UI terms can use common Hindi/SaaS hybrids where they read naturally: `वर्कस्पेस`, `एडमिन कंसोल`, `पार्टनर नेटवर्क`, `डिलीवरी ट्रैकिंग`, `सेटलमेंट`.
 - Do not count Hinglish alone as sufficient if the visible Hindi surface is mostly English. The page should read as Hindi with retained product terms, not English with a few Hindi suffixes.
 
-## 5. Handoff Index Text
+## 6. Handoff Index Text
 
 Use this short index in handoff prompts and future worker instructions:
 
@@ -92,7 +99,7 @@ Use this short index in handoff prompts and future worker instructions:
 Terminology source: read `SAMPORA_TERMINOLOGY_GLOSSARY.md` before changing any EN/ZH/HI visible copy, i18n key, topology label, workflow copy, pricing/FAQ/footer/CTA copy, dynamic sample/project data, or resource-manual language. Follow its canonical EN/ZH/HI glossary, topology policy, and Hindi style rules. If a term is missing or conflicts with the newest user instruction, classify it as a terminology strategy gap before page repair.
 ```
 
-## 6. Acceptance / Ledger Linkage
+## 7. Acceptance / Ledger Linkage
 
 - Acceptance category: `Language/i18n`.
 - Related recurring ledger row: `TERMINOLOGY-001`.

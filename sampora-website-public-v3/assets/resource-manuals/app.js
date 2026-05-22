@@ -93,6 +93,62 @@ const art = (id) => DATA.articles[id];
 const CATEGORY_ALIASES = { 'ops-station': 'ops-logs' };
 const categoryId = (id) => CATEGORY_ALIASES[id] || id;
 const cat = (id) => DATA.docs.flatMap((d) => d.categories.map((c) => ({ ...c, doc: d.id }))).find((c) => c.id === categoryId(id));
+const DOC_ANCHORS = { config: 'configuration-guide', ops: 'operation-manual' };
+const DEEP_LINK_TARGETS = {
+  'configuration-guide': { doc: 'config' },
+  'operation-manual': { doc: 'ops' },
+  'rollout-notes': { rollout: true }
+};
+const ROLLOUT_NOTES = {
+  en: {
+    badge: 'Regional rollout',
+    title: 'Rollout notes',
+    desc: 'Prepare a Sampora launch with roles, permissions, admin entries, and a launch checklist before teams open live sample operations.',
+    items: [
+      ['01', 'Launch preparation', 'Confirm project countries, sample sources, domains, notification paths, and settlement rules before opening the workspace.'],
+      ['02', 'Roles/permissions', 'Assign tenant admin, operations, finance, supplier, and reviewer roles with least-privilege access.'],
+      ['03', 'Admin entries', 'Create organization, department, employee, supplier, and survey station admin entries before launch.'],
+      ['04', 'Launch checklist', 'Run login, project intake, supplier allocation, callback, review, settlement, and export-control checks before go-live.']
+    ]
+  },
+  zh: {
+    badge: '区域上线',
+    title: '上线说明',
+    desc: '在团队进入正式样本运营前，先完成 Sampora 上线准备、角色权限、管理入口和上线清单。',
+    items: [
+      ['01', '上线准备', '上线前确认项目国家、样本来源、域名、通知路径和结算规则。'],
+      ['02', '角色与权限', '为租户管理员、运营、财务、供应商和审核人员分配最小权限。'],
+      ['03', '管理入口', '上线前建立组织、部门、员工、供应商和调查站管理入口。'],
+      ['04', '上线清单', '正式上线前检查登录、项目接收、供应商分配、回调、审核、结算和导出权限。']
+    ]
+  },
+  hi: {
+    badge: 'क्षेत्रीय रोलआउट',
+    title: 'रोलआउट नोट्स',
+    desc: 'Sampora launch से पहले भूमिकाएं, अनुमतियां, व्यवस्थापक प्रविष्टियां और लॉन्च जांच-सूची तैयार करें।',
+    items: [
+      ['01', 'लॉन्च तैयारी', 'लॉन्च से पहले प्रोजेक्ट देश, सैंपल स्रोत, डोमेन, सूचना मार्ग और सेटलमेंट नियम पुष्टि करें।'],
+      ['02', 'भूमिकाएं और अनुमतियां', 'टेनेंट व्यवस्थापक, संचालन, फाइनेंस, सप्लायर और समीक्षा भूमिकाओं को न्यूनतम अनुमतियों के साथ दें।'],
+      ['03', 'व्यवस्थापक प्रविष्टियां', 'संगठन, विभाग, कर्मचारी, सप्लायर और Survey Station के व्यवस्थापक रिकॉर्ड लॉन्च से पहले बनाएं।'],
+      ['04', 'लॉन्च जांच-सूची', 'लॉगिन, Project Intake, Supplier Allocation, कॉलबैक, समीक्षा, सेटलमेंट और export controls को go-live से पहले जांचें।']
+    ]
+  }
+};
+
+function ensureDeepLinkStyles() {
+  if ($('#resourceManualDeepLinkStyles')) return;
+  const style = document.createElement('style');
+  style.id = 'resourceManualDeepLinkStyles';
+  style.textContent = '.anchor-target{scroll-margin-top:112px}.rollout-notes{margin:34px 0 48px;border:1px solid rgba(56,210,255,.18);border-radius:24px;background:linear-gradient(180deg,rgba(14,27,47,.60),rgba(7,16,31,.40));padding:26px}.rollout-notes h2{margin:0 0 10px;font-size:34px;line-height:1.08;letter-spacing:0}.rollout-notes>p{margin:0;color:var(--body);max-width:780px}.rollout-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:22px}.rollout-grid article{border:1px solid rgba(129,178,214,.14);border-radius:18px;background:rgba(6,16,31,.30);padding:18px;min-height:178px}.rollout-grid span{display:inline-flex;margin-bottom:16px;color:var(--cyan2);font:800 11px var(--mono);letter-spacing:0}.rollout-grid h3{margin:0 0 8px;font-size:17px;line-height:1.18;letter-spacing:0}.rollout-grid p{margin:0;color:var(--body);font-size:13.5px;line-height:1.58}@media(max-width:1120px){.rollout-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.rollout-notes{padding:22px}.rollout-notes h2{font-size:28px}.rollout-grid{grid-template-columns:1fr}.rollout-grid article{min-height:0}}';
+  document.head.appendChild(style);
+}
+
+function removeLegacyAnchorSpans() {
+  Object.keys(DEEP_LINK_TARGETS).forEach((id) => {
+    const el = document.getElementById(id);
+    if (el && el.tagName === 'SPAN' && el.getAttribute('aria-hidden') === 'true') el.remove();
+  });
+}
 
 function i18n() {
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
@@ -114,15 +170,35 @@ function side() {
 }
 
 function home() {
+  removeLegacyAnchorSpans();
   const chips = uiList('chips');
   const map = ['account-registration', 'domain-configuration', 'supplier-bills', 'survey-station', 'finance-multi-party-settlement', 'organization-permissions'];
   $('#popularChips').innerHTML = chips.map((c, i) => '<button class="chip" data-id="' + map[i] + '">' + c + '</button>').join('');
   $$('.chip').forEach((b) => { b.onclick = () => openArticle(b.dataset.id); });
-  $('#docCards').innerHTML = DATA.docs.map((d) => '<article class="doc-card" data-doc="' + d.id + '"><div class="k">' + tr(d.badge) + '</div><h3>' + tr(d.name) + '</h3><p>' + tr(d.desc) + '</p><div class="meta"><span class="pill amber">' + d.count + ' ' + u('imgs') + '</span><span class="pill">' + d.categories.length + ' ' + u('cat') + '</span></div></article>').join('');
+  $('#docCards').innerHTML = DATA.docs.map((d) => {
+    const anchor = DOC_ANCHORS[d.id] ? ' id="' + DOC_ANCHORS[d.id] + '"' : '';
+    return '<article' + anchor + ' class="doc-card anchor-target" data-doc="' + d.id + '"><div class="k">' + tr(d.badge) + '</div><h3>' + tr(d.name) + '</h3><p>' + tr(d.desc) + '</p><div class="meta"><span class="pill amber">' + d.count + ' ' + u('imgs') + '</span><span class="pill">' + d.categories.length + ' ' + u('cat') + '</span></div></article>';
+  }).join('');
   $$('#docCards .doc-card').forEach((c) => { c.onclick = () => openDoc(c.dataset.doc); });
+  renderRolloutNotes();
   const q = ['account-registration', 'domain-configuration', 'station-supplier-config', 'project-list', 'supplier-bills', 'survey-station'].filter((id) => art(id));
   $('#quickCards').innerHTML = q.map((id, i) => '<article class="guide-card" data-article="' + id + '"><div class="icon">' + String(i + 1).padStart(2, '0') + '</div><h3>' + tr(art(id).title) + '</h3><p>' + tr(art(id).desc) + '</p></article>').join('');
   $$('.guide-card').forEach((c) => { c.onclick = () => openArticle(c.dataset.article); });
+}
+
+function renderRolloutNotes() {
+  const cards = $('#docCards');
+  if (!cards) return;
+  let node = $('#rollout-notes');
+  if (!node) {
+    node = document.createElement('section');
+    node.id = 'rollout-notes';
+    cards.insertAdjacentElement('afterend', node);
+  }
+  node.className = 'rollout-notes anchor-target';
+  node.setAttribute('aria-labelledby', 'rolloutNotesTitle');
+  const copy = ROLLOUT_NOTES[lang] || ROLLOUT_NOTES.en;
+  node.innerHTML = '<div class="k">' + copy.badge + '</div><h2 id="rolloutNotesTitle">' + copy.title + '</h2><p>' + copy.desc + '</p><div class="rollout-grid">' + copy.items.map((item) => '<article><span>' + item[0] + '</span><h3>' + item[1] + '</h3><p>' + item[2] + '</p></article>').join('') + '</div>';
 }
 
 function docView() {
@@ -181,6 +257,21 @@ function search(q) {
 function view(id) {
   ['viewHome', 'viewDoc', 'viewCategory', 'viewArticle', 'viewSearch'].forEach((v) => $('#' + v).classList.toggle('hidden', v !== id));
 }
+function scrollToAnchor(id) {
+  requestAnimationFrame(() => {
+    const target = document.getElementById(id);
+    if (target) target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  });
+}
+function openDeepLink(id) {
+  const target = DEEP_LINK_TARGETS[id];
+  if (target?.doc) currentDoc = target.doc;
+  currentCategory = currentArticle = null;
+  view('viewHome');
+  home();
+  side();
+  scrollToAnchor(id);
+}
 function openHome() {
   currentCategory = currentArticle = null;
   location.hash = 'home';
@@ -224,7 +315,12 @@ function openSearch(q) {
   side();
 }
 function route() {
+  removeLegacyAnchorSpans();
   const h = location.hash.replace(/^#/, '');
+  if (DEEP_LINK_TARGETS[h]) {
+    openDeepLink(h);
+    return;
+  }
   if (!h || h === 'home') {
     view('viewHome');
     home();
@@ -257,6 +353,8 @@ function route() {
   side();
 }
 function init() {
+  ensureDeepLinkStyles();
+  removeLegacyAnchorSpans();
   i18n();
   home();
   docView();

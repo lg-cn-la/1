@@ -1051,29 +1051,32 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
   text-shadow: 0 0 18px rgba(56, 216, 255, .28);
 }
 
-/* Package C: align Contact footer to the Sampora standard footer contract */
-.sampora-site-footer{border-top:1px solid rgba(129,178,214,.18)!important;padding:64px 0 54px!important;color:var(--body,#A9B9CE)!important;background:linear-gradient(180deg,rgba(6,16,31,.22),rgba(6,16,31,.42))!important}
-.sampora-footer-card{border:1px solid rgba(129,178,214,.22)!important;border-radius:24px!important;overflow:hidden!important;background:rgba(8,20,36,.72)!important;box-shadow:0 30px 90px rgba(0,0,0,.24)!important}
-.sampora-site-footer .sampora-footer-card{width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
-.sampora-footer-main{display:grid!important;grid-template-columns:1.45fr .72fr .72fr .72fr!important;gap:48px!important;padding:42px 48px 36px!important}
-.sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--text,#E8EEF5)!important;margin-bottom:22px!important}
-.sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
-.sampora-footer-logo b{display:block!important;font-size:24px!important;line-height:1!important;letter-spacing:-.03em!important;color:var(--text,#E8EEF5)!important}
-.sampora-footer-logo small{display:block!important;margin-top:4px!important;font:800 10px var(--mono,monospace)!important;letter-spacing:.10em!important;color:var(--muted,#7E92AC)!important}
-.sampora-footer-brand p{margin:0!important;max-width:430px!important;color:var(--body,#A9B9CE)!important;font-size:16px!important;line-height:1.75!important}
-.sampora-footer-badges{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:24px!important}
-.sampora-footer-badges span{display:inline-flex!important;height:26px!important;align-items:center!important;padding:0 12px!important;border-radius:999px!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;color:var(--cyan2,#7BE3FF)!important;font:800 11px var(--mono,monospace)!important}
-.sampora-footer-col h3{margin:0 0 18px!important;padding-bottom:16px!important;border-bottom:1px solid rgba(129,178,214,.18)!important;color:var(--text,#E8EEF5)!important;font-size:18px!important;line-height:1.1!important;letter-spacing:-.02em!important}
-.sampora-footer-col a{display:block!important;margin:0 0 14px!important;color:var(--body,#A9B9CE)!important;font-size:15px!important;line-height:1.35!important;transition:color .18s var(--ease,cubic-bezier(.2,.7,.2,1)),transform .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
-.sampora-footer-col a:hover{color:var(--cyan,#38D2FF)!important;transform:translateX(3px)!important}
-.sampora-footer-contact{display:grid!important;grid-template-columns:repeat(3,1fr)!important;border-top:1px solid rgba(129,178,214,.18)!important}
-.sampora-footer-contact-item{display:flex!important;align-items:center!important;gap:18px!important;min-height:74px!important;padding:0 48px!important;border-right:1px solid rgba(129,178,214,.18)!important;color:var(--text,#E8EEF5)!important;font-size:16px!important;font-weight:760!important}
-.sampora-footer-contact-item:last-child{border-right:0!important}
-.sampora-footer-icon{width:34px!important;height:34px!important;border-radius:999px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;flex:0 0 auto!important;box-sizing:border-box!important;overflow:hidden!important;text-align:center!important;font:800 10.5px/1 var(--mono,monospace)!important;letter-spacing:.02em!important}
-.sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
-.sampora-footer-legal{display:flex!important;justify-content:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:1px solid rgba(129,178,214,.10)!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
-@media(max-width:980px){.sampora-footer-main{grid-template-columns:1fr 1fr!important;padding:34px 28px!important}.sampora-footer-contact{grid-template-columns:1fr!important}.sampora-footer-contact-item{border-right:0!important;border-bottom:1px solid rgba(129,178,214,.18)!important;padding:18px 28px!important}.sampora-footer-contact-item:last-child{border-bottom:0!important}}
-@media(max-width:760px){.sampora-footer-main{grid-template-columns:1fr!important}}
+/* Package C: scoped Contact footer contract aligned to current Plans footer baseline */
+#footer.sampora-site-footer{padding:64px 0 54px!important;border-top:1px solid rgba(129,178,214,.16)!important;color:var(--body,#A9B9CE)!important;background:radial-gradient(38% 34% at 18% 0%,rgba(56,210,255,.08),transparent 68%),linear-gradient(180deg,rgba(6,16,31,.22),rgba(6,16,31,.42))!important}
+#footer .sampora-footer-card{border:1px solid rgba(129,178,214,.22)!important;border-radius:24px!important;overflow:hidden!important;background:rgba(8,20,36,.72)!important;box-shadow:0 30px 90px rgba(0,0,0,.24)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
+#footer .sampora-footer-main{display:grid!important;grid-template-columns:minmax(320px,1.32fr) repeat(3,minmax(150px,.78fr))!important;gap:clamp(32px,4vw,54px)!important;align-items:start!important;padding:42px 48px 36px!important}
+#footer .sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--fg,#E8EEF5)!important;margin-bottom:22px!important}
+#footer .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+#footer .sampora-footer-logo b{display:block!important;font-size:24px!important;line-height:1!important;letter-spacing:-.03em!important;color:var(--fg,#E8EEF5)!important}
+#footer .sampora-footer-logo small{display:block!important;margin-top:4px!important;font:800 10px var(--mono,monospace)!important;letter-spacing:.10em!important;color:var(--muted,#7E92AC)!important}
+#footer .sampora-footer-brand p{margin:0!important;max-width:430px!important;color:var(--body,#A9B9CE)!important;font-size:16px!important;line-height:1.75!important}
+#footer .sampora-footer-badges{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:24px!important}
+#footer .sampora-footer-badges span{display:inline-flex!important;height:26px!important;align-items:center!important;padding:0 12px!important;border-radius:999px!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;color:var(--cyan2,#7BE3FF)!important;font:800 11px var(--mono,monospace)!important}
+#footer .sampora-footer-col{min-width:0!important;padding:0!important;border:0!important;background:transparent!important}
+#footer .sampora-footer-col h3{position:relative!important;margin:0 0 18px!important;padding:0 0 16px!important;border:0!important;color:var(--fg,#E8EEF5)!important;font-size:18px!important;line-height:1.15!important;letter-spacing:0!important}
+#footer .sampora-footer-col h3::after{content:""!important;position:absolute!important;left:0!important;bottom:0!important;width:min(100%,220px)!important;height:1px!important;border-radius:999px!important;background:linear-gradient(90deg,rgba(129,178,214,.45),rgba(56,210,255,.18),transparent)!important}
+#footer .sampora-footer-col a{position:relative!important;display:block!important;width:fit-content!important;max-width:100%!important;margin:0 0 13px!important;padding:1px 0 2px!important;color:rgba(218,230,246,.72)!important;font-size:15px!important;line-height:1.42!important;text-decoration:none!important;overflow-wrap:anywhere!important;transition:color .18s var(--ease,cubic-bezier(.2,.7,.2,1)),transform .18s var(--ease,cubic-bezier(.2,.7,.2,1)),text-shadow .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
+#footer .sampora-footer-col a::after{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:-2px!important;height:1px!important;transform:scaleX(0)!important;transform-origin:left!important;background:linear-gradient(90deg,var(--cyan,#38D2FF),transparent)!important;opacity:.75!important;transition:transform .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
+#footer .sampora-footer-col a:hover,#footer .sampora-footer-col a:focus-visible{color:var(--cyan2,#7BE3FF)!important;transform:translateX(2px)!important;text-shadow:0 0 18px rgba(56,216,255,.20)!important}
+#footer .sampora-footer-col a:hover::after,#footer .sampora-footer-col a:focus-visible::after{transform:scaleX(1)!important}
+#footer .sampora-footer-contact{display:grid!important;grid-template-columns:repeat(3,1fr)!important;border-top:1px solid rgba(129,178,214,.18)!important}
+#footer .sampora-footer-contact-item{display:flex!important;align-items:center!important;gap:18px!important;min-height:74px!important;padding:0 48px!important;border-right:1px solid rgba(129,178,214,.18)!important;border-bottom:0!important;color:var(--fg,#E8EEF5)!important;font-size:16px!important;font-weight:760!important}
+#footer .sampora-footer-contact-item:last-child{border-right:0!important}
+#footer .sampora-footer-icon{width:34px!important;height:34px!important;border-radius:999px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;flex:0 0 auto!important;box-sizing:border-box!important;overflow:hidden!important;text-align:center!important;font:800 10.5px/1 var(--mono,monospace)!important;letter-spacing:.02em!important}
+#footer .sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
+#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:1px solid rgba(129,178,214,.10)!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+@media(max-width:1180px){#footer .sampora-footer-main{grid-template-columns:1fr 1fr!important;padding:34px 28px 32px!important}#footer .sampora-footer-brand{grid-column:1/-1!important}#footer .sampora-footer-contact{grid-template-columns:1fr!important}#footer .sampora-footer-contact-item{border-right:0!important;border-bottom:1px solid rgba(129,178,214,.18)!important;padding:18px 28px!important}#footer .sampora-footer-contact-item:last-child{border-bottom:0!important}}
+@media(max-width:760px){#footer .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}#footer .sampora-footer-brand{grid-column:auto!important}#footer .sampora-footer-col h3::after{width:min(100%,280px)!important}#footer .sampora-footer-brand p,#footer .sampora-footer-col a,#footer .sampora-footer-contact-item{overflow-wrap:anywhere!important}}
 
 /* final cleanup: unified navigation and language switcher */
 .lang,.lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
@@ -1164,25 +1167,6 @@ body{padding-top:100px}
   html[lang="hi"] .mast .lang button,html[lang="hi"] .mast .lang-btn{min-width:42px!important;padding-left:7px!important;padding-right:7px!important}
 }
 
-/* Sampora current responsive footer fixes */
-@media(max-width:1180px) and (min-width:761px){
-  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
-  .sampora-footer-main{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:30px 34px!important;padding:36px 34px 32px!important}
-  .sampora-footer-brand{grid-column:1/-1!important;width:100%!important;max-width:none!important;justify-self:stretch!important}
-  .sampora-footer-brand p{max-width:760px!important}
-  .sampora-footer-badges{max-width:760px!important}
-  .sampora-footer-col{min-width:0!important}
-  .sampora-footer-col a{overflow-wrap:anywhere!important}
-  .sampora-footer-contact-item{min-width:0!important;padding:18px 28px!important}
-}
-@media(max-width:760px){
-  .sampora-site-footer .sampora-footer-card{width:min(100% - 32px,1120px)!important;margin-left:auto!important;margin-right:auto!important}
-  .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}
-  .sampora-footer-brand{grid-column:auto!important}
-  .sampora-footer-brand p,
-  .sampora-footer-col a,
-  .sampora-footer-contact-item{overflow-wrap:anywhere!important}
-}
 /* Header actions parity with resources.html */
 .mast .lang,.mast .lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
 .mast .lang button,.mast .lang-btn{height:34px;min-width:42px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px var(--mono,ui-monospace,monospace);transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
@@ -1215,20 +1199,8 @@ body::before {
 }
 .section,
 .response,
-.more-ways,
-.sampora-site-footer,
-.sampora-footer-contact,
-.sampora-footer-legal {
+.more-ways {
     border-top: 0 !important;
-}
-.sampora-footer-col h3,
-.sampora-footer-col h4 {
-    border-bottom: 1px solid rgba(129, 178, 214, .18) !important;
-    padding-bottom: 16px !important;
-}
-.sampora-footer-contact-item {
-    border-right: 0 !important;
-    border-bottom: 0 !important;
 }
 </style>
 </head>
@@ -1416,39 +1388,39 @@ body::before {
                 <div class="sampora-footer-brand">
                     <a aria-label="Sampora home" class="sampora-footer-logo" href="index.html">
                         <span class="sampora-footer-mark">S</span>
-                        <span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span>
+                        <span><b>Sampora</b><small data-footer-i18n="brandSub">Operations console</small></span>
                     </a>
-                    <p data-i18n="footerDesc">An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.</p>
-                    <div class="sampora-footer-badges"><span data-i18n="tag1">Sample supply</span><span data-i18n="tag2">Review workflow</span><span data-i18n="tag3">Settlement ledger</span></div>
+                    <p data-footer-i18n="footerDesc">An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.</p>
+                    <div class="sampora-footer-badges"><span data-footer-i18n="tag1">Sample supply</span><span data-footer-i18n="tag2">Review workflow</span><span data-footer-i18n="tag3">Settlement ledger</span></div>
                 </div>
                 <div class="sampora-footer-col">
-                    <h3 data-i18n="footerProduct">Product</h3>
-                    <a href="index.html" data-i18n="footerPlatformOverview">Platform overview</a>
-                    <a href="solutions.html" data-i18n="navSolutions">Solutions</a>
-                    <a href="plans.html" data-i18n="navPlans">Plans</a>
-                    <a href="contact.html" data-i18n="navContact">Contact</a>
+                    <h3 data-footer-i18n="footerProduct">Product</h3>
+                    <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
+                    <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
+                    <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
+                    <a href="contact.html" data-footer-i18n="navContact">Contact</a>
                 </div>
                 <div class="sampora-footer-col">
-                    <h3 data-i18n="footerResources">Resources</h3>
-                    <a href="resources.html" data-i18n="footerResourcesOverview">Resources overview</a>
-                    <a href="resource-manuals.html#configuration-guide" data-i18n="footerConfigurationGuide">Configuration guide</a>
-                    <a href="resource-manuals.html#operation-manual" data-i18n="footerOperationManual">Operation manual</a>
-                    <a href="resource-manuals.html#rollout-notes" data-i18n="footerRolloutNotes">Rollout notes</a>
+                    <h3 data-footer-i18n="footerResources">Resources</h3>
+                    <a href="resources.html" data-footer-i18n="footerResourcesOverview">Resources overview</a>
+                    <a href="resource-manuals.html#configuration-guide" data-footer-i18n="footerConfigurationGuide">Configuration guide</a>
+                    <a href="resource-manuals.html#operation-manual" data-footer-i18n="footerOperationManual">Operation manual</a>
+                    <a href="resource-manuals.html#rollout-notes" data-footer-i18n="footerRolloutNotes">Rollout notes</a>
                 </div>
                 <div class="sampora-footer-col">
-                    <h3 data-i18n="footerGetStarted">Get started</h3>
-                    <a href="contact.html?intent=start_trial#contact-form" data-i18n="ctaTop">Start trial</a>
-                    <a href="contact.html?intent=book_demo#contact-form" data-i18n="ctaDemo">Book a demo</a>
-                    <a href="contact.html?intent=contact_sales#contact-form" data-i18n="footerTalkToSales">Talk to sales</a>
-                    <a href="contact.html" data-i18n="navContact">Contact</a>
+                    <h3 data-footer-i18n="footerGetStarted">Get started</h3>
+                    <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
+                    <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
+                    <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
+                    <a href="contact.html" data-footer-i18n="navContact">Contact</a>
                 </div>
             </div>
             <div class="sampora-footer-contact">
                 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
                 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@sampora.com</span></div>
-                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
+                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
             </div>
-            <div class="sampora-footer-legal"><span data-i18n="footerCopyright">© 2026</span><span data-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
+            <div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
         </div>
     </footer>
 
@@ -1862,6 +1834,36 @@ body::before {
 })();
 </script>
 <script src="assets/i18n-sweep.js"></script>
+<script id="sampora-standard-footer-i18n">
+(function(){
+  const copy={
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
+    hi:{brandSub:'संचालन कंसोल',footerDesc:'Sampora स्वामित्व वाले Panel संचालकों और Sample Supplier टीमों के लिए ऑनलाइन नमूना संचालन प्लेटफ़ॉर्म है, जो परियोजना वितरण, Supplier Allocation, समीक्षा रिकॉर्ड, वित्त, जोखिम नियंत्रण और Partner Network को साथ रखता है।',tag1:'नमूना आपूर्ति',tag2:'समीक्षा प्रक्रिया',tag3:'सेटलमेंट लेजर',footerProduct:'उत्पाद',footerPlatformOverview:'प्लेटफ़ॉर्म अवलोकन',navSolutions:'समाधान',navPlans:'योजनाएँ',navContact:'संपर्क',footerResources:'संसाधन',footerResourcesOverview:'संसाधन अवलोकन',footerConfigurationGuide:'कॉन्फ़िगरेशन गाइड',footerOperationManual:'ऑपरेशन मैनुअल',footerRolloutNotes:'रोलआउट नोट्स',footerGetStarted:'शुरू करें',ctaTop:'ट्रायल शुरू करें',ctaDemo:'डेमो बुक करें',footerTalkToSales:'सेल्स से बात करें',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'}
+  };
+  function lang(explicit){
+    const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
+    if(copy[explicitRaw])return explicitRaw;
+    try{const saved=localStorage.getItem('sampora_lang');if(copy[saved])return saved;}catch(e){}
+    const raw=(document.documentElement.dataset.lang||document.documentElement.lang||'en').toLowerCase().slice(0,2);
+    return copy[raw]?raw:'en';
+  }
+  function apply(explicit){
+    const dict=copy[lang(explicit)]||copy.en;
+    document.querySelectorAll('.sampora-site-footer [data-footer-i18n]').forEach(el=>{
+      const value=dict[el.dataset.footerI18n];
+      if(value!==undefined)el.textContent=value;
+    });
+  }
+  apply();
+  document.addEventListener('DOMContentLoaded',()=>apply());
+  window.addEventListener('load',()=>apply());
+  document.querySelectorAll('.lang button,[data-lang-btn]').forEach(btn=>{
+    btn.addEventListener('click',()=>setTimeout(()=>apply(btn.dataset.lang||btn.dataset.langBtn),30));
+  });
+  new MutationObserver(()=>apply()).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-lang']});
+})();
+</script>
 <script>
 (function () {
   const translations = window.__samporaContactTranslations || {};
