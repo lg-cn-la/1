@@ -804,23 +804,25 @@
             padding: 20px 22px 12px
         }
 
-        .console-summary {
+        .resource-console .console-summary {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) auto;
-            gap: 18px;
+            grid-template-columns: minmax(0, 1fr);
+            column-gap: 18px;
+            row-gap: 0;
             align-items: start;
+            align-content: start;
             margin-bottom: 16px;
             min-height: 112px
         }
 
-        .console-summary h3 {
+        .resource-console .console-summary h3 {
             margin: 0 0 8px;
             font-size: 28px;
             line-height: 1.12;
             letter-spacing: -.02em
         }
 
-        .console-summary p {
+        .resource-console .console-summary p {
             margin: 0;
             color: var(--body2);
             font-size: 14px;
@@ -828,11 +830,14 @@
             max-width: 520px
         }
 
-        .console-tags {
+        .resource-console .console-tags {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            justify-content: flex-end
+            justify-content: flex-start;
+            align-items: flex-start;
+            align-content: flex-start;
+            margin-top: 18px
         }
 
         .tag {
@@ -860,16 +865,22 @@
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 8px;
-            margin: 0 0 14px
+            margin: 0 0 24px
         }
 
         .topo-modebar button {
             min-width: 0;
+            height: 100%;
             text-align: left;
             border: 1px solid rgba(129, 178, 214, .16);
             border-radius: 14px;
             background: rgba(8, 20, 36, .56);
-            padding: 10px 11px;
+            padding: 12px 12px 13px;
+            min-height: 102px;
+            display: grid;
+            grid-template-rows: auto auto auto;
+            row-gap: 4px;
+            align-content: start;
             cursor: pointer;
             color: var(--body2);
             transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease), box-shadow .18s var(--ease)
@@ -908,22 +919,35 @@
         .topo-modebar button strong {
             display: block;
             font-size: 13px;
+            line-height: 1.18;
             color: var(--fg);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+            text-wrap: balance
         }
 
         .topo-modebar button span {
             display: block;
             margin-top: 3px;
             font: 700 9px var(--mono);
+            line-height: 1.22;
             letter-spacing: .08em;
             text-transform: uppercase;
             color: var(--muted);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+            text-wrap: balance
+        }
+
+        html[lang="hi"] .topo-modebar button strong,
+        html[lang="hi"] .topo-modebar button span {
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            text-overflow: clip
         }
 
         .topo-headline {
@@ -931,30 +955,35 @@
             gap: 14px;
             align-items: center;
             justify-content: space-between;
-            margin: 14px 0 8px
+            flex-wrap: nowrap;
+            margin: 18px 0 10px
         }
 
         .topo-headline p {
             margin: 0;
-            font: 800 11px var(--mono);
+            font: 700 11px var(--mono);
             letter-spacing: .12em;
             text-transform: uppercase;
-            color: var(--fg2)
+            color: var(--fg2);
+            white-space: nowrap
         }
 
         .legend {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
             color: var(--muted);
-            font: 700 10px var(--mono);
+            font: 600 10px var(--mono);
             letter-spacing: .06em
         }
 
         .legend span {
             display: inline-flex;
             align-items: center;
-            gap: 6px
+            gap: 6px;
+            line-height: 1
         }
 
         .legend i {
@@ -1114,9 +1143,9 @@
         }
 
         .topo-svg .hub.origin-hub rect {
-            fill: rgba(10, 28, 48, .96);
-            stroke: rgba(56, 210, 255, .38);
-            filter: drop-shadow(0 0 12px rgba(56, 210, 255, .12))
+            fill: url(#resourceHubGrad);
+            stroke: rgba(56, 210, 255, .58);
+            filter: drop-shadow(0 0 6px rgba(56, 210, 255, .28))
         }
 
         .topo-svg .hub.ctrl-hub rect,
@@ -1129,7 +1158,8 @@
             stroke: rgba(56, 210, 255, .65);
             stroke-width: 1;
             transform-origin: center;
-            animation: hubPulse 2.4s ease-out infinite
+            opacity: .34;
+            animation: none
         }
 
         @keyframes hubPulse {
@@ -1154,6 +1184,31 @@
         .topo-svg .hub-code.brand-label {
             font-size: 11.5px;
             letter-spacing: .01em
+        }
+
+        .topo-svg .brand-core-mark rect {
+            fill: url(#resourceBrandMarkGrad);
+            stroke: rgba(56, 210, 255, .35);
+            stroke-width: 1;
+            filter: drop-shadow(0 0 5px rgba(56, 210, 255, .24))
+        }
+
+        .topo-svg .brand-core-mark text {
+            fill: var(--cyan);
+            font: 800 13px var(--mono);
+            letter-spacing: 0
+        }
+
+        .topo-svg .origin-hub-label .hub-code {
+            fill: var(--cyan2);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .02em
+        }
+
+        .topo-svg .origin-hub-label .hub-role {
+            font-size: 7.4px;
+            letter-spacing: .08em
         }
 
         .topo-svg .hub-role {
@@ -1310,9 +1365,8 @@
             top: 0;
             bottom: 0;
             left: -48px;
-            width: 34px;
-            opacity: .36;
-            background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .055), transparent);
+            width: 68px;
+            background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .08), transparent);
             animation: tickerSweep 4.8s linear infinite;
             pointer-events: none
         }
@@ -1837,11 +1891,41 @@
             .resource-console:not(.modal-open) {
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-end
+                justify-content: flex-start
             }
 
             .resource-console:not(.modal-open) .console-window {
-                min-height: 626px
+                min-height: 746px;
+                height: 100%;
+                display: flex;
+                flex-direction: column
+            }
+
+            .resource-console:not(.modal-open) .console-main {
+                flex: 1 1 auto;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                padding-bottom: 14px
+            }
+
+            .resource-console:not(.modal-open) .console-summary {
+                min-height: 161px
+            }
+
+            .resource-console:not(.modal-open) .topo-modebar {
+                min-height: 102px
+            }
+
+            .resource-console:not(.modal-open) .topo-headline {
+                margin: 0 0 10px
+            }
+
+            .resource-console:not(.modal-open) .console-ticker {
+                box-sizing: border-box;
+                min-height: 53px;
+                padding: 12px 18px;
+                flex: 0 0 auto
             }
 
             .hero .eyebrow + h1 {
@@ -1964,6 +2048,22 @@
 
             .topo-modebar {
                 grid-template-columns: 1fr
+            }
+
+            .topo-modebar button {
+                min-height: 76px;
+                padding: 10px 11px
+            }
+
+            .topo-modebar button strong,
+            .topo-modebar button span,
+            html[lang="hi"] .topo-modebar button strong,
+            html[lang="hi"] .topo-modebar button span {
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -webkit-line-clamp: initial
             }
 
             .resource-console:not(.modal-open) .topo-stage {
@@ -2218,10 +2318,12 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 <style id="sampora-horizontal-line-cleanup">
 body {
     background-image:
+        linear-gradient(rgba(120, 172, 216, .026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 172, 216, .024) 1px, transparent 1px),
         radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
         radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .07) 0, transparent 64%),
         linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%) !important;
-    background-size: auto !important;
+    background-size: 44px 44px, 44px 44px, auto, auto, auto !important;
 }
 body::before {
     content: none !important;
@@ -2242,6 +2344,26 @@ body::before {
 .sampora-footer-contact-item {
     border-right: 0 !important;
     border-bottom: 0 !important;
+}
+#footer.sampora-site-footer {
+    border-top: 0 !important;
+}
+#footer .sampora-footer-card {
+    border-color: rgba(129, 178, 214, .10) !important;
+    border-top-color: rgba(129, 178, 214, .04) !important;
+    background: rgba(8, 20, 36, .62) !important;
+}
+#footer .sampora-footer-contact,
+#footer .sampora-footer-legal {
+    border-top: 0 !important;
+}
+#footer .sampora-footer-contact-item {
+    border-bottom: 0 !important;
+}
+@media(max-width:1180px) {
+    #footer .sampora-footer-contact-item {
+        border-bottom: 0 !important;
+    }
 }
 </style>
 </head>
@@ -2334,7 +2456,7 @@ body::before {
 </div>
 <div class="topo-modebar" id="topoModebar"></div>
 <div class="topo-headline">
-<p data-i18n="topologyTitle">documentation operating map</p>
+<p data-i18n="topologyTitle">Documentation Map</p>
 <div class="legend">
 <span><i class="act"></i><b data-i18n="legendA">guide path</b></span>
 <span><i class="mid"></i><b data-i18n="legendB">control point</b></span>
@@ -2343,15 +2465,23 @@ body::before {
 </div>
 <div class="topo-stage" id="topoStage">
 <div class="topo-scan"></div>
-<svg aria-label="Resource operating topology" class="topo-svg" viewBox="0 0 820 270">
+<svg aria-label="Resource documentation map" class="topo-svg" role="group" viewBox="0 0 720 268">
 <defs>
-<path id="r-smp-setup" d="M124 158 C190 158 224 85 300 85"></path>
-<path id="r-smp-supplier" d="M124 158 C190 158 224 157 300 157"></path>
-<path id="r-smp-finance" d="M124 158 C190 158 224 229 300 229"></path>
-<path id="r-setup-review" d="M540 85 C580 85 596 158 620 158"></path>
-<path id="r-supplier-review" d="M540 157 C580 157 596 158 620 158"></path>
-<path id="r-finance-review" d="M540 229 C580 229 596 158 620 158"></path>
-<path id="r-review-records" d="M690 158 C708 158 720 158 738 158"></path>
+<linearGradient id="resourceHubGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0" stop-color="#163a5e"></stop>
+<stop offset="1" stop-color="#0a1a2e"></stop>
+</linearGradient>
+<linearGradient id="resourceBrandMarkGrad" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0" stop-color="#1a3a5f"></stop>
+<stop offset="1" stop-color="#0e1b2f"></stop>
+</linearGradient>
+<path id="r-smp-setup" d="M150 134 C178 134 194 56 236 56"></path>
+<path id="r-smp-supplier" d="M150 134 C180 134 198 132 236 132"></path>
+<path id="r-smp-finance" d="M150 134 C178 134 194 208 236 208"></path>
+<path id="r-setup-review" d="M476 56 C508 56 516 132 540 132"></path>
+<path id="r-supplier-review" d="M476 132 C508 132 516 132 540 132"></path>
+<path id="r-finance-review" d="M476 208 C508 208 516 132 540 132"></path>
+<path id="r-review-records" d="M590 132 C614 132 632 132 654 132"></path>
 </defs>
 <g class="background-wires-layer">
 <use class="wire" href="#r-smp-setup"></use>
@@ -2380,72 +2510,70 @@ body::before {
 </g>
 <g aria-hidden="true" class="packet-layer">
 <g class="packet-group" id="packetSetup">
-<circle class="packet" cx="124" cy="158" data-duration="3.4" data-path="r-smp-setup" data-phase=".08" r="4"></circle>
-<circle class="packet" cx="540" cy="85" data-duration="3.2" data-path="r-setup-review" data-phase=".24" r="4"></circle>
-<circle class="packet" cx="690" cy="158" data-duration="2.8" data-path="r-review-records" data-phase=".48" r="4"></circle>
+<circle class="packet" cx="150" cy="134" data-duration="3.4" data-path="r-smp-setup" data-phase=".08" r="3.6"></circle>
+<circle class="packet" cx="476" cy="56" data-duration="3.2" data-path="r-setup-review" data-phase=".24" r="3.6"></circle>
+<circle class="packet" cx="590" cy="132" data-duration="2.8" data-path="r-review-records" data-phase=".48" r="3.6"></circle>
 </g>
 <g class="packet-group" id="packetSupplier">
-<circle class="packet amber" cx="124" cy="158" data-duration="3.1" data-path="r-smp-supplier" data-phase=".10" r="4"></circle>
-<circle class="packet amber" cx="540" cy="157" data-duration="3.0" data-path="r-supplier-review" data-phase=".32" r="4"></circle>
-<circle class="packet amber" cx="690" cy="158" data-duration="2.7" data-path="r-review-records" data-phase=".56" r="4"></circle>
+<circle class="packet amber" cx="150" cy="134" data-duration="3.1" data-path="r-smp-supplier" data-phase=".10" r="3.6"></circle>
+<circle class="packet amber" cx="476" cy="132" data-duration="3.0" data-path="r-supplier-review" data-phase=".32" r="3.6"></circle>
+<circle class="packet amber" cx="590" cy="132" data-duration="2.7" data-path="r-review-records" data-phase=".56" r="3.6"></circle>
 </g>
 <g class="packet-group" id="packetFinance">
-<circle class="packet" cx="124" cy="158" data-duration="3.8" data-path="r-smp-finance" data-phase=".08" r="4"></circle>
-<circle class="packet" cx="540" cy="229" data-duration="3.4" data-path="r-finance-review" data-phase=".28" r="4"></circle>
-<circle class="packet" cx="690" cy="158" data-duration="3" data-path="r-review-records" data-phase=".52" r="4"></circle>
+<circle class="packet" cx="150" cy="134" data-duration="3.8" data-path="r-smp-finance" data-phase=".08" r="3.2"></circle>
+<circle class="packet" cx="476" cy="208" data-duration="3.4" data-path="r-finance-review" data-phase=".28" r="3.2"></circle>
+<circle class="packet" cx="590" cy="132" data-duration="3" data-path="r-review-records" data-phase=".52" r="3.2"></circle>
 </g>
 </g>
 </g>
 <g class="nodes-layer">
-<g class="hub origin-hub" transform="translate(42,130)">
-<rect height="56" rx="14" width="82"></rect>
-<circle class="pulse" cx="41" cy="28" r="14"></circle>
+<g class="hub origin-hub" transform="translate(20,107)">
+<rect height="54" rx="12" width="130" x="0" y="0"></rect>
+<circle class="pulse" cx="24" cy="27" r="7"></circle>
+<g aria-hidden="true" class="brand-core-mark" data-no-i18n="true"><rect height="22" rx="6" width="22" x="13" y="16"></rect><text dominant-baseline="central" text-anchor="middle" x="24" y="27.5">S</text></g>
 </g>
-<g aria-label="Setup resource layer" class="node" data-mode="setup" id="nodeSetup" role="button" tabindex="0" transform="translate(300,56)">
-<rect height="52" rx="12" width="240"></rect>
+<g aria-label="Configuration Guide resource layer" class="node" data-mode="setup" id="nodeSetup" role="button" tabindex="0" transform="translate(236,30)">
+<rect height="52" rx="12" width="240" x="0" y="0"></rect>
 </g>
-<g aria-label="Supplier resource layer" class="node warn" data-mode="supplier" id="nodeSupplier" role="button" tabindex="0" transform="translate(300,128)">
-<rect height="52" rx="12" width="240"></rect>
+<g aria-label="Operation Manual resource layer" class="node warn" data-mode="supplier" id="nodeSupplier" role="button" tabindex="0" transform="translate(236,106)">
+<rect height="52" rx="12" width="240" x="0" y="0"></rect>
 </g>
-<g aria-label="Finance resource layer" class="node" data-mode="finance" id="nodeFinance" role="button" tabindex="0" transform="translate(300,200)">
-<rect height="52" rx="12" width="240"></rect>
+<g aria-label="Rollout Notes resource layer" class="node" data-mode="finance" id="nodeFinance" role="button" tabindex="0" transform="translate(236,182)">
+<rect height="52" rx="12" width="240" x="0" y="0"></rect>
 </g>
-<g class="hub ctrl-hub" transform="translate(620,132)">
-<rect height="48" rx="12" width="62"></rect>
+<g class="hub ctrl-hub" transform="translate(540,110)">
+<rect height="44" rx="12" width="50" x="0" y="0"></rect>
 </g>
-<g class="hub evd-hub" transform="translate(738,132)">
-<rect height="48" rx="12" width="62"></rect>
+<g class="hub evd-hub" transform="translate(654,110)">
+<rect height="44" rx="12" width="52" x="0" y="0"></rect>
 </g>
 </g>
 <g class="labels-layer">
-<text class="topo-col" data-i18n-svg="colInput" x="83" y="34"></text>
-<text class="topo-col" data-i18n-svg="colLayer" x="420" y="34"></text>
-<text class="topo-col" data-i18n-svg="colControl" x="651" y="34"></text>
-<text class="topo-col" data-i18n-svg="colEvidence" x="769" y="34"></text>
-<g transform="translate(42,130)">
-<text class="hub-code brand-label" text-anchor="middle" x="41" y="26">Sampora</text>
-<text class="hub-role" data-i18n-svg="nodeSmp" text-anchor="middle" x="41" y="42"></text>
+<text class="topo-col" data-i18n-svg="colInput" x="85" y="22"></text>
+<text class="topo-col" data-i18n-svg="colLayer" x="356" y="22"></text>
+<text class="topo-col" data-i18n-svg="colControl" x="565" y="22"></text>
+<text class="topo-col" data-i18n-svg="colEvidence" x="680" y="22"></text>
+<g class="origin-hub-label" transform="translate(20,107)">
+<text class="hub-code" text-anchor="middle" x="76" y="24">Sampora</text>
+<text class="hub-role" data-i18n-svg="nodeSmp" text-anchor="middle" x="76" y="40"></text>
 </g>
-<g class="node-label" id="labelSetup" transform="translate(316,56)">
-<text class="node-code" x="42" y="22">01</text>
-<text class="node-title" data-i18n-svg="nodeSetup" x="142" y="22"></text>
-<text class="node-role" data-i18n-svg="roleSetup" x="142" y="40"></text>
+<g class="node-label" id="labelSetup" transform="translate(236,30)">
+<text text-anchor="middle" x="120" y="22"><tspan class="node-code">01</tspan><tspan class="node-title" data-i18n-svg="nodeSetup" dx="14"></tspan></text>
+<text class="node-role" data-i18n-svg="roleSetup" text-anchor="middle" x="120" y="40"></text>
 </g>
-<g class="node-label warn" id="labelSupplier" transform="translate(316,128)">
-<text class="node-code" x="42" y="22">02</text>
-<text class="node-title" data-i18n-svg="nodeSupplier" x="142" y="22"></text>
-<text class="node-role" data-i18n-svg="roleSupplier" x="142" y="40"></text>
+<g class="node-label warn" id="labelSupplier" transform="translate(236,106)">
+<text text-anchor="middle" x="120" y="22"><tspan class="node-code">02</tspan><tspan class="node-title" data-i18n-svg="nodeSupplier" dx="14"></tspan></text>
+<text class="node-role" data-i18n-svg="roleSupplier" text-anchor="middle" x="120" y="40"></text>
 </g>
-<g class="node-label" id="labelFinance" transform="translate(316,200)">
-<text class="node-code" x="42" y="22">03</text>
-<text class="node-title" data-i18n-svg="nodeFinance" x="142" y="22"></text>
-<text class="node-role" data-i18n-svg="roleFinance" x="142" y="40"></text>
+<g class="node-label" id="labelFinance" transform="translate(236,182)">
+<text text-anchor="middle" x="120" y="22"><tspan class="node-code">03</tspan><tspan class="node-title" data-i18n-svg="nodeFinance" dx="14"></tspan></text>
+<text class="node-role" data-i18n-svg="roleFinance" text-anchor="middle" x="120" y="40"></text>
 </g>
-<g transform="translate(620,132)">
-<text class="hub-mini" data-i18n-svg="nodeCtrl" text-anchor="middle" x="31" y="30"></text>
+<g transform="translate(540,110)">
+<text class="hub-mini" data-i18n-svg="nodeCtrl" text-anchor="middle" x="25" y="26"></text>
 </g>
-<g transform="translate(738,132)">
-<text class="hub-mini" data-i18n-svg="nodeEvd" text-anchor="middle" x="31" y="30"></text>
+<g transform="translate(654,110)">
+<text class="hub-mini" data-i18n-svg="nodeEvd" text-anchor="middle" x="26" y="26"></text>
 </g>
 </g>
 </svg>
@@ -2554,22 +2682,22 @@ body::before {
                         "statusRight": "Privacy workflow support · audit logs · settlement records",
                         "statusModes": {
                                     "setup": {
-                                                "statusLive": "SETUP GUIDES · LIVE",
-                                                "statusA": "Project setup playbook",
-                                                "statusB": "Intake · delivery rules · first allocation",
-                                                "statusRight": "Implementation references mapped to active setup work"
+                                                "statusLive": "CONFIGURATION GUIDE · LIVE",
+                                                "statusA": "Setup and configuration references",
+                                                "statusB": "System setup · risk rules · integration basics",
+                                                "statusRight": "Configuration references follow the active resource mode"
                                     },
                                     "supplier": {
-                                                "statusLive": "SUPPLIER GUIDES · LIVE",
-                                                "statusA": "Supplier allocation playbook",
-                                                "statusB": "Pricing · workspace receiving · delivery records",
-                                                "statusRight": "Supplier coordination references follow the active topology mode"
+                                                "statusLive": "OPERATION MANUAL · LIVE",
+                                                "statusA": "Operating workflow references",
+                                                "statusB": "Project intake · supplier allocation · delivery review",
+                                                "statusRight": "Operation manual references follow the active resource mode"
                                     },
                                     "finance": {
-                                                "statusLive": "SETTLEMENT GUIDES · LIVE",
-                                                "statusA": "Review and finance playbook",
-                                                "statusB": "Audit records · bills · invoices · export evidence",
-                                                "statusRight": "Finance references follow the active topology mode"
+                                                "statusLive": "ROLLOUT NOTES · LIVE",
+                                                "statusA": "Rollout and workspace references",
+                                                "statusB": "Deployment notes · role guides · launch checks",
+                                                "statusRight": "Rollout notes follow the active resource mode"
                                     }
                         },
                         "brandSub": "Operations console",
@@ -2588,27 +2716,27 @@ body::before {
                         "heroCta1": "View manuals →", 
                         "heroCta2": "Read rollout notes →",
                         "metric1Title": "Configuration Guide",
-                        "metric1Text": "Setup, client/supplier configuration, risk rules, and integration basics.",
+                        "metric1Text": "System setup, client/supplier configuration, risk rules, and integration basics.",
                         "metric2Title": "Operation Manual",
                         "metric2Text": "Project intake, supplier allocation, delivery review, and settlement workflows.",
                         "metric3Title": "Rollout Notes",
                         "metric3Text": "Deployment notes, role guides, workspace references, and rollout checks.",
                         "consoleCrumb": "resources / operations map / live",
-                        "topologyTitle": "documentation operating map",
+                        "topologyTitle": "Documentation Map",
                         "legendA": "guide path",
                         "legendB": "control point",
-                        "legendC": "settlement path",
+                        "legendC": "evidence path",
                                                                         "colInput": "INTAKE",
                         "colLayer": "GUIDE LAYER",
                         "colControl": "REVIEW",
                         "colEvidence": "RECORDS",
                         "nodeSmp": "resource hub",
-                        "nodeSetup": "PROJECT",
-                        "roleSetup": "intake",
-                        "nodeSupplier": "SUPPLIER",
-                        "roleSupplier": "allocation",
-                        "nodeFinance": "SETTLEMENT",
-                        "roleFinance": "finance",
+                        "nodeSetup": "CONFIG GUIDE",
+                        "roleSetup": "setup & configuration",
+                        "nodeSupplier": "OPERATION MANUAL",
+                        "roleSupplier": "delivery workflow",
+                        "nodeFinance": "ROLLOUT NOTES",
+                        "roleFinance": "deployment checklist",
                         "nodeCtrl": "REVIEW",
                         "nodeEvd": "RECORDS",
                         "setupKicker": "OPERATING PATH",
@@ -2641,33 +2769,27 @@ body::before {
                         "footerCompanyLegal": "Anhui Jiayu Enterprise Service Co., Ltd.",
                         "copyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
                         "modes": {
-                                    "setup": [
-                                                "PROJECT",
-                                                "Intake",
-                                                "Project Delivery Management: intake, setup, allocation, online/offline actions, analysis and settlement.",
-                                                "Project",
-                                                "CPI / IR / LOI",
-                                                "Status",
-                                                "Project intake · delivery configuration · first allocation path"
-                                    ],
-                                    "supplier": [
-                                                "SUPPLIER",
-                                                "Allocation",
-                                                "Supplier Allocation & Pricing: assign suppliers, block unsuitable supply and manage workspace/API receiving.",
-                                                "Supplier",
-                                                "Pricing",
-                                                "Workspace",
-                                                "Supplier allocation · API/workspace receiving · delivery records visible"
-                                    ],
-                                    "finance": [
-                                                "SETTLEMENT",
-                                                "Records",
-                                                "Review & Settlement: audit records, callback logs, supplier bills, client invoices and finance evidence.",
-                                                "Review",
-                                                "Bills",
-                                                "Audit",
-                                                "Review records · settlement workflow · exportable finance evidence"
-                                    ]
+                                    "setup": {
+                                                "title": "Configuration Guide",
+                                                "short": "Setup & configuration",
+                                                "description": "System setup, client and supplier configuration, risk rules, and integration basics.",
+                                                "tags": ["System setup", "Risk rules", "Integration"],
+                                                "ticker": "Setup checklist active · configuration references ready"
+                                    },
+                                    "supplier": {
+                                                "title": "Operation Manual",
+                                                "short": "Delivery workflow",
+                                                "description": "Project intake, supplier allocation, delivery review, and settlement workflows.",
+                                                "tags": ["Project intake", "Allocation", "Review"],
+                                                "ticker": "Delivery workflow active · operation steps ready"
+                                    },
+                                    "finance": {
+                                                "title": "Rollout Notes",
+                                                "short": "Deployment checklist",
+                                                "description": "Deployment notes, role guides, workspace references, and rollout checks.",
+                                                "tags": ["Deployment", "Role guides", "Checklist"],
+                                                "ticker": "Deployment checklist active · rollout notes ready"
+                                    }
                         },
                         "footerTag1": "Project intake",
                         "footerTag2": "Supplier allocation",
@@ -2681,21 +2803,21 @@ body::before {
                         "statusModes": {
                                     "setup": {
                                                 "statusLive": "配置指南 · 实时",
-                                                "statusA": "项目配置手册路径",
-                                                "statusB": "项目接收 · 交付规则 · 首次分配",
-                                                "statusRight": "实施参考随当前配置模式同步"
+                                                "statusA": "系统设置与配置参考",
+                                                "statusB": "系统设置 · 风控规则 · 集成基础",
+                                                "statusRight": "配置参考随当前资源模式同步"
                                     },
                                     "supplier": {
-                                                "statusLive": "供应商指南 · 实时",
-                                                "statusA": "供应商分配手册路径",
-                                                "statusB": "控价 · 工作台接收 · 交付记录",
-                                                "statusRight": "供应商协同参考随当前拓扑模式同步"
+                                                "statusLive": "操作手册 · 实时",
+                                                "statusA": "运营流程操作参考",
+                                                "statusB": "项目接收 · 供应商分配 · 交付审核",
+                                                "statusRight": "操作手册随当前资源模式同步"
                                     },
                                     "finance": {
-                                                "statusLive": "结算指南 · 实时",
-                                                "statusA": "审核与财务手册路径",
-                                                "statusB": "审计记录 · 账单 · 发票 · 导出证据",
-                                                "statusRight": "财务参考随当前拓扑模式同步"
+                                                "statusLive": "上线说明 · 实时",
+                                                "statusA": "上线与工作台参考",
+                                                "statusB": "部署说明 · 角色手册 · 上线检查",
+                                                "statusRight": "上线说明随当前资源模式同步"
                                     }
                         },
                         "brandSub": "操作控制台",
@@ -2720,23 +2842,23 @@ body::before {
                         "metric3Title": "上线说明",
                         "metric3Text": "部署步骤、角色手册、工作台参考和上线检查清单。",
                         "consoleCrumb": "资源 / 运营地图 / 实时",
-                        "topologyTitle": "文档运营地图",
+                        "topologyTitle": "文档地图",
                         "legendA": "指南路径",
                         "legendB": "控制点",
-                        "legendC": "结算路径",
+                        "legendC": "证据路径",
                                                                         "colInput": "接收",
                         "colLayer": "指南层",
                         "colControl": "审核",
                         "colEvidence": "记录",
                         "nodeSmp": "资源中心",
-                        "nodeSetup": "项目",
-                        "roleSetup": "接收",
-                        "nodeSupplier": "供应商",
-                        "roleSupplier": "分配",
-                        "nodeFinance": "结算",
-                        "roleFinance": "财务",
-                        "nodeCtrl": "审核",
-                        "nodeEvd": "记录",
+                        "nodeSetup": "配置指南",
+                        "roleSetup": "系统配置",
+                        "nodeSupplier": "操作手册",
+                        "roleSupplier": "交付流程",
+                        "nodeFinance": "上线说明",
+                        "roleFinance": "上线检查",
+                        "nodeCtrl": "REVIEW",
+                        "nodeEvd": "RECORDS",
                         "setupKicker": "运营路径",
                         "setupTitle": "按照<em>交付到结算</em>的手册路径学习。",
                         "setupText": "按照配置、项目接收、供应商协同、审核、结算和团队上线步骤，快速找到需要的操作资料。",
@@ -2767,33 +2889,27 @@ body::before {
                         "footerCompanyLegal": "安徽省嘉禹企业服务有限公司",
                         "copyright": "© 2026 安徽省嘉禹企业服务有限公司",
                         "modes": {
-                                    "setup": [
-                                                "项目",
-                                                "接收",
-                                                "项目交付管理：项目接收、配置、分配、上线 / 下线、分析和结算。",
-                                                "项目",
-                                                "CPI / IR / LOI",
-                                                "状态",
-                                                "项目接收 · 交付配置 · 首次分配路径"
-                                    ],
-                                    "supplier": [
-                                                "供应商",
-                                                "分配",
-                                                "供应商分配与控价：分配供应商、屏蔽不合适供应方，并管理工作台 / API 接收。",
-                                                "供应商",
-                                                "控价",
-                                                "工作台",
-                                                "供应商分配 · API / 工作台接收 · 交付记录可见"
-                                    ],
-                                    "finance": [
-                                                "结算",
-                                                "记录",
-                                                "审核与结算：审核记录、回调日志、供应商账单、客户发票和财务证据。",
-                                                "审核",
-                                                "账单",
-                                                "审计",
-                                                "审核记录 · 结算流程 · 可导出财务证据"
-                                    ]
+                                    "setup": {
+                                                "title": "配置指南",
+                                                "short": "系统配置",
+                                                "description": "系统设置、客户与供应商配置、风控规则和集成基础。",
+                                                "tags": ["系统设置", "风控规则", "集成基础"],
+                                                "ticker": "系统配置已选中 · 配置参考就绪"
+                                    },
+                                    "supplier": {
+                                                "title": "操作手册",
+                                                "short": "交付流程",
+                                                "description": "项目接收、供应商分配、交付审核和结算流程。",
+                                                "tags": ["项目接收", "供应商分配", "交付审核"],
+                                                "ticker": "交付流程已选中 · 操作步骤就绪"
+                                    },
+                                    "finance": {
+                                                "title": "上线说明",
+                                                "short": "上线检查",
+                                                "description": "部署步骤、角色手册、工作台参考和上线检查清单。",
+                                                "tags": ["部署步骤", "角色手册", "检查清单"],
+                                                "ticker": "上线检查已选中 · 上线说明就绪"
+                                    }
                         },
                         "footerTag1": "项目接收",
                         "footerTag2": "供应商分配",
@@ -2806,22 +2922,22 @@ body::before {
                         "statusRight": "गोपनीयता प्रक्रिया समर्थन · ऑडिट लॉग · निपटान रिकॉर्ड",
                         "statusModes": {
                                     "setup": {
-                                                "statusLive": "सेटअप गाइड · लाइव",
-                                                "statusA": "प्रोजेक्ट सेटअप प्लेबुक",
-                                                "statusB": "प्राप्ति · डिलीवरी नियम · पहला आवंटन",
-                                                "statusRight": "कार्यान्वयन संदर्भ सक्रिय सेटअप मोड से जुड़े हैं"
+                                                "statusLive": "कॉन्फ़िगरेशन गाइड · लाइव",
+                                                "statusA": "सेटअप और कॉन्फ़िगरेशन संदर्भ",
+                                                "statusB": "सिस्टम सेटअप · जोखिम नियम · इंटीग्रेशन आधार",
+                                                "statusRight": "कॉन्फ़िगरेशन संदर्भ सक्रिय संसाधन मोड से जुड़े हैं"
                                     },
                                     "supplier": {
-                                                "statusLive": "सप्लायर गाइड · लाइव",
-                                                "statusA": "सप्लायर आवंटन प्लेबुक",
-                                                "statusB": "मूल्य नियंत्रण · कार्यक्षेत्र प्राप्ति · डिलीवरी रिकॉर्ड",
-                                                "statusRight": "सप्लायर समन्वय संदर्भ सक्रिय topology मोड से जुड़े हैं"
+                                                "statusLive": "ऑपरेशन मैनुअल · लाइव",
+                                                "statusA": "ऑपरेटिंग वर्कफ़्लो संदर्भ",
+                                                "statusB": "प्रोजेक्ट प्राप्ति · सप्लायर आवंटन · डिलीवरी समीक्षा",
+                                                "statusRight": "ऑपरेशन मैनुअल सक्रिय संसाधन मोड से जुड़ा है"
                                     },
                                     "finance": {
-                                                "statusLive": "निपटान गाइड · लाइव",
-                                                "statusA": "समीक्षा और वित्त प्लेबुक",
-                                                "statusB": "ऑडिट रिकॉर्ड · बिल · चालान · निर्यात प्रमाण",
-                                                "statusRight": "वित्त संदर्भ सक्रिय topology मोड से जुड़े हैं"
+                                                "statusLive": "रोलआउट नोट्स · लाइव",
+                                                "statusA": "रोलआउट और कार्यक्षेत्र संदर्भ",
+                                                "statusB": "डिप्लॉयमेंट नोट्स · भूमिका गाइड · लॉन्च चेक",
+                                                "statusRight": "रोलआउट नोट्स सक्रिय संसाधन मोड से जुड़े हैं"
                                     }
                         },
                         "brandSub": "संचालन कंसोल",
@@ -2846,23 +2962,23 @@ body::before {
                         "metric3Title": "रोलआउट नोट्स",
                         "metric3Text": "डिप्लॉयमेंट स्टेप्स, रोल गाइड, कार्यक्षेत्र संदर्भ और रोलआउट चेक।",
                         "consoleCrumb": "संसाधन / संचालन मानचित्र / लाइव",
-                        "topologyTitle": "दस्तावेज़ संचालन मानचित्र",
+                        "topologyTitle": "दस्तावेज़ मैप",
                         "legendA": "गाइड पथ",
                         "legendB": "नियंत्रण बिंदु",
-                        "legendC": "निपटान पथ",
+                        "legendC": "प्रमाण पथ",
                                                                         "colInput": "प्राप्ति",
                         "colLayer": "गाइड स्तर",
                         "colControl": "समीक्षा",
                         "colEvidence": "रिकॉर्ड",
                         "nodeSmp": "संसाधन केंद्र",
-                        "nodeSetup": "प्रोजेक्ट",
-                        "roleSetup": "प्राप्ति",
-                        "nodeSupplier": "सप्लायर",
-                        "roleSupplier": "आवंटन",
-                        "nodeFinance": "निपटान",
-                        "roleFinance": "वित्त",
-                        "nodeCtrl": "समीक्षा",
-                        "nodeEvd": "रिकॉर्ड",
+                        "nodeSetup": "कॉन्फ़िग गाइड",
+                        "roleSetup": "सेटअप",
+                        "nodeSupplier": "ऑपरेशन मैनुअल",
+                        "roleSupplier": "डिलीवरी",
+                        "nodeFinance": "रोलआउट नोट्स",
+                        "roleFinance": "चेकलिस्ट",
+                        "nodeCtrl": "REVIEW",
+                        "nodeEvd": "RECORDS",
                         "setupKicker": "संचालन पथ",
                         "setupTitle": "<em>डिलीवरी से निपटान</em> तक मैनुअल पथ देखें।",
                         "setupText": "सेटअप, प्रोजेक्ट प्राप्ति, सप्लायर समन्वय, समीक्षा, निपटान और टीम ऑनबोर्डिंग के लिए जरूरी गाइड जल्दी खोजें।",
@@ -2893,33 +3009,27 @@ body::before {
                         "footerCompanyLegal": "Anhui Jiayu Enterprise Service Co., Ltd.",
                         "copyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
                         "modes": {
-                                    "setup": [
-                                                "प्रोजेक्ट",
-                                                "प्राप्ति",
-                                                "प्रोजेक्ट डिलीवरी प्रबंधन: प्राप्ति, सेटअप, आवंटन, ऑनलाइन / ऑफलाइन कार्रवाई, विश्लेषण और निपटान।",
-                                                "प्रोजेक्ट",
-                                                "CPI / IR / LOI",
-                                                "स्थिति",
-                                                "प्रोजेक्ट प्राप्ति · डिलीवरी कॉन्फ़िगरेशन · पहला आवंटन पथ"
-                                    ],
-                                    "supplier": [
-                                                "सप्लायर",
-                                                "आवंटन",
-                                                "सप्लायर आवंटन और मूल्य नियंत्रण: चुने हुए सप्लायर जोड़ें, अनुपयुक्त आपूर्ति ब्लॉक करें और कार्यक्षेत्र / API प्राप्ति प्रबंधित करें।",
-                                                "सप्लायर",
-                                                "मूल्य नियंत्रण",
-                                                "कार्यक्षेत्र",
-                                                "सप्लायर आवंटन · API / कार्यक्षेत्र प्राप्ति · डिलीवरी रिकॉर्ड उपलब्ध"
-                                    ],
-                                    "finance": [
-                                                "निपटान",
-                                                "रिकॉर्ड",
-                                                "समीक्षा और निपटान: समीक्षा रिकॉर्ड, कॉलबैक लॉग, सप्लायर बिल, ग्राहक चालान और वित्तीय प्रमाण।",
-                                                "समीक्षा",
-                                                "बिल",
-                                                "ऑडिट",
-                                                "समीक्षा रिकॉर्ड · निपटान प्रक्रिया · निर्यात योग्य वित्तीय प्रमाण"
-                                    ]
+                                    "setup": {
+                                                "title": "कॉन्फ़िगरेशन गाइड",
+                                                "short": "सेटअप और कॉन्फ़िगरेशन",
+                                                "description": "सिस्टम सेटअप, क्लाइंट-सप्लायर कॉन्फ़िगरेशन, जोखिम नियम और इंटीग्रेशन आधार।",
+                                                "tags": ["सिस्टम सेटअप", "जोखिम नियम", "इंटीग्रेशन"],
+                                                "ticker": "सेटअप चेकलिस्ट सक्रिय · कॉन्फ़िगरेशन संदर्भ तैयार"
+                                    },
+                                    "supplier": {
+                                                "title": "ऑपरेशन मैनुअल",
+                                                "short": "डिलीवरी वर्कफ़्लो",
+                                                "description": "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी समीक्षा और सेटलमेंट वर्कफ़्लो।",
+                                                "tags": ["प्रोजेक्ट प्राप्ति", "सप्लायर आवंटन", "समीक्षा"],
+                                                "ticker": "डिलीवरी वर्कफ़्लो सक्रिय · ऑपरेशन चरण तैयार"
+                                    },
+                                    "finance": {
+                                                "title": "रोलआउट नोट्स",
+                                                "short": "डिप्लॉयमेंट चेकलिस्ट",
+                                                "description": "डिप्लॉयमेंट नोट्स, भूमिका गाइड, कार्यक्षेत्र संदर्भ और रोलआउट चेकलिस्ट।",
+                                                "tags": ["डिप्लॉयमेंट", "भूमिका गाइड", "चेकलिस्ट"],
+                                                "ticker": "डिप्लॉयमेंट चेकलिस्ट सक्रिय · रोलआउट नोट्स तैयार"
+                                    }
                         },
                         "footerTag1": "प्रोजेक्ट प्राप्ति",
                         "footerTag2": "सप्लायर आवंटन",
@@ -3267,11 +3377,11 @@ body::before {
             const modes = COPY[state.lang].modes;
             const entries = Object.entries(modes);
             const bar = $("#topoModebar");
-            const signature = `${state.lang}:${entries.map(([id]) => id).join("|")}`;
+            const signature = `${state.lang}:${entries.map(([id, m]) => `${id}:${m.title}:${m.short}`).join("|")}`;
             if (modebarSignature !== signature || bar.querySelectorAll("button").length !== entries.length) {
                 bar.innerHTML = entries.map(([id, m], i) => `
         <button type="button" data-mode="${id}" class="${state.mode === id ? 'active' : ''}">
-          <small>0${i + 1}</small><strong>${m[0]}</strong><span>${m[1]}</span>
+          <small>0${i + 1}</small><strong>${m.title}</strong><span>${m.short}</span>
         </button>`).join("");
                 bar.querySelectorAll("button").forEach(btn => btn.addEventListener("click", () => setTopologyMode(btn.dataset.mode, { userSelected: true })));
                 modebarSignature = signature;
@@ -3304,7 +3414,7 @@ body::before {
             if (topologyUserLocked) return;
             if (topologyCycleTimer) window.clearInterval(topologyCycleTimer);
             topologyCycleTimer = window.setInterval(() => {
-                if (document.hidden || $("#resourceConsole").classList.contains("modal-open")) return;
+                if (document.hidden) return;
                 const index = modeOrder.indexOf(state.mode);
                 const nextMode = modeOrder[(index + 1) % modeOrder.length] || modeOrder[0];
                 setTopologyMode(nextMode, { resetCycle: false });
@@ -3313,11 +3423,11 @@ body::before {
 
         function renderTopology() {
             const m = COPY[state.lang].modes[state.mode];
-            $("#consoleScope").textContent = m[0];
-            $("#consoleTitle").textContent = m[0] + " " + m[1];
-            $("#consoleSub").textContent = m[2];
-            $("#consoleTags").innerHTML = m.slice(3, 6).map((x, i) => `<span class="tag ${state.mode === 'supplier' && i === 0 ? 'amber' : ''}">${x}</span>`).join("");
-            $("#consoleTicker").textContent = m[6];
+            $("#consoleScope").textContent = m.title;
+            $("#consoleTitle").textContent = m.title;
+            $("#consoleSub").textContent = m.description;
+            $("#consoleTags").innerHTML = m.tags.map((x, i) => `<span class="tag ${state.mode === 'supplier' && i === 0 ? 'amber' : ''}">${x}</span>`).join("");
+            $("#consoleTicker").textContent = m.ticker;
 
             ["setup", "supplier", "finance"].forEach(id => {
                 const on = id === state.mode;
