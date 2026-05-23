@@ -73,7 +73,7 @@ const damagedText = (v, targetLang = '') => {
   if (/^[\s!?.,;:()\[\]{}\-_/\\]+$/.test(t)) return true;
   if (/[\uFFFD\u00C3\u00C2]/.test(t)) return true;
   if (/\u00E2\u20AC/.test(t)) return true;
-  if (/[脳鈱漏�]/.test(t)) return true;
+  if (/[脳鈱漏\uFFFD]/.test(t)) return true;
   if (/[鍦鎵鏌瀹婧閰惧湴弸櫙朓]/.test(t)) return true;
   if (/銆|€/.test(t)) return true;
   if (targetLang === 'zh') return !/[\u3400-\u9FFF]/.test(t);
@@ -107,7 +107,7 @@ const ROLLOUT_NOTES = {
     items: [
       ['01', 'Launch preparation', 'Confirm project countries, sample sources, domains, notification paths, and settlement rules before opening the workspace.'],
       ['02', 'Roles/permissions', 'Assign tenant admin, operations, finance, supplier, and reviewer roles with least-privilege access.'],
-      ['03', 'Admin entries', 'Create organization, department, employee, supplier, and survey station admin entries before launch.'],
+      ['03', 'Admin entries', 'Create organization, department, employee, supplier, and survey execution site admin entries before launch.'],
       ['04', 'Launch checklist', 'Run login, project intake, supplier allocation, callback, review, settlement, and export-control checks before go-live.']
     ]
   },
@@ -118,7 +118,7 @@ const ROLLOUT_NOTES = {
     items: [
       ['01', '上线准备', '上线前确认项目国家、样本来源、域名、通知路径和结算规则。'],
       ['02', '角色与权限', '为租户管理员、运营、财务、供应商和审核人员分配最小权限。'],
-      ['03', '管理入口', '上线前建立组织、部门、员工、供应商和调查站管理入口。'],
+      ['03', '管理入口', '上线前建立组织、部门、员工、供应商和执行站点管理入口。'],
       ['04', '上线清单', '正式上线前检查登录、项目接收、供应商分配、回调、审核、结算和导出权限。']
     ]
   },
@@ -129,7 +129,7 @@ const ROLLOUT_NOTES = {
     items: [
       ['01', 'लॉन्च तैयारी', 'लॉन्च से पहले प्रोजेक्ट देश, सैंपल स्रोत, डोमेन, सूचना मार्ग और सेटलमेंट नियम पुष्टि करें।'],
       ['02', 'भूमिकाएं और अनुमतियां', 'टेनेंट व्यवस्थापक, संचालन, फाइनेंस, सप्लायर और समीक्षा भूमिकाओं को न्यूनतम अनुमतियों के साथ दें।'],
-      ['03', 'व्यवस्थापक प्रविष्टियां', 'संगठन, विभाग, कर्मचारी, सप्लायर और Survey Station के व्यवस्थापक रिकॉर्ड लॉन्च से पहले बनाएं।'],
+      ['03', 'व्यवस्थापक प्रविष्टियां', 'संगठन, विभाग, कर्मचारी, सप्लायर और सर्वे निष्पादन साइट के व्यवस्थापक रिकॉर्ड लॉन्च से पहले बनाएं।'],
       ['04', 'लॉन्च जांच-सूची', 'लॉगिन, Project Intake, Supplier Allocation, कॉलबैक, समीक्षा, सेटलमेंट और export controls को go-live से पहले जांचें।']
     ]
   }
@@ -153,6 +153,8 @@ function removeLegacyAnchorSpans() {
 function i18n() {
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
   $$('[data-ui]').forEach((e) => { e.innerHTML = u(e.dataset.ui); });
+  $$('[data-ui-title]').forEach((e) => { e.setAttribute('title', u(e.dataset.uiTitle)); });
+  $$('[data-ui-aria-label]').forEach((e) => { e.setAttribute('aria-label', u(e.dataset.uiAriaLabel)); });
   $$('input').forEach((e) => { e.placeholder = u('search'); });
   const back = $('#backToCategory');
   if (back) back.setAttribute('aria-label', u('back'));

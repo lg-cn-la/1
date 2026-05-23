@@ -36,7 +36,7 @@
 | Member / Respondent Portal | 会员 / 受访者门户 | सदस्य / उत्तरदाता पोर्टल | Portal | Avoid English-only respondent portal in ZH/HI body copy. | Participant-facing access surface. |
 | Respondent | 受访者 | उत्तरदाता | Respondent in research-metric shorthand only | Avoid 会员 when the person is not registered as a panel member. | Person answering the survey. |
 | Panel Member | 样本会员 | सैंपल सदस्य | Panel | Avoid 面板会员 in polished Chinese website copy unless mirroring a backend label. | Registered member inside an owned sample/panel asset. |
-| Survey Station | 调查站 | सर्वे स्टेशन | Survey Station in system labels | Avoid Fieldwork Agency for Sampora positioning. | Execution unit or station that can run member/respondent operations. |
+| Survey Execution Site | 执行站点 | सर्वे निष्पादन साइट | Execution Site in compact labels | Avoid Survey Station / 调查站 / सर्वे स्टेशन in current marketing and manual copy. | Execution unit or site that can run member/respondent operations. |
 | Supplier Workspace | 供应商工作台 | सप्लायर वर्कस्पेस | Workspace | Avoid supplier console if the product term is workspace. | Supplier-side Sampora workspace for receiving/managing assigned projects. |
 | Admin Console | 管理控制台 | एडमिन कंसोल | Console | Avoid leaving console/status/feed surrounding text in English on ZH/HI pages. | Backend/admin operating surface. |
 | Workspace | 工作台 | वर्कस्पेस | Workspace | ZH must use 工作台. | User-confirmed Chinese canonical. |
@@ -72,15 +72,15 @@
 
 - Core topology nodes can keep system-style uppercase English: `SAMPLE SUPPLY POOL`, `SUPPLY SOURCES`, `REVIEW`, `SETTLE`, `SETTLEMENT`, and `OPERATION FEED`.
 - Surrounding non-node text must be localized: console lines, status chips, captions, route descriptions, modal explanatory text, operation-feed entries, and helper copy.
-- Topology supplier-source labels should represent multiple sample supply sources, not only panels. Preferred source set: owned panel, sample aggregator, survey station, subcontractor, and API supplier.
+- Topology supplier-source labels should represent multiple sample supply sources, not only panels. Preferred source set: owned panel, sample aggregator, survey execution site, subcontractor, and API supplier.
 - Do not revert topology terminology to `SUPPLIER POOL` when the current positioning needs `SAMPLE SUPPLY POOL`.
 - Do not use `Audience Source` or `Audience Owner` as the primary Sampora audience positioning unless the user explicitly asks for broader ecosystem language.
 
 ## 4. Front-of-Site Display Policy
 
 - Current approved P0-2 strategy is homepage/front-of-site display terminology governance only, not a backend data-model change and not a topology/workflow animation logic change.
-- Homepage and other front-of-site surfaces may use neutral supply-side display labels such as `RESP_03 / respondent ops`, `PARTNER_04 / delivery partner`, and `Supplier pool active` to reduce the visual prominence of `Survey Station` and `Subcontractor`.
-- `Survey Station` and `Subcontractor` are not deleted from the business taxonomy. They may still exist as supply sources, backend business roles, or topology source concepts where the assigned task and current evidence require them.
+- Front-of-site surfaces should prefer neutral supply-side display labels such as `RESP_03 / respondent ops`, `PARTNER_04 / delivery partner`, `Supplier pool active`, or the approved `Execution Site` wording where a real execution-site module is being described.
+- `Survey Execution Site` / `Execution Site` may still represent the execution-side business concept, but `Survey Station` should not be used as the current public module name.
 - Future agents must not classify `RESP_03`, `respondent ops`, `PARTNER_04`, `delivery partner`, or `Supplier pool active` as a terminology regression by themselves. Treat them as allowed front-of-site display wording unless fresh current evidence shows a page-specific glossary conflict.
 
 ## 5. Hindi Style

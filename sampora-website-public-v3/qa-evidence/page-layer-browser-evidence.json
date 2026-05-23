@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-22T08:06:26.715Z",
+  "generatedAt": "2026-05-22T13:12:39.260Z",
   "chromeExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "nav": {
     "390": {
@@ -472,7 +472,7 @@
         "brand": {
           "x": 40,
           "y": 46.63,
-          "width": 170.13,
+          "width": 170.17,
           "height": 40.75
         },
         "nav": {
@@ -497,14 +497,14 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 21.23,
+          "brandToNav": 21.19,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
         "navMaxDiffVsIndex": 1,
         "actionsMaxDiffVsIndex": 1,
         "gapDiffsVsIndex": {
-          "brandToNav": 0.52,
+          "brandToNav": 0.56,
           "navToActions": 0
         }
       }
@@ -743,7 +743,7 @@
         "brand": {
           "x": 88,
           "y": 46.63,
-          "width": 170.13,
+          "width": 170.17,
           "height": 40.75
         },
         "nav": {
@@ -768,14 +768,14 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 21.23,
+          "brandToNav": 21.19,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
         "navMaxDiffVsIndex": 1,
         "actionsMaxDiffVsIndex": 1,
         "gapDiffsVsIndex": {
-          "brandToNav": 0.52,
+          "brandToNav": 0.56,
           "navToActions": 0
         }
       }
@@ -1014,7 +1014,7 @@
         "brand": {
           "x": 280,
           "y": 46.63,
-          "width": 170.13,
+          "width": 170.17,
           "height": 40.75
         },
         "nav": {
@@ -1039,14 +1039,14 @@
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 21.23,
+          "brandToNav": 21.19,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
         "navMaxDiffVsIndex": 1,
         "actionsMaxDiffVsIndex": 1,
         "gapDiffsVsIndex": {
-          "brandToNav": 0.52,
+          "brandToNav": 0.56,
           "navToActions": 0
         }
       }
@@ -1054,7 +1054,7 @@
   },
   "sticky": {
     "index.html": {
-      "scrollY": 2683,
+      "scrollY": 2673,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1079,7 +1079,7 @@
       "yCloseToStatus": true
     },
     "solutions.html": {
-      "scrollY": 1731,
+      "scrollY": 1755,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1154,7 +1154,7 @@
       "yCloseToStatus": true
     },
     "plans.html": {
-      "scrollY": 1335,
+      "scrollY": 1320,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1179,7 +1179,7 @@
       "yCloseToStatus": true
     },
     "contact.html": {
-      "scrollY": 1003,
+      "scrollY": 989,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1249,15 +1249,15 @@
         "steps": [
           {
             "label": "Step 01",
-            "classes": "step relay-complete"
-          },
-          {
-            "label": "Step 02",
             "classes": "step relay-running"
           },
           {
-            "label": "Step 03",
+            "label": "Step 02",
             "classes": "step relay-receive"
+          },
+          {
+            "label": "Step 03",
+            "classes": "step relay-idle"
           },
           {
             "label": "Step 04",
@@ -1315,16 +1315,16 @@
         "delayMs": 0,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-5.6628px",
+        "flowStrokeDashoffset": "-5.6715px",
         "scanAnimationName": "none",
         "packetOnCount": 5,
-        "packetOpacity": "0.744857"
+        "packetOpacity": "0.744931"
       },
       {
         "delayMs": 1000,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-25.9968px",
+        "flowStrokeDashoffset": "-25.6895px",
         "scanAnimationName": "none",
         "packetOnCount": 5,
         "packetOpacity": "0.75"
@@ -1333,7 +1333,7 @@
         "delayMs": 3000,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-18.6661px",
+        "flowStrokeDashoffset": "-18.0575px",
         "scanAnimationName": "none",
         "packetOnCount": 5,
         "packetOpacity": "0.75"
@@ -1342,7 +1342,7 @@
         "delayMs": 6000,
         "flowOnCount": 6,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-32.3341px",
+        "flowStrokeDashoffset": "-30.4435px",
         "scanAnimationName": "none",
         "packetOnCount": 4,
         "packetOpacity": "0.75"
@@ -1353,16 +1353,16 @@
         "delayMs": 0,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-6.33978px",
+        "flowStrokeDashoffset": "-5.672px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
-        "packetOpacity": "0.85"
+        "packetOpacity": "0.778147"
       },
       {
         "delayMs": 1000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-27.0038px",
+        "flowStrokeDashoffset": "-26.022px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
         "packetOpacity": "0.85"
@@ -1371,19 +1371,19 @@
         "delayMs": 3000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-9.66154px",
+        "flowStrokeDashoffset": "-7.34316px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
-        "packetOpacity": "0.85"
+        "packetOpacity": "0.817403"
       },
       {
         "delayMs": 6000,
         "flowOnCount": 7,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-10.0021px",
+        "flowStrokeDashoffset": "-7.6756px",
         "scanAnimationName": "none",
         "packetOnCount": 7,
-        "packetOpacity": "0.85"
+        "packetOpacity": "0.829211"
       }
     ],
     "resources.html": [
@@ -1391,7 +1391,7 @@
         "delayMs": 0,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-9.93367px",
+        "flowStrokeDashoffset": "-8.5085px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1400,7 +1400,7 @@
         "delayMs": 1000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-40.6158px",
+        "flowStrokeDashoffset": "-37.3377px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1409,7 +1409,7 @@
         "delayMs": 3000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-30.2345px",
+        "flowStrokeDashoffset": "-26.5257px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1418,7 +1418,7 @@
         "delayMs": 6000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-16.5293px",
+        "flowStrokeDashoffset": "-10.9293px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1508,7 +1508,7 @@
       "hasBackendPlaceholderCheck": true
     },
     "afterSubmit": {
-      "url": "file:///E:/%E7%BD%91%E9%A1%B5%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6/sampora-website-public-v3/contact.html#contact-form",
+      "url": "file:///E:/claude%20work/sampora-website-public-v3/contact.html#contact-form",
       "storedPending": "intent=contact_sales&source_page=contact.html&source_section=contact-form&plan=contact_sales&lang=en&name=QA+Reviewer&company=QA+Evidence+Co&email=qa%40example.com&role=Sample+Supplier&business_type=contact_sales&message=QA+evidence+backend+placeholder+check.",
       "pendingParams": {
         "intent": "contact_sales",

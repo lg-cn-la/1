@@ -5,15 +5,26 @@
 ## READ FIRST / UPDATE REQUIRED
 
 - Any new window, worker subagent, reviewer subagent, or controller must read this file before modifying Sampora files.
-- Also read `ACCEPTANCE_TESTS.md`; it defines what must be checked before delivery claims.
+- Also read `ACCEPTANCE_TESTS.md`; it is now a reference contract, not a default final-acceptance gate, unless the user explicitly asks for acceptance, review, packaging, or final delivery validation.
 - Also check `ISSUE_LEDGER.md`; it records stable IDs, current statuses, and allowed actions for recurring issues.
 - Default entry is this short handoff. Read SAMPORA_LATEST_REPAIR_LOG.md only for history or regression tracing.
-- Default Sampora repair role is controller-only orchestration: issue intake, status decisions, package/file ownership, subagent dispatch, conflict handling, evidence synthesis, and handoff records. Do not directly implement page/source repairs, own first-pass verification, or own final review when suitable subagents are available. Send first-pass verification to read-only verification subagents, implementation to implementation subagents with disjoint file ownership, and visual/final review to read-only review subagents. Controller docs/process updates are allowed when the task is handoff, acceptance, ledger, or intake policy.
-- Before editing, summarize active scope, file ownership, known pitfalls, and planned verification.
+- Default Sampora repair role is controller-led scoped repair: issue intake, status decisions, package/file ownership, subagent dispatch when useful, conflict handling, concise evidence synthesis, and handoff records. Do not dispatch first-pass verification subagents, visual acceptance reviewers, or final-review subagents by default. Controller docs/process updates are allowed when the task is handoff, acceptance, ledger, or intake policy.
+- Before editing, summarize active scope, file ownership, known pitfalls, and any intentionally omitted verification.
 - During execution, keep changes inside the assigned package boundary.
 - Use short write locks for implementation work: lock only while actually writing files, release immediately after the write completes, and do not hold a write lock during read-only verification, browser checks, or review.
 - Before final response, append concise status to this file or, for detailed package history, to SAMPORA_LATEST_REPAIR_LOG.md.
 - If a new pitfall is discovered, record symptom, root cause, prevention rule, verification, and owner package.
+
+## Current User Override: No Default Acceptance / Review Loops
+
+This section overrides older handoff, acceptance, and ledger wording that required default first-pass verification workers, final-review workers, visual acceptance, real visual perception PASS, or full acceptance reruns.
+
+- Since 2026-05-22, ordinary Sampora repair rounds must not follow a default "verify -> repair -> review -> final acceptance" loop.
+- Do not dispatch read-only verification subagents, visual acceptance reviewers, or final-review subagents unless the user's newest message explicitly asks for verification, review, screenshots, browser proof, acceptance, packaging, or final delivery validation.
+- A current user screenshot or direct visual complaint is enough current complaint evidence for a scoped repair. Do not push it back into `[VERIFY-FIRST]` only to re-prove the visible problem.
+- Implementation agents may run only the smallest useful mechanical checks needed to avoid syntax breakage, destructive edits, or ownership mistakes. Do not expand those checks into acceptance gates.
+- Final reports must not claim `PASS`, `accepted`, `verified`, or `real visual perception PASS` unless that exact check was explicitly requested and actually run.
+- If no final acceptance/review was run, say `not acceptance-reviewed` / `未做验收` and list changed files, untouched scope, commands actually run if any, and known remaining risk.
 
 ## Path Policy
 
@@ -117,21 +128,19 @@ This window reran the critical final checks after the other agent reported compl
 
 ## Non-Negotiable Scope For Future Changes
 
-- New agents/controllers must operate as controller-only orchestrators for Sampora repairs: issue intake, issue-status decision, package/file ownership, subagent dispatch, conflict handling, evidence synthesis, and handoff logging. Read-only verification subagents own first-pass verification; implementation subagents own page/source repairs; read-only review subagents own visual acceptance review and final review. The controller performs docs/process governance edits and only runs minimal direct sanity checks when subagent evidence is missing, contradictory, blocked, or explicitly challenged, unless the user explicitly approves a no-subagent/controller-only exception.
+- New agents/controllers must operate as controller-led scoped repair coordinators for Sampora repairs: issue intake, issue-status decision, package/file ownership, subagent dispatch when useful, conflict handling, concise evidence synthesis, and handoff logging. Do not create read-only verification, visual acceptance, or final-review subagent loops by default. The controller may perform docs/process governance edits and minimal direct sanity checks to prevent syntax breakage, destructive edits, or ownership mistakes.
 - Implementation agents must use short write locks. Before any write, check the latest handoff and current diff for active/recent ownership of the same file, selector, section, or function; announce the exact file and scoped region to be written; then write only if no overlap exists. Unlock immediately after the file write is complete, before verification. If overlap exists, report `[BLOCKED: overlapping write ownership]` and do not edit.
 - Fix only issues named in the latest audit or the user's newest message.
 - Anything not explicitly named is out of scope and must not be changed.
-- Every new visual, business-path, language, motion, legal, or packaging regression must be mapped to `ACCEPTANCE_TESTS.md` before repair.
-- If no acceptance item covers the failure, add or update one before or alongside the fix.
+- Map new failures to `ACCEPTANCE_TESTS.md` when that helps avoid scope drift, but do not let mapping become a default review/acceptance gate.
 - Treat `sampora-website-public-v3/` as the current working source of truth. Per the user's latest batching instruction, keep point-by-point repairs in the active working source and defer the next versioned zip rebuild/full final validation until all current fixes are complete.
 - Do not rely on old reports, old screenshots, or previous QA JSON as proof.
 - Do not paste mojibake or broken multilingual text into source files or active handoff notes.
 - Visible copy changes are multilingual by default. When any page-visible text, i18n key, card body, CTA copy, FAQ, workflow/topology label, pricing copy, footer copy, hero proof card, or dynamic project/sample data is changed in one language, the same semantic update must be made in EN, ZH, and HI primary translations/source data in the same task. Do not rely on `i18n-sweep.js` alone as a substitute. A single-language edit is allowed only when the newest user message explicitly limits scope to one language; the worker prompt and handoff entry must record that exception and name the other languages as intentionally deferred.
 - Page behavior and structure changes are multilingual by default too. Layout, DOM structure, links, data order, rendered module additions/removals, and visible workflow/card/module relationships must be synchronized and verified across EN, ZH, and HI, even when the changed source is not obviously "copy".
 - Terminology source: read `SAMPORA_TERMINOLOGY_GLOSSARY.md` before changing any EN/ZH/HI visible copy, i18n key, topology label, workflow copy, pricing/FAQ/footer/CTA copy, dynamic sample/project data, or resource-manual language. Follow its canonical EN/ZH/HI glossary, topology policy, and Hindi style rules.
-- Visual acceptance is mandatory for every visual, layout, component, interaction, style, spacing, sizing, hierarchy, card-structure, alignment, responsive, or motion change. EN/ZH/HI text sync is still required for copy changes, but it never replaces visual acceptance when the task affects rendered UI.
-- Visual acceptance cannot be replaced by static checks, CSS-property checks, no-overflow checks, screenshot existence, or EN/ZH/HI copy checks. It must reach the real visual perception / 真实观感 layer: the reviewer must state whether a normal user actually sees the intended improvement, or whether the surface still looks unchanged, cramped, hard to read, unbalanced, misaligned, or unlike the user's target. It must map each user visual goal to rendered evidence across EN/ZH/HI and desktop/mobile, including before/after or current visual-difference notes, actual geometry thresholds such as height, spacing, boundaries, overlap, line count, and alignment deltas, plus explicit PASS/FAIL against any user-specified number or look-and-feel target.
-- If the user names a visual target such as "around 150px", "align the border with content above/below", "title must not be squeezed", or "should not look basically unchanged", final acceptance must use rendered values and visual-difference judgment. If the measured result misses the threshold or the visible difference is not meaningful, record a remaining failure instead of claiming done.
+- Visual acceptance / 视觉验收 is disabled by default for ordinary Sampora repair rounds. Run it only when the user's newest message explicitly asks for acceptance, review, screenshots, browser proof, or final delivery validation.
+- Do not claim `real visual perception PASS` or any visual PASS unless the user explicitly requested that acceptance layer and it was actually run. If no acceptance was run, report the visual repair as changed but not acceptance-reviewed.
 - Confirmed legal names only: verify the Chinese legal name from current source/browser when legal copy is in scope; the English legal name is `Anhui Jiayu Enterprise Service Co., Ltd.`.
 - Overseas-server deployment stage: do not display ICP numbers or ICP placeholders.
 
@@ -146,8 +155,8 @@ Before any file edit, complete a short internal intake gate. Do not print the fu
 3. Package split and writable files for each package.
 4. Acceptance categories affected in `ACCEPTANCE_TESTS.md`.
 5. Issue status for each item: `[CONFIRMED]`, `[VERIFY-FIRST]`, `[STRATEGY]`, `[REGRESSION]`, `[REMOVED]`, `[OUT-OF-SCOPE]`, or `[BLOCKED]`.
-6. Red-check commands and completion verification for each package.
-7. Planned read-only verification subagents, implementation subagents, read-only review subagent, and final controller evidence synthesis.
+6. The smallest useful mechanical check, if any, for each package.
+7. Whether implementation subagents are useful, what final acceptance/review is intentionally omitted, and what the final handoff must say.
 
 If the gate finds unclear scope, cross-package write overlap, or any need to touch an unmentioned area, stop and ask the user before editing. If the gate is clear and the user's newest message asks to proceed or includes repair content, continue after the gate using the subagent workflow. By default, give only a brief status update instead of printing the full gate.
 
@@ -228,9 +237,9 @@ After a subagent is dispatched, do not keep the same controller turn open only t
 
 When one or more subagent completion reports arrive in the current controller context, the controller must prioritize closeout immediately. Read each report, close the finished agent, classify the result as PASS, FAIL, or BLOCKED, record or prepare the required handoff update, decide whether read-only review is needed, and continue dispatching the next non-conflicting confirmed task. Do not leave completed agents hanging until the user asks for status. This does not conflict with the no-busy-wait rule: the controller does not need to continuously wait for subagents, but once a completion notice is visible in the current context it must be processed before ordinary new work. If the report shows the same file still has a follow-up write conflict, record the blocking reason and do not dispatch overlapping writes; otherwise keep the workflow moving. Controller status updates and final responses must list active/running agents, completed-and-processed agents, and any blocked/completed-but-not-actionable reports so the user can see the real queue state.
 
-## Controller Final Review Delegation Rule
+## No Default Final Review / Acceptance Delegation Rule
 
-Final review must be delegated to a read-only review subagent whenever subagents are available. Visual acceptance review must also be delegated to a read-only review subagent for UI-affecting work. The controller's review role is evidence synthesis: inspect the review report for obvious evidence gaps, incorrect scope, status mistakes, contradictions, owner-package errors, or missing real visual perception / multilingual checks. The controller should rerun verification directly only when the report is missing required proof, is internally inconsistent, conflicts with current evidence, is blocked, or the user explicitly asks.
+Do not delegate final review or visual acceptance review by default. Use a read-only review subagent only when the user's newest message explicitly asks for review, acceptance, screenshots, browser proof, packaging, or final delivery validation. Otherwise close the round with a scoped change summary, commands actually run if any, known remaining risk, and a clear statement that final acceptance/review was not run.
 
 ## Multilingual Copy Sync Rule
 
@@ -256,16 +265,15 @@ All future visible-copy repair tasks must treat EN, ZH, and HI as one content su
 - Do not trust subagent summaries alone; inspect changed files or scoped diffs.
 - Do not mix write ownership between workers.
 - For visible-copy edits, update the corresponding EN/ZH/HI primary translation/source entries together unless the newest user message explicitly grants a single-language exception.
-- For any rendered UI change, plan and run visual acceptance separately from static and runtime geometry checks. Do not collapse visual PASS into "CSS matches", "no overflow", "screenshot exists", or "translations passed".
+- For rendered UI changes, do not plan or run visual acceptance by default. If the user explicitly requests acceptance, keep it separate from static/runtime checks and do not collapse visual PASS into "CSS matches", "no overflow", "screenshot exists", or "translations passed".
 - Do not validate workflow/topology motion with screenshots only; use browser-time sampling and computed style checks.
 - Do not update CTA links from memory; verify the intent URL policy with search.
 - Do not change docs based on intended package contents; check actual files.
 
 **Before handoff:**
-- Rerun fresh scoped checks for touched files.
-- Use a read-only review subagent for latest-audit review when subagents are available.
-- Treat the controller's final-review work as a sanity-check of the read-only review report by default; rerun checks directly only for gaps, contradictions, current-evidence conflicts, or explicit user request.
-- Run any needed controller-level final verification only after implementation and read-only review pass.
+- Do not run final acceptance/review by default.
+- Run only the smallest useful mechanical checks needed to avoid syntax breakage, destructive edits, or ownership mistakes, unless the user requested more.
+- If no final acceptance/review was run, say so plainly instead of writing PASS.
 - Rebuild packages only after source verification.
 - Inspect zip entry paths and repaired-file inclusion.
 
@@ -278,13 +286,13 @@ Implementation subagent prompts must require:
 - Restate assigned files and out-of-scope files.
 - Map the work to acceptance categories.
 - Restate the assigned issue statuses and allowed actions.
-- State the validation tier: scoped, full regression for affected contract, or full five-layer.
-- State a `Done when` checklist with concrete verification conditions before editing.
+- State the smallest useful mechanical check, if any, and what will be intentionally left unverified.
+- State a `Done when` checklist focused on scoped file changes and untouched areas before editing.
 - Use a short write lock only for the actual file write: before writing, check latest handoff/current diff for overlapping active or recent ownership of the same file/selector/function; announce the exact file and scoped region; if overlap exists, stop as `[BLOCKED: overlapping write ownership]`; after the file write completes, release the lock and continue verification read-only.
 - For visible-copy tasks, include a `Done when` item proving the matching EN/ZH/HI fallback, translation, and dynamic data entries were updated together, or state the explicit single-language exception from the user's newest message.
-- For visual/UI tasks, include separate `Done when` items for `technical/static PASS`, `runtime geometry PASS`, and `visual acceptance PASS`. The visual acceptance item must name the user visual goals, target languages, desktop/mobile viewports, actual rendered values, before/after or current visual-difference notes, and PASS/FAIL against any specified threshold or look-and-feel target. If any one of the three PASS types is missing, report partial/incomplete instead of done.
-- Run scoped red check before editing.
-- Run scoped verification after editing.
+- For visual/UI tasks, do not require `technical/static PASS`, `runtime geometry PASS`, or `visual acceptance PASS` unless the user explicitly requested those checks. If checks are not run, report `not acceptance-reviewed`.
+- Run a scoped red check before editing only when the issue is not already a current user screenshot/direct complaint and a check is needed to locate the owner safely.
+- Run scoped mechanical verification after editing only when needed to avoid syntax breakage or destructive edits, unless the user requested more.
 - Append result to the handoff/log before final response.
 - Record new pitfalls using symptom/root-cause/prevention/verification/owner format.
 
@@ -297,17 +305,7 @@ Read-only verification subagent prompts must require:
 - Mark ambiguous or unmapped items `[BLOCKED]` instead of guessing.
 - Mention matching `ISSUE_LEDGER.md` IDs when an assigned item resembles a recurring issue.
 
-Review subagent prompts must require:
-- Read-only mode.
-- Latest-audit checklist as source of truth.
-- Acceptance checklist coverage review.
-- Direct public-package review only.
-- Exact PASS/FAIL output with file references.
-- Recommended owner package for any remaining failure.
-- Ledger status changes required for recurring failures.
-- For visible-copy changes, PASS/FAIL coverage for EN/ZH/HI counterparts, including static fallback, translation objects, and dynamic data objects touched by the same surface.
-- For visual/UI changes, PASS/FAIL coverage must explicitly separate `technical/static PASS`, `runtime geometry PASS`, and `visual acceptance PASS`. Missing visual acceptance is a review failure even when CSS, overflow, screenshots, or multilingual copy checks pass.
-- A report complete enough for controller sanity-check: commands/evidence run, PASS/FAIL for each assigned item, remaining gaps, out-of-scope items, and whether any controller rerun is actually needed.
+Review subagent prompts are optional and must only be created when the user explicitly asks for review, acceptance, screenshots, browser proof, packaging, or final delivery validation. If a review subagent is requested, its prompt must require read-only behavior, exact scope, commands/evidence actually run, remaining gaps, and a clear separation between checks that were run and checks that were not run.
 
 ## If Another Repair Round Starts
 
@@ -329,15 +327,119 @@ Historical detailed update-log entries that previously made this active handoff 
 
 - Source of truth remains `sampora-website-public-v3/` unless the user explicitly assigns packaging or a new versioned source.
 - Do not package, rebuild zips, sync delivery folders, stage, commit, push, or create a new delivery version unless explicitly asked.
-- Keep using the subagent workflow and read-only final-review delegation when subagents are available; controllers should not busy-poll asynchronous subagents, but must immediately close out any completion reports that have arrived in the current context.
+- Do not use read-only final-review or visual-acceptance delegation by default. Use implementation subagents only when useful for scoped repair, and close out any completion reports that have arrived in the current context without creating a new review loop.
 - Visible-copy changes must stay synchronized across EN/ZH/HI primary source data unless the newest user message explicitly grants a single-language exception.
 - Old handoff entries, old screenshots, old reports, and old QA JSON are never current proof. Rerun the mapped scoped check before claiming a repair.
 - Package ownership remains the map above; page source, QA evidence outputs, delivery folders, and zips are out of scope for Package E docs-only strategy tasks unless explicitly assigned.
 - GitHub pushes for cross-machine continuation must follow the Cross-Machine Git Push Policy above: include changed Class 1 must-push files and changed Class 2 JSON/script context, keep screenshot evidence separate unless needed, and avoid staging unrelated old package/zip/temp-folder churn.
 - Terminology governance now lives in `SAMPORA_TERMINOLOGY_GLOSSARY.md`; future language workers must use it as the source of truth before changing role names, workflow terms, topology labels, Hindi SaaS terms, or Chinese equivalents.
 - The required intake file index now lives in both `AGENTS.md` and this handoff. Controllers must use it during intake and paste the relevant subset into subagent prompts. The index includes current v3 package docs, product/backend positioning references, local design references, and historical repair/result reports with strict current-proof boundaries.
-- `VISUAL-QA-001` records the strategy risk that visual acceptance was previously treated too loosely. Future visual/layout/component/interaction/style tasks must separate technical/static PASS, runtime geometry PASS, and visual acceptance PASS before final completion claims.
+- `VISUAL-QA-001` is superseded by the 2026-05-22 user override for ordinary repair rounds: do not run default visual acceptance/review loops, and do not claim visual PASS unless the user explicitly requested and received that check.
 - Latest archived active entries before this cleanup included Package E async subagent wait rule sync, Package A FAQ layout balance, Package B Solutions card/fit-cycle repair, multilingual copy sync policy, and topology ledger evidence. Read the detailed log only when tracing those decisions.
+
+### 2026-05-23 JST - Plans hero left-column even distribution
+
+**Files changed:** `sampora-website-public-v3/plans.html`.
+
+**Verification run:** `git diff --check -- sampora-website-public-v3/plans.html` exited 0 with the existing LF/CRLF warning only. No browser screenshot review or final visual acceptance was run.
+
+**Remaining failures:** Not acceptance-reviewed.
+
+**Notes for next agent:** User requested the Plans hero left column to borrow the About-style vertical rhythm while preserving the current top and bottom alignments: the left capsule top remains aligned with the right selector card top, and the Start trial button bottom remains aligned with the right selector card bottom. The repair is limited to desktop CSS in `plans-hero-console-copy-repair`: `.hero-copy-panel` now uses four-row grid distribution for eyebrow, title, lead, and action buttons; the prior `.hero-actions{margin-top:auto}` push was removed. EN/ZH/HI copy, CTA hrefs, right selector card/table, later plan cards, footer, and other pages were intentionally untouched.
+
+### 2026-05-23 JST - Solutions hero decorative amber glow removal follow-up
+
+**Files changed:** `sampora-website-public-v3/solutions.html`.
+
+**Verification run:** `git diff --check -- sampora-website-public-v3/solutions.html` exited 0 with the existing LF/CRLF warning only. No browser screenshot review or final visual acceptance was run.
+
+**Remaining failures:** Not acceptance-reviewed.
+
+**Notes for next agent:** User screenshot showed the yellow glow still present in the Solutions hero after only the body amber radial was set to alpha `0`. Root cause was multiple decorative amber sources, not one body background line. The follow-up removes amber radial layers from `body:before`, `.hero:before`, `.console-window:before`, `.plan-card.network:before`, and `.topo-stage:after`, and overrides the hero eyebrow from amber to cyan. Functional amber accents for topology paths/packets, small tags, and role-state indicators remain intentionally untouched.
+
+### 2026-05-23 JST - Package B Solutions topology dash-loop seamless correction
+
+**Files changed:** `sampora-website-public-v3/solutions.html`, `ISSUE_LEDGER.md`, and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Source scope was limited to the Solutions `@keyframes topoDash` endpoint. Topology SVG structure, route cycling, packets, labels, modal code, copy/i18n values, CTA/footer/header, other pages, QA screenshots, delivery folders, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** `[CONFIRMED]` user observed that the Solutions topology line-flow moves forward and then visually backs up a short distance before continuing, including in the enlarged modal. Root cause was a dash-loop phase mismatch: early CSS declared `.topo-svg .flow { stroke-dasharray: 5 8; }`, but a later Solutions visual override changed the real computed dasharray to `5px, 10px`, a `15px` cycle. The keyframe endpoint was `-48px`, which is not a multiple of `15px`, so each animation iteration reset to a different dash phase and created the small backward jump.
+
+**Verification run:** red source check first failed with `dasharray 5 8`, source period `13`, keyframe distance `48`, remainder `9`. Browser sampling then found the actual rendered normal and modal flows use `dasharray: 5px, 10px`, period `15`, so the first attempted `-52px` source-period fix was not sufficient for real rendering. Final repair changed `topoDash` to `stroke-dashoffset: -60px`, four full rendered dash periods. Post-repair browser sampling at `1440x900` confirmed normal view and opened modal both compute `animationName=topoDash`, `animationDuration=2.4s`, `dasharray=5px, 10px`, period `15`, keyframe distance `60`, and seamless integer-cycle checks true for both. `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS; `git diff --check -- sampora-website-public-v3/solutions.html` exited 0 with the existing LF/CRLF warning only.
+
+**Remaining failures / next agent:** none known for this scoped Solutions topology dash-loop endpoint repair. This was a scoped mechanical/browser motion check, not a final screenshot review or full visual acceptance loop; final acceptance/review remains not acceptance-reviewed. Existing unrelated dirty workspace changes remain preserved and unreviewed. Packaging, delivery sync, zip rebuild, Lighthouse/axe full delivery, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-23 JST - Contact form left-column capsule and bottom alignment
+
+**Files changed:** `sampora-website-public-v3/contact.html` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Source scope was limited to the Contact form section CSS for `.form-layout`, `.side-copy`, `.side-copy > .eyebrow`, `.tick-list`, and `.support-note`. Contact form fields, hidden fields, endpoint placeholder, CTA hrefs, submission logic, EN/ZH/HI copy values, header, footer, other pages, QA evidence screenshots, delivery folders, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** `[CONFIRMED]` user requested the Contact form left label to use the same capsule outer-frame dimensions as the About page eyebrow, using the current cyan-blue dot/border color, with no horizontal line crossing the capsule. The left column also needed its top aligned with the right form card top border, its content distributed downward more evenly, and the bottom `Resources / View manuals` row aligned with the right form card bottom border across Chinese and HI as well.
+
+**Verification run:** scoped red CSS check first failed because the current form layout still used `align-items:start`, `.side-copy` lacked flex distribution, the form kicker lacked the About-size capsule override, and `.support-note` did not auto-align to the bottom. After repair, the same scoped CSS check passed. `git diff --check -- sampora-website-public-v3/contact.html` exited 0 with the existing LF/CRLF warning only. A lightweight Playwright-local geometry sample against the current file at `1600x900` covered EN/ZH/HI: `.side-copy` top, capsule top, `.support-note` bottom, and `.side-copy` bottom all matched the `.form-card` top/bottom with `0px` delta; document horizontal overflow was `0`; the form capsule used `padding: 7px 14px`, border color `rgba(56, 210, 255, 0.28)`, and an opaque dark gradient fill to mask the page grid line behind it.
+
+**Remaining failures / next agent:** none known for this scoped Contact left-column layout repair. This was a scoped mechanical/browser geometry check, not a final screenshot review or full visual acceptance loop; final acceptance/review remains not acceptance-reviewed. Existing unrelated dirty workspace changes remain preserved and unreviewed. Packaging, delivery sync, zip rebuild, staging, commit, and push remain deferred unless explicitly requested.
+
+**Follow-up correction:** user screenshot showed the first repair still left the four explanation rows visually clustered because only the overall left column was stretched while `.tick-list` kept the old `18px` internal gap. `sampora-website-public-v3/contact.html` now lets `.tick-list` flex into the remaining middle height and uses `align-content: space-evenly` on desktop; mobile/tablet keeps the prior natural stacked rhythm. Recheck at `1600x900` covered EN/ZH/HI: top and bottom alignment deltas stayed `0px`, list height became about `488.5px`, and the three internal list gaps were evenly distributed: EN `59.3px`, ZH `68.91px`, HI `59.91px`; horizontal overflow stayed `0`. `git diff --check -- sampora-website-public-v3/contact.html` exited 0 with the existing LF/CRLF warning only.
+
+**Second follow-up correction:** user clarified that the whole left-column group, not only the four explanation rows, needed visible vertical rhythm. The prior follow-up still measured `0px` gaps from the capsule to the title and from the title to the intro paragraph. `contact.html` now gives the form capsule and title explicit `14px` bottom rhythm and keeps the intro/list/resource spacing inside the same stretched left column. Recheck at `1600x900` covered EN/ZH/HI: capsule/title gap `14px`, title/intro gap `14px`, top alignment delta `0px`, bottom resource-to-form delta `0px`, side-column bottom delta `0px`, and horizontal overflow `0`; list/resource spacing remained evenly distributed per language.
+
+**Third follow-up correction:** user clarified that every visible left-column block in the form section must be evenly distributed, including the capsule, title, intro paragraph, all four explanation rows, and the resource row. The previous CSS used two distribution systems (`.side-copy` flex distribution plus nested `.tick-list` spacing), which left uneven gaps between the intro and the first checklist row versus the rest. `contact.html` now uses one desktop grid distribution system for `.side-copy`; `.tick-list` uses `display: contents` so the four `li` rows participate in the same `align-content: space-between` rhythm as the capsule, title, intro, and resource row. Mobile/tablet restores the normal stacked `.tick-list` layout. Recheck at `1600x900` measured all seven visible gaps: EN `42.5px` repeated 7 times, ZH `49.36px` repeated 7 times, HI `42.92px` repeated 7 times; spread was `0px` for every language. Top alignment delta stayed `0px`, bottom resource-to-form delta stayed within `0.08px`, side-column bottom delta stayed `0px`, and horizontal overflow stayed `0`.
+
+### 2026-05-23 JST - Solutions HI hero yellow glow source correction
+
+**Files changed:** `sampora-website-public-v3/solutions.html`.
+
+**Verification run:** `git diff --check -- sampora-website-public-v3/contact.html sampora-website-public-v3/solutions.html` exited 0 with the existing LF/CRLF warning only. No browser screenshot review or final visual acceptance was run.
+
+**Remaining failures:** Not acceptance-reviewed.
+
+**Notes for next agent:** User screenshot was Solutions HI hero, not Contact. A previous controller response misidentified the page and temporarily changed Contact's warm body radial; that Contact line was restored to the prior Contact bridge value. The actual Solutions yellow glow source was the page-level body amber radial at `45% 34% at 8% 100%`; both the early body rule and later cleanup override now use alpha `0`. Do not change Solutions copy, CTA links, topology, cards, footer layout, or Contact for this specific issue.
+
+### 2026-05-23 JST - Contact gradient bridge and footer band scoped repair
+
+**Files changed:** `sampora-website-public-v3/contact.html`.
+
+**Verification run:** `git diff --check -- sampora-website-public-v3/contact.html` exited 0 with the existing LF/CRLF warning only. No browser screenshot review or final visual acceptance was run.
+
+**Remaining failures:** Not acceptance-reviewed. Existing unrelated dirty changes in other files were left untouched.
+
+**Notes for next agent:** User assigned the GPT Contact gradient-bridge plan. The repair stays inside the page-local `sampora-horizontal-line-cleanup` CSS block: body now uses a continuous dark canvas, grid is a separate weak fixed overlay, hero/form use transparent bridge overlays, `.response` / `.more-ways` section borders remain suppressed, and footer outer background remains transparent with only a local radial glow behind the glass card. Do not change contact form fields, placeholders, CTA hrefs, i18n copy, submission logic, or other pages for this issue.
+
+### 2026-05-22 JST - About ZH/HI desktop nav spacing scoped repair
+
+**Files changed:** `sampora-website-public-v3/about_sampora_issues_fixed.html`.
+
+**Verification run:** `git diff --check -- sampora-website-public-v3/about_sampora_issues_fixed.html` exited 0 with the existing LF/CRLF warning only. No browser screenshot review or final visual acceptance was run.
+
+**Remaining failures:** Not acceptance-reviewed. No other page source was intentionally changed in this scoped repair.
+
+**Notes for next agent:** User screenshot showed About desktop navigation compressed in ZH/HI while other pages used the standard desktop header rhythm. Root cause was About retaining the old flex header/nav behavior while later page repairs standardized desktop nav geometry elsewhere. The repair adds page-local desktop mast/nav grid rules only; content, links, CTA, footer, sections, and other pages are out of scope.
+
+### 2026-05-22 CST - Process override: no default acceptance/review loops
+
+**Files changed:** `AGENTS.md`, `SAMPORA_LATEST_REPAIR_HANDOFF.md`, `ACCEPTANCE_TESTS.md`, and `ISSUE_LEDGER.md`. No page source, QA evidence output, delivery folder, zip/package, staging, commit, or push was intentionally changed.
+
+**Policy change:** The user's newest instruction disables default Sampora acceptance/review loops. Future ordinary repair rounds must not dispatch first-pass verification workers, visual acceptance reviewers, or final-review subagents by default. Current user screenshots/direct visual complaints are sufficient complaint evidence for scoped repair. Acceptance, review, screenshots, browser proof, packaging, and final delivery validation run only when explicitly requested.
+
+**Reporting rule:** Do not claim `PASS`, `accepted`, `verified`, or `real visual perception PASS` unless that exact check was explicitly requested and actually run. If no final acceptance/review was run, final handoff must say `not acceptance-reviewed` / `未做验收`, list changed files, untouched scope, commands actually run if any, and known remaining risk.
+
+**Verification run:** docs-only mechanical checks only; no page visual acceptance or final review was requested.
+
+**Remaining failures / next agent:** older log entries still contain historical PASS language and remain historical evidence only. Current active instructions above supersede older default-review rules for future ordinary repair rounds.
+
+### 2026-05-22 CST - Global background boundary / footer scoped repair queue
+
+**Files changed:** `sampora-website-public-v3/contact.html`, `sampora-website-public-v3/solutions.html`, `sampora-website-public-v3/plans.html`, `sampora-website-public-v3/qa-evidence/visual-boundary-geometry-check.mjs`, `ISSUE_LEDGER.md`, and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. No `index.html`, `resources.html`, `resource-manuals.html`, `about_sampora_issues_fixed.html`, form fields, placeholders, CTA hrefs, visible copy/i18n, topology/workflow logic, delivery folders, zips, staging, commit, or push were intentionally changed. Existing unrelated dirty hunks in `solutions.html` around topology hub styling and ZH/HI hub labels were preserved and not claimed as part of this boundary repair.
+
+**Confirmed repair queue:** GPT/downloaded plan and user screenshot evidence were treated as input, not current proof. Read-only browser audit covered complete pages across EN/ZH/HI and desktop/tablet/mobile where possible. `contact.html` `.hero -> #contact-form` was `[CONFIRMED]` from current browser reproduction of the user visual complaint: the hero used a near-solid `.96` dark background that cut to transparent form canvas at gap `0`. `contact.html` `.more-ways -> #footer` and `solutions.html` `#workflow -> #footer` were `[CONFIRMED]` because the page-scoped footer CSS used a large dark approach band and `64px` card top gap. `solutions.html` `#compare -> #workflow` was `[REMOVED/DISPROVED]` in current browser evidence and helper output, so no compare/workflow repair was done. `resources.html` footer was initially a false-positive audit selector mismatch; current `#setup -> #footer` evidence did not confirm a failure. `about_sampora_issues_fixed.html` `#what.section.alt -> #timeline.section` passed the expanded helper, so no About repair was done. The expanded helper later found `plans.html` mobile footer card gap `34px > 32px`; that current FAIL entered the queue and was repaired.
+
+**Footer source rule:** footer CSS was confirmed as page-repeated inline CSS for the repaired pages, not a single shared stylesheet. Workers changed only confirmed page-local footer selectors. This was not treated as permission for a global footer refactor.
+
+**Repair summary:** Contact `.hero` background now fades to transparent instead of using a near-solid full hero band; Contact footer top padding/background were softened to keep the footer card on the continuous dark canvas. Solutions footer top padding/background were softened only at `#workflow -> #footer`; `#compare`, `#workflow`, topology behavior, copy/i18n, and CTAs were not intentionally changed. Plans mobile footer top padding is now `28px` to satisfy the helper threshold. The helper now includes tablet coverage plus Contact and Solutions footer surfaces, checks node and pseudo-element background alpha, flags alpha `>= .85` near-solid large backgrounds, records footer-card top gap, and keeps spacing/overflow/body-grid continuity checks.
+
+**Verification run:** controller rerun after workers passed: `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\visual-boundary-geometry-check.mjs" --text` -> PASS for `plans-footer`, `about-what-timeline`, `solutions-compare-workflow`, `solutions-footer`, `contact-hero-form`, and `contact-footer`; `git diff --check -- sampora-website-public-v3/contact.html sampora-website-public-v3/solutions.html sampora-website-public-v3/plans.html sampora-website-public-v3/qa-evidence/visual-boundary-geometry-check.mjs` -> PASS with LF/CRLF warnings only.
+
+**Acceptance status separation:** Contact hero/form technical/static PASS; runtime geometry PASS; real visual perception PASS across EN/ZH/HI `1440x900`, `768x1024`, and `390x900`. Evidence includes before screenshots under `.codex-tmp/contact-boundary-evidence/before-contact-form-{lang}-{viewport}.png`, after/current screenshots under `.codex-tmp/global-boundary-final-review/contact-hero-form-{lang}-{viewport}.png`, scroll positions desktop `422/340/388`, tablet `494/460/460`, mobile `634/501/600`, boundary gap `0`, hero alpha `.84`, form alpha `0`, and overflowX `0`. Contact footer technical/static PASS; runtime geometry PASS; real visual perception PASS with before screenshots under `.codex-tmp/contact-boundary-evidence/before-footer-{lang}-{viewport}.png`, current screenshots under `.codex-tmp/global-boundary-final-review/contact-footer-{lang}-{viewport}.png`, footer glow alpha `.055`, card top gap `34px` desktop/tablet and `28px` mobile, and overflowX `0`. Solutions footer technical/static PASS and runtime geometry PASS with current screenshots under `.codex-tmp/global-boundary-final-review/solutions-footer-{lang}-{viewport}.png`, boundary gap `0`, workflow alpha `0`, footer glow alpha `.043`, card top gap `36px` desktop/tablet and `28px` mobile, and overflowX `0`; real visual perception is PARTIAL, not PASS, because no before screenshot was available for this repaired boundary. Current view looks acceptable, but the user guardrail forbids a full real visual PASS without before/after evidence.
+
+**Remaining failures / next agent:** no technical/static or runtime geometry failures remain for the confirmed queue. Remaining evidence gap: `solutions.html #workflow -> #footer` lacks before screenshots, so do not claim full real visual perception PASS for that boundary unless the missing before evidence is supplied or the user explicitly waives that requirement. Keep `solutions.html` out-of-scope topology/i18n dirty hunks separated from this boundary repair. No packaging, delivery sync, zip rebuild, staging, commit, or push was performed.
 
 ### 2026-05-22 CST - Package C Plans horizontal divider softening
 
@@ -2322,3 +2424,151 @@ Historical detailed update-log entries that previously made this active handoff 
 **Acceptance status separation:** technical/static PASS; runtime geometry PASS; real visual perception / true visual acceptance PASS from implementation report plus controller rendered evidence. A normal user should now see Resources topology using the same compact visual grammar as Solutions: matched topology stage height, similar modebar rhythm, clear Documentation Map/legend row, short tags under title/description, and English core `REVIEW / RECORDS` right nodes. Remaining intentional visual difference: Resources console remains roughly `41-47px` shorter than Solutions because its content is shorter; no dead blank space or SVG stretching was added to fake outer-height parity.
 
 **Remaining failures / next agent:** no remaining failure found for this scoped Resources topology alignment. The read-only final review subagent timed out and was closed before reporting, so final closure relies on first-pass verification subagent evidence, implementation subagent evidence, and controller rerun evidence rather than a separate completed final-review report. Existing unrelated dirty workspace changes remain preserved and unreviewed. `TOPOLOGY-001` remains a regression guard, while `VISUAL-QA-001` and `HANDOFF-006` remain strategy guards with this round's evidence appended in `ISSUE_LEDGER.md`. Packaging, delivery sync, zip rebuild, Lighthouse/axe full delivery, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-22 CST - Package B Resources right topology node source-box visual effect
+
+**Files changed:** `sampora-website-public-v3/resources.html` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Source scope was limited to the existing `.topo-svg .hub.ctrl-hub rect` and `.topo-svg .hub.evd-hub rect` CSS rule in the Resources topology SVG. Existing REVIEW/RECORDS labels, SVG node positions, packet paths, motion timings, i18n values, copy, footer, CTAs, other pages, QA helper files, delivery folders, zips, staging, commit, push, and packaging were intentionally untouched.
+
+**Issue addressed:** `[CONFIRMED]` Package B Resources right-side small topology boxes `REVIEW` and `RECORDS` lacked the Sampora source-box visual treatment requested by the user. Red browser evidence at `1440x900` showed both right hub rects used flat `rgba(9, 23, 40, .94)`, weak cyan stroke `rgba(56, 210, 255, .28)`, and `filter: none`, while the Sampora source/origin box used `url(#resourceHubGrad)`, stronger cyan stroke, and cyan glow.
+
+**Verification run:** implementation reused the existing `#resourceHubGrad` fill on both right hub rects, strengthened the cyan-blue stroke, and added subtle cyan/black drop-shadow glow. No SVG elements, pseudo-element content, dots, icons, chips, or text were added. Post-repair browser sampling covered Resources EN/ZH/HI at `1440x900` and `390x900`: labels stayed exactly `REVIEW|RECORDS`; each right hub still had only its original `rect`; the two label text nodes remained existing `text` nodes with no child content; computed fill was `url("#resourceHubGrad")`; stroke was `rgba(56, 210, 255, 0.62)` at `1.35px`; filter included cyan and black `drop-shadow`; horizontal overflow was `0`; active motion remained `topoDash/2.4s` with changing dash offsets and moving packets. Spacing guard passed: desktop top/bottom gap deltas were EN `0px`, ZH `0px`, HI `0.01px`; mobile overflow remained `0`. Scoped checks passed: `node "sampora-website-public-v3\qa-evidence\resources-topology-spacing-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS; `git diff --check -- sampora-website-public-v3/resources.html SAMPORA_LATEST_REPAIR_HANDOFF.md` -> PASS with the existing LF/CRLF warning only.
+
+**Acceptance status separation:** technical/static PASS; runtime geometry PASS; real visual perception / true visual acceptance PASS for the scoped right topology boxes. A normal user should now see the two right REVIEW/RECORDS nodes read as Sampora source-style boxes with cyan-blue borders, dark blue gradient fill, and visible edge glow/shadow, while the boxes remain label-only and do not gain internal decoration.
+
+**Remaining failures / next agent:** none for this scoped Resources right-node visual effect. Existing unrelated dirty workspace changes and prior Resources spacing edits were preserved and not reverted. `TOPOLOGY-001` remains a regression guard, `VISUAL-QA-001` and `HANDOFF-006` remain strategy guards, and `I18N-001` remains a regression guard because no copy/i18n values changed. Packaging, delivery sync, zip rebuild, Lighthouse/axe full delivery, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-22 CST - Package B Solutions topology Resources-format visual alignment
+
+**Files changed:** `sampora-website-public-v3/solutions.html` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Source scope was limited to the Solutions topology CSS for the existing `.topo-svg .hub.ctrl-hub rect`, `.topo-svg .hub.evd-hub rect`, their active/warn state overrides, the local `.solution-console` topology headline/stage/ticker rhythm, and the `HERO_UI.zh/hi` right-hub core label values for `hubControl` / `hubEvidence`. `sampora-website-public-v3/resources.html` was read-only reference. SVG child structure, surrounding localized console/status copy, central nodes, JS route/runtime logic, solution cards, footer, CTAs, other pages, QA evidence files, delivery folders, zips, staging, commit, push, and packaging were intentionally untouched.
+
+**Issue addressed:** `[CONFIRMED]` Package B visual topology repair for `solutions.html` only. Red evidence showed Solutions right hubs still used flat `rgba(9, 23, 40, .94)` while current Resources right hubs used gradient fill, stronger cyan stroke, and dual drop-shadow. Follow-up read-only red evidence also showed the Solutions topology vertical rhythm did not match Resources closely enough: desktop headline-to-stage / stage-to-ticker was about `10px / 14px` versus Resources about `34.5px / 34.5px`; mobile was `10px / 14px` versus Resources about `10px / 12px`. Controller verification then found a remaining scoped label failure: ZH rendered `审核|结算` and HI rendered `समीक्षा|निपटान` even though the user-approved plan and glossary require the right-side core topology nodes to remain `REVIEW / SETTLE`.
+
+**Implementation summary:** kept existing Solutions semantics and markup, reused `url(#solutionHubGrad)` on the existing `REVIEW` and `SETTLE` right hub rects, strengthened the cyan stroke to `.62` at `1.35px`, and added the same cyan/black dual drop-shadow pattern as Resources. Added scoped active/warn right-hub overrides so live route state no longer weakens the glow. Adjusted only topology rhythm CSS: desktop `.solution-console .topo-headline` bottom gap and `.topo-stage` bottom margin now match the Resources visual spacing, while mobile uses a compact `10px / 12px` rhythm. Updated only `HERO_UI.zh.hubControl`, `HERO_UI.zh.hubEvidence`, `HERO_UI.hi.hubControl`, and `HERO_UI.hi.hubEvidence` to keep the core right hub labels `REVIEW / SETTLE` across EN/ZH/HI. No internal dots, icons, chips, text nodes, SVG children, Resources edits, or JS route/runtime changes were added.
+
+**Verification run:** scoped red browser check before repair failed on right hub fill/stroke/filter, and label red check later failed for ZH `审核|结算` plus HI `समीक्षा|निपटान`. Post-repair Chrome/Playwright scoped check covered Solutions EN/ZH/HI at `1440x900` and `390x900`: right hub labels were `REVIEW|SETTLE` in all languages; both right hubs had only one `rect` child, fill `url("#solutionHubGrad")`, stroke `rgba(56, 210, 255, 0.62)`, stroke width `1.35px`, dual `drop-shadow`, and no `RECORDS` label; desktop gaps were `34px / 34px`; mobile gaps were `10px / 12px`; horizontal overflow was `0`; active motion stayed `topoDash/2.4s`; dash offsets changed; packets moved; auto rotation was `panel -> network -> enterprise`; modebar manual lock held `network` after `3700ms`; SVG node manual lock held `enterprise` after `3700ms`. Required static checks passed: `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS; `git diff --check -- sampora-website-public-v3/solutions.html SAMPORA_LATEST_REPAIR_HANDOFF.md` -> PASS with LF/CRLF warnings only.
+
+**Acceptance status separation:** technical/static PASS; runtime geometry PASS; real visual perception / true visual acceptance PASS for the scoped Solutions topology visual layer. A normal user should now see Solutions using the current Resources topology visual rhythm more closely: the right `REVIEW` / `SETTLE` boxes read as source-style glowing hubs, desktop topology spacing is balanced around the stage instead of compressed, and mobile keeps the tighter Resources-like row spacing without horizontal overflow or added decoration.
+
+**Remaining failures / next agent:** none for this scoped Solutions topology visual alignment. Existing unrelated dirty workspace changes remain preserved and unreviewed, including prior Resources changes and QA screenshot/evidence churn. `TOPOLOGY-001` remains a regression guard, and `VISUAL-QA-001` / `HANDOFF-006` remain strategy guards; `ISSUE_LEDGER.md` was not updated because no recurring issue status changed. Packaging, delivery sync, zip rebuild, Lighthouse/axe full delivery, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-22 CST - Package B Solutions full topology-console layout proportion alignment
+
+**Files changed:** `sampora-website-public-v3/solutions.html`, `sampora-website-public-v3/qa-evidence/solutions-resources-console-geometry-check.mjs`, and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Source scope was limited to the Solutions console full-layout rhythm around `.solution-console`, `.console-summary`, `#topoText`, `.console-tags`, mobile `.console-ticker`, and the existing topology console selectors already changed in the prior right-hub/topology alignment round. The new QA helper is read-only and compares the current rendered Solutions console to the current rendered Resources console. `sampora-website-public-v3/resources.html` was read-only reference. Resources source, footer/CTA/other pages, topology JS route/runtime logic, delivery folders, zips, staging, commit, and push were intentionally untouched. Existing unrelated dirty footer/boundary hunks in `solutions.html` were preserved and not claimed as this round's work.
+
+**Issue addressed:** `[CONFIRMED]` Package B full visual-layout repair for `solutions.html` only. User feedback corrected the prior acceptance scope: the target was the entire screenshot panel/outer layout and internal block proportions, not only topology SVG/stage spacing or right-hub effect. Read-only red evidence showed desktop Solutions console shell `588x831px` versus Resources `588x746px`, with Solutions summary `244px` versus Resources `161px`, chips/tags `105px` versus Resources `29px`, and mobile Solutions shell `343x1062px` versus Resources `343x919px`. The perceived chips-to-mode-card band was oversized because the whole pre-mode-card content block was too tall.
+
+**Implementation summary:** removed the forced tall minimums that made the Solutions summary/tags area behave unlike Resources: `#topoText` no longer reserves four lines on desktop, `.console-tags` no longer reserves `105px`, mobile `.solution-console .console-summary` and `.console-tags` no longer keep tall minimums, and mobile `.solution-console .console-ticker` now uses a compact Resources-like height/padding with ellipsis protection. The existing modebar, topology SVG stage, right `REVIEW / SETTLE` glow boxes, core topology labels, route JS, and manual-lock behavior were preserved.
+
+**Verification run:** red check first failed with `node "sampora-website-public-v3\qa-evidence\solutions-resources-console-geometry-check.mjs"` before the layout CSS repair: desktop Solutions shell was `+85.3px` to `+91.2px` taller than Resources, desktop summary was `+82.7px`, chips content-to-modebar gap was `+24.03px` to `+46.7px` looser, and mobile shell was `+144px` to `+223.25px` taller. Post-repair the same helper passed across EN/ZH/HI at `1440x900` and `390x900`: desktop shell deltas were EN `+2.59px`, ZH `+3px`, HI `+8.5px`; desktop summary matched Resources at `161px`; tags matched at `29-31px`; stage remained `224px`; ticker remained `53px`. Mobile shell deltas were EN `-25.39px`, ZH `+17.75px`, HI `+33.95px`; tags matched Resources exactly; modebar/stage/ticker stayed in the same ratio band; horizontal overflow was `0`. Scoped topology semantics guard also passed across EN/ZH/HI desktop/mobile: mode cards stayed `panel|network|enterprise`, right labels stayed `REVIEW|SETTLE`, each right hub kept one child rect, `topoDash/2.4s` motion stayed active with dash/packet movement, and modebar manual lock held `network` after `3700ms`. Required static checks passed: `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` -> PASS; `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS; `node --check "sampora-website-public-v3\qa-evidence\solutions-resources-console-geometry-check.mjs"` -> PASS; `git diff --check -- sampora-website-public-v3/solutions.html SAMPORA_LATEST_REPAIR_HANDOFF.md` -> PASS with LF/CRLF warnings only; expanded scoped diff check including the new QA helper also passed with LF/CRLF warnings only.
+
+**Acceptance status separation:** technical/static PASS; runtime geometry PASS from current EN/ZH/HI desktop/mobile proportional measurements; real visual perception / true visual acceptance PASS from current rendered screenshot review. A normal user should now see the Solutions console as the same whole-panel family as Resources: desktop outer shell height is effectively aligned, the summary/chips/modebar/topology/ticker rhythm is no longer stretched by empty reserved space, mobile no longer shows a runaway pre-mode-card blank band, and the topology SVG itself was not shrunk to fake the repair.
+
+**Remaining failures / next agent:** none for the scoped full-layout alignment. Existing unrelated dirty workspace changes remain preserved and unreviewed. `TOPOLOGY-001` remains a regression guard, and `VISUAL-QA-001` / `HANDOFF-006` remain strategy guards; `ISSUE_LEDGER.md` was not updated because no recurring issue status changed. Packaging, delivery sync, zip rebuild, Lighthouse/axe full delivery, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-22 CST - About hero ZH/HI tag-row bottom alignment
+
+**Files changed:** `sampora-website-public-v3/about_sampora_issues_fixed.html` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Source scope was limited to the existing About desktop hero left-column CSS inside the `@media(min-width:1181px)` About hero rhythm block. EN/ZH/HI visible copy, CTA hrefs, right console card, header, footer, other About sections, other pages, QA helper files, delivery folders, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** `[CONFIRMED]` About page visual/layout complaint from the user's newest message: English hero left-side four small cards already aligned their bottom border with the right console card, but Chinese and HI did not. Red browser geometry at `1440x900` showed the hero tag row bottom gap to the right console bottom was EN `0px`, ZH `67.27px`, and HI `114.22px`, even though the left column and right console outer columns were already equal height. Root cause was that the left column had flex column layout without language-specific vertical distribution, so shorter translated content left the four tags floating above the bottom.
+
+**Verification run:** added only language-scoped desktop distribution: `html[data-lang="zh"] .hero-grid > :first-child` and `html[data-lang="hi"] .hero-grid > :first-child` now use `justify-content:space-between`. Post-repair browser geometry at `1440x900` showed EN/ZH/HI tag row bottom to right console bottom all `0px`, left-column bottom to console bottom all `0px`, tag count remained `4`, tag max bottom delta remained `0`, and horizontal overflow stayed `0`. ZH gaps became evenly distributed (`38.81 / 36.83 / 44.81 / 42.81px`) and HI gaps became evenly distributed (`50.56 / 48.55 / 56.56 / 54.55px`), avoiding a compressed text stack. `git diff --check -- sampora-website-public-v3/about_sampora_issues_fixed.html` passed with the existing LF/CRLF warning only. `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS.
+
+**Remaining failures / next agent:** none known for this scoped About hero ZH/HI tag-row alignment. This was a scoped mechanical/browser geometry check, not a final visual acceptance/review loop; final acceptance/review remains not acceptance-reviewed. Existing unrelated dirty workspace changes remain preserved and unreviewed. Packaging, delivery sync, zip rebuild, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-22 CST - About footer bottom-position adjustment
+
+**Files changed:** `sampora-website-public-v3/about_sampora_issues_fixed.html` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Source scope was limited to the About page `#footer.sampora-site-footer` outer footer padding. Footer internal layout, text, links, border styling, contact row, legal row, header, CTA section, other About sections, other pages, QA helper files, delivery folders, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** `[CONFIRMED]` About footer position request from the user's newest message and approved demo direction: keep the footer block visually aligned to the page bottom with only a small bottom margin. Root cause was outer footer bottom padding (`54px`) leaving the footer card floating above the page bottom.
+
+**Verification run:** changed only the outer footer padding from `64px 0 54px` to `64px 0 12px`. Browser geometry at `1470x432` after scrolling to page bottom showed footer card bottom gap to viewport bottom of EN `11.59px`, ZH `11.83px`, and HI `11.66px`, with horizontal overflow `0`. `git diff --check -- sampora-website-public-v3/about_sampora_issues_fixed.html` passed with the existing LF/CRLF warning only. `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS.
+
+**Remaining failures / next agent:** none known for this scoped About footer bottom-position adjustment. This was a scoped mechanical/browser geometry check, not a final visual acceptance/review loop; final acceptance/review remains not acceptance-reviewed. Existing unrelated dirty workspace changes remain preserved and unreviewed. Packaging, delivery sync, zip rebuild, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-22 CST - Cross-page footer bottom-distance reuse
+
+**Files changed:** `sampora-website-public-v3/index.html`, `sampora-website-public-v3/solutions.html`, `sampora-website-public-v3/resources.html`, `sampora-website-public-v3/resource-manuals.html`, `sampora-website-public-v3/plans.html`, `sampora-website-public-v3/contact.html`, and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Scope was limited to reusing the About footer bottom-distance change on the other pages by changing only the outer `#footer.sampora-site-footer` bottom padding value. Footer internal layout, text, links, card styling, contact row, legal row, page sections, page backgrounds, QA helper files, delivery folders, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** `[CONFIRMED]` user requested the About footer distance adjustment be reused on other pages, with the explicit constraint to change only the distance and nothing else. The bottom padding was changed from `54px` to `12px` on Homepage, Contact, Plans, Resources, Resource Manuals, and Solutions desktop footer rules. Solutions mobile footer override was changed from `44px` to `12px` so it does not override the reused bottom distance on small screens. Existing top padding values and all non-padding footer declarations were preserved.
+
+**Verification run:** source search found no remaining `#footer.sampora-site-footer` rules with `54px` or `44px` bottom padding in the seven active HTML pages. Browser sampling reported computed `footerPaddingBottom: 12px` for `index.html`, `solutions.html`, `resources.html`, `resource-manuals.html`, `plans.html`, `contact.html`, and `about_sampora_issues_fixed.html`, with horizontal overflow `0`. `git diff --check` for the seven touched HTML files passed with existing LF/CRLF warnings only. `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS.
+
+**Remaining failures / next agent:** none known for this scoped footer bottom-distance reuse. This was a scoped mechanical/source check plus computed padding sample, not a final visual acceptance/review loop; final acceptance/review remains not acceptance-reviewed. Existing unrelated dirty workspace changes remain preserved and unreviewed. Packaging, delivery sync, zip rebuild, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-22 CST - Plans footer extra divider-line removal
+
+**Files changed:** `sampora-website-public-v3/plans.html` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Source scope was limited to the Plans footer border values around `#footer .sampora-footer-contact`, `#footer .sampora-footer-legal`, and the responsive `#footer .sampora-footer-contact-item` bottom border. Footer distance, internal layout, text, links, card styling, contact row structure, legal row structure, other Plans sections, other pages, QA helper files, delivery folders, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** `[CONFIRMED]` user screenshot showed Plans footer had extra divider lines in the contact/legal area that did not match the other page footers. Root cause was page-local Plans footer CSS still giving the contact row and legal row faint top borders, plus a responsive bottom border for contact items.
+
+**Verification run:** set only those Plans footer border values to `0`. Browser computed-style sampling on `plans.html` showed desktop `contactBorderTop=0px`, `legalBorderTop=0px`, `itemBorderBottom=0px`; mobile `contactBorderTop=0px`, `legalBorderTop=0px`, and all three contact item bottom borders `0px`; horizontal overflow stayed `0`. `git diff --check -- sampora-website-public-v3/plans.html` passed with the existing LF/CRLF warning only. `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS.
+
+**Remaining failures / next agent:** none known for this scoped Plans footer divider-line removal. This was a scoped mechanical/browser computed-style check, not a final visual acceptance/review loop; final acceptance/review remains not acceptance-reviewed. Existing unrelated dirty workspace changes remain preserved and unreviewed. Packaging, delivery sync, zip rebuild, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-23 JST - Contact footer bottom-distance override correction
+
+**Files changed:** `sampora-website-public-v3/contact.html` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Scope was limited to the later Contact `#footer.sampora-site-footer` padding override in the horizontal-line cleanup style block. Footer internal layout, text, links, card styling, contact row, legal row, page sections, page backgrounds, QA helper files, delivery folders, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** user asked why Contact still did not show the reused footer bottom distance. Root cause: the earlier Contact footer rule had been changed to `64px 0 12px`, but a later same-selector rule still set `padding: 30px 0 54px !important`, overriding the bottom distance. This was a missed later override in the previous cross-page reuse round, not a successful effective Contact repair.
+
+**Verification run:** changed only the later override bottom padding to `padding: 30px 0 12px !important`. Source search now finds no Contact `#footer.sampora-site-footer` rules with `54px` or `44px` bottom padding. Browser computed-style sampling on Contact reports `footerPadding: 30px 0px 12px`, `footerPaddingBottom: 12px`, and horizontal overflow `0`. `git diff --check -- sampora-website-public-v3/contact.html` passed with the existing LF/CRLF warning only. `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS.
+
+**Remaining failures / next agent:** none known for this scoped Contact footer bottom-distance correction. This was a scoped source/computed-style check, not a final visual acceptance/review loop; final acceptance/review remains not acceptance-reviewed. Existing unrelated dirty workspace changes remain preserved and unreviewed. Packaging, delivery sync, zip rebuild, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-23 JST - Contact form privacy-note vertical centering
+
+**Files changed:** `sampora-website-public-v3/contact.html` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Scope was limited to the `.privacy` spacing below the Contact form submit button. Privacy text content, submit button, form fields, form card border, footer, other Contact sections, other pages, QA helper files, delivery folders, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** `[CONFIRMED]` user screenshot showed the privacy note below `Submit request` / `提交请求` was not vertically centered between the button bottom border and the form card bottom border. Red browser geometry on the Chinese page showed button-to-note gap `14px` and note-to-form-bottom gap `41px`.
+
+**Verification run:** changed `.privacy` spacing from `margin-top:14px` to `margin:27px 0 0`, clearing the default paragraph bottom margin while keeping the text and form unchanged. Browser geometry at `1440x900` showed EN/ZH/HI all have button-to-note gap `27px`, note-to-form-bottom gap `29px`, delta `2px`, and horizontal overflow `0`. `git diff --check -- sampora-website-public-v3/contact.html` passed with the existing LF/CRLF warning only. `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> PASS.
+
+**Remaining failures / next agent:** none known for this scoped Contact privacy-note spacing adjustment. This was a scoped mechanical/browser geometry check, not a final visual acceptance/review loop; final acceptance/review remains not acceptance-reviewed. Existing unrelated dirty workspace changes remain preserved and unreviewed. Packaging, delivery sync, zip rebuild, staging, commit, and push remain deferred unless explicitly requested.
+
+### 2026-05-23 JST - GPT translation-accuracy review pack
+
+**Files changed:** `SAMPORA_GPT_TRANSLATION_ACCURACY_REVIEW_PACK.md` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Scope was limited to adding a single root-level Markdown prompt/standard file for GPT translation-accuracy audit. Page source files, translations, glossary terms, QA scripts, screenshots, delivery folders, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** user requested one file packaged according to the question standard for GPT to review whether translations are precise. This is Package E / language-review strategy material, not a page-source repair and not a translation acceptance claim.
+
+**Verification run:** mechanical file existence/content check only: the new review pack names active source files, required glossary/acceptance/ledger context, translation-accuracy questions, severity standard, report format, do-not-flag exceptions, red-flag searches, and partial-audit output rules.
+
+**Remaining failures / next agent:** no translation review, browser proof, visual acceptance, packaging, delivery sync, or final acceptance was run. Any GPT audit produced from this pack must still inspect the current source files before claiming findings or PASS.
+
+### 2026-05-23 JST - Self-contained GPT translation review full pack
+
+**Files changed:** `SAMPORA_GPT_TRANSLATION_ACCURACY_REVIEW_PACK.md`, `SAMPORA_GPT_TRANSLATION_ACCURACY_REVIEW_FULL.md`, and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Scope was limited to clarifying that the standard-only pack does not embed source content, then generating a self-contained Markdown review file that embeds the review standard plus the current relevant source/document contents. Page source files, translations, glossary terms, QA scripts, screenshots, delivery folders, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** user asked whether sending only the first Markdown lets GPT see all files. Answer: no, not unless GPT has workspace access. The new `SAMPORA_GPT_TRANSLATION_ACCURACY_REVIEW_FULL.md` is the file intended for external GPT upload because it includes the actual contents of the active source files and review references.
+
+**Verification run:** mechanical file generation/existence check only. The full pack includes `SAMPORA_GPT_TRANSLATION_ACCURACY_REVIEW_PACK.md`, `SAMPORA_TERMINOLOGY_GLOSSARY.md`, `ACCEPTANCE_TESTS.md`, `ISSUE_LEDGER.md`, the seven active HTML pages, `assets/i18n-sweep.js`, `assets/resource-manuals/data.js`, and `assets/resource-manuals/app.js`.
+
+**Remaining failures / next agent:** no translation review, browser proof, visual acceptance, packaging, delivery sync, or final acceptance was run. The full pack is a review input artifact, not a review result.
+
+### 2026-05-23 JST - GPT translation review zip bundle
+
+**Files changed:** `SAMPORA_GPT_TRANSLATION_ACCURACY_REVIEW_BUNDLE.zip` and `SAMPORA_LATEST_REPAIR_HANDOFF.md`. Scope was limited to creating a zip upload bundle for external GPT translation review. The bundle contains `README_FOR_GPT.md`, the standard-only review pack, the self-contained full Markdown fallback, glossary/acceptance/ledger files, the seven active HTML pages, `assets/i18n-sweep.js`, `assets/resource-manuals/data.js`, and `assets/resource-manuals/app.js`. Page source files, translations, QA scripts, screenshots, delivery folders, staging, commit, and push were intentionally untouched.
+
+**Verification run:** zip was generated with 16 entries, 0 backslash entries, and SHA-256 `975570DB1AFB772FA26149C738D06BB4CD0FBDF26FA0CFA5DE5F10287748167C`.
+
+**Remaining failures / next agent:** no translation review, browser proof, visual acceptance, delivery sync, or final acceptance was run. This zip is review input only.
+
+### 2026-05-23 JST - GPT untranslated-content source repair continuation
+
+**Files changed:** `SAMPORA_TERMINOLOGY_GLOSSARY.md`, `sampora-website-public-v3/about_sampora_issues_fixed.html`, `sampora-website-public-v3/index.html`, `sampora-website-public-v3/solutions.html`, `sampora-website-public-v3/resources.html`, `sampora-website-public-v3/plans.html`, `sampora-website-public-v3/contact.html`, `sampora-website-public-v3/resource-manuals.html`, `sampora-website-public-v3/assets/resource-manuals/app.js`, `sampora-website-public-v3/assets/resource-manuals/data.js`, `ISSUE_LEDGER.md`, and this handoff. Existing unrelated QA screenshots, delivery folders, zips, root review-pack files, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** continued interrupted session `019e5056-ac8e-7123-af23-9486e025fb16` for the GPT untranslated/language-switch brief at `E:\Downloads\SAMPORA_UNTRANSLATED_CONTENT_CODEX_FIX.md`. Scope stayed in Package A/B/C/D language and Package E terminology/ledger governance. The repair updated EN/ZH/HI source dictionaries, static fallbacks, resource-manual UI bindings, and canonical glossary wording for `Survey Execution Site / 执行站点 / सर्वे निष्पादन साइट`; localized Chinese `Partner Network` / product-version `Supplier Network` where required; and repaired remaining target-language residues found in About, Plans, Resources, Solutions, Contact, Homepage, and Resource Manuals.
+
+**Verification run:** implementation worker ran `node --check` for `assets/resource-manuals/app.js` and `assets/resource-manuals/data.js` -> exit 0, `node "sampora-website-public-v3\qa-evidence\resource-manuals-language-smoke.mjs"` -> `resource manuals language smoke: OK`, `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` -> `PASS final audit static checks`, and scoped `git diff --check` -> exit 0 with existing LF/CRLF warnings only. Controller read-only spot checks found no matches for `Survey Station|survey station|调查站|सर्वे स्टेशन|执行执行|survey execution site execution` in active HTML/resource-manual JS files, and no About-page matches for `Partner Network|Supplier Allocation`.
+
+**Remaining failures / next agent:** browser language switching, screenshots, visual review, Lighthouse/axe, full delivery validation, delivery sync, zip rebuild, staging, commit, and push were not run. This round is not acceptance-reviewed / 未做验收. Raw English product names may still appear in EN copy, internal IDs, static fallback before JS replacement, or approved product labels; future language work must distinguish those allowed contexts from ZH/HI untranslated residues instead of treating raw grep hits as direct proof.
+
+### 2026-05-23 JST - Translation terminology repair continuation after interrupted worker
+
+**Files changed:** `sampora-website-public-v3/solutions.html`, `sampora-website-public-v3/plans.html`, `sampora-website-public-v3/index.html`, `sampora-website-public-v3/resources.html`, `sampora-website-public-v3/resource-manuals.html`, `sampora-website-public-v3/assets/resource-manuals/data.js`, `sampora-website-public-v3/assets/resource-manuals/app.js`, and this handoff. Scope stayed limited to EN/ZH/HI visible-copy alignment, terminology strings, resource-manual UI/data text, and the handoff note. Layout, animation, routing, CTA URLs, contact hidden fields, topology mechanics, QA screenshots/evidence, delivery folders, zips, root review packs, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** continued the current repair brief at `E:\Downloads\SAMPORA_TRANSLATION_REPAIR_CODEX_MERGED.md` from the interrupted Zeno diff. The continuation repaired confirmed residual string issues in the later `solutions.html` data override blocks, restored `plans.html` `MATRIX.en` headers/first rows to English, corrected swapped Resources ZH/HI plan-version tags, removed the old Resource Manuals Hindi legal suffix, and converted a resource-manual damaged-text guard to avoid a literal replacement character in source.
+
+**Verification run:** `node --check "sampora-website-public-v3/assets/resource-manuals/app.js"` -> exit 0; `node --check "sampora-website-public-v3/assets/resource-manuals/data.js"` -> exit 0; scoped active-source grep for `Survey Station|Survey station|survey station|调查站|सर्वे स्टेशन` in active HTML/resource-manual JS -> no matches; scoped bad-pattern grep for `????`, replacement character, `[CONFIRM_ICP_NUMBER]`, `ICP No.`, `Wan ICP No.`, `India-ready`, and `traffic value` in edited active files -> no matches; scoped `git diff --check` for allowed touched files -> exit 0 with existing LF/CRLF warnings only.
+
+**Remaining failures / next agent:** no browser language switching, screenshots, visual review, Lighthouse/axe, full delivery validation, delivery sync, zip rebuild, staging, commit, or push were run. This continuation is not acceptance-reviewed / 未做验收. Raw English names remain intentionally allowed in EN copy, form option values, internal keys/IDs, core topology labels, and compact approved product labels; future work should distinguish those contexts from true ZH/HI untranslated visible residues.

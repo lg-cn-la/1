@@ -369,7 +369,7 @@
             inset: 20px 0 auto;
             height: 560px;
             pointer-events: none;
-            background: radial-gradient(42% 34% at 64% 22%, rgba(56, 210, 255, .12), transparent 64%), radial-gradient(28% 26% at 30% 88%, rgba(246, 169, 59, .07), transparent 72%)
+            background: radial-gradient(42% 34% at 64% 22%, rgba(56, 210, 255, .12), transparent 64%), radial-gradient(28% 26% at 30% 88%, rgba(246, 169, 59, 0), transparent 72%)
         }
 
         .hero-grid {
@@ -1150,7 +1150,12 @@
 
         .topo-svg .hub.ctrl-hub rect,
         .topo-svg .hub.evd-hub rect {
-            fill: rgba(9, 23, 40, .94)
+            fill: url(#resourceHubGrad);
+            stroke: rgba(56, 210, 255, .62);
+            stroke-width: 1.35;
+            filter:
+                drop-shadow(0 0 7px rgba(56, 210, 255, .28))
+                drop-shadow(0 10px 16px rgba(0, 0, 0, .18))
         }
 
         .topo-svg .hub.origin-hub .pulse {
@@ -1794,7 +1799,7 @@
             line-height: 1.7
         }
 
-        #footer.sampora-site-footer{padding:64px 0 54px!important;border-top:1px solid rgba(129,178,214,.16)!important;color:var(--body,#A9B9CE)!important;background:radial-gradient(38% 34% at 18% 0%,rgba(56,210,255,.08),transparent 68%),linear-gradient(180deg,rgba(6,16,31,.22),rgba(6,16,31,.42))!important}
+        #footer.sampora-site-footer{padding:64px 0 12px!important;border-top:1px solid rgba(129,178,214,.16)!important;color:var(--body,#A9B9CE)!important;background:radial-gradient(38% 34% at 18% 0%,rgba(56,210,255,.08),transparent 68%),linear-gradient(180deg,rgba(6,16,31,.22),rgba(6,16,31,.42))!important}
 
         #footer .sampora-footer-card{border:1px solid rgba(129,178,214,.22)!important;border-radius:24px!important;overflow:hidden!important;background:rgba(8,20,36,.72)!important;box-shadow:0 30px 90px rgba(0,0,0,.24)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
 
@@ -1885,7 +1890,8 @@
             .resource-console:not(.modal-open) .topo-stage {
                 height: 224px;
                 aspect-ratio: auto;
-                margin-bottom: 0
+                margin-top: auto;
+                margin-bottom: auto
             }
 
             .resource-console:not(.modal-open) {
@@ -1906,7 +1912,7 @@
                 min-height: 0;
                 display: flex;
                 flex-direction: column;
-                padding-bottom: 14px
+                padding-bottom: 10px
             }
 
             .resource-console:not(.modal-open) .console-summary {
@@ -2321,7 +2327,7 @@ body {
         linear-gradient(rgba(120, 172, 216, .026) 1px, transparent 1px),
         linear-gradient(90deg, rgba(120, 172, 216, .024) 1px, transparent 1px),
         radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
-        radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .07) 0, transparent 64%),
+        radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, 0) 0, transparent 64%),
         linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%) !important;
     background-size: 44px 44px, 44px 44px, auto, auto, auto !important;
 }
@@ -2347,6 +2353,7 @@ body::before {
 }
 #footer.sampora-site-footer {
     border-top: 0 !important;
+    background: transparent !important;
 }
 #footer .sampora-footer-card {
     border-color: rgba(129, 178, 214, .10) !important;
@@ -2678,7 +2685,7 @@ body::before {
             "en": {
                         "statusLive": "RESOURCE CENTER · LIVE",
                         "statusA": "Operating guides mapped by product surface",
-                        "statusB": "Project · Supplier · API · Settlement · Partner Network",
+                        "statusB": "项目 · 供应商 · API · 结算 · 合作网络",
                         "statusRight": "Privacy workflow support · audit logs · settlement records",
                         "statusModes": {
                                     "setup": {
@@ -2721,12 +2728,12 @@ body::before {
                         "metric2Text": "Project intake, supplier allocation, delivery review, and settlement workflows.",
                         "metric3Title": "Rollout Notes",
                         "metric3Text": "Deployment notes, role guides, workspace references, and rollout checks.",
-                        "consoleCrumb": "resources / operations map / live",
+                        "consoleCrumb": "RESOURCES / DOCUMENTATION MAP / LIVE",
                         "topologyTitle": "Documentation Map",
                         "legendA": "guide path",
                         "legendB": "control point",
                         "legendC": "evidence path",
-                                                                        "colInput": "INTAKE",
+                                                                         "colInput": "ENTRY",
                         "colLayer": "GUIDE LAYER",
                         "colControl": "REVIEW",
                         "colEvidence": "RECORDS",
@@ -2841,12 +2848,12 @@ body::before {
                         "metric2Text": "项目接收、供应商分配、交付审核和结算流程。",
                         "metric3Title": "上线说明",
                         "metric3Text": "部署步骤、角色手册、工作台参考和上线检查清单。",
-                        "consoleCrumb": "资源 / 运营地图 / 实时",
+                        "consoleCrumb": "资源 / 文档地图 / 实时",
                         "topologyTitle": "文档地图",
                         "legendA": "指南路径",
                         "legendB": "控制点",
                         "legendC": "证据路径",
-                                                                        "colInput": "接收",
+                                                                         "colInput": "入口",
                         "colLayer": "指南层",
                         "colControl": "审核",
                         "colEvidence": "记录",
@@ -2866,7 +2873,7 @@ body::before {
                         "proofTitle": "每一份指南都能回到真实运营记录。",
                         "proofText": "通过项目、供应商、API、审核、结算和记录视图，让每个交付决策从配置到财务都可追溯。",
                         "modeFitTitle": "一条路径，三种运营模式",
-                        "modeFitTags": "Panel · Supplier Network · Enterprise",
+                        "modeFitTags": "样本库运营版 · 供应商网络运营版 · 企业版",
                         "proofOutputTitle": "这条路径产出的内容",
                         "surfaceKicker": "资源入口",
                         "surfaceTitle": "三个稳定资源入口，<em>一个运营资料中心。</em>",
@@ -2918,7 +2925,7 @@ body::before {
             "hi": {
                         "statusLive": "संसाधन केंद्र · लाइव",
                         "statusA": "उत्पाद सतहों के अनुसार संचालन गाइड",
-                        "statusB": "प्रोजेक्ट · सप्लायर · API · निपटान · Partner Network",
+                        "statusB": "प्रोजेक्ट · सप्लायर · API · सेटलमेंट · पार्टनर नेटवर्क",
                         "statusRight": "गोपनीयता प्रक्रिया समर्थन · ऑडिट लॉग · निपटान रिकॉर्ड",
                         "statusModes": {
                                     "setup": {
@@ -2961,13 +2968,13 @@ body::before {
                         "metric2Text": "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी समीक्षा और सेटलमेंट वर्कफ़्लो।",
                         "metric3Title": "रोलआउट नोट्स",
                         "metric3Text": "डिप्लॉयमेंट स्टेप्स, रोल गाइड, कार्यक्षेत्र संदर्भ और रोलआउट चेक।",
-                        "consoleCrumb": "संसाधन / संचालन मानचित्र / लाइव",
+                        "consoleCrumb": "संसाधन / दस्तावेज़ मैप / लाइव",
                         "topologyTitle": "दस्तावेज़ मैप",
                         "legendA": "गाइड पथ",
                         "legendB": "नियंत्रण बिंदु",
                         "legendC": "प्रमाण पथ",
-                                                                        "colInput": "प्राप्ति",
-                        "colLayer": "गाइड स्तर",
+                                                                         "colInput": "एंट्री",
+                        "colLayer": "गाइड लेयर",
                         "colControl": "समीक्षा",
                         "colEvidence": "रिकॉर्ड",
                         "nodeSmp": "संसाधन केंद्र",
@@ -2982,16 +2989,16 @@ body::before {
                         "setupKicker": "संचालन पथ",
                         "setupTitle": "<em>डिलीवरी से निपटान</em> तक मैनुअल पथ देखें।",
                         "setupText": "सेटअप, प्रोजेक्ट प्राप्ति, सप्लायर समन्वय, समीक्षा, निपटान और टीम ऑनबोर्डिंग के लिए जरूरी गाइड जल्दी खोजें।",
-                        "proofKicker": "ऑपरेटिंग एविडेंस",
+                        "proofKicker": "संचालन प्रमाण",
                         "proofTitle": "हर गाइड वास्तविक संचालन रिकॉर्ड से जुड़ता है।",
                         "proofText": "प्रोजेक्ट, सप्लायर, API, समीक्षा, सेटलमेंट और रिकॉर्ड व्यू से हर डिलीवरी निर्णय को सेटअप से फाइनेंस तक ट्रेसेबल रखें।",
                         "modeFitTitle": "एक पथ, तीन संचालन मोड",
-                        "modeFitTags": "Panel · Supplier Network · Enterprise",
+                        "modeFitTags": "सैंपल संचालन संस्करण · सप्लायर नेटवर्क संचालन संस्करण · एंटरप्राइज संस्करण",
                         "proofOutputTitle": "यह पथ क्या देता है",
                         "surfaceKicker": "संसाधन प्रवेश",
                         "surfaceTitle": "तीन स्थिर संसाधन प्रवेश, <em>एक संचालन केंद्र में।</em>",
                         "surfaceText": "मैनुअल, रोलआउट नोट्स और कार्यान्वयन संदर्भ से शुरू करें, फिर विस्तृत गाइड देखें।",
-                        "footerDesc": "पैनल प्रदाताओं और सैंपल आपूर्तिकर्ताओं के लिए ऑनलाइन सैंपल ऑपरेशंस प्लेटफॉर्म।",
+                        "footerDesc": "पैनल प्रदाताओं और सैंपल आपूर्तिकर्ताओं के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।",
                         "footerCol1": "उत्पाद समर्थन",
                         "footerHelp": "ऑपरेटर मैनुअल",
                         "footerGuide": "संचालन मैनुअल",
@@ -3018,10 +3025,10 @@ body::before {
                                     },
                                     "supplier": {
                                                 "title": "ऑपरेशन मैनुअल",
-                                                "short": "डिलीवरी वर्कफ़्लो",
-                                                "description": "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी समीक्षा और सेटलमेंट वर्कफ़्लो।",
+                                                "short": "डिलीवरी प्रवाह",
+                                                "description": "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी समीक्षा और सेटलमेंट प्रक्रिया।",
                                                 "tags": ["प्रोजेक्ट प्राप्ति", "सप्लायर आवंटन", "समीक्षा"],
-                                                "ticker": "डिलीवरी वर्कफ़्लो सक्रिय · ऑपरेशन चरण तैयार"
+                                                "ticker": "डिलीवरी प्रक्रिया सक्रिय · संचालन चरण तैयार"
                                     },
                                     "finance": {
                                                 "title": "रोलआउट नोट्स",
@@ -3282,19 +3289,19 @@ body::before {
                         "proof": [
                                     [
                                                 "प्रोजेक्ट",
-                                                "प्रोजेक्ट प्राप्ति, शेड्यूलिंग, आवंटन, डिलीवरी प्रगति, समीक्षा और सेटलमेंट रिकॉर्ड।"
+                                                "प्रोजेक्ट प्राप्ति, शेड्यूलिंग, आवंटन, डिलीवरी प्रगति, समीक्षा और निपटान रिकॉर्ड।"
                                     ],
                                     [
                                                 "सप्लायर",
                                                 "सप्लायर प्रोफ़ाइल, असाइनमेंट नियम, ब्लॉकिंग, सप्लायर-विशिष्ट प्राइसिंग और बिल।"
                                     ],
                                     [
-                                                "API / Workspace",
-                                                "API इंटेक, सप्लायर रिसीविंग, CPI नियम, प्रोजेक्ट पूल और निर्धारित रिफ्रेश।"
+                                                "API / कार्यक्षेत्र",
+                                                "API प्राप्ति, सप्लायर प्राप्ति, CPI नियम, प्रोजेक्ट पूल और निर्धारित रीफ़्रेश।"
                                     ],
                                     [
                                                 "रिकॉर्ड",
-                                                "ऑपरेशन लॉग, कॉलबैक रिकॉर्ड, समीक्षा एविडेंस, टर्मिनेशन रिकॉर्ड और एक्सपोर्ट योग्य फाइनेंस रिकॉर्ड।"
+                                                "संचालन लॉग, कॉलबैक रिकॉर्ड, समीक्षा प्रमाण, समाप्ति रिकॉर्ड और निर्यात योग्य वित्तीय रिकॉर्ड।"
                                     ]
                         ],
                         "proofOutput": [
@@ -3310,8 +3317,8 @@ body::before {
                                     ],
                                     [
                                                 "03",
-                                                "सेटलमेंट-तैयार एविडेंस",
-                                                "सत्यापित डिलीवरी रिकॉर्ड सप्लायर बिल, क्लाइंट इनवॉइस, फाइनेंस लॉग और एक्सपोर्ट योग्य रिकॉर्ड से जुड़े रहते हैं।"
+                                                "निपटान-तैयार प्रमाण",
+                                                "सत्यापित डिलीवरी रिकॉर्ड सप्लायर बिल, क्लाइंट इनवॉइस, वित्तीय लॉग और निर्यात योग्य रिकॉर्ड से जुड़े रहते हैं।"
                                     ]
                         ],
                         "surfaces": [
@@ -3329,7 +3336,7 @@ body::before {
                                     [
                                                 "OPS",
                                                 "ऑपरेशन मैनुअल",
-                                                "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी ट्रैकिंग, समीक्षा और निपटान वर्कफ़्लो।",
+                                                "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी ट्रैकिंग, समीक्षा और निपटान प्रक्रिया।",
                                                 [
                                                             "प्रोजेक्ट प्राप्ति",
                                                             "सप्लायर आवंटन",
@@ -3631,9 +3638,9 @@ body::before {
 <script id="sampora-standard-footer-i18n">
 (function(){
   const copy={
-    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
-    hi:{brandSub:'संचालन कंसोल',footerDesc:'Sampora स्वामित्व वाले Panel संचालकों और Sample Supplier टीमों के लिए ऑनलाइन नमूना संचालन प्लेटफ़ॉर्म है, जो परियोजना वितरण, Supplier Allocation, समीक्षा रिकॉर्ड, वित्त, जोखिम नियंत्रण और Partner Network को साथ रखता है।',tag1:'नमूना आपूर्ति',tag2:'समीक्षा प्रक्रिया',tag3:'सेटलमेंट लेजर',footerProduct:'उत्पाद',footerPlatformOverview:'प्लेटफ़ॉर्म अवलोकन',navSolutions:'समाधान',navPlans:'योजनाएँ',navContact:'संपर्क',footerResources:'संसाधन',footerResourcesOverview:'संसाधन अवलोकन',footerConfigurationGuide:'कॉन्फ़िगरेशन गाइड',footerOperationManual:'ऑपरेशन मैनुअल',footerRolloutNotes:'रोलआउट नोट्स',footerGetStarted:'शुरू करें',ctaTop:'ट्रायल शुरू करें',ctaDemo:'डेमो बुक करें',footerTalkToSales:'सेल्स से बात करें',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'}
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
+    hi:{brandSub:'संचालन कंसोल',footerDesc:'Sampora स्वामित्व वाले सैंपल ऑपरेटरों और सैंपल आपूर्तिकर्ता टीमों के लिए ऑनलाइन नमूना संचालन प्लेटफ़ॉर्म है, जो परियोजना वितरण, सप्लायर आवंटन, समीक्षा रिकॉर्ड, वित्त, जोखिम नियंत्रण और पार्टनर नेटवर्क संचालन को साथ रखता है।',tag1:'नमूना आपूर्ति',tag2:'समीक्षा प्रक्रिया',tag3:'सेटलमेंट लेजर',footerProduct:'उत्पाद',footerPlatformOverview:'प्लेटफ़ॉर्म अवलोकन',navSolutions:'समाधान',navPlans:'योजनाएँ',navContact:'संपर्क',footerResources:'संसाधन',footerResourcesOverview:'संसाधन अवलोकन',footerConfigurationGuide:'कॉन्फ़िगरेशन गाइड',footerOperationManual:'ऑपरेशन मैनुअल',footerRolloutNotes:'रोलआउट नोट्स',footerGetStarted:'शुरू करें',ctaTop:'ट्रायल शुरू करें',ctaDemo:'डेमो बुक करें',footerTalkToSales:'सेल्स से बात करें',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'}
   };
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);

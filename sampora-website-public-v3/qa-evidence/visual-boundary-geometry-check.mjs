@@ -11,6 +11,7 @@ const chromeExecutablePath = process.env.CHROME_EXECUTABLE_PATH || 'C:\\Program 
 const langs = ['en', 'zh', 'hi'];
 const viewports = [
   { name: 'desktop', width: 1440, height: 900 },
+  { name: 'tablet', width: 768, height: 1024 },
   { name: 'mobile', width: 390, height: 900 },
 ];
 const surfaces = [
@@ -34,6 +35,27 @@ const surfaces = [
     file: 'solutions.html',
     selectors: ['#compare', '#workflow'],
     pairs: [['#compare', '#workflow']],
+  },
+  {
+    id: 'solutions-footer',
+    label: 'Solutions footer',
+    file: 'solutions.html',
+    selectors: ['#workflow', '#footer'],
+    pairs: [['#workflow', '#footer']],
+  },
+  {
+    id: 'contact-hero-form',
+    label: 'Contact hero / form',
+    file: 'contact.html',
+    selectors: ['.hero', '#contact-form'],
+    pairs: [['.hero', '#contact-form']],
+  },
+  {
+    id: 'contact-footer',
+    label: 'Contact footer',
+    file: 'contact.html',
+    selectors: ['.more-ways', '#footer'],
+    pairs: [['.more-ways', '#footer']],
   },
 ];
 
@@ -216,8 +238,29 @@ for (const surface of surfaces) {
           surfaceFindings.push({ ...context, severity: 'FAIL', message: `missing selector ${selector}` });
           continue;
         }
+        if (node.maxBackgroundAlpha >= 0.85 && !/transparent/i.test(`${node.backgroundColor} ${node.backgroundImage}`)) {
+          surfaceFindings.push({
+            ...context,
+            severity: 'FAIL',
+            message: `${selector} has near-solid background alpha ${node.maxBackgroundAlpha}`,
+          });
+        }
+        if (selector === '#footer' && node.maxBackgroundAlpha > 0.02 && !/^rgba?\(\s*0\s*,\s*0\s*,\s*0\s*,\s*0\s*\)$/i.test(node.backgroundColor)) {
+          surfaceFindings.push({
+            ...context,
+            severity: 'FAIL',
+            message: `${selector} outer background contributes a full-width band alpha ${node.maxBackgroundAlpha}`,
+          });
+        }
         for (const pseudoName of ['before', 'after']) {
           const pseudo = node[pseudoName];
+          if (selector === '#footer' && pseudo?.active && pseudo.height > 24 && pseudo.maxBackgroundAlpha > 0.01) {
+            surfaceFindings.push({
+              ...context,
+              severity: 'FAIL',
+              message: `${selector}::${pseudoName} contributes a full-width footer band alpha ${pseudo.maxBackgroundAlpha} at ${pseudo.height}px height`,
+            });
+          }
           if (pseudo?.largeSolidOverlay) {
             surfaceFindings.push({
               ...context,
