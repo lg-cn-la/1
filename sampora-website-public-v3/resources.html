@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://www.sampora.com/resources.html">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;amp;display=swap" rel="stylesheet"/>
 <style>
         :root {
             --ink: #0A1628;
@@ -28,8 +28,8 @@
             --muted: #7E92AC;
             --body: #A9B9CE;
             --body2: #93A7C0;
-            --sans: "Inter", "Noto Sans SC", "Noto Sans Devanagari", "Helvetica Neue", Arial, sans-serif;
-            --mono: "JetBrains Mono", "Noto Sans SC", "Noto Sans Devanagari", SFMono-Regular, Menlo, Consolas, monospace;
+            --sans: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+            --mono: "JetBrains Mono", "Noto Sans SC", SFMono-Regular, Menlo, Consolas, monospace;
             --ease: cubic-bezier(.2, .7, .2, 1);
             --shadow: 0 30px 78px rgba(0, 0, 0, .55)
         }
@@ -940,17 +940,7 @@
             text-overflow: clip;
             text-wrap: balance
         }
-
-        html[lang="hi"] .topo-modebar button strong,
-        html[lang="hi"] .topo-modebar button span {
-            white-space: normal;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            text-overflow: clip
-        }
-
-        .topo-headline {
+.topo-headline {
             display: flex;
             gap: 14px;
             align-items: center;
@@ -1807,7 +1797,7 @@
 
         #footer .sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--fg,#E8EEF5)!important;margin-bottom:22px!important}
 
-        #footer .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+        #footer .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
 
         #footer .sampora-footer-logo b{display:block!important;font-size:24px!important;line-height:1!important;letter-spacing:-.03em!important;color:var(--fg,#E8EEF5)!important}
 
@@ -2061,17 +2051,6 @@
                 padding: 10px 11px
             }
 
-            .topo-modebar button strong,
-            .topo-modebar button span,
-            html[lang="hi"] .topo-modebar button strong,
-            html[lang="hi"] .topo-modebar button span {
-                display: block;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                -webkit-line-clamp: initial
-            }
-
             .resource-console:not(.modal-open) .topo-stage {
                 height: 220px
             }
@@ -2180,17 +2159,6 @@
             max-width: 760px
         }
 
-        html[lang="hi"] body {
-            font-family: "Noto Sans Devanagari", "Inter", var(--sans)
-        }
-
-        html[lang="hi"] h1 {
-            font-size: clamp(42px, 4.45vw, 64px);
-            line-height: 1.16;
-            letter-spacing: 0;
-            max-width: 780px
-        }
-    
 /* Sampora mobile canonical navigation */
 .mobile-nav-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:10px;background:rgba(6,14,28,.62);color:var(--fg,#E8EEF5);font:800 20px/1 var(--mono,monospace);cursor:pointer}
 .mobile-nav-drawer{display:none;position:fixed;left:16px;right:16px;top:92px;z-index:120;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:14px;background:rgba(6,16,31,.97);box-shadow:0 26px 80px rgba(0,0,0,.42);backdrop-filter:blur(16px);padding:10px}
@@ -2205,32 +2173,12 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
 .lang button,.lang-btn{min-width:42px;height:34px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px/1 var(--mono,ui-monospace,monospace);letter-spacing:.03em;cursor:pointer;transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
 .lang button:hover,.lang button:focus-visible,.lang-btn:hover,.lang-btn:focus-visible{color:var(--cyan2,var(--cyan,#61e7ff));outline:0;box-shadow:0 0 0 1px rgba(56,210,255,.24)}
 .lang button.active,.lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
-html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 10px;font-family:var(--sans,system-ui,sans-serif);font-weight:800;letter-spacing:0}
 @media(max-width:1100px){.nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:none!important}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}.nav.sampora-nav-standard,.sampora-nav-standard{gap:28px!important}.hero-grid{grid-template-columns:1fr}.resource-console{width:100%;max-width:100%;justify-self:stretch}.console-window{width:100%;box-sizing:border-box}}
 @media(max-width:760px){.status{display:none!important}.mast,.mast.compact,body.nav-condensed .mast{top:0!important}.brand small{display:none!important}.mast .inner,.nav-inner{gap:14px!important}}
 @media(max-width:360px){.container{width:min(100% - 24px,1360px)!important}.brand b{display:none!important}.lang button,.lang-btn{min-width:34px!important;padding:0 6px!important;font-size:10px!important}.mobile-nav-toggle{width:36px!important;height:36px!important}.header-actions,.nav-actions,.actions{gap:6px!important}}
 @media(max-width:980px){.status [data-i18n="statusA"] + .sep,.status [data-i18n="statusB"]{display:none}}
 
 </style>
-<style id="language-consistency-fix">
-        html[lang="hi"] body,
-        html[lang="hi"] button,
-        html[lang="hi"] input,
-        html[lang="hi"] textarea,
-        html[lang="hi"] select {
-            font-family: "Noto Sans Devanagari", "Nirmala UI", "Mangal", "Inter", system-ui, sans-serif !important;
-        }
-        html[lang="hi"] p,
-        html[lang="hi"] li,
-        html[lang="hi"] .surface-card,
-        html[lang="hi"] .check-item,
-        html[lang="hi"] .mini-proof,
-        html[lang="hi"] .mode-fit-card,
-        html[lang="hi"] .cta-final,
-        html[lang="hi"] footer {
-            line-height: 1.72;
-        }
-    </style>
 <style id="surface-jump-card-fix">
         .surface-link {
             display: block;
@@ -2286,8 +2234,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   .mast{height:auto!important;top:34px!important}
   .mast.compact{background:rgba(10,22,40,.82)!important}
   .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important}
-  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:flex!important;align-items:center!important;justify-content:center!important;gap:32px!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
-  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;white-space:nowrap!important}
+  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
+  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
   .header-actions,.nav-actions,.actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-left:0!important}
 }
 
@@ -2301,8 +2249,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:167.36px minmax(0,1fr) 430px!important;align-items:center!important;gap:24px!important}
   .mast .brand{width:167.36px!important;min-width:167.36px!important;gap:10px!important}
   .mast .mark,.brand .mark{width:30px!important;height:30px!important}
-  .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:32px!important;margin:0!important;padding:0!important}
-  .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;white-space:nowrap!important}
+  .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;padding:0!important}
+  .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
   .mast .nav.sampora-nav-standard a.active::after,.mast .nav-links.sampora-nav-standard a.active::after,.mast .sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,var(--cyan,#38D2FF),transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
   .mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box!important;width:430px!important;min-width:430px!important;height:44.92px!important;align-self:center!important;justify-self:end!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;flex-wrap:nowrap!important;overflow:visible!important;margin-left:0!important}
   .mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto!important;white-space:nowrap!important}
@@ -2315,9 +2263,9 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </style>
 <style id="header-brand-visual-parity">
 .mast .brand{display:flex!important;align-items:center!important;gap:10px!important}
-.mast .brand .mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+.mast .brand .mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
 .mast .brand b,.mast .brand .brand-name{display:block!important;font-size:16px!important;font-weight:800!important;line-height:1.56!important;letter-spacing:-.01em!important}
-.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
 @media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
 @media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
 </style>
@@ -2372,6 +2320,7 @@ body::before {
         border-bottom: 0 !important;
     }
 }
+@media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
 </head>
 <body>
@@ -2401,7 +2350,6 @@ body::before {
 <div aria-label="Language switcher" class="lang">
 <button data-lang="en" type="button">EN</button>
 <button data-lang="zh" type="button">中文</button>
-<button data-lang="hi" type="button">हिन्दी</button>
 </div>
 <a class="btn ghost" data-i18n="headerBookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a>
 <a class="btn primary" data-i18n="headerStartTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
@@ -2671,7 +2619,7 @@ body::before {
 </div>
 <div class="sampora-footer-contact">
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@sampora.com</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
 </div>
 <div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
@@ -2682,682 +2630,479 @@ body::before {
         const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
         const COPY = {
-            "en": {
-                        "statusLive": "RESOURCE CENTER · LIVE",
-                        "statusA": "Operating guides mapped by product surface",
-                        "statusB": "项目 · 供应商 · API · 结算 · 合作网络",
-                        "statusRight": "Privacy workflow support · audit logs · settlement records",
-                        "statusModes": {
-                                    "setup": {
-                                                "statusLive": "CONFIGURATION GUIDE · LIVE",
-                                                "statusA": "Setup and configuration references",
-                                                "statusB": "System setup · risk rules · integration basics",
-                                                "statusRight": "Configuration references follow the active resource mode"
-                                    },
-                                    "supplier": {
-                                                "statusLive": "OPERATION MANUAL · LIVE",
-                                                "statusA": "Operating workflow references",
-                                                "statusB": "Project intake · supplier allocation · delivery review",
-                                                "statusRight": "Operation manual references follow the active resource mode"
-                                    },
-                                    "finance": {
-                                                "statusLive": "ROLLOUT NOTES · LIVE",
-                                                "statusA": "Rollout and workspace references",
-                                                "statusB": "Deployment notes · role guides · launch checks",
-                                                "statusRight": "Rollout notes follow the active resource mode"
-                                    }
-                        },
-                        "brandSub": "Operations console",
-                        "brandSub2": "Operations console",
-                        "navProduct": "Product",
-                        "navSolutions": "Solutions",
-                        "navResources": "Resources",
-                        "navPricing": "Plans",
-                        "navAbout": "About",
-                        "navContact": "Contact",
-                        "headerBookDemo": "Book a demo",
-                        "headerStartTrial": "Start trial",
-                        "heroKicker": "RESOURCES · INTERFACE PLAYBOOKS",
-                        "heroTitle": "Resources for <em>online sample operations.</em>",
-                        "heroSub": "Operator manuals, regional rollout notes, and implementation references for sample delivery teams.",
-                        "heroCta1": "View manuals →", 
-                        "heroCta2": "Read rollout notes →",
-                        "metric1Title": "Configuration Guide",
-                        "metric1Text": "System setup, client/supplier configuration, risk rules, and integration basics.",
-                        "metric2Title": "Operation Manual",
-                        "metric2Text": "Project intake, supplier allocation, delivery review, and settlement workflows.",
-                        "metric3Title": "Rollout Notes",
-                        "metric3Text": "Deployment notes, role guides, workspace references, and rollout checks.",
-                        "consoleCrumb": "RESOURCES / DOCUMENTATION MAP / LIVE",
-                        "topologyTitle": "Documentation Map",
-                        "legendA": "guide path",
-                        "legendB": "control point",
-                        "legendC": "evidence path",
-                                                                         "colInput": "ENTRY",
-                        "colLayer": "GUIDE LAYER",
-                        "colControl": "REVIEW",
-                        "colEvidence": "RECORDS",
-                        "nodeSmp": "resource hub",
-                        "nodeSetup": "CONFIG GUIDE",
-                        "roleSetup": "setup & configuration",
-                        "nodeSupplier": "OPERATION MANUAL",
-                        "roleSupplier": "delivery workflow",
-                        "nodeFinance": "ROLLOUT NOTES",
-                        "roleFinance": "deployment checklist",
-                        "nodeCtrl": "REVIEW",
-                        "nodeEvd": "RECORDS",
-                        "setupKicker": "OPERATING PATH",
-                        "setupTitle": "Follow the <em>delivery-to-settlement</em> playbook path.",
-                        "setupText": "Follow a practical path from setup and project intake to supplier coordination, review, settlement, and team onboarding.",
-                        "proofKicker": "OPERATING EVIDENCE",
-                        "proofTitle": "Every guide maps back to real operating records.",
-                        "proofText": "Use project, supplier, API, review, settlement, and records views to keep each delivery decision traceable from setup to finance.",
-                        "modeFitTitle": "One path, three operating modes",
-                        "modeFitTags": "Panel · Supplier Network · Enterprise",
-                        "proofOutputTitle": "What this path produces",
-                        "surfaceKicker": "RESOURCE ENTRIES",
-                        "surfaceTitle": "Three stable resource entries, <em>one operating hub.</em>",
-                        "surfaceText": "Start with manuals, rollout notes, and implementation references before moving into detailed guides.",
-                        "footerDesc": "Online sample operations platform for panel providers and sample suppliers.",
-                        "footerCol1": "Product support",
-                        "footerHelp": "Operator manuals",
-                        "footerGuide": "Operations manuals",
-                        "footerFeedback": "Contact sales",
-                        "footerCol2": "Company info",
-                        "footerAbout": "About us",
-                        "footerHistory": "Implementation roadmap",
-                        "footerContact": "Contact sales",
-                        "footerCol3": "Resources",
-                        "footerTrial": "Start trial",
-                        "footerJoin": "Talk to sales",
-                        "footerUpdates": "Information updates",
-                        "footerAddress": "Room 1506, Block A, Hengyangguangcheng, Lu'an, Anhui, China",
-                        "footerCopyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
-                        "footerCompanyLegal": "Anhui Jiayu Enterprise Service Co., Ltd.",
-                        "copyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
-                        "modes": {
-                                    "setup": {
-                                                "title": "Configuration Guide",
-                                                "short": "Setup & configuration",
-                                                "description": "System setup, client and supplier configuration, risk rules, and integration basics.",
-                                                "tags": ["System setup", "Risk rules", "Integration"],
-                                                "ticker": "Setup checklist active · configuration references ready"
-                                    },
-                                    "supplier": {
-                                                "title": "Operation Manual",
-                                                "short": "Delivery workflow",
-                                                "description": "Project intake, supplier allocation, delivery review, and settlement workflows.",
-                                                "tags": ["Project intake", "Allocation", "Review"],
-                                                "ticker": "Delivery workflow active · operation steps ready"
-                                    },
-                                    "finance": {
-                                                "title": "Rollout Notes",
-                                                "short": "Deployment checklist",
-                                                "description": "Deployment notes, role guides, workspace references, and rollout checks.",
-                                                "tags": ["Deployment", "Role guides", "Checklist"],
-                                                "ticker": "Deployment checklist active · rollout notes ready"
-                                    }
-                        },
-                        "footerTag1": "Project intake",
-                        "footerTag2": "Supplier allocation",
-                        "footerTag3": "Settlement records"
-            },
-            "zh": {
-                        "statusLive": "资源中心 · 实时",
-                        "statusA": "按产品界面整理的运营指南",
-                        "statusB": "项目 · 供应商 · API · 结算 · 合作资源",
-                        "statusRight": "隐私流程支持 · 审计日志 · 结算记录",
-                        "statusModes": {
-                                    "setup": {
-                                                "statusLive": "配置指南 · 实时",
-                                                "statusA": "系统设置与配置参考",
-                                                "statusB": "系统设置 · 风控规则 · 集成基础",
-                                                "statusRight": "配置参考随当前资源模式同步"
-                                    },
-                                    "supplier": {
-                                                "statusLive": "操作手册 · 实时",
-                                                "statusA": "运营流程操作参考",
-                                                "statusB": "项目接收 · 供应商分配 · 交付审核",
-                                                "statusRight": "操作手册随当前资源模式同步"
-                                    },
-                                    "finance": {
-                                                "statusLive": "上线说明 · 实时",
-                                                "statusA": "上线与工作台参考",
-                                                "statusB": "部署说明 · 角色手册 · 上线检查",
-                                                "statusRight": "上线说明随当前资源模式同步"
-                                    }
-                        },
-                        "brandSub": "操作控制台",
-                        "brandSub2": "操作控制台",
-                        "navProduct": "产品",
-                        "navSolutions": "解决方案",
-                        "navResources": "资源",
-                        "navPricing": "版本方案",
-                        "navAbout": "关于",
-                        "navContact": "联系我们",
-                        "headerBookDemo": "预约演示",
-                        "headerStartTrial": "开始试用",
-                        "heroKicker": "资源中心 · 接口入口手册",
-                        "heroTitle": "面向<em>在线样本运营</em>的资源中心。",
-                        "heroSub": "面向样本交付团队的操作手册、区域上线说明和实施参考。",
-                        "heroCta1": "查看手册 →", 
-                        "heroCta2": "阅读上线说明 →",
-                        "metric1Title": "配置指南",
-                        "metric1Text": "系统设置、客户与供应商配置、风控规则和集成基础。",
-                        "metric2Title": "操作手册",
-                        "metric2Text": "项目接收、供应商分配、交付审核和结算流程。",
-                        "metric3Title": "上线说明",
-                        "metric3Text": "部署步骤、角色手册、工作台参考和上线检查清单。",
-                        "consoleCrumb": "资源 / 文档地图 / 实时",
-                        "topologyTitle": "文档地图",
-                        "legendA": "指南路径",
-                        "legendB": "控制点",
-                        "legendC": "证据路径",
-                                                                         "colInput": "入口",
-                        "colLayer": "指南层",
-                        "colControl": "审核",
-                        "colEvidence": "记录",
-                        "nodeSmp": "资源中心",
-                        "nodeSetup": "配置指南",
-                        "roleSetup": "系统配置",
-                        "nodeSupplier": "操作手册",
-                        "roleSupplier": "交付流程",
-                        "nodeFinance": "上线说明",
-                        "roleFinance": "上线检查",
-                        "nodeCtrl": "REVIEW",
-                        "nodeEvd": "RECORDS",
-                        "setupKicker": "运营路径",
-                        "setupTitle": "按照<em>交付到结算</em>的手册路径学习。",
-                        "setupText": "按照配置、项目接收、供应商协同、审核、结算和团队上线步骤，快速找到需要的操作资料。",
-                        "proofKicker": "运营证据",
-                        "proofTitle": "每一份指南都能回到真实运营记录。",
-                        "proofText": "通过项目、供应商、API、审核、结算和记录视图，让每个交付决策从配置到财务都可追溯。",
-                        "modeFitTitle": "一条路径，三种运营模式",
-                        "modeFitTags": "样本库运营版 · 供应商网络运营版 · 企业版",
-                        "proofOutputTitle": "这条路径产出的内容",
-                        "surfaceKicker": "资源入口",
-                        "surfaceTitle": "三个稳定资源入口，<em>一个运营资料中心。</em>",
-                        "surfaceText": "先从手册、上线说明和实施参考进入，再查看更细的指南内容。",
-                        "footerDesc": "面向自有样本运营方和在线样本供应商的在线样本运营平台。",
-                        "footerCol1": "产品支持",
-                        "footerHelp": "操作手册",
-                        "footerGuide": "运营手册",
-                        "footerFeedback": "联系销售",
-                        "footerCol2": "公司信息",
-                        "footerAbout": "关于我们",
-                        "footerHistory": "实施路线图",
-                        "footerContact": "联系销售",
-                        "footerCol3": "资源",
-                        "footerTrial": "开始试用",
-                        "footerJoin": "联系销售",
-                        "footerUpdates": "资讯获取",
-                        "footerAddress": "中国安徽省六安市恒阳光城A座1506",
-                        "footerCopyright": "© 2026",
-                        "footerCompanyLegal": "安徽省嘉禹企业服务有限公司",
-                        "copyright": "© 2026 安徽省嘉禹企业服务有限公司",
-                        "modes": {
-                                    "setup": {
-                                                "title": "配置指南",
-                                                "short": "系统配置",
-                                                "description": "系统设置、客户与供应商配置、风控规则和集成基础。",
-                                                "tags": ["系统设置", "风控规则", "集成基础"],
-                                                "ticker": "系统配置已选中 · 配置参考就绪"
-                                    },
-                                    "supplier": {
-                                                "title": "操作手册",
-                                                "short": "交付流程",
-                                                "description": "项目接收、供应商分配、交付审核和结算流程。",
-                                                "tags": ["项目接收", "供应商分配", "交付审核"],
-                                                "ticker": "交付流程已选中 · 操作步骤就绪"
-                                    },
-                                    "finance": {
-                                                "title": "上线说明",
-                                                "short": "上线检查",
-                                                "description": "部署步骤、角色手册、工作台参考和上线检查清单。",
-                                                "tags": ["部署步骤", "角色手册", "检查清单"],
-                                                "ticker": "上线检查已选中 · 上线说明就绪"
-                                    }
-                        },
-                        "footerTag1": "项目接收",
-                        "footerTag2": "供应商分配",
-                        "footerTag3": "结算记录"
-            },
-            "hi": {
-                        "statusLive": "संसाधन केंद्र · लाइव",
-                        "statusA": "उत्पाद सतहों के अनुसार संचालन गाइड",
-                        "statusB": "प्रोजेक्ट · सप्लायर · API · सेटलमेंट · पार्टनर नेटवर्क",
-                        "statusRight": "गोपनीयता प्रक्रिया समर्थन · ऑडिट लॉग · निपटान रिकॉर्ड",
-                        "statusModes": {
-                                    "setup": {
-                                                "statusLive": "कॉन्फ़िगरेशन गाइड · लाइव",
-                                                "statusA": "सेटअप और कॉन्फ़िगरेशन संदर्भ",
-                                                "statusB": "सिस्टम सेटअप · जोखिम नियम · इंटीग्रेशन आधार",
-                                                "statusRight": "कॉन्फ़िगरेशन संदर्भ सक्रिय संसाधन मोड से जुड़े हैं"
-                                    },
-                                    "supplier": {
-                                                "statusLive": "ऑपरेशन मैनुअल · लाइव",
-                                                "statusA": "ऑपरेटिंग वर्कफ़्लो संदर्भ",
-                                                "statusB": "प्रोजेक्ट प्राप्ति · सप्लायर आवंटन · डिलीवरी समीक्षा",
-                                                "statusRight": "ऑपरेशन मैनुअल सक्रिय संसाधन मोड से जुड़ा है"
-                                    },
-                                    "finance": {
-                                                "statusLive": "रोलआउट नोट्स · लाइव",
-                                                "statusA": "रोलआउट और कार्यक्षेत्र संदर्भ",
-                                                "statusB": "डिप्लॉयमेंट नोट्स · भूमिका गाइड · लॉन्च चेक",
-                                                "statusRight": "रोलआउट नोट्स सक्रिय संसाधन मोड से जुड़े हैं"
-                                    }
-                        },
-                        "brandSub": "संचालन कंसोल",
-                        "brandSub2": "संचालन कंसोल",
-                        "navProduct": "उत्पाद",
-                        "navSolutions": "समाधान",
-                        "navResources": "संसाधन",
-                        "navPricing": "संस्करण योजना",
-                        "navAbout": "हमारे बारे में",
-                        "navContact": "संपर्क",
-                        "headerBookDemo": "डेमो बुक करें",
-                        "headerStartTrial": "ट्रायल शुरू करें",
-                        "heroKicker": "संसाधन · इंटरफ़ेस गाइड",
-                        "heroTitle": "<em>ऑनलाइन सैंपल संचालन</em> के लिए संसाधन केंद्र।",
-                        "heroSub": "सैंपल डिलीवरी टीमों के लिए ऑपरेटर मैनुअल, क्षेत्रीय रोलआउट नोट्स और कार्यान्वयन संदर्भ खोजें।",
-                        "heroCta1": "मैनुअल देखें →", 
-                        "heroCta2": "रोलआउट नोट्स पढ़ें →",
-                        "metric1Title": "कॉन्फ़िगरेशन गाइड",
-                        "metric1Text": "सिस्टम सेटअप, क्लाइंट-सप्लायर कॉन्फ़िगरेशन, जोखिम नियम और इंटीग्रेशन आधार।",
-                        "metric2Title": "ऑपरेशन मैनुअल",
-                        "metric2Text": "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी समीक्षा और सेटलमेंट वर्कफ़्लो।",
-                        "metric3Title": "रोलआउट नोट्स",
-                        "metric3Text": "डिप्लॉयमेंट स्टेप्स, रोल गाइड, कार्यक्षेत्र संदर्भ और रोलआउट चेक।",
-                        "consoleCrumb": "संसाधन / दस्तावेज़ मैप / लाइव",
-                        "topologyTitle": "दस्तावेज़ मैप",
-                        "legendA": "गाइड पथ",
-                        "legendB": "नियंत्रण बिंदु",
-                        "legendC": "प्रमाण पथ",
-                                                                         "colInput": "एंट्री",
-                        "colLayer": "गाइड लेयर",
-                        "colControl": "समीक्षा",
-                        "colEvidence": "रिकॉर्ड",
-                        "nodeSmp": "संसाधन केंद्र",
-                        "nodeSetup": "कॉन्फ़िग गाइड",
-                        "roleSetup": "सेटअप",
-                        "nodeSupplier": "ऑपरेशन मैनुअल",
-                        "roleSupplier": "डिलीवरी",
-                        "nodeFinance": "रोलआउट नोट्स",
-                        "roleFinance": "चेकलिस्ट",
-                        "nodeCtrl": "REVIEW",
-                        "nodeEvd": "RECORDS",
-                        "setupKicker": "संचालन पथ",
-                        "setupTitle": "<em>डिलीवरी से निपटान</em> तक मैनुअल पथ देखें।",
-                        "setupText": "सेटअप, प्रोजेक्ट प्राप्ति, सप्लायर समन्वय, समीक्षा, निपटान और टीम ऑनबोर्डिंग के लिए जरूरी गाइड जल्दी खोजें।",
-                        "proofKicker": "संचालन प्रमाण",
-                        "proofTitle": "हर गाइड वास्तविक संचालन रिकॉर्ड से जुड़ता है।",
-                        "proofText": "प्रोजेक्ट, सप्लायर, API, समीक्षा, सेटलमेंट और रिकॉर्ड व्यू से हर डिलीवरी निर्णय को सेटअप से फाइनेंस तक ट्रेसेबल रखें।",
-                        "modeFitTitle": "एक पथ, तीन संचालन मोड",
-                        "modeFitTags": "सैंपल संचालन संस्करण · सप्लायर नेटवर्क संचालन संस्करण · एंटरप्राइज संस्करण",
-                        "proofOutputTitle": "यह पथ क्या देता है",
-                        "surfaceKicker": "संसाधन प्रवेश",
-                        "surfaceTitle": "तीन स्थिर संसाधन प्रवेश, <em>एक संचालन केंद्र में।</em>",
-                        "surfaceText": "मैनुअल, रोलआउट नोट्स और कार्यान्वयन संदर्भ से शुरू करें, फिर विस्तृत गाइड देखें।",
-                        "footerDesc": "पैनल प्रदाताओं और सैंपल आपूर्तिकर्ताओं के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।",
-                        "footerCol1": "उत्पाद समर्थन",
-                        "footerHelp": "ऑपरेटर मैनुअल",
-                        "footerGuide": "संचालन मैनुअल",
-                        "footerFeedback": "सेल्स से बात करें",
-                        "footerCol2": "कंपनी जानकारी",
-                        "footerAbout": "हमारे बारे में",
-                        "footerHistory": "कार्यान्वयन रोडमैप",
-                        "footerContact": "सेल्स से बात करें",
-                        "footerCol3": "संसाधन",
-                        "footerTrial": "ट्रायल शुरू करें",
-                        "footerJoin": "सेल्स से बात करें",
-                        "footerUpdates": "जानकारी अपडेट",
-                        "footerAddress": "कमरा 1506, ए ब्लॉक, हेंगयांग गुआंगचेंग, लुआन, आन्हुई, चीन",
-                        "footerCopyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
-                        "footerCompanyLegal": "Anhui Jiayu Enterprise Service Co., Ltd.",
-                        "copyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
-                        "modes": {
-                                    "setup": {
-                                                "title": "कॉन्फ़िगरेशन गाइड",
-                                                "short": "सेटअप और कॉन्फ़िगरेशन",
-                                                "description": "सिस्टम सेटअप, क्लाइंट-सप्लायर कॉन्फ़िगरेशन, जोखिम नियम और इंटीग्रेशन आधार।",
-                                                "tags": ["सिस्टम सेटअप", "जोखिम नियम", "इंटीग्रेशन"],
-                                                "ticker": "सेटअप चेकलिस्ट सक्रिय · कॉन्फ़िगरेशन संदर्भ तैयार"
-                                    },
-                                    "supplier": {
-                                                "title": "ऑपरेशन मैनुअल",
-                                                "short": "डिलीवरी प्रवाह",
-                                                "description": "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी समीक्षा और सेटलमेंट प्रक्रिया।",
-                                                "tags": ["प्रोजेक्ट प्राप्ति", "सप्लायर आवंटन", "समीक्षा"],
-                                                "ticker": "डिलीवरी प्रक्रिया सक्रिय · संचालन चरण तैयार"
-                                    },
-                                    "finance": {
-                                                "title": "रोलआउट नोट्स",
-                                                "short": "डिप्लॉयमेंट चेकलिस्ट",
-                                                "description": "डिप्लॉयमेंट नोट्स, भूमिका गाइड, कार्यक्षेत्र संदर्भ और रोलआउट चेकलिस्ट।",
-                                                "tags": ["डिप्लॉयमेंट", "भूमिका गाइड", "चेकलिस्ट"],
-                                                "ticker": "डिप्लॉयमेंट चेकलिस्ट सक्रिय · रोलआउट नोट्स तैयार"
-                                    }
-                        },
-                        "footerTag1": "प्रोजेक्ट प्राप्ति",
-                        "footerTag2": "सप्लायर आवंटन",
-                        "footerTag3": "निपटान रिकॉर्ड"
-            }
-};
-
+  "en": {
+    "statusLive": "RESOURCE CENTER · LIVE",
+    "statusA": "Operating guides mapped by product surface",
+    "statusB": "Project · Supplier · API · Settlement · Partner Network",
+    "statusRight": "Privacy workflow support · audit logs · settlement records",
+    "statusModes": {
+      "setup": {
+        "statusLive": "CONFIGURATION GUIDE · LIVE",
+        "statusA": "Setup and configuration references",
+        "statusB": "System setup · risk rules · integration basics",
+        "statusRight": "Configuration references follow the active resource mode"
+      },
+      "supplier": {
+        "statusLive": "OPERATION MANUAL · LIVE",
+        "statusA": "Operating workflow references",
+        "statusB": "Project intake · supplier allocation · delivery review",
+        "statusRight": "Operation manual references follow the active resource mode"
+      },
+      "finance": {
+        "statusLive": "ROLLOUT NOTES · LIVE",
+        "statusA": "Rollout and workspace references",
+        "statusB": "Deployment notes · role guides · launch checks",
+        "statusRight": "Rollout notes follow the active resource mode"
+      }
+    },
+    "brandSub": "Operations console",
+    "brandSub2": "Operations console",
+    "navProduct": "Product",
+    "navSolutions": "Solutions",
+    "navResources": "Resources",
+    "navPricing": "Plans",
+    "navAbout": "About",
+    "navContact": "Contact",
+    "headerBookDemo": "Book a demo",
+    "headerStartTrial": "Start trial",
+    "heroKicker": "RESOURCES · INTERFACE PLAYBOOKS",
+    "heroTitle": "Resources for <em>online sample operations.<\/em>",
+    "heroSub": "Operator manuals, regional rollout notes, and implementation references for sample delivery teams.",
+    "heroCta1": "View manuals →",
+    "heroCta2": "Read rollout notes →",
+    "metric1Title": "Configuration Guide",
+    "metric1Text": "System setup, client/supplier configuration, risk rules, and integration basics.",
+    "metric2Title": "Operation Manual",
+    "metric2Text": "Project intake, supplier allocation, delivery review, and settlement workflows.",
+    "metric3Title": "Rollout Notes",
+    "metric3Text": "Deployment notes, role guides, workspace references, and rollout checks.",
+    "consoleCrumb": "RESOURCES / DOCUMENTATION MAP / LIVE",
+    "topologyTitle": "Documentation Map",
+    "legendA": "guide path",
+    "legendB": "control point",
+    "legendC": "evidence path",
+    "colInput": "ENTRY",
+    "colLayer": "GUIDE LAYER",
+    "colControl": "REVIEW",
+    "colEvidence": "RECORDS",
+    "nodeSmp": "resource hub",
+    "nodeSetup": "CONFIG GUIDE",
+    "roleSetup": "setup & configuration",
+    "nodeSupplier": "OPERATION MANUAL",
+    "roleSupplier": "delivery workflow",
+    "nodeFinance": "ROLLOUT NOTES",
+    "roleFinance": "deployment checklist",
+    "nodeCtrl": "REVIEW",
+    "nodeEvd": "RECORDS",
+    "setupKicker": "OPERATING PATH",
+    "setupTitle": "Follow the <em>delivery-to-settlement<\/em> playbook path.",
+    "setupText": "Follow a practical path from setup and project intake to supplier coordination, review, settlement, and team onboarding.",
+    "proofKicker": "OPERATING EVIDENCE",
+    "proofTitle": "Every guide maps back to real operating records.",
+    "proofText": "Use project, supplier, API, review, settlement, and records views to keep each delivery decision traceable from setup to finance.",
+    "modeFitTitle": "One path, three operating modes",
+    "modeFitTags": "Panel · Supplier Network · Enterprise",
+    "proofOutputTitle": "What this path produces",
+    "surfaceKicker": "RESOURCE ENTRIES",
+    "surfaceTitle": "Three stable resource entries, <em>one operating hub.<\/em>",
+    "surfaceText": "Start with manuals, rollout notes, and implementation references before moving into detailed guides.",
+    "footerDesc": "Online sample operations platform for panel providers and sample suppliers.",
+    "footerCol1": "Product support",
+    "footerHelp": "Operator manuals",
+    "footerGuide": "Operations manuals",
+    "footerFeedback": "Contact sales",
+    "footerCol2": "Company info",
+    "footerAbout": "About us",
+    "footerHistory": "Implementation roadmap",
+    "footerContact": "Contact sales",
+    "footerCol3": "Resources",
+    "footerTrial": "Start trial",
+    "footerJoin": "Talk to sales",
+    "footerUpdates": "Information updates",
+    "footerAddress": "Room 1506, Block A, Hengyangguangcheng, Lu'an, Anhui, China",
+    "footerCopyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
+    "footerCompanyLegal": "Anhui Jiayu Enterprise Service Co., Ltd.",
+    "copyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
+    "modes": {
+      "setup": {
+        "title": "Configuration Guide",
+        "short": "Setup & configuration",
+        "description": "System setup, client and supplier configuration, risk rules, and integration basics.",
+        "tags": [
+          "System setup",
+          "Risk rules",
+          "Integration"
+        ],
+        "ticker": "Setup checklist active · configuration references ready"
+      },
+      "supplier": {
+        "title": "Operation Manual",
+        "short": "Delivery workflow",
+        "description": "Project intake, supplier allocation, delivery review, and settlement workflows.",
+        "tags": [
+          "Project intake",
+          "Allocation",
+          "Review"
+        ],
+        "ticker": "Delivery workflow active · operation steps ready"
+      },
+      "finance": {
+        "title": "Rollout Notes",
+        "short": "Deployment checklist",
+        "description": "Deployment notes, role guides, workspace references, and rollout checks.",
+        "tags": [
+          "Deployment",
+          "Role guides",
+          "Checklist"
+        ],
+        "ticker": "Deployment checklist active · rollout notes ready"
+      }
+    },
+    "footerTag1": "Project intake",
+    "footerTag2": "Supplier allocation",
+    "footerTag3": "Settlement records"
+  },
+  "zh": {
+    "statusLive": "资源中心 · 实时",
+    "statusA": "按产品界面整理的运营指南",
+    "statusB": "项目 · 供应商 · API · 结算 · 合作资源",
+    "statusRight": "隐私流程支持 · 审计日志 · 结算记录",
+    "statusModes": {
+      "setup": {
+        "statusLive": "配置指南 · 实时",
+        "statusA": "系统设置与配置参考",
+        "statusB": "系统设置 · 风控规则 · 集成基础",
+        "statusRight": "配置参考随当前资源模式同步"
+      },
+      "supplier": {
+        "statusLive": "操作手册 · 实时",
+        "statusA": "运营流程操作参考",
+        "statusB": "项目接收 · 供应商分配 · 交付审核",
+        "statusRight": "操作手册随当前资源模式同步"
+      },
+      "finance": {
+        "statusLive": "上线说明 · 实时",
+        "statusA": "上线与工作台参考",
+        "statusB": "部署说明 · 角色手册 · 上线检查",
+        "statusRight": "上线说明随当前资源模式同步"
+      }
+    },
+    "brandSub": "操作控制台",
+    "brandSub2": "操作控制台",
+    "navProduct": "产品",
+    "navSolutions": "解决方案",
+    "navResources": "资源",
+    "navPricing": "版本方案",
+    "navAbout": "关于",
+    "navContact": "联系我们",
+    "headerBookDemo": "预约演示",
+    "headerStartTrial": "开始试用",
+    "heroKicker": "资源中心 · 接口入口手册",
+    "heroTitle": "面向<em>在线样本运营<\/em>的资源中心。",
+    "heroSub": "面向样本交付团队的操作手册、区域上线说明和实施参考。",
+    "heroCta1": "查看手册 →",
+    "heroCta2": "阅读上线说明 →",
+    "metric1Title": "配置指南",
+    "metric1Text": "系统设置、客户与供应商配置、风控规则和集成基础。",
+    "metric2Title": "操作手册",
+    "metric2Text": "项目接收、供应商分配、交付审核和结算流程。",
+    "metric3Title": "上线说明",
+    "metric3Text": "部署步骤、角色手册、工作台参考和上线检查清单。",
+    "consoleCrumb": "资源 / 文档地图 / 实时",
+    "topologyTitle": "文档地图",
+    "legendA": "指南路径",
+    "legendB": "控制点",
+    "legendC": "证据路径",
+    "colInput": "入口",
+    "colLayer": "指南层",
+    "colControl": "审核",
+    "colEvidence": "记录",
+    "nodeSmp": "资源中心",
+    "nodeSetup": "配置指南",
+    "roleSetup": "系统配置",
+    "nodeSupplier": "操作手册",
+    "roleSupplier": "交付流程",
+    "nodeFinance": "上线说明",
+    "roleFinance": "上线检查",
+    "nodeCtrl": "审核",
+    "nodeEvd": "记录",
+    "setupKicker": "运营路径",
+    "setupTitle": "按照<em>交付到结算<\/em>的手册路径学习。",
+    "setupText": "按照配置、项目接收、供应商协同、审核、结算和团队上线步骤，快速找到需要的操作资料。",
+    "proofKicker": "运营证据",
+    "proofTitle": "每一份指南都能回到真实运营记录。",
+    "proofText": "通过项目、供应商、API、审核、结算和记录视图，让每个交付决策从配置到财务都可追溯。",
+    "modeFitTitle": "一条路径，三种运营模式",
+    "modeFitTags": "样本库运营版 · 供应商网络运营版 · 企业版",
+    "proofOutputTitle": "这条路径产出的内容",
+    "surfaceKicker": "资源入口",
+    "surfaceTitle": "三个稳定资源入口，<em>一个运营资料中心。<\/em>",
+    "surfaceText": "先从手册、上线说明和实施参考进入，再查看更细的指南内容。",
+    "footerDesc": "面向自有样本运营方和在线样本供应商的在线样本运营平台。",
+    "footerCol1": "产品支持",
+    "footerHelp": "操作手册",
+    "footerGuide": "运营手册",
+    "footerFeedback": "联系销售",
+    "footerCol2": "公司信息",
+    "footerAbout": "关于我们",
+    "footerHistory": "实施路线图",
+    "footerContact": "联系销售",
+    "footerCol3": "资源",
+    "footerTrial": "开始试用",
+    "footerJoin": "联系销售",
+    "footerUpdates": "资讯获取",
+    "footerAddress": "中国安徽省六安市恒阳光城A座1506",
+    "footerCopyright": "© 2026",
+    "footerCompanyLegal": "安徽省嘉禹企业服务有限公司",
+    "copyright": "© 2026 安徽省嘉禹企业服务有限公司",
+    "modes": {
+      "setup": {
+        "title": "配置指南",
+        "short": "系统配置",
+        "description": "系统设置、客户与供应商配置、风控规则和集成基础。",
+        "tags": [
+          "系统设置",
+          "风控规则",
+          "集成基础"
+        ],
+        "ticker": "系统配置已选中 · 配置参考就绪"
+      },
+      "supplier": {
+        "title": "操作手册",
+        "short": "交付流程",
+        "description": "项目接收、供应商分配、交付审核和结算流程。",
+        "tags": [
+          "项目接收",
+          "供应商分配",
+          "交付审核"
+        ],
+        "ticker": "交付流程已选中 · 操作步骤就绪"
+      },
+      "finance": {
+        "title": "上线说明",
+        "short": "上线检查",
+        "description": "部署步骤、角色手册、工作台参考和上线检查清单。",
+        "tags": [
+          "部署步骤",
+          "角色手册",
+          "检查清单"
+        ],
+        "ticker": "上线检查已选中 · 上线说明就绪"
+      }
+    },
+    "footerTag1": "项目接收",
+    "footerTag2": "供应商分配",
+    "footerTag3": "结算记录"
+  }};
         const DATA = {
-            "en": {
-                        "setup": [
-                                    [
-                                                "01",
-                                                "Project intake",
-                                                "Receive or create a project with client, country, CPI, IR, LOI and status context."
-                                    ],
-                                    [
-                                                "02",
-                                                "Delivery configuration",
-                                                "Prepare delivery rules, settlement rules, risk settings, dictionary and pre-screen assets."
-                                    ],
-                                    [
-                                                "03",
-                                                "Supplier allocation & pricing",
-                                                "Assign selected suppliers, block unsuitable suppliers and set supplier-level pricing for the active project."
-                                    ],
-                                    [
-                                                "04",
-                                                "API / workspace receiving",
-                                                "Explain whether suppliers receive projects through API integrations or inside Sampora workspaces."
-                                    ],
-                                    [
-                                                "05",
-                                                "Track, review and audit",
-                                                "Use participation, completes, rejection, callback, operation and termination records to support review."
-                                    ],
-                                    [
-                                                "06",
-                                                "Settlement and finance",
-                                                "Close project settlement, supplier bills, client invoices, finance logs and exportable records."
-                                    ]
-                        ],
-                        "proof": [
-                                    [
-                                                "Project",
-                                                "Project intake, scheduling, allocation, delivery progress, review, and settlement records."
-                                    ],
-                                    [
-                                                "Supplier",
-                                                "Supplier profiles, assignment rules, blocking, supplier-specific pricing, and bills."
-                                    ],
-                                    [
-                                                "API / Workspace",
-                                                "API intake, supplier receiving, CPI rules, project pools, and scheduled refresh."
-                                    ],
-                                    [
-                                                "Records",
-                                                "Operation logs, callback records, review evidence, termination records, and exportable finance records."
-                                    ]
-                        ],
-                        "proofOutput": [
-                                    [
-                                                "01",
-                                                "Configured project record",
-                                                "Project intake, delivery rules, supplier assignment, and review status kept in one traceable record."
-                                    ],
-                                    [
-                                                "02",
-                                                "Supplier delivery trail",
-                                                "Supplier handoff, pricing, progress, callbacks, rejection, and termination records connected to the project."
-                                    ],
-                                    [
-                                                "03",
-                                                "Settlement-ready evidence",
-                                                "Verified delivery records connected to supplier bills, client invoices, finance logs, and exportable records."
-                                    ]
-                        ],
-                        "surfaces": [
-                                    [
-                                                "GUIDE",
-                                                "Configuration Guide",
-                                                "System setup, client/supplier configuration, risk settings and integration basics.",
-                                                [
-                                                            "System setup",
-                                                            "Client and supplier configuration",
-                                                            "Risk settings",
-                                                            "Integration basics"
-                                                ]
-                                    ],
-                                    [
-                                                "OPS",
-                                                "Operation Manual",
-                                                "Project intake, supplier allocation, delivery tracking, review and settlement workflows.",
-                                                [
-                                                            "Project intake",
-                                                            "Supplier allocation",
-                                                            "Delivery tracking",
-                                                            "Review and settlement"
-                                                ]
-                                    ],
-                                    [
-                                                "ROLLOUT",
-                                                "Rollout Notes",
-                                                "Deployment notes, workspace guide groups, role manuals and rollout checklist.",
-                                                [
-                                                            "Deployment notes",
-                                                            "Workspace guide groups",
-                                                            "Role manuals",
-                                                            "Rollout checklist"
-                                                ]
-                                    ]
-                        ]
-            },
-            "zh": {
-                        "setup": [
-                                    [
-                                                "01",
-                                                "项目接收",
-                                                "接收或创建项目，确认客户、国家、CPI、IR、LOI 和状态信息。"
-                                    ],
-                                    [
-                                                "02",
-                                                "交付配置",
-                                                "准备交付规则、结算规则、风控设置、数据字典和前置问卷资产。"
-                                    ],
-                                    [
-                                                "03",
-                                                "供应商分配与控价",
-                                                "分配指定供应商、屏蔽不合适供应商，并为当前项目设置供应商级价格。"
-                                    ],
-                                    [
-                                                "04",
-                                                "API / 工作台接收",
-                                                "说明供应商是通过 API 对接接收项目，还是在 Sampora 工作台接收项目。"
-                                    ],
-                                    [
-                                                "05",
-                                                "追踪、审核与审计",
-                                                "用参与数、完成数、拒绝数、回调、操作和终止记录支撑审核。"
-                                    ],
-                                    [
-                                                "06",
-                                                "结算与财务",
-                                                "关闭项目结算、供应商账单、客户发票、财务日志和可导出记录。"
-                                    ]
-                        ],
-                        "proof": [
-                                    [
-                                                "项目",
-                                                "项目接收、排期、分配、交付进度、审核与结算记录。"
-                                    ],
-                                    [
-                                                "供应商",
-                                                "供应商资料、分配规则、屏蔽、供应商专属定价和账单。"
-                                    ],
-                                    [
-                                                "API / 工作台",
-                                                "API 接收、供应商接收、CPI 规则、项目池和定时刷新。"
-                                    ],
-                                    [
-                                                "记录",
-                                                "操作日志、回调记录、审核证据、终止记录和可导出财务记录。"
-                                    ]
-                        ],
-                        "proofOutput": [
-                                    [
-                                                "01",
-                                                "配置完成的项目记录",
-                                                "项目接收、交付规则、供应商分配和审核状态保存在一条可追溯记录中。"
-                                    ],
-                                    [
-                                                "02",
-                                                "供应商交付轨迹",
-                                                "供应商交接、定价、进度、回调、拒绝和终止记录都关联到项目。"
-                                    ],
-                                    [
-                                                "03",
-                                                "可结算证据",
-                                                "经验证的交付记录关联到供应商账单、客户发票、财务日志和可导出记录。"
-                                    ]
-                        ],
-                        "surfaces": [
-                                    [
-                                                "GUIDE",
-                                                "配置指南",
-                                                "系统设置、客户 / 供应商配置、风控设置和集成基础。",
-                                                [
-                                                            "系统设置",
-                                                            "客户与供应商配置",
-                                                            "风控设置",
-                                                            "集成基础"
-                                                ]
-                                    ],
-                                    [
-                                                "OPS",
-                                                "操作手册",
-                                                "项目接收、供应商分配、交付追踪、审核和结算流程。",
-                                                [
-                                                            "项目接收",
-                                                            "供应商分配",
-                                                            "交付追踪",
-                                                            "审核与结算"
-                                                ]
-                                    ],
-                                    [
-                                                "ROLLOUT",
-                                                "印度市场上线说明",
-                                                "部署说明、工作台指南组、角色手册和上线检查清单。",
-                                                [
-                                                            "部署说明",
-                                                            "工作台指南组",
-                                                            "角色手册",
-                                                            "上线检查清单"
-                                                ]
-                                    ]
-                        ]
-            },
-            "hi": {
-                        "setup": [
-                                    [
-                                                "01",
-                                                "प्रोजेक्ट प्राप्ति",
-                                                "ग्राहक, देश, CPI, IR, LOI और स्थिति संदर्भ के साथ प्रोजेक्ट प्राप्त या बनाएँ।"
-                                    ],
-                                    [
-                                                "02",
-                                                "डिलीवरी कॉन्फ़िगरेशन",
-                                                "डिलीवरी नियम, निपटान नियम, जोखिम सेटिंग, डेटा शब्दकोश और पूर्व-स्क्रीन सामग्री तैयार करें।"
-                                    ],
-                                    [
-                                                "03",
-                                                "सप्लायर आवंटन और मूल्य नियंत्रण",
-                                                "चुने हुए सप्लायर जोड़ें, अनुपयुक्त सप्लायर ब्लॉक करें और सप्लायर-स्तरीय मूल्य सेट करें।"
-                                    ],
-                                    [
-                                                "04",
-                                                "API / कार्यक्षेत्र प्राप्ति",
-                                                "बताएँ कि सप्लायर API इंटीग्रेशन से प्रोजेक्ट प्राप्त करते हैं या Sampora कार्यक्षेत्र में।"
-                                    ],
-                                    [
-                                                "05",
-                                                "ट्रैकिंग, समीक्षा और ऑडिट",
-                                                "भागीदारी, पूर्णता, अस्वीकृति, कॉलबैक, संचालन और समाप्ति रिकॉर्ड से समीक्षा को समर्थन दें।"
-                                    ],
-                                    [
-                                                "06",
-                                                "निपटान और वित्त",
-                                                "प्रोजेक्ट निपटान, सप्लायर बिल, ग्राहक चालान, वित्तीय लॉग और निर्यात योग्य रिकॉर्ड बंद करें।"
-                                    ]
-                        ],
-                        "proof": [
-                                    [
-                                                "प्रोजेक्ट",
-                                                "प्रोजेक्ट प्राप्ति, शेड्यूलिंग, आवंटन, डिलीवरी प्रगति, समीक्षा और निपटान रिकॉर्ड।"
-                                    ],
-                                    [
-                                                "सप्लायर",
-                                                "सप्लायर प्रोफ़ाइल, असाइनमेंट नियम, ब्लॉकिंग, सप्लायर-विशिष्ट प्राइसिंग और बिल।"
-                                    ],
-                                    [
-                                                "API / कार्यक्षेत्र",
-                                                "API प्राप्ति, सप्लायर प्राप्ति, CPI नियम, प्रोजेक्ट पूल और निर्धारित रीफ़्रेश।"
-                                    ],
-                                    [
-                                                "रिकॉर्ड",
-                                                "संचालन लॉग, कॉलबैक रिकॉर्ड, समीक्षा प्रमाण, समाप्ति रिकॉर्ड और निर्यात योग्य वित्तीय रिकॉर्ड।"
-                                    ]
-                        ],
-                        "proofOutput": [
-                                    [
-                                                "01",
-                                                "कॉन्फ़िगर किया गया प्रोजेक्ट रिकॉर्ड",
-                                                "प्रोजेक्ट प्राप्ति, डिलीवरी नियम, सप्लायर असाइनमेंट और समीक्षा स्थिति एक ट्रेसेबल रिकॉर्ड में रखी जाती है।"
-                                    ],
-                                    [
-                                                "02",
-                                                "सप्लायर डिलीवरी ट्रेल",
-                                                "सप्लायर हैंडऑफ, प्राइसिंग, प्रगति, कॉलबैक, रिजेक्शन और टर्मिनेशन रिकॉर्ड प्रोजेक्ट से जुड़े रहते हैं।"
-                                    ],
-                                    [
-                                                "03",
-                                                "निपटान-तैयार प्रमाण",
-                                                "सत्यापित डिलीवरी रिकॉर्ड सप्लायर बिल, क्लाइंट इनवॉइस, वित्तीय लॉग और निर्यात योग्य रिकॉर्ड से जुड़े रहते हैं।"
-                                    ]
-                        ],
-                        "surfaces": [
-                                    [
-                                                "GUIDE",
-                                                "कॉन्फ़िगरेशन गाइड",
-                                                "सिस्टम सेटअप, ग्राहक / सप्लायर कॉन्फ़िगरेशन, जोखिम सेटिंग और इंटीग्रेशन आधार।",
-                                                [
-                                                            "सिस्टम सेटअप",
-                                                            "ग्राहक / सप्लायर कॉन्फ़िगरेशन",
-                                                            "जोखिम सेटिंग",
-                                                            "इंटीग्रेशन आधार"
-                                                ]
-                                    ],
-                                    [
-                                                "OPS",
-                                                "ऑपरेशन मैनुअल",
-                                                "प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, डिलीवरी ट्रैकिंग, समीक्षा और निपटान प्रक्रिया।",
-                                                [
-                                                            "प्रोजेक्ट प्राप्ति",
-                                                            "सप्लायर आवंटन",
-                                                            "डिलीवरी ट्रैकिंग",
-                                                            "समीक्षा और निपटान"
-                                                ]
-                                    ],
-                                    [
-                                                "ROLLOUT",
-                                                "रोलआउट नोट्स",
-                                                "डिप्लॉयमेंट नोट्स, कार्यक्षेत्र गाइड समूह, भूमिका मैनुअल और रोलआउट चेकलिस्ट।",
-                                                [
-                                                            "डिप्लॉयमेंट नोट्स",
-                                                            "कार्यक्षेत्र गाइड समूह",
-                                                            "भूमिका मैनुअल",
-                                                            "रोलआउट चेकलिस्ट"
-                                                ]
-                                    ]
-                        ]
-            }
-};
+  "en": {
+    "setup": [
+      [
+        "01",
+        "Project intake",
+        "Receive or create a project with client, country, CPI, IR, LOI and status context."
+      ],
+      [
+        "02",
+        "Delivery configuration",
+        "Prepare delivery rules, settlement rules, risk settings, dictionary and pre-screen assets."
+      ],
+      [
+        "03",
+        "Supplier allocation & pricing",
+        "Assign selected suppliers, block unsuitable suppliers and set supplier-level pricing for the active project."
+      ],
+      [
+        "04",
+        "API / workspace receiving",
+        "Explain whether suppliers receive projects through API integrations or inside Sampora workspaces."
+      ],
+      [
+        "05",
+        "Track, review and audit",
+        "Use participation, completes, rejection, callback, operation and termination records to support review."
+      ],
+      [
+        "06",
+        "Settlement and finance",
+        "Close project settlement, supplier bills, client invoices, finance logs and exportable records."
+      ]
+    ],
+    "proof": [
+      [
+        "Project",
+        "Project intake, scheduling, allocation, delivery progress, review, and settlement records."
+      ],
+      [
+        "Supplier",
+        "Supplier profiles, assignment rules, blocking, supplier-specific pricing, and bills."
+      ],
+      [
+        "API / Workspace",
+        "API intake, supplier receiving, CPI rules, project pools, and scheduled refresh."
+      ],
+      [
+        "Records",
+        "Operation logs, callback records, review evidence, termination records, and exportable finance records."
+      ]
+    ],
+    "proofOutput": [
+      [
+        "01",
+        "Configured project record",
+        "Project intake, delivery rules, supplier assignment, and review status kept in one traceable record."
+      ],
+      [
+        "02",
+        "Supplier delivery trail",
+        "Supplier handoff, pricing, progress, callbacks, rejection, and termination records connected to the project."
+      ],
+      [
+        "03",
+        "Settlement-ready evidence",
+        "Verified delivery records connected to supplier bills, client invoices, finance logs, and exportable records."
+      ]
+    ],
+    "surfaces": [
+      [
+        "GUIDE",
+        "Configuration Guide",
+        "System setup, client/supplier configuration, risk settings and integration basics.",
+        [
+          "System setup",
+          "Client and supplier configuration",
+          "Risk settings",
+          "Integration basics"
+        ]
+      ],
+      [
+        "OPS",
+        "Operation Manual",
+        "Project intake, supplier allocation, delivery tracking, review and settlement workflows.",
+        [
+          "Project intake",
+          "Supplier allocation",
+          "Delivery tracking",
+          "Review and settlement"
+        ]
+      ],
+      [
+        "ROLLOUT",
+        "Rollout Notes",
+        "Deployment notes, workspace guide groups, role manuals and rollout checklist.",
+        [
+          "Deployment notes",
+          "Workspace guide groups",
+          "Role manuals",
+          "Rollout checklist"
+        ]
+      ]
+    ]
+  },
+  "zh": {
+    "setup": [
+      [
+        "01",
+        "项目接收",
+        "接收或创建项目，确认客户、国家、CPI、IR、LOI 和状态信息。"
+      ],
+      [
+        "02",
+        "交付配置",
+        "准备交付规则、结算规则、风控设置、数据字典和前置问卷资产。"
+      ],
+      [
+        "03",
+        "供应商分配与控价",
+        "分配指定供应商、屏蔽不合适供应商，并为当前项目设置供应商级价格。"
+      ],
+      [
+        "04",
+        "API / 工作台接收",
+        "说明供应商是通过 API 对接接收项目，还是在 Sampora 工作台接收项目。"
+      ],
+      [
+        "05",
+        "追踪、审核与审计",
+        "用参与数、完成数、拒绝数、回调、操作和终止记录支撑审核。"
+      ],
+      [
+        "06",
+        "结算与财务",
+        "关闭项目结算、供应商账单、客户发票、财务日志和可导出记录。"
+      ]
+    ],
+    "proof": [
+      [
+        "项目",
+        "项目接收、排期、分配、交付进度、审核与结算记录。"
+      ],
+      [
+        "供应商",
+        "供应商资料、分配规则、屏蔽、供应商专属定价和账单。"
+      ],
+      [
+        "API / 工作台",
+        "API 接收、供应商接收、CPI 规则、项目池和定时刷新。"
+      ],
+      [
+        "记录",
+        "操作日志、回调记录、审核证据、终止记录和可导出财务记录。"
+      ]
+    ],
+    "proofOutput": [
+      [
+        "01",
+        "配置完成的项目记录",
+        "项目接收、交付规则、供应商分配和审核状态保存在一条可追溯记录中。"
+      ],
+      [
+        "02",
+        "供应商交付轨迹",
+        "供应商交接、定价、进度、回调、拒绝和终止记录都关联到项目。"
+      ],
+      [
+        "03",
+        "可结算证据",
+        "经验证的交付记录关联到供应商账单、客户发票、财务日志和可导出记录。"
+      ]
+    ],
+    "surfaces": [
+      [
+        "指南",
+        "配置指南",
+        "系统设置、客户 / 供应商配置、风控设置和集成基础。",
+        [
+          "系统设置",
+          "客户与供应商配置",
+          "风控设置",
+          "集成基础"
+        ]
+      ],
+      [
+        "运营",
+        "操作手册",
+        "项目接收、供应商分配、交付追踪、审核和结算流程。",
+        [
+          "项目接收",
+          "供应商分配",
+          "交付追踪",
+          "审核与结算"
+        ]
+      ],
+      [
+        "上线",
+        "印度市场上线说明",
+        "部署说明、工作台指南组、角色手册和上线检查清单。",
+        [
+          "部署说明",
+          "工作台指南组",
+          "角色手册",
+          "上线检查清单"
+        ]
+      ]
+    ]
+  }};
 
         const state = { lang: "en", category: "all", query: "", mode: "setup" };
 
@@ -3372,7 +3117,7 @@ body::before {
             });
             $$("[data-i18n-svg]").forEach(el => { const v = t(el.dataset.i18nSvg); if (v) el.textContent = v; });
             $$(".lang button").forEach(b => b.classList.toggle("active", b.dataset.lang === state.lang));
-            document.documentElement.lang = state.lang === "zh" ? "zh-CN" : state.lang === "hi" ? "hi" : "en";
+            document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
         }
 
         const modeOrder = ["setup", "supplier", "finance"];
@@ -3518,7 +3263,7 @@ body::before {
         <a class="surface-card surface-link ${idx === 1 ? 'supplier' : ''}" href="${detailLinks[idx]}" data-detail-link="${detailLinks[idx]}" aria-label="${s[1]}">
           <div class="label">${s[0]}</div><h3>${s[1]}</h3><p>${s[2]}</p>
           <ul>${s[3].map(x => `<li>${x}</li>`).join("")}</ul>
-          <span class="surface-more">${state.lang === "zh" ? "查看手册 →" : state.lang === "hi" ? "मैनुअल देखें →" : "View manual →"}</span>
+          <span class="surface-more">${state.lang === "zh" ? "查看手册 →" : "View manual →"}</span>
         </a>`).join("");
             $$(".surface-link").forEach(a => a.addEventListener("click", () => {
                 try { localStorage.setItem("sampora_lang", state.lang); } catch (e) { }
@@ -3568,7 +3313,7 @@ body::before {
             }
         }
 
-        $$(".lang button").forEach(btn => btn.addEventListener("click", () => { state.lang = btn.dataset.lang; renderAll(); }));
+        $$(".lang button").forEach(btn => btn.addEventListener("click", () => { state.lang = btn.dataset.lang === "zh" ? "zh" : "en"; renderAll(); }));
         const shouldOpenTopology = event => !$("#resourceConsole").classList.contains("modal-open") && !event.target.closest("button, a, input, select, textarea, .node[data-mode]");
         $("#resourceConsoleWindow").addEventListener("click", event => {
             if (shouldOpenTopology(event)) openTopologyModal();
@@ -3607,16 +3352,16 @@ body::before {
         const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("in-view"); observer.unobserve(entry.target); } }), { threshold: .12 });
         $$(".reveal").forEach(el => observer.observe(el));
 
-        try { const saved = localStorage.getItem("sampora_lang"); if (saved && COPY[saved]) state.lang = saved; } catch (e) { }
+        try { const saved = localStorage.getItem("sampora_lang"); if (saved === "zh" || saved === "en") state.lang = saved; } catch (e) { }
         startPacketMotion();
         renderAll();
         restartTopologyCycle();
     </script>
 <script>
 (function(){
-  const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','हमारे बारे में','संपर्क']};
+  const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们']};
   const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about_sampora_issues_fixed.html','about'],['contact.html','contact']];
-  function lang(){return localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
+  function lang(){const raw=(localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en').toLowerCase();return raw==='zh'?'zh':'en'}
   function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
   if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}
   const nav=document.querySelector('nav.nav, .nav-links');
@@ -3639,15 +3384,13 @@ body::before {
 (function(){
   const copy={
     en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
-    hi:{brandSub:'संचालन कंसोल',footerDesc:'Sampora स्वामित्व वाले सैंपल ऑपरेटरों और सैंपल आपूर्तिकर्ता टीमों के लिए ऑनलाइन नमूना संचालन प्लेटफ़ॉर्म है, जो परियोजना वितरण, सप्लायर आवंटन, समीक्षा रिकॉर्ड, वित्त, जोखिम नियंत्रण और पार्टनर नेटवर्क संचालन को साथ रखता है।',tag1:'नमूना आपूर्ति',tag2:'समीक्षा प्रक्रिया',tag3:'सेटलमेंट लेजर',footerProduct:'उत्पाद',footerPlatformOverview:'प्लेटफ़ॉर्म अवलोकन',navSolutions:'समाधान',navPlans:'योजनाएँ',navContact:'संपर्क',footerResources:'संसाधन',footerResourcesOverview:'संसाधन अवलोकन',footerConfigurationGuide:'कॉन्फ़िगरेशन गाइड',footerOperationManual:'ऑपरेशन मैनुअल',footerRolloutNotes:'रोलआउट नोट्स',footerGetStarted:'शुरू करें',ctaTop:'ट्रायल शुरू करें',ctaDemo:'डेमो बुक करें',footerTalkToSales:'सेल्स से बात करें',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'}
-  };
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'}};
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
-    if(copy[explicitRaw])return explicitRaw;
-    try{const saved=localStorage.getItem('sampora_lang');if(copy[saved])return saved;}catch(e){}
+    if(explicitRaw==='zh')return 'zh';
+    try{const saved=localStorage.getItem('sampora_lang');if(saved==='zh')return 'zh';}catch(e){}
     const raw=(document.documentElement.dataset.lang||document.documentElement.lang||'en').toLowerCase().slice(0,2);
-    return copy[raw]?raw:'en';
+    return raw==='zh'?'zh':'en';
   }
   function apply(explicit){
     const dict=copy[lang(explicit)]||copy.en;

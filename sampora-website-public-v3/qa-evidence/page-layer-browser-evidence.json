@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-22T13:12:39.260Z",
+  "generatedAt": "2026-05-24T05:09:17.023Z",
   "chromeExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "nav": {
     "390": {
@@ -101,9 +101,9 @@
           "height": 0
         },
         "actions": {
-          "x": 165.31,
+          "x": 213.33,
           "y": 12,
-          "width": 194.69,
+          "width": 146.67,
           "height": 42
         },
         "active": {
@@ -117,7 +117,7 @@
         "mobileToggleVisible": true,
         "gaps": {
           "brandToNav": -125.64,
-          "navToActions": 165.31
+          "navToActions": 213.33
         }
       },
       "resource-manuals.html": {
@@ -140,9 +140,9 @@
           "height": 0
         },
         "actions": {
-          "x": 175.31,
+          "x": 223.33,
           "y": 12,
-          "width": 190.69,
+          "width": 142.67,
           "height": 42
         },
         "active": {
@@ -156,7 +156,7 @@
         "mobileToggleVisible": true,
         "gaps": {
           "brandToNav": -125.86,
-          "navToActions": 175.31
+          "navToActions": 223.33
         }
       },
       "plans.html": {
@@ -179,9 +179,9 @@
           "height": 0
         },
         "actions": {
-          "x": 190,
+          "x": 230,
           "y": 12,
-          "width": 170,
+          "width": 130,
           "height": 42
         },
         "active": {
@@ -195,7 +195,7 @@
         "mobileToggleVisible": true,
         "gaps": {
           "brandToNav": -125.64,
-          "navToActions": 190
+          "navToActions": 230
         }
       },
       "contact.html": {
@@ -218,9 +218,9 @@
           "height": 0
         },
         "actions": {
-          "x": 204,
+          "x": 244,
           "y": 13.5,
-          "width": 170,
+          "width": 130,
           "height": 42
         },
         "active": {
@@ -234,7 +234,7 @@
         "mobileToggleVisible": true,
         "gaps": {
           "brandToNav": -126.66,
-          "navToActions": 204
+          "navToActions": 244
         }
       }
     },
@@ -265,9 +265,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 301.52,
+          "x": 231.36,
           "y": 35,
-          "width": 68.95,
+          "width": 119.09,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -304,9 +304,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 405.56,
+          "x": 350.45,
           "y": 35,
-          "width": 77.08,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -350,9 +350,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 514.64,
+          "x": 469.56,
           "y": 35,
-          "width": 85.63,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -379,9 +379,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 42.52,
-          "width": 167.36,
-          "height": 50.95
+          "y": 49.02,
+          "width": 169.61,
+          "height": 37.95
         },
         "nav": {
           "x": 231.36,
@@ -396,23 +396,23 @@
           "height": 44.91
         },
         "active": {
-          "x": 514.64,
+          "x": 469.56,
           "y": 35,
-          "width": 85.63,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 0,
         "navMaxDiffVsIndex": 0,
         "actionsMaxDiffVsIndex": 0,
         "gapDiffsVsIndex": {
-          "brandToNav": 2.25,
+          "brandToNav": 0,
           "navToActions": 0
         }
       },
@@ -442,9 +442,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 632.58,
+          "x": 588.67,
           "y": 34,
-          "width": 52.86,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -471,9 +471,9 @@
         },
         "brand": {
           "x": 40,
-          "y": 46.63,
-          "width": 170.17,
-          "height": 40.75
+          "y": 38.72,
+          "width": 169.61,
+          "height": 56.55
         },
         "nav": {
           "x": 231.36,
@@ -488,23 +488,23 @@
           "height": 44.91
         },
         "active": {
-          "x": 803.97,
+          "x": 826.89,
           "y": 34,
-          "width": 68.09,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 21.19,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
         "navMaxDiffVsIndex": 1,
         "actionsMaxDiffVsIndex": 1,
         "gapDiffsVsIndex": {
-          "brandToNav": 0.56,
+          "brandToNav": 0,
           "navToActions": 0
         }
       }
@@ -536,9 +536,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 349.52,
+          "x": 279.36,
           "y": 35,
-          "width": 68.95,
+          "width": 119.09,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -575,9 +575,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 453.56,
+          "x": 398.45,
           "y": 35,
-          "width": 77.08,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -621,9 +621,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 562.64,
+          "x": 517.56,
           "y": 35,
-          "width": 85.63,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -650,9 +650,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 42.52,
-          "width": 167.36,
-          "height": 50.95
+          "y": 49.02,
+          "width": 169.61,
+          "height": 37.95
         },
         "nav": {
           "x": 279.36,
@@ -667,23 +667,23 @@
           "height": 44.91
         },
         "active": {
-          "x": 562.64,
+          "x": 517.56,
           "y": 35,
-          "width": 85.63,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 0,
         "navMaxDiffVsIndex": 0,
         "actionsMaxDiffVsIndex": 0,
         "gapDiffsVsIndex": {
-          "brandToNav": 2.25,
+          "brandToNav": 0,
           "navToActions": 0
         }
       },
@@ -713,9 +713,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 680.58,
+          "x": 636.67,
           "y": 34,
-          "width": 52.86,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -742,9 +742,9 @@
         },
         "brand": {
           "x": 88,
-          "y": 46.63,
-          "width": 170.17,
-          "height": 40.75
+          "y": 38.72,
+          "width": 169.61,
+          "height": 56.55
         },
         "nav": {
           "x": 279.36,
@@ -759,23 +759,23 @@
           "height": 44.91
         },
         "active": {
-          "x": 851.97,
+          "x": 874.89,
           "y": 34,
-          "width": 68.09,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 21.19,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
         "navMaxDiffVsIndex": 1,
         "actionsMaxDiffVsIndex": 1,
         "gapDiffsVsIndex": {
-          "brandToNav": 0.56,
+          "brandToNav": 0,
           "navToActions": 0
         }
       }
@@ -807,9 +807,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 541.52,
+          "x": 471.36,
           "y": 35,
-          "width": 68.95,
+          "width": 119.09,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -846,9 +846,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 645.56,
+          "x": 590.45,
           "y": 35,
-          "width": 77.08,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -892,9 +892,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 754.64,
+          "x": 709.56,
           "y": 35,
-          "width": 85.63,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -921,9 +921,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 42.52,
-          "width": 167.36,
-          "height": 50.95
+          "y": 49.02,
+          "width": 169.61,
+          "height": 37.95
         },
         "nav": {
           "x": 471.36,
@@ -938,23 +938,23 @@
           "height": 44.91
         },
         "active": {
-          "x": 754.64,
+          "x": 709.56,
           "y": 35,
-          "width": 85.63,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 24,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 0,
         "navMaxDiffVsIndex": 0,
         "actionsMaxDiffVsIndex": 0,
         "gapDiffsVsIndex": {
-          "brandToNav": 2.25,
+          "brandToNav": 0,
           "navToActions": 0
         }
       },
@@ -984,9 +984,9 @@
           "height": 44.91
         },
         "active": {
-          "x": 872.58,
+          "x": 828.67,
           "y": 34,
-          "width": 52.86,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
@@ -1013,9 +1013,9 @@
         },
         "brand": {
           "x": 280,
-          "y": 46.63,
-          "width": 170.17,
-          "height": 40.75
+          "y": 38.72,
+          "width": 169.61,
+          "height": 56.55
         },
         "nav": {
           "x": 471.36,
@@ -1030,23 +1030,23 @@
           "height": 44.91
         },
         "active": {
-          "x": 1043.97,
+          "x": 1066.89,
           "y": 34,
-          "width": 68.09,
+          "width": 119.11,
           "height": 66
         },
         "activeAfterWidth": "38px",
         "activeAfterBottom": "13px",
         "mobileToggleVisible": false,
         "gaps": {
-          "brandToNav": 21.19,
+          "brandToNav": 21.75,
           "navToActions": 24
         },
         "mastMaxDiffVsIndex": 1,
         "navMaxDiffVsIndex": 1,
         "actionsMaxDiffVsIndex": 1,
         "gapDiffsVsIndex": {
-          "brandToNav": 0.56,
+          "brandToNav": 0,
           "navToActions": 0
         }
       }
@@ -1054,7 +1054,7 @@
   },
   "sticky": {
     "index.html": {
-      "scrollY": 2673,
+      "scrollY": 2683,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1079,7 +1079,7 @@
       "yCloseToStatus": true
     },
     "solutions.html": {
-      "scrollY": 1755,
+      "scrollY": 1700,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1104,7 +1104,7 @@
       "yCloseToStatus": true
     },
     "resources.html": {
-      "scrollY": 1120,
+      "scrollY": 1101,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1129,7 +1129,7 @@
       "yCloseToStatus": true
     },
     "resource-manuals.html": {
-      "scrollY": 692,
+      "scrollY": 683,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1154,7 +1154,7 @@
       "yCloseToStatus": true
     },
     "plans.html": {
-      "scrollY": 1320,
+      "scrollY": 1318,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1179,7 +1179,7 @@
       "yCloseToStatus": true
     },
     "contact.html": {
-      "scrollY": 989,
+      "scrollY": 965,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1274,15 +1274,15 @@
           },
           {
             "label": "Step 02",
-            "classes": "step relay-complete"
-          },
-          {
-            "label": "Step 03",
             "classes": "step relay-running"
           },
           {
-            "label": "Step 04",
+            "label": "Step 03",
             "classes": "step relay-receive"
+          },
+          {
+            "label": "Step 04",
+            "classes": "step relay-idle"
           }
         ]
       },
@@ -1315,16 +1315,16 @@
         "delayMs": 0,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-5.6715px",
+        "flowStrokeDashoffset": "-5.33566px",
         "scanAnimationName": "none",
         "packetOnCount": 5,
-        "packetOpacity": "0.744931"
+        "packetOpacity": "0.741616"
       },
       {
         "delayMs": 1000,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-25.6895px",
+        "flowStrokeDashoffset": "-25.6657px",
         "scanAnimationName": "none",
         "packetOnCount": 5,
         "packetOpacity": "0.75"
@@ -1333,7 +1333,7 @@
         "delayMs": 3000,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-18.0575px",
+        "flowStrokeDashoffset": "-18.0017px",
         "scanAnimationName": "none",
         "packetOnCount": 5,
         "packetOpacity": "0.75"
@@ -1342,7 +1342,7 @@
         "delayMs": 6000,
         "flowOnCount": 6,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-30.4435px",
+        "flowStrokeDashoffset": "-29.9997px",
         "scanAnimationName": "none",
         "packetOnCount": 4,
         "packetOpacity": "0.75"
@@ -1353,16 +1353,16 @@
         "delayMs": 0,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-5.672px",
+        "flowStrokeDashoffset": "-7.085px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
-        "packetOpacity": "0.778147"
+        "packetOpacity": "0.638369"
       },
       {
         "delayMs": 1000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-26.022px",
+        "flowStrokeDashoffset": "-32.085px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
         "packetOpacity": "0.85"
@@ -1371,19 +1371,19 @@
         "delayMs": 3000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-7.34316px",
+        "flowStrokeDashoffset": "-7.5002px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
-        "packetOpacity": "0.817403"
+        "packetOpacity": "0.746679"
       },
       {
         "delayMs": 6000,
         "flowOnCount": 7,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-7.6756px",
+        "flowStrokeDashoffset": "-7.5008px",
         "scanAnimationName": "none",
         "packetOnCount": 7,
-        "packetOpacity": "0.829211"
+        "packetOpacity": "0.702856"
       }
     ],
     "resources.html": [
@@ -1391,7 +1391,7 @@
         "delayMs": 0,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-8.5085px",
+        "flowStrokeDashoffset": "-7.55367px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1400,7 +1400,7 @@
         "delayMs": 1000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-37.3377px",
+        "flowStrokeDashoffset": "-36.3602px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1409,7 +1409,7 @@
         "delayMs": 3000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-26.5257px",
+        "flowStrokeDashoffset": "-25.0297px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1418,7 +1418,7 @@
         "delayMs": 6000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-10.9293px",
+        "flowStrokeDashoffset": "-8.97954px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1508,7 +1508,7 @@
       "hasBackendPlaceholderCheck": true
     },
     "afterSubmit": {
-      "url": "file:///E:/claude%20work/sampora-website-public-v3/contact.html#contact-form",
+      "url": "file:///E:/%E7%BD%91%E9%A1%B5%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6/sampora-website-public-v3/contact.html#contact-form",
       "storedPending": "intent=contact_sales&source_page=contact.html&source_section=contact-form&plan=contact_sales&lang=en&name=QA+Reviewer&company=QA+Evidence+Co&email=qa%40example.com&role=Sample+Supplier&business_type=contact_sales&message=QA+evidence+backend+placeholder+check.",
       "pendingParams": {
         "intent": "contact_sales",
@@ -1587,21 +1587,6 @@
       "questionMarkCount": 0,
       "replacementCharCount": 0,
       "sampleQuestionText": []
-    },
-    "hi-doc-config": {
-      "hash": "#doc/config",
-      "htmlLang": "zh-CN",
-      "visibleViews": {
-        "home": false,
-        "doc": true,
-        "category": false,
-        "article": false,
-        "search": false
-      },
-      "title": "在线样本运营资源中心",
-      "questionMarkCount": 0,
-      "replacementCharCount": 0,
-      "sampleQuestionText": []
     }
   },
   "screenshots": [
@@ -1645,12 +1630,7 @@
     "resource-manuals-en-doc-config-1440.png",
     "resource-manuals-en-doc-ops-1440.png",
     "resource-manuals-en-category-ops-station-1440.png",
-    "resource-manuals-zh-doc-config-1440.png",
-    "resource-manuals-hi-doc-config-1440.png"
+    "resource-manuals-zh-doc-config-1440.png"
   ],
-  "failures": [
-    "desktop nav brandToNav gap mismatch at 1440px for resource-manuals.html: 2.25px",
-    "desktop nav brandToNav gap mismatch at 1536px for resource-manuals.html: 2.25px",
-    "desktop nav brandToNav gap mismatch at 1920px for resource-manuals.html: 2.25px"
-  ]
+  "failures": []
 }

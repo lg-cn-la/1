@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://www.sampora.com/solutions.html">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;amp;display=swap" rel="stylesheet"/>
 <style>
     :root {
       --ink: #0A1628;
@@ -29,8 +29,8 @@
       --muted: #7E92AC;
       --body: #A9B9CE;
       --body2: #93A7C0;
-      --sans: "Inter", "Noto Sans SC", "Noto Sans Devanagari", "Helvetica Neue", Arial, sans-serif;
-      --mono: "JetBrains Mono", "Noto Sans SC", "Noto Sans Devanagari", SFMono-Regular, Menlo, Consolas, monospace;
+      --sans: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+      --mono: "JetBrains Mono", "Noto Sans SC", SFMono-Regular, Menlo, Consolas, monospace;
       --ease: cubic-bezier(.2, .7, .2, 1);
       --shadow: 0 30px 78px rgba(0, 0, 0, .55)
     }
@@ -1711,7 +1711,7 @@
 #footer .sampora-footer-card{border:1px solid rgba(129,178,214,.22)!important;border-radius:24px!important;overflow:hidden!important;background:rgba(8,20,36,.72)!important;box-shadow:0 30px 90px rgba(0,0,0,.24)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
 #footer .sampora-footer-main{display:grid!important;grid-template-columns:minmax(320px,1.32fr) repeat(3,minmax(150px,.78fr))!important;gap:clamp(32px,4vw,54px)!important;align-items:start!important;padding:42px 48px 36px!important}
 #footer .sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--fg,#E8EEF5)!important;margin-bottom:22px!important}
-#footer .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+#footer .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
 #footer .sampora-footer-logo b{display:block!important;font-size:24px!important;line-height:1!important;letter-spacing:-.03em!important;color:var(--fg,#E8EEF5)!important}
 #footer .sampora-footer-logo small{display:block!important;margin-top:4px!important;font:800 10px var(--mono,monospace)!important;letter-spacing:.10em!important;color:var(--muted,#7E92AC)!important}
 #footer .sampora-footer-brand p{margin:0!important;max-width:430px!important;color:var(--body,#A9B9CE)!important;font-size:16px!important;line-height:1.75!important}
@@ -1897,25 +1897,8 @@
       max-width: 760px
     }
 
-    html[lang="hi"] body {
-      font-family: "Noto Sans Devanagari", "Inter", var(--sans)
-    }
 
-    html[lang="hi"] h1 {
-      font-size: clamp(42px, 4.45vw, 64px);
-      line-height: 1.16;
-      letter-spacing: 0;
-      max-width: 780px
-    }
-
-    html[lang="hi"] .hero-sub,
-    html[lang="hi"] .section-head p,
-    html[lang="hi"] .plan-card p,
-    html[lang="hi"] .evidence-card p {
-      line-height: 1.78
-    }
-
-    @media(max-width:1100px) {
+@media(max-width:1100px) {
       .hero-grid {
         grid-template-columns: 1fr
       }
@@ -2573,7 +2556,6 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
 .lang button,.lang-btn{min-width:42px;height:34px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px/1 var(--mono,ui-monospace,monospace);letter-spacing:.03em;cursor:pointer;transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
 .lang button:hover,.lang button:focus-visible,.lang-btn:hover,.lang-btn:focus-visible{color:var(--cyan2,var(--cyan,#61e7ff));outline:0;box-shadow:0 0 0 1px rgba(56,210,255,.24)}
 .lang button.active,.lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
-html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 10px;font-family:var(--sans,system-ui,sans-serif);font-weight:800;letter-spacing:0}
 @media(max-width:1100px){.nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:none!important}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}.nav.sampora-nav-standard,.sampora-nav-standard{gap:28px!important}}
 @media(max-width:760px){.status{display:none!important}.mast,.mast.compact,body.nav-condensed .mast{top:0!important}.brand small{display:none!important}.mast .inner,.nav-inner{gap:14px!important}}
 @media(max-width:360px){.container{width:min(100% - 24px,1320px)!important}.brand b{display:none!important}.lang button,.lang-btn{min-width:34px!important;padding:0 6px!important;font-size:10px!important}.mobile-nav-toggle{width:36px!important;height:36px!important}.header-actions,.nav-actions,.actions{gap:6px!important}}
@@ -2695,12 +2677,7 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
         overflow: hidden;
         min-height: auto;
       }
-
-      html[lang="hi"] .solution-console #topoText {
-        line-height: 1.46 !important;
-      }
-
-      .solution-console .console-tags {
+.solution-console .console-tags {
         min-height: auto;
       }
 
@@ -2726,94 +2703,13 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
       }
     }
   </style>
-<style id="fix-hindi-full-language">
-    html[lang="hi"] body,
-    html[lang="hi"] button,
-    html[lang="hi"] input,
-    html[lang="hi"] select,
-    html[lang="hi"] textarea {
-      font-family: "Noto Sans Devanagari", "Nirmala UI", "Mangal", "Inter", system-ui, sans-serif !important;
-    }
-
-    html[lang="hi"] h1,
-    html[lang="hi"] h2,
-    html[lang="hi"] h3 {
-      letter-spacing: -0.015em;
-      word-break: normal;
-      overflow-wrap: break-word;
-      text-wrap: balance;
-    }
-
-    html[lang="hi"] .mono,
-    html[lang="hi"] .eyebrow,
-    html[lang="hi"] .section-kicker,
-    html[lang="hi"] .topline,
-    html[lang="hi"] .plan-kicker {
-      letter-spacing: .04em;
-    }
-
-    html[lang="hi"] .hero-title {
-      font-size: clamp(48px, 5.2vw, 86px);
-      line-height: 1.05;
-    }
-
-    html[lang="hi"] .hero-sub,
-    html[lang="hi"] p,
-    html[lang="hi"] li,
-    html[lang="hi"] td,
-    html[lang="hi"] th,
-    html[lang="hi"] .select-btn span {
-      line-height: 1.72;
-    }
-
-    html[lang="hi"] .console-summary {
-      grid-template-columns: minmax(0, 1fr) !important;
-    }
-
-    html[lang="hi"] .console-summary p,
-    html[lang="hi"] #topoText {
-      word-break: normal !important;
-      overflow-wrap: break-word !important;
-      white-space: normal !important;
-    }
-  
-
-/* Unified footer link motion */
-.footer-card a,
-.site-footer a,
-.footer-col a,
-.sampora-footer-card a,
-.sampora-site-footer a,
-.sampora-footer-col a {
-  color: rgba(218, 230, 246, .72);
-  text-decoration: none;
-  transition: color .2s ease, transform .2s ease, text-shadow .2s ease;
-}
-
-.footer-card a:hover,
-.site-footer a:hover,
-.footer-col a:hover,
-.sampora-footer-card a:hover,
-.sampora-site-footer a:hover,
-.sampora-footer-col a:hover,
-.footer-card a:focus-visible,
-.site-footer a:focus-visible,
-.footer-col a:focus-visible,
-.sampora-footer-card a:focus-visible,
-.sampora-site-footer a:focus-visible,
-.sampora-footer-col a:focus-visible {
-  color: #38d8ff;
-  transform: translateX(3px);
-  text-shadow: 0 0 18px rgba(56, 216, 255, .28);
-}
-</style>
 <style id="worker-a-unified-desktop-nav">
 @media(min-width:1101px){
   .mast{height:auto!important;top:34px!important}
   .mast.compact{background:rgba(10,22,40,.82)!important}
   .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important}
-  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:flex!important;align-items:center!important;justify-content:center!important;gap:32px!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
-  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;white-space:nowrap!important}
+  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
+  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
   .header-actions,.nav-actions,.actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-left:0!important}
 }
 </style>
@@ -2833,8 +2729,8 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
   .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:167.36px minmax(0,1fr) 430px!important;align-items:center!important;gap:24px!important}
   .mast .brand{width:167.36px!important;min-width:167.36px!important;gap:10px!important}
   .mast .mark,.brand .mark{width:30px!important;height:30px!important}
-  .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:32px!important;margin:0!important;padding:0!important}
-  .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;white-space:nowrap!important}
+  .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;padding:0!important}
+  .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
   .mast .nav.sampora-nav-standard a.active::after,.mast .nav-links.sampora-nav-standard a.active::after,.mast .sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,var(--cyan,#38D2FF),transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
   .mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box!important;width:430px!important;min-width:430px!important;height:44.92px!important;align-self:center!important;justify-self:end!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;flex-wrap:nowrap!important;overflow:visible!important;margin-left:0!important}
   .mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto!important;white-space:nowrap!important}
@@ -2851,9 +2747,9 @@ html[lang="hi"] .lang button,html[lang="hi"] .lang-btn{min-width:50px;padding:0 
 </style>
 <style id="header-brand-visual-parity">
 .mast .brand{display:flex!important;align-items:center!important;gap:10px!important}
-.mast .brand .mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+.mast .brand .mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
 .mast .brand b,.mast .brand .brand-name{display:block!important;font-size:16px!important;font-weight:800!important;line-height:1.56!important;letter-spacing:-.01em!important}
-.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC","Noto Sans Devanagari",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
 @media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
 @media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
 </style>
@@ -2908,6 +2804,7 @@ body::before {
         border-bottom: 0 !important;
     }
 }
+@media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
 </head>
 <body>
@@ -2918,8 +2815,7 @@ body::before {
 <div class="container inner"><a aria-label="Sampora home" class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub"></small></span></a>
 <nav aria-label="Primary" class="nav sampora-nav-standard"><a data-i18n="navProduct" href="index.html">Product</a><a class="active" data-i18n="navSolutions" href="solutions.html">Solutions</a><a data-i18n="navResources" href="resources.html">Resources</a><a data-i18n="navPricing" href="plans.html">Plans</a><a data-i18n="navAbout" href="about_sampora_issues_fixed.html">About</a><a data-i18n="navContact" href="contact.html">Contact</a></nav>
 <div class="header-actions">
-<div aria-label="Language" class="lang"><button data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button><button data-lang="hi" type="button">हिन्दी</button>
-</div><a class="btn ghost" data-i18n="headerBookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="headerStartTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
+<div aria-label="Language" class="lang"><button data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button></div><a class="btn ghost" data-i18n="headerBookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="headerStartTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
 </div>
 </div>
 </header>
@@ -2946,10 +2842,10 @@ body::before {
                     visible control path.</p>
 </div>
 <div class="console-tags">
-<span class="tag">आवंटन</span>
-<span class="tag">API हैंडऑफ</span>
-<span class="tag">समीक्षा</span>
-<span class="tag amber">सेटलमेंट</span>
+<span class="tag">Allocation</span>
+<span class="tag">API handoff</span>
+<span class="tag">Review</span>
+<span class="tag amber">Settlement</span>
 </div>
 </div>
 <div aria-label="Solution topology mode switcher" class="topo-modebar" id="topoModebar">
@@ -3127,7 +3023,7 @@ body::before {
 <span><b>Sampora</b><small data-footer-i18n="brandSub">Operations console</small></span>
 </a>
 <p data-footer-i18n="footerDesc">An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.</p>
-<div class="sampora-footer-badges"><span data-footer-i18n="tag1">Sample supply</span><span data-footer-i18n="tag2">समीक्षा workflow</span><span data-footer-i18n="tag3">सेटलमेंट ledger</span></div>
+<div class="sampora-footer-badges"><span data-footer-i18n="tag1">Sample supply</span><span data-footer-i18n="tag2">Review workflow</span><span data-footer-i18n="tag3">Settlement ledger</span></div>
 </div>
 <div class="sampora-footer-col">
 <h3 data-footer-i18n="footerProduct">Product</h3>
@@ -3153,1062 +3049,781 @@ body::before {
 </div>
 <div class="sampora-footer-contact">
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@sampora.com</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
 </div>
 <div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
 </div>
 </footer>
 <script>
-    const I18N = {
-      "en": {
-            "statusLive": 'Solution loop · Live',
-            "statusMid": 'Panel operations',
-            "statusLast": 'Owned panel · respondent records · member finance',
-            "statusRight": '',
-            "brandSub": "Operations console",
-            "navProduct": "Product",
-            "navSolutions": "Solutions",
-            "navResources": "Resources",
-            "navPricing": "Plans",
-            "navAbout": "About",
-            "navContact": "Contact",
-            "headerBookDemo": "Book a demo",
-            "headerStartTrial": "Start trial",
-            "heroEyebrow": "Solutions · operating-role fit",
-            "heroTitle": "Choose the right <em>sample operations layer</em> for your sample delivery team.",
-            "heroSub": 'Choose the Sampora layer that matches how your team operates online sample delivery: owned panel operations, external sample supply operations, or enterprise sample operations across clients, suppliers, API, review, and settlement.',
-            "heroCta1": "Start trial",
-            "heroCta2": "Book a demo", 
-            "solutionsKicker": "01 / Solution layers",
-            "solutionsTitle": "Three solution layers, <em>separated by operating reality.</em>",
-            "solutionsLead": "Map your team's operating model to the Sampora layer that fits how you deliver online sample projects: Panel, Supplier Network or Enterprise.",
-            "fitKicker": "02 / Operating fit",
-            "fitTitle": "Start with <em>who you coordinate.</em>",
-            "fitLead": "Choose the role closest to your team. Sampora then maps the right interface entry, control points and finance path.",
-            "recommendLabel": "Best-fit solution",
-            "recCell1": "Primary asset",
-            "recCell2": "Main workflow",
-            "recCell3": "Finance view",
-            "compareKicker": "03 / Decision matrix",
-            "compareTitle": "Compare by <em>business responsibility</em>, not by price.",
-            "compareLead": 'Use this matrix to choose by operating responsibility: owned respondent operations, external supplier coordination, or full multi-entity sample operations.',
-            "workflowKicker": "04 / Operating path",
-            "workflowTitle": "Each solution follows the same <em>delivery-to-settlement loop.</em>",
-            "workflowLead": "Use the same operating path across every solution: Intake → Configure → Allocate → Track / Review → Settle.",
-            "footerDesc": "An online sample operations platform for panel providers, sample suppliers, survey execution sites, and research subcontracting teams.",
-            "footerSupport": "Product support",
-            "footerHelp": "Operator manuals",
-            "footerGuide": "Operations manuals",
-            "footerFeedback": "Contact sales",
-            "footerCompany": "Company info",
-            "footerAbout": "About us",
-            "footerHistory": "Implementation roadmap",
-            "footerContact": "Contact sales",
-            "footerAccess": "Resources",
-            "footerTrial": "Start trial",
-            "footerJoin": "Contact sales",
-            "footerNews": "Resources",
-            "footerAddress": "A座1506, Hengyangguangcheng, Lu'an, Anhui, China"
+        const I18N = {
+  "en": {
+    "statusLive": "Solution loop · Live",
+    "statusMid": "Panel operations",
+    "statusLast": "Owned panel · respondent records · member finance",
+    "statusRight": "",
+    "brandSub": "Operations console",
+    "navProduct": "Product",
+    "navSolutions": "Solutions",
+    "navResources": "Resources",
+    "navPricing": "Plans",
+    "navAbout": "About",
+    "navContact": "Contact",
+    "headerBookDemo": "Book a demo",
+    "headerStartTrial": "Start trial",
+    "heroEyebrow": "Solutions · operating-role fit",
+    "heroTitle": "Choose the right <em>sample operations layer<\/em> for your sample delivery team.",
+    "heroSub": "Choose the Sampora layer that matches how your team operates online sample delivery: owned panel operations, external sample supply operations, or enterprise sample operations across clients, suppliers, API, review, and settlement.",
+    "heroCta1": "Start trial",
+    "heroCta2": "Book a demo",
+    "solutionsKicker": "01 / Solution layers",
+    "solutionsTitle": "Three solution layers, <em>separated by operating reality.<\/em>",
+    "solutionsLead": "Map your team's operating model to the Sampora layer that fits how you deliver online sample projects: Panel, Supplier Network or Enterprise.",
+    "fitKicker": "02 / Operating fit",
+    "fitTitle": "Start with <em>who you coordinate.<\/em>",
+    "fitLead": "Choose the role closest to your team. Sampora then maps the right interface entry, control points and finance path.",
+    "recommendLabel": "Best-fit solution",
+    "recCell1": "Primary asset",
+    "recCell2": "Main workflow",
+    "recCell3": "Finance view",
+    "compareKicker": "03 / Decision matrix",
+    "compareTitle": "Compare by <em>business responsibility<\/em>, not by price.",
+    "compareLead": "Use this matrix to choose by operating responsibility: owned respondent operations, external supplier coordination, or full multi-entity sample operations.",
+    "workflowKicker": "04 / Operating path",
+    "workflowTitle": "Each solution follows the same <em>delivery-to-settlement loop.<\/em>",
+    "workflowLead": "Use the same operating path across every solution: Intake → Configure → Allocate → Track / Review → Settle.",
+    "footerDesc": "An online sample operations platform for panel providers, sample suppliers, survey execution sites, and research subcontracting teams.",
+    "footerSupport": "Product support",
+    "footerHelp": "Operator manuals",
+    "footerGuide": "Operations manuals",
+    "footerFeedback": "Contact sales",
+    "footerCompany": "Company info",
+    "footerAbout": "About us",
+    "footerHistory": "Implementation roadmap",
+    "footerContact": "Contact sales",
+    "footerAccess": "Resources",
+    "footerTrial": "Start trial",
+    "footerJoin": "Contact sales",
+    "footerNews": "Resources",
+    "footerAddress": "Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China",
+    "footerTag1": "Sample operations",
+    "footerTag2": "Supplier coordination",
+    "footerTag3": "Multi-party settlement",
+    "footerLegal": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
+    "statusByFit": {
+      "panel": {
+        "statusLive": "Solution loop · Live",
+        "statusMid": "Panel operations",
+        "statusLast": "Owned panel · respondent records · member finance",
+        "statusRight": ""
       },
-      "zh": {
-            "statusLive": '方案闭环 · 实时',
-            "statusMid": 'Panel 运营',
-            "statusLast": '自有样本库 · 受访者记录 · 会员财务',
-            "statusRight": '',
-            "brandSub": "操作控制台",
-            "navProduct": "产品",
-            "navSolutions": "解决方案",
-            "navResources": "资源",
-            "navPricing": "版本方案",
-            "navAbout": "关于",
-            "navContact": "联系我们",
-            "headerBookDemo": "预约演示",
-            "headerStartTrial": "开始试用",
-            "heroEyebrow": "解决方案 · 运营角色适配",
-            "heroTitle": "为你的样本交付团队选择合适的<em>运营层。</em>",
-            "heroSub": '根据团队真实运营方式选择 Sampora 层级：自有样本库运营、外部样本供应运营，或覆盖客户、供应商、API、审核与结算的企业级样本运营。',
-            "heroCta1": "开始试用", 
-            "heroCta2": "预约演示",
-            "solutionsKicker": "01 / 方案层级",
-            "solutionsTitle": "三个解决方案层级，<em>按真实运营场景拆分。</em>",
-            "solutionsLead": "根据团队实际运营责任，判断更适合样本库运营版、供应商网络运营版，还是企业版。",
-            "fitKicker": "02 / 运营适配",
-            "fitTitle": "先看你要<em>协调谁。</em>",
-            "fitLead": "选择最接近你团队的角色，Sampora 会把它映射到合适的接口入口、控制点和财务路径。",
-            "recommendLabel": "最适合的解决方案",
-            "recCell1": "核心资产",
-            "recCell2": "主工作流",
-            "recCell3": "财务视图",
-            "compareKicker": "03 / 决策矩阵",
-            "compareTitle": "按<em>业务责任</em>对比，而不是按价格对比。",
-            "compareLead": '按真实运营责任判断版本：自有样本库运营、外部供应商协同，或完整的多实体样本运营。',
-            "workflowKicker": "04 / 运营路径",
-            "workflowTitle": "每个方案都遵循同一个<em>交付到结算闭环。</em>",
-            "workflowLead": "每个方案都沿用同一条运营路径：接收 → 配置 → 分配 → 追踪 / 审核 → 结算。",
-            "footerDesc": "面向自有样本运营方、样本供应商、执行站点 / 执行单元和调研分包执行团队的在线样本运营平台。",
-            "footerSupport": "产品支持",
-            "footerHelp": "帮助文档",
-            "footerGuide": "引导手册",
-            "footerFeedback": "联系销售",
-            "footerCompany": "公司信息",
-            "footerAbout": "关于我们",
-            "footerHistory": "发展历程",
-            "footerContact": "联系销售",
-            "footerAccess": "资源",
-            "footerTrial": "开始试用",
-            "footerJoin": "联系销售",
-            "footerNews": "资源",
-            "footerAddress": "中国安徽省六安市恒阳光城A座1506"
+      "network": {
+        "statusLive": "Solution loop · Live",
+        "statusMid": "Supplier network operations",
+        "statusLast": "Supplier allocation · API receiving · settlement records",
+        "statusRight": ""
       },
-      "hi": {
-            "statusLive": 'समाधान लूप · लाइव',
-            "statusMid": 'Panel संचालन',
-            "statusLast": 'स्वामित्व Panel · उत्तरदाता रिकॉर्ड · सदस्य वित्त',
-            "statusRight": '',
-            "brandSub": "संचालन कंसोल",
-            "navProduct": "उत्पाद",
-            "navSolutions": "समाधान",
-            "navResources": "संसाधन",
-            "navPricing": "योजनाएँ",
-            "navAbout": "हमारे बारे में",
-            "navContact": "संपर्क",
-            "headerBookDemo": "डेमो बुक करें",
-            "headerStartTrial": "ट्रायल शुरू करें",
-            "heroEyebrow": "समाधान · संचालन भूमिका अनुकूलन",
-            "heroTitle": "अपनी सैंपल डिलीवरी टीम के लिए सही <em>संचालन स्तर</em> चुनें।",
-            "heroSub": 'अपनी टीम की ऑनलाइन सैंपल डिलीवरी के अनुसार Sampora लेयर चुनें: स्वामित्व वाले Panel संचालन, बाहरी सैंपल सप्लाई संचालन, या clients, suppliers, API, review और settlement को जोड़ने वाली enterprise sample operations layer.',
-            "heroCta1": "ट्रायल शुरू करें",
-            "heroCta2": "डेमो बुक करें",
-            "solutionsKicker": "01 / समाधान स्तर",
-            "solutionsTitle": "तीन समाधान स्तर, <em>वास्तविक संचालन जिम्मेदारी के अनुसार।</em>",
-            "solutionsLead": "टीम की वास्तविक संचालन जिम्मेदारी के आधार पर Panel, सप्लायर नेटवर्क ऑपरेशंस संस्करण या एंटरप्राइज संस्करण में से सही स्तर चुनें।",
-            "fitKicker": "02 / संचालन अनुकूलन",
-            "fitTitle": "पहले देखें कि आप <em>किसका समन्वय करते हैं।</em>",
-            "fitLead": "अपनी टीम के सबसे निकट भूमिका चुनें। Sampora उसके अनुसार इंटरफ़ेस प्रवेश, नियंत्रण बिंदु और वित्तीय मार्ग मैप करेगा।",
-            "recommendLabel": "सबसे उपयुक्त समाधान",
-            "recCell1": "मुख्य संसाधन",
-            "recCell2": "मुख्य कार्यप्रवाह",
-            "recCell3": "वित्तीय दृश्य",
-            "compareKicker": "03 / निर्णय मैट्रिक्स",
-            "compareTitle": "मूल्य नहीं, <em>व्यावसायिक जिम्मेदारी</em> के आधार पर तुलना करें।",
-            "compareLead": 'इस मैट्रिक्स को संचालन जिम्मेदारी के आधार पर चुनें: स्वामित्व वाले Panel संचालन, बाहरी सप्लायर समन्वय, या पूर्ण multi-entity sample operations.',
-            "workflowKicker": "04 / संचालन मार्ग",
-            "workflowTitle": "हर समाधान एक ही <em>डिलीवरी से निपटान</em> चक्र का पालन करता है।",
-            "workflowLead": "हर समाधान में यही संचालन पथ रहता है: प्राप्ति → कॉन्फ़िगरेशन → आवंटन → ट्रैकिंग / समीक्षा → निपटान।",
-            "footerDesc": "पैनल प्रदाताओं, सैंपल आपूर्तिकर्ताओं, सर्वे निष्पादन साइट और रिसर्च सबकॉन्ट्रैक्ट टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।",
-            "footerSupport": "उत्पाद सहायता",
-            "footerHelp": "सहायता दस्तावेज़",
-            "footerGuide": "संचालन मार्गदर्शिका",
-            "footerFeedback": "सेल्स से बात करें",
-            "footerCompany": "कंपनी जानकारी",
-            "footerAbout": "हमारे बारे में",
-            "footerHistory": "कार्यान्वयन रोडमैप",
-            "footerContact": "सेल्स से बात करें",
-            "footerAccess": "संसाधन",
-            "footerTrial": "ट्रायल शुरू करें",
-            "footerJoin": "सेल्स से बात करें",
-            "footerNews": "संसाधन",
-            "footerAddress": "कमरा 1506, ब्लॉक A, हेंगयांग गुआंगचेंग, लुआन, अनहुई, चीन"
+      "enterprise": {
+        "statusLive": "Solution loop · Live",
+        "statusMid": "Enterprise",
+        "statusLast": "Multi-entity governance · audit logs · finance visibility",
+        "statusRight": ""
       }
-};
+    },
+    "solutionTopologyModalTitle": "Solution topology",
+    "closeTopologyLabel": "Close topology"
+  },
+  "zh": {
+    "statusLive": "方案闭环 · 实时",
+    "statusMid": "样本库运营版",
+    "statusLast": "自有样本库 · 受访者记录 · 会员财务",
+    "statusRight": "",
+    "brandSub": "操作控制台",
+    "navProduct": "产品",
+    "navSolutions": "解决方案",
+    "navResources": "资源",
+    "navPricing": "版本方案",
+    "navAbout": "关于",
+    "navContact": "联系我们",
+    "headerBookDemo": "预约演示",
+    "headerStartTrial": "开始试用",
+    "heroEyebrow": "解决方案 · 运营角色适配",
+    "heroTitle": "为你的样本交付团队选择合适的<em>运营层。<\/em>",
+    "heroSub": "根据团队真实运营方式选择 Sampora 层级：自有样本库运营、外部样本供应运营，或覆盖客户、供应商、API、审核与结算的企业级样本运营。",
+    "heroCta1": "开始试用",
+    "heroCta2": "预约演示",
+    "solutionsKicker": "01 / 方案层级",
+    "solutionsTitle": "三个解决方案层级，<em>按真实运营场景拆分。<\/em>",
+    "solutionsLead": "根据团队实际运营责任，判断更适合样本库运营版、供应商网络运营版，还是企业版。",
+    "fitKicker": "02 / 运营适配",
+    "fitTitle": "先看你要<em>协调谁。<\/em>",
+    "fitLead": "选择最接近你团队的角色，Sampora 会把它映射到合适的接口入口、控制点和财务路径。",
+    "recommendLabel": "最适合的解决方案",
+    "recCell1": "核心资产",
+    "recCell2": "主工作流",
+    "recCell3": "财务视图",
+    "compareKicker": "03 / 决策矩阵",
+    "compareTitle": "按<em>业务责任<\/em>对比，而不是按价格对比。",
+    "compareLead": "按真实运营责任判断版本：自有样本库运营、外部供应商协同，或完整的多实体样本运营。",
+    "workflowKicker": "04 / 运营路径",
+    "workflowTitle": "每个方案都遵循同一个<em>交付到结算闭环。<\/em>",
+    "workflowLead": "每个方案都沿用同一条运营路径：接收 → 配置 → 分配 → 追踪 / 审核 → 结算。",
+    "footerDesc": "面向自有样本运营方、样本供应商、执行站点 / 执行单元和调研分包执行团队的在线样本运营平台。",
+    "footerSupport": "产品支持",
+    "footerHelp": "帮助文档",
+    "footerGuide": "引导手册",
+    "footerFeedback": "联系销售",
+    "footerCompany": "公司信息",
+    "footerAbout": "关于我们",
+    "footerHistory": "发展历程",
+    "footerContact": "联系销售",
+    "footerAccess": "资源",
+    "footerTrial": "开始试用",
+    "footerJoin": "联系销售",
+    "footerNews": "资源",
+    "footerAddress": "中国安徽省六安市恒阳光城A座1506",
+    "footerTag1": "样本运营",
+    "footerTag2": "供应商协同",
+    "footerTag3": "多方结算",
+    "footerLegal": "© 2026 安徽省嘉禹企业服务有限公司",
+    "statusByFit": {
+      "panel": {
+        "statusLive": "方案闭环 · 实时",
+        "statusMid": "样本库运营",
+        "statusLast": "自有样本库 · 受访者记录 · 会员财务",
+        "statusRight": ""
+      },
+      "network": {
+        "statusLive": "方案闭环 · 实时",
+        "statusMid": "供应商网络运营版",
+        "statusLast": "供应商分配 · API 接收 · 结算记录",
+        "statusRight": ""
+      },
+      "enterprise": {
+        "statusLive": "方案闭环 · 实时",
+        "statusMid": "Enterprise",
+        "statusLast": "多实体治理 · 审计日志 · 财务可见性",
+        "statusRight": ""
+      }
+    },
+    "solutionTopologyModalTitle": "解决方案拓扑",
+    "closeTopologyLabel": "关闭拓扑"
+  }};
     const HERO_UI = {
-      "en": {
-            "crumbPrefix": "solutions / live /",
-            "section": "solution control topology",
-            "legendActive": "active flow",
-            "legendControl": "control point",
-            "legendEvidence": "evidence path",
-            "colInput": "INPUT",
-            "colLayer": "SOLUTION LAYER",
-            "colControl": "REVIEW",
-            "colEvidence": "SETTLEMENT",
-            "originRole": "Router Core",
-            "nodePanel": 'PANEL',
-            "nodePanelRole": 'owned panel operations',
-            "nodeNetwork": 'SUPPLIER NETWORK',
-            "nodeNetworkRole": 'external sample supply',
-            "nodeEnterprise": 'ENTERPRISE',
-            "nodeEnterpriseRole": 'multi-entity operations',
-            "hubControl": "REVIEW",
-            "hubEvidence": "SETTLE",
-            "ticker": {
-        panel: 'Respondent records visible · panel operations active · payout records ready',
-        network: 'Supplier allocation updated · API/workspace receiving active · settlement records ready',
-        enterprise: 'Client + supplier + panel governance active · operation logs ready · rollout traceable'
-      }
-      },
-      "zh": {
-            "crumbPrefix": "解决方案 / 实时 /",
-            "section": "解决方案控制拓扑",
-            "legendActive": "活跃链路",
-            "legendControl": "控制节点",
-            "legendEvidence": "证据路径",
-            "colInput": "输入",
-            "colLayer": "方案层",
-            "colControl": "审核",
-            "colEvidence": "结算",
-            "originRole": "Router Core",
-            "nodePanel": 'PANEL',
-            "nodePanelRole": '自有样本库运营',
-            "nodeNetwork": '供应商网络',
-            "nodeNetworkRole": '外部样本供应',
-            "nodeEnterprise": 'Enterprise',
-            "nodeEnterpriseRole": '多实体运营 + 结算',
-            "hubControl": "REVIEW",
-            "hubEvidence": "SETTLE",
-            "ticker": {
-        panel: '受访者记录可见 · Panel 运营已启用 · 激励记录就绪',
-        network: '供应商分配已更新 · API/工作台接收已启动 · 结算记录就绪',
-        enterprise: '客户 + 供应商 + Panel 治理已启动 · 操作日志就绪 · 上线路径可追踪'
-      }
-      },
-      "hi": {
-            "crumbPrefix": "समाधान / लाइव /",
-            "badge": "संचालन स्तर",
-            "section": "समाधान नियंत्रण टोपोलॉजी",
-            "legendActive": "सक्रिय प्रवाह",
-            "legendControl": "नियंत्रण बिंदु",
-            "legendEvidence": "प्रमाण मार्ग",
-            "colInput": "इनपुट",
-            "colLayer": "समाधान स्तर",
-            "colControl": "समीक्षा",
-            "colEvidence": "सेटलमेंट",
-            "origin": "Sampora",
-            "originRole": "राउटर कोर",
-            "nodePanel": 'PANEL',
-            "nodePanelRole": 'स्वामित्व Panel संचालन',
-            "nodeNetwork": 'सप्लायर नेटवर्क',
-            "nodeNetworkRole": 'बाहरी sample supply',
-            "nodeEnterprise": 'Enterprise',
-            "nodeEnterpriseRole": 'multi-entity operations',
-            "hubControl": "REVIEW",
-            "hubEvidence": "SETTLE",
-            "cardA": "पैनल",
-            "cardADesc": "सदस्य संचालन",
-            "cardB": "सैंपल आपूर्ति",
-            "cardBDesc": "आपूर्तिकर्ता समन्वय",
-            "cardC": "एंटरप्राइज़",
-            "cardCDesc": "बहु-पक्षीय संचालन",
-            "ticker": {
-        panel: 'Respondent records दिख रहे हैं · Panel operations सक्रिय · payout records तैयार',
-        network: 'Supplier allocation updated · API/workspace receiving active · settlement records ready',
-        enterprise: 'Client + supplier + Panel governance active · operation logs ready · rollout traceable'
-      }
-      }
-};
-    const TOPO_DETAIL = {
-      "en": {
-            "modePrefix": "Mode",
-            "auditTitle": "Operating feed",
-            "auditState": "Live",
-            "audit": {
-                  "panel": [
-      ['17:42', 'MEM_12', 'respondent records synced'],
-      ['17:38', 'PANEL_04', 'panel delivery connected'],
-      ['17:31', 'BILL_02', 'member finance ready']
-    ],
-                  "network": [
-                        [
-                              "17:42",
-                              "SUP_04",
-                              "supplier allocation updated"
-                        ],
-                        [
-                              "17:38",
-                              "API_03",
-                              "workspace receiving active"
-                        ],
-                        [
-                              "17:31",
-                              "FIN_07",
-                              "settlement record ready"
-                        ]
-                  ],
-                  "enterprise": [
-                        [
-                              "17:42",
-                              "CLIENT",
-                              "assignment mode synced"
-                        ],
-                        [
-                              "17:38",
-                              "ROLE_08",
-                              "permission review passed"
-                        ],
-                        [
-                              "17:31",
-                              "AUD_21",
-                              "exportable records ready"
-                        ]
-                  ]
-            }
-      },
-      "zh": {
-            "modePrefix": "模式",
-            "auditTitle": "运营记录",
-            "auditState": "实时",
-            "audit": {
-                  "panel": [
-      ['17:42', 'MEM_12', '受访者记录已同步'],
-      ['17:38', 'PANEL_04', 'Panel 交付已连接'],
-      ['17:31', 'BILL_02', '会员财务已就绪']
-    ],
-                  "network": [
-                        [
-                              "17:42",
-                              "SUP_04",
-                              "供应商分配已更新"
-                        ],
-                        [
-                              "17:38",
-                              "API_03",
-                              "工作台接收已启动"
-                        ],
-                        [
-                              "17:31",
-                              "FIN_07",
-                              "结算记录就绪"
-                        ]
-                  ],
-                  "enterprise": [
-                        [
-                              "17:42",
-                              "CLIENT",
-                              "客户分配模式已同步"
-                        ],
-                        [
-                              "17:38",
-                              "ROLE_08",
-                              "权限复审通过"
-                        ],
-                        [
-                              "17:31",
-                              "AUD_21",
-                              "可导出记录就绪"
-                        ]
-                  ]
-            }
-      },
-      "hi": {
-            "modePrefix": "मोड",
-            "auditTitle": "संचालन फ़ीड",
-            "auditState": "लाइव",
-            "crumb": {
-                  "panel": "समाधान / पैनल / पैनल संचालन",
-                  "network": "समाधान / सैंपल आपूर्ति / संचालन",
-                  "enterprise": "समाधान / एंटरप्राइज़ / ENT_03"
-            },
-            "title": {
-                  "panel": "पैनल संचालन",
-                  "network": "सैंपल आपूर्ति संचालन",
-                  "enterprise": "एंटरप्राइज़"
-            },
-            "text": {
-                  "panel": "उन टीमों के लिए जो अपने सदस्य, सर्वे निष्पादन साइट, भागीदारी रिकॉर्ड, भुगतान और बिलिंग प्रक्रिया को संभालती हैं।",
-                  "network": "उन टीमों के लिए जो बाहरी सैंपल आपूर्तिकर्ताओं, API भागीदारों, परियोजना प्राप्ति, आवंटन, समीक्षा और निपटान को संभालती हैं।",
-                  "enterprise": "उन टीमों के लिए जो ग्राहक, आपूर्तिकर्ता, पैनल, सर्वे निष्पादन साइट, भूमिका, API डिलीवरी और वित्त को एक संचालन स्तर में संभालती हैं।"
-            },
-            "tags": {
-                  "panel": [
-                        "सदस्य रिकॉर्ड",
-                        "सर्वे निष्पादन साइट",
-                        "बिलिंग"
-                  ],
-                  "network": [
-                        "आपूर्तिकर्ता आवंटन",
-                        "API प्राप्ति",
-                        "निपटान"
-                  ],
-                  "enterprise": [
-                        "बहु-इकाई संचालन",
-                        "एंड-टू-एंड डिलीवरी",
-                        "बहु-पक्षीय निपटान"
-                  ]
-            },
-            "statLabels": {
-                  "panel": [
-                        "सदस्य",
-                        "स्टेशन",
-                        "बिल"
-                  ],
-                  "network": [
-                        "आपूर्तिकर्ता",
-                        "API",
-                        "निपटान"
-                  ],
-                  "enterprise": [
-                        "ग्राहक",
-                        "भूमिका",
-                        "रिकॉर्ड"
-                  ]
-            },
-            "auditTitle": "संचालन रिकॉर्ड",
-            "audit": {
-                  "panel": [
-      ['17:42', 'MEM_12', 'respondent records synced'],
-      ['17:38', 'PANEL_04', 'Panel delivery connected'],
-      ['17:31', 'BILL_02', 'member finance ready']
-    ],
-                  "network": [
-                        [
-                              "17:42",
-                              "SUP_04",
-                              "आपूर्तिकर्ता आवंटन अपडेट"
-                        ],
-                        [
-                              "17:38",
-                              "API_03",
-                              "कार्यस्थान प्राप्ति सक्रिय"
-                        ],
-                        [
-                              "17:31",
-                              "FIN_07",
-                              "निपटान रिकॉर्ड तैयार"
-                        ]
-                  ],
-                  "enterprise": [
-                        [
-                              "17:42",
-                              "ग्राहक",
-                              "आवंटन मोड सिंक"
-                        ],
-                        [
-                              "17:38",
-                              "भूमिका",
-                              "अनुमति समीक्षा पास"
-                        ],
-                        [
-                              "17:31",
-                              "ऑडिट",
-                              "निर्यात योग्य रिकॉर्ड तैयार"
-                        ]
-                  ]
-            },
-            "caption": {
-                  "panel": "स्वयं का पैनल · सदस्य संचालन · बिल रिकॉर्ड",
-                  "network": "सैंपल आपूर्ति · आपूर्तिकर्ता आवंटन · API / कार्यक्षेत्र प्राप्ति",
-                  "enterprise": "एंटरप्राइज़ · ग्राहक / आपूर्तिकर्ता / पैनल · निपटान रिकॉर्ड"
-            }
-      }
-};
-
-    Object.assign(HERO_UI.zh, {
-      nodePanel: 'PANEL',
-      nodePanelRole: '自有样本库运营',
-      nodeNetwork: '供应商网络',
-      nodeNetworkRole: '外部样本供应',
-      nodeEnterprise: 'Enterprise',
-      nodeEnterpriseRole: '多实体运营 + 结算',
-      ticker: {
-        panel: '受访者记录可见 · Panel 运营已启用 · 激励记录就绪',
-        network: '供应商分配已更新 · API/工作台接收已启动 · 结算记录就绪',
-        enterprise: '客户 + 供应商 + Panel 治理已启动 · 操作日志就绪 · 上线路径可追踪'
-      }
-    });
-    Object.assign(HERO_UI.hi, {
-      nodePanel: 'PANEL',
-      nodePanelRole: 'स्वामित्व पैनल संचालन',
-      nodeNetwork: '供应商网络',
-      nodeNetworkRole: 'बाहरी सैंपल सप्लाई',
-      nodeEnterprise: 'Enterprise',
-      nodeEnterpriseRole: 'बहु-इकाई संचालन',
-      ticker: {
-        panel: 'उत्तरदाता रिकॉर्ड दिख रहे हैं · पैनल संचालन सक्रिय · भुगतान रिकॉर्ड तैयार',
-        network: 'सप्लायर आवंटन अपडेट हुआ · API/वर्कस्पेस प्राप्ति सक्रिय · निपटान रिकॉर्ड तैयार',
-        enterprise: 'क्लाइंट + सप्लायर + पैनल गवर्नेंस सक्रिय · संचालन लॉग तैयार · रोलआउट ट्रेस योग्य'
-      }
-    });
+  "en": {
+    "crumbPrefix": "solutions / live /",
+    "section": "solution control topology",
+    "legendActive": "active flow",
+    "legendControl": "control point",
+    "legendEvidence": "evidence path",
+    "colInput": "INPUT",
+    "colLayer": "SOLUTION LAYER",
+    "colControl": "REVIEW",
+    "colEvidence": "SETTLEMENT",
+    "originRole": "Router Core",
+    "nodePanel": "PANEL",
+    "nodePanelRole": "owned panel operations",
+    "nodeNetwork": "SUPPLIER NETWORK",
+    "nodeNetworkRole": "external sample supply",
+    "nodeEnterprise": "ENTERPRISE",
+    "nodeEnterpriseRole": "multi-entity operations",
+    "hubControl": "REVIEW",
+    "hubEvidence": "SETTLE",
+    "ticker": {
+      "panel": "Respondent records visible · panel operations active · payout records ready",
+      "network": "Supplier allocation updated · API/workspace receiving active · settlement records ready",
+      "enterprise": "Client + supplier + panel governance active · operation logs ready · rollout traceable"
+    }
+  },
+  "zh": {
+    "crumbPrefix": "解决方案 / 实时 /",
+    "section": "解决方案控制拓扑",
+    "legendActive": "活跃链路",
+    "legendControl": "控制节点",
+    "legendEvidence": "证据路径",
+    "colInput": "输入",
+    "colLayer": "方案层",
+    "colControl": "审核",
+    "colEvidence": "结算",
+    "originRole": "Router Core",
+    "nodePanel": "样本库",
+    "nodePanelRole": "自有样本库运营",
+    "nodeNetwork": "供应商网络",
+    "nodeNetworkRole": "外部样本供应",
+    "nodeEnterprise": "企业版",
+    "nodeEnterpriseRole": "多实体运营 + 结算",
+    "hubControl": "审核",
+    "hubEvidence": "结算",
+    "ticker": {
+      "panel": "受访者记录可见 · 样本库运营已启用 · 激励记录就绪",
+      "network": "供应商分配已更新 · API/工作台接收已启动 · 结算记录就绪",
+      "enterprise": "客户 + 供应商 + 样本库治理已启动 · 操作日志就绪 · 上线路径可追踪"
+    }
+  }};
     const DATA = {
-      "en": {
-            "solutions": [
-      { id: 'panel', cn: 'OWNED PANEL OPERATIONS', title: 'Panel', short: 'Owned panel operations layer', badge: 'FOR PANEL TEAMS', text: 'For teams operating their own respondent base, member records, participation history, incentives, wallets, and panel-side delivery workflows.', lis: ['Member groups, levels, and survey records', 'Owned respondent delivery and participation history', 'Member incentives, wallet records, and finance logs', 'Optional Partner Network exposure for sample demand'], choose: 'Choose Panel' },
-      { id: 'network', cn: 'EXTERNAL SAMPLE SUPPLY', title: 'Supplier Network', short: 'External supplier coordination layer', badge: 'FOR SUPPLIER OPERATIONS TEAMS', text: 'For teams coordinating external sample suppliers, sample channels, API-connected suppliers, allocation rules, supplier-specific pricing, review records, and settlement evidence.', lis: ['Project intake and supplier assignment', 'Block unsuitable suppliers and set supplier-specific pricing', 'API or workspace-based project receiving for connected suppliers', 'Supplier bills, settlement records, and finance logs'], choose: 'Choose Supplier Network' },
-      { id: 'enterprise', cn: 'MULTI-ENTITY OPERATIONS', title: 'Enterprise', short: 'Enterprise sample operations layer', badge: 'FOR MULTI-TEAM OPERATIONS', text: 'For teams operating clients, suppliers, owned panels, API delivery, review records, permissions, finance, and Partner Network workflows in one Sampora layer.', lis: ['Client, supplier, and panel operations in one workspace', 'Role-based permissions, organization setup, and governance controls', 'API intake, delivery callbacks, review evidence, and operation logs', 'Client invoices, supplier bills, member finance, and multi-party settlement'], choose: 'Choose Enterprise' }
+  "en": {
+    "solutions": [
+      {
+        "id": "panel",
+        "cn": "OWNED PANEL OPERATIONS",
+        "title": "Panel",
+        "short": "Owned panel operations layer",
+        "badge": "FOR PANEL TEAMS",
+        "text": "For teams operating their own respondent base, member records, participation history, incentives, wallets, and panel-side delivery workflows.",
+        "lis": [
+          "Member groups, levels, and survey records",
+          "Owned respondent delivery and participation history",
+          "Member incentives, wallet records, and finance logs",
+          "Optional Partner Network exposure for sample demand"
+        ],
+        "choose": "Choose Panel"
+      },
+      {
+        "id": "network",
+        "cn": "EXTERNAL SAMPLE SUPPLY",
+        "title": "Supplier Network",
+        "short": "External supplier coordination layer",
+        "badge": "FOR SUPPLIER OPERATIONS TEAMS",
+        "text": "For teams coordinating external sample suppliers, sample channels, API-connected suppliers, allocation rules, supplier-specific pricing, review records, and settlement evidence.",
+        "lis": [
+          "Project intake and supplier assignment",
+          "Block unsuitable suppliers and set supplier-specific pricing",
+          "API or workspace-based project receiving for connected suppliers",
+          "Supplier bills, settlement records, and finance logs"
+        ],
+        "choose": "Choose Supplier Network"
+      },
+      {
+        "id": "enterprise",
+        "cn": "MULTI-ENTITY OPERATIONS",
+        "title": "Enterprise",
+        "short": "Enterprise sample operations layer",
+        "badge": "FOR MULTI-TEAM OPERATIONS",
+        "text": "For teams operating clients, suppliers, owned panels, API delivery, review records, permissions, finance, and Partner Network workflows in one Sampora layer.",
+        "lis": [
+          "Client, supplier, and panel operations in one workspace",
+          "Role-based permissions, organization setup, and governance controls",
+          "API intake, delivery callbacks, review evidence, and operation logs",
+          "Client invoices, supplier bills, member finance, and multi-party settlement"
+        ],
+        "choose": "Choose Enterprise"
+      }
     ],
-            "fit": [
-      ['panel', '01', 'I operate an owned Panel', 'Respondent records, member groups, participation history, incentive wallets, and finance logs.'],
-      ['network', '02', 'I coordinate external sample suppliers', 'Project intake, supplier allocation, API/workspace receiving, review records, and settlement.'],
-      ['enterprise', '03', 'I manage clients, suppliers, Panel, and API together', 'Clients + suppliers + Panel + API + finance visibility + permissions + पार्टनर नेटवर्क.']
+    "fit": [
+      [
+        "panel",
+        "01",
+        "I operate an owned Panel",
+        "Respondent records, member groups, participation history, incentive wallets, and finance logs."
+      ],
+      [
+        "network",
+        "02",
+        "I coordinate external sample suppliers",
+        "Project intake, supplier allocation, API/workspace receiving, review records, and settlement."
+      ],
+      [
+        "enterprise",
+        "03",
+        "I manage clients, suppliers, Panel, and API together",
+        "Clients + suppliers + Panel + API + finance visibility + permissions + Partner Network."
+      ]
     ],
-            "rec": {
-      panel: ['Panel', 'Best fit for teams operating their own respondent base, member records, participation history, incentives, wallets, and panel-side delivery workflows.', 'Owned panel', 'Members', 'Finance'],
-      network: ['Supplier Network', 'Best fit for teams coordinating external sample supply operations, API/workspace receiving, supplier allocation, review records, and settlement evidence.', 'Allocation', 'API handoff', 'Review', 'Settlement'],
-      enterprise: ['Enterprise', 'Best fit for multi-entity teams managing clients, suppliers, Panel, API, governance controls, audit logs, and finance visibility in one layer.', 'Governance', 'Audit', 'Permissions', 'Finance']
+    "rec": {
+      "panel": [
+        "Panel",
+        "Best fit for teams operating their own respondent base, member records, participation history, incentives, wallets, and panel-side delivery workflows.",
+        "Owned panel",
+        "Members",
+        "Finance"
+      ],
+      "network": [
+        "Supplier Network",
+        "Best fit for teams coordinating external sample supply operations, API/workspace receiving, supplier allocation, review records, and settlement evidence.",
+        "Allocation",
+        "API handoff",
+        "Review",
+        "Settlement"
+      ],
+      "enterprise": [
+        "Enterprise",
+        "Best fit for multi-entity teams managing clients, suppliers, Panel, API, governance controls, audit logs, and finance visibility in one layer.",
+        "Governance",
+        "Audit",
+        "Permissions",
+        "Finance"
+      ]
     },
-            "tableHead": [
-                  "Decision point",
-                  "Panel",
-                  "Supplier Network",
-                  "Enterprise"
-            ],
-            "rows": [
-      ['Primary operator', 'Owned panel team', 'External sample supply team', 'Multi-entity operations team'],
-      ['Main asset controlled', 'Respondent records and member finance', 'External suppliers and API receiving', 'Clients + suppliers + panels'],
-      ['Project receiving path', 'Owned respondent delivery', 'Client project intake', 'Client + API/workspace intake'],
-      ['Supplier allocation & pricing', 'Limited', 'Core', 'Advanced'],
-      ['Panel / member operations', 'Core', 'Partial', 'Core'],
-      ['API / workspace receiving', 'Optional', 'Core', 'Core'],
-      ['Review and traceability', 'Survey records', 'Callback + review records', 'Audit logs + governance'],
-      ['Finance loop', 'Member bills / wallet', 'Supplier bills / settlement', 'Client + supplier + member settlement'],
-      ['Partner Network', 'Find buyers', 'Find suppliers', 'Find buyers and suppliers'],
-      ['Recommended next action', 'Review resources or start a Panel evaluation', 'Book a demo for Supplier Network operations', 'Talk to sales for Enterprise rollout']
+    "tableHead": [
+      "Decision point",
+      "Panel",
+      "Supplier Network",
+      "Enterprise"
     ],
-
-            "workflowTabs": {
-                  "panel": "Panel",
-                  "network": "Supplier Network",
-                  "enterprise": "Enterprise"
-            },
-            "workflows": {
-                  "panel": [
-                        [
-                              "01",
-                              "Project intake",
-                              "Receive station projects or create projects for owned respondent delivery."
-                        ],
-                        [
-                              "02",
-                              "Configure members",
-                              "Use member groups, levels, profiles and station settings to define who can receive surveys."
-                        ],
-                        [
-                              "03",
-                              "Execute and track",
-                              "Track participation records, completes, termination records and member-side survey history."
-                        ],
-                        [
-                              "04",
-                              "समीक्षा records",
-                              "समीक्षा survey records, finance logs and station execution evidence."
-                        ],
-                        [
-                              "05",
-                              "Settle bills",
-                              "Close member wallets, bills and payout-related finance records."
-                        ]
-                  ],
-                  "network": [
-                        [
-                              "01",
-                              "Project intake",
-                              "Receive client projects or API project pools with CPI, IR, LOI, country and client context."
-                        ],
-                        [
-                              "02",
-                              "Configure delivery",
-                              "Set supplier eligibility, assignment mode, availability controls and supplier-specific pricing."
-                        ],
-                        [
-                              "03",
-                              "Allocate suppliers",
-                              "Assign selected suppliers or API-connected partners and block unsuitable suppliers."
-                        ],
-                        [
-                              "04",
-                              "Track and review",
-                              "Monitor participates, completes, rejects, callbacks and audit status."
-                        ],
-                        [
-                              "05",
-                              "Settle and bill",
-                              "Create project settlement, supplier bills and client invoice records."
-                        ]
-                  ],
-                  "enterprise": [
-                        [
-                              "01",
-                              "Map entities",
-                              "Set clients, suppliers, panels, stations, departments and roles in one sample operations layer."
-                        ],
-                        [
-                              "02",
-                              "Configure controls",
-                              "Define permissions, risk settings, callback/security configuration and delivery rules."
-                        ],
-                        [
-                              "03",
-                              "Receive and allocate",
-                              "Use API/workspace paths to receive projects and distribute them across internal and external supply."
-                        ],
-                        [
-                              "04",
-                              "समीक्षा operations",
-                              "Use audit logs, callback records and termination records to explain delivery decisions."
-                        ],
-                        [
-                              "05",
-                              "Close the loop",
-                              "Connect client invoices, supplier bills, member finance and partner network cooperation history."
-                        ]
-                  ]
-            }
-      },
-      "zh": {
-            "solutions": [
-      { id: 'panel', cn: '自有样本库运营', title: '样本库运营版', short: '自有样本库运营层', badge: '适合样本库团队', text: '适合运营自有受访者资产、会员记录、参与历史、激励、钱包和样本库侧交付流程的团队。', lis: ['会员分组、等级和问卷记录', '自有受访者交付与参与历史', '会员激励、钱包记录和财务日志', '可选接入合作网络获得样本需求'], choose: '选择样本库运营版' },
-      { id: 'network', cn: '外部样本供应运营', title: '供应商网络运营版', short: '外部供应商协同层', badge: '适合供应商运营团队', text: '适合协同外部样本供应商、样本渠道、API 对接供应商、分配规则、供应商级定价、审核记录和结算证据的团队。', lis: ['项目接收与供应商分配', '屏蔽不合适供应商并设置供应商级定价', '通过 API 或工作台接收已对接供应商项目', '供应商账单、结算记录和财务日志'], choose: '选择供应商网络运营版' },
-      { id: 'enterprise', cn: '多实体样本运营', title: '企业版', short: '企业级样本运营层', badge: '适合多团队运营', text: '适合在一个 Sampora 层中运营客户、供应商、自有样本库、API 交付、审核记录、权限、财务和合作网络流程的团队。', lis: ['客户、供应商和样本库在一个工作台运营', '基于角色的权限、组织配置和治理控制', 'API 接收、交付回调、审核证据和操作日志', '客户发票、供应商账单、会员财务和多方结算'], choose: '选择企业版' }
+    "rows": [
+      [
+        "Primary operator",
+        "Owned panel team",
+        "External sample supply team",
+        "Multi-entity operations team"
+      ],
+      [
+        "Main asset controlled",
+        "Respondent records and member finance",
+        "External suppliers and API receiving",
+        "Clients + suppliers + panels"
+      ],
+      [
+        "Project receiving path",
+        "Owned respondent delivery",
+        "Client project intake",
+        "Client + API/workspace intake"
+      ],
+      [
+        "Supplier allocation & pricing",
+        "Limited",
+        "Core",
+        "Advanced"
+      ],
+      [
+        "Panel / member operations",
+        "Core",
+        "Partial",
+        "Core"
+      ],
+      [
+        "API / workspace receiving",
+        "Optional",
+        "Core",
+        "Core"
+      ],
+      [
+        "Review and traceability",
+        "Survey records",
+        "Callback + review records",
+        "Audit logs + governance"
+      ],
+      [
+        "Finance loop",
+        "Member bills / wallet",
+        "Supplier bills / settlement",
+        "Client + supplier + member settlement"
+      ],
+      [
+        "Partner Network",
+        "Find buyers",
+        "Find suppliers",
+        "Find buyers and suppliers"
+      ],
+      [
+        "Recommended next action",
+        "Review resources or start a Panel evaluation",
+        "Book a demo for Supplier Network operations",
+        "Talk to sales for Enterprise rollout"
+      ]
     ],
-            "fit": [
-      ['panel', '01', '我运营自有样本库', '受访者记录、会员分组、参与历史、激励钱包和财务日志。'],
-      ['network', '02', '我协同外部样本供应商', '项目接收、供应商分配、API/工作台接收、审核记录和结算。'],
-      ['enterprise', '03', '我同时管理客户、供应商、Panel 和 API', '客户 + 供应商 + Panel + API + 财务可见性 + 权限 + 合作网络。']
-    ],
-            "rec": {
-      panel: ['样本库运营版', '适合运营自有受访者资产、会员记录、参与历史、激励、钱包和样本库侧交付流程的团队。', '自有样本库', '会员', '财务'],
-      network: ['Supplier Network', '适合协同外部样本供应运营、API/工作台接收、供应商分配、审核记录和结算证据的团队。', '分配', 'API 交接', '审核', '结算'],
-      enterprise: ['Enterprise', '适合在一个层中管理客户、供应商、Panel、API、治理控制、审计日志和财务可见性的多实体团队。', '治理', '审计', '权限', '财务']
+    "workflowTabs": {
+      "panel": "Panel",
+      "network": "Supplier Network",
+      "enterprise": "Enterprise"
     },
-            "tableHead": [
-                  "决策点",
-                  "样本库运营版",
-                  "供应商网络运营版",
-                  "企业版"
-            ],
-            "rows": [
-      ['主要运营方', '自有样本库团队', '外部样本供应团队', '多实体运营团队'],
-      ['主要控制资产', '受访者记录与会员财务', '外部供应商与 API 接收', '客户 + 供应商 + Panel'],
-      ['项目接收路径', '自有受访者交付', '客户项目接收', '客户 + API/工作台接收'],
-      ['供应商分配与定价', '有限', '核心', '高级'],
-      ['Panel / 会员运营', '核心', '部分', '核心'],
-      ['API / 工作台接收', '可选', '核心', '核心'],
-      ['审核与可追踪', '问卷记录', '回调 + 审核记录', '审计日志 + 治理'],
-      ['财务闭环', '会员账单 / 钱包', '供应商账单 / 结算', '客户 + 供应商 + 会员结算'],
-      ['合作网络', '寻找买方', '寻找供应商', '寻找买方和供应商'],
-      ['推荐下一步', '查看资源或评估 Panel 方案', '预约供应商网络运营版演示', '联系销售沟通 Enterprise 上线']
-    ],
-
-            "workflowTabs": {
-                  "panel": "样本库运营版",
-                  "network": "供应商网络运营版",
-                  "enterprise": "企业版"
-            },
-            "workflows": {
-                  "panel": [
-                        [
-                              "01",
-                              "项目接收",
-                              "接收执行站点项目或创建面向自有受访者的项目。"
-                        ],
-                        [
-                              "02",
-                              "配置会员",
-                              "用会员组、等级、画像和站点设置定义谁能接收调查。"
-                        ],
-                        [
-                              "03",
-                              "执行与追踪",
-                              "追踪参与记录、完成记录、终止记录和会员侧调查历史。"
-                        ],
-                        [
-                              "04",
-                              "审核记录",
-                              "审核调查记录、财务日志和站点执行证据。"
-                        ],
-                        [
-                              "05",
-                              "结算账单",
-                              "关闭会员钱包、账单和激励相关财务记录。"
-                        ]
-                  ],
-                  "network": [
-                        [
-                              "01",
-                              "项目接收",
-                              "接收客户项目或 API 项目池，确认 CPI、IR、LOI、国家和客户信息。"
-                        ],
-                        [
-                              "02",
-                              "配置交付",
-                              "设置供应商资格、分配模式、可用区域和供应商级价格。"
-                        ],
-                        [
-                              "03",
-                              "分配供应商",
-                              "分配指定供应商或 API 对接伙伴，并屏蔽不合适供应商。"
-                        ],
-                        [
-                              "04",
-                              "追踪与审核",
-                              "监控参与、完成、拒绝、回调和审核状态。"
-                        ],
-                        [
-                              "05",
-                              "结算与账单",
-                              "创建项目结算、供应商账单和客户发票记录。"
-                        ]
-                  ],
-                  "enterprise": [
-                        [
-                              "01",
-                              "映射实体",
-                              "在一个运营层里配置客户、供应商、Panel、执行站点、部门和角色。"
-                        ],
-                        [
-                              "02",
-                              "配置控制",
-                              "定义权限、风控设置、回调 / 安全配置和交付规则。"
-                        ],
-                        [
-                              "03",
-                              "接收与分配",
-                              "通过 API / 工作台接收项目，并分发给内部和外部供应。"
-                        ],
-                        [
-                              "04",
-                              "审核运营",
-                              "用审计日志、回调记录和终止记录解释交付决策。"
-                        ],
-                        [
-                              "05",
-                              "关闭闭环",
-                              "连接客户发票、供应商账单、会员财务和合作资源历史。"
-                        ]
-                  ]
-            }
+    "workflows": {
+      "panel": [
+        [
+          "01",
+          "Project intake",
+          "Receive station projects or create projects for owned respondent delivery."
+        ],
+        [
+          "02",
+          "Configure members",
+          "Use member groups, levels, profiles and station settings to define who can receive surveys."
+        ],
+        [
+          "03",
+          "Execute and track",
+          "Track participation records, completes, termination records and member-side survey history."
+        ],
+        [
+          "04",
+          "Review records",
+          "Review survey records, finance logs and station execution evidence."
+        ],
+        [
+          "05",
+          "Settle bills",
+          "Close member wallets, bills and payout-related finance records."
+        ]
+      ],
+      "network": [
+        [
+          "01",
+          "Project intake",
+          "Receive client projects or API project pools with CPI, IR, LOI, country and client context."
+        ],
+        [
+          "02",
+          "Configure delivery",
+          "Set supplier eligibility, assignment mode, availability controls and supplier-specific pricing."
+        ],
+        [
+          "03",
+          "Allocate suppliers",
+          "Assign selected suppliers or API-connected partners and block unsuitable suppliers."
+        ],
+        [
+          "04",
+          "Track and review",
+          "Monitor participates, completes, rejects, callbacks and audit status."
+        ],
+        [
+          "05",
+          "Settle and bill",
+          "Create project settlement, supplier bills and client invoice records."
+        ]
+      ],
+      "enterprise": [
+        [
+          "01",
+          "Map entities",
+          "Set clients, suppliers, panels, stations, departments and roles in one sample operations layer."
+        ],
+        [
+          "02",
+          "Configure controls",
+          "Define permissions, risk settings, callback/security configuration and delivery rules."
+        ],
+        [
+          "03",
+          "Receive and allocate",
+          "Use API/workspace paths to receive projects and distribute them across internal and external supply."
+        ],
+        [
+          "04",
+          "Review operations",
+          "Use audit logs, callback records and termination records to explain delivery decisions."
+        ],
+        [
+          "05",
+          "Close the loop",
+          "Connect client invoices, supplier bills, member finance and partner network cooperation history."
+        ]
+      ]
+    }
+  },
+  "zh": {
+    "solutions": [
+      {
+        "id": "panel",
+        "cn": "自有样本库运营",
+        "title": "样本库运营版",
+        "short": "自有样本库运营层",
+        "badge": "适合样本库团队",
+        "text": "适合运营自有受访者资产、会员记录、参与历史、激励、钱包和样本库侧交付流程的团队。",
+        "lis": [
+          "会员分组、等级和问卷记录",
+          "自有受访者交付与参与历史",
+          "会员激励、钱包记录和财务日志",
+          "可选接入合作网络获得样本需求"
+        ],
+        "choose": "选择样本库运营版"
       },
-      "hi": {
-            "solutions": [
-      { id: 'panel', cn: 'स्वामित्व पैनल संचालन', title: 'पैनल', short: 'स्वामित्व पैनल संचालन लेयर', badge: 'पैनल टीमों के लिए', text: 'उन टीमों के लिए जो अपना उत्तरदाता आधार, सदस्य रिकॉर्ड, भागीदारी इतिहास, प्रोत्साहन, वॉलेट और पैनल-पक्ष डिलीवरी वर्कफ़्लो चलाती हैं।', lis: ['सदस्य समूह, स्तर और सर्वे रिकॉर्ड', 'स्वामित्व उत्तरदाता डिलीवरी और भागीदारी इतिहास', 'सदस्य प्रोत्साहन, वॉलेट रिकॉर्ड और फाइनेंस लॉग', 'सैंपल मांग के लिए वैकल्पिक पार्टनर नेटवर्क दृश्यता'], choose: 'पैनल चुनें' },
-      { id: 'network', cn: 'बाहरी सैंपल सप्लाई संचालन', title: 'सप्लायर नेटवर्क ऑपरेशंस संस्करण', short: 'बाहरी सप्लायर समन्वय लेयर', badge: 'सप्लायर संचालन टीमों के लिए', text: 'उन टीमों के लिए जो बाहरी सैंपल सप्लायर, सैंपल चैनल, API से जुड़े सप्लायर, आवंटन नियम, सप्लायर-विशिष्ट मूल्य, समीक्षा रिकॉर्ड और सेटलमेंट प्रमाण संभालती हैं।', lis: ['प्रोजेक्ट प्राप्ति और सप्लायर असाइनमेंट', 'अनुपयुक्त सप्लायर ब्लॉक करें और सप्लायर-विशिष्ट मूल्य तय करें', 'जुड़े सप्लायरों के लिए API या वर्कस्पेस आधारित प्रोजेक्ट प्राप्ति', 'सप्लायर बिल, सेटलमेंट रिकॉर्ड और फाइनेंस लॉग'], choose: 'सप्लायर नेटवर्क ऑपरेशंस संस्करण चुनें' },
-      { id: 'enterprise', cn: 'बहु-इकाई सैंपल संचालन', title: 'एंटरप्राइज संस्करण', short: 'एंटरप्राइज सैंपल संचालन लेयर', badge: 'बहु-टीम संचालन के लिए', text: 'उन टीमों के लिए जो क्लाइंट, सप्लायर, स्वामित्व पैनल, API डिलीवरी, समीक्षा रिकॉर्ड, अनुमतियां, फाइनेंस और पार्टनर नेटवर्क वर्कफ़्लो को एक Sampora लेयर में चलाती हैं।', lis: ['क्लाइंट, सप्लायर और पैनल संचालन एक वर्कस्पेस में', 'भूमिका-आधारित अनुमतियां, संगठन सेटअप और गवर्नेंस नियंत्रण', 'API प्राप्ति, डिलीवरी कॉलबैक, समीक्षा प्रमाण और ऑपरेशन लॉग', 'क्लाइंट इनवॉइस, सप्लायर बिल, सदस्य फाइनेंस और बहु-पक्षीय सेटलमेंट'], choose: 'एंटरप्राइज संस्करण चुनें' }
+      {
+        "id": "network",
+        "cn": "外部样本供应运营",
+        "title": "供应商网络运营版",
+        "short": "外部供应商协同层",
+        "badge": "适合供应商运营团队",
+        "text": "适合协同外部样本供应商、样本渠道、API 对接供应商、分配规则、供应商级定价、审核记录和结算证据的团队。",
+        "lis": [
+          "项目接收与供应商分配",
+          "屏蔽不合适供应商并设置供应商级定价",
+          "通过 API 或工作台接收已对接供应商项目",
+          "供应商账单、结算记录和财务日志"
+        ],
+        "choose": "选择供应商网络运营版"
+      },
+      {
+        "id": "enterprise",
+        "cn": "多实体样本运营",
+        "title": "企业版",
+        "short": "企业级样本运营层",
+        "badge": "适合多团队运营",
+        "text": "适合在一个 Sampora 层中运营客户、供应商、自有样本库、API 交付、审核记录、权限、财务和合作网络流程的团队。",
+        "lis": [
+          "客户、供应商和样本库在一个工作台运营",
+          "基于角色的权限、组织配置和治理控制",
+          "API 接收、交付回调、审核证据和操作日志",
+          "客户发票、供应商账单、会员财务和多方结算"
+        ],
+        "choose": "选择企业版"
+      }
     ],
-            "fit": [
-      ['panel', '01', 'मैं स्वामित्व पैनल चलाता हूं', 'उत्तरदाता रिकॉर्ड, सदस्य समूह, भागीदारी इतिहास, प्रोत्साहन वॉलेट और फाइनेंस लॉग।'],
-      ['network', '02', 'मैं बाहरी सैंपल सप्लायरों का समन्वय करता हूं', 'प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, API/वर्कस्पेस प्राप्ति, समीक्षा रिकॉर्ड और सेटलमेंट।'],
-      ['enterprise', '03', 'मैं क्लाइंट, सप्लायर, पैनल और API साथ संभालता हूं', 'क्लाइंट + सप्लायर + पैनल + API + फाइनेंस दृश्यता + अनुमतियां + पार्टनर नेटवर्क।']
+    "fit": [
+      [
+        "panel",
+        "01",
+        "我运营自有样本库",
+        "受访者记录、会员分组、参与历史、激励钱包和财务日志。"
+      ],
+      [
+        "network",
+        "02",
+        "我协同外部样本供应商",
+        "项目接收、供应商分配、API/工作台接收、审核记录和结算。"
+      ],
+      [
+        "enterprise",
+        "03",
+        "我同时管理客户、供应商、样本库和 API",
+        "客户 + 供应商 + 样本库 + API + 财务可见性 + 权限 + 合作网络。"
+      ]
     ],
-            "rec": {
-      panel: ['पैनल', 'अपना उत्तरदाता आधार, सदस्य रिकॉर्ड, भागीदारी इतिहास, प्रोत्साहन, वॉलेट और पैनल-पक्ष डिलीवरी वर्कफ़्लो चलाने वाली टीमों के लिए उपयुक्त।', 'स्वामित्व पैनल', 'सदस्य', 'वित्त'],
-      network: ['सप्लायर नेटवर्क ऑपरेशंस संस्करण', 'बाहरी सैंपल सप्लाई संचालन, API/वर्कस्पेस प्राप्ति, सप्लायर आवंटन, समीक्षा रिकॉर्ड और सेटलमेंट प्रमाण संभालने वाली टीमों के लिए उपयुक्त।', 'आवंटन', 'API हैंडऑफ', 'समीक्षा', 'सेटलमेंट'],
-      enterprise: ['एंटरप्राइज संस्करण', 'क्लाइंट, सप्लायर, पैनल, API, गवर्नेंस नियंत्रण, ऑडिट लॉग और फाइनेंस दृश्यता को एक लेयर में संभालने वाली बहु-इकाई टीमों के लिए उपयुक्त।', 'गवर्नेंस', 'ऑडिट', 'अनुमतियां', 'फाइनेंस']
+    "rec": {
+      "panel": [
+        "样本库运营版",
+        "适合运营自有受访者资产、会员记录、参与历史、激励、钱包和样本库侧交付流程的团队。",
+        "自有样本库",
+        "会员",
+        "财务"
+      ],
+      "network": [
+        "供应商网络运营版",
+        "适合协同外部样本供应运营、API/工作台接收、供应商分配、审核记录和结算证据的团队。",
+        "分配",
+        "API 交接",
+        "审核",
+        "结算"
+      ],
+      "enterprise": [
+        "企业版",
+        "适合在一个层中管理客户、供应商、样本库、API、治理控制、审计日志和财务可见性的多实体团队。",
+        "治理",
+        "审计",
+        "权限",
+        "财务"
+      ]
     },
-            "tableHead": [
-                  "निर्णय बिंदु",
-                  "पैनल संचालन",
-                  "सैंपल आपूर्ति संचालन",
-                  "एंटरप्राइज़"
-            ],
-            "rows": [
-      ['मुख्य ऑपरेटर', 'स्वामित्व पैनल टीम', 'बाहरी सैंपल सप्लाई टीम', 'बहु-इकाई संचालन टीम'],
-      ['मुख्य नियंत्रित संपत्ति', 'उत्तरदाता रिकॉर्ड और सदस्य फाइनेंस', 'बाहरी सप्लायर और API प्राप्ति', 'क्लाइंट + सप्लायर + पैनल'],
-      ['प्रोजेक्ट प्राप्ति पथ', 'स्वामित्व उत्तरदाता डिलीवरी', 'क्लाइंट प्रोजेक्ट प्राप्ति', 'क्लाइंट + API/वर्कस्पेस प्राप्ति'],
-      ['सप्लायर आवंटन और मूल्य', 'सीमित', 'मुख्य', 'उन्नत'],
-      ['पैनल / सदस्य संचालन', 'मुख्य', 'आंशिक', 'मुख्य'],
-      ['API / वर्कस्पेस प्राप्ति', 'वैकल्पिक', 'मुख्य', 'मुख्य'],
-      ['समीक्षा और ट्रेसबिलिटी', 'सर्वे रिकॉर्ड', 'कॉलबैक + समीक्षा रिकॉर्ड', 'ऑडिट लॉग + गवर्नेंस'],
-      ['फाइनेंस लूप', 'सदस्य बिल / वॉलेट', 'सप्लायर बिल / सेटलमेंट', 'क्लाइंट + सप्लायर + सदस्य सेटलमेंट'],
-      ['पार्टनर नेटवर्क', 'खरीदार खोजें', 'सप्लायर खोजें', 'खरीदार और सप्लायर खोजें'],
-      ['अनुशंसित अगला कदम', 'संसाधन देखें या पैनल मूल्यांकन शुरू करें', 'सप्लायर नेटवर्क संचालन के लिए डेमो बुक करें', 'एंटरप्राइज रोलआउट के लिए सेल्स से बात करें']
+    "tableHead": [
+      "决策点",
+      "样本库运营版",
+      "供应商网络运营版",
+      "企业版"
     ],
+    "rows": [
+      [
+        "主要运营方",
+        "自有样本库团队",
+        "外部样本供应团队",
+        "多实体运营团队"
+      ],
+      [
+        "主要控制资产",
+        "受访者记录与会员财务",
+        "外部供应商与 API 接收",
+        "客户 + 供应商 + 样本库"
+      ],
+      [
+        "项目接收路径",
+        "自有受访者交付",
+        "客户项目接收",
+        "客户 + API/工作台接收"
+      ],
+      [
+        "供应商分配与定价",
+        "有限",
+        "核心",
+        "高级"
+      ],
+      [
+        "样本库 / 会员运营",
+        "核心",
+        "部分",
+        "核心"
+      ],
+      [
+        "API / 工作台接收",
+        "可选",
+        "核心",
+        "核心"
+      ],
+      [
+        "审核与可追踪",
+        "问卷记录",
+        "回调 + 审核记录",
+        "审计日志 + 治理"
+      ],
+      [
+        "财务闭环",
+        "会员账单 / 钱包",
+        "供应商账单 / 结算",
+        "客户 + 供应商 + 会员结算"
+      ],
+      [
+        "合作网络",
+        "寻找买方",
+        "寻找供应商",
+        "寻找买方和供应商"
+      ],
+      [
+        "推荐下一步",
+        "查看资源或评估样本库运营版",
+        "预约供应商网络运营版演示",
+        "联系销售沟通企业版上线"
+      ]
+    ],
+    "workflowTabs": {
+      "panel": "样本库运营版",
+      "network": "供应商网络运营版",
+      "enterprise": "企业版"
+    },
+    "workflows": {
+      "panel": [
+        [
+          "01",
+          "项目接收",
+          "接收执行站点项目或创建面向自有受访者的项目。"
+        ],
+        [
+          "02",
+          "配置会员",
+          "用会员组、等级、画像和站点设置定义谁能接收调查。"
+        ],
+        [
+          "03",
+          "执行与追踪",
+          "追踪参与记录、完成记录、终止记录和会员侧调查历史。"
+        ],
+        [
+          "04",
+          "审核记录",
+          "审核调查记录、财务日志和站点执行证据。"
+        ],
+        [
+          "05",
+          "结算账单",
+          "关闭会员钱包、账单和激励相关财务记录。"
+        ]
+      ],
+      "network": [
+        [
+          "01",
+          "项目接收",
+          "接收客户项目或 API 项目池，确认 CPI、IR、LOI、国家和客户信息。"
+        ],
+        [
+          "02",
+          "配置交付",
+          "设置供应商资格、分配模式、可用区域和供应商级价格。"
+        ],
+        [
+          "03",
+          "分配供应商",
+          "分配指定供应商或 API 对接伙伴，并屏蔽不合适供应商。"
+        ],
+        [
+          "04",
+          "追踪与审核",
+          "监控参与、完成、拒绝、回调和审核状态。"
+        ],
+        [
+          "05",
+          "结算与账单",
+          "创建项目结算、供应商账单和客户发票记录。"
+        ]
+      ],
+      "enterprise": [
+        [
+          "01",
+          "映射实体",
+          "在一个运营层里配置客户、供应商、Panel、执行站点、部门和角色。"
+        ],
+        [
+          "02",
+          "配置控制",
+          "定义权限、风控设置、回调 / 安全配置和交付规则。"
+        ],
+        [
+          "03",
+          "接收与分配",
+          "通过 API / 工作台接收项目，并分发给内部和外部供应。"
+        ],
+        [
+          "04",
+          "审核运营",
+          "用审计日志、回调记录和终止记录解释交付决策。"
+        ],
+        [
+          "05",
+          "关闭闭环",
+          "连接客户发票、供应商账单、会员财务和合作资源历史。"
+        ]
+      ]
+    }
+  }};
+    const TOPO_DETAIL = {
+  "en": {
+    "modePrefix": "MODE",
+    "auditTitle": "Audit trail",
+    "auditState": "Active",
+    "audit": {
+      "panel": [
+        [
+          "Just now",
+          "PNL-01",
+          "Panel topology audit active"
+        ]
+      ],
+      "network": [
+        [
+          "Just now",
+          "SUP-02",
+          "Supplier network topology audit active"
+        ]
+      ],
+      "enterprise": [
+        [
+          "Just now",
+          "ENT-03",
+          "Enterprise topology audit active"
+        ]
+      ]
+    }
+  },
+  "zh": {
+    "modePrefix": "方案",
+    "auditTitle": "审计追踪",
+    "auditState": "运行中",
+    "audit": {
+      "panel": [
+        [
+          "刚刚",
+          "PNL-01",
+          "样本库拓扑审计运行中"
+        ]
+      ],
+      "network": [
+        [
+          "刚刚",
+          "SUP-02",
+          "供应商网络拓扑审计运行中"
+        ]
+      ],
+      "enterprise": [
+        [
+          "刚刚",
+          "ENT-03",
+          "企业版拓扑审计运行中"
+        ]
+      ]
+    }
+  }};
 
-            "workflowTabs": {
-                  "panel": "पैनल संचालन",
-                  "network": "सैंपल आपूर्ति",
-                  "enterprise": "एंटरप्राइज़"
-            },
-            "workflows": {
-                  "panel": [
-                        [
-                              "01",
-                              "परियोजना प्राप्ति",
-                              "स्टेशन परियोजनाएँ प्राप्त करें या अपने उत्तरदाता डिलीवरी के लिए परियोजनाएँ बनाएँ।"
-                        ],
-                        [
-                              "02",
-                              "सदस्य कॉन्फ़िगरेशन",
-                              "सदस्य समूह, स्तर, प्रोफ़ाइल और स्टेशन सेटिंग से तय करें कि कौन सर्वे प्राप्त कर सकता है।"
-                        ],
-                        [
-                              "03",
-                              "निष्पादन और ट्रैकिंग",
-                              "भागीदारी रिकॉर्ड, पूर्ण रिकॉर्ड, समाप्ति रिकॉर्ड और सदस्य सर्वे इतिहास ट्रैक करें।"
-                        ],
-                        [
-                              "04",
-                              "रिकॉर्ड समीक्षा",
-                              "सर्वे रिकॉर्ड, वित्तीय लॉग और स्टेशन निष्पादन प्रमाण की समीक्षा करें।"
-                        ],
-                        [
-                              "05",
-                              "बिल निपटान",
-                              "सदस्य वॉलेट, बिल और भुगतान-संबंधित वित्तीय रिकॉर्ड बंद करें।"
-                        ]
-                  ],
-                  "network": [
-                        [
-                              "01",
-                              "परियोजना प्राप्ति",
-                              "CPI, IR, LOI, देश और ग्राहक संदर्भ के साथ ग्राहक परियोजना या API परियोजना पूल प्राप्त करें।"
-                        ],
-                        [
-                              "02",
-                              "डिलीवरी कॉन्फ़िगरेशन",
-                              "आपूर्तिकर्ता पात्रता, आवंटन मोड, उपलब्ध क्षेत्र और आपूर्तिकर्ता-विशिष्ट मूल्य सेट करें।"
-                        ],
-                        [
-                              "03",
-                              "आपूर्तिकर्ता आवंटन",
-                              "चयनित आपूर्तिकर्ता या API से जुड़े भागीदार आवंटित करें और अनुपयुक्त आपूर्तिकर्ताओं को रोकें।"
-                        ],
-                        [
-                              "04",
-                              "ट्रैकिंग और समीक्षा",
-                              "भागीदारी, पूर्णता, अस्वीकृति, कॉलबैक और समीक्षा स्थिति की निगरानी करें।"
-                        ],
-                        [
-                              "05",
-                              "निपटान और बिल",
-                              "परियोजना निपटान, आपूर्तिकर्ता बिल और ग्राहक चालान रिकॉर्ड बनाएँ।"
-                        ]
-                  ],
-                  "enterprise": [
-                        [
-                              "01",
-                              "इकाई मैपिंग",
-                              "ग्राहक, आपूर्तिकर्ता, Panel, स्टेशन, विभाग और भूमिकाएँ एक संचालन स्तर में सेट करें।"
-                        ],
-                        [
-                              "02",
-                              "नियंत्रण कॉन्फ़िगरेशन",
-                              "अनुमतियाँ, जोखिम सेटिंग, कॉलबैक / सुरक्षा कॉन्फ़िगरेशन और डिलीवरी नियम परिभाषित करें।"
-                        ],
-                        [
-                              "03",
-                              "प्राप्ति और आवंटन",
-                              "API / कार्यक्षेत्र मार्ग से परियोजनाएँ प्राप्त करें और उन्हें आंतरिक / बाहरी आपूर्ति में वितरित करें।"
-                        ],
-                        [
-                              "04",
-                              "संचालन समीक्षा",
-                              "ऑडिट लॉग, कॉलबैक रिकॉर्ड और समाप्ति रिकॉर्ड से डिलीवरी निर्णय स्पष्ट करें।"
-                        ],
-                        [
-                              "05",
-                              "चक्र पूरा करें",
-                              "ग्राहक चालान, आपूर्तिकर्ता बिल, सदस्य वित्त और पार्टनर नेटवर्क इतिहास को जोड़ें।"
-                        ]
-                  ]
-            }
-      }
-};
-    Object.assign(I18N.en, {
-      footerTag1: 'Sample operations',
-      footerTag2: 'Supplier coordination',
-      footerTag3: 'Multi-party settlement',
-      footerLegal: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.'
-    });
-    Object.assign(I18N.zh, {
-      footerTag1: '样本运营',
-      footerTag2: '供应商协同',
-      footerTag3: '多方结算',
-      footerLegal: '© 2026 安徽省嘉禹企业服务有限公司'
-    });
-    Object.assign(I18N.hi, {
-      headerBookDemo: 'डेमो बुक करें',
-      headerStartTrial: 'ट्रायल शुरू करें',
-      heroCta1: 'ट्रायल शुरू करें',
-      heroCta2: 'डेमो बुक करें',
-      navPricing: 'योजनाएँ',
-      footerDesc: 'पैनल प्रदाताओं, सैंपल आपूर्तिकर्ताओं, सर्वे निष्पादन साइट और रिसर्च सबकॉन्ट्रैक्ट टीमों के लिए ऑनलाइन सैंपल संचालन प्लेटफ़ॉर्म।',
-      footerTag1: 'सैंपल संचालन',
-      footerTag2: 'आपूर्तिकर्ता समन्वय',
-      footerTag3: 'बहु-पक्षीय निपटान',
-      footerFeedback: 'सेल्स से बात करें',
-      footerContact: 'सेल्स से बात करें',
-      footerAccess: 'संसाधन',
-      footerTrial: 'ट्रायल शुरू करें',
-      footerJoin: 'सेल्स से बात करें',
-      footerNews: 'संसाधन',
-      footerAddress: 'कमरा 1506, ब्लॉक A, हेंगयांग गुआंगचेंग, लुआन, अनहुई, चीन',
-      footerLegal: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.'
-    });
-    Object.assign(I18N.en, {
-      statusLive: 'Solution loop · Live',
-      statusMid: 'Panel operations',
-      statusLast: 'Owned panel · respondent records · member finance',
-      statusRight: '',
-      statusByFit: {
-        panel: { statusLive: 'Solution loop · Live', statusMid: 'Panel operations', statusLast: 'Owned panel · respondent records · member finance', statusRight: '' },
-        network: { statusLive: 'Solution loop · Live', statusMid: '供应商网络运营版', statusLast: 'Supplier allocation · API receiving · settlement records', statusRight: '' },
-        enterprise: { statusLive: 'Solution loop · Live', statusMid: 'Enterprise', statusLast: 'Multi-entity governance · audit logs · finance visibility', statusRight: '' }
-      },
-      heroSub: 'Choose the Sampora layer that matches how your team operates online sample delivery: owned panel operations, external sample supply operations, or enterprise sample operations across clients, suppliers, API, review, and settlement.',
-      compareLead: 'Use this matrix to choose by operating responsibility: owned respondent operations, external supplier coordination, or full multi-entity sample operations.',
-      solutionTopologyModalTitle: 'Solution topology',
-      closeTopologyLabel: 'Close topology'
-    });
-    Object.assign(I18N.zh, {
-      statusLive: '方案闭环 · 实时',
-      statusMid: 'Panel 运营',
-      statusLast: '自有样本库 · 受访者记录 · 会员财务',
-      statusRight: '',
-      statusByFit: {
-        panel: { statusLive: '方案闭环 · 实时', statusMid: '样本库运营', statusLast: '自有样本库 · 受访者记录 · 会员财务', statusRight: '' },
-        network: { statusLive: '方案闭环 · 实时', statusMid: '供应商网络运营版', statusLast: '供应商分配 · API 接收 · 结算记录', statusRight: '' },
-        enterprise: { statusLive: '方案闭环 · 实时', statusMid: 'Enterprise', statusLast: '多实体治理 · 审计日志 · 财务可见性', statusRight: '' }
-      },
-      heroSub: '根据团队真实运营方式选择 Sampora 层级：自有样本库运营、外部样本供应运营，或覆盖客户、供应商、API、审核与结算的企业级样本运营。',
-      compareLead: '按真实运营责任判断版本：自有样本库运营、外部供应商协同，或完整的多实体样本运营。',
-      solutionTopologyModalTitle: '解决方案拓扑',
-      closeTopologyLabel: '关闭拓扑'
-    });
-    Object.assign(I18N.hi, {
-      statusLive: 'समाधान लूप · लाइव',
-      statusMid: 'पैनल संचालन',
-      statusLast: 'स्वामित्व पैनल · उत्तरदाता रिकॉर्ड · सदस्य वित्त',
-      statusRight: '',
-      statusByFit: {
-        panel: { statusLive: 'समाधान लूप · लाइव', statusMid: 'पैनल संचालन', statusLast: 'स्वामित्व पैनल · उत्तरदाता रिकॉर्ड · सदस्य वित्त', statusRight: '' },
-        network: { statusLive: 'समाधान लूप · लाइव', statusMid: '供应商网络运营版', statusLast: 'सप्लायर आवंटन · API प्राप्ति · सेटलमेंट रिकॉर्ड', statusRight: '' },
-        enterprise: { statusLive: 'समाधान लूप · लाइव', statusMid: 'Enterprise', statusLast: 'बहु-इकाई गवर्नेंस · ऑडिट लॉग · वित्त दृश्यता', statusRight: '' }
-      },
-      heroSub: 'अपनी टीम की ऑनलाइन सैंपल डिलीवरी जरूरतों के अनुसार Sampora लेयर चुनें: स्वामित्व पैनल संचालन, बाहरी सैंपल सप्लाई संचालन, या क्लाइंट, सप्लायर, API, समीक्षा और निपटान को जोड़ने वाली एंटरप्राइज सैंपल संचालन लेयर।',
-      compareLead: 'इस मैट्रिक्स को संचालन जिम्मेदारी के आधार पर चुनें: स्वामित्व पैनल संचालन, बाहरी सप्लायर समन्वय, या पूर्ण बहु-इकाई सैंपल संचालन।',
-      solutionTopologyModalTitle: 'समाधान टोपोलॉजी',
-      closeTopologyLabel: 'टोपोलॉजी बंद करें'
-    });
-    Object.assign(HERO_UI.en, {
-      nodePanel: 'PANEL',
-      nodePanelRole: 'owned panel operations',
-      nodeNetwork: 'SUPPLIER NETWORK',
-      nodeNetworkRole: 'external sample supply',
-      nodeEnterprise: 'ENTERPRISE',
-      nodeEnterpriseRole: 'multi-entity operations',
-      ticker: {
-        panel: 'Respondent records visible · panel operations active · payout records ready',
-        network: 'Supplier allocation updated · API/workspace receiving active · settlement records ready',
-        enterprise: 'Client + supplier + panel governance active · operation logs ready · rollout traceable'
-      }
-    });
-    Object.assign(HERO_UI.zh, {
-      nodePanel: 'PANEL',
-      nodePanelRole: '自有样本库运营',
-      nodeNetwork: '供应商网络',
-      nodeNetworkRole: '外部样本供应',
-      nodeEnterprise: 'Enterprise',
-      nodeEnterpriseRole: '多实体运营 + 结算',
-      ticker: {
-        panel: '受访者记录可见 · Panel 运营已启用 · 激励记录就绪',
-        network: '供应商分配已更新 · API/工作台接收已启动 · 结算记录就绪',
-        enterprise: '客户 + 供应商 + Panel 治理已启动 · 操作日志就绪 · 上线路径可追踪'
-      }
-    });
-    Object.assign(HERO_UI.hi, {
-      nodePanel: 'PANEL',
-      nodePanelRole: 'स्वामित्व Panel संचालन',
-      nodeNetwork: '供应商网络',
-      nodeNetworkRole: 'बाहरी sample supply',
-      nodeEnterprise: 'Enterprise',
-      nodeEnterpriseRole: 'multi-entity operations',
-      ticker: {
-        panel: 'Respondent records दिख रहे हैं · Panel operations सक्रिय · payout records तैयार',
-        network: 'Supplier allocation updated · API/workspace receiving active · settlement records ready',
-        enterprise: 'Client + supplier + Panel governance active · operation logs ready · rollout traceable'
-      }
-    });
-    DATA.en.solutions = [
-      { id: 'panel', cn: 'OWNED PANEL OPERATIONS', title: 'Panel', short: 'Owned panel operations layer', badge: 'FOR PANEL TEAMS', text: 'For teams operating their own respondent base, member records, participation history, incentives, wallets, and panel-side delivery workflows.', lis: ['Member groups, levels, and survey records', 'Owned respondent delivery and participation history', 'Member incentives, wallet records, and finance logs', 'Optional Partner Network exposure for sample demand'], choose: 'Choose Panel' },
-      { id: 'network', cn: 'EXTERNAL SAMPLE SUPPLY', title: 'Supplier Network', short: 'External supplier coordination layer', badge: 'FOR SUPPLIER OPERATIONS TEAMS', text: 'For teams coordinating external sample suppliers, sample channels, API-connected suppliers, allocation rules, supplier-specific pricing, review records, and settlement evidence.', lis: ['Project intake and supplier assignment', 'Block unsuitable suppliers and set supplier-specific pricing', 'API or workspace-based project receiving for connected suppliers', 'Supplier bills, settlement records, and finance logs'], choose: 'Choose Supplier Network' },
-      { id: 'enterprise', cn: 'MULTI-ENTITY OPERATIONS', title: 'Enterprise', short: 'Enterprise sample operations layer', badge: 'FOR MULTI-TEAM OPERATIONS', text: 'For teams operating clients, suppliers, owned panels, API delivery, review records, permissions, finance, and Partner Network workflows in one Sampora layer.', lis: ['Client, supplier, and panel operations in one workspace', 'Role-based permissions, organization setup, and governance controls', 'API intake, delivery callbacks, review evidence, and operation logs', 'Client invoices, supplier bills, member finance, and multi-party settlement'], choose: 'Choose Enterprise' }
-    ];
-    DATA.zh.solutions = [
-      { id: 'panel', cn: '自有样本库运营', title: '样本库运营版', short: '自有样本库运营层', badge: '适合样本库团队', text: '适合运营自有受访者资产、会员记录、参与历史、激励、钱包和样本库侧交付流程的团队。', lis: ['会员分组、等级和问卷记录', '自有受访者交付与参与历史', '会员激励、钱包记录和财务日志', '可选接入合作网络获得样本需求'], choose: '选择样本库运营版' },
-      { id: 'network', cn: '外部样本供应运营', title: '供应商网络运营版', short: '外部供应商协同层', badge: '适合供应商运营团队', text: '适合协同外部样本供应商、样本渠道、API 对接供应商、分配规则、供应商级定价、审核记录和结算证据的团队。', lis: ['项目接收与供应商分配', '屏蔽不合适供应商并设置供应商级定价', '通过 API 或工作台接收已对接供应商项目', '供应商账单、结算记录和财务日志'], choose: '选择供应商网络运营版' },
-      { id: 'enterprise', cn: '多实体样本运营', title: '企业版', short: '企业级样本运营层', badge: '适合多团队运营', text: '适合在一个 Sampora 层中运营客户、供应商、自有样本库、API 交付、审核记录、权限、财务和合作网络流程的团队。', lis: ['客户、供应商和样本库在一个工作台运营', '基于角色的权限、组织配置和治理控制', 'API 接收、交付回调、审核证据和操作日志', '客户发票、供应商账单、会员财务和多方结算'], choose: '选择企业版' }
-    ];
-    DATA.hi.solutions = [
-      { id: 'panel', cn: 'स्वामित्व Panel संचालन', title: 'Panel', short: 'स्वामित्व Panel संचालन लेयर', badge: 'Panel टीमों के लिए', text: 'उन टीमों के लिए जो अपना उत्तरदाता आधार, सदस्य रिकॉर्ड, भागीदारी इतिहास, प्रोत्साहन, वॉलेट और Panel-पक्ष डिलीवरी वर्कफ्लो चलाती हैं।', lis: ['सदस्य समूह, स्तर और सर्वे रिकॉर्ड', 'स्वामित्व उत्तरदाता डिलीवरी और भागीदारी इतिहास', 'सदस्य प्रोत्साहन, वॉलेट रिकॉर्ड और फाइनेंस लॉग', 'सैंपल मांग के लिए वैकल्पिक पार्टनर नेटवर्क दृश्यता'], choose: 'Panel चुनें' },
-      { id: 'network', cn: 'बाहरी सैंपल सप्लाई संचालन', title: 'सप्लायर नेटवर्क ऑपरेशंस संस्करण', short: 'बाहरी सप्लायर समन्वय लेयर', badge: 'सप्लायर संचालन टीमों के लिए', text: 'उन टीमों के लिए जो बाहरी सैंपल सप्लायर, सैंपल चैनल, API से जुड़े सप्लायर, आवंटन नियम, सप्लायर-विशिष्ट मूल्य, समीक्षा रिकॉर्ड और सेटलमेंट प्रमाण संभालती हैं।', lis: ['प्रोजेक्ट प्राप्ति और सप्लायर असाइनमेंट', 'अनुपयुक्त सप्लायर ब्लॉक करें और सप्लायर-विशिष्ट मूल्य तय करें', 'जुड़े सप्लायरों के लिए API या वर्कस्पेस आधारित प्रोजेक्ट प्राप्ति', 'सप्लायर बिल, सेटलमेंट रिकॉर्ड और फाइनेंस लॉग'], choose: 'सप्लायर नेटवर्क ऑपरेशंस संस्करण चुनें' },
-      { id: 'enterprise', cn: 'बहु-इकाई सैंपल संचालन', title: 'एंटरप्राइज संस्करण', short: 'एंटरप्राइज सैंपल संचालन लेयर', badge: 'बहु-टीम संचालन के लिए', text: 'उन टीमों के लिए जो क्लाइंट, सप्लायर, स्वामित्व Panel, API डिलीवरी, समीक्षा रिकॉर्ड, अनुमतियां, फाइनेंस और पार्टनर नेटवर्क वर्कफ्लो को एक Sampora लेयर में चलाती हैं।', lis: ['क्लाइंट, सप्लायर और Panel संचालन एक वर्कस्पेस में', 'भूमिका-आधारित अनुमतियां, संगठन सेटअप और गवर्नेंस नियंत्रण', 'API प्राप्ति, डिलीवरी कॉलबैक, समीक्षा प्रमाण और ऑपरेशन लॉग', 'क्लाइंट इनवॉइस, सप्लायर बिल, सदस्य फाइनेंस और बहु-पक्षीय सेटलमेंट'], choose: 'एंटरप्राइज संस्करण चुनें' }
-    ];
-    DATA.en.fit = [
-      ['panel', '01', 'I operate an owned Panel', 'Respondent records, member groups, participation history, incentive wallets, and finance logs.'],
-      ['network', '02', 'I coordinate external sample suppliers', 'Project intake, supplier allocation, API/workspace receiving, review records, and settlement.'],
-      ['enterprise', '03', 'I manage clients, suppliers, Panel, and API together', 'Clients + suppliers + Panel + API + finance visibility + permissions + Partner Network.']
-    ];
-    DATA.zh.fit = [
-      ['panel', '01', '我运营自有样本库', '受访者记录、会员分组、参与历史、激励钱包和财务日志。'],
-      ['network', '02', '我协同外部样本供应商', '项目接收、供应商分配、API/工作台接收、审核记录和结算。'],
-      ['enterprise', '03', '我同时管理客户、供应商、样本库和 API', '客户 + 供应商 + 样本库 + API + 财务可见性 + 权限 + 合作网络。']
-    ];
-    DATA.hi.fit = [
-      ['panel', '01', 'मैं स्वामित्व Panel चलाता हूं', 'उत्तरदाता रिकॉर्ड, सदस्य समूह, भागीदारी इतिहास, प्रोत्साहन वॉलेट और फाइनेंस लॉग।'],
-      ['network', '02', 'मैं बाहरी सैंपल सप्लायरों का समन्वय करता हूं', 'प्रोजेक्ट प्राप्ति, सप्लायर आवंटन, API/वर्कस्पेस प्राप्ति, समीक्षा रिकॉर्ड और सेटलमेंट।'],
-      ['enterprise', '03', 'मैं क्लाइंट, सप्लायर, Panel और API साथ संभालता हूं', 'क्लाइंट + सप्लायर + Panel + API + फाइनेंस दृश्यता + अनुमतियां + पार्टनर नेटवर्क।']
-    ];
-    DATA.en.rec = {
-      panel: ['Panel', 'Best fit for teams operating their own respondent base, member records, participation history, incentives, wallets, and panel-side delivery workflows.', 'Owned panel', 'Members', 'Finance'],
-      network: ['Supplier Network', 'Best fit for teams coordinating external sample supply operations, API/workspace receiving, supplier allocation, review records, and settlement evidence.', 'Allocation', 'API handoff', 'Review', 'Settlement'],
-      enterprise: ['Enterprise', 'Best fit for multi-entity teams managing clients, suppliers, Panel, API, governance controls, audit logs, and finance visibility in one layer.', 'Governance', 'Audit', 'Permissions', 'Finance']
-    };
-    DATA.zh.rec = {
-      panel: ['样本库运营版', '适合运营自有受访者资产、会员记录、参与历史、激励、钱包和样本库侧交付流程的团队。', '自有样本库', '会员', '财务'],
-      network: ['供应商网络运营版', '适合协同外部样本供应运营、API/工作台接收、供应商分配、审核记录和结算证据的团队。', '分配', 'API 交接', '审核', '结算'],
-      enterprise: ['企业版', '适合在一个层中管理客户、供应商、样本库、API、治理控制、审计日志和财务可见性的多实体团队。', '治理', '审计', '权限', '财务']
-    };
-    DATA.hi.rec = {
-      panel: ['Panel', 'अपना उत्तरदाता आधार, सदस्य रिकॉर्ड, भागीदारी इतिहास, प्रोत्साहन, वॉलेट और Panel-पक्ष डिलीवरी वर्कफ्लो चलाने वाली टीमों के लिए उपयुक्त।', 'स्वामित्व Panel', 'सदस्य', 'वित्त'],
-      network: ['सप्लायर नेटवर्क ऑपरेशंस संस्करण', 'बाहरी सैंपल सप्लाई संचालन, API/वर्कस्पेस प्राप्ति, सप्लायर आवंटन, समीक्षा रिकॉर्ड और सेटलमेंट प्रमाण संभालने वाली टीमों के लिए उपयुक्त।', 'आवंटन', 'API हैंडऑफ', 'समीक्षा', 'सेटलमेंट'],
-      enterprise: ['एंटरप्राइज संस्करण', 'क्लाइंट, सप्लायर, Panel, API, गवर्नेंस नियंत्रण, ऑडिट लॉग और फाइनेंस दृश्यता को एक लेयर में संभालने वाली बहु-इकाई टीमों के लिए उपयुक्त।', 'गवर्नेंस', 'ऑडिट', 'अनुमतियां', 'फाइनेंस']
-    };
-    DATA.en.rows = [
-      ['Primary operator', 'Owned panel team', 'External sample supply team', 'Multi-entity operations team'],
-      ['Main asset controlled', 'Respondent records and member finance', 'External suppliers and API receiving', 'Clients + suppliers + panels'],
-      ['Project receiving path', 'Owned respondent delivery', 'Client project intake', 'Client + API/workspace intake'],
-      ['Supplier allocation & pricing', 'Limited', 'Core', 'Advanced'],
-      ['Panel / member operations', 'Core', 'Partial', 'Core'],
-      ['API / workspace receiving', 'Optional', 'Core', 'Core'],
-      ['Review and traceability', 'Survey records', 'Callback + review records', 'Audit logs + governance'],
-      ['Finance loop', 'Member bills / wallet', 'Supplier bills / settlement', 'Client + supplier + member settlement'],
-      ['Partner Network', 'Find buyers', 'Find suppliers', 'Find buyers and suppliers'],
-      ['Recommended next action', 'Review resources or start a Panel evaluation', 'Book a demo for Supplier Network operations', 'Talk to sales for Enterprise rollout']
-    ];
-    DATA.zh.rows = [
-      ['主要运营方', '自有样本库团队', '外部样本供应团队', '多实体运营团队'],
-      ['主要控制资产', '受访者记录与会员财务', '外部供应商与 API 接收', '客户 + 供应商 + 样本库'],
-      ['项目接收路径', '自有受访者交付', '客户项目接收', '客户 + API/工作台接收'],
-      ['供应商分配与定价', '有限', '核心', '高级'],
-      ['样本库 / 会员运营', '核心', '部分', '核心'],
-      ['API / 工作台接收', '可选', '核心', '核心'],
-      ['审核与可追踪', '问卷记录', '回调 + 审核记录', '审计日志 + 治理'],
-      ['财务闭环', '会员账单 / 钱包', '供应商账单 / 结算', '客户 + 供应商 + 会员结算'],
-      ['合作网络', '寻找买方', '寻找供应商', '寻找买方和供应商'],
-      ['推荐下一步', '查看资源或评估样本库运营版', '预约供应商网络运营版演示', '联系销售沟通企业版上线']
-    ];
-    DATA.hi.rows = [
-      ['मुख्य ऑपरेटर', 'स्वामित्व Panel टीम', 'बाहरी सैंपल सप्लाई टीम', 'बहु-इकाई संचालन टीम'],
-      ['मुख्य नियंत्रित संपत्ति', 'उत्तरदाता रिकॉर्ड और सदस्य फाइनेंस', 'बाहरी सप्लायर और API प्राप्ति', 'क्लाइंट + सप्लायर + Panel'],
-      ['प्रोजेक्ट प्राप्ति पथ', 'स्वामित्व उत्तरदाता डिलीवरी', 'क्लाइंट प्रोजेक्ट प्राप्ति', 'क्लाइंट + API/वर्कस्पेस प्राप्ति'],
-      ['सप्लायर आवंटन और मूल्य', 'सीमित', 'मुख्य', 'उन्नत'],
-      ['Panel / सदस्य संचालन', 'मुख्य', 'आंशिक', 'मुख्य'],
-      ['API / वर्कस्पेस प्राप्ति', 'वैकल्पिक', 'मुख्य', 'मुख्य'],
-      ['समीक्षा और ट्रेसबिलिटी', 'सर्वे रिकॉर्ड', 'कॉलबैक + समीक्षा रिकॉर्ड', 'ऑडिट लॉग + गवर्नेंस'],
-      ['फाइनेंस लूप', 'सदस्य बिल / वॉलेट', 'सप्लायर बिल / सेटलमेंट', 'क्लाइंट + सप्लायर + सदस्य सेटलमेंट'],
-      ['पार्टनर नेटवर्क', 'खरीदार खोजें', 'सप्लायर खोजें', 'खरीदार और सप्लायर खोजें'],
-      ['अनुशंसित अगला कदम', 'संसाधन देखें या Panel मूल्यांकन शुरू करें', 'सप्लायर नेटवर्क संचालन के लिए डेमो बुक करें', 'एंटरप्राइज रोलआउट के लिए सेल्स से बात करें']
-    ];
-    TOPO_DETAIL.en.audit.panel = [
-      ['17:42', 'MEM_12', 'respondent records synced'],
-      ['17:38', 'PANEL_04', 'panel delivery connected'],
-      ['17:31', 'BILL_02', 'member finance ready']
-    ];
-    TOPO_DETAIL.zh.audit.panel = [
-      ['17:42', 'MEM_12', '受访者记录已同步'],
-      ['17:38', 'PANEL_04', 'Panel 交付已连接'],
-      ['17:31', 'BILL_02', '会员财务已就绪']
-    ];
-    TOPO_DETAIL.hi.audit.panel = [
-      ['17:42', 'MEM_12', 'respondent records synced'],
-      ['17:38', 'PANEL_04', 'Panel delivery connected'],
-      ['17:31', 'BILL_02', 'member finance ready']
-    ];
-    let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network';
+let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network';
     const $ = s => document.querySelector(s); const $$ = s => document.querySelectorAll(s);
     function setLang(lang) {
       currentLang = I18N[lang] ? lang : 'en';
-      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : currentLang;
+      document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
       try { localStorage.setItem('sampora_lang', currentLang) } catch (e) { }
       $$('[data-i18n]').forEach(el => {
         const v = I18N[currentLang][el.dataset.i18n];
@@ -4390,7 +4005,7 @@ body::before {
     }
     function observeReveals() { if (!('IntersectionObserver' in window)) { return } const obs = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); obs.unobserve(entry.target) } }), { threshold: .12 }); $$('.reveal').forEach(el => { if (!el.classList.contains('in-view')) obs.observe(el) }); }
     function initTopologyModal() { const modal = $('#topologyModal'); const body = $('#topologyModalBody'); const close = modal?.querySelector('.topology-modal__close'); if (!modal || !body || !close) return; const openModal = () => { const source = $('.solution-console'); if (!source) return; const clone = source.cloneNode(true); clone.querySelectorAll('[tabindex]').forEach(el => el.removeAttribute('tabindex')); body.replaceChildren(clone); renderHeroTopology(currentFit); modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('topology-modal-open'); close.focus({ preventScroll: true }); }; const closeModal = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('topology-modal-open'); body.replaceChildren(); }; document.addEventListener('click', e => { if (modal.classList.contains('open')) return; if (e.target.closest('button, a, input, select, textarea, [data-mode]')) return; if (e.target.closest('.solution-console, .console-window, .topo-stage, .topo-svg .node[data-node]')) openModal(); }); close.addEventListener('click', closeModal); modal.addEventListener('click', e => { if (e.target === modal) closeModal(); }); document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); }); }
-    $$('.lang button').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
+    $$('.lang button').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang === 'zh' ? 'zh' : 'en')));
     document.addEventListener('click', e => { const node = e.target.closest('.topo-svg .node[data-node]'); if (node && !e.target.closest('.topology-modal')) { setTopologyFit(node.dataset.node, { userSelectedFit: true }); } });
     document.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.closest && e.target.closest('.topo-svg .node[data-node]')) { e.preventDefault(); const node = e.target.closest('.topo-svg .node[data-node]'); setTopologyFit(node.dataset.node, { userSelectedFit: true }); } });
     $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const target = document.querySelector(a.getAttribute('href')); if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); } }));
@@ -4403,13 +4018,13 @@ body::before {
     }
     syncTopChrome();
     window.addEventListener('scroll', syncTopChrome, { passive: true });
-    initTopologyModal(); let saved = 'en'; try { saved = localStorage.getItem('sampora_lang') || 'en' } catch (e) { } setLang(saved); startTopologyRouteCycle(); startWorkflowRouteCycle();
+    initTopologyModal(); let saved = 'en'; try { const stored = localStorage.getItem('sampora_lang'); saved = stored === 'zh' || stored === 'en' ? stored : 'en' } catch (e) { } setLang(saved); startTopologyRouteCycle(); startWorkflowRouteCycle();
   </script>
 <script>
 (function(){
-  const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们'],hi:['उत्पाद','समाधान','संसाधन','योजनाएँ','हमारे बारे में','संपर्क']};
+  const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们']};
   const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about_sampora_issues_fixed.html','about'],['contact.html','contact']];
-  function lang(){return localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
+  function lang(){const raw=(localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en').toLowerCase();return raw==='zh'?'zh':'en'}
   function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
   if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}
   const nav=document.querySelector('nav.nav, .nav-links');
@@ -4432,15 +4047,13 @@ body::before {
 (function(){
   const copy={
     en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
-    hi:{brandSub:'संचालन कंसोल',footerDesc:'Sampora स्वामित्व वाले सैंपल ऑपरेटरों और सैंपल आपूर्तिकर्ता टीमों के लिए ऑनलाइन नमूना संचालन प्लेटफ़ॉर्म है, जो परियोजना वितरण, सप्लायर आवंटन, समीक्षा रिकॉर्ड, वित्त, जोखिम नियंत्रण और पार्टनर नेटवर्क संचालन को साथ रखता है।',tag1:'नमूना आपूर्ति',tag2:'समीक्षा प्रक्रिया',tag3:'सेटलमेंट लेजर',footerProduct:'उत्पाद',footerPlatformOverview:'प्लेटफ़ॉर्म अवलोकन',navSolutions:'समाधान',navPlans:'योजनाएँ',navContact:'संपर्क',footerResources:'संसाधन',footerResourcesOverview:'संसाधन अवलोकन',footerConfigurationGuide:'कॉन्फ़िगरेशन गाइड',footerOperationManual:'ऑपरेशन मैनुअल',footerRolloutNotes:'रोलआउट नोट्स',footerGetStarted:'शुरू करें',ctaTop:'ट्रायल शुरू करें',ctaDemo:'डेमो बुक करें',footerTalkToSales:'सेल्स से बात करें',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'}
-  };
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'}};
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
-    if(copy[explicitRaw])return explicitRaw;
-    try{const saved=localStorage.getItem('sampora_lang');if(copy[saved])return saved;}catch(e){}
+    if(explicitRaw==='zh')return 'zh';
+    try{const saved=localStorage.getItem('sampora_lang');if(saved==='zh')return 'zh';}catch(e){}
     const raw=(document.documentElement.dataset.lang||document.documentElement.lang||'en').toLowerCase().slice(0,2);
-    return copy[raw]?raw:'en';
+    return raw==='zh'?'zh':'en';
   }
   function apply(explicit){
     const dict=copy[lang(explicit)]||copy.en;
