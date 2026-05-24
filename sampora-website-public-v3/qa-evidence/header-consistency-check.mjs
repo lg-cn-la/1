@@ -36,12 +36,10 @@ const activeByPage = {
 const expectedMobileLabels = {
   en: ['Product', 'Solutions', 'Resources', 'Plans', 'About', 'Contact'],
   zh: ['产品', '解决方案', '资源', '版本方案', '关于', '联系我们'],
-  hi: ['उत्पाद', 'समाधान', 'संसाधन', 'योजनाएँ', 'हमारे बारे में', 'संपर्क'],
 };
 const expectedBrandSub = {
   en: 'Operations console',
   zh: '操作控制台',
-  hi: 'संचालन कंसोल',
 };
 const expectedBrandSubValues = new Set(Object.values(expectedBrandSub));
 
@@ -222,15 +220,15 @@ function extractMobileLabelsFromTranslations(file, html) {
     ['navAboutShort', 'navAbout'],
     ['navContact'],
   ];
-  const langs = ['en', 'zh', 'hi'];
-  const labels = { en: [], zh: [], hi: [] };
+  const langs = ['en', 'zh'];
+  const labels = { en: [], zh: [] };
   for (const keys of keySets) {
     let values = [];
     for (const key of keys) {
       values = extractTranslationValues(html, key);
-      if (values.length >= 3) break;
+      if (values.length >= 2) break;
     }
-    if (values.length < 3) {
+    if (values.length < 2) {
       return null;
     }
     langs.forEach((lang, index) => labels[lang].push(values[index]));
@@ -258,7 +256,7 @@ function collectBrandSubtitleValues(file, html, header) {
   for (const name of ['brandSubLabels', 'brandSub']) {
     const object = extractAssignedObject(file, html, name, name);
     if (object && typeof object === 'object' && !Array.isArray(object)) {
-      for (const lang of ['en', 'zh', 'hi']) {
+      for (const lang of ['en', 'zh']) {
         if (typeof object[lang] === 'string' && object[lang]) values.add(object[lang]);
       }
     }
@@ -276,7 +274,7 @@ function checkBrandSubtitles(file, html, header) {
   }
   for (const value of values) {
     if (!expectedBrandSubValues.has(value)) {
-      fail(`${file}: brand subtitle source value must match About canonical EN/ZH/HI values, found ${JSON.stringify(value)}`);
+      fail(`${file}: brand subtitle source value must match About canonical EN/ZH values, found ${JSON.stringify(value)}`);
     }
   }
 }
@@ -295,10 +293,10 @@ function checkArrayExact(file, label, actual, expected) {
 
 function checkMobileLabels(file, labels) {
   if (!labels) {
-    fail(`${file}: missing EN/ZH/HI mobile label source coverage`);
+    fail(`${file}: missing EN/ZH mobile label source coverage`);
     return;
   }
-  for (const lang of ['en', 'zh', 'hi']) {
+  for (const lang of ['en', 'zh']) {
     if (!Array.isArray(labels[lang])) {
       fail(`${file}: mobile labels missing ${lang}`);
       continue;

@@ -17,8 +17,7 @@
       "questionMarkCount": 0,
       "replacementCharCount": 0,
       "emptyButtonCount": 0,
-      "hasCjk": true,
-      "hasDevanagari": true
+      "hasCjk": true
     },
     "en-doc-ops": {
       "hash": "#doc/ops",
@@ -30,14 +29,13 @@
         "article": false,
         "search": false
       },
-      "docTitle": "Supplier Backend & Survey Station Manual",
+      "docTitle": "Supplier Backend & Survey Execution Site Manual",
       "categoryTitle": "Manual category",
       "heroTitle": "Resources for online sample operations",
       "questionMarkCount": 0,
       "replacementCharCount": 0,
       "emptyButtonCount": 0,
-      "hasCjk": true,
-      "hasDevanagari": true
+      "hasCjk": true
     },
     "en-category-ops-station": {
       "hash": "#category/ops-station",
@@ -50,13 +48,12 @@
         "search": false
       },
       "docTitle": "Configuration Guide",
-      "categoryTitle": "Logs and station",
+      "categoryTitle": "Logs and execution site",
       "heroTitle": "Resources for online sample operations",
       "questionMarkCount": 0,
       "replacementCharCount": 0,
       "emptyButtonCount": 0,
-      "hasCjk": true,
-      "hasDevanagari": true
+      "hasCjk": true
     },
     "zh-doc-config": {
       "hash": "#doc/config",
@@ -74,27 +71,7 @@
       "questionMarkCount": 0,
       "replacementCharCount": 0,
       "emptyButtonCount": 0,
-      "hasCjk": true,
-      "hasDevanagari": true
-    },
-    "hi-doc-config": {
-      "hash": "#doc/config",
-      "htmlLang": "hi",
-      "visibleViews": {
-        "home": false,
-        "doc": true,
-        "category": false,
-        "article": false,
-        "search": false
-      },
-      "docTitle": "कॉन्फिगरेशन गाइड",
-      "categoryTitle": "Manual category",
-      "heroTitle": "ऑनलाइन सैंपल संचालन के संसाधन",
-      "questionMarkCount": 0,
-      "replacementCharCount": 0,
-      "emptyButtonCount": 0,
-      "hasCjk": true,
-      "hasDevanagari": true
+      "hasCjk": true
     }
   }
 }

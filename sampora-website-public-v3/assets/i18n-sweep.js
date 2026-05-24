@@ -1,6 +1,6 @@
 /* Sampora language coordinator: keeps language state in sync without rewriting page copy. */
 (function(){
-  const LANGS = ['en', 'zh', 'hi'];
+  const LANGS = ['en', 'zh'];
   const STORAGE_KEY = 'sampora_lang';
   const LANGUAGE_CONTROLS = '.lang button, .lang-btn, button[data-lang], a[data-lang], [role="button"][data-lang]';
 
@@ -11,14 +11,15 @@
   function normalizeLang(lang){
     const value = String(lang || '').toLowerCase();
     if (value.startsWith('zh')) return 'zh';
-    if (value.startsWith('hi')) return 'hi';
     return isSupported(value) ? value : 'en';
   }
 
   function readSavedLang(){
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return isSupported(saved) ? saved : '';
+      if (isSupported(saved)) return saved;
+      if (saved) localStorage.removeItem(STORAGE_KEY);
+      return '';
     } catch(e) {
       return '';
     }
@@ -60,7 +61,7 @@
     const lang = normalizeLang(nextLang || currentLang());
     const previous = normalizeLang(document.body && document.body.dataset ? document.body.dataset.lang : document.documentElement.lang);
 
-    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     if (document.body) document.body.dataset.lang = lang;
     persistLang(lang);
     syncControls(lang);

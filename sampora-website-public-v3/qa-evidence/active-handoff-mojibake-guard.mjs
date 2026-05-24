@@ -27,7 +27,7 @@ const activeHandoffExtraPatterns = [
   { label: 'unlabeled old dynamic-reference marker', re: rx(0x9354, 0x3126, 0x6665) },
   { label: 'unlabeled old Chinese trigger marker', re: new RegExp(`${chars(0x934f, 0x581f, 0x5bdc)}|${chars(0x93ba, 0x30e6, 0x589c)}|${chars(0x7455, 0x4f7d, 0x70e6)}`, 'g') },
   { label: 'unlabeled old legal-name marker', re: rx(0x7039, 0x590a, 0x7a98, 0x942a) },
-  { label: 'unlabeled old Hindi mojibake marker', re: rx(0x5576) },
+  { label: 'unlabeled old Indic-script mojibake marker', re: rx(0x5576) },
 ];
 
 function lineOf(text, index) {

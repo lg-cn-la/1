@@ -27,19 +27,6 @@ const RESOURCE_UI = {
     branches: '手册',
     back: '返回分类视图',
     footer: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd. | 安徽省嘉禹企业服务有限公司'
-  },
-  hi: {
-    brand: 'Online Sample Operations Platform',
-    demo: 'View manuals',
-    search: 'Search manuals',
-    searchTitle: 'Search manuals',
-    no: 'No manuals found',
-    quick: 'Quick start',
-    screenshotsTitle: 'Screenshots',
-    cat: 'Categories',
-    branches: 'Manuals',
-    back: 'Back to category view',
-    footer: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd. | 安徽省嘉禹企业服务有限公司'
   }
 };
 
@@ -49,7 +36,7 @@ const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 let lang = (() => {
   try {
     const v = localStorage.getItem('sampora_lang') || 'en';
-    return UI && UI[v] ? v : 'en';
+    return v === 'zh' || v === 'en' ? v : 'en';
   } catch (e) {
     return 'en';
   }
@@ -77,7 +64,6 @@ const damagedText = (v, targetLang = '') => {
   if (/[鍦鎵鏌瀹婧閰惧湴弸櫙朓]/.test(t)) return true;
   if (/銆|€/.test(t)) return true;
   if (targetLang === 'zh') return !/[\u3400-\u9FFF]/.test(t);
-  if (targetLang === 'hi' && /[\u3400-\u9FFF]/.test(t.replace(/安徽省嘉禹企业服务有限公司/g, ''))) return true;
   return false;
 };
 const clean = (v, targetLang = '') => damagedText(v, targetLang) ? '' : v;
@@ -121,17 +107,6 @@ const ROLLOUT_NOTES = {
       ['03', '管理入口', '上线前建立组织、部门、员工、供应商和执行站点管理入口。'],
       ['04', '上线清单', '正式上线前检查登录、项目接收、供应商分配、回调、审核、结算和导出权限。']
     ]
-  },
-  hi: {
-    badge: 'क्षेत्रीय रोलआउट',
-    title: 'रोलआउट नोट्स',
-    desc: 'Sampora launch से पहले भूमिकाएं, अनुमतियां, व्यवस्थापक प्रविष्टियां और लॉन्च जांच-सूची तैयार करें।',
-    items: [
-      ['01', 'लॉन्च तैयारी', 'लॉन्च से पहले प्रोजेक्ट देश, सैंपल स्रोत, डोमेन, सूचना मार्ग और सेटलमेंट नियम पुष्टि करें।'],
-      ['02', 'भूमिकाएं और अनुमतियां', 'टेनेंट व्यवस्थापक, संचालन, फाइनेंस, सप्लायर और समीक्षा भूमिकाओं को न्यूनतम अनुमतियों के साथ दें।'],
-      ['03', 'व्यवस्थापक प्रविष्टियां', 'संगठन, विभाग, कर्मचारी, सप्लायर और सर्वे निष्पादन साइट के व्यवस्थापक रिकॉर्ड लॉन्च से पहले बनाएं।'],
-      ['04', 'लॉन्च जांच-सूची', 'लॉगिन, Project Intake, Supplier Allocation, कॉलबैक, समीक्षा, सेटलमेंट और export controls को go-live से पहले जांचें।']
-    ]
   }
 };
 
@@ -151,7 +126,7 @@ function removeLegacyAnchorSpans() {
 }
 
 function i18n() {
-  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
   $$('[data-ui]').forEach((e) => { e.innerHTML = u(e.dataset.ui); });
   $$('[data-ui-title]').forEach((e) => { e.setAttribute('title', u(e.dataset.uiTitle)); });
   $$('[data-ui-aria-label]').forEach((e) => { e.setAttribute('aria-label', u(e.dataset.uiAriaLabel)); });
@@ -199,7 +174,7 @@ function renderRolloutNotes() {
   }
   node.className = 'rollout-notes anchor-target';
   node.setAttribute('aria-labelledby', 'rolloutNotesTitle');
-  const copy = ROLLOUT_NOTES[lang] || ROLLOUT_NOTES.en;
+  const copy = ROLLOUT_NOTES[lang === 'zh' ? 'zh' : 'en'] || ROLLOUT_NOTES.en;
   node.innerHTML = '<div class="k">' + copy.badge + '</div><h2 id="rolloutNotesTitle">' + copy.title + '</h2><p>' + copy.desc + '</p><div class="rollout-grid">' + copy.items.map((item) => '<article><span>' + item[0] + '</span><h3>' + item[1] + '</h3><p>' + item[2] + '</p></article>').join('') + '</div>';
 }
 
@@ -367,7 +342,7 @@ function init() {
 
 $$('.lang button').forEach((b) => {
   b.onclick = () => {
-    lang = b.dataset.lang;
+    lang = b.dataset.lang === 'zh' ? 'zh' : 'en';
     try { localStorage.setItem('sampora_lang', lang); } catch (e) {}
     init();
   };

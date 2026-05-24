@@ -1,6 +1,7 @@
 ﻿import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -15,6 +16,15 @@ const fail = (message) => {
   console.log(`FAIL ${message}`);
 };
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
+
+function runNestedCheck(label, scriptRel) {
+  const result = spawnSync(process.execPath, [path.join(root, scriptRel)], { encoding: 'utf8' });
+  if (result.status !== 0) {
+    fail(`${label}: ${(result.stdout + result.stderr).trim()}`);
+  }
+}
+
+runNestedCheck('language layer structure guard', 'qa-evidence/language-layer-structure-check.mjs');
 
 const redirectPolicyDocs = [
   ['README.md', path.join(root, 'README.md')],
@@ -82,6 +92,10 @@ for (const file of chineseLegacyRedirectPages) {
 }
 
 for (const [label, absolute] of redirectPolicyDocs) {
+  if (!fs.existsSync(absolute)) {
+    console.log(`SKIP ${label}: not present in this standalone package`);
+    continue;
+  }
   const content = fs.readFileSync(absolute, 'utf8');
   for (const pattern of oldRedirectPolicyPatterns) {
     if (pattern.test(content)) fail(`${label}: stale physical Chinese redirect policy ${pattern}`);

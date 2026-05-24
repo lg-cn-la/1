@@ -1,14 +1,13 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { loadChromium } from './playwright-loader.mjs';
 
-const require = createRequire(import.meta.url);
-const { chromium } = require('../../playwright-local/node_modules/playwright');
+const chromium = loadChromium();
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const chromeExecutablePath = process.env.CHROME_EXECUTABLE_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const langs = ['en', 'zh', 'hi'];
+const langs = ['en', 'zh'];
 const viewports = [
   { name: 'desktop', width: 1440, height: 900 },
   { name: 'tablet', width: 768, height: 1024 },

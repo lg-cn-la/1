@@ -7,7 +7,7 @@ const context = { window: {} };
 
 vm.runInNewContext(fs.readFileSync(dataPath, 'utf8'), context, { filename: dataPath.pathname });
 
-const languages = new Set(['en', 'zh', 'hi']);
+const languages = new Set(['en', 'zh']);
 const failures = [];
 
 function hasLanguageKeys(value) {
@@ -42,10 +42,6 @@ const appSource = fs.readFileSync(appPath, 'utf8');
 if (/UI\.zh|\?\.zh/.test(appSource)) {
   failures.push('app.js fallback chain still references zh fallback after en');
 }
-if (!context.window.SAMPORA_UI.hi.hero || !/[\u0900-\u097F]/.test(context.window.SAMPORA_UI.hi.hero)) {
-  failures.push('Hindi UI should retain Devanagari text for the hero');
-}
-
 if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);

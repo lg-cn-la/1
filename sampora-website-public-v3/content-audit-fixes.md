@@ -36,7 +36,7 @@ Chinese redirect HTML files are included. Server/CDN rewrites are still recommen
 
 - Content terminology: current copy uses sample operations, panel operations, supplier network, partner network, and settlement language rather than generic survey or traffic positioning.
 - Legal/footer: company wording is unified and no mainland filing display is used for this stage.
-- Language/i18n: the global sweep is constrained by static checks, and Resource Manuals language smoke/browser checks confirm non-empty EN/ZH/HI surfaces without question-mark fallback output.
+- Language/i18n: the global sweep is constrained by static checks, and Resource Manuals language smoke/browser checks confirm non-empty EN/ZH surfaces without question-mark fallback output.
 - CTA flow: conversion paths lead to `contact.html?intent=...#contact-form` using supported intent values.
 - Resource Manuals: module-specific manual data and fallback behavior are covered by syntax, smoke, and browser language checks.
 - Meta/canonical: canonical URLs are present and production-domain confirmation is documented.

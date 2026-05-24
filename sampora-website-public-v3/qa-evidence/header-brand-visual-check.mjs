@@ -1,9 +1,8 @@
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { loadChromium } from './playwright-loader.mjs';
 
-const require = createRequire(import.meta.url);
-const { chromium } = require('../../playwright-local/node_modules/playwright');
+const chromium = loadChromium();
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const referencePage = 'about_sampora_issues_fixed.html';
@@ -15,7 +14,7 @@ const targetPages = [
   'contact.html',
   'resource-manuals.html',
 ];
-const langs = ['en', 'zh', 'hi'];
+const langs = ['en', 'zh'];
 const chromeExecutablePath = process.env.CHROME_EXECUTABLE_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 
 const failures = [];
@@ -221,7 +220,7 @@ for (const lang of langs) {
 await browser.close();
 
 if (!failures.length) {
-  console.log(`PASS header brand visual check: ${targetPages.length} target pages match ${referencePage} brand block at 1440x900 and keep mobile brand visible at 390x900 across EN/ZH/HI`);
+  console.log(`PASS header brand visual check: ${targetPages.length} target pages match ${referencePage} brand block at 1440x900 and keep mobile brand visible at 390x900 across EN/ZH`);
 }
 
 process.exitCode = failures.length ? 1 : 0;

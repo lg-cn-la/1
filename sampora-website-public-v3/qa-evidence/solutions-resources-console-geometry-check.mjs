@@ -1,13 +1,12 @@
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { loadChromium } from './playwright-loader.mjs';
 
-const require = createRequire(import.meta.url);
-const { chromium } = require('../../playwright-local/node_modules/playwright');
+const chromium = loadChromium();
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const chromeExecutablePath = process.env.CHROME_EXECUTABLE_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const langs = (process.env.SAMPORA_GEOMETRY_LANGS || 'en,zh,hi').split(',').map(lang => lang.trim()).filter(Boolean);
+const langs = (process.env.SAMPORA_GEOMETRY_LANGS || 'en,zh').split(',').map(lang => lang.trim()).filter(Boolean);
 const viewports = [
   { name: 'desktop', width: 1440, height: 900 },
   { name: 'mobile', width: 390, height: 900 },

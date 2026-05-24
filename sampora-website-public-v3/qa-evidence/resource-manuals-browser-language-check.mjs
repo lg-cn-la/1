@@ -1,10 +1,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { loadChromium } from './playwright-loader.mjs';
 
-const require = createRequire(import.meta.url);
-const { chromium } = require('../../playwright-local/node_modules/playwright');
+const chromium = loadChromium();
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'qa-evidence');
@@ -14,7 +13,6 @@ const routes = [
   ['en-doc-ops', '#doc/ops', 'en'],
   ['en-category-ops-station', '#category/ops-station', 'en'],
   ['zh-doc-config', '#doc/config', 'zh'],
-  ['hi-doc-config', '#doc/config', 'hi'],
 ];
 const failures = [];
 const evidence = {};
@@ -47,7 +45,6 @@ for (const [key, hash, lang] of routes) {
       replacementCharCount: (text.match(/\uFFFD/g) || []).length,
       emptyButtonCount: buttons.filter((label) => !label).length,
       hasCjk: /[\u3400-\u9FFF]/.test(text),
-      hasDevanagari: /[\u0900-\u097F]/.test(text),
     };
   });
   const item = evidence[key];
@@ -55,8 +52,6 @@ for (const [key, hash, lang] of routes) {
   if (item.replacementCharCount) failures.push(`${key}: rendered replacement character(s)`);
   if (item.emptyButtonCount) failures.push(`${key}: rendered ${item.emptyButtonCount} empty button/link label(s)`);
   if (lang === 'zh' && !item.hasCjk) failures.push(`${key}: missing CJK text`);
-  if (lang === 'hi' && !item.hasDevanagari) failures.push(`${key}: missing Devanagari text`);
-  if (lang === 'hi' && /[\u3400-\u9FFF]/.test(item.docTitle + item.categoryTitle + item.heroTitle)) failures.push(`${key}: sampled title contains Chinese text`);
   await context.close();
 }
 

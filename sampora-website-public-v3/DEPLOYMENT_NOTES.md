@@ -39,16 +39,18 @@ Footer/legal copy should use:
 
 This is the overseas-server stage. Do not add mainland filing display text until the deployment and legal status changes.
 
-## Contact Backend Setup
+## Contact Form Endpoint Policy
 
-The contact form is frontend-ready and currently uses `[BACKEND_CONTACT_ENDPOINT]` as the placeholder in both `action` and `data-endpoint`.
+The static handoff package may keep `[BACKEND_CONTACT_ENDPOINT]` in `contact.html` before production launch. In this placeholder mode, the form stores a pending payload and shows the fallback/pending contact message instead of issuing a backend request.
 
 Before production launch:
 
-- Replace `[BACKEND_CONTACT_ENDPOINT]` with the real backend endpoint.
+- Replace `[BACKEND_CONTACT_ENDPOINT]` with the real backend endpoint in both `action` and `data-endpoint`.
 - Confirm the backend accepts the visible fields `name`, `email`, `company`, `role`, `business_type`, and `message`.
 - Confirm the backend accepts hidden context fields `intent`, `source_page`, `source_section`, `plan`, and `lang`.
-- Verify a deployed contact submission end to end after the endpoint is configured.
+- Rerun browser QA in live endpoint mode and confirm the contact form issues a POST request and handles success/failure responses correctly.
+
+Do not disable the form in the static handoff package only because the production endpoint is not configured yet.
 
 ## QA Evidence
 

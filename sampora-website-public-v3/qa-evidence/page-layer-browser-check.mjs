@@ -1,10 +1,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { loadChromium } from './playwright-loader.mjs';
 
-const require = createRequire(import.meta.url);
-const { chromium } = require('../../playwright-local/node_modules/playwright');
+const chromium = loadChromium();
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'qa-evidence');
@@ -338,17 +337,41 @@ evidence.contact.initial = await page.evaluate(() => {
 });
 if (evidence.contact.initial.submitText !== 'Submit request') pushFailure(`contact submit text is not Submit request: ${evidence.contact.initial.submitText}`);
 if (evidence.contact.initial.containsFalseSendInquiry) pushFailure('contact page still contains false "Send inquiry" copy');
-if (evidence.contact.initial.method !== 'post' || evidence.contact.initial.action !== '[BACKEND_CONTACT_ENDPOINT]' || evidence.contact.initial.endpoint !== '[BACKEND_CONTACT_ENDPOINT]') {
-  pushFailure(`contact backend placeholder structure missing: ${JSON.stringify(evidence.contact.initial)}`);
+const initialContactEndpoint = evidence.contact.initial.endpoint || evidence.contact.initial.action || '';
+const placeholderContactMode = !initialContactEndpoint || initialContactEndpoint.includes('[BACKEND_CONTACT_ENDPOINT]');
+const liveContactMode = !placeholderContactMode;
+const validLiveContactEndpoint = /^https?:\/\//i.test(initialContactEndpoint) || initialContactEndpoint.startsWith('/');
+if ((evidence.contact.initial.method || '').toLowerCase() !== 'post') {
+  pushFailure(`contact form method must be post: ${JSON.stringify(evidence.contact.initial)}`);
 }
-if (!evidence.contact.initial.fieldsPresent || !evidence.contact.initial.hiddenFieldsPresent || !evidence.contact.initial.hasPendingStorageCode || !evidence.contact.initial.hasBackendPlaceholderCheck) {
-  pushFailure(`contact backend-ready fields or placeholder behavior missing: ${JSON.stringify(evidence.contact.initial)}`);
+if (liveContactMode && !validLiveContactEndpoint) {
+  pushFailure(`contact live endpoint is not a valid absolute URL or root-relative path: ${JSON.stringify(evidence.contact.initial)}`);
+}
+if (!evidence.contact.initial.fieldsPresent || !evidence.contact.initial.hiddenFieldsPresent || !evidence.contact.initial.hasPendingStorageCode) {
+  pushFailure(`contact backend-ready fields missing: ${JSON.stringify(evidence.contact.initial)}`);
+}
+if (placeholderContactMode && !evidence.contact.initial.hasBackendPlaceholderCheck) {
+  pushFailure(`contact placeholder fallback behavior missing: ${JSON.stringify(evidence.contact.initial)}`);
 }
 const contactRequests = [];
+const expectedLiveEndpointUrl = liveContactMode && validLiveContactEndpoint
+  ? new URL(initialContactEndpoint, fileUrl('contact.html')).href
+  : '';
 page.on('request', request => {
-  if (request.url().includes('[BACKEND_CONTACT_ENDPOINT]')) {
+  const url = request.url();
+  if (placeholderContactMode) {
+    if (url.includes('[BACKEND_CONTACT_ENDPOINT]')) {
+      contactRequests.push({
+        url,
+        method: request.method(),
+        postData: request.postData(),
+      });
+    }
+    return;
+  }
+  if (expectedLiveEndpointUrl && (url === expectedLiveEndpointUrl || url.startsWith(expectedLiveEndpointUrl))) {
     contactRequests.push({
-      url: request.url(),
+      url,
       method: request.method(),
       postData: request.postData(),
     });
@@ -391,11 +414,15 @@ const expectedPending = {
   lang: 'en',
 };
 const pendingMismatches = Object.entries(expectedPending).filter(([key, value]) => evidence.contact.afterSubmit.pendingParams?.[key] !== value);
-if (!evidence.contact.afterSubmit.storedPending || pendingMismatches.length) {
-  pushFailure(`contact submit did not store backend-ready pending payload in sessionStorage: ${JSON.stringify({ pendingMismatches, afterSubmit: evidence.contact.afterSubmit })}`);
+if (placeholderContactMode) {
+  if (!evidence.contact.afterSubmit.storedPending || pendingMismatches.length) {
+    pushFailure(`contact submit did not store backend-ready pending payload in sessionStorage: ${JSON.stringify({ pendingMismatches, afterSubmit: evidence.contact.afterSubmit })}`);
+  }
+  if (!evidence.contact.afterSubmit.toastVisible) pushFailure('contact placeholder submit did not show pending toast');
+  if (evidence.contact.submitRequests.length) pushFailure(`placeholder mode should not issue backend request: ${JSON.stringify(evidence.contact.submitRequests)}`);
+} else if (!evidence.contact.submitRequests.length) {
+  pushFailure('live endpoint mode did not issue any backend request');
 }
-if (!evidence.contact.afterSubmit.toastVisible) pushFailure('contact placeholder submit did not show pending toast');
-if (evidence.contact.submitRequests.length) pushFailure(`contact placeholder submit attempted backend request: ${JSON.stringify(evidence.contact.submitRequests)}`);
 await page.screenshot({ path: path.join(outDir, 'contact-form-1440.png'), fullPage: false });
 evidence.screenshots.push('contact-form-1440.png');
 
@@ -404,7 +431,6 @@ const manualRoutes = [
   ['resource-manuals.html', '#doc/ops', 'en'],
   ['resource-manuals.html', '#category/ops-station', 'en'],
   ['resource-manuals.html', '#doc/config', 'zh'],
-  ['resource-manuals.html', '#doc/config', 'hi'],
 ];
 for (const [file, hash, targetLang] of manualRoutes) {
   await page.setViewportSize({ width: 1440, height: 980 });
@@ -433,7 +459,7 @@ for (const [file, hash, targetLang] of manualRoutes) {
     };
   });
   if (targetLang === 'en' && evidence.resourceManuals[key].visibleViews.home) pushFailure(`resource manuals route did not open target view for ${hash}`);
-  if (['zh', 'hi'].includes(targetLang) && evidence.resourceManuals[key].questionMarkCount > 0) {
+  if (targetLang === 'zh' && evidence.resourceManuals[key].questionMarkCount > 0) {
     pushFailure(`resource manuals ${targetLang} rendered ${evidence.resourceManuals[key].questionMarkCount} question-mark placeholder(s)`);
   }
   const screenshot = `resource-manuals-${key}-1440.png`;
