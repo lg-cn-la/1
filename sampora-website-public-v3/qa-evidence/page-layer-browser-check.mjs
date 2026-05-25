@@ -7,7 +7,7 @@ const chromium = loadChromium();
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'qa-evidence');
-const pages = ['index.html', 'solutions.html', 'resources.html', 'resource-manuals.html', 'plans.html', 'contact.html'];
+const pages = ['index.html', 'solutions.html', 'resources.html', 'resource-manuals.html', 'plans.html', 'contact.html', 'about.html'];
 const widths = [1440, 1536, 1920, 390];
 const desktopWidths = [1440, 1536, 1920];
 const failures = [];
@@ -303,8 +303,9 @@ await page.waitForTimeout(100);
 evidence.contact.initial = await page.evaluate(() => {
   const submit = document.querySelector('#contactForm button[type="submit"]');
   const form = document.querySelector('#contactForm');
+  const feedback = document.querySelector('#contactSubmitFeedback');
   const fields = ['name', 'email', 'company', 'role', 'business_type', 'message'];
-  const hiddenFields = ['intent', 'source_page', 'source_section', 'plan', 'lang'];
+  const hiddenFields = ['intent', 'source_page', 'source_section', 'plan', 'lang', 'landing_page', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign'];
   const fieldDetails = Object.fromEntries(fields.map((name) => {
     const control = form?.querySelector(`#${CSS.escape(name)}[name="${name}"]`) || null;
     return [name, {
@@ -327,6 +328,12 @@ evidence.contact.initial = await page.evaluate(() => {
     method: form?.getAttribute('method') || null,
     action: form?.getAttribute('action') || null,
     endpoint: form?.dataset.endpoint || null,
+    feedback: {
+      present: !!feedback,
+      hidden: feedback?.hidden ?? null,
+      role: feedback?.getAttribute('role') || null,
+      ariaLive: feedback?.getAttribute('aria-live') || null,
+    },
     fieldDetails,
     hiddenFieldDetails,
     fieldsPresent: fields.every((name) => !!fieldDetails[name].present),
@@ -350,6 +357,9 @@ if (liveContactMode && !validLiveContactEndpoint) {
 if (!evidence.contact.initial.fieldsPresent || !evidence.contact.initial.hiddenFieldsPresent || !evidence.contact.initial.hasPendingStorageCode) {
   pushFailure(`contact backend-ready fields missing: ${JSON.stringify(evidence.contact.initial)}`);
 }
+if (!evidence.contact.initial.feedback.present || !evidence.contact.initial.feedback.hidden || evidence.contact.initial.feedback.role !== 'status' || evidence.contact.initial.feedback.ariaLive !== 'polite') {
+  pushFailure(`contact inline submit feedback is not initialized correctly: ${JSON.stringify(evidence.contact.initial.feedback)}`);
+}
 if (placeholderContactMode && !evidence.contact.initial.hasBackendPlaceholderCheck) {
   pushFailure(`contact placeholder fallback behavior missing: ${JSON.stringify(evidence.contact.initial)}`);
 }
@@ -357,6 +367,30 @@ const contactRequests = [];
 const expectedLiveEndpointUrl = liveContactMode && validLiveContactEndpoint
   ? new URL(initialContactEndpoint, fileUrl('contact.html')).href
   : '';
+const mockedLiveContactRequests = [];
+if (liveContactMode && /^https:\/\/script\.google\.com\//i.test(initialContactEndpoint)) {
+  await page.route('https://script.google.com/**', async (route) => {
+    const request = route.request();
+    const requestUrl = request.url();
+    if (expectedLiveEndpointUrl && (requestUrl === expectedLiveEndpointUrl || requestUrl.startsWith(`${expectedLiveEndpointUrl}?`))) {
+      mockedLiveContactRequests.push({
+        url: requestUrl,
+        method: request.method(),
+        postData: request.postData(),
+      });
+      await route.fulfill({
+        status: 200,
+        headers: {
+          'content-type': 'application/json',
+          'access-control-allow-origin': '*',
+        },
+        body: '{"ok":true}',
+      });
+      return;
+    }
+    await route.continue();
+  });
+}
 page.on('request', request => {
   const url = request.url();
   if (placeholderContactMode) {
@@ -392,14 +426,18 @@ try {
 evidence.contact.afterSubmit = await page.evaluate(() => {
   const storedPending = sessionStorage.getItem('sampora_contact_pending');
   const params = storedPending ? Object.fromEntries(new URLSearchParams(storedPending)) : {};
+  const feedback = document.querySelector('#contactSubmitFeedback');
   return {
     url: location.href,
     storedPending,
     pendingParams: params,
-    toastVisible: document.querySelector('#toast')?.classList.contains('show') || false,
+    feedbackVisible: !!feedback && !feedback.hidden,
+    feedbackState: feedback?.dataset.state || '',
+    feedbackText: feedback?.textContent?.trim() || '',
   };
 });
 evidence.contact.submitRequests = contactRequests;
+evidence.contact.mockedLiveRequests = mockedLiveContactRequests;
 const expectedPending = {
   name: 'QA Reviewer',
   company: 'QA Evidence Co',
@@ -414,14 +452,35 @@ const expectedPending = {
   lang: 'en',
 };
 const pendingMismatches = Object.entries(expectedPending).filter(([key, value]) => evidence.contact.afterSubmit.pendingParams?.[key] !== value);
+const requiredLeadKeys = ['source_page', 'landing_page', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign', 'lang', 'website'];
+const pendingMissingLeadKeys = requiredLeadKeys.filter((key) => !(key in (evidence.contact.afterSubmit.pendingParams || {})));
+const liveRequestParams = evidence.contact.submitRequests.length
+  ? Object.fromEntries(new URLSearchParams(evidence.contact.submitRequests.at(-1).postData || ''))
+  : {};
+const liveMissingLeadKeys = requiredLeadKeys.filter((key) => !(key in liveRequestParams));
 if (placeholderContactMode) {
-  if (!evidence.contact.afterSubmit.storedPending || pendingMismatches.length) {
-    pushFailure(`contact submit did not store backend-ready pending payload in sessionStorage: ${JSON.stringify({ pendingMismatches, afterSubmit: evidence.contact.afterSubmit })}`);
+  if (!evidence.contact.afterSubmit.storedPending || pendingMismatches.length || pendingMissingLeadKeys.length) {
+    pushFailure(`contact submit did not store backend-ready pending payload in sessionStorage: ${JSON.stringify({ pendingMismatches, pendingMissingLeadKeys, afterSubmit: evidence.contact.afterSubmit })}`);
   }
-  if (!evidence.contact.afterSubmit.toastVisible) pushFailure('contact placeholder submit did not show pending toast');
+  if (!evidence.contact.afterSubmit.feedbackVisible || evidence.contact.afterSubmit.feedbackState !== 'placeholder') {
+    pushFailure(`contact placeholder submit did not show inline placeholder feedback: ${JSON.stringify(evidence.contact.afterSubmit)}`);
+  }
+  if (!/online submission is not connected yet/i.test(evidence.contact.afterSubmit.feedbackText) || /we received your request/i.test(evidence.contact.afterSubmit.feedbackText)) {
+    pushFailure(`contact placeholder feedback copy is wrong: ${JSON.stringify(evidence.contact.afterSubmit.feedbackText)}`);
+  }
   if (evidence.contact.submitRequests.length) pushFailure(`placeholder mode should not issue backend request: ${JSON.stringify(evidence.contact.submitRequests)}`);
 } else if (!evidence.contact.submitRequests.length) {
   pushFailure('live endpoint mode did not issue any backend request');
+} else {
+  if (liveMissingLeadKeys.length) {
+    pushFailure(`contact live request missing lead context keys: ${JSON.stringify({ liveMissingLeadKeys, liveRequestParams })}`);
+  }
+  if (liveRequestParams.source_page !== 'contact.html') {
+    pushFailure(`contact live request source_page mismatch: ${JSON.stringify(liveRequestParams.source_page)}`);
+  }
+  if (/^https:\/\/script\.google\.com\//i.test(initialContactEndpoint) && !mockedLiveContactRequests.length) {
+    pushFailure(`contact live mode did not hit mocked Apps Script route: ${JSON.stringify({ initialContactEndpoint, submitRequests: evidence.contact.submitRequests })}`);
+  }
 }
 await page.screenshot({ path: path.join(outDir, 'contact-form-1440.png'), fullPage: false });
 evidence.screenshots.push('contact-form-1440.png');

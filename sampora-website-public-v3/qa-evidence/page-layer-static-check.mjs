@@ -8,13 +8,10 @@ const owned = [
   'index.html',
   'solutions.html',
   'resources.html',
+  'resource-manuals.html',
   'plans.html',
   'contact.html',
-  'resource-manuals.html',
-];
-const redirects = [
-  'products.html',
-  'pricing.html',
+  'about.html',
 ];
 const chineseLegacyRedirects = [
   '首页.html',
@@ -25,7 +22,7 @@ const chineseLegacyRedirects = [
   '版本方案.html',
   '联系我们.html',
 ];
-const allHtml = [...owned, ...redirects];
+const allHtml = owned;
 const forbiddenParts = [
   '\\?' + '\\?' + '\\?+',
   'expanded ' + 'topology',
@@ -47,6 +44,15 @@ function fail(message) {
 
 function read(file) {
   return fs.readFileSync(path.join(root, file), 'utf8');
+}
+
+const expectedPhysicalHtml = [...owned].sort();
+const actualPhysicalHtml = fs
+  .readdirSync(root)
+  .filter(file => file.endsWith('.html'))
+  .sort();
+if (JSON.stringify(actualPhysicalHtml) !== JSON.stringify(expectedPhysicalHtml)) {
+  fail(`public root HTML files must be exactly ${JSON.stringify(expectedPhysicalHtml)}, found ${JSON.stringify(actualPhysicalHtml)}`);
 }
 
 for (const file of allHtml) {

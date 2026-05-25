@@ -5,7 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Contact Sampora to discuss trial, demo, sales, enterprise, or resource questions for online sample operations." />
-    <link rel="canonical" href="https://www.sampora.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://www.sampora.com/contact.html">
     <title>Sampora Contact - Submit request</title>
     <style>
         :root {
@@ -519,6 +522,10 @@
             box-shadow: 0 0 0 3px rgba(57, 215, 255, .08);
         }
 
+        .field[hidden] {
+            display: none;
+        }
+
         .form-actions {
             display: flex;
             align-items: center;
@@ -527,12 +534,48 @@
             flex-wrap: wrap;
         }
 
+        .form-submit-feedback {
+            margin: 16px 0 0;
+            padding: 12px 0 12px 14px;
+            border-left: 3px solid var(--cyan2);
+            color: #dceaf7;
+            font-size: 13px;
+            line-height: 1.62;
+            overflow-wrap: anywhere;
+        }
+
+        .form-submit-feedback[hidden] {
+            display: none;
+        }
+
+        .form-submit-feedback[data-state="submitting"] {
+            border-left-color: var(--cyan2);
+            color: #e4fbff;
+        }
+
+        .form-submit-feedback[data-state="success"] {
+            border-left-color: var(--green);
+            color: #ebffd9;
+        }
+
+        .form-submit-feedback[data-state="failure"],
+        .form-submit-feedback[data-state="placeholder"] {
+            border-left-color: var(--amber);
+            color: #ffe5bf;
+        }
+
         .privacy {
             color: #8194aa;
             font-size: 12px;
             line-height: 1.55;
             max-width: 600px;
             margin: 27px 0 0;
+        }
+
+        .privacy a {
+            color: #c7f3ff;
+            text-decoration: underline;
+            text-underline-offset: 3px;
         }
 
         .more-ways {
@@ -1355,6 +1398,7 @@ main > section {
 }
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
+<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 </head>
 
 <body>
@@ -1379,7 +1423,7 @@ main > section {
                 <a href="solutions.html" data-i18n="navSolutions">Solutions</a>
                 <a href="resources.html" data-i18n="navResources">Resources</a>
                 <a href="plans.html" data-i18n="navPlans">Plans</a>
-                <a href="about_sampora_issues_fixed.html" data-i18n="navAbout">About</a>
+                <a href="about.html" data-i18n="navAbout">About</a>
                 <a href="contact.html" class="active" data-i18n="navContact">Contact</a>
             </nav>
             <div class="header-actions">
@@ -1422,12 +1466,18 @@ main > section {
                     </div>
                 </div>
 
-                <form class="form-card" id="contactForm" method="post" action="[BACKEND_CONTACT_ENDPOINT]" data-endpoint="[BACKEND_CONTACT_ENDPOINT]">
+                <form class="form-card" id="contactForm" method="post" action="https://script.google.com/macros/s/AKfycbyHALTY5VRPba0ok2PKkPAUzBHWr8LIASQS1zZ3KCRsj4fg50tqIQltCQzLTP6i4GKP/exec" data-endpoint="https://script.google.com/macros/s/AKfycbyHALTY5VRPba0ok2PKkPAUzBHWr8LIASQS1zZ3KCRsj4fg50tqIQltCQzLTP6i4GKP/exec">
                     <input type="hidden" name="intent" id="intentField" value="contact_sales" />
                     <input type="hidden" name="source_page" id="sourcePageField" value="contact.html" />
                     <input type="hidden" name="source_section" id="sourceSectionField" value="contact-form" />
                     <input type="hidden" name="plan" id="planField" value="" />
                     <input type="hidden" name="lang" id="langField" value="en" />
+                    <input type="hidden" name="landing_page" id="landingPageField" value="" />
+                    <input type="hidden" name="referrer" id="referrerField" value="" />
+                    <input type="hidden" name="utm_source" id="utmSourceField" value="" />
+                    <input type="hidden" name="utm_medium" id="utmMediumField" value="" />
+                    <input type="hidden" name="utm_campaign" id="utmCampaignField" value="" />
+                    <input type="text" name="website" autocomplete="off" tabindex="-1" hidden>
                     <div class="form-row">
                         <div class="field">
                             <label for="name" data-i18n="nameLabel">Name*</label>
@@ -1454,6 +1504,10 @@ main > section {
                             <option value="Other" data-i18n="roleOther">Other</option>
                         </select>
                     </div>
+                    <div class="field" id="roleOtherField" hidden>
+                        <label for="role_other" data-i18n="roleOtherDetailLabel">Please describe your role / business type*</label>
+                        <input id="role_other" name="role_other" autocomplete="organization-title" disabled />
+                    </div>
                     <div class="field">
                         <label for="business_type" data-i18n="businessTypeLabel">What is this request for?*</label>
                         <select id="business_type" name="business_type" required>
@@ -1472,7 +1526,8 @@ main > section {
                     <div class="form-actions">
                         <button class="btn primary" type="submit" data-i18n="submit">Submit request</button>
                     </div>
-                    <p class="privacy" data-i18n="privacy">We use your details only to review this request and follow up with the right Sampora next step.</p>
+                    <p class="form-submit-feedback" id="contactSubmitFeedback" role="status" aria-live="polite" hidden></p>
+                    <p class="privacy">We only use this information to evaluate your request and follow up on the right Sampora next step. By submitting, you acknowledge that we process your information according to our <a href="privacy.html">Privacy Policy</a>.</p>
                 </form>
             </div>
         </section>
@@ -1575,7 +1630,7 @@ main > section {
                 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
                 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
             </div>
-            <div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
+            <div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div>
         </div>
     </footer>
 
@@ -1632,13 +1687,20 @@ main > section {
       roleApi: 'API-connected Supplier',
       roleEnterprise: 'Enterprise / Multi-entity Team',
       roleOther: 'Other',
+      roleOtherDetailLabel: 'Please describe your role / business type*',
+      roleOtherDetailPlaceholder: 'e.g. sample buyer, project operations, channel partner, data services team',
       businessTrial: 'Start a trial',
       businessDemo: 'Book a demo',
       businessSales: 'Talk to sales',
       businessEnterprise: 'Enterprise plan discussion',
       businessResource: 'Resource or implementation question',
       submit: 'Submit request',
-      privacy: 'We use your details only to review this request and follow up with the right Sampora next step.',
+      submitPending: 'Submitting your request…',
+      submitSuccess: 'Thanks — we received your request. Our team will review it and follow up with the right Sampora next step. If your request is urgent, you can also email us at sales@getsampora.com.',
+      submitFailure: 'We couldn’t submit your request right now. Please try again in a moment. If the issue continues, email us at sales@getsampora.com and include your company name and request.',
+      submitPlaceholder: 'Your request is ready, but online submission is not connected yet. Please email us at sales@getsampora.com and include your company name and request.',
+      privacyNote: 'We only use this information to evaluate your request and follow up on the right Sampora next step. By submitting, you acknowledge that we process your information according to our Privacy Policy.',
+      privacyLink: 'Privacy Policy',
       nextStep: 'NEXT STEP',
       responseTitle: 'What happens after submission?',
       responseSub: 'We review your operating model and route the request to the right Sampora path.',
@@ -1676,7 +1738,7 @@ main > section {
       cardCommunityTitle: 'Talk to sales',
       addressText: 'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',
       footerCopyright: '© 2026',
-      footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.',
+      footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences',
       toastTitle: 'Form connection pending',
       toastText: 'Online submission is not connected yet. Please email sales@getsampora.com or use the contact details below.',
       successTitle: 'Request submitted',
@@ -1728,13 +1790,20 @@ main > section {
       roleApi: 'API 对接供应商',
       roleEnterprise: '企业 / 多实体运营团队',
       roleOther: '其他',
+      roleOtherDetailLabel: '请填写你的角色 / 业务类型*',
+      roleOtherDetailPlaceholder: '例如：样本采购、项目运营、渠道合作、数据服务团队',
       businessTrial: '开始试用',
       businessDemo: '预约演示',
       businessSales: '咨询销售',
       businessEnterprise: '企业方案咨询',
       businessResource: '资源或实施问题',
       submit: '提交请求',
-      privacy: '我们仅使用这些信息来评估本次请求，并跟进合适的 Sampora 下一步。',
+      submitPending: '正在提交你的请求……',
+      submitSuccess: '谢谢，我们已收到你的请求。我们的团队会评估你的需求，并跟进合适的 Sampora 下一步。如需紧急联系，也可以发送邮件至 sales@getsampora.com。',
+      submitFailure: '当前无法提交你的请求。请稍后重试。如果问题持续存在，请发送邮件至 sales@getsampora.com，并附上你的公司名称和需求说明。',
+      submitPlaceholder: '你的请求已准备好，但在线提交暂未接入正式后端。请发送邮件至 sales@getsampora.com，并附上你的公司名称和需求说明。',
+      privacyNote: '我们仅使用这些信息来评估本次请求，并跟进合适的 Sampora 下一步。提交即表示您了解我们会按照隐私政策处理您的信息。',
+      privacyLink: '隐私政策',
       nextStep: '下一步',
       responseTitle: '提交后会发生什么？',
       responseSub: '我们会根据你的运营模式，将请求匹配到合适的 Sampora 路径。',
@@ -1772,7 +1841,7 @@ main > section {
       cardCommunityTitle: '联系销售',
       addressText: '中国安徽省六安市恒阳广场 A 座 1506 室',
       footerCopyright: '© 2026',
-      footerCompanyLegal: '安徽省嘉禹企业服务有限公司',
+      footerCompanyLegal: '安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置',
       toastTitle: '在线提交暂未接通',
       toastText: '当前表单提交接口尚未接通，请通过 sales@getsampora.com 或页面底部联系方式联系我们。',
       successTitle: '请求已提交',
@@ -1845,7 +1914,7 @@ main > section {
       ['solutions.html', 'navSolutions'],
       ['resources.html', 'navResources'],
       ['plans.html', 'navPlans'],
-      ['about_sampora_issues_fixed.html', 'navAbout'],
+      ['about.html', 'navAbout'],
       ['contact.html', 'navContact']
     ];
     if (!actions) return;
@@ -1895,8 +1964,8 @@ main > section {
 <script id="sampora-standard-footer-i18n">
 (function(){
   const copy={
-    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'},
     };
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
@@ -1924,6 +1993,7 @@ main > section {
 <script>
 (function () {
   const translations = window.__samporaContactTranslations || {};
+  const CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyHALTY5VRPba0ok2PKkPAUzBHWr8LIASQS1zZ3KCRsj4fg50tqIQltCQzLTP6i4GKP/exec';
 
   const qs = new URLSearchParams(location.search);
   const intentMap = {
@@ -1936,6 +2006,26 @@ main > section {
 
   const form = document.getElementById('contactForm');
   if (!form) return;
+  const trimValue = (value) => typeof value === 'string' ? value.trim() : '';
+  const normalizeUrlWithoutHash = (rawUrl) => {
+    try {
+      const parsed = new URL(rawUrl, window.location.href);
+      parsed.hash = '';
+      return parsed.toString();
+    } catch (error) {
+      const fallback = String(rawUrl || '');
+      const hashIndex = fallback.indexOf('#');
+      return hashIndex >= 0 ? fallback.slice(0, hashIndex) : fallback;
+    }
+  };
+
+  const actionAttr = trimValue(form.getAttribute('action'));
+  const dataEndpointAttr = trimValue(form.getAttribute('data-endpoint'));
+  if (actionAttr !== CONTACT_ENDPOINT || dataEndpointAttr !== CONTACT_ENDPOINT) {
+    console.warn('[Sampora Contact] Endpoint mismatch detected; normalizing to CONTACT_ENDPOINT.');
+  }
+  form.setAttribute('action', CONTACT_ENDPOINT);
+  form.setAttribute('data-endpoint', CONTACT_ENDPOINT);
 
   const safeLang = (value) => {
     const lang = String(value || '').toLowerCase();
@@ -1955,12 +2045,41 @@ main > section {
   let copy = translations[activeLang] || translations.en || {};
   const intent = intentMap[qs.get('intent')] || 'contact_sales';
   const explicitPlan = qs.get('plan');
-  const sourcePage = qs.get('source_page') || 'contact.html';
+  const sourcePage = 'contact.html';
   const sourceSection = qs.get('source_section') || 'contact-form';
-  const backendEndpoint = form.getAttribute('data-endpoint') || form.getAttribute('action') || '[BACKEND_CONTACT_ENDPOINT]';
-  // Keep success feedback behind a real endpoint response; the placeholder path shows the customer fallback toast.
-  const isPlaceholder = backendEndpoint.includes('[BACKEND_CONTACT_ENDPOINT]');
+  const backendEndpoint = CONTACT_ENDPOINT;
+  const placeholderEndpointToken = '[' + 'BACKEND_CONTACT_ENDPOINT' + ']';
+  // Keep success feedback behind a real endpoint response; placeholder mode shows the email fallback inline.
+  const isPlaceholder = backendEndpoint.includes(placeholderEndpointToken);
+  const roleSelect = document.getElementById('role');
+  const roleOtherField = document.getElementById('roleOtherField');
+  const roleOtherInput = document.getElementById('role_other');
   const businessSelect = document.getElementById('business_type');
+  const landingPageField = document.getElementById('landingPageField');
+  const referrerField = document.getElementById('referrerField');
+  const utmSourceField = document.getElementById('utmSourceField');
+  const utmMediumField = document.getElementById('utmMediumField');
+  const utmCampaignField = document.getElementById('utmCampaignField');
+
+  function resolveLeadAttribution() {
+    const fallback = {
+      landing_page: normalizeUrlWithoutHash(window.location.href),
+      referrer: trimValue(document.referrer),
+      utm_source: trimValue(qs.get('utm_source')),
+      utm_medium: trimValue(qs.get('utm_medium')),
+      utm_campaign: trimValue(qs.get('utm_campaign'))
+    };
+    const runtime = window.SamporaLeadAttribution && typeof window.SamporaLeadAttribution.get === 'function'
+      ? window.SamporaLeadAttribution.get() || {}
+      : {};
+    return {
+      landing_page: trimValue(runtime.landing_page) || fallback.landing_page,
+      referrer: trimValue(runtime.referrer) || fallback.referrer,
+      utm_source: trimValue(runtime.utm_source) || fallback.utm_source,
+      utm_medium: trimValue(runtime.utm_medium) || fallback.utm_medium,
+      utm_campaign: trimValue(runtime.utm_campaign) || fallback.utm_campaign
+    };
+  }
 
   function resolvePlan() {
     if (explicitPlan) return explicitPlan;
@@ -1974,15 +2093,68 @@ main > section {
     document.getElementById('sourceSectionField').value = sourceSection;
     document.getElementById('planField').value = resolvePlan();
     document.getElementById('langField').value = currentPageLang();
+    const attribution = resolveLeadAttribution();
+    if (landingPageField) landingPageField.value = attribution.landing_page;
+    if (referrerField) referrerField.value = attribution.referrer;
+    if (utmSourceField) utmSourceField.value = attribution.utm_source;
+    if (utmMediumField) utmMediumField.value = attribution.utm_medium;
+    if (utmCampaignField) utmCampaignField.value = attribution.utm_campaign;
   }
 
-  const labelMap = ['nameLabel', 'companyLabel', 'emailLabel', 'roleLabel', 'businessTypeLabel', 'msgLabel'];
+  function updateRoleOtherState() {
+    const isOther = roleSelect && roleSelect.value === 'Other';
+    if (roleOtherField) roleOtherField.hidden = !isOther;
+    if (roleOtherInput) {
+      roleOtherInput.disabled = !isOther;
+      roleOtherInput.required = isOther;
+      if (!isOther) roleOtherInput.value = '';
+    }
+  }
+
+  const labelMap = ['nameLabel', 'companyLabel', 'emailLabel', 'roleLabel', 'roleOtherDetailLabel', 'businessTypeLabel', 'msgLabel'];
   const labels = form.querySelectorAll('label');
 
   const place = (id, key) => { const el = document.getElementById(id); if (el && copy[key]) el.placeholder = copy[key]; };
 
   const submit = form.querySelector('button[type="submit"]');
   const privacy = form.querySelector('.privacy');
+  const submitFeedback = document.getElementById('contactSubmitFeedback');
+  let submitFeedbackState = '';
+  let isSubmitting = false;
+
+  function setSubmitFeedback(state) {
+    submitFeedbackState = state || '';
+    if (!submitFeedback) return;
+    if (!submitFeedbackState) {
+      submitFeedback.hidden = true;
+      submitFeedback.textContent = '';
+      delete submitFeedback.dataset.state;
+      return;
+    }
+    const feedbackKey = {
+      submitting: 'submitPending',
+      success: 'submitSuccess',
+      failure: 'submitFailure',
+      placeholder: 'submitPlaceholder'
+    }[submitFeedbackState];
+    submitFeedback.textContent = feedbackKey && copy[feedbackKey] ? copy[feedbackKey] : '';
+    submitFeedback.dataset.state = submitFeedbackState;
+    submitFeedback.hidden = false;
+  }
+
+  function renderPrivacyNote() {
+    if (!privacy) return;
+    const note = copy.privacyNote || '';
+    const linkText = copy.privacyLink || '';
+    const linkIndex = linkText ? note.indexOf(linkText) : -1;
+    const prefix = linkIndex >= 0 ? note.slice(0, linkIndex) : note;
+    const suffix = linkIndex >= 0 ? note.slice(linkIndex + linkText.length) : '';
+    privacy.replaceChildren(
+      document.createTextNode(prefix),
+      Object.assign(document.createElement('a'), { href: 'privacy.html', textContent: linkText }),
+      document.createTextNode(suffix)
+    );
+  }
 
   const optionText = {
     role: ['rolePh','rolePanel','roleSupplier','roleAggregator','roleApi','roleEnterprise','roleOther'],
@@ -1998,22 +2170,32 @@ main > section {
     place('name', 'namePlaceholder');
     place('company', 'companyPlaceholder');
     place('email', 'emailPlaceholder');
+    place('role_other', 'roleOtherDetailPlaceholder');
     place('message', 'messagePlaceholder');
     if (submit && copy.submit) submit.textContent = copy.submit;
-    if (privacy && copy.privacy) privacy.textContent = copy.privacy;
+    renderPrivacyNote();
     roleOptions.forEach((opt, i) => { if (copy[optionText.role[i]]) opt.textContent = copy[optionText.role[i]]; });
     bizOptions.forEach((opt, i) => { if (copy[optionText.business[i]]) opt.textContent = copy[optionText.business[i]]; });
     const selectedRequest = businessSelect && businessSelect.value ? businessSelect.value : intent;
     if (businessSelect && Array.from(businessSelect.options).some(opt => opt.value === selectedRequest)) businessSelect.value = selectedRequest;
     if (window.__samporaContactApplyLanguage) window.__samporaContactApplyLanguage(activeLang);
+    if (submitFeedbackState) setSubmitFeedback(submitFeedbackState);
+    updateRoleOtherState();
     setHiddenFields();
   }
   applyRuntimeCopy(activeLang);
   window.addEventListener('sampora:languagechange', event => applyRuntimeCopy(event.detail && event.detail.lang));
   document.addEventListener('DOMContentLoaded', () => applyRuntimeCopy(currentPageLang()));
+  document.querySelectorAll('.lang button[data-lang]').forEach(btn => {
+    btn.addEventListener('click', () => setTimeout(() => applyRuntimeCopy(btn.dataset.lang), 40));
+  });
   if (businessSelect) {
     businessSelect.addEventListener('change', setHiddenFields);
     businessSelect.addEventListener('input', setHiddenFields);
+  }
+  if (roleSelect) {
+    roleSelect.addEventListener('change', updateRoleOtherState);
+    roleSelect.addEventListener('input', updateRoleOtherState);
   }
 
   const toast = document.getElementById('toast');
@@ -2023,24 +2205,39 @@ main > section {
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (isSubmitting) return;
     setHiddenFields();
     const payload = new FormData(form);
     const body = new URLSearchParams(payload);
     try { sessionStorage.setItem('sampora_contact_pending', body.toString()); } catch (e) {}
     if (isPlaceholder) {
-      show(toast);
+      setSubmitFeedback('placeholder');
       return;
     }
+    isSubmitting = true;
+    setSubmitFeedback('submitting');
     try {
-      const res = await fetch(backendEndpoint, { method: 'POST', body, headers: { 'X-Requested-With': 'fetch' } });
-      if (res.ok) show(toastSuccess); else show(toastFailure);
+      const res = await fetch(backendEndpoint, { method: 'POST', body });
+      if (res.ok) {
+        setSubmitFeedback('success');
+        try { sessionStorage.removeItem('sampora_contact_pending'); } catch (e) {}
+        form.reset();
+        updateRoleOtherState();
+        setHiddenFields();
+      } else {
+        setSubmitFeedback('failure');
+      }
     } catch (e) {
-      show(toastFailure);
+      setSubmitFeedback('failure');
+    } finally {
+      isSubmitting = false;
     }
   });
 })();
 </script>
 
+<script src="assets/lead-attribution.js" defer></script>
+<script src="assets/sampora-cookie-preferences.js" defer></script>
 </body>
 
 </html>

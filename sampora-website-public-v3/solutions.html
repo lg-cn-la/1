@@ -6,6 +6,9 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Sampora Solutions - Online sample operations layers</title>
 <meta content="Sampora solution layers for sample operations, supplier coordination, API-connected sample delivery, and multi-party settlement for panel providers and sample suppliers." name="description"/>
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://www.sampora.com/solutions.html">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -2767,6 +2770,17 @@ body::before {
     content: none !important;
     display: none !important;
 }
+.hero::before,
+.hero:before {
+    content: none !important;
+    display: none !important;
+}
+.hero .eyebrow {
+    align-self: flex-start !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+}
 .section,
 #compare + #workflow,
 .sampora-site-footer,
@@ -2799,6 +2813,20 @@ body::before {
 #footer .sampora-footer-contact-item {
     border-bottom: 0 !important;
 }
+@media(min-width:1101px) {
+    .hero-grid {
+        align-items: stretch !important;
+    }
+    .hero-grid > div:first-child {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        min-height: 100% !important;
+    }
+    .hero-grid > div:first-child .cta-row {
+        margin-top: 0 !important;
+    }
+}
 @media(max-width:1180px) {
     #footer .sampora-footer-contact-item {
         border-bottom: 0 !important;
@@ -2806,6 +2834,7 @@ body::before {
 }
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
+<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 </head>
 <body>
 <div aria-hidden="true" class="status">
@@ -2813,7 +2842,7 @@ body::before {
 </div>
 <header class="mast" id="mast">
 <div class="container inner"><a aria-label="Sampora home" class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub"></small></span></a>
-<nav aria-label="Primary" class="nav sampora-nav-standard"><a data-i18n="navProduct" href="index.html">Product</a><a class="active" data-i18n="navSolutions" href="solutions.html">Solutions</a><a data-i18n="navResources" href="resources.html">Resources</a><a data-i18n="navPricing" href="plans.html">Plans</a><a data-i18n="navAbout" href="about_sampora_issues_fixed.html">About</a><a data-i18n="navContact" href="contact.html">Contact</a></nav>
+<nav aria-label="Primary" class="nav sampora-nav-standard"><a data-i18n="navProduct" href="index.html">Product</a><a class="active" data-i18n="navSolutions" href="solutions.html">Solutions</a><a data-i18n="navResources" href="resources.html">Resources</a><a data-i18n="navPricing" href="plans.html">Plans</a><a data-i18n="navAbout" href="about.html">About</a><a data-i18n="navContact" href="contact.html">Contact</a></nav>
 <div class="header-actions">
 <div aria-label="Language" class="lang"><button data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button></div><a class="btn ghost" data-i18n="headerBookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="headerStartTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
 </div>
@@ -2903,19 +2932,19 @@ body::before {
 <use class="flow path-enterprise end" href="#s-control-evidence"></use>
 </g>
 <g aria-hidden="true" class="packet-layer">
-<circle class="packet path-panel" r="3.6"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#s-origin-panel"></mpath></animateMotion></circle>
-<circle class="packet path-panel" r="3.6"><animateMotion begin=".18s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-panel-control"></mpath></animateMotion></circle>
-<circle class="packet path-panel end" r="3.6"><animateMotion begin=".36s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-control-evidence"></mpath></animateMotion></circle>
-<circle class="packet amber path-network" r="3.6"><animateMotion dur="2.8s" repeatCount="indefinite"><mpath href="#s-origin-network"></mpath></animateMotion></circle>
-<circle class="packet amber path-network" r="3.6"><animateMotion begin=".2s" dur="2.8s" repeatCount="indefinite"><mpath href="#s-network-control"></mpath></animateMotion></circle>
-<circle class="packet amber path-network end" r="3.6"><animateMotion begin=".4s" dur="2.8s" repeatCount="indefinite"><mpath href="#s-control-evidence"></mpath></animateMotion></circle>
-<circle class="packet path-enterprise" r="3.2"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#s-origin-panel"></mpath></animateMotion></circle>
-<circle class="packet amber path-enterprise" r="3.2"><animateMotion begin=".12s" dur="2.8s" repeatCount="indefinite"><mpath href="#s-origin-network"></mpath></animateMotion></circle>
-<circle class="packet path-enterprise" r="3.2"><animateMotion begin=".24s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-origin-enterprise"></mpath></animateMotion></circle>
-<circle class="packet path-enterprise" r="3.2"><animateMotion begin=".36s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-panel-control"></mpath></animateMotion></circle>
-<circle class="packet amber path-enterprise" r="3.2"><animateMotion begin=".48s" dur="2.8s" repeatCount="indefinite"><mpath href="#s-network-control"></mpath></animateMotion></circle>
-<circle class="packet path-enterprise" r="3.2"><animateMotion begin=".6s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-enterprise-control"></mpath></animateMotion></circle>
-<circle class="packet path-enterprise end" r="3.2"><animateMotion begin=".72s" dur="2.4s" repeatCount="indefinite"><mpath href="#s-control-evidence"></mpath></animateMotion></circle>
+<circle class="packet path-panel" data-duration="2.4" data-path="s-origin-panel" data-phase="0" r="3.6"></circle>
+<circle class="packet path-panel" data-duration="2.4" data-path="s-panel-control" data-phase=".18" r="3.6"></circle>
+<circle class="packet path-panel end" data-duration="2.4" data-path="s-control-evidence" data-phase=".36" r="3.6"></circle>
+<circle class="packet amber path-network" data-duration="2.8" data-path="s-origin-network" data-phase="0" r="3.6"></circle>
+<circle class="packet amber path-network" data-duration="2.8" data-path="s-network-control" data-phase=".2" r="3.6"></circle>
+<circle class="packet amber path-network end" data-duration="2.8" data-path="s-control-evidence" data-phase=".4" r="3.6"></circle>
+<circle class="packet path-enterprise" data-duration="2.4" data-path="s-origin-panel" data-phase="0" r="3.2"></circle>
+<circle class="packet amber path-enterprise" data-duration="2.8" data-path="s-origin-network" data-phase=".12" r="3.2"></circle>
+<circle class="packet path-enterprise" data-duration="2.4" data-path="s-origin-enterprise" data-phase=".24" r="3.2"></circle>
+<circle class="packet path-enterprise" data-duration="2.4" data-path="s-panel-control" data-phase=".36" r="3.2"></circle>
+<circle class="packet amber path-enterprise" data-duration="2.8" data-path="s-network-control" data-phase=".48" r="3.2"></circle>
+<circle class="packet path-enterprise" data-duration="2.4" data-path="s-enterprise-control" data-phase=".6" r="3.2"></circle>
+<circle class="packet path-enterprise end" data-duration="2.4" data-path="s-control-evidence" data-phase=".72" r="3.2"></circle>
 </g>
 <g class="nodes-layer">
 <g class="hub origin-hub" transform="translate(20,107)"><rect height="54" rx="12" width="130" x="0" y="0"></rect><circle class="pulse" cx="24" cy="27" r="7"></circle><g aria-hidden="true" class="brand-core-mark" data-no-i18n="true"><rect height="22" rx="6" width="22" x="13" y="16"></rect><text dominant-baseline="central" text-anchor="middle" x="24" y="27.5">S</text></g></g>
@@ -3052,7 +3081,7 @@ body::before {
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
 </div>
-<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
+<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div>
 </div>
 </footer>
 <script>
@@ -3900,6 +3929,28 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
         bar.querySelectorAll('[data-mode]').forEach(btn => btn.addEventListener('click', () => setTopologyFit(btn.dataset.mode, { userSelectedFit: true })));
       });
     }
+    let solutionPacketMotionFrame = null;
+    function updateSolutionPacketPositions(now) {
+      const time = Number.isFinite(now) ? now : performance.now();
+      document.querySelectorAll('.topo-svg').forEach(svg => {
+        svg.querySelectorAll('.packet[data-path]').forEach(packet => {
+          const path = svg.querySelector(`[id="${packet.dataset.path}"]`);
+          if (!path || typeof path.getTotalLength !== 'function') return;
+          const duration = Math.max(parseFloat(packet.dataset.duration) || 3, .1);
+          const phase = parseFloat(packet.dataset.phase) || 0;
+          const length = path.getTotalLength();
+          const progress = ((time / 1000 / duration) + phase) % 1;
+          const point = path.getPointAtLength(progress * length);
+          packet.setAttribute('cx', point.x.toFixed(2));
+          packet.setAttribute('cy', point.y.toFixed(2));
+        });
+      });
+      solutionPacketMotionFrame = requestAnimationFrame(updateSolutionPacketPositions);
+    }
+    function startSolutionPacketMotion() {
+      if (solutionPacketMotionFrame) return;
+      updateSolutionPacketPositions(performance.now());
+    }
     function setTopologyClasses(type) {
       const activeType = normalizeTopologyType(type);
       if (window.solutionPacketReadyTimer) clearTimeout(window.solutionPacketReadyTimer);
@@ -4018,12 +4069,12 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
     }
     syncTopChrome();
     window.addEventListener('scroll', syncTopChrome, { passive: true });
-    initTopologyModal(); let saved = 'en'; try { const stored = localStorage.getItem('sampora_lang'); saved = stored === 'zh' || stored === 'en' ? stored : 'en' } catch (e) { } setLang(saved); startTopologyRouteCycle(); startWorkflowRouteCycle();
+    initTopologyModal(); startSolutionPacketMotion(); let saved = 'en'; try { const stored = localStorage.getItem('sampora_lang'); saved = stored === 'zh' || stored === 'en' ? stored : 'en' } catch (e) { } setLang(saved); startTopologyRouteCycle(); startWorkflowRouteCycle();
   </script>
 <script>
 (function(){
   const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们']};
-  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about_sampora_issues_fixed.html','about'],['contact.html','contact']];
+  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about.html','about'],['contact.html','contact']];
   function lang(){const raw=(localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en').toLowerCase();return raw==='zh'?'zh':'en'}
   function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
   if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}
@@ -4046,8 +4097,8 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
 <script id="sampora-standard-footer-i18n">
 (function(){
   const copy={
-    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'}};
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'}};
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
     if(explicitRaw==='zh')return 'zh';
@@ -4071,5 +4122,7 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
   new MutationObserver(()=>apply()).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-lang']});
 })();
 </script>
+<script src="assets/lead-attribution.js" defer></script>
+<script src="assets/sampora-cookie-preferences.js" defer></script>
 </body>
 </html>

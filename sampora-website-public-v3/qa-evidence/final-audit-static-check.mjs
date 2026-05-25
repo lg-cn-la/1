@@ -6,9 +6,9 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const workspaceRoot = path.resolve(root, '..');
-const officialPages = ['index.html', 'solutions.html', 'resources.html', 'resource-manuals.html', 'plans.html', 'contact.html'];
+const officialPages = ['index.html', 'solutions.html', 'resources.html', 'resource-manuals.html', 'plans.html', 'contact.html', 'about.html'];
+const supportPages = ['404.html', 'cookie-policy.html', 'privacy.html', 'terms.html'];
 let failures = 0;
-const publicRedirectPages = ['products.html', 'pricing.html'];
 const chineseLegacyRedirectPages = ['首页.html', '产品.html', '解决方案.html', '资源中心.html', '资源-跳转页面.html', '版本方案.html', '联系我们.html'];
 
 const fail = (message) => {
@@ -34,12 +34,51 @@ const redirectPolicyDocs = [
 ];
 
 const oldRedirectPolicyPatterns = [
+  /products\.html \/ pricing\.html remain present/i,
+  /English redirects products\.html and pricing\.html remain present/i,
+  /public source ships canonical English pages plus English redirect files products\.html and pricing\.html/i,
+  /Physical redirect files shipped in the public root/i,
+  /public package includes English root redirect HTML files/i,
+  /root redirect HTML/i,
   /Chinese legacy redirect HTML files are included/i,
   /public package includes root redirect HTML files for English and Chinese legacy paths/i,
   /physical Chinese legacy redirect HTML files are included/i,
   /Chinese legacy redirect HTML files are included in this package/i,
   /root redirect HTML \+ server\/CDN rewrite fallback/i,
 ];
+
+const legalPageExpectations = {
+  'privacy.html': {
+    eyebrow: 'Sampora / Privacy Policy',
+    statusLiveEn: 'Privacy Policy',
+    statusMidEn: 'Current Version',
+    statusRightEn: 'Public website and contact form data notice',
+    statusLiveZh: '隐私政策',
+    statusMidZh: '当前版本',
+    statusRightZh: '公开官网与联系表单数据说明',
+    currentHref: 'privacy.html',
+  },
+  'cookie-policy.html': {
+    eyebrow: 'Sampora / Cookie Policy',
+    statusLiveEn: 'Cookie Policy',
+    statusMidEn: 'Necessary Storage',
+    statusRightEn: 'Analytics and marketing cookies are not enabled',
+    statusLiveZh: 'Cookie 政策',
+    statusMidZh: '必要存储',
+    statusRightZh: '当前未启用分析与营销 Cookie',
+    currentHref: 'cookie-policy.html',
+  },
+  'terms.html': {
+    eyebrow: 'Sampora / Terms of Use',
+    statusLiveEn: 'Terms of Use',
+    statusMidEn: 'Current Version',
+    statusRightEn: 'Website access and sales-led onboarding terms',
+    statusLiveZh: '使用条款',
+    statusMidZh: '当前版本',
+    statusRightZh: '官网访问与销售承接规则',
+    currentHref: 'terms.html',
+  },
+};
 
 function checkStyleBlock(file, css, index) {
   let depth = 0;
@@ -77,7 +116,16 @@ function checkStyleBlock(file, css, index) {
   if (depth !== 0) fail(`${file}: style block ${index} has unbalanced braces (${depth})`);
 }
 
-for (const file of [...officialPages, ...publicRedirectPages]) {
+const expectedPhysicalHtml = [...officialPages, ...supportPages].sort();
+const actualPhysicalHtml = fs
+  .readdirSync(root)
+  .filter(file => file.endsWith('.html'))
+  .sort();
+if (JSON.stringify(actualPhysicalHtml) !== JSON.stringify(expectedPhysicalHtml)) {
+  fail(`public root HTML files must be exactly ${JSON.stringify(expectedPhysicalHtml)}, found ${JSON.stringify(actualPhysicalHtml)}`);
+}
+
+for (const file of officialPages) {
   const html = read(file);
   if (!/<title>[\s\S]+?<\/title>/i.test(html)) fail(`${file}: missing title`);
   if (!/<meta\b(?=[^>]*\bname=["']description["'])(?=[^>]*\bcontent=["'][^"']+["'])[^>]*>/i.test(html)) fail(`${file}: missing meta description`);
@@ -102,6 +150,37 @@ for (const [label, absolute] of redirectPolicyDocs) {
   }
 }
 
+for (const [file, expected] of Object.entries(legalPageExpectations)) {
+  const html = read(file);
+  if (!html.includes(`class="eyebrow" data-i18n="legalEyebrow">${expected.eyebrow}</div>`)) {
+    fail(`${file}: page-specific legal eyebrow missing`);
+  }
+  for (const [key, value] of [
+    ['statusLive', expected.statusLiveEn],
+    ['statusMid', expected.statusMidEn],
+    ['statusRight', expected.statusRightEn],
+  ]) {
+    if (!html.includes(`${key}:'${value}'`)) fail(`${file}: English ${key} is not public legal copy`);
+  }
+  for (const [key, value] of [
+    ['statusLive', expected.statusLiveZh],
+    ['statusMid', expected.statusMidZh],
+    ['statusRight', expected.statusRightZh],
+  ]) {
+    if (!html.includes(`${key}:'${value}'`)) fail(`${file}: Chinese ${key} is not public legal copy`);
+  }
+  if (/Sampora \/ Legal readiness|Privacy, cookie and contact readiness|隐私、Cookie 与联系表单就绪|Delivery workflow \/ Live|Minimal production handoff|交付工作流 \/ 在线|最小生产交付包/.test(html)) {
+    fail(`${file}: stale generic legal page identifier remains`);
+  }
+  if (!/function\s+initTopChrome\(\)[\s\S]*body\.classList\.toggle\('nav-condensed',compact\)/.test(html)) {
+    fail(`${file}: legal status bar does not use nav-condensed scroll collapse`);
+  }
+  const currentLinkPattern = new RegExp(`<a\\b(?=[^>]*href=["']${expected.currentHref}["'])(?=[^>]*aria-current=["']page["'])`, 'i');
+  if (!currentLinkPattern.test(html)) fail(`${file}: current footer legal link is not marked aria-current="page"`);
+  const currentCount = (html.match(/aria-current=["']page["']/g) || []).length;
+  if (currentCount !== 1) fail(`${file}: expected one aria-current page marker, found ${currentCount}`);
+}
+
 for (const file of officialPages) {
   const html = read(file);
   [...html.matchAll(/\bhref=["'](contact\.html\?intent=[^"']+)["']/gi)].forEach((match) => {
@@ -114,7 +193,7 @@ for (const file of officialPages) {
   if (!html.includes('安徽省嘉禹企业服务有限公司')) fail(`${file}: missing Chinese legal company name`);
 }
 
-for (const file of officialPages) {
+for (const file of expectedPhysicalHtml) {
   const html = read(file);
   [...html.matchAll(/<script(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/gi)].forEach((match, index) => {
     const type = match[1].match(/\btype=["']?([^"'\s>]+)/i)?.[1]?.toLowerCase() || 'text/javascript';
@@ -209,12 +288,37 @@ for (const file of ['solutions.html', 'resources.html']) {
 
 {
   const contact = read('contact.html');
-  if (!/<form\b[^>]*id=["']contactForm["'][^>]*method=["']post["'][^>]*data-endpoint=["']\[BACKEND_CONTACT_ENDPOINT\]["']/i.test(contact)) fail('contact.html: backend-ready form method/data-endpoint missing');
-  for (const name of ['intent', 'source_page', 'source_section', 'plan', 'lang']) {
+  const contactFormTag = contact.match(/<form\b[^>]*id=["']contactForm["'][^>]*>/i)?.[0] || '';
+  if (!contactFormTag) fail('contact.html: backend-ready contactForm tag missing');
+  const contactFormMethod = (contactFormTag.match(/\bmethod=["']([^"']+)["']/i)?.[1] || '').toLowerCase();
+  if (contactFormMethod !== 'post') fail('contact.html: backend-ready form method must be post');
+  const formAction = contactFormTag.match(/\baction=["']([^"']+)["']/i)?.[1] || '';
+  const formDataEndpoint = contactFormTag.match(/\bdata-endpoint=["']([^"']+)["']/i)?.[1] || '';
+  const contactEndpoint = contact.match(/const\s+CONTACT_ENDPOINT\s*=\s*['"]([^'"]+)['"]/)?.[1] || '';
+  if (!formAction || !formDataEndpoint || !contactEndpoint) fail('contact.html: missing action/data-endpoint/CONTACT_ENDPOINT');
+  if (!(formAction === formDataEndpoint && formAction === contactEndpoint)) {
+    fail(`contact.html: action, data-endpoint, and CONTACT_ENDPOINT must match (${JSON.stringify({ formAction, formDataEndpoint, contactEndpoint })})`);
+  }
+  const placeholderEndpoint = '[BACKEND_CONTACT_ENDPOINT]';
+  if (formAction !== placeholderEndpoint && !/^https?:\/\/[^\s"'<>]+$/i.test(formAction)) {
+    fail(`contact.html: live CONTACT_ENDPOINT must be an absolute HTTP(S) URL, got ${JSON.stringify(formAction)}`);
+  }
+  for (const name of ['intent', 'source_page', 'source_section', 'plan', 'lang', 'landing_page', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign']) {
     if (!new RegExp(`<input\\b(?=[^>]*type=["']hidden["'])(?=[^>]*name=["']${name}["'])`, 'i').test(contact)) fail(`contact.html: hidden field missing ${name}`);
   }
+  if (!/<[^>]+\bid=["']contactSubmitFeedback["'][^>]+\brole=["']status["'][^>]+\baria-live=["']polite["'][^>]+\bhidden\b/i.test(contact)) fail('contact.html: inline submit feedback status region missing');
+  for (const key of ['submitPending', 'submitSuccess', 'submitFailure', 'submitPlaceholder']) {
+    if (!new RegExp(`${key}\\s*:`, 'i').test(contact)) fail(`contact.html: submit feedback copy key missing ${key}`);
+  }
+  if (/X-Requested-With/i.test(contact)) fail('contact.html: X-Requested-With header must be removed');
   if (!/fetch\(/.test(contact)) fail('contact.html: fetch integration path missing');
-  if (!/pending placeholder|endpoint is wired|real endpoint/i.test(contact)) fail('contact.html: placeholder submission is not clearly marked');
+  if (!/placeholder mode shows the email fallback inline|endpoint is wired|real endpoint/i.test(contact)) fail('contact.html: placeholder submission is not clearly marked');
+  if (/thank-you\.html/i.test(contact)) fail('contact.html: contact form must not route to thank-you.html');
+  if (/(?:window\.)?location\.(?:href|assign|replace)\s*[=(]/.test(contact)) fail('contact.html: contact form must not redirect after submit');
+  if (!/setSubmitFeedback\('placeholder'\)/.test(contact)) fail('contact.html: placeholder branch does not set inline placeholder feedback');
+  if (!/setSubmitFeedback\('submitting'\)[\s\S]*fetch\(/.test(contact)) fail('contact.html: live branch does not show submitting feedback before fetch');
+  if (!/if\s*\(\s*res\.ok\s*\)\s*{[\s\S]*setSubmitFeedback\('success'\)[\s\S]*sessionStorage\.removeItem\('sampora_contact_pending'\)[\s\S]*form\.reset\(\)/.test(contact)) fail('contact.html: success state must be backend-ok only and clear pending/input only there');
+  if (!/setSubmitFeedback\('failure'\)/.test(contact)) fail('contact.html: failure feedback path missing');
 }
 
 if (!failures) console.log('PASS final audit static checks');

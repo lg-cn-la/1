@@ -6,6 +6,9 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Resources for online sample operations</title>
 <meta content="Operator manuals, regional rollout notes, and implementation references for sample delivery teams." name="description"/>
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://www.sampora.com/resources.html">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -1997,6 +2000,22 @@
                 padding-top: 50px
             }
 
+            #surfaceGrid {
+                grid-template-columns: 1fr;
+                gap: 16px
+            }
+
+            .surface-card {
+                min-height: 0;
+                padding: 22px;
+                overflow-wrap: anywhere
+            }
+
+            .surface-card h3 {
+                max-width: 100%;
+                overflow-wrap: anywhere
+            }
+
             h1 {
                 font-size: clamp(40px, 11vw, 56px)
             }
@@ -2283,6 +2302,11 @@ body::before {
     content: none !important;
     display: none !important;
 }
+.hero::before,
+.hero:before {
+    content: none !important;
+    display: none !important;
+}
 .section,
 #setup,
 .sampora-site-footer,
@@ -2322,6 +2346,7 @@ body::before {
 }
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
+<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 </head>
 <body>
 <div aria-hidden="true" class="status">
@@ -2343,7 +2368,7 @@ body::before {
 <a data-i18n="navSolutions" href="solutions.html">Solutions</a>
 <a class="active" data-i18n="navResources" href="resources.html">Resources</a>
 <a data-i18n="navPricing" href="plans.html">Plans</a>
-<a data-i18n="navAbout" href="about_sampora_issues_fixed.html">About</a>
+<a data-i18n="navAbout" href="about.html">About</a>
 <a data-i18n="navContact" href="contact.html">Contact</a>
 </nav>
 <div class="header-actions">
@@ -2622,7 +2647,7 @@ body::before {
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
 </div>
-<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
+<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div>
 </div>
 </footer>
 <script>
@@ -2721,7 +2746,7 @@ body::before {
     "footerUpdates": "Information updates",
     "footerAddress": "Room 1506, Block A, Hengyangguangcheng, Lu'an, Anhui, China",
     "footerCopyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
-    "footerCompanyLegal": "Anhui Jiayu Enterprise Service Co., Ltd.",
+    "footerCompanyLegal": "Anhui Jiayu Enterprise Service Co., Ltd.","privacy":"Privacy Policy","cookie":"Cookie Policy","terms":"Terms of Use","preferences":"Cookie Preferences",
     "copyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
     "modes": {
       "setup": {
@@ -2853,7 +2878,7 @@ body::before {
     "footerUpdates": "资讯获取",
     "footerAddress": "中国安徽省六安市恒阳光城A座1506",
     "footerCopyright": "© 2026",
-    "footerCompanyLegal": "安徽省嘉禹企业服务有限公司",
+    "footerCompanyLegal": "安徽省嘉禹企业服务有限公司","privacy":"隐私政策","cookie":"Cookie 政策","terms":"使用条款","preferences":"Cookie 偏好设置",
     "copyright": "© 2026 安徽省嘉禹企业服务有限公司",
     "modes": {
       "setup": {
@@ -3360,7 +3385,7 @@ body::before {
 <script>
 (function(){
   const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们']};
-  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about_sampora_issues_fixed.html','about'],['contact.html','contact']];
+  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about.html','about'],['contact.html','contact']];
   function lang(){const raw=(localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en').toLowerCase();return raw==='zh'?'zh':'en'}
   function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
   if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}
@@ -3383,8 +3408,8 @@ body::before {
 <script id="sampora-standard-footer-i18n">
 (function(){
   const copy={
-    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'}};
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'}};
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
     if(explicitRaw==='zh')return 'zh';
@@ -3408,5 +3433,7 @@ body::before {
   new MutationObserver(()=>apply()).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-lang']});
 })();
 </script>
+<script src="assets/lead-attribution.js" defer></script>
+<script src="assets/sampora-cookie-preferences.js" defer></script>
 </body>
 </html>

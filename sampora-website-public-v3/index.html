@@ -6,6 +6,9 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Sampora - Online Sample Operations Platform for Panel Providers & Sample Suppliers</title>
 <meta content="Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations." name="description"/>
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://www.sampora.com/index.html">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -51,7 +54,7 @@
             font-weight: 300;
             line-height: 1.55;
             -webkit-font-smoothing: antialiased;
-            background-image: linear-gradient(rgba(120, 172, 216, .026) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 172, 216, .024) 1px, transparent 1px), radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%), radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .070) 0, transparent 64%), linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%);
+            background-image: linear-gradient(rgba(120, 172, 216, .026) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 172, 216, .024) 1px, transparent 1px), radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%), radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, 0) 0, transparent 64%), linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%);
             background-size: 44px 44px, 44px 44px, auto, auto, auto
         }
 
@@ -739,6 +742,11 @@
         .topo-svg .packet.on,
         .topo-svg .packet-group.on .packet {
             opacity: .75
+        }
+
+        .topo-svg:not(.packet-motion-ready) .packet.on,
+        .topo-svg:not(.packet-motion-ready) .packet-group.on .packet {
+            opacity: 0
         }
 
         .topo-svg .packet.amber,
@@ -1665,7 +1673,9 @@
         .pricing-card {
             padding: 24px;
             position: relative;
-            overflow: hidden
+            overflow: hidden;
+            transform: translateY(0);
+            transition: transform .24s var(--ease), border-color .24s var(--ease), box-shadow .24s var(--ease), background .24s var(--ease)
         }
 
         .pricing-card.featured {
@@ -2502,9 +2512,35 @@
         .outcome-card:hover,
         .surface-card:hover,
         .pricing-card:hover,
+        .pricing-card:focus-within,
         .quote:hover,
         .faq-item:hover {
             border-color: rgba(56, 210, 255, .30);
+        }
+
+        .pricing-card:hover,
+        .pricing-card:focus-within {
+            transform: translateY(-4px);
+            border-color: rgba(56, 210, 255, .42);
+            background: linear-gradient(180deg, rgba(18, 34, 58, .96), rgba(10, 22, 40, .99));
+            box-shadow: 0 0 0 1px rgba(56, 210, 255, .12), 0 22px 54px rgba(0, 0, 0, .30)
+        }
+
+        .pricing-card.reveal-card.in-view:hover,
+        .pricing-card.reveal-card.in-view:focus-within {
+            transform: translateY(-4px)
+        }
+
+        .pricing-card.featured:hover,
+        .pricing-card.featured:focus-within {
+            border-color: rgba(56, 210, 255, .56);
+            box-shadow: 0 0 0 1px rgba(56, 210, 255, .18), 0 18px 42px rgba(56, 210, 255, .10), 0 24px 60px rgba(0, 0, 0, .32)
+        }
+
+        @media(hover:none), (pointer:coarse) {
+            .pricing-card:hover {
+                transform: none
+            }
         }
 
         .module {
@@ -2546,7 +2582,9 @@
             }
 
             html[lang="zh"] .hero h1,
-            html[lang="zh-CN"] .hero h1,
+            html[lang="zh-CN"] .hero h1 {
+                font-size: clamp(38px, 8.4vw, 54px);
+            }
 }
 
         @media(max-width: 720px) {
@@ -3306,7 +3344,7 @@
         }
 
         #footer.sampora-site-footer {
-            padding: 64px 0 54px !important;
+            padding: 64px 0 12px !important;
             border-top: 1px solid rgba(129, 178, 214, .16) !important;
             color: var(--body, #A9B9CE) !important;
             background:
@@ -4152,14 +4190,17 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
   .hero-copy{min-width:0}
 }
 @media(min-width:1101px) and (max-width:1240px){
-  .hero{padding:56px 0 46px}
-  .hero-grid{grid-template-columns:1fr;max-width:900px;gap:34px}
-  .hero h1{max-width:760px;font-size:clamp(44px,5.2vw,58px);line-height:1.03;margin:22px 0 0}
-  .hero-sub{max-width:690px;margin:20px 0 0}
-  .hero-copy>.cta-row{margin:26px 0 0}
-  .hero-proof-grid{width:min(100%,690px);margin-top:24px}
-  .console{width:100%;max-width:none;justify-self:stretch;min-height:610px}
-  .topo-grid{height:clamp(276px,26vw,318px)}
+  .hero{padding:58px 0 46px}
+  .hero-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);max-width:none;gap:28px;align-items:center}
+  .hero h1{max-width:560px;font-size:clamp(42px,4.6vw,54px);line-height:1.04;margin:22px 0 0}
+  .hero-sub{max-width:520px;font-size:16px;line-height:1.58;margin:18px 0 0}
+  .hero-copy>.cta-row{margin:24px 0 0}
+  .hero-proof-grid{width:100%;gap:10px;margin-top:22px}
+  .proof-mini{padding:13px 12px}
+  .proof-mini span{font-size:10.5px;line-height:1.5}
+  .console{width:100%;max-width:none;justify-self:stretch;min-height:560px}
+  .topo{padding:16px 18px 16px}
+  .topo-grid{height:clamp(250px,25vw,292px)}
 }
 @media(min-width:1241px){
   .hero{padding:64px 0 48px}
@@ -4214,16 +4255,16 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
   }
   html[lang="zh"] .hero-copy,
   html[lang="zh-CN"] .hero-copy{
-    --hero-gap-title:34px;
-    --hero-gap-sub:28px;
-    --hero-gap-cta:40px;
-    --hero-gap-proof:36px;
+    --hero-gap-title:24px;
+    --hero-gap-sub:22px;
+    --hero-gap-cta:32px;
+    --hero-gap-proof:28px;
   }
   html[lang="zh"] .hero h1,
   html[lang="zh-CN"] .hero h1{
-    max-width:710px;
-    font-size:clamp(48px,4.75vw,68px);
-    line-height:1.1;
+    max-width:720px;
+    font-size:clamp(44px,3.55vw,54px);
+    line-height:1.12;
   }
   html[lang="zh"] .hero-sub,
   html[lang="zh-CN"] .hero-sub{
@@ -4289,6 +4330,7 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
 .mast .header-actions .btn.ghost:hover,.mast .nav-actions .btn.ghost:hover,.mast .actions .btn.ghost:hover,.mast .header-actions .btn.ghost:focus-visible,.mast .nav-actions .btn.ghost:focus-visible,.mast .actions .btn.ghost:focus-visible{transform:translateY(-1px);color:var(--cyan2,var(--cyan,#61e7ff));border-color:rgba(56,210,255,.45);background:rgba(20,40,69,.22)}
 .mast .header-actions .btn.primary,.mast .nav-actions .btn.primary,.mast .actions .btn.primary{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
 .mast .header-actions .btn.primary:hover,.mast .nav-actions .btn.primary:hover,.mast .actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible,.mast .nav-actions .btn.primary:focus-visible,.mast .actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:active,.mast .nav-actions .btn.primary:active,.mast .actions .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
+@media(max-width:760px){.mast .header-actions,.mast .nav-actions,.mast .actions{align-items:center!important;gap:6px!important;flex-wrap:nowrap!important}.mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{height:34px!important;min-height:0!important;padding:0 8px!important;font-size:11.5px!important;line-height:1!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;flex:0 0 auto!important;border-radius:9px!important}}
 @media(min-width:1101px){.mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box;width:430px;min-width:430px;align-self:center;justify-self:end;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:nowrap;overflow:visible}.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto;white-space:nowrap}}
 </style>
 <style id="header-brand-visual-parity">
@@ -4305,11 +4347,32 @@ body {
         linear-gradient(rgba(120, 172, 216, .026) 1px, transparent 1px),
         linear-gradient(90deg, rgba(120, 172, 216, .024) 1px, transparent 1px),
         radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
-        radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .070) 0, transparent 64%),
+        radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, 0) 0, transparent 64%),
         linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%) !important;
     background-size: 44px 44px, 44px 44px, auto, auto, auto !important;
 }
+
+@media(min-width:1101px) and (max-width:1240px){
+  html[lang="zh"] .hero h1,
+  html[lang="zh-CN"] .hero h1{
+    font-size:clamp(40px,4vw,48px);
+    line-height:1.1;
+  }
+}
+
+@media(max-width:980px){
+  html[lang="zh"] .hero h1,
+  html[lang="zh-CN"] .hero h1{
+    font-size:clamp(34px,6.2vw,46px);
+    line-height:1.12;
+  }
+}
 body::before,
+.hero::before,
+.hero:before,
+#outcomes::before,
+#product-surfaces::before,
+#contact::before,
 #workflow::before {
     content: none !important;
     display: none !important;
@@ -4330,7 +4393,9 @@ body::before,
     border-bottom: 0 !important;
 }
 #footer.sampora-site-footer {
+    padding: 64px 0 12px !important;
     border-top: 0 !important;
+    background: transparent !important;
 }
 #footer .sampora-footer-card {
     border-color: rgba(129, 178, 214, .10) !important;
@@ -4362,6 +4427,7 @@ body::before,
 }
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
+<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 </head>
 <body>
 <div aria-hidden="true" class="status">
@@ -4369,7 +4435,7 @@ body::before,
 </div>
 <header class="mast">
 <div class="container inner"><a class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a>
-<nav aria-label="Primary navigation" class="nav product-nav sampora-nav-standard"><span aria-hidden="true" class="nav-indicator"></span><a class="nav-link active" data-i18n="product" data-sampora-nav="product" href="index.html">Product</a><a class="nav-link" data-i18n="solutions" data-sampora-nav="solutions" href="solutions.html">Solutions</a><a class="nav-link" data-i18n="resources" data-sampora-nav="resources" href="resources.html">Resources</a><a class="nav-link" data-i18n="plans" data-sampora-nav="plans" href="plans.html">Plans</a><a class="nav-link" data-i18n="navAbout" data-sampora-nav="about" href="about_sampora_issues_fixed.html">About</a><a class="nav-link" data-i18n="navContact" data-sampora-nav="contact" href="contact.html">Contact</a></nav>
+<nav aria-label="Primary navigation" class="nav product-nav sampora-nav-standard"><span aria-hidden="true" class="nav-indicator"></span><a class="nav-link active" data-i18n="product" data-sampora-nav="product" href="index.html">Product</a><a class="nav-link" data-i18n="solutions" data-sampora-nav="solutions" href="solutions.html">Solutions</a><a class="nav-link" data-i18n="resources" data-sampora-nav="resources" href="resources.html">Resources</a><a class="nav-link" data-i18n="plans" data-sampora-nav="plans" href="plans.html">Plans</a><a class="nav-link" data-i18n="navAbout" data-sampora-nav="about" href="about.html">About</a><a class="nav-link" data-i18n="navContact" data-sampora-nav="contact" href="contact.html">Contact</a></nav>
 <div class="header-actions"><div aria-label="Language" class="lang" data-i18n-aria-label="langSwitcher"><button class="active" data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button></div><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a></div>
 </div>
 </header>
@@ -4464,13 +4530,13 @@ body::before,
 <use class="flow" data-flow="qc-ledger" href="#h-qc-ledger"></use>
 </g>
 <g class="packet-layer flow-layer">
-<circle class="packet" data-packet="router-pool" r="4"><animateMotion begin="0s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-router-pool"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="pool-panel" r="4"><animateMotion begin=".08s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-pool-panel"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="pool-agg" r="4"><animateMotion begin=".16s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-pool-agg"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="pool-stn" r="4"><animateMotion begin=".24s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-pool-stn"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="pool-sub" r="4"><animateMotion begin=".32s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-pool-sub"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="pool-api" r="4"><animateMotion begin=".4s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-pool-api"></mpath></animateMotion></circle>
-<circle class="packet" data-packet="qc-ledger" r="4"><animateMotion begin=".1s" dur="3.6s" repeatCount="indefinite"><mpath href="#h-qc-ledger"></mpath></animateMotion></circle>
+<circle class="packet" data-duration="3.6" data-packet="router-pool" data-path="h-router-pool" data-phase="0" r="4"></circle>
+<circle class="packet" data-duration="3.6" data-packet="pool-panel" data-path="h-pool-panel" data-phase=".08" r="4"></circle>
+<circle class="packet" data-duration="3.6" data-packet="pool-agg" data-path="h-pool-agg" data-phase=".16" r="4"></circle>
+<circle class="packet" data-duration="3.6" data-packet="pool-stn" data-path="h-pool-stn" data-phase=".24" r="4"></circle>
+<circle class="packet" data-duration="3.6" data-packet="pool-sub" data-path="h-pool-sub" data-phase=".32" r="4"></circle>
+<circle class="packet" data-duration="3.6" data-packet="pool-api" data-path="h-pool-api" data-phase=".4" r="4"></circle>
+<circle class="packet" data-duration="3.6" data-packet="qc-ledger" data-path="h-qc-ledger" data-phase=".1" r="4"></circle>
 </g>
 <g class="nodes-layer">
 <g class="hub brand-core" transform="translate(28,118)"><rect height="54" rx="12" width="130" x="0" y="0"></rect><circle class="pulse" cx="24" cy="27" r="7"></circle><g class="brand-core-mark" data-no-i18n="true"><rect height="22" rx="6" width="22" x="13" y="16"></rect><text dominant-baseline="central" text-anchor="middle" x="24" y="27.5">S</text></g></g>
@@ -4866,7 +4932,7 @@ body::before,
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
 </div>
-<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
+<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div>
 </div>
 </footer>
 <script>
@@ -5586,6 +5652,29 @@ body::before,
                     });
                 }
             }
+            let topologyPacketMotionFrame = null;
+            function updateTopologyPacketPositions(now) {
+                const time = Number.isFinite(now) ? now : performance.now();
+                document.querySelectorAll('.topo-svg').forEach(svg => {
+                    svg.querySelectorAll('.packet[data-path]').forEach(packet => {
+                        const path = svg.querySelector(`[id="${packet.dataset.path}"]`);
+                        if (!path || typeof path.getTotalLength !== 'function') return;
+                        const duration = Math.max(parseFloat(packet.dataset.duration) || 3, .1);
+                        const phase = parseFloat(packet.dataset.phase) || 0;
+                        const length = path.getTotalLength();
+                        const progress = ((time / 1000 / duration) + phase) % 1;
+                        const point = path.getPointAtLength(progress * length);
+                        packet.setAttribute('cx', point.x.toFixed(2));
+                        packet.setAttribute('cy', point.y.toFixed(2));
+                    });
+                    svg.classList.add('packet-motion-ready');
+                });
+                topologyPacketMotionFrame = requestAnimationFrame(updateTopologyPacketPositions);
+            }
+            function startTopologyPacketMotion() {
+                if (topologyPacketMotionFrame) return;
+                updateTopologyPacketPositions(performance.now());
+            }
             function syncTopologyModal(projectData = null) {
                 if (!topologyModal?.classList.contains('is-open') || !topologyModalBody) return;
                 const source = $('#network');
@@ -5723,6 +5812,7 @@ body::before,
             } else if (workflowSection) { workflowSection.classList.add('workflow-animate-once'); }
             const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); } }), { threshold: .14 });
             $$('.reveal-card,.module,.pricing-card,.faq-item').forEach(el => { el.classList.add('reveal-card'); observer.observe(el); });
+            startTopologyPacketMotion();
             applyTranslations(currentLang); timer = setInterval(() => updateProject(currentProject), 3600);
         })();
     </script>
@@ -5960,7 +6050,7 @@ body::before,
 <script>
 (function(){
   const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['\u4ea7\u54c1','\u89e3\u51b3\u65b9\u6848','\u8d44\u6e90','\u7248\u672c\u65b9\u6848','\u5173\u4e8e','\u8054\u7cfb\u6211\u4eec']};
-  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about_sampora_issues_fixed.html','about'],['contact.html','contact']];
+  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about.html','about'],['contact.html','contact']];
   function lang(){return localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
   function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
   if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}
@@ -5983,8 +6073,8 @@ body::before,
 <script id="sampora-standard-footer-i18n">
 (function(){
   const copy={
-    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'},
     };
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
@@ -6009,5 +6099,7 @@ body::before,
   new MutationObserver(()=>apply()).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-lang']});
 })();
 </script>
+<script src="assets/lead-attribution.js" defer></script>
+<script src="assets/sampora-cookie-preferences.js" defer></script>
 </body>
 </html>

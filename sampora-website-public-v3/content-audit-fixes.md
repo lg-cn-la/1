@@ -18,19 +18,25 @@ This report covers Package E documentation for content, legal/footer, language, 
 
 ## Redirect Evidence
 
-Actual redirect files inspected in the public root:
+The public package no longer ships standalone redirect HTML files for `products.html` or `pricing.html`.
+Legacy product/pricing routes are backend/CDN-managed 301 redirects to canonical content pages.
 
-- `products.html` -> `index.html`
-- `pricing.html` -> `plans.html`
-- `棣栭〉.html` -> `index.html`
-- `浜у搧.html` -> `index.html`
-- `瑙ｅ喅鏂规.html` -> `solutions.html`
-- `璧勬簮涓績.html` -> `resources.html`
-- `璧勬簮-璺宠浆椤甸潰.html` -> `resource-manuals.html`
-- `鐗堟湰鏂规.html` -> `plans.html`
-- `鑱旂郴鎴戜滑.html` -> `contact.html`
-
-Chinese redirect HTML files are included. Server/CDN rewrites are still recommended because Chinese filenames may become mojibake during extraction or hosting upload.
+| Legacy path | Target | Status |
+|---|---|---:|
+| `/products.html` | `/index.html` | 301 |
+| `/products` | `/index.html` | 301 |
+| `/products/` | `/index.html` | 301 |
+| `/pricing.html` | `/plans.html` | 301 |
+| `/pricing` | `/plans.html` | 301 |
+| `/pricing/` | `/plans.html` | 301 |
+| `/about_sampora_issues_fixed.html` | `/about.html` | 301 |
+| `/首页.html` | `/index.html` | 301 |
+| `/产品.html` | `/index.html` | 301 |
+| `/解决方案.html` | `/solutions.html` | 301 |
+| `/资源中心.html` | `/resources.html` | 301 |
+| `/资源-跳转页面.html` | `/resource-manuals.html` | 301 |
+| `/版本方案.html` | `/plans.html` | 301 |
+| `/联系我们.html` | `/contact.html` | 301 |
 
 ## Fix Areas Documented
 
@@ -47,7 +53,7 @@ Chinese redirect HTML files are included. Server/CDN rewrites are still recommen
 - `node --check assets/resource-manuals/data.js`: exit 0
 - `node --check assets/resource-manuals/app.js`: exit 0
 - `node qa-evidence/final-audit-static-check.mjs`: `PASS final audit static checks`
-- `node qa-evidence/page-layer-static-check.mjs`: `PASS static checks for 15 HTML files`
+- `node qa-evidence/page-layer-static-check.mjs`: run after this route cleanup to confirm the root contains exactly seven real content pages
 - `node qa-evidence/resource-manuals-language-smoke.mjs`: `resource manuals language smoke: OK`
 - `node qa-evidence/resource-manuals-browser-language-check.mjs`: `resource manuals browser language check: OK`
 - Source stale-term scan excluding `qa-evidence/**`: no matches

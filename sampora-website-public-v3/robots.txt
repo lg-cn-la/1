@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# These paths are delivery or QA artifacts and should not be indexed if they exist on the server.
+Disallow: /qa-evidence/
+Disallow: /backend/
+Disallow: /snippets/
+Disallow: /*.md$
+
+Sitemap: https://getsampora.com/sitemap.xml

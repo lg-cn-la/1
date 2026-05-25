@@ -6,6 +6,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>About Sampora — Online Sample Operations Platform</title>
 <meta content="About Sampora: an online sample operations platform for panel providers and sample suppliers, connecting project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows." name="description"/>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
@@ -45,10 +46,36 @@ html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head
 @media(max-width:1180px){html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head.title-only h2{white-space:normal;font-size:clamp(31px,5vw,46px);}}
 @media(max-width:640px){.section-head.title-only{margin-bottom:30px}.solo-head.title-only{margin-bottom:30px}}
 
-/* About #what -> #timeline boundary: reduce only the adjacent empty edges and fade the alt band out. */
-#what.section.alt{padding-bottom:64px;background:linear-gradient(180deg,rgba(255,255,255,.018) 0%,rgba(255,255,255,.016) 62%,rgba(255,255,255,0) 100%);}
+/* About story card: distribute the left narrative and right cards in the stretched desktop panel. */
+@media(min-width:1181px){
+  .story-panel > div:first-child{
+    display:grid;
+    grid-template-rows:auto minmax(0,1fr) auto;
+    min-height:100%;
+  }
+  .story-panel > div:first-child h2{
+    align-self:center;
+    margin:0;
+  }
+  .story-panel > div:first-child p{
+    align-self:end;
+  }
+  .story-list{
+    grid-template-rows:repeat(3,minmax(0,1fr));
+  }
+  .story-item{
+    display:flex;
+    min-height:0;
+    flex-direction:column;
+    justify-content:center;
+  }
+}
+
+/* About #proof -> #what -> #timeline boundary: reduce adjacent empty edges without a pale section wash. */
+#proof.section{padding-bottom:56px;}
+#what.section.alt{padding-top:56px;padding-bottom:64px;background:transparent;}
 #timeline.section{padding-top:56px;}
-@media(max-width:640px){#what.section.alt{padding-bottom:48px}#timeline.section{padding-top:44px}}
+@media(max-width:640px){#proof.section{padding-bottom:42px}#what.section.alt{padding-top:42px;padding-bottom:48px}#timeline.section{padding-top:44px}}
 
 /* Chinese hero typography: reduce overly tight tracking from the global H1 and improve line rhythm */
 html[data-lang="zh"] .hero h1{
@@ -97,7 +124,7 @@ html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head
 @media(min-width:1181px){
   .hero{padding-top:64px;}
   .hero-grid{grid-template-columns:minmax(0,.94fr) minmax(430px,1.06fr);gap:42px;align-items:stretch;}
-  .hero-grid > :first-child{display:flex;min-height:100%;flex-direction:column;align-items:flex-start;}
+  .hero-grid > :first-child{display:flex;min-height:100%;flex-direction:column;align-items:flex-start;justify-content:space-between;}
 }
 .hero .console-card{display:flex;min-height:100%;flex-direction:column;border:1px solid rgba(129,178,214,.18);border-radius:18px;background:linear-gradient(180deg,rgba(14,27,47,.84),rgba(9,24,42,.70));box-shadow:0 26px 80px rgba(0,0,0,.28);isolation:isolate;}
 .hero .console-head{height:52px;justify-content:flex-start;gap:14px;padding:0 18px;background:linear-gradient(180deg,rgba(11,28,48,.92),rgba(8,20,36,.82));color:var(--fg2);}
@@ -132,14 +159,12 @@ html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head
 @media(max-width:640px){.mast .inner{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px}.mast .brand{min-width:0;overflow:hidden}.mast .brand small{display:none}.mast .header-actions{min-width:0;width:auto;justify-self:end;gap:6px;overflow:visible}.mast .lang{min-width:0;flex:0 1 auto}.mast .lang button{min-width:34px;padding-left:6px;padding-right:6px;font-size:10px}.mast .mobile-nav-toggle{width:36px;height:36px;flex:0 0 36px}}
 </style>
 <link href="https://www.sampora.com/about.html" rel="canonical"/>
-<link href="assets/favicon.ico" rel="icon"/>
-<link href="assets/favicon.png" rel="apple-touch-icon"/>
 <meta content="website" property="og:type"/>
 <meta content="Sampora" property="og:site_name"/>
 <meta content="About Sampora" property="og:title"/>
 <meta content="Sampora connects project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows for panel providers and sample suppliers." property="og:description"/>
 <meta content="https://www.sampora.com/about.html" property="og:url"/>
-<meta content="https://www.sampora.com/assets/og-image.png" property="og:image"/>
+<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="About Sampora" name="twitter:title"/>
 <meta content="Sampora connects project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows for panel providers and sample suppliers." name="twitter:description"/>
@@ -147,7 +172,7 @@ html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head
 <script id="org-jsonld" type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Sampora","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://www.sampora.com/about.html","description":"Sampora is an online sample operations platform for panel providers and sample suppliers, connecting project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows."}</script>
 <meta content="default-src 'self'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; base-uri 'self'; form-action 'self' mailto:; object-src 'none'" http-equiv="Content-Security-Policy"/>
 <style id="sampora-standard-footer-css">
-#footer.sampora-site-footer{padding:64px 0 54px!important;border-top:1px solid rgba(129,178,214,.16)!important;color:var(--body,#A9B9CE)!important;background:radial-gradient(38% 34% at 18% 0%,rgba(56,210,255,.08),transparent 68%),linear-gradient(180deg,rgba(6,16,31,.22),rgba(6,16,31,.42))!important}
+#footer.sampora-site-footer{padding:64px 0 12px!important;border-top:1px solid rgba(129,178,214,.16)!important;color:var(--body,#A9B9CE)!important;background:radial-gradient(38% 34% at 18% 0%,rgba(56,210,255,.08),transparent 68%),linear-gradient(180deg,rgba(6,16,31,.22),rgba(6,16,31,.42))!important}
 #footer .sampora-footer-card{border:1px solid rgba(129,178,214,.22)!important;border-radius:24px!important;overflow:hidden!important;background:rgba(8,20,36,.72)!important;box-shadow:0 30px 90px rgba(0,0,0,.24)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
 #footer .sampora-footer-main{display:grid!important;grid-template-columns:minmax(320px,1.32fr) repeat(3,minmax(150px,.78fr))!important;gap:clamp(32px,4vw,54px)!important;align-items:start!important;padding:42px 48px 36px!important}
 #footer .sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--fg,#E8EEF5)!important;margin-bottom:22px!important}
@@ -187,6 +212,11 @@ body::before {
     content: none !important;
     display: none !important;
 }
+.hero::before,
+.hero:before {
+    content: none !important;
+    display: none !important;
+}
 .section,
 .footer,
 .sampora-site-footer,
@@ -205,6 +235,7 @@ body::before {
 }
 #footer.sampora-site-footer {
     border-top: 0 !important;
+    background: transparent !important;
 }
 #footer .sampora-footer-card {
     border-color: rgba(129, 178, 214, .10) !important;
@@ -225,10 +256,11 @@ body::before {
 }
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
+<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 </head>
 <body>
 <div class="status"><div class="container inner"><span class="live" data-i18n="statusLive">About Sampora · Live</span><span class="sep">/</span><span data-i18n="statusDemoLabel">Sample operations platform</span><span class="right" data-i18n="statusControls">Traceable delivery, review and settlement</span></div></div>
-<header class="mast" id="mast"><div class="container inner"><a aria-label="Sampora home" data-i18n-aria-label="ariaHome" class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a><nav aria-label="Primary navigation" class="nav" data-i18n-aria-label="ariaPrimaryNav"><a data-i18n="navProduct" href="index.html">Product</a><a data-i18n="navSolutions" href="solutions.html">Solutions</a><a data-i18n="navResources" href="resources.html">Resources</a><a data-i18n="navPlans" href="plans.html">Plans</a><a class="active" data-i18n="navAboutShort" href="about_sampora_issues_fixed.html">About</a><a data-i18n="navContact" href="contact.html">Contact</a></nav><div class="header-actions"><div aria-label="Language switcher" class="lang" data-i18n-aria-label="ariaLanguageSwitcher"><button class="active" data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button></div><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a><button aria-expanded="false" aria-label="Open navigation" class="mobile-nav-toggle" data-i18n-aria-label="ariaOpenNav" type="button">☰</button></div></div></header>
+<header class="mast" id="mast"><div class="container inner"><a aria-label="Sampora home" data-i18n-aria-label="ariaHome" class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a><nav aria-label="Primary navigation" class="nav" data-i18n-aria-label="ariaPrimaryNav"><a data-i18n="navProduct" href="index.html">Product</a><a data-i18n="navSolutions" href="solutions.html">Solutions</a><a data-i18n="navResources" href="resources.html">Resources</a><a data-i18n="navPlans" href="plans.html">Plans</a><a class="active" data-i18n="navAboutShort" href="about.html">About</a><a data-i18n="navContact" href="contact.html">Contact</a></nav><div class="header-actions"><div aria-label="Language switcher" class="lang" data-i18n-aria-label="ariaLanguageSwitcher"><button class="active" data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button></div><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a><button aria-expanded="false" aria-label="Open navigation" class="mobile-nav-toggle" data-i18n-aria-label="ariaOpenNav" type="button">☰</button></div></div></header>
 <main>
 <section class="hero" id="top"><div class="container hero-grid"><div><span class="eyebrow" data-i18n="heroEyebrow">ABOUT SAMPORA</span><h1><span data-i18n="heroTitleBefore">Sampora turns sample operations into </span><span class="grad" data-i18n="heroTitleHighlight">traceable workflows</span><span data-i18n="heroTitleAfter">.</span></h1><p class="lead" data-i18n="heroDesc">Sampora helps panel providers and sample suppliers manage project intake, supplier allocation, review records, risk controls, settlement evidence, and API / workspace handoff in one operating layer.</p><div class="hero-actions"><a class="btn primary" data-i18n="heroPrimary" href="contact.html?intent=start_trial#contact-form">Start trial →</a><a class="btn ghost" data-i18n="heroSecondary" href="#timeline">See operating principles</a></div><div class="tags"><span class="tag" data-i18n="tagSurvey">Panel providers</span><span class="tag" data-i18n="tagOps">Sample suppliers</span><span class="tag" data-i18n="tagReview">Review records</span><span class="tag" data-i18n="tagSettlement">Settlement evidence</span></div></div><aside aria-label="Sampora operating layer preview" class="console-card" data-i18n-aria-label="ariaConsolePreview"><div class="console-head"><span><span class="traffic"><i class="dot red"></i><i class="dot yellow"></i><i class="dot green"></i></span></span><span data-i18n="consolePath">sample operations / about / Sampora layer</span></div><div class="console-body"><div class="metric-grid"><div class="metric"><small data-i18n="metric1Label">Operating focus</small><b data-i18n="metric1Value">Panel + supply</b></div><div class="metric"><small data-i18n="metric2Label">Core workflow</small><b class="ok" data-i18n="metric2Value">Review + settle</b></div><div class="metric"><small data-i18n="metric3Label">Evidence layer</small><b data-i18n="metric3Value">Traceable</b></div></div><div class="layer-flow"><div class="flow-row"><strong data-i18n="consoleRow1Title">PROJECT INTAKE</strong><span data-i18n="flow1">client, country, CPI, IR, LOI, quota and launch context captured</span><span data-i18n="consoleStatusEmbedded">CAPTURED</span></div><div class="flow-row"><strong data-i18n="consoleRow2Title">SUPPLIER ALLOCATION</strong><span data-i18n="flow2">selected suppliers, blocked supply and supplier-specific pricing controlled</span><span data-i18n="consoleStatusEnabled">CONTROLLED</span></div><div class="flow-row"><strong data-i18n="consoleRow3Title">REVIEW RECORDS</strong><span data-i18n="flow3">progress, completes, rejects, callbacks and exceptions retained</span><span data-i18n="consoleStatusRunning">RECORDED</span></div><div class="flow-row"><strong data-i18n="consoleRow4Title">SETTLEMENT EVIDENCE</strong><span data-i18n="flow4">verified delivery connected to supplier bills and client invoices</span><span data-i18n="consoleStatusConnected">LINKED</span></div><div class="flow-row"><strong data-i18n="consoleRow5Title">API / WORKSPACE HANDOFF</strong><span data-i18n="flow5">projects can be received through API integration or Sampora workspaces</span><span data-i18n="consoleStatusSynced">READY</span></div></div></div></aside></div></section>
 <section class="section story-section" id="story"><div class="container"><div class="story-panel"><div><div class="kicker" data-i18n="storyKicker">Why Sampora exists</div><h2 data-i18n="storyTitle">Sample delivery needs an operating system, not another spreadsheet.</h2><p data-i18n="storyDesc">Sample operations often sit across client briefs, supplier conversations, quota changes, review records, finance checks, and settlement evidence. Sampora exists to bring those moving parts into one traceable operating layer.</p></div><div class="story-list"><article class="story-item" data-step="01"><h3 data-i18n="storyItem1Title">From scattered updates to shared project context</h3><p data-i18n="storyItem1Text">Project demand, field rules, supplier decisions and review status should stay visible to the teams responsible for delivery.</p></article><article class="story-item" data-step="02"><h3 data-i18n="storyItem2Title">From supplier lists to controlled allocation</h3><p data-i18n="storyItem2Text">Supplier selection, blocking, pricing and delivery evidence need to be managed as part of the same operating workflow.</p></article><article class="story-item" data-step="03"><h3 data-i18n="storyItem3Title">From review notes to settlement-ready records</h3><p data-i18n="storyItem3Text">Review decisions, callback logs, rejection reasons and finance references should remain traceable when bills and invoices are prepared.</p></article></div></div></div></section>
@@ -275,10 +307,10 @@ body::before {
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
 </div>
-<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span></div>
+<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div>
 </div>
 </footer>
-<nav aria-label="Mobile navigation" class="mobile-nav-drawer" data-i18n-aria-label="ariaMobileNav"><a data-i18n="navProduct" href="index.html">Product</a><a data-i18n="navSolutions" href="solutions.html">Solutions</a><a data-i18n="navResources" href="resources.html">Resources</a><a data-i18n="navPlans" href="plans.html">Plans</a><a class="active" data-i18n="navAboutShort" href="about_sampora_issues_fixed.html">About</a><a data-i18n="navContact" href="contact.html">Contact</a></nav>
+<nav aria-label="Mobile navigation" class="mobile-nav-drawer" data-i18n-aria-label="ariaMobileNav"><a data-i18n="navProduct" href="index.html">Product</a><a data-i18n="navSolutions" href="solutions.html">Solutions</a><a data-i18n="navResources" href="resources.html">Resources</a><a data-i18n="navPlans" href="plans.html">Plans</a><a class="active" data-i18n="navAboutShort" href="about.html">About</a><a data-i18n="navContact" href="contact.html">Contact</a></nav>
 <script>
 const LANG_KEY='sampora_lang';
 const I18N={
@@ -555,8 +587,8 @@ applyLang(initialLang());
 <script id="sampora-standard-footer-i18n">
 (function(){
   const copy={
-    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司'},
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'},
     };
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
@@ -581,5 +613,7 @@ applyLang(initialLang());
   new MutationObserver(()=>apply()).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-lang']});
 })();
 </script>
+<script src="assets/lead-attribution.js" defer></script>
+<script src="assets/sampora-cookie-preferences.js" defer></script>
 </body>
 </html>

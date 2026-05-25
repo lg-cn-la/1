@@ -24,7 +24,7 @@ const surfaces = [
   {
     id: 'about-what-timeline',
     label: 'About #what / #timeline',
-    file: 'about_sampora_issues_fixed.html',
+    file: 'about.html',
     selectors: ['#what', '#timeline'],
     pairs: [['#what', '#timeline']],
   },

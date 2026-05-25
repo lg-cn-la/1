@@ -7,14 +7,35 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'qa-evidence');
-const toolRoot = path.resolve(root, '..', 'playwright-local');
-const toolRequire = createRequire(path.join(toolRoot, 'package.json'));
+
+function createQaRequire() {
+  const candidates = [
+    createRequire(import.meta.url),
+    createRequire(path.join(root, '..', 'playwright-local', 'package.json')),
+  ];
+  const requiredModules = ['playwright', '@axe-core/playwright', 'lighthouse', 'chrome-launcher'];
+
+  for (const candidate of candidates) {
+    try {
+      for (const moduleName of requiredModules) candidate.resolve(moduleName);
+      return candidate;
+    } catch {
+      // try next candidate
+    }
+  }
+
+  throw new Error(
+    'Missing QA dependencies. Install playwright, @axe-core/playwright, lighthouse, and chrome-launcher in the package root, or keep the legacy ../playwright-local tool directory.'
+  );
+}
+
+const toolRequire = createQaRequire();
 const { chromium } = toolRequire('playwright');
 const { AxeBuilder } = toolRequire('@axe-core/playwright');
 const lighthouse = (await import(pathToFileURL(toolRequire.resolve('lighthouse')).href)).default;
 const chromeLauncher = await import(pathToFileURL(toolRequire.resolve('chrome-launcher')).href);
 
-const pages = ['index.html', 'solutions.html', 'resources.html', 'resource-manuals.html', 'plans.html', 'contact.html'];
+const pages = ['index.html', 'solutions.html', 'resources.html', 'resource-manuals.html', 'plans.html', 'contact.html', 'about.html'];
 const chromeExecutablePath = process.env.CHROME_EXECUTABLE_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const mime = {
   '.html': 'text/html; charset=utf-8',

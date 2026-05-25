@@ -5,7 +5,7 @@ import { loadChromium } from './playwright-loader.mjs';
 const chromium = loadChromium();
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const referencePage = 'about_sampora_issues_fixed.html';
+const referencePage = 'about.html';
 const targetPages = [
   'index.html',
   'solutions.html',

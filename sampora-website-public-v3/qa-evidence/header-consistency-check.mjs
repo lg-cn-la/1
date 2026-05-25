@@ -12,15 +12,14 @@ const mainPages = [
   'plans.html',
   'contact.html',
   'resource-manuals.html',
-  'about_sampora_issues_fixed.html',
+  'about.html',
 ];
-const redirectPages = ['products.html', 'pricing.html'];
 const expectedHrefs = [
   'index.html',
   'solutions.html',
   'resources.html',
   'plans.html',
-  'about_sampora_issues_fixed.html',
+  'about.html',
   'contact.html',
 ];
 const expectedEnLabels = ['Product', 'Solutions', 'Resources', 'Plans', 'About', 'Contact'];
@@ -31,7 +30,7 @@ const activeByPage = {
   'plans.html': 'Plans',
   'contact.html': 'Contact',
   'resource-manuals.html': 'Resources',
-  'about_sampora_issues_fixed.html': 'About',
+  'about.html': 'About',
 };
 const expectedMobileLabels = {
   en: ['Product', 'Solutions', 'Resources', 'Plans', 'About', 'Contact'],
@@ -309,12 +308,6 @@ function checkMobileRoutes(file, routes) {
   if (!routes) return;
   const hrefs = routes.map((route) => Array.isArray(route) ? route[0] : '');
   checkArrayExact(file, 'mobile route href order', hrefs, expectedHrefs);
-}
-
-for (const file of redirectPages) {
-  if (!mainPages.includes(file)) {
-    console.log(`SKIP ${file}: redirect page excluded from header canonical set`);
-  }
 }
 
 for (const file of mainPages) {

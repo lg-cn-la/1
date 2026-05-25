@@ -1,24 +1,22 @@
 ﻿# Sampora Backend Form Handoff
 
-Generated: 2026-05-18
+Generated: 2026-05-25
 
 Source folder: `sampora-website-public-v3/`
 
 ## Current Frontend Contract
 
-The contact form is backend-ready at the markup and browser-behavior layer, but `[BACKEND_CONTACT_ENDPOINT]` remains an external integration placeholder. The static handoff package may keep this placeholder before production launch.
-
-In placeholder mode, the form stores a pending payload and shows the fallback/pending contact message instead of issuing a backend request. The frontend must not claim real backend receipt while the placeholder remains.
-
-In live endpoint mode, `[BACKEND_CONTACT_ENDPOINT]` has been replaced with the real backend endpoint and browser QA must confirm the form issues a POST request and handles success/failure responses correctly.
+The contact form is configured to the live Apps Script Web App endpoint and keeps success-only submit feedback behavior.
 
 Form contract:
 
 - `method="post"`
-- `action="[BACKEND_CONTACT_ENDPOINT]"`
-- `data-endpoint="[BACKEND_CONTACT_ENDPOINT]"`
+- `action="https://script.google.com/macros/s/AKfycbyHALTY5VRPba0ok2PKkPAUzBHWr8LIASQS1zZ3KCRsj4fg50tqIQltCQzLTP6i4GKP/exec"`
+- `data-endpoint="https://script.google.com/macros/s/AKfycbyHALTY5VRPba0ok2PKkPAUzBHWr8LIASQS1zZ3KCRsj4fg50tqIQltCQzLTP6i4GKP/exec"`
+- `CONTACT_ENDPOINT` constant in submit script matches the same URL
 - visible fields: `name`, `email`, `company`, `role`, `business_type`, `message`
-- hidden fields: `intent`, `source_page`, `source_section`, `plan`, `lang`
+- hidden fields: `intent`, `source_page`, `source_section`, `plan`, `lang`, `landing_page`, `referrer`, `utm_source`, `utm_medium`, `utm_campaign`
+- honeypot field: `website`
 - submit label: `Submit request`
 
 ## Intent Map
@@ -32,12 +30,11 @@ Supported conversion intent values:
 - Enterprise plan -> `contact.html?intent=enterprise_demo#contact-form`
 - Resources consult -> `contact.html?intent=resource_question#contact-form`
 
-The form also preserves source context through `source_page`, `source_section`, `plan`, and `lang`.
+The form also preserves source context through `source_page`, `source_section`, `plan`, and `lang`, plus attribution context through `landing_page`, `referrer`, `utm_source`, `utm_medium`, and `utm_campaign`.
 
 ## Success and Failure Behavior
 
-- In placeholder mode, the frontend keeps the request in a pending/local handoff path and does not claim backend receipt or issue a real backend request.
-- In live endpoint mode, show success only after an explicit successful backend response.
+- Show success only after an explicit successful backend response (`res.ok`).
 - Network errors, endpoint errors, and validation failures must keep the user in a failure/pending state with the form data preserved where possible.
 
 ## Earlier Evidence
@@ -52,12 +49,12 @@ This docs update does not claim fresh browser QA.
 
 ## Backend Integration Checklist
 
-- Replace `[BACKEND_CONTACT_ENDPOINT]` in both `action` and `data-endpoint` before production launch.
+- Keep `action`, `data-endpoint`, and `CONTACT_ENDPOINT` as the same live endpoint URL.
 - Accept all visible fields and hidden context fields listed above.
 - Validate required fields server-side: `name`, `email`, `company`, and `message`.
-- Store or route `intent`, `source_page`, `source_section`, `plan`, and `lang` with the lead.
+- Store or route `intent`, `source_page`, `source_section`, `plan`, `lang`, `landing_page`, `referrer`, `utm_source`, `utm_medium`, and `utm_campaign` with the lead.
+- Keep `website` honeypot filtering enabled server-side.
 - Return a clear success response only after the backend receives the submission.
 - Return useful failure responses for validation, network, or service errors.
-- Re-run contact form static checks and browser QA in live endpoint mode after endpoint integration.
-- Do not disable the form in the static handoff package only because the production endpoint is not configured yet.
+- Re-run contact form static checks and browser QA using local mock interception for automated tests, and use manual end-to-end submit for real sheet/mail validation.
 

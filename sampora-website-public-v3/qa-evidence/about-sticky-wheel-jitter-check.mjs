@@ -5,7 +5,7 @@ import { loadChromium } from './playwright-loader.mjs';
 const chromium = loadChromium();
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const url = pathToFileURL(path.join(root, 'about_sampora_issues_fixed.html')).href;
+const url = pathToFileURL(path.join(root, 'about.html')).href;
 const chromeExecutablePath = process.env.CHROME_EXECUTABLE_PATH || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const failures = [];
 
