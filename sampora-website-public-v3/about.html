@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html data-lang="en" lang="en">
 <head>
@@ -152,24 +152,25 @@ html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head
 .mast .header-actions .btn.ghost:hover,.mast .nav-actions .btn.ghost:hover,.mast .actions .btn.ghost:hover,.mast .header-actions .btn.ghost:focus-visible,.mast .nav-actions .btn.ghost:focus-visible,.mast .actions .btn.ghost:focus-visible{transform:translateY(-1px);color:var(--cyan2,var(--cyan,#61e7ff));border-color:rgba(56,210,255,.45);background:rgba(20,40,69,.22)}
 .mast .header-actions .btn.primary,.mast .nav-actions .btn.primary,.mast .actions .btn.primary{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
 .mast .header-actions .btn.primary:hover,.mast .nav-actions .btn.primary:hover,.mast .actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible,.mast .nav-actions .btn.primary:focus-visible,.mast .actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:active,.mast .nav-actions .btn.primary:active,.mast .actions .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
-/* Bottom CTA primary reuses the header primary selected motion. */
-.cta-section .btn.primary{background:linear-gradient(135deg,var(--cyan),var(--cyan2));transition:transform .12s var(--ease),box-shadow .18s var(--ease),color .18s var(--ease),border-color .18s var(--ease)}
-.cta-section .btn.primary:hover,.cta-section .btn.primary:focus-visible,.cta-section .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
+@media(min-width:1101px){.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn{line-height:1.54}}
+/* Hero and bottom CTA primary reuse the header primary selected motion. */
+.hero-actions .btn.primary,.cta-section .btn.primary{background:linear-gradient(135deg,var(--cyan),var(--cyan2));transition:transform .12s var(--ease),box-shadow .18s var(--ease),color .18s var(--ease),border-color .18s var(--ease)}
+.hero-actions .btn.primary:hover,.hero-actions .btn.primary:focus-visible,.hero-actions .btn.primary:active,.cta-section .btn.primary:hover,.cta-section .btn.primary:focus-visible,.cta-section .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
 @media(min-width:1101px){.mast .inner{height:66px;display:grid;grid-template-columns:167.36px minmax(0,1fr) 430px;align-items:center;gap:24px}.mast .brand{width:167.36px;min-width:167.36px}.mast .nav{box-sizing:border-box;width:100%;height:66px;align-self:stretch;justify-self:stretch;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));align-items:center;justify-items:center;gap:0;margin:0;padding:0}.mast .nav a{display:inline-flex;align-items:center;justify-content:center;width:100%;min-width:0;height:66px;padding:0 4px;white-space:nowrap}.mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box;width:430px;min-width:430px;align-self:center;justify-self:end;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:nowrap;overflow:visible}.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto;white-space:nowrap}}
 @media(max-width:640px){.mast .inner{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px}.mast .brand{min-width:0;overflow:hidden}.mast .brand small{display:none}.mast .header-actions{min-width:0;width:auto;justify-self:end;gap:6px;overflow:visible}.mast .lang{min-width:0;flex:0 1 auto}.mast .lang button{min-width:34px;padding-left:6px;padding-right:6px;font-size:10px}.mast .mobile-nav-toggle{width:36px;height:36px;flex:0 0 36px}}
 </style>
-<link href="https://www.sampora.com/about.html" rel="canonical"/>
+<link href="https://getsampora.com/about.html" rel="canonical"/>
 <meta content="website" property="og:type"/>
 <meta content="Sampora" property="og:site_name"/>
 <meta content="About Sampora" property="og:title"/>
 <meta content="Sampora connects project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows for panel providers and sample suppliers." property="og:description"/>
-<meta content="https://www.sampora.com/about.html" property="og:url"/>
+<meta content="https://getsampora.com/about.html" property="og:url"/>
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="About Sampora" name="twitter:title"/>
 <meta content="Sampora connects project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows for panel providers and sample suppliers." name="twitter:description"/>
-<meta content="https://www.sampora.com/assets/og-image.png" name="twitter:image"/>
-<script id="org-jsonld" type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Sampora","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://www.sampora.com/about.html","description":"Sampora is an online sample operations platform for panel providers and sample suppliers, connecting project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows."}</script>
+<meta content="https://getsampora.com/assets/og-image.png" name="twitter:image"/>
+<script id="org-jsonld" type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Sampora","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://getsampora.com/about.html","description":"Sampora is an online sample operations platform for panel providers and sample suppliers, connecting project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows."}</script>
 <meta content="default-src 'self'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; base-uri 'self'; form-action 'self' mailto:; object-src 'none'" http-equiv="Content-Security-Policy"/>
 <style id="sampora-standard-footer-css">
 #footer.sampora-site-footer{padding:64px 0 12px!important;border-top:1px solid rgba(129,178,214,.16)!important;color:var(--body,#A9B9CE)!important;background:radial-gradient(38% 34% at 18% 0%,rgba(56,210,255,.08),transparent 68%),linear-gradient(180deg,rgba(6,16,31,.22),rgba(6,16,31,.42))!important}
@@ -194,7 +195,10 @@ html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head
 #footer .sampora-footer-contact-item:last-child{border-right:0!important}
 #footer .sampora-footer-icon{width:34px!important;height:34px!important;border-radius:999px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;flex:0 0 auto!important;box-sizing:border-box!important;overflow:hidden!important;text-align:center!important;font:800 10.5px/1 var(--mono,monospace)!important;letter-spacing:.02em!important}
 #footer .sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
-#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:1px solid rgba(129,178,214,.10)!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;align-items:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:1px solid rgba(129,178,214,.10)!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+#footer .sampora-footer-legal .dot{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:auto!important;min-width:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;flex:0 0 auto!important;color:var(--muted,#7E92AC)!important;font:inherit!important;line-height:1!important}
+#footer .sampora-footer-legal a{transition:color .2s ease,transform .2s ease,text-shadow .2s ease!important}
+#footer .sampora-footer-legal a:hover,#footer .sampora-footer-legal a:focus-visible{color:#38d8ff!important;transform:translateX(3px)!important;text-shadow:0 0 18px rgba(56,216,255,.28)!important}
 @media(max-width:1180px){#footer .sampora-footer-main{grid-template-columns:1fr 1fr!important;padding:34px 28px 32px!important}#footer .sampora-footer-brand{grid-column:1/-1!important}#footer .sampora-footer-contact{grid-template-columns:1fr!important}#footer .sampora-footer-contact-item{border-right:0!important;border-bottom:1px solid rgba(129,178,214,.18)!important;padding:18px 28px!important}#footer .sampora-footer-contact-item:last-child{border-bottom:0!important}}
 @media(max-width:760px){#footer .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}#footer .sampora-footer-brand{grid-column:auto!important}#footer .sampora-footer-col h3::after{width:min(100%,280px)!important}#footer .sampora-footer-brand p,#footer .sampora-footer-col a,#footer .sampora-footer-contact-item{overflow-wrap:anywhere!important}}
 </style>
@@ -257,6 +261,7 @@ body::before {
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
+<link rel="stylesheet" href="assets/footer-email-modal.css">
 </head>
 <body>
 <div class="status"><div class="container inner"><span class="live" data-i18n="statusLive">About Sampora · Live</span><span class="sep">/</span><span data-i18n="statusDemoLabel">Sample operations platform</span><span class="right" data-i18n="statusControls">Traceable delivery, review and settlement</span></div></div>
@@ -285,7 +290,7 @@ body::before {
 <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
 <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
 <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
-<a href="contact.html" data-footer-i18n="navContact">Contact</a>
+<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
 </div>
 <div class="sampora-footer-col">
 <h3 data-footer-i18n="footerResources">Resources</h3>
@@ -299,7 +304,7 @@ body::before {
 <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
 <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
 <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
-<a href="contact.html" data-footer-i18n="navContact">Contact</a>
+<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
 </div>
 </div>
 <div class="sampora-footer-contact">
@@ -507,7 +512,7 @@ const I18N={
     "consoleStatusConnected": "已关联",
     "consoleStatusSynced": "就绪",
     "storyKicker": "为什么需要 Sampora",
-    "storyTitle": "样本交付需要一套运营系统，而不是更多表格。",
+    "storyTitle": "样本交付需要一套运营系统，而不是更多表格.",
     "storyDesc": "样本运营通常分散在客户需求、供应商沟通、配额变化、审核记录、财务核对和结算依据之间。Sampora 的目标，是把这些分散环节统一到一个可追踪的运营层中。",
     "storyItem1Title": "从分散更新到统一项目上下文",
     "storyItem1Text": "项目需求、执行规则、供应商决策和审核状态，应该对交付相关团队保持清晰可见。",
@@ -516,7 +521,7 @@ const I18N={
     "storyItem3Title": "从审核备注到可结算记录",
     "storyItem3Text": "审核决策、回调记录、拒绝原因和财务依据，应在账单和发票生成时保持可追踪。",
     "proofKicker": "运营基础",
-    "proofTitle": "围绕样本服务商每天真实处理的工作构建。",
+    "proofTitle": "围绕样本服务商每天真实处理的工作构建.",
     "proof1Num": "设置",
     "proof1Title": "项目运营上下文",
     "proof1Text": "项目接收、国家、CPI、IR、LOI、配额、启动规则和交付设置，从一开始保持连接。",
@@ -556,7 +561,7 @@ const I18N={
     "footerTag3": "结算对账",
     "heroTitleBefore": "Sampora 将样本运营转化为",
     "heroTitleHighlight": "可追踪工作流",
-    "heroTitleAfter": "。",
+    "heroTitleAfter": "",
     "teamKicker": "运营协作",
     "teamTitle": "面向样本交付背后的多角色团队",
     "teamDesc": "Sampora 围绕项目运营、供应商管理、审核团队、财务运营和技术集成负责人之间的协作来设计。",
@@ -615,5 +620,7 @@ applyLang(initialLang());
 </script>
 <script src="assets/lead-attribution.js" defer></script>
 <script src="assets/sampora-cookie-preferences.js" defer></script>
+<script src="assets/footer-email-modal.js" defer></script>
+<script src="https://plugin-code.salesmartly.com/js/project_693595_715565_1777101144.js"></script>
 </body>
 </html>

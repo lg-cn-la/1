@@ -34,7 +34,7 @@ Configure these backend/CDN 301 redirects in the same production release:
 | `/版本方案.html` | `/plans.html` | 301 |
 | `/联系我们.html` | `/contact.html` | 301 |
 
-Re-check deployed Chinese legacy route behavior after CDN or server rewrite configuration. The current source uses absolute canonical links under `https://www.sampora.com/...`. Confirm the final production domain before deployment if that domain is not final.
+Re-check deployed Chinese legacy route behavior after CDN or server rewrite configuration. The current source uses absolute canonical links under `https://getsampora.com/...`.
 
 ## Public Copy Baseline
 
@@ -49,17 +49,19 @@ This is the overseas-server stage. Do not add mainland filing display text until
 
 ## Contact Form Endpoint Policy
 
-`contact.html` now uses the live Apps Script Web App endpoint:
+`contact.html` now submits to the same-origin production route:
 
-- `https://script.google.com/macros/s/AKfycbyHALTY5VRPba0ok2PKkPAUzBHWr8LIASQS1zZ3KCRsj4fg50tqIQltCQzLTP6i4GKP/exec`
+- `/api/contact`
 
 Deployment checks:
 
-- Keep `action`, `data-endpoint`, and `CONTACT_ENDPOINT` consistent.
-- Confirm the backend accepts visible fields `name`, `email`, `company`, `role`, `business_type`, and `message`.
+- Keep `action`, `data-endpoint`, and `CONTACT_ENDPOINT` as `/api/contact`.
+- Confirm the backend accepts `application/x-www-form-urlencoded` from `FormData` -> `URLSearchParams`; JSON may be supported as a compatibility path, but the route must not be JSON-only.
+- Confirm the backend requires `name`, `company`, `email`, `role`, and `business_type`.
+- Confirm `message` remains optional and is stored when provided.
 - Confirm the backend accepts hidden context fields `intent`, `source_page`, `source_section`, `plan`, `lang`, `landing_page`, `referrer`, `utm_source`, `utm_medium`, and `utm_campaign`.
 - Keep honeypot field `website` in the payload.
-- Keep success-only submit behavior: clear form only after a real successful response.
+- Keep success-only submit behavior: clear form only after HTTP 2xx with JSON `{ "ok": true }`; HTTP 2xx with `{ "ok": false }`, invalid JSON, HTTP errors, and network errors must show failure and preserve user input.
 
 ## QA Evidence
 

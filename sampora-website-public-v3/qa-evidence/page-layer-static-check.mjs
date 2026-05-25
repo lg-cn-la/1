@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const owned = [
+const officialPages = [
   'index.html',
   'solutions.html',
   'resources.html',
@@ -13,16 +13,22 @@ const owned = [
   'contact.html',
   'about.html',
 ];
-const chineseLegacyRedirects = [
-  '首页.html',
-  '产品.html',
-  '解决方案.html',
-  '资源中心.html',
-  '资源-跳转页面.html',
-  '版本方案.html',
-  '联系我们.html',
+const supportPages = [
+  '404.html',
+  'cookie-policy.html',
+  'privacy.html',
+  'terms.html',
 ];
-const allHtml = owned;
+const chineseLegacyRedirects = [
+  '\u9996\u9875.html',
+  '\u4ea7\u54c1.html',
+  '\u89e3\u51b3\u65b9\u6848.html',
+  '\u8d44\u6e90\u4e2d\u5fc3.html',
+  '\u8d44\u6e90-\u8df3\u8f6c\u9875\u9762.html',
+  '\u7248\u672c\u65b9\u6848.html',
+  '\u8054\u7cfb\u6211\u4eec.html',
+];
+const allHtml = [...officialPages, ...supportPages];
 const forbiddenParts = [
   '\\?' + '\\?' + '\\?+',
   'expanded ' + 'topology',
@@ -46,7 +52,7 @@ function read(file) {
   return fs.readFileSync(path.join(root, file), 'utf8');
 }
 
-const expectedPhysicalHtml = [...owned].sort();
+const expectedPhysicalHtml = [...allHtml].sort();
 const actualPhysicalHtml = fs
   .readdirSync(root)
   .filter(file => file.endsWith('.html'))
@@ -59,10 +65,10 @@ for (const file of allHtml) {
   const html = read(file);
   const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();
   const description = html.match(/<meta\b(?=[^>]*\bname=["']description["'])(?=[^>]*\bcontent=["'][^"']+["'])[^>]*>/i)?.[0];
-  const canonical = html.match(/<link\b(?=[^>]*\brel=["']canonical["'])(?=[^>]*\bhref=["']https:\/\/www\.sampora\.com\/[^"']+["'])[^>]*>/i)?.[0];
+  const canonical = html.match(/<link\b(?=[^>]*\brel=["']canonical["'])(?=[^>]*\bhref=["']https:\/\/getsampora\.com\/[^"']+["'])[^>]*>/i)?.[0];
   if (!title) fail(`${file}: missing title`);
   if (!description) fail(`${file}: missing meta description`);
-  if (!canonical) fail(`${file}: missing absolute canonical`);
+  if (!canonical) fail(`${file}: missing getsampora absolute canonical`);
   if (html.includes('</link>')) fail(`${file}: contains closing canonical/link tag`);
   if (forbidden.test(html)) fail(`${file}: forbidden text matched`);
 }
@@ -73,7 +79,7 @@ for (const file of chineseLegacyRedirects) {
   }
 }
 
-for (const file of owned) {
+for (const file of allHtml) {
   const html = read(file);
   const scripts = [...html.matchAll(/<script(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/gi)];
   scripts.forEach((match, index) => {

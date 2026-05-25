@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://www.sampora.com/resources.html">
+<link rel="canonical" href="https://getsampora.com/resources.html">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;amp;display=swap" rel="stylesheet"/>
@@ -1839,6 +1839,8 @@
         #footer .sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
 
         #footer .sampora-footer-legal{display:flex!important;justify-content:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:1px solid rgba(129,178,214,.10)!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+        #footer .sampora-footer-legal a{transition:color .2s ease,transform .2s ease,text-shadow .2s ease!important}
+        #footer .sampora-footer-legal a:hover,#footer .sampora-footer-legal a:focus-visible{color:#38d8ff!important;transform:translateX(3px)!important;text-shadow:0 0 18px rgba(56,216,255,.28)!important}
 
         @media(max-width:1180px){#footer .sampora-footer-main{grid-template-columns:1fr 1fr!important;padding:34px 28px 32px!important}#footer .sampora-footer-brand{grid-column:1/-1!important}#footer .sampora-footer-contact{grid-template-columns:1fr!important}#footer .sampora-footer-contact-item{border-right:0!important;border-bottom:1px solid rgba(129,178,214,.18)!important;padding:18px 28px!important}#footer .sampora-footer-contact-item:last-child{border-bottom:0!important}}
 
@@ -2245,7 +2247,7 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
         .surface-card ul {
             padding-bottom: 28px;
         }
-    
+
 
 </style>
 <style id="worker-a-unified-desktop-nav">
@@ -2347,6 +2349,7 @@ body::before {
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
+<link rel="stylesheet" href="assets/footer-email-modal.css">
 </head>
 <body>
 <div aria-hidden="true" class="status">
@@ -2625,7 +2628,7 @@ body::before {
 <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
 <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
 <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
-<a href="contact.html" data-footer-i18n="navContact">Contact</a>
+<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
 </div>
 <div class="sampora-footer-col">
 <h3 data-footer-i18n="footerResources">Resources</h3>
@@ -2639,7 +2642,7 @@ body::before {
 <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
 <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
 <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
-<a href="contact.html" data-footer-i18n="navContact">Contact</a>
+<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
 </div>
 </div>
 <div class="sampora-footer-contact">
@@ -2823,7 +2826,7 @@ body::before {
     "headerBookDemo": "预约演示",
     "headerStartTrial": "开始试用",
     "heroKicker": "资源中心 · 接口入口手册",
-    "heroTitle": "面向<em>在线样本运营<\/em>的资源中心。",
+    "heroTitle": "面向<em>在线样本运营<\/em>的资源中心",
     "heroSub": "面向样本交付团队的操作手册、区域上线说明和实施参考。",
     "heroCta1": "查看手册 →",
     "heroCta2": "阅读上线说明 →",
@@ -2852,16 +2855,16 @@ body::before {
     "nodeCtrl": "审核",
     "nodeEvd": "记录",
     "setupKicker": "运营路径",
-    "setupTitle": "按照<em>交付到结算<\/em>的手册路径学习。",
+    "setupTitle": "按照<em>交付到结算<\/em>的手册路径学习.",
     "setupText": "按照配置、项目接收、供应商协同、审核、结算和团队上线步骤，快速找到需要的操作资料。",
     "proofKicker": "运营证据",
-    "proofTitle": "每一份指南都能回到真实运营记录。",
+    "proofTitle": "每一份指南都能回到真实运营记录.",
     "proofText": "通过项目、供应商、API、审核、结算和记录视图，让每个交付决策从配置到财务都可追溯。",
     "modeFitTitle": "一条路径，三种运营模式",
     "modeFitTags": "样本库运营版 · 供应商网络运营版 · 企业版",
     "proofOutputTitle": "这条路径产出的内容",
     "surfaceKicker": "资源入口",
-    "surfaceTitle": "三个稳定资源入口，<em>一个运营资料中心。<\/em>",
+    "surfaceTitle": "三个稳定资源入口，<em>一个运营资料中心.<\/em>",
     "surfaceText": "先从手册、上线说明和实施参考进入，再查看更细的指南内容。",
     "footerDesc": "面向自有样本运营方和在线样本供应商的在线样本运营平台。",
     "footerCol1": "产品支持",
@@ -3260,7 +3263,7 @@ body::before {
 
         function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
-        
+
 
         function renderChecklist() {
             $("#setupChecklist").innerHTML = DATA[state.lang].setup.map((item, idx) => `
@@ -3435,5 +3438,7 @@ body::before {
 </script>
 <script src="assets/lead-attribution.js" defer></script>
 <script src="assets/sampora-cookie-preferences.js" defer></script>
+<script src="assets/footer-email-modal.js" defer></script>
+<script src="https://plugin-code.salesmartly.com/js/project_693595_715565_1777101144.js"></script>
 </body>
 </html>

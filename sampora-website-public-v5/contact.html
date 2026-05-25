@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contact Sampora to discuss trial, demo, sales, enterprise, or resource questions for online sample operations." />
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://getsampora.com/contact.html">
+<title>Sampora Contact - Submit request</title>
+    <style>
+        :root {
+            --bg: #071120;
+            --bg2: #09192a;
+            --dark: #06101d;
+            --panel: #0b1b2d;
+            --panel2: #0d2136;
+            --line: rgba(129, 178, 214, .15);
+            --line2: rgba(57, 215, 255, .30);
+            --text: #edf6ff;
+            --body: #aebed2;
+            --muted: #6f8298;
+            --cyan: #39d7ff;
+            --cyan2: #61e7ff;
+            --amber: #ffbd5a;
+            --green: #a9ff5f;
+            --white: #ffffff;
+            --max: 1280px;
+            --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            --ease: cubic-bezier(.2, .85, .2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            font-family: var(--sans);
+            background:
+                radial-gradient(circle at 80% 6%, rgba(57, 215, 255, .12), transparent 30%),
+                linear-gradient(180deg, #06101d 0%, #071120 58%, #07101c 100%);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(88, 160, 208, .052) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(88, 160, 208, .052) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, .85), rgba(0, 0, 0, .25));
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        .top-strip {
+            height: 34px;
+            border-bottom: 1px solid var(--line);
+            background: rgba(5, 13, 24, .76);
+            backdrop-filter: blur(18px);
+            color: var(--body);
+            font: 12px var(--mono);
+            letter-spacing: .06em;
+        }
+
+        .container {
+            width: min(var(--max), calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .strip-inner {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .live-dot {
+            display: inline-flex;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 16px rgba(169, 255, 95, .8);
+            margin-right: 8px;
+        }
+
+        .nav {
+            height: 70px;
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            border-bottom: 1px solid var(--line);
+            background: rgba(6, 16, 29, .82);
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-inner {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 180px;
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(57, 215, 255, .48);
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            color: var(--cyan2);
+            font-family: var(--mono);
+            background: rgba(10, 59, 85, .42);
+            box-shadow: inset 0 0 22px rgba(57, 215, 255, .12);
+        }
+
+        .brand-name {
+            display: block;
+            font-weight: 950;
+            font-size: 20px;
+            line-height: 1;
+            letter-spacing: .01em;
+        }
+
+        .brand-sub {
+            display: block;
+            margin-top: 4px;
+            color: var(--body);
+            font: 10px var(--mono);
+            letter-spacing: .18em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 26px;
+            align-items: center;
+            color: #cdd8e8;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 26px 0;
+            opacity: .86;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--cyan2);
+            opacity: 1;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 15px;
+            height: 2px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, transparent, var(--cyan2), transparent);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lang-switch {
+            display: inline-flex;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 3px;
+            background: rgba(7, 20, 35, .72);
+        }
+
+        .lang-btn {
+            border: 0;
+            background: transparent;
+            color: var(--body);
+            padding: 8px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: rgba(57, 215, 255, .18);
+            color: var(--cyan2);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 20px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: rgba(9, 25, 43, .68);
+            color: var(--text);
+            font-weight: 950;
+            cursor: pointer;
+            transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            border-color: rgba(57, 215, 255, .55);
+            background: rgba(12, 37, 60, .9);
+        }
+
+        .btn.primary {
+            color: #03101a;
+            background: linear-gradient(180deg, #64e3ff, #38c8f3);
+            border-color: rgba(99, 228, 255, .7);
+            box-shadow: 0 18px 42px rgba(57, 215, 255, .18);
+        }
+
+        .hero {
+            position: relative;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(57, 215, 255, .14), transparent 42%),
+                linear-gradient(180deg, rgba(7, 17, 32, .84) 0%, rgba(8, 22, 38, .62) 54%, rgba(8, 22, 38, .24) 82%, transparent 100%);
+            border-bottom: 0;
+            min-height: 430px;
+            display: flex;
+            align-items: flex-start;
+            text-align: center;
+            overflow: visible;
+        }
+
+        .hero-inner {
+            padding: 110px 0 38px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            color: var(--cyan2);
+            font: 900 12px var(--mono);
+            letter-spacing: .24em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan2);
+            box-shadow: 0 0 16px rgba(57, 215, 255, .9);
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--white);
+            font-size: clamp(56px, 6.7vw, 92px);
+            line-height: 1.02;
+            letter-spacing: -.06em;
+            font-weight: 950;
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: 28px auto 0;
+            color: #c8d6e8;
+            font-size: 20px;
+            line-height: 1.75;
+        }
+
+        .contact-options {
+            margin-top: -155px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .option-card {
+            min-height: 275px;
+            border: 1px solid rgba(57, 215, 255, .18);
+            background: linear-gradient(180deg, rgba(15, 34, 55, .98), rgba(10, 24, 42, .98));
+            border-radius: 24px;
+            padding: 30px 28px;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, .22);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            transition: transform .22s var(--ease), border-color .22s var(--ease), background .22s var(--ease);
+        }
+
+        .option-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(57, 215, 255, .48);
+            background: linear-gradient(180deg, rgba(18, 43, 70, .98), rgba(11, 27, 45, .98));
+        }
+
+        .option-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            color: var(--cyan2);
+            border: 1px solid rgba(57, 215, 255, .28);
+            background: rgba(57, 215, 255, .08);
+            margin-bottom: 24px;
+        }
+
+        .option-card h3 {
+            margin: 0 0 16px;
+            font-size: 22px;
+            line-height: 1.12;
+            letter-spacing: -.03em;
+        }
+
+        .option-card p {
+            color: #b8c7da;
+            font-size: 15px;
+            line-height: 1.68;
+            margin: 0;
+        }
+
+        .option-card a {
+            margin-top: auto;
+            padding-top: 28px;
+            color: var(--cyan2);
+            font-weight: 950;
+        }
+
+        .contact-main {
+            padding: 42px 0 82px;
+            scroll-margin-top: 110px;
+        }
+
+        .form-layout {
+            display: grid;
+            grid-template-columns: .82fr 1.18fr;
+            gap: 72px;
+            align-items: stretch;
+        }
+
+        .side-copy {
+            min-height: 100%;
+            padding-top: 0;
+            display: grid;
+            grid-auto-rows: max-content;
+            align-content: space-between;
+            align-self: stretch;
+        }
+
+        .side-copy > .eyebrow {
+            width: max-content;
+            margin-bottom: 0;
+            padding: 7px 14px;
+            border: 1px solid rgba(56, 210, 255, .28);
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(10, 25, 43, .98), rgba(8, 19, 34, .96));
+            color: var(--cyan2);
+            font: 11px var(--mono);
+            letter-spacing: .14em;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .03), 0 0 0 1px rgba(6, 16, 29, .72);
+        }
+
+        .side-copy > .eyebrow::before {
+            background: var(--cyan2);
+            box-shadow: 0 0 14px rgba(57, 215, 255, .72);
+        }
+
+        .side-copy h2,
+        .more-ways h2,
+        .response h2 {
+            margin: 0;
+            font-size: clamp(38px, 4.4vw, 64px);
+            line-height: 1.02;
+            letter-spacing: -.055em;
+            font-weight: 950;
+        }
+
+        .side-copy h2 {
+            margin-bottom: 0;
+        }
+
+        .side-copy p {
+            color: #b8c7da;
+            font-size: 18px;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        .tick-list {
+            display: contents;
+            gap: 0;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .tick-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #e0ebf7;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .tick-list li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: 950;
+        }
+
+        .support-note {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #d5e4f2;
+            line-height: 1.55;
+        }
+
+        .support-note a {
+            color: var(--cyan2);
+            font-weight: 900;
+        }
+
+        .form-card {
+            border: 1px solid rgba(57, 215, 255, .18);
+            background:
+                linear-gradient(180deg, rgba(14, 34, 55, .86), rgba(7, 18, 31, .92));
+            border-radius: 26px;
+            padding: 28px;
+            box-shadow: 0 28px 85px rgba(0, 0, 0, .26);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        label {
+            color: #dce8f5;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid rgba(129, 178, 214, .20);
+            border-radius: 12px;
+            background: rgba(5, 15, 27, .72);
+            color: var(--text);
+            padding: 14px 15px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 124px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: rgba(57, 215, 255, .56);
+            box-shadow: 0 0 0 3px rgba(57, 215, 255, .08);
+        }
+
+        .field[hidden] {
+            display: none;
+        }
+
+        .form-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .form-submit-feedback {
+            margin: 16px 0 0;
+            padding: 12px 0 12px 14px;
+            border-left: 3px solid var(--cyan2);
+            color: #dceaf7;
+            font-size: 13px;
+            line-height: 1.62;
+            overflow-wrap: anywhere;
+        }
+
+        .form-submit-feedback[hidden] {
+            display: none;
+        }
+
+        .form-submit-feedback[data-state="submitting"] {
+            border-left-color: var(--cyan2);
+            color: #e4fbff;
+        }
+
+        .form-submit-feedback[data-state="success"] {
+            border-left-color: var(--green);
+            color: #ebffd9;
+        }
+
+        .form-submit-feedback[data-state="failure"] {
+            border-left-color: var(--amber);
+            color: #ffe5bf;
+        }
+
+        .privacy {
+            color: #8194aa;
+            font-size: 12px;
+            line-height: 1.55;
+            max-width: 600px;
+            margin: 27px 0 0;
+        }
+
+        .privacy a {
+            color: #c7f3ff;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .more-ways {
+            padding: 86px 0;
+            border-top: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .more-ways p {
+            max-width: 720px;
+            margin: 20px auto 0;
+            color: #b8c7da;
+            font-size: 18px;
+            line-height: 1.75;
+        }
+
+        .direct-grid {
+            margin-top: 42px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            text-align: left;
+        }
+
+        .direct-card {
+            border: 1px solid rgba(57, 215, 255, .18);
+            background: rgba(10, 24, 42, .64);
+            border-radius: 24px;
+            padding: 30px;
+            min-height: 215px;
+            transition: transform .22s var(--ease), border-color .22s var(--ease);
+        }
+
+        .direct-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(57, 215, 255, .45);
+        }
+
+        .direct-card.amber {
+            border-color: rgba(255, 189, 90, .28);
+            background: linear-gradient(180deg, rgba(255, 189, 90, .08), rgba(10, 24, 42, .64));
+        }
+
+        .direct-icon {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(57, 215, 255, .28);
+            color: var(--cyan2);
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: rgba(57, 215, 255, .08);
+            margin-bottom: 22px;
+        }
+
+        .direct-card.amber .direct-icon {
+            border-color: rgba(255, 189, 90, .36);
+            color: var(--amber);
+            background: rgba(255, 189, 90, .09);
+        }
+
+        .direct-card h3 {
+            margin: 0 0 12px;
+            font-size: 24px;
+        }
+
+        .direct-card strong {
+            display: block;
+            font-size: 20px;
+            word-break: break-word;
+            margin-bottom: 14px;
+            line-height: 1.35;
+        }
+
+        .direct-card a {
+            color: var(--cyan2);
+            font-weight: 900;
+        }
+
+        .direct-card p {
+            margin: 0;
+            color: #b8c7da;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .response {
+            padding: 86px 0 92px;
+            border-top: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .response h2 {
+            margin: 0;
+            font-size: clamp(38px, 4.4vw, 64px);
+            line-height: 1.02;
+            letter-spacing: -.055em;
+            font-weight: 950;
+        }
+
+        .response-sub {
+            max-width: 720px;
+            margin: 20px auto 0;
+            color: #b8c7da;
+            font-size: 18px;
+            line-height: 1.75;
+        }
+
+        .response-grid {
+            margin-top: 42px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            text-align: left;
+        }
+
+        .response-card {
+            border: 1px solid rgba(57, 215, 255, .18);
+            background: rgba(10, 24, 42, .64);
+            border-radius: 24px;
+            padding: 30px;
+            min-height: 215px;
+            transition: transform .22s var(--ease), border-color .22s var(--ease);
+        }
+
+        .response-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(57, 215, 255, .45);
+        }
+
+        .response-icon {
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(57, 215, 255, .28);
+            color: var(--cyan2);
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: rgba(57, 215, 255, .08);
+            margin-bottom: 22px;
+            font: 950 13px var(--mono);
+        }
+
+        .response-card h3 {
+            margin: 0 0 14px;
+            font-size: 24px;
+            line-height: 1.12;
+            letter-spacing: -.03em;
+        }
+
+        .response-card p {
+            margin: 0;
+            color: #b8c7da;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+
+        footer {
+            padding: 70px 0 34px;
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-card {
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: rgba(10, 24, 42, .58);
+            overflow: hidden;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.25fr .75fr .75fr .75fr;
+            gap: 28px;
+            padding: 36px 40px;
+        }
+
+        .footer-desc {
+            color: var(--body);
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 420px;
+            margin-top: 20px;
+        }
+
+        .footer-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .footer-tags span {
+            border: 1px solid rgba(57, 215, 255, .22);
+            color: var(--cyan2);
+            border-radius: 999px;
+            padding: 6px 10px;
+            font: 900 11px var(--mono);
+        }
+
+        .footer-col h4 {
+            margin: 0 0 16px;
+            font-size: 16px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--body);
+            margin: 12px 0;
+            font-size: 14px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .contact-item {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 0 32px;
+            border-right: 1px solid var(--line);
+            color: #cfd9e8;
+            font-weight: 800;
+        }
+
+        .contact-item:last-child {
+            border-right: 0;
+        }
+
+        .contact-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(57, 215, 255, .25);
+            color: var(--cyan2);
+            background: rgba(57, 215, 255, .07);
+        }
+
+        .copyright {
+            border-top: 1px solid var(--line);
+            padding: 18px 32px;
+            text-align: center;
+            color: var(--muted);
+            font: 12px var(--mono);
+        }
+
+        .toast {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 200;
+            border: 1px solid rgba(57, 215, 255, .35);
+            border-radius: 16px;
+            background: rgba(7, 18, 31, .96);
+            box-shadow: 0 20px 70px rgba(0, 0, 0, .35);
+            padding: 18px 20px;
+            max-width: 360px;
+            display: none;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast b {
+            display: block;
+            color: var(--cyan2);
+            margin-bottom: 8px;
+        }
+
+        .toast span {
+            color: var(--body);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        @media(max-width:1100px) {
+            .option-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-layout,
+            .response-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .side-copy {
+                min-height: 0;
+                padding-top: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 22px;
+                justify-content: flex-start;
+            }
+
+            .tick-list {
+                display: grid;
+                min-height: 0;
+                gap: 18px;
+                align-content: start;
+            }
+        }
+
+        @media(max-width:860px) {
+            .container {
+                width: min(100% - 32px, var(--max));
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .top-strip {
+                font-size: 10px;
+            }
+
+            .strip-inner {
+                gap: 10px;
+            }
+
+            .strip-inner div:last-child {
+                display: none;
+            }
+
+            .hero-inner {
+                padding: 72px 0 185px;
+            }
+
+            h1 {
+                font-size: clamp(48px, 16vw, 74px);
+            }
+
+            .option-grid,
+            .form-row,
+            .direct-grid,
+            .footer-top,
+            .footer-bottom {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-options {
+                margin-top: -140px;
+            }
+
+            .direct-card,
+            .option-card {
+                min-height: auto;
+            }
+
+            .contact-item {
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .contact-item:last-child {
+                border-bottom: 0;
+            }
+        }
+
+
+        /* 缁熶竴椤堕儴瀵艰埅锛氳鈥滆仈绯绘垜浠€濋〉涓庝骇鍝?/ 瑙ｅ喅鏂规 / 璧勬簮 / 鐗堟湰鏂规椤典繚鎸佸悓涓€濂?tab 鏍?*/
+        .top-strip {
+            position: sticky;
+            top: 0;
+            z-index: 80;
+            height: 34px;
+            background: rgba(6, 16, 31, .90);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+        }
+
+        .strip-inner {
+            justify-content: flex-start;
+            gap: 18px;
+            white-space: nowrap;
+            overflow: hidden;
+            color: var(--muted);
+            font: 11px var(--mono);
+            letter-spacing: .06em;
+        }
+
+        .strip-inner > div:last-child {
+            margin-left: auto;
+            color: var(--body);
+        }
+
+        .nav {
+            height: auto;
+            position: sticky;
+            top: 34px;
+            z-index: 79;
+            border-bottom: 1px solid var(--line);
+            background: rgba(10, 22, 40, .86);
+            backdrop-filter: blur(14px);
+        }
+
+        .nav-inner {
+            height: 66px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 24px;
+        }
+
+        .brand {
+            min-width: max-content;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: linear-gradient(160deg, #1a3a5f, #0e1b2f);
+            border: 1px solid rgba(57, 215, 255, .35);
+            color: var(--cyan);
+            box-shadow: none;
+            font: 800 13px var(--mono);
+        }
+
+        .brand-name {
+            font-weight: 900;
+            font-size: 16px;
+            line-height: 1;
+            letter-spacing: -.01em;
+        }
+
+        .brand-sub {
+            display: block;
+            margin-top: 3px;
+            color: var(--body);
+            font: 10px var(--mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-left: 18px;
+            color: #cdd8e8;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .nav-links a {
+            padding: 8px 0;
+            opacity: 1;
+            border-bottom: 1px solid transparent;
+            transition: color .18s var(--ease), border-color .18s var(--ease);
+        }
+
+        .nav-links a::after {
+            display: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--cyan2);
+            border-color: var(--cyan);
+        }
+
+        .nav-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lang-switch {
+            display: flex;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            overflow: hidden;
+            background: rgba(6, 14, 28, .38);
+        }
+
+        .lang-btn {
+            height: 34px;
+            padding: 0 11px;
+            border: 0;
+            background: transparent;
+            color: var(--body);
+            font: 700 11px var(--mono);
+            letter-spacing: .04em;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: rgba(57, 215, 255, .14);
+            color: var(--cyan2);
+        }
+
+        .nav-actions .btn.primary {
+            min-height: 46px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+        }
+
+        @media (max-width: 1100px) {
+            .nav-links {
+                display: none;
+            }
+
+            .strip-inner > div:last-child {
+                display: none;
+            }
+        }
+
+
+/* Sampora mobile canonical navigation */
+.mobile-nav-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:10px;background:rgba(6,14,28,.62);color:var(--fg,#E8EEF5);font:800 20px/1 var(--mono,monospace);cursor:pointer}
+.mobile-nav-drawer{display:none;position:fixed;left:16px;right:16px;top:92px;z-index:120;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:14px;background:rgba(6,16,31,.97);box-shadow:0 26px 80px rgba(0,0,0,.42);backdrop-filter:blur(16px);padding:10px}
+.mobile-nav-drawer a{display:flex;align-items:center;min-height:42px;padding:0 12px;border-radius:10px;color:var(--fg2,#C5D3E5);font-weight:800;text-decoration:none}
+.mobile-nav-drawer a.active,.mobile-nav-drawer a:hover{color:var(--cyan,#38D2FF);background:rgba(56,210,255,.08)}
+body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
+@media(max-width:760px){.mobile-nav-toggle{display:inline-flex}.header-actions,.nav-actions,.actions{gap:10px}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}}
+
+
+
+/* Unified footer link motion */
+.footer-card a,
+.site-footer a,
+.footer-col a,
+.sampora-footer-card a,
+.sampora-site-footer a,
+.sampora-footer-col a {
+  color: rgba(218, 230, 246, .72);
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease, text-shadow .2s ease;
+}
+
+.footer-card a:hover,
+.site-footer a:hover,
+.footer-col a:hover,
+.sampora-footer-card a:hover,
+.sampora-site-footer a:hover,
+.sampora-footer-col a:hover,
+.footer-card a:focus-visible,
+.site-footer a:focus-visible,
+.footer-col a:focus-visible,
+.sampora-footer-card a:focus-visible,
+.sampora-site-footer a:focus-visible,
+.sampora-footer-col a:focus-visible {
+  color: #38d8ff;
+  transform: translateX(3px);
+  text-shadow: 0 0 18px rgba(56, 216, 255, .28);
+}
+
+/* Package C: scoped Contact footer contract aligned to current Plans footer baseline */
+#footer.sampora-site-footer{padding:64px 0 12px!important;border-top:0!important;color:var(--body,#A9B9CE)!important;background:transparent!important}
+#footer .sampora-footer-card{border:1px solid rgba(129,178,214,.22)!important;border-radius:24px!important;overflow:hidden!important;background:rgba(8,20,36,.72)!important;box-shadow:0 30px 90px rgba(0,0,0,.24)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
+#footer .sampora-footer-main{display:grid!important;grid-template-columns:minmax(320px,1.32fr) repeat(3,minmax(150px,.78fr))!important;gap:clamp(32px,4vw,54px)!important;align-items:start!important;padding:42px 48px 36px!important}
+#footer .sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--fg,#E8EEF5)!important;margin-bottom:22px!important}
+#footer .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+#footer .sampora-footer-logo b{display:block!important;font-size:24px!important;line-height:1!important;letter-spacing:-.03em!important;color:var(--fg,#E8EEF5)!important}
+#footer .sampora-footer-logo small{display:block!important;margin-top:4px!important;font:800 10px var(--mono,monospace)!important;letter-spacing:.10em!important;color:var(--muted,#7E92AC)!important}
+#footer .sampora-footer-brand p{margin:0!important;max-width:430px!important;color:var(--body,#A9B9CE)!important;font-size:16px!important;line-height:1.75!important}
+#footer .sampora-footer-badges{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:24px!important}
+#footer .sampora-footer-badges span{display:inline-flex!important;height:26px!important;align-items:center!important;padding:0 12px!important;border-radius:999px!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;color:var(--cyan2,#7BE3FF)!important;font:800 11px var(--mono,monospace)!important}
+#footer .sampora-footer-col{min-width:0!important;padding:0!important;border:0!important;background:transparent!important}
+#footer .sampora-footer-col h3{position:relative!important;margin:0 0 18px!important;padding:0 0 16px!important;border:0!important;color:var(--fg,#E8EEF5)!important;font-size:18px!important;line-height:1.15!important;letter-spacing:0!important}
+#footer .sampora-footer-col h3::after{content:""!important;position:absolute!important;left:0!important;bottom:0!important;width:min(100%,220px)!important;height:1px!important;border-radius:999px!important;background:linear-gradient(90deg,rgba(129,178,214,.45),rgba(56,210,255,.18),transparent)!important}
+#footer .sampora-footer-col a{position:relative!important;display:block!important;width:fit-content!important;max-width:100%!important;margin:0 0 13px!important;padding:1px 0 2px!important;color:rgba(218,230,246,.72)!important;font-size:15px!important;line-height:1.42!important;text-decoration:none!important;overflow-wrap:anywhere!important;transition:color .18s var(--ease,cubic-bezier(.2,.7,.2,1)),transform .18s var(--ease,cubic-bezier(.2,.7,.2,1)),text-shadow .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
+#footer .sampora-footer-col a::after{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:-2px!important;height:1px!important;transform:scaleX(0)!important;transform-origin:left!important;background:linear-gradient(90deg,var(--cyan,#38D2FF),transparent)!important;opacity:.75!important;transition:transform .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
+#footer .sampora-footer-col a:hover,#footer .sampora-footer-col a:focus-visible{color:var(--cyan2,#7BE3FF)!important;transform:translateX(2px)!important;text-shadow:0 0 18px rgba(56,216,255,.20)!important}
+#footer .sampora-footer-col a:hover::after,#footer .sampora-footer-col a:focus-visible::after{transform:scaleX(1)!important}
+#footer .sampora-footer-contact{display:grid!important;grid-template-columns:repeat(3,1fr)!important;border-top:1px solid rgba(129,178,214,.18)!important}
+#footer .sampora-footer-contact-item{display:flex!important;align-items:center!important;gap:18px!important;min-height:74px!important;padding:0 48px!important;border-right:1px solid rgba(129,178,214,.18)!important;border-bottom:0!important;color:var(--fg,#E8EEF5)!important;font-size:16px!important;font-weight:760!important}
+#footer .sampora-footer-contact-item:last-child{border-right:0!important}
+#footer .sampora-footer-icon{width:34px!important;height:34px!important;border-radius:999px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;flex:0 0 auto!important;box-sizing:border-box!important;overflow:hidden!important;text-align:center!important;font:800 10.5px/1 var(--mono,monospace)!important;letter-spacing:.02em!important}
+#footer .sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
+#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:1px solid rgba(129,178,214,.10)!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+@media(max-width:1180px){#footer .sampora-footer-main{grid-template-columns:1fr 1fr!important;padding:34px 28px 32px!important}#footer .sampora-footer-brand{grid-column:1/-1!important}#footer .sampora-footer-contact{grid-template-columns:1fr!important}#footer .sampora-footer-contact-item{border-right:0!important;border-bottom:1px solid rgba(129,178,214,.18)!important;padding:18px 28px!important}#footer .sampora-footer-contact-item:last-child{border-bottom:0!important}}
+@media(max-width:760px){#footer .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}#footer .sampora-footer-brand{grid-column:auto!important}#footer .sampora-footer-col h3::after{width:min(100%,280px)!important}#footer .sampora-footer-brand p,#footer .sampora-footer-col a,#footer .sampora-footer-contact-item{overflow-wrap:anywhere!important}}
+
+/* final cleanup: unified navigation and language switcher */
+.lang,.lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
+.lang button,.lang-btn{min-width:42px;height:34px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px/1 var(--mono,ui-monospace,monospace);letter-spacing:.03em;cursor:pointer;transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
+.lang button:hover,.lang button:focus-visible,.lang-btn:hover,.lang-btn:focus-visible{color:var(--cyan2,var(--cyan,#61e7ff));outline:0;box-shadow:0 0 0 1px rgba(56,210,255,.24)}
+.lang button.active,.lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
+@media(max-width:1100px){.nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:none!important}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}.nav.sampora-nav-standard,.sampora-nav-standard{gap:28px!important}}
+@media(max-width:760px){.brand small{display:none!important}.mast .inner,.nav-inner{gap:14px!important}.response-grid{grid-template-columns:1fr}.response-card{min-height:auto}}
+@media(max-width:360px){.container{width:min(100% - 24px,var(--max))!important}.brand b{display:none!important}.lang button,.lang-btn{min-width:34px!important;padding:0 6px!important;font-size:10px!important}.mobile-nav-toggle{width:36px!important;height:36px!important}.header-actions,.nav-actions,.actions{gap:6px!important}}
+
+
+/* final cleanup: contact header alignment */
+.status{height:34px;border-bottom:1px solid var(--line);background:rgba(5,13,24,.76);backdrop-filter:blur(18px);color:var(--body);font:12px var(--mono);letter-spacing:.06em;position:sticky;top:0;z-index:61}.status .inner{height:100%;display:flex;align-items:center;justify-content:flex-start;gap:12px;padding-left:10px;overflow:hidden;white-space:nowrap}.status .status-copy{min-width:0;max-width:100%;display:inline-flex;align-items:center;gap:10px;overflow:visible}.status .live{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-weight:900;text-transform:uppercase}.status .live:before{content:"";display:inline-flex;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(169,255,95,.48);animation:pulse-green 1.9s ease-out infinite}@keyframes pulse-green{0%{box-shadow:0 0 0 0 rgba(169,255,95,.48)}72%{box-shadow:0 0 0 9px rgba(169,255,95,0)}100%{box-shadow:0 0 0 0 rgba(169,255,95,0)}}.status .sep{color:rgba(232,238,245,.42)}.status .right{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--body)}.mast{height:70px;position:sticky;top:34px;z-index:60;border-bottom:1px solid var(--line);background:rgba(6,16,29,.82);backdrop-filter:blur(20px)}.mast .inner{height:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px}.mast .brand{display:inline-flex;align-items:center;gap:12px;min-width:max-content}.mast .mark{width:32px;height:32px;border:1px solid rgba(57,215,255,.48);border-radius:9px;display:grid;place-items:center;color:var(--cyan2);font-family:var(--mono);background:rgba(10,59,85,.42);box-shadow:inset 0 0 22px rgba(57,215,255,.12)}.mast .nav{height:auto;position:static;z-index:auto;border:0;background:transparent;backdrop-filter:none;display:flex;align-items:center;justify-content:center;gap:36px;color:#cdd8e8;font-size:14px;white-space:nowrap}.mast .nav a{position:relative;padding:26px 0;opacity:.86}.mast .nav a:hover,.mast .nav a.active{color:var(--cyan2);opacity:1}.mast .nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:15px;height:2px;border-radius:99px;background:linear-gradient(90deg,transparent,var(--cyan2),transparent)}.header-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px}@media(max-width:1100px){.mast .nav{display:none!important}.status .right,.status .sep{display:none}}@media(max-width:760px){.status{display:none}.mast{top:0}.mast .inner{display:flex;gap:14px}.header-actions .btn.primary{display:none!important}}@media(max-width:360px){.brand-name,.brand-sub{display:none!important}.footer-bottom{grid-template-columns:1fr!important}.contact-item{min-width:0!important;padding-left:14px!important;padding-right:14px!important;overflow-wrap:anywhere!important}}
+
+/* Worker A: unified desktop navigation */
+@media(min-width:1101px){
+  .mast{height:auto!important;top:34px!important}
+  .mast.compact{background:rgba(10,22,40,.82)!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important}
+  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
+  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
+  .header-actions,.nav-actions,.actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-left:0!important}
+}
+
+/* Worker F: measured desktop header parity */
+@media(min-width:1101px){
+  .status,.topline{height:auto!important}
+  .status .inner,.topline .inner{height:34px!important}
+  .status .container,.topline .container,.mast .container{width:min(1360px,calc(100% - 48px))!important}
+  .mast{height:auto!important;top:34px!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:167.36px minmax(0,1fr) 430px!important;align-items:center!important;gap:24px!important}
+  .mast .brand{width:167.36px!important;min-width:167.36px!important;gap:10px!important}
+  .mast .mark,.brand .mark{width:30px!important;height:30px!important}
+  .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;padding:0!important}
+  .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
+  .mast .nav.sampora-nav-standard a.active::after,.mast .nav-links.sampora-nav-standard a.active::after,.mast .sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,var(--cyan,#38D2FF),transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
+  .mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box!important;width:430px!important;min-width:430px!important;height:44.92px!important;align-self:center!important;justify-self:end!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;flex-wrap:nowrap!important;overflow:visible!important;margin-left:0!important}
+  .mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto!important;white-space:nowrap!important}
+}
+
+/* Package C: header Start trial visual parity with resources.html */
+.mast .header-actions > .btn.primary{
+  min-height:auto;
+  padding:12px 18px;
+  border:1px solid transparent;
+  border-radius:10px;
+  background:linear-gradient(135deg,#38D2FF,#7BE3FF);
+  color:#03111B;
+  font-weight:800;
+  font-size:13.5px;
+  line-height:1.56;
+  letter-spacing:.01em;
+  box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18);
+  transition:transform .14s cubic-bezier(.2,.7,.2,1),box-shadow .18s cubic-bezier(.2,.7,.2,1),background .18s cubic-bezier(.2,.7,.2,1),border-color .18s cubic-bezier(.2,.7,.2,1);
+}
+.mast .header-actions > .btn.primary:hover{
+  transform:translateY(-1px);
+  background:linear-gradient(135deg,#38D2FF,#7BE3FF);
+  border-color:transparent;
+  box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24);
+}
+
+/* Package C: fixed header stack for reliable top-block/footer scroll */
+body{padding-top:100px}
+.status{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:80!important;height:34px!important}
+.mast{position:fixed!important;top:34px!important;left:0!important;right:0!important;z-index:79!important}
+@media(min-width:761px){
+  .status,.mast,.mast .inner{transition:transform .26s var(--ease),opacity .22s var(--ease),height .26s var(--ease),top .26s var(--ease),background .26s var(--ease),box-shadow .26s var(--ease),border-color .26s var(--ease)}
+  body.nav-condensed .status{height:0!important;transform:translateY(-100%)!important;opacity:0!important;pointer-events:none!important;border-bottom-color:transparent!important;border-bottom-width:0!important;overflow:hidden!important}
+  body.nav-condensed .mast{top:0!important}
+}
+@media(max-width:760px){
+  body{padding-top:66px}
+  .status{display:none!important}
+  .mast{top:0!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{display:grid!important;grid-template-columns:auto minmax(0,1fr)!important;gap:8px!important}
+  .mast .brand{min-width:0!important;overflow:hidden!important;gap:10px!important}
+  .mast .brand .brand-sub{display:none!important}
+  .mast .brand .brand-name{white-space:nowrap!important}
+  .mast .header-actions,.mast .nav-actions,.mast .actions{min-width:0!important;max-width:100%!important;justify-self:end!important;gap:8px!important}
+  .mast .lang{min-width:0!important;flex:0 1 auto!important}
+  .mast .mobile-nav-toggle{width:36px!important;height:36px!important;flex:0 0 36px!important}
+}
+@media(max-width:480px){
+  .mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{display:none!important}
+  .mast .lang button,.mast .lang-btn{min-width:38px!important;padding-left:7px!important;padding-right:7px!important;font-size:10px!important}
+}
+
+/* Header actions parity with resources.html */
+.mast .lang,.mast .lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
+.mast .lang button,.mast .lang-btn{height:34px;min-width:42px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px var(--mono,ui-monospace,monospace);transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
+.mast .lang button.active,.mast .lang button[aria-pressed="true"],.mast .lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
+.mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:transparent;border-color:var(--line,rgba(129,178,214,.18))}
+.mast .header-actions .btn.ghost:hover,.mast .nav-actions .btn.ghost:hover,.mast .actions .btn.ghost:hover,.mast .header-actions .btn.ghost:focus-visible,.mast .nav-actions .btn.ghost:focus-visible,.mast .actions .btn.ghost:focus-visible{transform:translateY(-1px);color:var(--cyan2,var(--cyan,#61e7ff));border-color:rgba(56,210,255,.45);background:rgba(20,40,69,.22)}
+.mast .header-actions .btn.primary,.mast .nav-actions .btn.primary,.mast .actions .btn.primary{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
+.mast .header-actions .btn.primary:hover,.mast .nav-actions .btn.primary:hover,.mast .actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible,.mast .nav-actions .btn.primary:focus-visible,.mast .actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:active,.mast .nav-actions .btn.primary:active,.mast .actions .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
+@media(min-width:1101px){.mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box;width:430px;min-width:430px;align-self:center;justify-self:end;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:nowrap;overflow:visible}.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto;white-space:nowrap}}
+</style>
+<style id="header-brand-visual-parity">
+.mast .brand{display:flex!important;align-items:center!important;gap:10px!important}
+.mast .brand .mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+.mast .brand b,.mast .brand .brand-name{display:block!important;font-size:16px!important;font-weight:800!important;line-height:1.56!important;letter-spacing:-.01em!important}
+.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+@media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
+@media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
+</style>
+<style id="sampora-horizontal-line-cleanup">
+body {
+    position: relative;
+    background:
+        radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
+        radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, .045) 0, transparent 64%),
+        linear-gradient(180deg, #0A1628 0%, #06111F 42%, #08172A 100%) !important;
+}
+body::before {
+    content: "" !important;
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    background-image:
+        linear-gradient(rgba(120, 172, 216, .020) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120, 172, 216, .018) 1px, transparent 1px) !important;
+    background-size: 44px 44px, 44px 44px !important;
+    opacity: .58 !important;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, .58) 0%, rgba(0, 0, 0, .34) 36%, rgba(0, 0, 0, .20) 100%) !important;
+}
+.status,
+.mast,
+.hero,
+main,
+#footer.sampora-site-footer {
+    position: relative;
+    z-index: 1;
+}
+.hero {
+    overflow: visible;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(56, 210, 255, .13) 0%, rgba(56, 210, 255, .055) 34%, transparent 66%),
+        linear-gradient(180deg, rgba(7, 17, 32, .72) 0%, rgba(8, 22, 38, .42) 46%, rgba(8, 22, 38, .14) 74%, rgba(8, 22, 38, 0) 100%) !important;
+}
+.hero-inner {
+    position: relative;
+    z-index: 2;
+}
+main {
+    isolation: isolate;
+    background: transparent !important;
+}
+main::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -220px;
+    height: 420px;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(56, 210, 255, .075) 0%, rgba(56, 210, 255, .026) 46%, transparent 72%),
+        linear-gradient(180deg, transparent 0%, rgba(8, 22, 38, .10) 30%, rgba(8, 22, 38, .08) 58%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 20%, #000 74%, transparent 100%);
+}
+main > section {
+    position: relative;
+    z-index: 1;
+    background: transparent !important;
+}
+.contact-main {
+    position: relative;
+    z-index: 1;
+    padding-top: 34px !important;
+}
+.contact-main::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -190px;
+    height: 300px;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(6, 17, 31, 0) 0%, rgba(6, 17, 31, .16) 38%, rgba(6, 17, 31, .10) 62%, rgba(6, 17, 31, 0) 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 24%, #000 76%, transparent 100%);
+}
+.contact-main > .container,
+.response > .container,
+.more-ways > .container {
+    position: relative;
+    z-index: 1;
+}
+.section,
+.response,
+.more-ways {
+    border-top: 0 !important;
+    background: transparent !important;
+}
+#footer.sampora-site-footer {
+    padding: 30px 0 12px !important;
+    border-top: 0 !important;
+    background: transparent !important;
+    overflow: visible;
+}
+#footer.sampora-site-footer::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -70px;
+    width: min(980px, 78vw);
+    height: 190px;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(56, 210, 255, .075) 0%, rgba(56, 210, 255, .028) 42%, transparent 70%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 70%, transparent 100%);
+}
+#footer .sampora-footer-card {
+    position: relative;
+    z-index: 1;
+    border-color: rgba(129, 178, 214, .12) !important;
+    border-top-color: rgba(129, 178, 214, .08) !important;
+    background: linear-gradient(180deg, rgba(9, 22, 38, .72), rgba(7, 18, 32, .60)) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035), 0 26px 80px rgba(0, 0, 0, .22) !important;
+}
+#footer .sampora-footer-contact,
+#footer .sampora-footer-legal {
+    border-top: 0 !important;
+}
+#footer .sampora-footer-contact-item {
+    border-bottom: 0 !important;
+}
+@media(max-width:1180px) {
+    #footer .sampora-footer-contact-item {
+        border-bottom: 0 !important;
+    }
+}
+@media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
+</style>
+<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
+<link rel="stylesheet" href="assets/footer-email-modal.css">
+</head>
+
+<body>
+    <div aria-hidden="true" class="status">
+        <div class="container inner">
+            <div class="status-copy">
+                <span class="live" data-i18n="topLine">CONTACT CENTER / Live</span>
+                <span class="sep" aria-hidden="true">/</span>
+                <span class="right" data-i18n="topRight">Trial, demo, sales, and resource requests</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="mast">
+        <div class="container inner">
+            <a class="brand" href="index.html">
+                <span class="mark">S</span>
+                <span><span class="brand-name">Sampora</span><span class="brand-sub" data-i18n="brandSub">Operations console</span></span>
+            </a>
+            <nav class="nav sampora-nav-standard" aria-label="Primary navigation">
+                <a href="index.html" data-i18n="navProduct">Product</a>
+                <a href="solutions.html" data-i18n="navSolutions">Solutions</a>
+                <a href="resources.html" data-i18n="navResources">Resources</a>
+                <a href="plans.html" data-i18n="navPlans">Plans</a>
+                <a href="about.html" data-i18n="navAbout">About</a>
+                <a href="contact.html" class="active" data-i18n="navContact">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <div aria-label="Language" class="lang" data-i18n-aria-label="langSwitcher">
+                    <button class="active" data-lang="en" type="button">EN</button>
+                    <button data-lang="zh" type="button">中文</button>
+
+                </div>
+                <a class="btn ghost" href="contact.html?intent=book_demo#contact-form" data-i18n="ctaDemo">Book a demo</a>
+                <a class="btn primary" href="contact.html?intent=start_trial#contact-form" data-i18n="ctaTop">Start trial</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="eyebrow" data-i18n="heroEyebrow">CONTACT CENTER</div>
+            <h1 data-i18n="heroTitle">Talk to us about your sample operations.</h1>
+            <p data-i18n="heroSub">Tell us how you manage panels, suppliers, API delivery, review, and settlement. We will route your request to the right trial, demo, or sales path.</p>
+        </div>
+    </section>
+
+    <main>
+        <section class="contact-main" id="contact-form">
+            <div class="container form-layout">
+                <div class="side-copy">
+                    <div class="eyebrow" data-i18n="formKicker">CONTACT FORM</div>
+                    <h2 data-i18n="formTitle">Submit a request</h2>
+                    <p data-i18n="formIntro">Share your company, role, and operating model so we can understand the right Sampora path for your team.</p>
+                    <ul class="tick-list">
+                        <li data-i18n="bullet1">Tell us whether you operate an owned panel, supplier network, API delivery, or multi-entity workflow.</li>
+                        <li data-i18n="bullet2">Share the project, supplier, review, and settlement workflows you want Sampora to support.</li>
+                        <li data-i18n="bullet3">Choose the request type so we can route trial, demo, sales, enterprise, or resource questions correctly.</li>
+                        <li data-i18n="bullet4">Our team will follow up with the next step based on your sample operations setup.</li>
+                    </ul>
+                    <div class="support-note">
+                        <span>•</span>
+                        <span><span data-i18n="cardHelpTitle">Resources for online sample operations</span> / <a href="resources.html"
+                                data-i18n="cardHelpCta">View manuals</a></span>
+                    </div>
+                </div>
+
+                <form class="form-card" id="contactForm" method="post" action="/api/contact" data-endpoint="/api/contact">
+                    <input type="hidden" name="intent" id="intentField" value="contact_sales" />
+                    <input type="hidden" name="source_page" id="sourcePageField" value="contact.html" />
+                    <input type="hidden" name="source_section" id="sourceSectionField" value="contact-form" />
+                    <input type="hidden" name="plan" id="planField" value="" />
+                    <input type="hidden" name="lang" id="langField" value="en" />
+                    <input type="hidden" name="landing_page" id="landingPageField" value="" />
+                    <input type="hidden" name="referrer" id="referrerField" value="" />
+                    <input type="hidden" name="utm_source" id="utmSourceField" value="" />
+                    <input type="hidden" name="utm_medium" id="utmMediumField" value="" />
+                    <input type="hidden" name="utm_campaign" id="utmCampaignField" value="" />
+                    <input type="text" name="website" autocomplete="off" tabindex="-1" hidden>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="name" data-i18n="nameLabel">Name*</label>
+                            <input id="name" name="name" autocomplete="name" required />
+                        </div>
+                        <div class="field">
+                            <label for="company" data-i18n="companyLabel">Company*</label>
+                            <input id="company" name="company" autocomplete="organization" required />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="email" data-i18n="emailLabel">Email*</label>
+                        <input id="email" type="email" name="email" autocomplete="email" required />
+                    </div>
+                    <div class="field">
+                        <label for="role" data-i18n="roleLabel">Role / business type*</label>
+                        <select id="role" name="role" required>
+                            <option value="" selected disabled data-i18n="rolePh">Select your role</option>
+                            <option value="Panel Provider" data-i18n="rolePanel">Panel Provider</option>
+                            <option value="Sample Supplier" data-i18n="roleSupplier">Sample Supplier</option>
+                            <option value="Sample Aggregator / Network Operator" data-i18n="roleAggregator">Sample Aggregator / Network Operator</option>
+                            <option value="API-connected Supplier" data-i18n="roleApi">API-connected Supplier</option>
+                            <option value="Enterprise / Multi-entity Team" data-i18n="roleEnterprise">Enterprise / Multi-entity Team</option>
+                            <option value="Other" data-i18n="roleOther">Other</option>
+                        </select>
+                    </div>
+                    <div class="field" id="roleOtherField" hidden>
+                        <label for="role_other" data-i18n="roleOtherDetailLabel">Please describe your role / business type*</label>
+                        <input id="role_other" name="role_other" autocomplete="organization-title" disabled />
+                    </div>
+                    <div class="field">
+                        <label for="business_type" data-i18n="businessTypeLabel">What is this request for?*</label>
+                        <select id="business_type" name="business_type" required>
+                            <option value="" selected disabled data-i18n="businessTypePh">Select request intent</option>
+                            <option value="start_trial" data-i18n="businessTrial">Start a trial</option>
+                            <option value="book_demo" data-i18n="businessDemo">Book a demo</option>
+                            <option value="contact_sales" data-i18n="businessSales">Talk to sales</option>
+                            <option value="enterprise_demo" data-i18n="businessEnterprise">Enterprise plan discussion</option>
+                            <option value="resource_question" data-i18n="businessResource">Resource or implementation question</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="message" data-i18n="msgLabel">Message</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn primary" type="submit" data-i18n="submit">Submit request</button>
+                    </div>
+                    <p class="form-submit-feedback" id="contactSubmitFeedback" role="status" aria-live="polite" hidden></p>
+                    <p class="privacy">We only use this information to evaluate your request and follow up on the right Sampora next step. By submitting, you acknowledge that we process your information according to our <a href="privacy.html">Privacy Policy</a>.</p>
+                </form>
+            </div>
+        </section>
+
+        <section class="response">
+            <div class="container">
+                <div class="eyebrow" data-i18n="nextStep">NEXT STEP</div>
+                <h2 data-i18n="responseTitle">What happens after submission?</h2>
+                <p class="response-sub" data-i18n="responseSub">We review your operating model and route the request to the right Sampora path.</p>
+
+                <div class="response-grid">
+                    <article class="response-card">
+                        <span class="response-icon">01</span>
+                        <h3 data-i18n="responseCard1Title">Request review</h3>
+                        <p data-i18n="response1">We review your company, role, request type, and sample operation setup.</p>
+                    </article>
+                    <article class="response-card">
+                        <span class="response-icon">02</span>
+                        <h3 data-i18n="responseCard2Title">Workflow mapping</h3>
+                        <p data-i18n="response2">We map your needs to Panel, Supplier Network, or Enterprise based on your workflow ownership.</p>
+                    </article>
+                    <article class="response-card">
+                        <span class="response-icon">03</span>
+                        <h3 data-i18n="responseCard3Title">Trial or demo follow-up</h3>
+                        <p data-i18n="response3">Our team follows up with trial access, a product walkthrough, or sales guidance.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="more-ways" id="other-ways">
+            <div class="container">
+                <div class="eyebrow" data-i18n="otherWaysKicker">OTHER WAYS</div>
+                <h2 data-i18n="otherWaysTitle">Other ways to reach us</h2>
+                <p data-i18n="otherWaysSub">Choose the route that best matches your current question.</p>
+
+                <div class="direct-grid">
+                    <article class="direct-card">
+                        <span class="direct-icon">S</span>
+                        <h3 data-i18n="directSalesTitle">Sales</h3>
+                        <strong><a href="mailto:sales@getsampora.com">sales@getsampora.com</a></strong>
+                        <p data-i18n="directSalesText">For trial, demo, pricing, and enterprise discussions.</p>
+                    </article>
+
+                    <article class="direct-card amber">
+                        <span class="direct-icon">D</span>
+                        <h3 data-i18n="directDemoTitle">Demo path</h3>
+                        <strong><a href="contact.html?intent=book_demo#contact-form" data-i18n="directDemoStrong">Book a product walkthrough</a></strong>
+                        <p data-i18n="directDemoText">For teams that want to review project intake, supplier allocation, review, and settlement workflows.</p>
+                    </article>
+
+                    <article class="direct-card">
+                        <span class="direct-icon">R</span>
+                        <h3 data-i18n="directResourceTitle">Resources</h3>
+                        <strong><a href="resources.html" data-i18n="directResourceStrong">View manuals</a></strong>
+                        <p data-i18n="directResourceText">For configuration guides, operation manuals, rollout notes, and implementation questions.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer class="sampora-site-footer" id="footer">
+        <div class="container sampora-footer-card">
+            <div class="sampora-footer-main">
+                <div class="sampora-footer-brand">
+                    <a aria-label="Sampora home" class="sampora-footer-logo" href="index.html">
+                        <span class="sampora-footer-mark">S</span>
+                        <span><b>Sampora</b><small data-footer-i18n="brandSub">Operations console</small></span>
+                    </a>
+                    <p data-footer-i18n="footerDesc">An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.</p>
+                    <div class="sampora-footer-badges"><span data-footer-i18n="tag1">Sample supply</span><span data-footer-i18n="tag2">Review workflow</span><span data-footer-i18n="tag3">Settlement ledger</span></div>
+                </div>
+                <div class="sampora-footer-col">
+                    <h3 data-footer-i18n="footerProduct">Product</h3>
+                    <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
+                    <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
+                    <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
+                    <button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
+                </div>
+                <div class="sampora-footer-col">
+                    <h3 data-footer-i18n="footerResources">Resources</h3>
+                    <a href="resources.html" data-footer-i18n="footerResourcesOverview">Resources overview</a>
+                    <a href="resource-manuals.html#configuration-guide" data-footer-i18n="footerConfigurationGuide">Configuration guide</a>
+                    <a href="resource-manuals.html#operation-manual" data-footer-i18n="footerOperationManual">Operation manual</a>
+                    <a href="resource-manuals.html#rollout-notes" data-footer-i18n="footerRolloutNotes">Rollout notes</a>
+                </div>
+                <div class="sampora-footer-col">
+                    <h3 data-footer-i18n="footerGetStarted">Get started</h3>
+                    <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
+                    <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
+                    <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
+                    <button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
+                </div>
+            </div>
+            <div class="sampora-footer-contact">
+                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
+                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
+                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
+            </div>
+            <div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast"><b data-i18n="toastTitle">Form connection pending</b><span data-i18n="toastText">Online submission is not connected yet. Please email sales@getsampora.com or use the contact details below.</span></div>
+    <div class="toast" id="toastSuccess"><b data-i18n="successTitle">Request submitted</b><span data-i18n="successText">Your request has been submitted. Our team will review your setup and follow up with the right next step.</span></div>
+    <div class="toast" id="toastFailure"><b data-i18n="failureTitle">Submission failed</b><span data-i18n="failureText">We could not send the request. Please try again or contact sales@getsampora.com.</span></div>
+
+<script>
+(function(){
+  var $ = function(selector, root){ return (root || document).querySelector(selector); };
+  var $$ = function(selector, root){ return Array.from((root || document).querySelectorAll(selector)); };
+  var qs = new URLSearchParams(location.search);
+  var texts = {
+    en: {
+      topLine: 'CONTACT CENTER / Live',
+      topRight: 'Trial, demo, sales, and resource requests',
+      brandSub: 'Operations console',
+      navProduct: 'Product',
+      navSolutions: 'Solutions',
+      navResources: 'Resources',
+      navPlans: 'Plans',
+      navAbout: 'About',
+      navContact: 'Contact',
+      langSwitcher: 'Language',
+      ctaDemo: 'Book a demo',
+      ctaTop: 'Start trial',
+      heroEyebrow: 'CONTACT CENTER',
+      heroTitle: 'Talk to us about your sample operations.',
+      heroSub: 'Tell us how you manage panels, suppliers, API delivery, review, and settlement. We will route your request to the right trial, demo, or sales path.',
+      formKicker: 'CONTACT FORM',
+      formTitle: 'Submit a request',
+      formIntro: 'Share your company, role, and operating model so we can understand the right Sampora path for your team.',
+      bullet1: 'Tell us whether you operate an owned panel, supplier network, API delivery, or multi-entity workflow.',
+      bullet2: 'Share the project, supplier, review, and settlement workflows you want Sampora to support.',
+      bullet3: 'Choose the request type so we can route trial, demo, sales, enterprise, or resource questions correctly.',
+      bullet4: 'Our team will follow up with the next step based on your sample operations setup.',
+      cardHelpTitle: 'Resource center',
+      cardHelpCta: 'View manuals',
+      nameLabel: 'Name*',
+      companyLabel: 'Company*',
+      emailLabel: 'Email*',
+      roleLabel: 'Role / business type*',
+      businessTypeLabel: 'What is this request for?*',
+      msgLabel: 'Message',
+      namePlaceholder: 'Your name',
+      companyPlaceholder: 'Company or team',
+      emailPlaceholder: 'name@company.com',
+      messagePlaceholder: 'Tell us about your sample operation setup, supplier network, or demo needs.',
+      rolePh: 'Select your role',
+      businessTypePh: 'Select request intent',
+      rolePanel: 'Panel Provider',
+      roleSupplier: 'Sample Supplier',
+      roleAggregator: 'Sample Aggregator / Network Operator',
+      roleApi: 'API-connected Supplier',
+      roleEnterprise: 'Enterprise / Multi-entity Team',
+      roleOther: 'Other',
+      roleOtherDetailLabel: 'Please describe your role / business type*',
+      roleOtherDetailPlaceholder: 'e.g. sample buyer, project operations, channel partner, data services team',
+      businessTrial: 'Start a trial',
+      businessDemo: 'Book a demo',
+      businessSales: 'Talk to sales',
+      businessEnterprise: 'Enterprise plan discussion',
+      businessResource: 'Resource or implementation question',
+      submit: 'Submit request',
+      submitPending: 'Submitting your request…',
+      submitSuccess: 'Thanks — we received your request. Our team will review it and follow up with the right Sampora next step. If your request is urgent, you can also email us at sales@getsampora.com.',
+      submitFailure: 'We couldn’t submit your request right now. Please try again in a moment. If the issue continues, email us at sales@getsampora.com and include your company name and request.',
+      privacyNote: 'We only use this information to evaluate your request and follow up on the right Sampora next step. By submitting, you acknowledge that we process your information according to our Privacy Policy.',
+      privacyLink: 'Privacy Policy',
+      nextStep: 'NEXT STEP',
+      responseTitle: 'What happens after submission?',
+      responseSub: 'We review your operating model and route the request to the right Sampora path.',
+      responseCard1Title: 'Request review',
+      responseCard2Title: 'Workflow mapping',
+      responseCard3Title: 'Trial or demo follow-up',
+      response1: 'We review your company, role, request type, and sample operation setup.',
+      response2: 'We map your needs to Panel, Supplier Network, or Enterprise based on your workflow ownership.',
+      response3: 'Our team follows up with trial access, a product walkthrough, or sales guidance.',
+      otherWaysKicker: 'OTHER WAYS',
+      otherWaysTitle: 'Other ways to reach us',
+      otherWaysSub: 'Choose the route that best matches your current question.',
+      directSalesTitle: 'Sales',
+      directSalesText: 'For trial, demo, pricing, and enterprise discussions.',
+      directDemoTitle: 'Demo path',
+      directDemoStrong: 'Book a product walkthrough',
+      directDemoText: 'For teams that want to review project intake, supplier allocation, review, and settlement workflows.',
+      directResourceTitle: 'Resources',
+      directResourceStrong: 'View manuals',
+      directResourceText: 'For configuration guides, operation manuals, rollout notes, and implementation questions.',
+      footerDesc: 'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',
+      tag1: 'Sample supply',
+      tag2: 'Review workflow',
+      tag3: 'Settlement ledger',
+      footerProduct: 'Product',
+      footerPlatformOverview: 'Platform overview',
+      footerResources: 'Resources',
+      footerResourcesOverview: 'Resources overview',
+      footerConfigurationGuide: 'Configuration guide',
+      footerOperationManual: 'Operation manual',
+      footerRolloutNotes: 'Rollout notes',
+      footerGetStarted: 'Get started',
+      footerTalkToSales: 'Talk to sales',
+      cardSupportTitle: 'View manuals',
+      cardCommunityTitle: 'Talk to sales',
+      addressText: 'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',
+      footerCopyright: '© 2026',
+      footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences',
+      toastTitle: 'Form connection pending',
+      toastText: 'Online submission is not connected yet. Please email sales@getsampora.com or use the contact details below.',
+      successTitle: 'Request submitted',
+      successText: 'Your request has been submitted. Our team will review your setup and follow up with the right next step.',
+      failureTitle: 'Submission failed',
+      failureText: 'We could not send the request. Please try again or contact sales@getsampora.com.',
+      legalStaticGuard: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.'
+    },
+    zh: {
+      topLine: '联系中心 / 在线',
+      topRight: '试用、演示、销售和资源咨询请求',
+      brandSub: '操作控制台',
+      navProduct: '产品',
+      navSolutions: '解决方案',
+      navResources: '资源',
+      navPlans: '版本方案',
+      navAbout: '关于',
+      navContact: '联系我们',
+      langSwitcher: '语言',
+      ctaDemo: '预约演示',
+      ctaTop: '开始试用',
+      heroEyebrow: '联系中心',
+      heroTitle: '告诉我们你的样本运营场景',
+      heroSub: '说明你如何管理 Panel、供应商、API 交付、审核与结算，我们会将请求匹配到合适的试用、演示或销售路径。',
+      formKicker: '联系表单',
+      formTitle: '提交请求',
+      formIntro: '填写你的公司、角色和运营模式，方便我们判断最适合你团队的 Sampora 路径。',
+      bullet1: '说明你主要运营自有样本库、供应商网络、API 交付，还是多实体运营流程。',
+      bullet2: '说明你希望 Sampora 支持哪些项目、供应商、审核和结算流程。',
+      bullet3: '选择请求类型，方便我们正确区分试用、演示、销售、企业方案或资源咨询。',
+      bullet4: '我们会根据你的样本运营场景跟进下一步。',
+      cardHelpTitle: '资源中心',
+      cardHelpCta: '查看手册',
+      nameLabel: '姓名*',
+      companyLabel: '公司*',
+      emailLabel: '邮箱*',
+      roleLabel: '角色 / 业务类型*',
+      businessTypeLabel: '本次请求类型*',
+      msgLabel: '消息',
+      namePlaceholder: '你的姓名',
+      companyPlaceholder: '公司或团队名称',
+      emailPlaceholder: 'name@company.com',
+      messagePlaceholder: '请说明你的在线样本运营、供应商网络运营版或演示需求。',
+      rolePh: '请选择角色',
+      businessTypePh: '请选择请求意图',
+      rolePanel: '自有样本运营方',
+      roleSupplier: '样本供应商',
+      roleAggregator: '样本聚合商 / 供应网络运营方',
+      roleApi: 'API 对接供应商',
+      roleEnterprise: '企业 / 多实体运营团队',
+      roleOther: '其他',
+      roleOtherDetailLabel: '请填写你的角色 / 业务类型*',
+      roleOtherDetailPlaceholder: '例如：样本采购、项目运营、渠道合作、数据服务团队',
+      businessTrial: '开始试用',
+      businessDemo: '预约演示',
+      businessSales: '咨询销售',
+      businessEnterprise: '企业方案咨询',
+      businessResource: '资源或实施问题',
+      submit: '提交请求',
+      submitPending: '正在提交你的请求……',
+      submitSuccess: '谢谢，我们已收到你的请求。我们的团队会评估你的需求，并跟进合适的 Sampora 下一步。如需紧急联系，也可以发送邮件至 sales@getsampora.com。',
+      submitFailure: '当前无法提交你的请求。请稍后重试。如果问题持续存在，请发送邮件至 sales@getsampora.com，并附上你的公司名称和需求说明。',
+      privacyNote: '我们仅使用这些信息来评估本次请求，并跟进合适的 Sampora 下一步。提交即表示您了解我们会按照隐私政策处理您的信息。',
+      privacyLink: '隐私政策',
+      nextStep: '下一步',
+      responseTitle: '提交后会发生什么？',
+      responseSub: '我们会根据你的运营模式，将请求匹配到合适的 Sampora 路径。',
+      responseCard1Title: '请求审核',
+      responseCard2Title: '工作流匹配',
+      responseCard3Title: '试用或演示跟进',
+      response1: '我们会查看你的公司、角色、请求类型和样本运营场景。',
+      response2: '我们会根据你管理的工作流，将需求匹配到 样本库运营版、供应商网络运营版或企业版。',
+      response3: '团队会继续跟进试用权限、产品演示或销售咨询。',
+      otherWaysKicker: '其他方式',
+      otherWaysTitle: '也可以通过这些方式联系我们',
+      otherWaysSub: '根据你当前的问题选择合适入口。',
+      directSalesTitle: '销售咨询',
+      directSalesText: '适用于试用、演示、价格和企业方案咨询。',
+      directDemoTitle: '演示路径',
+      directDemoStrong: '预约产品演示',
+      directDemoText: '适用于希望查看项目接收、供应商分配、审核和结算流程的团队。',
+      directResourceTitle: '资源中心',
+      directResourceStrong: '查看手册',
+      directResourceText: '适用于配置指南、操作手册、上线说明和实施问题。',
+      footerDesc: 'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',
+      tag1: '样本供给',
+      tag2: '审核流程',
+      tag3: '结算台账',
+      footerProduct: '产品',
+      footerPlatformOverview: '平台概览',
+      footerResources: '资源',
+      footerResourcesOverview: '资源概览',
+      footerConfigurationGuide: '配置指南',
+      footerOperationManual: '操作手册',
+      footerRolloutNotes: '上线说明',
+      footerGetStarted: '开始使用',
+      footerTalkToSales: '咨询销售',
+      cardSupportTitle: '查看手册',
+      cardCommunityTitle: '联系销售',
+      addressText: '中国安徽省六安市恒阳广场 A 座 1506 室',
+      footerCopyright: '© 2026',
+      footerCompanyLegal: '安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置',
+      toastTitle: '在线提交暂未接通',
+      toastText: '当前表单提交接口尚未接通，请通过 sales@getsampora.com 或页面底部联系方式联系我们。',
+      successTitle: '请求已提交',
+      successText: '你的请求已提交。我们会根据你的业务场景跟进合适的下一步。',
+      failureTitle: '提交失败',
+      failureText: '请求未能发送，请稍后再试，或通过 sales@getsampora.com 联系我们。'
+    },
+    };
+  window.__samporaContactTranslations = texts;
+  var langLabels = {
+    en: { en: 'EN', zh: '中文'},
+    zh: { en: 'EN', zh: '中文'},
+    };
+  function safeLang(lang){
+    var value = String(lang || '').toLowerCase();
+    if (value.indexOf('zh') === 0) return 'zh';
+    return value === 'en' ? 'en' : 'en';
+  }
+  function savedLang(){
+    try {
+      var saved = localStorage.getItem('sampora_lang');
+      return saved === 'zh' || saved === 'en' ? saved : '';
+    } catch (e) {
+      return '';
+    }
+  }
+  function currentLang(){
+    return safeLang(qs.get('lang') || savedLang() || document.documentElement.dataset.lang || (document.body && document.body.dataset ? document.body.dataset.lang : '') || document.documentElement.lang || 'en');
+  }
+  function syncHiddenLang(lang){
+    var field = $('#langField');
+    if (field) field.value = safeLang(lang);
+  }
+  function apply(lang){
+    lang = safeLang(lang);
+    var copy = texts[lang] || texts.en;
+    document.documentElement.dataset.lang = lang;
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    if (document.body) document.body.dataset.lang = lang;
+    $$('.lang button[data-lang]').forEach(function(btn){
+      btn.textContent = (langLabels[lang] || langLabels.en)[btn.dataset.lang] || btn.textContent;
+      var active = btn.dataset.lang === lang;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    $$('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if (Object.prototype.hasOwnProperty.call(copy, key)) el.textContent = copy[key];
+    });
+    $$('[data-i18n-aria-label]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-aria-label');
+      if (Object.prototype.hasOwnProperty.call(copy, key)) el.setAttribute('aria-label', copy[key]);
+    });
+    syncHiddenLang(lang);
+    try { localStorage.setItem('sampora_lang', lang); } catch (e) {}
+    return lang;
+  }
+  window.__samporaContactApplyLanguage = apply;
+  function syncTopChrome(){
+    var compact = window.scrollY > 56;
+    var mast = document.querySelector('.mast');
+    if (mast) mast.classList.toggle('compact', compact);
+    document.body.classList.toggle('nav-condensed', compact);
+  }
+  function ensureMobileNav(){
+    if ($('.mobile-nav-toggle') || $('.mobile-nav-drawer')) return;
+    var actions = $('.header-actions');
+    var routes = [
+      ['index.html', 'navProduct'],
+      ['solutions.html', 'navSolutions'],
+      ['resources.html', 'navResources'],
+      ['plans.html', 'navPlans'],
+      ['about.html', 'navAbout'],
+      ['contact.html', 'navContact']
+    ];
+    if (!actions) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'mobile-nav-toggle';
+    btn.setAttribute('aria-label', 'Open navigation');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = '\u2630';
+    var drawer = document.createElement('nav');
+    drawer.className = 'mobile-nav-drawer';
+    drawer.setAttribute('aria-label', 'Mobile navigation');
+    routes.forEach(function(route){
+      var a = document.createElement('a');
+      a.href = route[0];
+      a.setAttribute('data-i18n', route[1]);
+      if (route[0] === 'contact.html') a.className = 'active';
+      drawer.appendChild(a);
+    });
+    actions.appendChild(btn);
+    document.body.appendChild(drawer);
+    btn.addEventListener('click', function(){
+      var open = document.body.classList.toggle('mobile-nav-open');
+      btn.setAttribute('aria-expanded', String(open));
+      if (open) drawer.querySelector('a')?.focus();
+    });
+    drawer.addEventListener('click', function(event){
+      if (event.target.closest('a')) document.body.classList.remove('mobile-nav-open');
+    });
+    document.addEventListener('keydown', function(event){
+      if (event.key === 'Escape') document.body.classList.remove('mobile-nav-open');
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    ensureMobileNav();
+    apply(currentLang());
+    $$('.lang button[data-lang]').forEach(function(btn){ btn.addEventListener('click', function(){ apply(btn.dataset.lang); }); });
+    syncTopChrome();
+    window.addEventListener('scroll', syncTopChrome, { passive: true });
+  });
+  window.addEventListener('sampora:languagechange', function(event){
+    apply(event.detail && event.detail.lang);
+  });
+})();
+</script>
+<script src="assets/i18n-sweep.js"></script>
+<script id="sampora-standard-footer-i18n">
+(function(){
+  const copy={
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'},
+    };
+  function lang(explicit){
+    const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
+    if(copy[explicitRaw])return explicitRaw;
+    try{const saved=localStorage.getItem('sampora_lang');if(copy[saved])return saved;}catch(e){}
+    const raw=(document.documentElement.dataset.lang||document.documentElement.lang||'en').toLowerCase().slice(0,2);
+    return copy[raw]?raw:'en';
+  }
+  function apply(explicit){
+    const dict=copy[lang(explicit)]||copy.en;
+    document.querySelectorAll('.sampora-site-footer [data-footer-i18n]').forEach(el=>{
+      const value=dict[el.dataset.footerI18n];
+      if(value!==undefined)el.textContent=value;
+    });
+  }
+  apply();
+  document.addEventListener('DOMContentLoaded',()=>apply());
+  window.addEventListener('load',()=>apply());
+  document.querySelectorAll('.lang button,[data-lang-btn]').forEach(btn=>{
+    btn.addEventListener('click',()=>setTimeout(()=>apply(btn.dataset.lang||btn.dataset.langBtn),30));
+  });
+  new MutationObserver(()=>apply()).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-lang']});
+})();
+</script>
+<script>
+(function () {
+  const translations = window.__samporaContactTranslations || {};
+  const CONTACT_ENDPOINT = '/api/contact';
+
+  const qs = new URLSearchParams(location.search);
+  const intentMap = {
+    start_trial: 'start_trial',
+    book_demo: 'book_demo',
+    contact_sales: 'contact_sales',
+    enterprise_demo: 'enterprise_demo',
+    resource_question: 'resource_question'
+  };
+
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  const trimValue = (value) => typeof value === 'string' ? value.trim() : '';
+  const normalizeUrlWithoutHash = (rawUrl) => {
+    try {
+      const parsed = new URL(rawUrl, window.location.href);
+      parsed.hash = '';
+      return parsed.toString();
+    } catch (error) {
+      const fallback = String(rawUrl || '');
+      const hashIndex = fallback.indexOf('#');
+      return hashIndex >= 0 ? fallback.slice(0, hashIndex) : fallback;
+    }
+  };
+
+  const actionAttr = trimValue(form.getAttribute('action'));
+  const dataEndpointAttr = trimValue(form.getAttribute('data-endpoint'));
+  if (actionAttr !== CONTACT_ENDPOINT || dataEndpointAttr !== CONTACT_ENDPOINT) {
+    console.warn('[Sampora Contact] Endpoint mismatch detected; normalizing to CONTACT_ENDPOINT.');
+  }
+  form.setAttribute('action', CONTACT_ENDPOINT);
+  form.setAttribute('data-endpoint', CONTACT_ENDPOINT);
+
+  const safeLang = (value) => {
+    const lang = String(value || '').toLowerCase();
+    if (lang.startsWith('zh')) return 'zh';
+    return lang === 'en' ? 'en' : 'en';
+  };
+  const savedLang = () => {
+    try {
+      const saved = localStorage.getItem('sampora_lang');
+      return ['en', 'zh'].includes(saved) ? saved : '';
+    } catch (e) {
+      return '';
+    }
+  };
+  const currentPageLang = () => safeLang(document.documentElement.dataset.lang || document.body?.dataset.lang || document.documentElement.lang || 'en');
+  let activeLang = safeLang(qs.get('lang') || savedLang() || currentPageLang());
+  let copy = translations[activeLang] || translations.en || {};
+  const intent = intentMap[qs.get('intent')] || 'contact_sales';
+  const explicitPlan = qs.get('plan');
+  const sourcePage = 'contact.html';
+  const sourceSection = qs.get('source_section') || 'contact-form';
+  const backendEndpoint = CONTACT_ENDPOINT;
+  const roleSelect = document.getElementById('role');
+  const roleOtherField = document.getElementById('roleOtherField');
+  const roleOtherInput = document.getElementById('role_other');
+  const businessSelect = document.getElementById('business_type');
+  const landingPageField = document.getElementById('landingPageField');
+  const referrerField = document.getElementById('referrerField');
+  const utmSourceField = document.getElementById('utmSourceField');
+  const utmMediumField = document.getElementById('utmMediumField');
+  const utmCampaignField = document.getElementById('utmCampaignField');
+
+  function resolveLeadAttribution() {
+    const fallback = {
+      landing_page: normalizeUrlWithoutHash(window.location.href),
+      referrer: trimValue(document.referrer),
+      utm_source: trimValue(qs.get('utm_source')),
+      utm_medium: trimValue(qs.get('utm_medium')),
+      utm_campaign: trimValue(qs.get('utm_campaign'))
+    };
+    const runtime = window.SamporaLeadAttribution && typeof window.SamporaLeadAttribution.get === 'function'
+      ? window.SamporaLeadAttribution.get() || {}
+      : {};
+    return {
+      landing_page: trimValue(runtime.landing_page) || fallback.landing_page,
+      referrer: trimValue(runtime.referrer) || fallback.referrer,
+      utm_source: trimValue(runtime.utm_source) || fallback.utm_source,
+      utm_medium: trimValue(runtime.utm_medium) || fallback.utm_medium,
+      utm_campaign: trimValue(runtime.utm_campaign) || fallback.utm_campaign
+    };
+  }
+
+  function resolvePlan() {
+    if (explicitPlan) return explicitPlan;
+    if (intent === 'enterprise_demo') return 'enterprise';
+    return businessSelect && businessSelect.value ? businessSelect.value : '';
+  }
+
+  function setHiddenFields() {
+    document.getElementById('intentField').value = intent;
+    document.getElementById('sourcePageField').value = sourcePage;
+    document.getElementById('sourceSectionField').value = sourceSection;
+    document.getElementById('planField').value = resolvePlan();
+    document.getElementById('langField').value = currentPageLang();
+    const attribution = resolveLeadAttribution();
+    if (landingPageField) landingPageField.value = attribution.landing_page;
+    if (referrerField) referrerField.value = attribution.referrer;
+    if (utmSourceField) utmSourceField.value = attribution.utm_source;
+    if (utmMediumField) utmMediumField.value = attribution.utm_medium;
+    if (utmCampaignField) utmCampaignField.value = attribution.utm_campaign;
+  }
+
+  function updateRoleOtherState() {
+    const isOther = roleSelect && roleSelect.value === 'Other';
+    if (roleOtherField) roleOtherField.hidden = !isOther;
+    if (roleOtherInput) {
+      roleOtherInput.disabled = !isOther;
+      roleOtherInput.required = isOther;
+      if (!isOther) roleOtherInput.value = '';
+    }
+  }
+
+  const labelMap = ['nameLabel', 'companyLabel', 'emailLabel', 'roleLabel', 'roleOtherDetailLabel', 'businessTypeLabel', 'msgLabel'];
+  const labels = form.querySelectorAll('label');
+
+  const place = (id, key) => { const el = document.getElementById(id); if (el && copy[key]) el.placeholder = copy[key]; };
+
+  const submit = form.querySelector('button[type="submit"]');
+  const privacy = form.querySelector('.privacy');
+  const submitFeedback = document.getElementById('contactSubmitFeedback');
+  let submitFeedbackState = '';
+  let isSubmitting = false;
+
+  function setSubmitFeedback(state) {
+    submitFeedbackState = state || '';
+    if (!submitFeedback) return;
+    if (!submitFeedbackState) {
+      submitFeedback.hidden = true;
+      submitFeedback.textContent = '';
+      delete submitFeedback.dataset.state;
+      return;
+    }
+    const feedbackKey = {
+      submitting: 'submitPending',
+      success: 'submitSuccess',
+      failure: 'submitFailure'
+    }[submitFeedbackState];
+    submitFeedback.textContent = feedbackKey && copy[feedbackKey] ? copy[feedbackKey] : '';
+    submitFeedback.dataset.state = submitFeedbackState;
+    submitFeedback.hidden = false;
+  }
+
+  function renderPrivacyNote() {
+    if (!privacy) return;
+    const note = copy.privacyNote || '';
+    const linkText = copy.privacyLink || '';
+    const linkIndex = linkText ? note.indexOf(linkText) : -1;
+    const prefix = linkIndex >= 0 ? note.slice(0, linkIndex) : note;
+    const suffix = linkIndex >= 0 ? note.slice(linkIndex + linkText.length) : '';
+    privacy.replaceChildren(
+      document.createTextNode(prefix),
+      Object.assign(document.createElement('a'), { href: 'privacy.html', textContent: linkText }),
+      document.createTextNode(suffix)
+    );
+  }
+
+  const optionText = {
+    role: ['rolePh','rolePanel','roleSupplier','roleAggregator','roleApi','roleEnterprise','roleOther'],
+    business: ['businessTypePh','businessTrial','businessDemo','businessSales','businessEnterprise','businessResource']
+  };
+  const roleOptions = document.querySelectorAll('#role option');
+  const bizOptions = document.querySelectorAll('#business_type option');
+
+  function applyRuntimeCopy(nextLang) {
+    activeLang = safeLang(nextLang || currentPageLang());
+    copy = translations[activeLang] || translations.en || {};
+    labels.forEach((label, idx) => { if (copy[labelMap[idx]]) label.textContent = copy[labelMap[idx]]; });
+    place('name', 'namePlaceholder');
+    place('company', 'companyPlaceholder');
+    place('email', 'emailPlaceholder');
+    place('role_other', 'roleOtherDetailPlaceholder');
+    place('message', 'messagePlaceholder');
+    if (submit && copy.submit) submit.textContent = copy.submit;
+    renderPrivacyNote();
+    roleOptions.forEach((opt, i) => { if (copy[optionText.role[i]]) opt.textContent = copy[optionText.role[i]]; });
+    bizOptions.forEach((opt, i) => { if (copy[optionText.business[i]]) opt.textContent = copy[optionText.business[i]]; });
+    const selectedRequest = businessSelect && businessSelect.value ? businessSelect.value : intent;
+    if (businessSelect && Array.from(businessSelect.options).some(opt => opt.value === selectedRequest)) businessSelect.value = selectedRequest;
+    if (window.__samporaContactApplyLanguage) window.__samporaContactApplyLanguage(activeLang);
+    if (submitFeedbackState) setSubmitFeedback(submitFeedbackState);
+    updateRoleOtherState();
+    setHiddenFields();
+  }
+  applyRuntimeCopy(activeLang);
+  window.addEventListener('sampora:languagechange', event => applyRuntimeCopy(event.detail && event.detail.lang));
+  document.addEventListener('DOMContentLoaded', () => applyRuntimeCopy(currentPageLang()));
+  document.querySelectorAll('.lang button[data-lang]').forEach(btn => {
+    btn.addEventListener('click', () => setTimeout(() => applyRuntimeCopy(btn.dataset.lang), 40));
+  });
+  if (businessSelect) {
+    businessSelect.addEventListener('change', setHiddenFields);
+    businessSelect.addEventListener('input', setHiddenFields);
+  }
+  if (roleSelect) {
+    roleSelect.addEventListener('change', updateRoleOtherState);
+    roleSelect.addEventListener('input', updateRoleOtherState);
+  }
+
+  const toast = document.getElementById('toast');
+  const toastSuccess = document.getElementById('toastSuccess');
+  const toastFailure = document.getElementById('toastFailure');
+  const show = (el) => { if (!el) return; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 3800); };
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+    setHiddenFields();
+    const payload = new FormData(form);
+    const body = new URLSearchParams(payload);
+    try { sessionStorage.setItem('sampora_contact_pending', 'pending'); } catch (e) {}
+    isSubmitting = true;
+    setSubmitFeedback('submitting');
+    try {
+      const res = await fetch(backendEndpoint, { method: 'POST', body });
+      let result = {};
+      try { result = await res.json(); } catch (e) {}
+      if (res.ok && result.ok === true) {
+        setSubmitFeedback('success');
+        try { sessionStorage.removeItem('sampora_contact_pending'); } catch (e) {}
+        form.reset();
+        updateRoleOtherState();
+        setHiddenFields();
+      } else {
+        setSubmitFeedback('failure');
+      }
+    } catch (e) {
+      setSubmitFeedback('failure');
+    } finally {
+      isSubmitting = false;
+    }
+  });
+})();
+</script>
+
+<script src="assets/lead-attribution.js" defer></script>
+<script src="assets/sampora-cookie-preferences.js" defer></script>
+<script src="assets/footer-email-modal.js" defer></script>
+<script src="https://plugin-code.salesmartly.com/js/project_693595_715565_1777101144.js"></script>
+</body>
+
+</html>

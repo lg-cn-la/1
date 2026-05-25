@@ -8,6 +8,10 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const workspaceRoot = path.resolve(root, '..');
 const officialPages = ['index.html', 'solutions.html', 'resources.html', 'resource-manuals.html', 'plans.html', 'contact.html', 'about.html'];
 const supportPages = ['404.html', 'cookie-policy.html', 'privacy.html', 'terms.html'];
+const publicHtmlPages = [...officialPages, ...supportPages];
+const productionOrigin = 'https://getsampora.com';
+const staleFormalOrigin = 'https://www.' + 'sampora.com';
+const contactEndpointPath = '/api/contact';
 let failures = 0;
 const chineseLegacyRedirectPages = ['首页.html', '产品.html', '解决方案.html', '资源中心.html', '资源-跳转页面.html', '版本方案.html', '联系我们.html'];
 
@@ -61,11 +65,11 @@ const legalPageExpectations = {
   'cookie-policy.html': {
     eyebrow: 'Sampora / Cookie Policy',
     statusLiveEn: 'Cookie Policy',
-    statusMidEn: 'Necessary Storage',
-    statusRightEn: 'Analytics and marketing cookies are not enabled',
+    statusMidEn: 'Functional Storage',
+    statusRightEn: 'Necessary and AI support storage notice',
     statusLiveZh: 'Cookie 政策',
-    statusMidZh: '必要存储',
-    statusRightZh: '当前未启用分析与营销 Cookie',
+    statusMidZh: '功能性存储',
+    statusRightZh: '必要与 AI 客服存储说明',
     currentHref: 'cookie-policy.html',
   },
   'terms.html': {
@@ -129,8 +133,15 @@ for (const file of officialPages) {
   const html = read(file);
   if (!/<title>[\s\S]+?<\/title>/i.test(html)) fail(`${file}: missing title`);
   if (!/<meta\b(?=[^>]*\bname=["']description["'])(?=[^>]*\bcontent=["'][^"']+["'])[^>]*>/i.test(html)) fail(`${file}: missing meta description`);
-  if (!/<link\b(?=[^>]*\brel=["']canonical["'])(?=[^>]*\bhref=["']https:\/\/www\.sampora\.com\/[^"']+["'])[^>]*>/i.test(html)) fail(`${file}: missing absolute canonical`);
+  if (!/<link\b(?=[^>]*\brel=["']canonical["'])(?=[^>]*\bhref=["']https:\/\/getsampora\.com\/[^"']+["'])[^>]*>/i.test(html)) fail(`${file}: missing getsampora absolute canonical`);
   [...html.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)].forEach((match, index) => checkStyleBlock(file, match[1], index + 1));
+}
+
+for (const file of publicHtmlPages) {
+  const html = read(file);
+  if (html.includes('`r`n')) fail(`${file}: literal \`r\`n marker must be real newlines`);
+  if (html.toLowerCase().includes(staleFormalOrigin)) fail(`${file}: stale formal-domain URL remains`);
+  if (/script\.google\.com\/macros|\/macros\/s\//i.test(html)) fail(`${file}: public HTML must not directly reference Google Apps Script`);
 }
 
 for (const file of chineseLegacyRedirectPages) {
@@ -299,25 +310,28 @@ for (const file of ['solutions.html', 'resources.html']) {
   if (!(formAction === formDataEndpoint && formAction === contactEndpoint)) {
     fail(`contact.html: action, data-endpoint, and CONTACT_ENDPOINT must match (${JSON.stringify({ formAction, formDataEndpoint, contactEndpoint })})`);
   }
-  const placeholderEndpoint = '[BACKEND_CONTACT_ENDPOINT]';
-  if (formAction !== placeholderEndpoint && !/^https?:\/\/[^\s"'<>]+$/i.test(formAction)) {
-    fail(`contact.html: live CONTACT_ENDPOINT must be an absolute HTTP(S) URL, got ${JSON.stringify(formAction)}`);
+  if (formAction !== contactEndpointPath) {
+    fail(`contact.html: CONTACT_ENDPOINT must be ${contactEndpointPath}, got ${JSON.stringify(formAction)}`);
   }
   for (const name of ['intent', 'source_page', 'source_section', 'plan', 'lang', 'landing_page', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign']) {
     if (!new RegExp(`<input\\b(?=[^>]*type=["']hidden["'])(?=[^>]*name=["']${name}["'])`, 'i').test(contact)) fail(`contact.html: hidden field missing ${name}`);
   }
   if (!/<[^>]+\bid=["']contactSubmitFeedback["'][^>]+\brole=["']status["'][^>]+\baria-live=["']polite["'][^>]+\bhidden\b/i.test(contact)) fail('contact.html: inline submit feedback status region missing');
-  for (const key of ['submitPending', 'submitSuccess', 'submitFailure', 'submitPlaceholder']) {
+  for (const key of ['submitPending', 'submitSuccess', 'submitFailure']) {
     if (!new RegExp(`${key}\\s*:`, 'i').test(contact)) fail(`contact.html: submit feedback copy key missing ${key}`);
   }
   if (/X-Requested-With/i.test(contact)) fail('contact.html: X-Requested-With header must be removed');
   if (!/fetch\(/.test(contact)) fail('contact.html: fetch integration path missing');
-  if (!/placeholder mode shows the email fallback inline|endpoint is wired|real endpoint/i.test(contact)) fail('contact.html: placeholder submission is not clearly marked');
+  if (!/backend-ok only|success-only|\/api\/contact/i.test(contact)) fail('contact.html: /api/contact success-only submission contract is not clearly marked');
   if (/thank-you\.html/i.test(contact)) fail('contact.html: contact form must not route to thank-you.html');
   if (/(?:window\.)?location\.(?:href|assign|replace)\s*[=(]/.test(contact)) fail('contact.html: contact form must not redirect after submit');
-  if (!/setSubmitFeedback\('placeholder'\)/.test(contact)) fail('contact.html: placeholder branch does not set inline placeholder feedback');
   if (!/setSubmitFeedback\('submitting'\)[\s\S]*fetch\(/.test(contact)) fail('contact.html: live branch does not show submitting feedback before fetch');
-  if (!/if\s*\(\s*res\.ok\s*\)\s*{[\s\S]*setSubmitFeedback\('success'\)[\s\S]*sessionStorage\.removeItem\('sampora_contact_pending'\)[\s\S]*form\.reset\(\)/.test(contact)) fail('contact.html: success state must be backend-ok only and clear pending/input only there');
+  const pendingSetItem = contact.match(/sessionStorage\.setItem\(\s*['"]sampora_contact_pending['"]\s*,\s*([^\n;]+?)\s*\)/);
+  if (!pendingSetItem) fail('contact.html: pending sessionStorage marker is missing');
+  else if (/(?:body|payload|FormData|URLSearchParams|name|email|company|message)\b/i.test(pendingSetItem[1])) {
+    fail('contact.html: pending sessionStorage marker must not store form fields or user values');
+  }
+  if (!/if\s*\(\s*res\.ok\s*&&\s*result\.ok\s*===\s*true\s*\)\s*{[\s\S]*setSubmitFeedback\('success'\)[\s\S]*sessionStorage\.removeItem\('sampora_contact_pending'\)[\s\S]*form\.reset\(\)/.test(contact)) fail('contact.html: success state must be backend-ok only and clear pending/input only there');
   if (!/setSubmitFeedback\('failure'\)/.test(contact)) fail('contact.html: failure feedback path missing');
 }
 

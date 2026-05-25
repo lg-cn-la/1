@@ -13,7 +13,7 @@ This report covers Package E documentation for content, legal/footer, language, 
 - Public positioning is `Online Sample Operations Platform` for panel providers, sample suppliers, survey stations, and research subcontracting teams.
 - Approved company names are `瀹夊窘鐪佸槈绂逛紒涓氭湇鍔℃湁闄愬叕鍙竊 and `Anhui Jiayu Enterprise Service Co., Ltd.`
 - Overseas-server stage remains in effect; no mainland filing display is included.
-- Canonical links currently use `https://www.sampora.com/...`; confirm the final production domain if it changes.
+- Canonical links currently use `https://getsampora.com/...`.
 - Blocked legacy terms were scanned without spelling them back into this report.
 
 ## Redirect Evidence

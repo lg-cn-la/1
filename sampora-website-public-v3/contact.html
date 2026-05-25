@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-lang="en">
 
 <head>
@@ -8,8 +8,8 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://www.sampora.com/contact.html">
-    <title>Sampora Contact - Submit request</title>
+<link rel="canonical" href="https://getsampora.com/contact.html">
+<title>Sampora Contact - Submit request</title>
     <style>
         :root {
             --bg: #071120;
@@ -558,8 +558,7 @@
             color: #ebffd9;
         }
 
-        .form-submit-feedback[data-state="failure"],
-        .form-submit-feedback[data-state="placeholder"] {
+        .form-submit-feedback[data-state="failure"] {
             border-left-color: var(--amber);
             color: #ffe5bf;
         }
@@ -1399,6 +1398,7 @@ main > section {
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
+<link rel="stylesheet" href="assets/footer-email-modal.css">
 </head>
 
 <body>
@@ -1466,7 +1466,7 @@ main > section {
                     </div>
                 </div>
 
-                <form class="form-card" id="contactForm" method="post" action="https://script.google.com/macros/s/AKfycbyHALTY5VRPba0ok2PKkPAUzBHWr8LIASQS1zZ3KCRsj4fg50tqIQltCQzLTP6i4GKP/exec" data-endpoint="https://script.google.com/macros/s/AKfycbyHALTY5VRPba0ok2PKkPAUzBHWr8LIASQS1zZ3KCRsj4fg50tqIQltCQzLTP6i4GKP/exec">
+                <form class="form-card" id="contactForm" method="post" action="/api/contact" data-endpoint="/api/contact">
                     <input type="hidden" name="intent" id="intentField" value="contact_sales" />
                     <input type="hidden" name="source_page" id="sourcePageField" value="contact.html" />
                     <input type="hidden" name="source_section" id="sourceSectionField" value="contact-form" />
@@ -1608,7 +1608,7 @@ main > section {
                     <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
                     <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
                     <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
-                    <a href="contact.html" data-footer-i18n="navContact">Contact</a>
+                    <button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
                 </div>
                 <div class="sampora-footer-col">
                     <h3 data-footer-i18n="footerResources">Resources</h3>
@@ -1622,7 +1622,7 @@ main > section {
                     <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
                     <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
                     <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
-                    <a href="contact.html" data-footer-i18n="navContact">Contact</a>
+                    <button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
                 </div>
             </div>
             <div class="sampora-footer-contact">
@@ -1698,7 +1698,6 @@ main > section {
       submitPending: 'Submitting your request…',
       submitSuccess: 'Thanks — we received your request. Our team will review it and follow up with the right Sampora next step. If your request is urgent, you can also email us at sales@getsampora.com.',
       submitFailure: 'We couldn’t submit your request right now. Please try again in a moment. If the issue continues, email us at sales@getsampora.com and include your company name and request.',
-      submitPlaceholder: 'Your request is ready, but online submission is not connected yet. Please email us at sales@getsampora.com and include your company name and request.',
       privacyNote: 'We only use this information to evaluate your request and follow up on the right Sampora next step. By submitting, you acknowledge that we process your information according to our Privacy Policy.',
       privacyLink: 'Privacy Policy',
       nextStep: 'NEXT STEP',
@@ -1761,7 +1760,7 @@ main > section {
       ctaDemo: '预约演示',
       ctaTop: '开始试用',
       heroEyebrow: '联系中心',
-      heroTitle: '告诉我们你的样本运营场景。',
+      heroTitle: '告诉我们你的样本运营场景',
       heroSub: '说明你如何管理 Panel、供应商、API 交付、审核与结算，我们会将请求匹配到合适的试用、演示或销售路径。',
       formKicker: '联系表单',
       formTitle: '提交请求',
@@ -1801,7 +1800,6 @@ main > section {
       submitPending: '正在提交你的请求……',
       submitSuccess: '谢谢，我们已收到你的请求。我们的团队会评估你的需求，并跟进合适的 Sampora 下一步。如需紧急联系，也可以发送邮件至 sales@getsampora.com。',
       submitFailure: '当前无法提交你的请求。请稍后重试。如果问题持续存在，请发送邮件至 sales@getsampora.com，并附上你的公司名称和需求说明。',
-      submitPlaceholder: '你的请求已准备好，但在线提交暂未接入正式后端。请发送邮件至 sales@getsampora.com，并附上你的公司名称和需求说明。',
       privacyNote: '我们仅使用这些信息来评估本次请求，并跟进合适的 Sampora 下一步。提交即表示您了解我们会按照隐私政策处理您的信息。',
       privacyLink: '隐私政策',
       nextStep: '下一步',
@@ -1993,7 +1991,7 @@ main > section {
 <script>
 (function () {
   const translations = window.__samporaContactTranslations || {};
-  const CONTACT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyHALTY5VRPba0ok2PKkPAUzBHWr8LIASQS1zZ3KCRsj4fg50tqIQltCQzLTP6i4GKP/exec';
+  const CONTACT_ENDPOINT = '/api/contact';
 
   const qs = new URLSearchParams(location.search);
   const intentMap = {
@@ -2048,9 +2046,6 @@ main > section {
   const sourcePage = 'contact.html';
   const sourceSection = qs.get('source_section') || 'contact-form';
   const backendEndpoint = CONTACT_ENDPOINT;
-  const placeholderEndpointToken = '[' + 'BACKEND_CONTACT_ENDPOINT' + ']';
-  // Keep success feedback behind a real endpoint response; placeholder mode shows the email fallback inline.
-  const isPlaceholder = backendEndpoint.includes(placeholderEndpointToken);
   const roleSelect = document.getElementById('role');
   const roleOtherField = document.getElementById('roleOtherField');
   const roleOtherInput = document.getElementById('role_other');
@@ -2134,8 +2129,7 @@ main > section {
     const feedbackKey = {
       submitting: 'submitPending',
       success: 'submitSuccess',
-      failure: 'submitFailure',
-      placeholder: 'submitPlaceholder'
+      failure: 'submitFailure'
     }[submitFeedbackState];
     submitFeedback.textContent = feedbackKey && copy[feedbackKey] ? copy[feedbackKey] : '';
     submitFeedback.dataset.state = submitFeedbackState;
@@ -2209,16 +2203,14 @@ main > section {
     setHiddenFields();
     const payload = new FormData(form);
     const body = new URLSearchParams(payload);
-    try { sessionStorage.setItem('sampora_contact_pending', body.toString()); } catch (e) {}
-    if (isPlaceholder) {
-      setSubmitFeedback('placeholder');
-      return;
-    }
+    try { sessionStorage.setItem('sampora_contact_pending', 'pending'); } catch (e) {}
     isSubmitting = true;
     setSubmitFeedback('submitting');
     try {
       const res = await fetch(backendEndpoint, { method: 'POST', body });
-      if (res.ok) {
+      let result = {};
+      try { result = await res.json(); } catch (e) {}
+      if (res.ok && result.ok === true) {
         setSubmitFeedback('success');
         try { sessionStorage.removeItem('sampora_contact_pending'); } catch (e) {}
         form.reset();
@@ -2238,6 +2230,8 @@ main > section {
 
 <script src="assets/lead-attribution.js" defer></script>
 <script src="assets/sampora-cookie-preferences.js" defer></script>
+<script src="assets/footer-email-modal.js" defer></script>
+<script src="https://plugin-code.salesmartly.com/js/project_693595_715565_1777101144.js"></script>
 </body>
 
 </html>

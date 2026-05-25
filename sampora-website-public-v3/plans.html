@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://www.sampora.com/plans.html">
+<link rel="canonical" href="https://getsampora.com/plans.html">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
@@ -78,7 +78,10 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
 #footer .sampora-footer-contact-item:last-child{border-right:0!important}
 #footer .sampora-footer-icon{width:34px!important;height:34px!important;border-radius:999px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;flex:0 0 auto!important;box-sizing:border-box!important;overflow:hidden!important;text-align:center!important;font:800 10.5px/1 var(--mono,monospace)!important;letter-spacing:.02em!important}
 #footer .sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
-#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:0!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;align-items:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:0!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+#footer .sampora-footer-legal .dot{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:auto!important;min-width:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;flex:0 0 auto!important;color:var(--muted,#7E92AC)!important;font:inherit!important;line-height:1!important}
+#footer .sampora-footer-legal a{transition:color .2s ease,transform .2s ease,text-shadow .2s ease!important}
+#footer .sampora-footer-legal a:hover,#footer .sampora-footer-legal a:focus-visible{color:#38d8ff!important;transform:translateX(3px)!important;text-shadow:0 0 18px rgba(56,216,255,.28)!important}
 @media(max-width:1180px){#footer .sampora-footer-main{grid-template-columns:1fr 1fr!important;padding:34px 28px 32px!important}#footer .sampora-footer-brand{grid-column:1/-1!important}#footer .sampora-footer-contact{grid-template-columns:1fr!important}#footer .sampora-footer-contact-item{border-right:0!important;border-bottom:0!important;padding:18px 28px!important}#footer .sampora-footer-contact-item:last-child{border-bottom:0!important}}
 @media(max-width:760px){#footer .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}#footer .sampora-footer-brand{grid-column:auto!important}#footer .sampora-footer-col h3::after{width:min(100%,280px)!important}#footer .sampora-footer-brand p,#footer .sampora-footer-col a,#footer .sampora-footer-contact-item{overflow-wrap:anywhere!important}}
 
@@ -259,11 +262,12 @@ body{padding-top:100px}
 .console-lights i:nth-child(1){background:#EA6B6B}.console-lights i:nth-child(2){background:#FFB454}.console-lights i:nth-child(3){background:#B5F056}
 .plan-selector-card .console-head [data-i18n="selectorTitle"]{color:var(--fg2,#B9C8DA);font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .plan-selector-card .console-head [data-i18n="selectorMapLabel"]{margin-left:auto;color:var(--cyan2,#62E6FF);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
-.hero-actions .btn.primary,.final-actions .btn.primary,.mast .header-actions .btn.primary{font-weight:800;background:linear-gradient(135deg,var(--cyan,#38D2FF),var(--cyan2,#62E6FF));color:#03111B;box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
-.hero-actions .btn.primary:hover,.hero-actions .btn.primary:focus-visible,.final-actions .btn.primary:hover,.final-actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible{transform:translateY(-1px);background:linear-gradient(135deg,var(--cyan,#38D2FF),var(--cyan2,#62E6FF));box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
+.hero-actions .btn.primary,.final-actions .btn.primary,.plans-grid .btn.primary[href*="intent=start_trial"],.mast .header-actions .btn.primary{font-weight:800;background:linear-gradient(135deg,var(--cyan,#38D2FF),var(--cyan2,#62E6FF));color:#03111B;box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
+.hero-actions .btn.primary:hover,.hero-actions .btn.primary:focus-visible,.final-actions .btn.primary:hover,.final-actions .btn.primary:focus-visible,.plans-grid .btn.primary[href*="intent=start_trial"]:hover,.plans-grid .btn.primary[href*="intent=start_trial"]:focus-visible,.mast .header-actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible{transform:translateY(-1px);background:linear-gradient(135deg,var(--cyan,#38D2FF),var(--cyan2,#62E6FF));box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
+<link rel="stylesheet" href="assets/footer-email-modal.css">
 </head>
 <body>
 <div aria-hidden="true" class="status">
@@ -382,7 +386,7 @@ body{padding-top:100px}
 <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
 <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
 <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
-<a href="contact.html" data-footer-i18n="navContact">Contact</a>
+<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
 </div>
 <div class="sampora-footer-col">
 <h3 data-footer-i18n="footerResources">Resources</h3>
@@ -396,7 +400,7 @@ body{padding-top:100px}
 <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
 <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
 <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
-<a href="contact.html" data-footer-i18n="navContact">Contact</a>
+<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
 </div>
 </div>
 <div class="sampora-footer-contact">
@@ -466,15 +470,15 @@ body{padding-top:100px}
       footerCopyright:'© 2026',
       footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置',
       heroEyebrow:'版本方案 / 运营模型',
-      heroTitle:'选择匹配你运营模式的 Sampora 版本。',
-      heroTitleHtml:'选择匹配你运营模式的 <span class="grad">Sampora 版本</span>。',
+      heroTitle:'选择匹配你运营模式的 Sampora 版本',
+      heroTitleHtml:'选择匹配你运营模式的 <span class="grad">Sampora 版本</span>',
       heroText:'Sampora 版本按团队实际运营对象划分：自有样本库运营版、供应商网络运营版，或覆盖客户、供应商、样本库、API 与财务的多实体样本运营。',
       heroPrimary:'开始试用',
       heroSecondary:'预约演示',
       selectorTitle:'样本运营 / 版本方案',
       selectorMapLabel:'运营模型映射',
       selectorKicker:'版本逻辑',
-      selectorHeading:'按团队实际负责的工作选择版本。',
+      selectorHeading:'按团队实际负责的工作选择版本.',
       selectorText:'先看团队每天运营的层级，再扩展到供应商协同、API 交付、财务和合作网络治理。',
       selectorPanelTitle:'样本库运营版',
       selectorPanelText:'适合自有样本库、执行站点、会员、激励和会员侧财务运营。',
@@ -486,10 +490,10 @@ body{padding-top:100px}
       planScopeLabel:'运营范围',
       planUpgradeLabel:'升级信号',
       plansKicker:'样本运营层',
-      plansTitle:'三种层级，对应三类运营责任。',
+      plansTitle:'三种层级，对应三类运营责任.',
       plansLead:'根据团队真正管理的对象选择：自有样本库运营、供应商协同，或完整的多实体运营闭环。',
       matrixKicker:'能力矩阵',
-      matrixTitle:'按运营责任比较版本。',
+      matrixTitle:'按运营责任比较版本.',
       matrixLead:'版本不是简单的功能开关，而是定义项目、供应商、客户、会员、结算、API 交付与合作网络工作流中的责任边界。',
       finalTitle:'不确定哪一层适合你的运营模式？',
       finalText:'告诉我们你如何管理样本库、供应商、API、审核和结算流程，我们会帮你匹配合适的 Sampora 层级。',
@@ -729,5 +733,7 @@ body{padding-top:100px}
 </script>
 <script src="assets/lead-attribution.js" defer></script>
 <script src="assets/sampora-cookie-preferences.js" defer></script>
+<script src="assets/footer-email-modal.js" defer></script>
+<script src="https://plugin-code.salesmartly.com/js/project_693595_715565_1777101144.js"></script>
 </body>
 </html>

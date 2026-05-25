@@ -77,23 +77,54 @@ function startServer() {
   });
 }
 
-const server = await startServer();
-const baseUrl = `http://127.0.0.1:${server.address().port}`;
+const lighthousePageTimeoutMs = Number.parseInt(process.env.LIGHTHOUSE_PAGE_TIMEOUT_MS || '120000', 10);
+const lighthouseMaxAttempts = Math.max(1, Number.parseInt(process.env.LIGHTHOUSE_MAX_ATTEMPTS || '2', 10));
 
-const lighthouseSummary = {
-  generatedAt: new Date().toISOString(),
-  baseUrl,
-  chromeExecutablePath,
-  pages: {},
-};
-let chrome;
-try {
-  chrome = await chromeLauncher.launch({
-    chromePath: chromeExecutablePath,
-    chromeFlags: ['--headless=new', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+function isRetryableLighthouseError(error) {
+  const message = `${error?.message || error}`;
+  return /Session closed|Target closed|page has been closed|WebSocket is not open|ECONNRESET|ECONNREFUSED|Lighthouse page audit timed out/i.test(message);
+}
+
+async function withTimeout(promise, timeoutMs, message) {
+  let timer;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise((_, reject) => {
+        timer = setTimeout(() => reject(new Error(message)), timeoutMs);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function closeServer(server) {
+  if (!server?.listening) return;
+  await new Promise((resolve, reject) => {
+    server.close((error) => (error ? reject(error) : resolve()));
   });
-  for (const page of pages) {
-    const result = await lighthouse(`${baseUrl}/${page}`, {
+}
+
+async function killChrome(chrome, summary) {
+  if (!chrome) return;
+  try {
+    await chrome.kill();
+  } catch (error) {
+    summary.chromeCleanupWarning = summary.chromeCleanupWarning
+      ? `${summary.chromeCleanupWarning}; ${error.message}`
+      : error.message;
+  }
+}
+
+async function runLighthouseAttempt(url, page, summary) {
+  let chrome;
+  try {
+    chrome = await chromeLauncher.launch({
+      chromePath: chromeExecutablePath,
+      chromeFlags: ['--headless=new', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage'],
+    });
+    const auditPromise = lighthouse(url, {
       port: chrome.port,
       output: 'json',
       logLevel: 'error',
@@ -102,6 +133,46 @@ try {
       screenEmulation: { disabled: true },
       throttlingMethod: 'provided',
     });
+    auditPromise.catch(() => {});
+    return await withTimeout(
+      auditPromise,
+      lighthousePageTimeoutMs,
+      `Lighthouse page audit timed out for ${page} after ${lighthousePageTimeoutMs}ms`
+    );
+  } finally {
+    await killChrome(chrome, summary);
+  }
+}
+
+async function runLighthousePage(url, page, summary) {
+  let lastError;
+  for (let attempt = 1; attempt <= lighthouseMaxAttempts; attempt += 1) {
+    try {
+      return await runLighthouseAttempt(url, page, summary);
+    } catch (error) {
+      lastError = error;
+      if (attempt >= lighthouseMaxAttempts || !isRetryableLighthouseError(error)) {
+        throw error;
+      }
+    }
+  }
+  throw lastError;
+}
+
+let server;
+try {
+  server = await startServer();
+  const baseUrl = `http://127.0.0.1:${server.address().port}`;
+
+  const lighthouseSummary = {
+    generatedAt: new Date().toISOString(),
+    baseUrl,
+    chromeExecutablePath,
+    pages: {},
+  };
+
+  for (const page of pages) {
+    const result = await runLighthousePage(`${baseUrl}/${page}`, page, lighthouseSummary);
     const lhr = result.lhr;
     const file = `lighthouse-${page.replace('.html', '')}.json`;
     await fs.writeFile(path.join(outDir, file), JSON.stringify(lhr, null, 2));
@@ -113,65 +184,57 @@ try {
       runtimeError: lhr.runtimeError || null,
     };
   }
-} finally {
-  if (chrome) {
-    try {
-      await chrome.kill();
-    } catch (error) {
-      lighthouseSummary.chromeCleanupWarning = error.message;
-    }
-  }
-}
-await fs.writeFile(path.join(outDir, 'lighthouse-output.json'), JSON.stringify(lighthouseSummary, null, 2));
+  await fs.writeFile(path.join(outDir, 'lighthouse-output.json'), JSON.stringify(lighthouseSummary, null, 2));
 
-const axeSummary = {
-  generatedAt: new Date().toISOString(),
-  baseUrl,
-  chromeExecutablePath,
-  pages: {},
-  violationCount: 0,
-};
-const browser = await chromium.launch({ headless: true, executablePath: chromeExecutablePath });
-try {
-  const context = await browser.newContext();
-  const page = await context.newPage();
-  for (const file of pages) {
-    await page.goto(`${baseUrl}/${file}`, { waitUntil: 'load' });
-    await page.waitForTimeout(300);
-    const result = await new AxeBuilder({ page }).analyze();
-    axeSummary.pages[file] = {
-      url: `${baseUrl}/${file}`,
-      violations: result.violations.map((violation) => ({
-        id: violation.id,
-        impact: violation.impact,
-        description: violation.description,
-        help: violation.help,
-        helpUrl: violation.helpUrl,
-        nodes: violation.nodes.map((node) => ({
-          target: node.target,
-          failureSummary: node.failureSummary,
+  const axeSummary = {
+    generatedAt: new Date().toISOString(),
+    baseUrl,
+    chromeExecutablePath,
+    pages: {},
+    violationCount: 0,
+  };
+  const browser = await chromium.launch({ headless: true, executablePath: chromeExecutablePath });
+  try {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    for (const file of pages) {
+      await page.goto(`${baseUrl}/${file}`, { waitUntil: 'load' });
+      await page.waitForTimeout(300);
+      const result = await new AxeBuilder({ page }).analyze();
+      axeSummary.pages[file] = {
+        url: `${baseUrl}/${file}`,
+        violations: result.violations.map((violation) => ({
+          id: violation.id,
+          impact: violation.impact,
+          description: violation.description,
+          help: violation.help,
+          helpUrl: violation.helpUrl,
+          nodes: violation.nodes.map((node) => ({
+            target: node.target,
+            failureSummary: node.failureSummary,
+          })),
         })),
-      })),
-      passes: result.passes.length,
-      incomplete: result.incomplete.length,
-    };
-    axeSummary.violationCount += result.violations.length;
+        passes: result.passes.length,
+        incomplete: result.incomplete.length,
+      };
+      axeSummary.violationCount += result.violations.length;
+    }
+  } finally {
+    await browser.close();
   }
-} finally {
-  await browser.close();
-  await new Promise((resolve) => server.close(resolve));
-}
-axeSummary.blockingViolationCount = Object.values(axeSummary.pages)
-  .flatMap((page) => page.violations)
-  .filter((violation) => ['serious', 'critical'].includes(violation.impact)).length;
-await fs.writeFile(path.join(outDir, 'axe-output.json'), JSON.stringify(axeSummary, null, 2));
+  axeSummary.blockingViolationCount = Object.values(axeSummary.pages)
+    .flatMap((page) => page.violations)
+    .filter((violation) => ['serious', 'critical'].includes(violation.impact)).length;
+  await fs.writeFile(path.join(outDir, 'axe-output.json'), JSON.stringify(axeSummary, null, 2));
 
-console.log(JSON.stringify({
-  status: axeSummary.blockingViolationCount ? 'FAIL' : 'PASS',
-  lighthouse: 'qa-evidence/lighthouse-output.json',
-  axe: 'qa-evidence/axe-output.json',
-  axeViolationCount: axeSummary.violationCount,
-  axeBlockingViolationCount: axeSummary.blockingViolationCount,
-}, null, 2));
-process.exitCode = axeSummary.blockingViolationCount ? 1 : 0;
-process.exit(process.exitCode);
+  console.log(JSON.stringify({
+    status: axeSummary.blockingViolationCount ? 'FAIL' : 'PASS',
+    lighthouse: 'qa-evidence/lighthouse-output.json',
+    axe: 'qa-evidence/axe-output.json',
+    axeViolationCount: axeSummary.violationCount,
+    axeBlockingViolationCount: axeSummary.blockingViolationCount,
+  }, null, 2));
+  process.exitCode = axeSummary.blockingViolationCount ? 1 : 0;
+} finally {
+  await closeServer(server);
+}

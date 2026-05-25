@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-24T05:09:17.023Z",
+  "generatedAt": "2026-05-25T13:05:48.599Z",
   "chromeExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "nav": {
     "390": {
@@ -12,7 +12,7 @@
         },
         "brand": {
           "x": 16,
-          "y": 18.14,
+          "y": 18,
           "width": 109.64,
           "height": 30
         },
@@ -23,10 +23,10 @@
           "height": 0
         },
         "actions": {
-          "x": 133.64,
-          "y": 0,
-          "width": 240.36,
-          "height": 66.28
+          "x": 148.2,
+          "y": 12,
+          "width": 225.8,
+          "height": 42
         },
         "active": {
           "x": 0,
@@ -39,7 +39,7 @@
         "mobileToggleVisible": true,
         "gaps": {
           "brandToNav": -125.64,
-          "navToActions": 133.64
+          "navToActions": 148.2
         }
       },
       "solutions.html": {
@@ -235,6 +235,45 @@
         "gaps": {
           "brandToNav": -126.66,
           "navToActions": 244
+        }
+      },
+      "about.html": {
+        "mast": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 61
+        },
+        "brand": {
+          "x": 16,
+          "y": 15,
+          "width": 109.64,
+          "height": 30
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "actions": {
+          "x": 254,
+          "y": 9,
+          "width": 120,
+          "height": 42
+        },
+        "active": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "activeAfterWidth": "38px",
+        "activeAfterBottom": "13px",
+        "mobileToggleVisible": true,
+        "gaps": {
+          "brandToNav": -125.64,
+          "navToActions": 254
         }
       }
     },
@@ -503,6 +542,52 @@
         "mastMaxDiffVsIndex": 1,
         "navMaxDiffVsIndex": 1,
         "actionsMaxDiffVsIndex": 1,
+        "gapDiffsVsIndex": {
+          "brandToNav": 0,
+          "navToActions": 0
+        }
+      },
+      "about.html": {
+        "mast": {
+          "x": 0,
+          "y": 34,
+          "width": 1440,
+          "height": 67
+        },
+        "brand": {
+          "x": 40,
+          "y": 46.47,
+          "width": 169.61,
+          "height": 41.06
+        },
+        "nav": {
+          "x": 231.36,
+          "y": 34,
+          "width": 714.64,
+          "height": 66
+        },
+        "actions": {
+          "x": 970,
+          "y": 43.61,
+          "width": 430,
+          "height": 46.78
+        },
+        "active": {
+          "x": 707.78,
+          "y": 34,
+          "width": 119.11,
+          "height": 66
+        },
+        "activeAfterWidth": "38px",
+        "activeAfterBottom": "13px",
+        "mobileToggleVisible": false,
+        "gaps": {
+          "brandToNav": 21.75,
+          "navToActions": 24
+        },
+        "mastMaxDiffVsIndex": 1,
+        "navMaxDiffVsIndex": 1,
+        "actionsMaxDiffVsIndex": 1.9399999999999977,
         "gapDiffsVsIndex": {
           "brandToNav": 0,
           "navToActions": 0
@@ -778,6 +863,52 @@
           "brandToNav": 0,
           "navToActions": 0
         }
+      },
+      "about.html": {
+        "mast": {
+          "x": 0,
+          "y": 34,
+          "width": 1536,
+          "height": 67
+        },
+        "brand": {
+          "x": 88,
+          "y": 46.47,
+          "width": 169.61,
+          "height": 41.06
+        },
+        "nav": {
+          "x": 279.36,
+          "y": 34,
+          "width": 714.64,
+          "height": 66
+        },
+        "actions": {
+          "x": 1018,
+          "y": 43.61,
+          "width": 430,
+          "height": 46.78
+        },
+        "active": {
+          "x": 755.78,
+          "y": 34,
+          "width": 119.11,
+          "height": 66
+        },
+        "activeAfterWidth": "38px",
+        "activeAfterBottom": "13px",
+        "mobileToggleVisible": false,
+        "gaps": {
+          "brandToNav": 21.75,
+          "navToActions": 24
+        },
+        "mastMaxDiffVsIndex": 1,
+        "navMaxDiffVsIndex": 1,
+        "actionsMaxDiffVsIndex": 1.9399999999999977,
+        "gapDiffsVsIndex": {
+          "brandToNav": 0,
+          "navToActions": 0
+        }
       }
     },
     "1920": {
@@ -1049,12 +1180,58 @@
           "brandToNav": 0,
           "navToActions": 0
         }
+      },
+      "about.html": {
+        "mast": {
+          "x": 0,
+          "y": 34,
+          "width": 1920,
+          "height": 67
+        },
+        "brand": {
+          "x": 280,
+          "y": 46.47,
+          "width": 169.61,
+          "height": 41.06
+        },
+        "nav": {
+          "x": 471.36,
+          "y": 34,
+          "width": 714.64,
+          "height": 66
+        },
+        "actions": {
+          "x": 1210,
+          "y": 43.61,
+          "width": 430,
+          "height": 46.78
+        },
+        "active": {
+          "x": 947.78,
+          "y": 34,
+          "width": 119.11,
+          "height": 66
+        },
+        "activeAfterWidth": "38px",
+        "activeAfterBottom": "13px",
+        "mobileToggleVisible": false,
+        "gaps": {
+          "brandToNav": 21.75,
+          "navToActions": 24
+        },
+        "mastMaxDiffVsIndex": 1,
+        "navMaxDiffVsIndex": 1,
+        "actionsMaxDiffVsIndex": 1.9399999999999977,
+        "gapDiffsVsIndex": {
+          "brandToNav": 0,
+          "navToActions": 0
+        }
       }
     }
   },
   "sticky": {
     "index.html": {
-      "scrollY": 2683,
+      "scrollY": 2656,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1079,7 +1256,7 @@
       "yCloseToStatus": true
     },
     "solutions.html": {
-      "scrollY": 1700,
+      "scrollY": 1701,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1179,7 +1356,7 @@
       "yCloseToStatus": true
     },
     "contact.html": {
-      "scrollY": 965,
+      "scrollY": 974,
       "viewportHeight": 980,
       "mast": {
         "x": 0,
@@ -1197,6 +1374,31 @@
       },
       "mastPosition": "fixed",
       "statusPosition": "fixed",
+      "statusOpacity": "0",
+      "statusOutOfTop": true,
+      "mastAtTop": true,
+      "visible": true,
+      "yCloseToStatus": true
+    },
+    "about.html": {
+      "scrollY": 1557,
+      "viewportHeight": 980,
+      "mast": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 67,
+        "bottom": 67
+      },
+      "status": {
+        "x": 0,
+        "y": -1,
+        "width": 1440,
+        "height": 1,
+        "bottom": 0
+      },
+      "mastPosition": "sticky",
+      "statusPosition": "sticky",
       "statusOpacity": "0",
       "statusOutOfTop": true,
       "mastAtTop": true,
@@ -1315,16 +1517,16 @@
         "delayMs": 0,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-5.33566px",
+        "flowStrokeDashoffset": "-6.668px",
         "scanAnimationName": "none",
         "packetOnCount": 5,
-        "packetOpacity": "0.741616"
+        "packetOpacity": "0.749725"
       },
       {
         "delayMs": 1000,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-25.6657px",
+        "flowStrokeDashoffset": "-27.002px",
         "scanAnimationName": "none",
         "packetOnCount": 5,
         "packetOpacity": "0.75"
@@ -1333,7 +1535,7 @@
         "delayMs": 3000,
         "flowOnCount": 8,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-18.0017px",
+        "flowStrokeDashoffset": "-19.334px",
         "scanAnimationName": "none",
         "packetOnCount": 5,
         "packetOpacity": "0.75"
@@ -1342,7 +1544,7 @@
         "delayMs": 6000,
         "flowOnCount": 6,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-29.9997px",
+        "flowStrokeDashoffset": "-31.332px",
         "scanAnimationName": "none",
         "packetOnCount": 4,
         "packetOpacity": "0.75"
@@ -1353,16 +1555,16 @@
         "delayMs": 0,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-7.085px",
+        "flowStrokeDashoffset": "-8.75px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
-        "packetOpacity": "0.638369"
+        "packetOpacity": "0.777946"
       },
       {
         "delayMs": 1000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-32.085px",
+        "flowStrokeDashoffset": "-34.1675px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
         "packetOpacity": "0.85"
@@ -1371,19 +1573,19 @@
         "delayMs": 3000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-7.5002px",
+        "flowStrokeDashoffset": "-9.58617px",
         "scanAnimationName": "none",
         "packetOnCount": 3,
-        "packetOpacity": "0.746679"
+        "packetOpacity": "0.81715"
       },
       {
         "delayMs": 6000,
         "flowOnCount": 7,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-7.5008px",
+        "flowStrokeDashoffset": "-10.0012px",
         "scanAnimationName": "none",
         "packetOnCount": 7,
-        "packetOpacity": "0.702856"
+        "packetOpacity": "0.829093"
       }
     ],
     "resources.html": [
@@ -1391,7 +1593,7 @@
         "delayMs": 0,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-7.55367px",
+        "flowStrokeDashoffset": "-9.44917px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1400,7 +1602,7 @@
         "delayMs": 1000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-36.3602px",
+        "flowStrokeDashoffset": "-37.7825px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1409,7 +1611,7 @@
         "delayMs": 3000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-25.0297px",
+        "flowStrokeDashoffset": "-26.9252px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1418,7 +1620,7 @@
         "delayMs": 6000,
         "flowOnCount": 3,
         "flowAnimationName": "topoDash",
-        "flowStrokeDashoffset": "-8.97954px",
+        "flowStrokeDashoffset": "-9.92055px",
         "scanAnimationName": "topoScan",
         "packetOnCount": 0,
         "packetOpacity": null
@@ -1440,8 +1642,14 @@
       "submitText": "Submit request",
       "containsFalseSendInquiry": false,
       "method": "post",
-      "action": "[BACKEND_CONTACT_ENDPOINT]",
-      "endpoint": "[BACKEND_CONTACT_ENDPOINT]",
+      "action": "/api/contact",
+      "endpoint": "/api/contact",
+      "feedback": {
+        "present": true,
+        "hidden": true,
+        "role": "status",
+        "ariaLive": "polite"
+      },
       "fieldDetails": {
         "name": {
           "present": true,
@@ -1500,22 +1708,48 @@
         "lang": {
           "present": true,
           "value": "en"
+        },
+        "landing_page": {
+          "present": true,
+          "value": "file:///E:/%E7%BD%91%E9%A1%B5%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6/sampora-website-public-v3/index.html"
+        },
+        "referrer": {
+          "present": true,
+          "value": ""
+        },
+        "utm_source": {
+          "present": true,
+          "value": ""
+        },
+        "utm_medium": {
+          "present": true,
+          "value": ""
+        },
+        "utm_campaign": {
+          "present": true,
+          "value": ""
         }
       },
       "fieldsPresent": true,
       "hiddenFieldsPresent": true,
       "hasPendingStorageCode": true,
-      "hasBackendPlaceholderCheck": true
+      "hasBackendPlaceholderCheck": false
     },
     "afterSubmit": {
       "url": "file:///E:/%E7%BD%91%E9%A1%B5%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6/sampora-website-public-v3/contact.html#contact-form",
-      "storedPending": "intent=contact_sales&source_page=contact.html&source_section=contact-form&plan=contact_sales&lang=en&name=QA+Reviewer&company=QA+Evidence+Co&email=qa%40example.com&role=Sample+Supplier&business_type=contact_sales&message=QA+evidence+backend+placeholder+check.",
+      "storedPending": "intent=contact_sales&source_page=contact.html&source_section=contact-form&plan=contact_sales&lang=en&landing_page=file%3A%2F%2F%2FE%3A%2F%25E7%25BD%2591%25E9%25A1%25B5%25E9%25A1%25B9%25E7%259B%25AE%25E6%2596%2587%25E4%25BB%25B6%2Fsampora-website-public-v3%2Findex.html&referrer=&utm_source=&utm_medium=&utm_campaign=&website=&name=QA+Reviewer&company=QA+Evidence+Co&email=qa%40example.com&role=Sample+Supplier&business_type=contact_sales&message=QA+evidence+backend+placeholder+check.",
       "pendingParams": {
         "intent": "contact_sales",
         "source_page": "contact.html",
         "source_section": "contact-form",
         "plan": "contact_sales",
         "lang": "en",
+        "landing_page": "file:///E:/%E7%BD%91%E9%A1%B5%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6/sampora-website-public-v3/index.html",
+        "referrer": "",
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "website": "",
         "name": "QA Reviewer",
         "company": "QA Evidence Co",
         "email": "qa@example.com",
@@ -1523,9 +1757,18 @@
         "business_type": "contact_sales",
         "message": "QA evidence backend placeholder check."
       },
-      "toastVisible": true
+      "feedbackVisible": true,
+      "feedbackState": "failure",
+      "feedbackText": "We couldn’t submit your request right now. Please try again in a moment. If the issue continues, email us at sales@getsampora.com and include your company name and request."
     },
-    "submitRequests": []
+    "submitRequests": [
+      {
+        "url": "file:///E:/api/contact",
+        "method": "POST",
+        "postData": "intent=contact_sales&source_page=contact.html&source_section=contact-form&plan=contact_sales&lang=en&landing_page=file%3A%2F%2F%2FE%3A%2F%25E7%25BD%2591%25E9%25A1%25B5%25E9%25A1%25B9%25E7%259B%25AE%25E6%2596%2587%25E4%25BB%25B6%2Fsampora-website-public-v3%2Findex.html&referrer=&utm_source=&utm_medium=&utm_campaign=&website=&name=QA+Reviewer&company=QA+Evidence+Co&email=qa%40example.com&role=Sample+Supplier&business_type=contact_sales&message=QA+evidence+backend+placeholder+check."
+      }
+    ],
+    "mockedLiveRequests": []
   },
   "resourceManuals": {
     "en-doc-config": {
@@ -1596,18 +1839,21 @@
     "nav-1440-resource-manuals.png",
     "nav-1440-plans.png",
     "nav-1440-contact.png",
+    "nav-1440-about.png",
     "nav-1536-index.png",
     "nav-1536-solutions.png",
     "nav-1536-resources.png",
     "nav-1536-resource-manuals.png",
     "nav-1536-plans.png",
     "nav-1536-contact.png",
+    "nav-1536-about.png",
     "nav-1920-index.png",
     "nav-1920-solutions.png",
     "nav-1920-resources.png",
     "nav-1920-resource-manuals.png",
     "nav-1920-plans.png",
     "nav-1920-contact.png",
+    "nav-1920-about.png",
     "nav-390-index.png",
     "mobile-smoke-390-index.png",
     "nav-390-solutions.png",
@@ -1620,6 +1866,8 @@
     "mobile-smoke-390-plans.png",
     "nav-390-contact.png",
     "mobile-smoke-390-contact.png",
+    "nav-390-about.png",
+    "mobile-smoke-390-about.png",
     "index-hero-1440.png",
     "index-workflow-1440.png",
     "topology-index-1440.png",

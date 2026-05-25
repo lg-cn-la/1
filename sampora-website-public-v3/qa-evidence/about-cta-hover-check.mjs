@@ -83,48 +83,56 @@ async function hoverMeasure(page, selector) {
   return { base, hover, afterLeave };
 }
 
+function assertSharedStartTrialMotion(context, result) {
+  const { base, hover, afterLeave } = result;
+  if (!hover) fail(`${context}: Start trial button missing`);
+  if (hover?.href !== 'contact.html?intent=start_trial#contact-form') {
+    fail(`${context}: Start trial href changed to ${hover?.href}`);
+  }
+  if (hover && hover.transformY > -0.75) {
+    fail(`${context}: hover did not reuse the primary selected lift ${JSON.stringify(hover)}`);
+  }
+  if (base && hover && base.boxShadow === hover.boxShadow) {
+    fail(`${context}: hover shadow stayed unchanged`);
+  }
+  if (hover && !/(17\.\d+|18)px (41\.\d+|42)px/.test(hover.boxShadow)) {
+    fail(`${context}: hover shadow does not match primary selected glow ${hover.boxShadow}`);
+  }
+  if (base && !/^linear-gradient/.test(base.backgroundImage)) {
+    fail(`${context}: base background is not the shared primary gradient ${base.backgroundImage}`);
+  }
+  if (afterLeave && !/^linear-gradient/.test(afterLeave.backgroundImage)) {
+    fail(`${context}: mouse-leave background snaps away from the shared gradient ${afterLeave.backgroundImage}`);
+  }
+  if (afterLeave && afterLeave.transformY !== 0) {
+    fail(`${context}: did not settle after mouse leave ${JSON.stringify(afterLeave)}`);
+  }
+  if (hover?.overflowX > 0) fail(`${context}: horizontal overflow ${hover.overflowX}`);
+}
+
 async function checkDesktop(browser, lang) {
   const page = await browser.newPage({ viewport: desktopViewport });
   await page.goto(url, { waitUntil: 'load' });
   await setLanguage(page, lang);
 
   const header = await hoverMeasure(page, '.mast .header-actions .btn.primary');
-  if (!header.hover) fail(`desktop ${lang}: header Start trial reference missing`);
-  if (header.hover && header.hover.transformY > -0.75) {
-    fail(`desktop ${lang}: header reference did not show lift ${JSON.stringify(header.hover)}`);
-  }
+  assertSharedStartTrialMotion(`desktop ${lang}: header Start trial`, header);
+
+  const hero = await hoverMeasure(page, '.hero-actions .btn.primary');
+  assertSharedStartTrialMotion(`desktop ${lang}: hero Start trial`, hero);
 
   await page.locator('.cta-section .btn.primary').scrollIntoViewIfNeeded();
   await page.waitForTimeout(160);
   const cta = await hoverMeasure(page, '.cta-section .btn.primary');
-  if (!cta.hover) fail(`desktop ${lang}: bottom CTA Start trial missing`);
-  if (cta.hover?.href !== 'contact.html?intent=start_trial#contact-form') {
-    fail(`desktop ${lang}: bottom CTA href changed to ${cta.hover?.href}`);
-  }
-  if (cta.hover && cta.hover.transformY > -0.75) {
-    fail(`desktop ${lang}: bottom CTA hover did not reuse the primary selected lift ${JSON.stringify(cta.hover)}`);
-  }
-  if (cta.base && cta.hover && cta.base.boxShadow === cta.hover.boxShadow) {
-    fail(`desktop ${lang}: bottom CTA hover shadow stayed unchanged`);
-  }
-  if (cta.hover && !/18px 42px/.test(cta.hover.boxShadow)) {
-    fail(`desktop ${lang}: bottom CTA hover shadow does not match primary selected glow ${cta.hover.boxShadow}`);
-  }
-  if (cta.base && !/^linear-gradient/.test(cta.base.backgroundImage)) {
-    fail(`desktop ${lang}: bottom CTA base background is not the shared primary gradient ${cta.base.backgroundImage}`);
-  }
-  if (cta.afterLeave && !/^linear-gradient/.test(cta.afterLeave.backgroundImage)) {
-    fail(`desktop ${lang}: bottom CTA mouse-leave background snaps away from the shared gradient ${cta.afterLeave.backgroundImage}`);
-  }
-  if (cta.afterLeave && cta.afterLeave.transformY !== 0) {
-    fail(`desktop ${lang}: bottom CTA did not settle after mouse leave ${JSON.stringify(cta.afterLeave)}`);
-  }
-  if (cta.hover?.overflowX > 0) fail(`desktop ${lang}: horizontal overflow ${cta.hover.overflowX}`);
+  assertSharedStartTrialMotion(`desktop ${lang}: bottom CTA Start trial`, cta);
 
   await page.close();
   return {
     lang,
     headerHover: header.hover,
+    heroBase: hero.base,
+    heroHover: hero.hover,
+    heroAfterLeave: hero.afterLeave,
     ctaBase: cta.base,
     ctaHover: cta.hover,
     ctaAfterLeave: cta.afterLeave,
@@ -135,26 +143,22 @@ async function checkMobile(browser, lang) {
   const page = await browser.newPage({ viewport: mobileViewport });
   await page.goto(url, { waitUntil: 'load' });
   await setLanguage(page, lang);
+  const hero = await hoverMeasure(page, '.hero-actions .btn.primary');
+  assertSharedStartTrialMotion(`mobile ${lang}: hero Start trial`, hero);
+
   await page.locator('.cta-section .btn.primary').scrollIntoViewIfNeeded();
   await page.waitForTimeout(160);
   const cta = await hoverMeasure(page, '.cta-section .btn.primary');
-  if (!cta.hover) fail(`mobile ${lang}: bottom CTA Start trial missing`);
-  if (cta.hover?.href !== 'contact.html?intent=start_trial#contact-form') {
-    fail(`mobile ${lang}: bottom CTA href changed to ${cta.hover?.href}`);
-  }
+  assertSharedStartTrialMotion(`mobile ${lang}: bottom CTA Start trial`, cta);
   if (cta.hover && cta.hover.rect.height < 42) {
     fail(`mobile ${lang}: bottom CTA height too small ${JSON.stringify(cta.hover.rect)}`);
   }
-  if (cta.base && !/^linear-gradient/.test(cta.base.backgroundImage)) {
-    fail(`mobile ${lang}: bottom CTA base background is not the shared primary gradient ${cta.base.backgroundImage}`);
-  }
-  if (cta.afterLeave && !/^linear-gradient/.test(cta.afterLeave.backgroundImage)) {
-    fail(`mobile ${lang}: bottom CTA mouse-leave background snaps away from the shared gradient ${cta.afterLeave.backgroundImage}`);
-  }
-  if (cta.hover?.overflowX > 0) fail(`mobile ${lang}: horizontal overflow ${cta.hover.overflowX}`);
   await page.close();
   return {
     lang,
+    heroBase: hero.base,
+    heroHover: hero.hover,
+    heroAfterLeave: hero.afterLeave,
     ctaBase: cta.base,
     ctaHover: cta.hover,
     ctaAfterLeave: cta.afterLeave,

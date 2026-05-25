@@ -1,0 +1,739 @@
+﻿<!DOCTYPE html>
+
+<html data-lang="en" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Sampora Plans - Panel, Supplier Network, and Enterprise</title>
+<meta name="description" content="Compare Sampora plans for Panel, Supplier Network, and Enterprise sample operations across delivery, review, settlement, API intake, and Partner Network workflows."/>
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://getsampora.com/plans.html">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root{
+      --ink:#0A1628;--deep:#06101F;--panel:#0E1B2F;--panel2:#142845;--line:rgba(129,178,214,.18);--line2:rgba(129,178,214,.10);
+      --cyan:#38D2FF;--cyan2:#62E6FF;--lime:#B5F056;--amber:#FFB454;--fg:#EAF1F8;--fg2:#B9C8DA;--body:#9FB2C8;--muted:#70849E;--muted2:#51647C;
+      --mono:"JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      --sans:Inter,"Noto Sans SC",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      --ease:cubic-bezier(.2,.7,.2,1);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{margin:0;color:var(--fg);font-family:var(--sans);line-height:1.56;background:
+      linear-gradient(rgba(120,172,216,.026) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(120,172,216,.024) 1px,transparent 1px),
+      radial-gradient(70% 52% at 76% 0%,rgba(56,210,255,.15),transparent 60%),
+      radial-gradient(54% 42% at 22% 14%,rgba(181,240,86,.06),transparent 58%),
+      linear-gradient(180deg,#0A1628 0%,#06101F 56%,#08172A 100%);
+      background-size:44px 44px,44px 44px,auto,auto,auto;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}button{font:inherit}.container{width:min(1360px,calc(100% - 48px));margin:0 auto}
+
+    /* Same top console navigation style as index/resources/contact */
+    .status{border-bottom:1px solid var(--line);background:rgba(6,16,31,.86);color:var(--muted);font:11px var(--mono);letter-spacing:.06em;position:sticky;top:0;z-index:50;backdrop-filter:blur(8px)}
+    .status .inner{height:34px;display:flex;align-items:center;gap:18px;padding-left:10px;overflow:hidden;white-space:nowrap}.live{display:inline-flex;align-items:center;gap:8px;color:var(--lime);text-transform:uppercase;font-weight:700}.live:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 0 rgba(181,240,86,.4);animation:pulse-lime 1.9s ease-out infinite}@keyframes pulse-lime{0%{box-shadow:0 0 0 0 rgba(181,240,86,.48)}72%{box-shadow:0 0 0 9px rgba(181,240,86,0)}100%{box-shadow:0 0 0 0 rgba(181,240,86,0)}}.status .sep{color:var(--muted2)}.status .right{margin-left:auto;color:var(--fg2)}
+    .mast{position:sticky;top:34px;z-index:49;background:rgba(10,22,40,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.mast .inner{height:66px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px}.brand{display:flex;align-items:center;gap:10px;min-width:max-content}.brand .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(160deg,#1a3a5f,#0e1b2f);border:1px solid rgba(56,210,255,.35);display:grid;place-items:center;color:var(--cyan);font-weight:800;font-family:var(--mono);font-size:13px}.brand b{font-weight:700;letter-spacing:-.01em}.brand small{display:block;color:var(--muted);font-size:10px;font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase}.nav{display:flex;gap:20px;margin-left:0;justify-content:center;font-size:13px;color:var(--fg2)}.nav a{padding:6px 0;border-bottom:1px solid transparent;transition:color .18s var(--ease),border-color .18s var(--ease)}.nav a:hover{color:var(--fg)}.nav a.active{color:var(--cyan);border-color:var(--cyan)}.header-actions{margin-left:0;display:flex;align-items:center;justify-content:flex-end;gap:12px}.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(6,14,28,.38)}.lang button{height:34px;padding:0 10px;border:0;background:transparent;color:var(--muted);font:10.5px var(--mono);letter-spacing:.04em;cursor:pointer}.lang button.active{background:rgba(56,210,255,.12);color:var(--cyan2)}.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;font-weight:600;font-size:13.5px;letter-spacing:.01em;border:1px solid transparent;transition:transform .12s var(--ease),background .18s var(--ease),color .18s var(--ease),border-color .18s var(--ease)}.btn.primary{background:var(--cyan);color:#03111B;box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}.btn.primary:hover{background:var(--cyan2)}.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line)}.btn.ghost:hover{border-color:rgba(56,210,255,.45);color:var(--cyan2);background:rgba(20,40,69,.22)}.btn:active{transform:translateY(1px)}
+    .sampora-nav-standard,.nav.sampora-nav-standard{display:flex!important;align-items:center!important;gap:32px!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}.nav.sampora-nav-standard{margin-left:40px!important}.sampora-nav-standard a,.nav.sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;height:66px!important;padding:0 8px!important;border:0!important;color:rgba(232,238,245,.84)!important;font-weight:650!important;letter-spacing:-.01em!important;text-decoration:none!important;white-space:nowrap!important;transition:color .18s var(--ease),transform .18s var(--ease)!important}.sampora-nav-standard a:hover,.sampora-nav-standard a.active{color:var(--cyan)!important}.sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,var(--cyan),transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
+
+    .hero{position:relative;padding:86px 0 56px}.hero-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(420px,1.05fr);gap:42px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:10px;font:11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan2);padding:7px 14px;border:1px solid rgba(56,210,255,.28);border-radius:999px;background:rgba(56,210,255,.06)}.eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 14px rgba(181,240,86,.7)}h1{margin:22px 0 18px;font-size:clamp(44px,6.2vw,78px);line-height:.98;letter-spacing:-.045em;max-width:920px}.grad{color:var(--cyan)}.lead{font-size:18px;color:var(--fg2);max-width:780px;margin:0 0 26px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.console-card{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,rgba(14,27,47,.84),rgba(9,24,42,.70));box-shadow:0 26px 80px rgba(0,0,0,.28);overflow:hidden}.console-head{height:50px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 18px;color:var(--fg2);font:12px var(--mono)}.traffic{display:flex;gap:8px}.dot{width:9px;height:9px;border-radius:999px;background:var(--muted)}.dot.red{background:#EA6B6B}.dot.yellow{background:#FFB454}.dot.green{background:#B5F056}.console-body{padding:22px}.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metric{border:1px solid var(--line2);border-radius:14px;background:rgba(6,16,31,.44);padding:16px}.metric small{display:block;color:var(--muted);font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase}.metric b{display:block;margin-top:6px;font:800 26px var(--mono);color:var(--fg)}.metric .ok{color:var(--lime)}.layer-flow{margin-top:18px;display:grid;gap:10px}.flow-row{display:grid;grid-template-columns:180px 1fr 72px;gap:12px;align-items:center;border:1px solid var(--line2);border-radius:12px;padding:12px;color:var(--body);background:rgba(255,255,255,.025)}.flow-row strong{color:var(--fg)}.flow-row span:last-child{font:700 11px var(--mono);color:var(--cyan2);text-align:right;white-space:nowrap}
+    .plan-selector-card .console-body{padding:24px}.plan-fit-summary{padding:4px 2px 18px;border-bottom:1px solid var(--line2);margin-bottom:16px}.plan-fit-summary small{display:block;color:var(--cyan2);font:800 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}.plan-fit-summary h3{margin:0 0 10px;color:var(--fg);font-size:clamp(24px,2.6vw,34px);line-height:1.08;letter-spacing:0}.plan-fit-summary p{margin:0;color:var(--fg2);font-size:14.5px;line-height:1.65;max-width:56ch}.plan-fit-list{display:grid;gap:10px}.plan-fit-row{display:grid;grid-template-columns:46px minmax(0,1fr);gap:13px;align-items:center;min-height:78px;padding:13px 14px;border:1px solid var(--line2);border-radius:14px;background:rgba(6,16,31,.38);transition:transform .18s var(--ease),border-color .18s var(--ease),background .18s var(--ease),box-shadow .18s var(--ease)}.plan-fit-row:hover{transform:translateY(-2px);border-color:rgba(56,210,255,.34);background:rgba(20,40,69,.42);box-shadow:0 14px 34px rgba(0,0,0,.20)}.fit-index{width:46px;height:46px;display:grid;place-items:center;border-radius:13px;color:var(--cyan2);background:rgba(56,210,255,.075);border:1px solid rgba(56,210,255,.20);font:800 12px var(--mono)}.fit-warm .fit-index{color:var(--amber);background:rgba(255,180,84,.075);border-color:rgba(255,180,84,.22)}.fit-copy strong{display:block;color:var(--fg);font-size:15.5px;line-height:1.2;letter-spacing:0}.fit-copy small{display:block;margin-top:5px;color:var(--body);font-size:12.8px;line-height:1.45}
+    .section{padding:86px 0;border-top:0}.section-head{display:grid;grid-template-columns:.95fr 1.05fr;gap:36px;align-items:end;margin-bottom:38px}.section-kicker{font:11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan2)}.section-head h2{margin:14px 0 0;font-size:clamp(32px,4.4vw,52px);line-height:1.04;letter-spacing:0}.section-head p{margin:0;color:var(--fg2);font-size:16px;max-width:760px}.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.plan-card{position:relative;border:1px solid var(--line);border-radius:18px;background:rgba(14,27,47,.66);padding:26px;display:flex;flex-direction:column;min-height:430px;overflow:hidden}.plan-card:before{content:"";position:absolute;inset:0;background:radial-gradient(68% 70% at 22% 0,rgba(56,210,255,.08),transparent 62%);pointer-events:none}.plan-card.recommended{border-color:rgba(181,240,86,.42);box-shadow:0 0 0 1px rgba(181,240,86,.10) inset,0 24px 66px rgba(0,0,0,.18)}.plan-card .num{color:var(--amber);font:800 12px var(--mono);letter-spacing:.12em}.plan-card h3{font-size:30px;line-height:1.05;margin:20px 0 8px;letter-spacing:0}.pill{display:inline-flex;align-self:flex-start;margin:8px 0 0;padding:6px 10px;border-radius:999px;border:1px solid rgba(56,210,255,.24);color:var(--cyan2);font:700 11px var(--mono);text-transform:uppercase}.pill.lime{border-color:rgba(181,240,86,.24);color:var(--lime)}.plan-card p{position:relative;color:var(--fg2);margin:18px 0 0}.plan-card ul{position:relative;list-style:none;padding:0;margin:20px 0 24px;display:grid;gap:10px;color:var(--body)}.plan-card li{display:flex;gap:10px}.plan-card li:before{content:"";flex:0 0 6px;width:6px;height:6px;border-radius:999px;background:var(--lime);margin-top:.7em}.plan-card .btn{position:relative;margin-top:auto;justify-content:center}.plan-meta-block{position:relative;margin-top:18px;padding-top:16px;border-top:1px solid var(--line2)}.plan-meta-block small,.plan-trigger small{display:block;margin-bottom:8px;color:var(--cyan2);font:800 10px var(--mono);letter-spacing:.12em;text-transform:uppercase}.plan-meta-block b{display:block;color:var(--fg);font-size:15px;line-height:1.35}.plan-meta-block ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}.plan-meta-block li{display:flex;gap:10px;color:var(--body);font-size:13.5px;line-height:1.45}.plan-meta-block li::before{content:"";width:6px;height:6px;margin-top:.55em;flex:0 0 6px;border-radius:999px;background:var(--lime)}.plan-trigger{margin-top:18px;margin-bottom:24px;padding:14px;border:1px solid rgba(56,210,255,.16);border-radius:14px;background:rgba(6,16,31,.28)}.plan-trigger span{display:block;color:var(--fg2);font-size:13.5px;line-height:1.55}.enterprise-plan{border-color:rgba(56,210,255,.34);background:radial-gradient(72% 70% at 24% 0%,rgba(56,210,255,.12),transparent 64%),rgba(14,27,47,.70)}.matrix-wrap{overflow:auto;width:min(100%,1320px);max-width:1320px;margin:0 auto;border:1px solid var(--line);border-radius:18px;background:rgba(14,27,47,.52)}table{width:100%;border-collapse:collapse;min-width:860px;table-layout:fixed}#matrixTable th:first-child,#matrixTable td:first-child{width:22%;text-align:left}#matrixTable th:not(:first-child),#matrixTable td:not(:first-child){width:26%;text-align:center}th,td{text-align:left;padding:16px 18px;font-size:15px;border-bottom:1px solid var(--line2);line-height:1.32}th{color:var(--fg);font:800 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.035)}td{color:var(--body);font-size:15px}tr:last-child td{border-bottom:0}.final-cta{border:1px solid rgba(56,210,255,.22);border-radius:22px;background:radial-gradient(78% 110% at 100% 0,rgba(56,210,255,.16),transparent 62%),rgba(14,27,47,.68);padding:34px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}.final-cta h2{margin:0 0 10px;font-size:clamp(28px,3.8vw,46px);line-height:1.06;letter-spacing:0}.final-cta p{margin:0;color:var(--fg2);max-width:780px}.final-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}.final-actions .btn{justify-content:center}@media(max-width:980px){.final-actions{justify-content:flex-start}}
+    @media(max-width:1100px){.nav{display:none!important}.status .right{display:none}.hero-grid,.section-head,.final-cta{grid-template-columns:1fr}.preview-grid,.plans-grid{grid-template-columns:1fr}.mast .inner{height:66px}.brand{min-width:auto}.container{width:min(100% - 32px,1320px)}}
+    @media(max-width:640px){.status{display:none}.mast{top:0}.header-actions .btn.primary{display:none}h1{font-size:clamp(40px,12vw,58px)}.hero{padding:58px 0 40px}.section{padding:64px 0}.flow-row{grid-template-columns:1fr}.lang button{padding:0 8px}}
+
+/* Sampora mobile canonical navigation */
+.mobile-nav-toggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:10px;background:rgba(6,14,28,.62);color:var(--fg,#E8EEF5);font:800 20px/1 var(--mono,monospace);cursor:pointer}
+.mobile-nav-drawer{display:none;position:fixed;left:16px;right:16px;top:92px;z-index:120;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:14px;background:rgba(6,16,31,.97);box-shadow:0 26px 80px rgba(0,0,0,.42);backdrop-filter:blur(16px);padding:10px}
+.mobile-nav-drawer a{display:flex;align-items:center;min-height:42px;padding:0 12px;border-radius:10px;color:var(--fg2,#C5D3E5);font-weight:800;text-decoration:none}
+.mobile-nav-drawer a.active,.mobile-nav-drawer a:hover{color:var(--cyan,#38D2FF);background:rgba(56,210,255,.08)}
+body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
+@media(max-width:760px){.mobile-nav-toggle{display:inline-flex}.header-actions,.nav-actions,.actions{gap:10px}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}}
+
+
+
+/* Package C: scoped Plans footer contract */
+#footer.sampora-site-footer{position:relative!important;isolation:isolate!important;padding:64px 0 12px!important;border-top:0!important;color:var(--body,#A9B9CE)!important;background:transparent!important}
+#footer.sampora-site-footer::before{content:none!important;display:none!important}
+#footer .sampora-footer-card{position:relative!important;z-index:1!important;border:1px solid rgba(129,178,214,.10)!important;border-radius:24px!important;overflow:hidden!important;background:linear-gradient(180deg,rgba(8,20,36,.66),rgba(8,20,36,.72))!important;box-shadow:0 0 0 1px rgba(255,255,255,.018) inset,0 24px 76px rgba(0,0,0,.20)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
+#footer .sampora-footer-main{display:grid!important;grid-template-columns:minmax(320px,1.32fr) repeat(3,minmax(150px,.78fr))!important;gap:clamp(32px,4vw,54px)!important;align-items:start!important;padding:42px 48px 36px!important}
+#footer .sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--fg,#E8EEF5)!important;margin-bottom:22px!important}
+#footer .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+#footer .sampora-footer-logo b{display:block!important;font-size:24px!important;line-height:1!important;letter-spacing:-.03em!important;color:var(--fg,#E8EEF5)!important}
+#footer .sampora-footer-logo small{display:block!important;margin-top:4px!important;font:800 10px var(--mono,monospace)!important;letter-spacing:.10em!important;color:var(--muted,#7E92AC)!important}
+#footer .sampora-footer-brand p{margin:0!important;max-width:430px!important;color:var(--body,#A9B9CE)!important;font-size:16px!important;line-height:1.75!important}
+#footer .sampora-footer-badges{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:24px!important}
+#footer .sampora-footer-badges span{display:inline-flex!important;height:26px!important;align-items:center!important;padding:0 12px!important;border-radius:999px!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;color:var(--cyan2,#7BE3FF)!important;font:800 11px var(--mono,monospace)!important}
+#footer .sampora-footer-col{min-width:0!important;padding:0!important;border:0!important;background:transparent!important}
+#footer .sampora-footer-col h3{position:relative!important;margin:0 0 18px!important;padding:0 0 16px!important;border:0!important;color:var(--fg,#E8EEF5)!important;font-size:18px!important;line-height:1.15!important;letter-spacing:0!important}
+#footer .sampora-footer-col h3::after{content:""!important;position:absolute!important;left:0!important;bottom:0!important;width:min(100%,220px)!important;height:1px!important;border-radius:999px!important;background:linear-gradient(90deg,rgba(129,178,214,.45),rgba(56,210,255,.18),transparent)!important}
+#footer .sampora-footer-col a{position:relative!important;display:block!important;width:fit-content!important;max-width:100%!important;margin:0 0 13px!important;padding:1px 0 2px!important;color:rgba(218,230,246,.72)!important;font-size:15px!important;line-height:1.42!important;text-decoration:none!important;overflow-wrap:anywhere!important;transition:color .18s var(--ease,cubic-bezier(.2,.7,.2,1)),transform .18s var(--ease,cubic-bezier(.2,.7,.2,1)),text-shadow .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
+#footer .sampora-footer-col a::after{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:-2px!important;height:1px!important;transform:scaleX(0)!important;transform-origin:left!important;background:linear-gradient(90deg,var(--cyan,#38D2FF),transparent)!important;opacity:.75!important;transition:transform .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
+#footer .sampora-footer-col a:hover,#footer .sampora-footer-col a:focus-visible{color:var(--cyan2,#7BE3FF)!important;transform:translateX(2px)!important;text-shadow:0 0 18px rgba(56,216,255,.20)!important}
+#footer .sampora-footer-col a:hover::after,#footer .sampora-footer-col a:focus-visible::after{transform:scaleX(1)!important}
+#footer .sampora-footer-contact{display:grid!important;grid-template-columns:repeat(3,1fr)!important;border-top:0!important}
+#footer .sampora-footer-contact-item{display:flex!important;align-items:center!important;gap:18px!important;min-height:74px!important;padding:0 48px!important;border-right:1px solid rgba(129,178,214,.18)!important;border-bottom:0!important;color:var(--fg,#E8EEF5)!important;font-size:16px!important;font-weight:760!important}
+#footer .sampora-footer-contact-item:last-child{border-right:0!important}
+#footer .sampora-footer-icon{width:34px!important;height:34px!important;border-radius:999px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;flex:0 0 auto!important;box-sizing:border-box!important;overflow:hidden!important;text-align:center!important;font:800 10.5px/1 var(--mono,monospace)!important;letter-spacing:.02em!important}
+#footer .sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
+#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;align-items:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:0!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+#footer .sampora-footer-legal .dot{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:auto!important;min-width:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;flex:0 0 auto!important;color:var(--muted,#7E92AC)!important;font:inherit!important;line-height:1!important}
+#footer .sampora-footer-legal a{transition:color .2s ease,transform .2s ease,text-shadow .2s ease!important}
+#footer .sampora-footer-legal a:hover,#footer .sampora-footer-legal a:focus-visible{color:#38d8ff!important;transform:translateX(3px)!important;text-shadow:0 0 18px rgba(56,216,255,.28)!important}
+@media(max-width:1180px){#footer .sampora-footer-main{grid-template-columns:1fr 1fr!important;padding:34px 28px 32px!important}#footer .sampora-footer-brand{grid-column:1/-1!important}#footer .sampora-footer-contact{grid-template-columns:1fr!important}#footer .sampora-footer-contact-item{border-right:0!important;border-bottom:0!important;padding:18px 28px!important}#footer .sampora-footer-contact-item:last-child{border-bottom:0!important}}
+@media(max-width:760px){#footer .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}#footer .sampora-footer-brand{grid-column:auto!important}#footer .sampora-footer-col h3::after{width:min(100%,280px)!important}#footer .sampora-footer-brand p,#footer .sampora-footer-col a,#footer .sampora-footer-contact-item{overflow-wrap:anywhere!important}}
+
+/* final cleanup: unified navigation and language switcher */
+.lang,.lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
+.lang button,.lang-btn{min-width:42px;height:34px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px/1 var(--mono,ui-monospace,monospace);letter-spacing:.03em;cursor:pointer;transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
+.lang button:hover,.lang button:focus-visible,.lang-btn:hover,.lang-btn:focus-visible{color:var(--cyan2,var(--cyan,#61e7ff));outline:0;box-shadow:0 0 0 1px rgba(56,210,255,.24)}
+.lang button.active,.lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
+#matrix .matrix-wrap{width:min(100%,1360px);max-width:1360px;margin:0 auto;overflow-x:auto;overflow-y:hidden;border-color:rgba(129,178,214,.20);background:linear-gradient(180deg,rgba(14,27,47,.58),rgba(8,20,36,.50))}
+#matrixTable{width:100%;min-width:1080px;table-layout:fixed}
+#matrixTable th:first-child,#matrixTable td:first-child{width:22%;text-align:center}
+#matrixTable th:not(:first-child),#matrixTable td:not(:first-child){width:26%;text-align:center}
+#matrixTable th,#matrixTable td{text-align:center;padding:18px 28px;line-height:1.5;vertical-align:middle}
+#matrixTable th{font-size:12px;line-height:1.25;color:var(--fg)}
+#matrixTable td{font-size:14.25px;color:#c2d0df}
+#matrixTable tbody td:first-child{color:var(--fg);font-weight:800}
+@media(max-width:1280px) and (min-width:1101px){.brand small{display:none}.nav{gap:18px}.nav a{padding-left:5px;padding-right:5px}.header-actions{gap:8px}.header-actions .btn.primary{padding:10px 13px}.lang button{min-width:36px;padding:0 8px}}
+@media(max-width:1100px){.nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:none!important}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}.nav.sampora-nav-standard,.sampora-nav-standard{gap:28px!important}}
+@media(max-width:760px){.brand small{display:none!important}.mast .inner,.nav-inner{gap:14px!important}#matrix .matrix-wrap{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden}}
+@media(max-width:360px){.container{width:min(100% - 24px,1320px)!important}.brand b{display:none!important}.lang button,.lang-btn{min-width:34px!important;padding:0 6px!important;font-size:10px!important}.mobile-nav-toggle{width:36px!important;height:36px!important}.header-actions,.nav-actions,.actions{gap:6px!important}}
+
+/* Worker A: unified desktop navigation */
+@media(min-width:1101px){
+  .mast{height:auto!important;top:34px!important}
+  .mast.compact{background:rgba(10,22,40,.82)!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important}
+  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
+  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
+  .header-actions,.nav-actions,.actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-left:0!important}
+}
+/* Worker F: measured desktop header parity */
+@media(min-width:1101px){
+  .status,.topline{height:auto!important}
+  .status .inner,.topline .inner{height:34px!important}
+  .status .container,.topline .container,.mast .container{width:min(1360px,calc(100% - 48px))!important}
+  .mast{height:auto!important;top:34px!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:167.36px minmax(0,1fr) 430px!important;align-items:center!important;gap:24px!important}
+  .mast .brand{width:167.36px!important;min-width:167.36px!important;gap:10px!important}
+  .mast .mark,.brand .mark{width:30px!important;height:30px!important}
+  .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;padding:0!important}
+  .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
+  .mast .nav.sampora-nav-standard a.active::after,.mast .nav-links.sampora-nav-standard a.active::after,.mast .sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,var(--cyan,#38D2FF),transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
+  .mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box!important;width:430px!important;min-width:430px!important;height:44.92px!important;align-self:center!important;justify-self:end!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;flex-wrap:nowrap!important;overflow:visible!important;margin-left:0!important}
+  .mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto!important;white-space:nowrap!important}
+}
+
+/* Package C: header Start trial visual parity with resources.html */
+.mast .header-actions > .btn.primary{
+  padding:12px 18px;
+  border:1px solid transparent;
+  border-radius:10px;
+  background:linear-gradient(135deg,#38D2FF,#7BE3FF);
+  color:#03111B;
+  font-weight:800;
+  box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18);
+  transition:transform .14s cubic-bezier(.2,.7,.2,1),box-shadow .18s cubic-bezier(.2,.7,.2,1),background .18s cubic-bezier(.2,.7,.2,1),border-color .18s cubic-bezier(.2,.7,.2,1);
+}
+.mast .header-actions > .btn.primary:hover{
+  transform:translateY(-1px);
+  background:linear-gradient(135deg,#38D2FF,#7BE3FF);
+  border-color:transparent;
+  box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24);
+}
+
+/* Package C: fixed header stack for reliable matrix/footer scroll */
+body{padding-top:100px}
+.status{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:80!important;height:34px!important}
+.mast{position:fixed!important;top:34px!important;left:0!important;right:0!important;z-index:79!important}
+@media(min-width:761px){
+  .status,.mast,.mast .inner{transition:transform .26s var(--ease),opacity .22s var(--ease),height .26s var(--ease),top .26s var(--ease),background .26s var(--ease),box-shadow .26s var(--ease),border-color .26s var(--ease)}
+  body.nav-condensed .status{height:0!important;transform:translateY(-100%)!important;opacity:0!important;pointer-events:none!important;border-bottom-color:transparent!important;border-bottom-width:0!important;overflow:hidden!important}
+  body.nav-condensed .mast{top:0!important}
+}
+@media(max-width:760px){
+  body{padding-top:66px}
+  .status{display:none!important}
+  .mast{top:0!important}
+}
+
+/* Header actions parity with resources.html */
+.mast .lang,.mast .lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
+.mast .lang button,.mast .lang-btn{height:34px;min-width:42px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px var(--mono,ui-monospace,monospace);transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
+.mast .lang button.active,.mast .lang button[aria-pressed="true"],.mast .lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
+.mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:transparent;border-color:var(--line,rgba(129,178,214,.18))}
+.mast .header-actions .btn.ghost:hover,.mast .nav-actions .btn.ghost:hover,.mast .actions .btn.ghost:hover,.mast .header-actions .btn.ghost:focus-visible,.mast .nav-actions .btn.ghost:focus-visible,.mast .actions .btn.ghost:focus-visible{transform:translateY(-1px);color:var(--cyan2,var(--cyan,#61e7ff));border-color:rgba(56,210,255,.45);background:rgba(20,40,69,.22)}
+.mast .header-actions .btn.primary,.mast .nav-actions .btn.primary,.mast .actions .btn.primary{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
+.mast .header-actions .btn.primary:hover,.mast .nav-actions .btn.primary:hover,.mast .actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible,.mast .nav-actions .btn.primary:focus-visible,.mast .actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:active,.mast .nav-actions .btn.primary:active,.mast .actions .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
+@media(min-width:1101px){.mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box;width:430px;min-width:430px;align-self:center;justify-self:end;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:nowrap;overflow:visible}.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto;white-space:nowrap}}
+@media(max-width:480px){.mast .header-actions,.mast .nav-actions,.mast .actions{min-width:0;width:auto;justify-self:end;gap:8px;overflow:visible}.mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{display:none!important}.mast .lang button,.mast .lang-btn{min-width:38px;padding-left:7px;padding-right:7px;font-size:10px}.mast .mobile-nav-toggle{width:36px;height:36px;flex:0 0 36px}}
+</style>
+<style id="header-brand-visual-parity">
+.mast .brand{display:flex!important;align-items:center!important;gap:10px!important}
+.mast .brand .mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+.mast .brand b,.mast .brand .brand-name{display:block!important;font-size:16px!important;font-weight:800!important;line-height:1.56!important;letter-spacing:-.01em!important}
+.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+@media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
+@media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
+</style>
+<style id="plans-card-hover-selected-state">
+#plansGrid .plan-card {
+    transition:
+        transform .18s var(--ease, cubic-bezier(.2, .7, .2, 1)),
+        border-color .2s var(--ease, cubic-bezier(.2, .7, .2, 1)),
+        background .2s var(--ease, cubic-bezier(.2, .7, .2, 1)),
+        box-shadow .2s var(--ease, cubic-bezier(.2, .7, .2, 1));
+    will-change: transform;
+}
+#plansGrid .plan-card:hover,
+#plansGrid .plan-card:focus-within,
+#plansGrid .plan-card.selected,
+#plansGrid .plan-card.active {
+    transform: translateY(-4px);
+    border-color: rgba(56, 210, 255, .54);
+    background:
+        radial-gradient(72% 72% at 24% 0, rgba(56, 210, 255, .18), transparent 66%),
+        rgba(15, 31, 53, .82);
+    box-shadow:
+        inset 0 0 0 1px rgba(56, 210, 255, .14),
+        0 24px 72px rgba(0, 0, 0, .30),
+        0 0 34px rgba(56, 210, 255, .18);
+}
+#plansGrid .plan-card.recommended:hover,
+#plansGrid .plan-card.recommended:focus-within,
+#plansGrid .plan-card.recommended.selected,
+#plansGrid .plan-card.recommended.active {
+    border-color: rgba(181, 240, 86, .62);
+    background:
+        radial-gradient(72% 72% at 24% 0, rgba(181, 240, 86, .16), transparent 64%),
+        radial-gradient(68% 70% at 90% 0, rgba(56, 210, 255, .10), transparent 66%),
+        rgba(15, 31, 53, .82);
+    box-shadow:
+        inset 0 0 0 1px rgba(181, 240, 86, .22),
+        0 26px 74px rgba(0, 0, 0, .30),
+        0 0 36px rgba(181, 240, 86, .18);
+}
+#plansGrid .plan-card.enterprise-plan:hover,
+#plansGrid .plan-card.enterprise-plan:focus-within,
+#plansGrid .plan-card.enterprise-plan.selected,
+#plansGrid .plan-card.enterprise-plan.active {
+    border-color: rgba(123, 227, 255, .64);
+    background:
+        radial-gradient(72% 70% at 24% 0, rgba(56, 210, 255, .18), transparent 64%),
+        rgba(15, 31, 53, .84);
+    box-shadow:
+        inset 0 0 0 1px rgba(56, 210, 255, .18),
+        0 26px 74px rgba(0, 0, 0, .30),
+        0 0 38px rgba(56, 210, 255, .20);
+}
+#plansGrid .plan-card:focus-within {
+    outline: 0;
+}
+@media (hover: none) {
+    #plansGrid .plan-card:hover {
+        transform: none;
+    }
+}
+</style>
+<style id="plans-hero-console-copy-repair">
+@media(min-width:1101px){
+  .hero{padding-top:64px}
+  .hero-grid{align-items:stretch;grid-template-columns:minmax(0,.94fr) minmax(430px,1.06fr)}
+  .hero-copy-panel{display:grid;min-height:100%;grid-template-rows:auto auto auto auto;align-content:space-between;justify-items:start}
+  .hero-copy-panel h1{margin:0;max-width:920px}
+  .hero-copy-panel .lead{max-width:760px;margin:0}
+  .hero-copy-panel .hero-actions{margin-top:0}
+  .plan-selector-card{display:flex;min-height:100%;flex-direction:column}
+  .plan-selector-card .console-body{display:flex;flex:1;flex-direction:column}
+  .plan-selector-card .plan-fit-list{flex:1;align-content:stretch}
+}
+@media(max-width:1100px){
+  .hero-copy-panel{display:block}
+  .plan-selector-card{min-height:0}
+}
+.plan-selector-card{position:relative;isolation:isolate;overflow:hidden}
+.plan-selector-card .console-head{height:52px;justify-content:flex-start;gap:14px;padding:0 18px;background:linear-gradient(180deg,rgba(11,28,48,.92),rgba(8,20,36,.82))}
+.console-lights{display:inline-flex;gap:7px;align-items:center;flex:0 0 auto}
+.console-lights i{display:block;width:9px;height:9px;border-radius:999px;background:var(--muted,#70849E);box-shadow:0 0 12px rgba(255,255,255,.08)}
+.console-lights i:nth-child(1){background:#EA6B6B}.console-lights i:nth-child(2){background:#FFB454}.console-lights i:nth-child(3){background:#B5F056}
+.plan-selector-card .console-head [data-i18n="selectorTitle"]{color:var(--fg2,#B9C8DA);font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.plan-selector-card .console-head [data-i18n="selectorMapLabel"]{margin-left:auto;color:var(--cyan2,#62E6FF);font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.hero-actions .btn.primary,.final-actions .btn.primary,.plans-grid .btn.primary[href*="intent=start_trial"],.mast .header-actions .btn.primary{font-weight:800;background:linear-gradient(135deg,var(--cyan,#38D2FF),var(--cyan2,#62E6FF));color:#03111B;box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
+.hero-actions .btn.primary:hover,.hero-actions .btn.primary:focus-visible,.final-actions .btn.primary:hover,.final-actions .btn.primary:focus-visible,.plans-grid .btn.primary[href*="intent=start_trial"]:hover,.plans-grid .btn.primary[href*="intent=start_trial"]:focus-visible,.mast .header-actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible{transform:translateY(-1px);background:linear-gradient(135deg,var(--cyan,#38D2FF),var(--cyan2,#62E6FF));box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
+@media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
+</style>
+<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
+<link rel="stylesheet" href="assets/footer-email-modal.css">
+</head>
+<body>
+<div aria-hidden="true" class="status">
+<div class="container inner">
+<span class="live" data-i18n="statusLive">PANEL FIT / LIVE</span><span class="sep">/</span>
+<span><b data-i18n="statusDemoLabel">owned panel operations</b> <span data-i18n="statusNetworks">member records + survey execution site</span></span><span class="sep">/</span>
+<span data-i18n="statusRegion">trial path ready</span><span class="right" data-i18n="statusControls">Panel layer</span>
+</div>
+</div>
+<header class="mast" id="mast">
+<div class="container inner">
+<a aria-label="Sampora home" class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a>
+<nav aria-label="Primary navigation" class="nav product-nav sampora-nav-standard">
+<a class="nav-link" data-i18n="product" data-nav="product" href="index.html">Product</a>
+<a class="nav-link" data-i18n="solutions" data-nav="solutions" href="solutions.html">Solutions</a>
+<a class="nav-link" data-i18n="resources" data-nav="resources" href="resources.html">Resources</a>
+<a class="nav-link active" data-i18n="plans" data-nav="plans" href="plans.html">Plans</a>
+<a class="nav-link" data-i18n="navAbout" data-nav="about" href="about.html">About</a>
+<a class="nav-link" data-i18n="navContact" data-nav="contact" href="contact.html">Contact</a>
+</nav>
+<div class="header-actions">
+<div aria-label="Language" class="lang" data-i18n-aria-label="langSwitcher"><button class="active" data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button></div>
+<a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a>
+<a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Start trial</a>
+</div>
+</div>
+</header>
+<main>
+<section class="hero container">
+<div class="hero-grid">
+<div class="hero-copy-panel">
+<span class="eyebrow" data-i18n="heroEyebrow">Plans / operating model</span>
+<h1 data-i18n="heroTitle">Choose the <span class="grad">Sampora plan</span> for your operating model.</h1>
+<p class="lead" data-i18n="heroText">Sampora plans are grouped by what your team operates: owned panels, external supplier networks, or multi-entity sample operations across clients, suppliers, panels, APIs, and finance.</p>
+<div class="hero-actions"><a class="btn primary" data-i18n="heroPrimary" href="contact.html?intent=start_trial#contact-form">Start trial</a><a class="btn ghost" data-i18n="heroSecondary" href="contact.html?intent=book_demo#contact-form">Book a demo</a></div>
+</div>
+<aside aria-label="Plan selector preview" class="console-card plan-selector-card">
+<div class="console-head"><span class="console-lights" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="selectorTitle">sample operations / plans</span><span data-i18n="selectorMapLabel">OPERATING MODEL MAP</span></div>
+<div class="console-body">
+<div class="plan-fit-summary">
+<small data-i18n="selectorKicker">Version logic</small>
+<h3 data-i18n="selectorHeading">Match the plan to the operating responsibility your team owns.</h3>
+<p data-i18n="selectorText">Choose by what your team controls: owned panel operations, supplier coordination, or the full client-supplier-panel-finance loop.</p>
+</div>
+<div class="plan-fit-list">
+<a class="plan-fit-row" href="#plans">
+<span class="fit-index">01</span>
+<span class="fit-copy"><strong data-i18n="selectorPanelTitle">Panel</strong><small data-i18n="selectorPanelText">Owned panel, respondent, and member-side operations.</small></span>
+</a>
+<a class="plan-fit-row fit-warm" href="#plans">
+<span class="fit-index">02</span>
+<span class="fit-copy"><strong data-i18n="selectorSupplierTitle">Supplier Network</strong><small data-i18n="selectorSupplierText">Supplier allocation, subcontracted delivery, and API-connected suppliers.</small></span>
+</a>
+<a class="plan-fit-row" href="#plans">
+<span class="fit-index">03</span>
+<span class="fit-copy"><strong data-i18n="selectorEnterpriseTitle">Enterprise</strong><small data-i18n="selectorEnterpriseText">Client, supplier, panel, API, finance, permissions, and Partner Network governance.</small></span>
+</a>
+</div>
+</div>
+</aside>
+</div>
+</section>
+<section class="section" id="plans">
+<div class="container">
+<div class="section-head">
+<div>
+<div class="section-kicker" data-i18n="plansKicker">Sample operations layers</div>
+<h2 data-i18n="plansTitle">Three layers for three operating responsibilities.</h2>
+</div>
+<p data-i18n="plansLead">Decide by what your team actually owns: panel operations, supplier coordination, or the complete multi-entity operations loop.</p>
+</div>
+<div class="plans-grid" id="plansGrid"></div>
+</div>
+</section>
+<section class="section" id="matrix">
+<div class="container">
+<div class="section-head">
+<div>
+<div class="section-kicker" data-i18n="matrixKicker">Capability matrix</div>
+<h2 data-i18n="matrixTitle">Compare plans by operating responsibility.</h2>
+</div>
+<p data-i18n="matrixLead">Plans are not just feature toggles. They define responsibility across projects, suppliers, clients, members, settlement, API delivery, and Partner Network workflows.</p>
+</div>
+<div class="matrix-wrap"><table id="matrixTable"></table></div>
+</div>
+</section>
+<section class="section" id="plan-fit-cta">
+<div class="container">
+<div class="final-cta">
+<div>
+<h2 data-i18n="finalTitle">Not sure which Sampora layer fits your operation?</h2>
+<p data-i18n="finalText">Tell us how you manage panel, supplier, API, review, and settlement workflows. We will map the right layer for your team.</p>
+</div>
+<div class="final-actions">
+<a class="btn primary" data-i18n="finalPrimary" href="contact.html?intent=start_trial#contact-form">Start trial</a>
+<a class="btn ghost" data-i18n="finalSecondary" href="contact.html?intent=book_demo#contact-form">Book a demo</a>
+<a class="btn ghost" data-i18n="finalTertiary" href="contact.html?intent=contact_sales#contact-form">Talk to sales</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="sampora-site-footer" id="footer">
+<div class="container sampora-footer-card">
+<div class="sampora-footer-main">
+<div class="sampora-footer-brand">
+<a aria-label="Sampora home" class="sampora-footer-logo" href="index.html">
+<span class="sampora-footer-mark">S</span>
+<span><b>Sampora</b><small data-footer-i18n="brandSub">Operations console</small></span>
+</a>
+<p data-footer-i18n="footerDesc">An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.</p>
+<div class="sampora-footer-badges"><span data-footer-i18n="tag1">Sample supply</span><span data-footer-i18n="tag2">Review workflow</span><span data-footer-i18n="tag3">Settlement ledger</span></div>
+</div>
+<div class="sampora-footer-col">
+<h3 data-footer-i18n="footerProduct">Product</h3>
+<a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
+<a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
+<a href="plans.html" data-footer-i18n="navPlans">Plans</a>
+<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
+</div>
+<div class="sampora-footer-col">
+<h3 data-footer-i18n="footerResources">Resources</h3>
+<a href="resources.html" data-footer-i18n="footerResourcesOverview">Resources overview</a>
+<a href="resource-manuals.html#configuration-guide" data-footer-i18n="footerConfigurationGuide">Configuration guide</a>
+<a href="resource-manuals.html#operation-manual" data-footer-i18n="footerOperationManual">Operation manual</a>
+<a href="resource-manuals.html#rollout-notes" data-footer-i18n="footerRolloutNotes">Rollout notes</a>
+</div>
+<div class="sampora-footer-col">
+<h3 data-footer-i18n="footerGetStarted">Get started</h3>
+<a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
+<a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
+<a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
+<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
+</div>
+</div>
+<div class="sampora-footer-contact">
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
+</div>
+<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div>
+</div>
+</footer>
+<script>
+(function(){
+  const PAGE = 'plans';
+  const LANG_KEY = 'sampora_lang';
+  const copy = {
+    pageTitle:'Sampora Plans - Panel, Supplier Network, and Enterprise', langSwitcher:'Language switcher',
+    statusLive:'PANEL FIT / LIVE', statusDemoLabel:'owned panel operations', statusNetworks:'member records + survey execution site', statusRegion:'trial path ready', statusControls:'Panel layer', brandSub:'Operations console',
+    product:'Product', solutions:'Solutions', resources:'Resources', plans:'Plans', navAbout:'About', navContact:'Contact', bookDemo:'Book a demo', startTrial:'Start trial',
+    footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.', footerTag1:'Sample supply', footerTag2:'Review workflow', footerTag3:'Settlement ledger', footerProductTitle:'Product', footerPlatform:'Platform overview', footerWorkflow:'Workflow', footerProductSurfaces:'Product surfaces', footerPlans:'Plans', footerResourcesTitle:'Resources', footerResourcesOverview:'Resources overview', footerConfigurationGuide:'Configuration Guide', footerOperationManual:'Operation Manual', footerRolloutNotes:'Rollout Notes', footerGetStartedTitle:'Get started', footerStartTrial:'Start trial', footerBookDemo:'Book a demo', footerTalkToSales:'Talk to sales', footerContact:'Contact', footerAddress:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China', footerCopyright:'© 2026', footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences', legalStaticGuard:'© 2026 Anhui Jiayu Enterprise Service Co., Ltd.',
+    heroEyebrow:'Plans / operating model', heroTitle:'Choose the Sampora plan for your operating model.', heroTitleHtml:'Choose the <span class="grad">Sampora plan</span> for your operating model.', heroText:'Sampora plans are grouped by what your team operates: owned panels, external supplier networks, or multi-entity sample operations across clients, suppliers, panels, APIs, and finance.', heroPrimary:'Start trial', heroSecondary:'Book a demo',
+    selectorTitle:'sample operations / plans', selectorMapLabel:'OPERATING MODEL MAP', selectorKicker:'Plan logic', selectorHeading:'Match each plan to the work your team owns.', selectorText:'Start with the layer your team operates every day, then scale into supplier coordination, API delivery, finance, and Partner Network governance.', selectorPanelTitle:'Panel', selectorPanelText:'For owned panel, survey execution site, member, incentive, and member-side finance operations.', selectorSupplierTitle:'Supplier Network', selectorSupplierText:'For external sample suppliers, subcontracted delivery, API-connected suppliers, allocation, pricing, review, and settlement.', selectorEnterpriseTitle:'Enterprise', selectorEnterpriseText:'For client projects, owned panels, supplier networks, APIs, permissions, finance, and Partner Network governance across multiple business units.',
+    planBestForLabel:'Best for', planScopeLabel:'Operating scope', planUpgradeLabel:'Upgrade trigger',
+    plansKicker:'Sample operations layers', plansTitle:'Three layers for three operating responsibilities.', plansLead:'Decide by what your team actually owns: panel operations, supplier coordination, or the complete multi-entity operations loop.',
+    matrixKicker:'Capability matrix', matrixTitle:'Compare plans by operating responsibility.', matrixLead:'Plans are not just feature toggles. They define responsibility across projects, suppliers, clients, members, settlement, API delivery, and Partner Network workflows.',
+    finalTitle:'Not sure which Sampora layer fits your operation?', finalText:'Tell us how you manage panel, supplier, API, review, and settlement workflows. We will map the right layer for your team.', finalPrimary:'Start trial', finalSecondary:'Book a demo', finalTertiary:'Talk to sales'
+  };
+  const I18N = {
+    en: {...copy, footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh: {
+      ...copy,
+      pageTitle:'Sampora 版本方案 - 样本库运营版、供应商网络运营版与企业版',
+      langSwitcher:'语言切换',
+      statusLive:'样本库适配 / 实时',
+      statusDemoLabel:'自有样本库运营',
+      statusNetworks:'会员记录 + 执行站点',
+      statusRegion:'试用路径就绪',
+      statusControls:'样本库运营版',
+      brandSub:'操作控制台',
+      product:'产品',
+      solutions:'解决方案',
+      resources:'资源',
+      plans:'版本方案',
+      navAbout:'关于',
+      navContact:'联系我们',
+      bookDemo:'预约演示',
+      startTrial:'开始试用',
+      footerDesc:'面向自有样本运营方与在线样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核记录、结算台账、财务与合作网络运营。',
+      footerTag1:'样本供给',
+      footerTag2:'审核流程',
+      footerTag3:'结算台账',
+      footerProductTitle:'产品',
+      footerPlatform:'平台概览',
+      footerWorkflow:'工作流',
+      footerProductSurfaces:'产品界面',
+      footerPlans:'版本方案',
+      footerResourcesTitle:'资源',
+      footerResourcesOverview:'资源总览',
+      footerConfigurationGuide:'配置指南',
+      footerOperationManual:'操作手册',
+      footerRolloutNotes:'上线说明',
+      footerGetStartedTitle:'开始使用',
+      footerStartTrial:'开始试用',
+      footerBookDemo:'预约演示',
+      footerTalkToSales:'咨询销售',
+      footerContact:'联系',
+      footerAddress:'中国安徽六安衡阳广城 A 座 1506 室',
+      footerCopyright:'© 2026',
+      footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置',
+      heroEyebrow:'版本方案 / 运营模型',
+      heroTitle:'选择匹配你运营模式的 Sampora 版本',
+      heroTitleHtml:'选择匹配你运营模式的 <span class="grad">Sampora 版本</span>',
+      heroText:'Sampora 版本按团队实际运营对象划分：自有样本库运营版、供应商网络运营版，或覆盖客户、供应商、样本库、API 与财务的多实体样本运营。',
+      heroPrimary:'开始试用',
+      heroSecondary:'预约演示',
+      selectorTitle:'样本运营 / 版本方案',
+      selectorMapLabel:'运营模型映射',
+      selectorKicker:'版本逻辑',
+      selectorHeading:'按团队实际负责的工作选择版本.',
+      selectorText:'先看团队每天运营的层级，再扩展到供应商协同、API 交付、财务和合作网络治理。',
+      selectorPanelTitle:'样本库运营版',
+      selectorPanelText:'适合自有样本库、执行站点、会员、激励和会员侧财务运营。',
+      selectorSupplierTitle:'供应商网络运营版',
+      selectorSupplierText:'适合外部样本供应商、分包交付、API 对接供应商、分配、定价、审核和结算。',
+      selectorEnterpriseTitle:'企业版',
+      selectorEnterpriseText:'适合跨多个业务单元管理客户项目、自有样本库、供应商网络、API、权限、财务和合作网络治理。',
+      planBestForLabel:'适合对象',
+      planScopeLabel:'运营范围',
+      planUpgradeLabel:'升级信号',
+      plansKicker:'样本运营层',
+      plansTitle:'三种层级，对应三类运营责任.',
+      plansLead:'根据团队真正管理的对象选择：自有样本库运营、供应商协同，或完整的多实体运营闭环。',
+      matrixKicker:'能力矩阵',
+      matrixTitle:'按运营责任比较版本.',
+      matrixLead:'版本不是简单的功能开关，而是定义项目、供应商、客户、会员、结算、API 交付与合作网络工作流中的责任边界。',
+      finalTitle:'不确定哪一层适合你的运营模式？',
+      finalText:'告诉我们你如何管理样本库、供应商、API、审核和结算流程，我们会帮你匹配合适的 Sampora 层级。',
+      finalPrimary:'开始试用',
+      finalSecondary:'预约演示',
+      finalTertiary:'咨询销售'
+    },
+    };
+  const langLabels = {
+    en: { en:'EN', zh:'中文'},
+    zh: { en:'EN', zh:'中文'},
+    };
+  const PLANS = {
+    en: [
+      {key:'panel', name:'Panel', tag:'Owned panel layer', desc:'For teams that mainly operate their own respondent or member base.', bestFor:'Owned panel and respondent operations', scope:['Member profiles, segments, incentives, and bills','Owned sample delivery tracking and review status','Respondent-side records and operating visibility'], trigger:'Use this when your main asset is your own panel and you do not need heavy supplier orchestration.', cta:'Start trial'},
+      {key:'supplier', name:'Supplier Network', tag:'Supplier coordination layer', desc:'For teams coordinating external sample suppliers, subcontracted delivery, and API-connected partners.', bestFor:'Supplier coordination and subcontracted delivery', scope:['Supplier assignment, blocking, and supplier-specific pricing','API-connected suppliers and supplier-facing handoff','Review evidence, callbacks, rejects, supplier bills, and settlement records'], trigger:'Use this when delivery depends on multiple suppliers or API-connected sample partners.', cta:'Start trial'},
+      {key:'enterprise', name:'Enterprise', tag:'Full operations layer', desc:'For multi-entity teams managing clients, suppliers, panels, API delivery, finance, permissions, and Partner Network governance.', bestFor:'Client + supplier + panel operations', scope:['Client projects, supplier delivery, owned panel operations, and API governance','Role permissions, risk controls, audit records, and exportable evidence','Multi-party settlement, invoices, finance logs, and Partner Network governance'], trigger:'Use this when several teams or entities share one operating system and settlement chain.', cta:'Contact sales'}
+    ],
+    zh: [
+      {key:'panel', name:'样本库运营版', tag:'自有样本库运营层', desc:'适用于主要运营自有受访者、会员或样本资产的团队。', bestFor:'自有样本库与受访者运营', scope:['会员资料、分组、激励和账单','自有样本交付追踪与审核状态','受访者侧记录和运营可视化'], trigger:'当核心资产是自有样本库，且暂时不需要复杂供应商编排时选择这一层。', cta:'开始试用'},
+      {key:'supplier', name:'供应商网络运营版', tag:'供应商协同层', desc:'适用于协调外部样本供应商、分包样本交付和 API 对接合作方的团队。', bestFor:'供应商协同与分包样本交付', scope:['供应商分配、屏蔽和供应商级定价','API 对接供应商和供应商侧项目交接','审核证据、回调、拒绝、供应商账单和结算记录'], trigger:'当交付依赖多个供应商或 API 对接样本合作方时选择这一层。', cta:'开始试用'},
+      {key:'enterprise', name:'企业版', tag:'完整运营层', desc:'适用于同时管理客户、供应商、样本库、API 交付、财务、权限和合作网络治理的多实体团队。', bestFor:'客户 + 供应商 + 样本库的完整运营', scope:['客户项目、供应商交付、自有样本库运营和 API 治理','角色权限、风控规则、审计记录和可导出证据','多方结算、发票、财务日志和合作网络治理'], trigger:'当多个团队或实体需要共用一套运营系统和结算链路时选择这一层。', cta:'联系销售'}
+    ],
+    };
+  const MATRIX = {
+    en: [
+      ['Dimension','Panel','Supplier Network','Enterprise'],
+      ['Primary user','Owned panel / respondent team','Sample supplier / subcontracted delivery team','Multi-entity sample operations team'],
+      ['Operating scope','Owned panel and member-side delivery','Supplier allocation and external delivery coordination','Client + supplier + panel + API + finance operations'],
+      ['Supplier allocation','Not the core layer','Assign, block, price, and track suppliers','Supplier governance across teams, clients, and workspaces'],
+      ['API intake / delivery','Limited or not required','API-connected suppliers and project handoff','API intake, routing, governance, and delivery records'],
+      ['Review records','Delivery status and member-side records','Review evidence, callbacks, rejects, and supplier performance','Full audit trail across projects, suppliers, clients, and finance'],
+      ['Settlement & invoices','Member bills and incentives','Supplier bills and settlement records','Supplier bills, client invoices, finance logs, and exportable records'],
+      ['Permissions & governance','Basic team operation','Supplier-facing operating controls','Departments, roles, permissions, risk rules, and multi-entity governance'],
+      ['Partner Network','Optional buyer discovery','Supplier-side network coordination','Buyer + supplier network governance'],
+      ['Upgrade signal','You mainly operate your own panel','Delivery depends on external suppliers','Multiple entities need one operating system and settlement chain']
+    ],
+    zh: [
+      ['维度','样本库运营版','供应商网络运营版','企业版'],
+      ['主要用户','自有样本库 / 受访者运营团队','样本供应商 / 分包交付团队','多实体样本运营团队'],
+      ['运营范围','自有样本库与会员侧交付','供应商分配与外部交付协同','客户 + 供应商 + Panel + API + 财务运营'],
+      ['供应商分配','不是核心层','分配、屏蔽、定价和追踪供应商','跨团队、客户和工作台的供应商治理'],
+      ['API 接收 / 交付','有限或不需要','API 对接供应商和项目交接','API 接收、路由、治理和交付记录'],
+      ['审核记录','交付状态和会员侧记录','审核证据、回调、拒绝和供应商表现','覆盖项目、供应商、客户和财务的完整审计链路'],
+      ['结算与发票','会员账单和激励','供应商账单和结算记录','供应商账单、客户发票、财务日志和可导出记录'],
+      ['权限与治理','基础团队运营','供应商侧运营控制','部门、角色、权限、风控规则和多实体治理'],
+      ['合作网络','可选客户发现','供应商侧网络协同','客户 + 供应商双向网络治理'],
+      ['升级信号','主要运营自有样本库','交付依赖外部供应商','多个实体需要共用一套运营系统和结算链路']
+    ],
+    };
+  const PLAN_STATUS = {
+    en: [
+      {live:'PANEL FIT / LIVE', label:'owned panel operations', middle:'member records + survey execution site', region:'trial path ready', right:'Panel layer'},
+      {live:'SUPPLIER NETWORK / LIVE', label:'supplier allocation', middle:'API workspace + subcontracted delivery', region:'review & settlement ready', right:'Supplier Network layer'},
+      {live:'ENTERPRISE FIT / LIVE', label:'multi-entity operations', middle:'permissions + finance governance', region:'sales path ready', right:'Enterprise layer'}
+    ],
+    zh: [
+      {live:'样本库适配 / 实时', label:'自有样本库运营', middle:'会员记录 + 执行站点', region:'试用路径就绪', right:'样本库运营版'},
+      {live:'供应商网络 / 实时', label:'供应商分配', middle:'API 工作台 + 分包交付', region:'审核与结算就绪', right:'供应商网络运营版'},
+      {live:'企业版适配 / 实时', label:'多实体运营', middle:'权限 + 财务治理', region:'销售路径就绪', right:'企业版'}
+    ],
+    };
+  let planStatusIndex = 0;
+  let planStatusTimer = null;
+  const $ = (selector, root=document) => root.querySelector(selector);
+  const $$ = (selector, root=document) => Array.from(root.querySelectorAll(selector));
+  function safeLang(lang){ return I18N[lang] ? lang : 'en'; }
+  function queryLang(){
+    try {
+      const raw = new URLSearchParams(window.location.search).get('lang');
+      return I18N[raw] ? raw : '';
+    } catch(e) {
+      return '';
+    }
+  }
+  function getLang(){
+    const requested = queryLang();
+    if (requested) return requested;
+    try { return safeLang(localStorage.getItem(LANG_KEY) || 'en'); } catch(e) { return 'en'; }
+  }
+  function getCurrentLangForPlanStatus(){
+    let raw = document.documentElement.dataset.lang || document.documentElement.lang || 'en';
+    try { raw = raw || localStorage.getItem(LANG_KEY) || 'en'; } catch(e) {}
+    raw = String(raw || 'en').toLowerCase();
+    if (raw.startsWith('zh')) return 'zh';
+    return 'en';
+  }
+  function saveLang(lang){ try { localStorage.setItem(LANG_KEY, lang); } catch(e){} }
+  function tr(lang, key){ return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || ''; }
+  function escapeHTML(value){ return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+  function renderPlanStatus(index = planStatusIndex){
+    const lang = getCurrentLangForPlanStatus();
+    const list = PLAN_STATUS[lang] || PLAN_STATUS.en;
+    const item = list[index % list.length] || list[0];
+    const live = $('[data-i18n="statusLive"]');
+    const label = $('[data-i18n="statusDemoLabel"]');
+    const middle = $('[data-i18n="statusNetworks"]');
+    const region = $('[data-i18n="statusRegion"], #statusRegion');
+    const right = $('[data-i18n="statusControls"]');
+    if (live) live.textContent = item.live;
+    if (label) label.textContent = item.label;
+    if (middle) middle.textContent = item.middle;
+    if (region) region.textContent = item.region;
+    if (right) right.textContent = item.right;
+  }
+  function startPlanStatusCarousel(){
+    if (planStatusTimer) window.clearInterval(planStatusTimer);
+    planStatusIndex = 0;
+    renderPlanStatus(planStatusIndex);
+    planStatusTimer = window.setInterval(() => {
+      const list = PLAN_STATUS[getCurrentLangForPlanStatus()] || PLAN_STATUS.en;
+      planStatusIndex = (planStatusIndex + 1) % list.length;
+      renderPlanStatus(planStatusIndex);
+    }, 3600);
+  }
+  function planCTAUrl(plan){
+    return plan.key === 'enterprise'
+      ? 'contact.html?intent=contact_sales&plan=enterprise#contact-form'
+      : 'contact.html?intent=start_trial#contact-form';
+  }
+  function renderChrome(lang){
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.documentElement.dataset.lang = lang;
+    document.title = tr(lang, 'pageTitle') || document.title;
+    $$('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      const v = tr(lang, key);
+      if (v === '') return;
+      if (key === 'heroTitle') {
+        el.innerHTML = I18N[lang].heroTitleHtml || escapeHTML(v);
+        return;
+      }
+      el.textContent = v;
+    });
+    $$('.lang button[data-lang]').forEach(btn => {
+      btn.textContent = (langLabels[lang] || langLabels.en)[btn.dataset.lang] || btn.textContent;
+      const active = btn.dataset.lang === lang;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    $$('[data-nav]').forEach(link => link.classList.toggle('active', link.dataset.nav === PAGE));
+  }
+  function renderPlans(lang){
+    const plans = PLANS[lang] || PLANS.en;
+    $('#plansGrid').innerHTML = plans.map((plan, index) => `
+      <article class="plan-card ${index === 1 ? 'recommended' : ''} ${plan.key === 'enterprise' ? 'enterprise-plan' : ''}">
+        <span class="num">${String(index + 1).padStart(2,'0')}</span>
+        <h3>${escapeHTML(plan.name)}</h3>
+        <span class="pill ${index === 1 ? 'lime' : ''}">${escapeHTML(plan.tag)}</span>
+        <p>${escapeHTML(plan.desc)}</p>
+        <div class="plan-meta-block">
+          <small>${escapeHTML(tr(lang, 'planBestForLabel'))}</small>
+          <b>${escapeHTML(plan.bestFor)}</b>
+        </div>
+        <div class="plan-meta-block">
+          <small>${escapeHTML(tr(lang, 'planScopeLabel'))}</small>
+          <ul>${plan.scope.map(item => `<li>${escapeHTML(item)}</li>`).join('')}</ul>
+        </div>
+        <div class="plan-trigger">
+          <small>${escapeHTML(tr(lang, 'planUpgradeLabel'))}</small>
+          <span>${escapeHTML(plan.trigger)}</span>
+        </div>
+        <a class="btn ${index === 1 ? 'primary' : 'ghost'}" href="${planCTAUrl(plan)}">${escapeHTML(plan.cta)}</a>
+      </article>
+    `).join('');
+  }
+  function renderMatrix(lang){
+    const rows = MATRIX[lang] || MATRIX.en;
+    $('#matrixTable').innerHTML = `<thead><tr>${rows[0].map(cell => `<th>${escapeHTML(cell)}</th>`).join('')}</tr></thead><tbody>${rows.slice(1).map(row => `<tr>${row.map(cell => `<td>${escapeHTML(cell)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+  }
+  function render(lang){ lang = safeLang(lang || getLang()); saveLang(lang); renderChrome(lang); renderPlans(lang); renderMatrix(lang); renderPlanStatus(planStatusIndex); }
+  function syncTopChrome(){
+    const compact = window.scrollY > 56;
+    document.querySelector('.mast')?.classList.toggle('compact', compact);
+    document.body.classList.toggle('nav-condensed', compact);
+  }
+  function bind(){ $$('.lang button').forEach(btn => btn.addEventListener('click', () => render(btn.dataset.lang))); }
+  document.addEventListener('DOMContentLoaded', () => { bind(); render(getLang()); startPlanStatusCarousel(); syncTopChrome(); window.addEventListener('scroll', syncTopChrome, { passive: true }); });
+})();
+</script>
+<script>
+(function(){
+  const labels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们']};
+  const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about.html','about'],['contact.html','contact']];
+  function lang(){
+    try{const query=new URLSearchParams(window.location.search).get('lang');if(labels[query])return query;}catch(e){}
+    try{const saved=localStorage.getItem('sampora_lang');if(labels[saved])return saved;}catch(e){}
+    const raw=document.documentElement.lang?.slice(0,2);
+    return labels[raw]?raw:'en';
+  }
+  function sync(nextLang){const raw=nextLang||lang();const l=labels[raw]?raw:'en';document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=labels[l][i]||labels.en[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
+  if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}
+  const nav=document.querySelector('nav.nav, .nav-links');
+  const host=document.querySelector('.header-actions,.nav-actions,.actions') || nav?.parentElement;
+  if(!host)return;
+  const btn=document.createElement('button');btn.type='button';btn.className='mobile-nav-toggle';btn.setAttribute('aria-label','Open navigation');btn.setAttribute('aria-expanded','false');btn.innerHTML='&#9776;';
+  const drawer=document.createElement('nav');drawer.className='mobile-nav-drawer';drawer.setAttribute('aria-label','Mobile navigation');
+  const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+  routes.forEach(([href,key],i)=>{const a=document.createElement('a');a.href=href;a.dataset.mobileNavLabel='';a.dataset.nav=key;if(current===href)a.className='active';drawer.appendChild(a);});
+  host.appendChild(btn);document.body.appendChild(drawer);
+  btn.addEventListener('click',()=>{const open=document.body.classList.toggle('mobile-nav-open');btn.setAttribute('aria-expanded',String(open));});
+  drawer.addEventListener('click',e=>{if(e.target.closest('a'))document.body.classList.remove('mobile-nav-open')});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('mobile-nav-open')});
+  bindLangSync();
+  sync();
+})();
+</script>
+<script src="assets/i18n-sweep.js"></script>
+<script id="sampora-standard-footer-i18n">
+(function(){
+  const copy={
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'},
+    };
+  function lang(explicit){
+    const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
+    if(copy[explicitRaw])return explicitRaw;
+    try{const saved=localStorage.getItem('sampora_lang');if(copy[saved])return saved;}catch(e){}
+    const raw=(document.documentElement.dataset.lang||document.documentElement.lang||'en').toLowerCase().slice(0,2);
+    return copy[raw]?raw:'en';
+  }
+  function apply(explicit){
+    const dict=copy[lang(explicit)]||copy.en;
+    document.querySelectorAll('.sampora-site-footer [data-footer-i18n]').forEach(el=>{
+      const value=dict[el.dataset.footerI18n];
+      if(value!==undefined)el.textContent=value;
+    });
+  }
+  apply();
+  document.addEventListener('DOMContentLoaded',()=>apply());
+  window.addEventListener('load',()=>apply());
+  document.querySelectorAll('.lang button,[data-lang-btn]').forEach(btn=>{
+    btn.addEventListener('click',()=>setTimeout(()=>apply(btn.dataset.lang||btn.dataset.langBtn),30));
+  });
+  new MutationObserver(()=>apply()).observe(document.documentElement,{attributes:true,attributeFilter:['lang','data-lang']});
+})();
+</script>
+<script src="assets/lead-attribution.js" defer></script>
+<script src="assets/sampora-cookie-preferences.js" defer></script>
+<script src="assets/footer-email-modal.js" defer></script>
+<script src="https://plugin-code.salesmartly.com/js/project_693595_715565_1777101144.js"></script>
+</body>
+</html>

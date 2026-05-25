@@ -1,0 +1,108 @@
+.cookie-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(1, 7, 15, .66);
+  backdrop-filter: blur(10px);
+}
+
+.cookie-modal-backdrop.open {
+  display: flex;
+}
+
+.cookie-modal {
+  width: min(680px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  border: 1px solid var(--line, rgba(129, 178, 214, .18));
+  border-radius: 22px;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(14, 27, 47, .98), rgba(8, 20, 36, .98));
+  box-shadow: 0 30px 78px rgba(0, 0, 0, .55);
+  color: var(--fg, #E8EEF5);
+  font-family: var(--sans, "Inter", "Noto Sans SC", Arial, sans-serif);
+}
+
+.cookie-modal h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.cookie-modal p {
+  margin: 0 0 14px;
+  color: var(--fg2, #BCCBE0);
+}
+
+.cookie-category-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cookie-row {
+  border: 1px solid var(--line2, rgba(129, 178, 214, .10));
+  border-radius: 16px;
+  padding: 16px;
+  background: rgba(6, 14, 28, .36);
+}
+
+.cookie-row strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--fg, #E8EEF5);
+}
+
+.cookie-row p {
+  margin-bottom: 0;
+  line-height: 1.55;
+}
+
+.cookie-status {
+  display: inline-flex;
+  margin-top: 10px;
+  border: 1px solid rgba(56, 210, 255, .22);
+  border-radius: 999px;
+  padding: 4px 8px;
+  color: var(--cyan2, #7BE3FF);
+  font: 10px var(--mono, "JetBrains Mono", monospace);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.cookie-row--functional .cookie-status {
+  border-color: rgba(140, 247, 198, .26);
+  color: #8cf7c6;
+}
+
+.cookie-row--analytics .cookie-status,
+.cookie-row--marketing .cookie-status {
+  border-color: rgba(188, 203, 224, .18);
+  color: rgba(226, 238, 255, .72);
+}
+
+.cookie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+@media (max-width: 640px) {
+  .cookie-modal {
+    max-height: calc(100vh - 32px);
+    padding: 20px;
+  }
+
+  .cookie-actions {
+    justify-content: stretch;
+  }
+
+  .cookie-actions .btn {
+    width: 100%;
+  }
+}

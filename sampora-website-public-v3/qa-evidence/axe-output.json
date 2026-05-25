@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-05-19T03:42:36.767Z",
-  "baseUrl": "http://127.0.0.1:58521",
+  "generatedAt": "2026-05-25T13:44:05.299Z",
+  "baseUrl": "http://127.0.0.1:50197",
   "chromeExecutablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
   "pages": {
     "index.html": {
-      "url": "http://127.0.0.1:58521/index.html",
+      "url": "http://127.0.0.1:50197/index.html",
       "violations": [
         {
           "id": "heading-order",
@@ -69,7 +69,7 @@
             },
             {
               "target": [
-                "#workflow > .container > .section-head"
+                "#workflow > .container > .section-head.title-only"
               ],
               "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
             },
@@ -110,7 +110,7 @@
       "incomplete": 2
     },
     "solutions.html": {
-      "url": "http://127.0.0.1:58521/solutions.html",
+      "url": "http://127.0.0.1:50197/solutions.html",
       "violations": [
         {
           "id": "heading-order",
@@ -132,7 +132,7 @@
       "incomplete": 2
     },
     "resources.html": {
-      "url": "http://127.0.0.1:58521/resources.html",
+      "url": "http://127.0.0.1:50197/resources.html",
       "violations": [
         {
           "id": "heading-order",
@@ -154,7 +154,7 @@
       "incomplete": 2
     },
     "resource-manuals.html": {
-      "url": "http://127.0.0.1:58521/resource-manuals.html",
+      "url": "http://127.0.0.1:50197/resource-manuals.html",
       "violations": [
         {
           "id": "heading-order",
@@ -165,24 +165,40 @@
           "nodes": [
             {
               "target": [
-                ".doc-card[data-doc=\"config\"] > h3"
+                "#configuration-guide > h3"
               ],
               "failureSummary": "Fix any of the following:\n  Heading order invalid"
             }
           ]
         }
       ],
-      "passes": 33,
+      "passes": 34,
       "incomplete": 2
     },
     "plans.html": {
-      "url": "http://127.0.0.1:58521/plans.html",
-      "violations": [],
-      "passes": 36,
+      "url": "http://127.0.0.1:50197/plans.html",
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/heading-order?application=playwright",
+          "nodes": [
+            {
+              "target": [
+                "h3[data-i18n=\"selectorHeading\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Heading order invalid"
+            }
+          ]
+        }
+      ],
+      "passes": 35,
       "incomplete": 2
     },
     "contact.html": {
-      "url": "http://127.0.0.1:58521/contact.html",
+      "url": "http://127.0.0.1:50197/contact.html",
       "violations": [
         {
           "id": "region",
@@ -200,10 +216,32 @@
           ]
         }
       ],
-      "passes": 37,
+      "passes": 39,
+      "incomplete": 2
+    },
+    "about.html": {
+      "url": "http://127.0.0.1:50197/about.html",
+      "violations": [
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/region?application=playwright",
+          "nodes": [
+            {
+              "target": [
+                ".status"
+              ],
+              "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ]
+        }
+      ],
+      "passes": 28,
       "incomplete": 2
     }
   },
-  "violationCount": 7,
+  "violationCount": 9,
   "blockingViolationCount": 0
 }

@@ -11,7 +11,24 @@ const contactHtml = await fs.readFile(contactPath, 'utf8');
 const failures = [];
 
 const PLACEHOLDER_ENDPOINT = '[BACKEND_CONTACT_ENDPOINT]';
+const SOURCE_CONTACT_ENDPOINT = '/api/contact';
 const requiredLeadKeys = ['source_page', 'landing_page', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign', 'lang', 'website'];
+const requiredFormBody = {
+  name: 'QA Reviewer',
+  company: 'QA Evidence Co',
+  email: 'qa@example.com',
+  role: 'Sample Supplier',
+  business_type: 'contact_sales',
+  message: 'QA evidence inline feedback check.',
+};
+const sensitivePendingTerms = [
+  ...Object.keys(requiredFormBody),
+  ...Object.values(requiredFormBody),
+  ...requiredLeadKeys,
+  'source_section',
+  'plan',
+  'contact_sales',
+];
 
 function fail(message) {
   failures.push(message);
@@ -48,6 +65,57 @@ function renderContactVariant(endpoint) {
   return html;
 }
 
+function assertSourceEndpointContract() {
+  const formTag = contactHtml.match(/<form\b[^>]*\bid=["']contactForm["'][^>]*>/i)?.[0] || '';
+  const formAction = formTag.match(/\baction=["']([^"']+)["']/i)?.[1] || '';
+  const dataEndpoint = formTag.match(/\bdata-endpoint=["']([^"']+)["']/i)?.[1] || '';
+  const scriptEndpoint = contactHtml.match(/const\s+CONTACT_ENDPOINT\s*=\s*['"]([^'"]+)['"]/)?.[1] || '';
+  for (const [label, value] of [['action', formAction], ['data-endpoint', dataEndpoint], ['CONTACT_ENDPOINT', scriptEndpoint]]) {
+    if (value !== SOURCE_CONTACT_ENDPOINT) {
+      fail(`source ${label} must be ${SOURCE_CONTACT_ENDPOINT}, got ${JSON.stringify(value)}`);
+    }
+  }
+  if (/script\.google\.com\/macros|\/macros\/s\//i.test(contactHtml)) {
+    fail('source contact.html must not directly reference Google Apps Script');
+  }
+}
+
+function assertFullRequestBody(label, params) {
+  for (const [key, expected] of Object.entries(requiredFormBody)) {
+    if (params[key] !== expected) {
+      fail(`${label}: ${key} request value ${JSON.stringify(params[key])} !== ${JSON.stringify(expected)}`);
+    }
+  }
+}
+
+function decodedStorageText(raw) {
+  try {
+    return decodeURIComponent(String(raw || '').replace(/\+/g, '%20'));
+  } catch (e) {
+    return String(raw || '');
+  }
+}
+
+function assertNonSensitivePendingStorage(label, raw) {
+  if (/[=&]/.test(raw)) fail(`${label}: pending marker looks like serialized form data: ${raw}`);
+  if (raw.length > 64) fail(`${label}: pending marker is too long for a state-only marker (${raw.length} chars)`);
+  const haystack = `${raw}\n${decodedStorageText(raw)}`.toLowerCase();
+  for (const term of sensitivePendingTerms) {
+    if (haystack.includes(String(term).toLowerCase())) {
+      fail(`${label}: pending marker contains sensitive form content ${JSON.stringify(term)}: ${raw}`);
+    }
+  }
+}
+
+function assertMinimalPendingMarker(label, raw) {
+  if (!raw) fail(`${label}: pending marker missing during submit`);
+  else assertNonSensitivePendingStorage(label, raw);
+}
+
+function assertNoStoredFormContent(label, raw) {
+  if (raw) assertNonSensitivePendingStorage(label, raw);
+}
+
 function serveFile(res, absolute) {
   return fs.readFile(absolute).then((body) => {
     const type = absolute.endsWith('.css') ? 'text/css'
@@ -82,6 +150,16 @@ async function createServer() {
       res.end(renderContactVariant('/__contact_failure'));
       return;
     }
+    if (url.pathname === '/contact-live-json-failure.html') {
+      res.writeHead(200, { 'content-type': 'text/html' });
+      res.end(renderContactVariant('/__contact_json_failure'));
+      return;
+    }
+    if (url.pathname === '/contact-live-parse-failure.html') {
+      res.writeHead(200, { 'content-type': 'text/html' });
+      res.end(renderContactVariant('/__contact_parse_failure'));
+      return;
+    }
     if (url.pathname === '/contact.html') {
       res.writeHead(200, { 'content-type': 'text/html' });
       res.end(contactHtml);
@@ -104,6 +182,26 @@ async function createServer() {
           'access-control-allow-origin': '*',
         });
         res.end('{"ok":false}');
+      }, 500);
+      return;
+    }
+    if (url.pathname === '/__contact_json_failure') {
+      setTimeout(() => {
+        res.writeHead(200, {
+          'content-type': 'application/json',
+          'access-control-allow-origin': '*',
+        });
+        res.end('{"ok":false}');
+      }, 500);
+      return;
+    }
+    if (url.pathname === '/__contact_parse_failure') {
+      setTimeout(() => {
+        res.writeHead(200, {
+          'content-type': 'application/json',
+          'access-control-allow-origin': '*',
+        });
+        res.end('{not valid json');
       }, 500);
       return;
     }
@@ -163,6 +261,10 @@ async function readFormValues(page) {
   }));
 }
 
+async function readPendingMarker(page) {
+  return page.evaluate(() => sessionStorage.getItem('sampora_contact_pending') || '');
+}
+
 const server = await createServer();
 const { port } = server.address();
 const base = `http://127.0.0.1:${port}`;
@@ -170,6 +272,8 @@ const browser = await chromium.launch({ headless: true, executablePath: process.
 const page = await browser.newPage();
 const contactRequests = [];
 const appsScriptRequests = [];
+
+assertSourceEndpointContract();
 
 await page.route('https://script.google.com/**', route => {
   appsScriptRequests.push(route.request().url());
@@ -187,39 +291,6 @@ page.on('request', request => {
 });
 
 try {
-  await page.goto(`${base}/contact-placeholder.html?lang=en&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });
-  await page.locator('#contact-form').scrollIntoViewIfNeeded();
-  const placeholderInitial = await readFeedback(page);
-  if (!placeholderInitial.exists) fail('placeholder initial: inline feedback element missing');
-  if (placeholderInitial.exists && !placeholderInitial.hidden) fail(`placeholder initial: feedback should be hidden before submit: ${JSON.stringify(placeholderInitial)}`);
-
-  await fillForm(page);
-  await page.click('#contactForm button[type="submit"]');
-  await page.waitForTimeout(250);
-  const placeholderFeedback = await readFeedback(page);
-  expectFeedbackState('placeholder submit', placeholderFeedback, 'placeholder');
-  if (!placeholderFeedback.text.toLowerCase().includes('sales@getsampora.com')) {
-    fail(`placeholder submit: fallback contact email missing in feedback text: ${JSON.stringify(placeholderFeedback.text)}`);
-  }
-
-  const placeholderValues = await readFormValues(page);
-  if (placeholderValues.name !== 'QA Reviewer' || placeholderValues.message !== 'QA evidence inline feedback check.') {
-    fail(`placeholder submit cleared user input: ${JSON.stringify(placeholderValues)}`);
-  }
-
-  const pendingSnapshot = await page.evaluate(() => {
-    const raw = sessionStorage.getItem('sampora_contact_pending') || '';
-    return { raw, params: Object.fromEntries(new URLSearchParams(raw)) };
-  });
-  if (!pendingSnapshot.raw) fail('placeholder submit did not store pending payload');
-  if (pendingSnapshot.params.company !== 'QA Evidence Co') fail(`placeholder pending payload missing company: ${pendingSnapshot.raw}`);
-  assertLeadContext('placeholder pending payload', pendingSnapshot.params, true);
-  if (contactRequests.length) fail(`placeholder submit issued backend request: ${JSON.stringify(contactRequests)}`);
-
-  await page.click('.lang button[data-lang="zh"]');
-  await page.waitForTimeout(120);
-  expectFeedbackState('placeholder language switch', await readFeedback(page), 'placeholder');
-
   await page.goto(`${base}/contact-live-success.html?lang=en&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });
   await page.locator('#contact-form').scrollIntoViewIfNeeded();
   const successInitial = await readFeedback(page);
@@ -230,6 +301,7 @@ try {
   await page.waitForFunction(() => document.querySelector('#contactSubmitFeedback')?.dataset?.state === 'submitting');
   const pendingValues = await readFormValues(page);
   if (pendingValues.submitDisabled) fail('live success pending disabled the submit button');
+  assertMinimalPendingMarker('live success pending storage', await readPendingMarker(page));
   await page.waitForFunction(() => document.querySelector('#contactSubmitFeedback')?.dataset?.state === 'success');
   expectFeedbackState('live success', await readFeedback(page), 'success');
 
@@ -245,7 +317,68 @@ try {
     fail('live success did not issue local mock backend request');
   } else {
     const successParams = parseParams(successRequests.at(-1).postData);
+    assertFullRequestBody('live success request body', successParams);
     assertLeadContext('live success request body', successParams, true);
+  }
+
+  await page.goto(`${base}/contact-live-json-failure.html?lang=en&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });
+  await page.locator('#contact-form').scrollIntoViewIfNeeded();
+  const jsonFailureInitial = await readFeedback(page);
+  if (!jsonFailureInitial.exists) fail('live JSON ok false initial: inline feedback element missing');
+  const jsonFailureRequestStart = contactRequests.length;
+  await fillForm(page);
+  await page.click('#contactForm button[type="submit"]');
+  await page.waitForFunction(() => document.querySelector('#contactSubmitFeedback')?.dataset?.state === 'submitting');
+  assertMinimalPendingMarker('live JSON ok false pending storage', await readPendingMarker(page));
+  await page.waitForFunction(() => {
+    const state = document.querySelector('#contactSubmitFeedback')?.dataset?.state;
+    return state && state !== 'submitting';
+  });
+  expectFeedbackState('live JSON ok false', await readFeedback(page), 'failure');
+
+  const jsonFailureValues = await readFormValues(page);
+  if (jsonFailureValues.name !== 'QA Reviewer' || jsonFailureValues.message !== 'QA evidence inline feedback check.') {
+    fail(`live JSON ok false did not preserve user input: ${JSON.stringify(jsonFailureValues)}`);
+  }
+  assertNoStoredFormContent('live JSON ok false stored pending marker', await readPendingMarker(page));
+
+  const jsonFailureRequests = contactRequests.slice(jsonFailureRequestStart).filter(req => req.url.includes('/__contact_json_failure'));
+  if (!jsonFailureRequests.length) {
+    fail('live JSON ok false did not issue local mock backend request');
+  } else {
+    const jsonFailureParams = parseParams(jsonFailureRequests.at(-1).postData);
+    assertFullRequestBody('live JSON ok false request body', jsonFailureParams);
+    assertLeadContext('live JSON ok false request body', jsonFailureParams, true);
+  }
+
+  await page.goto(`${base}/contact-live-parse-failure.html?lang=en&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });
+  await page.locator('#contact-form').scrollIntoViewIfNeeded();
+  const parseFailureInitial = await readFeedback(page);
+  if (!parseFailureInitial.exists) fail('live JSON parse failure initial: inline feedback element missing');
+  const parseFailureRequestStart = contactRequests.length;
+  await fillForm(page);
+  await page.click('#contactForm button[type="submit"]');
+  await page.waitForFunction(() => document.querySelector('#contactSubmitFeedback')?.dataset?.state === 'submitting');
+  assertMinimalPendingMarker('live JSON parse failure pending storage', await readPendingMarker(page));
+  await page.waitForFunction(() => {
+    const state = document.querySelector('#contactSubmitFeedback')?.dataset?.state;
+    return state && state !== 'submitting';
+  });
+  expectFeedbackState('live JSON parse failure', await readFeedback(page), 'failure');
+
+  const parseFailureValues = await readFormValues(page);
+  if (parseFailureValues.name !== 'QA Reviewer' || parseFailureValues.message !== 'QA evidence inline feedback check.') {
+    fail(`live JSON parse failure did not preserve user input: ${JSON.stringify(parseFailureValues)}`);
+  }
+  assertNoStoredFormContent('live JSON parse failure stored pending marker', await readPendingMarker(page));
+
+  const parseFailureRequests = contactRequests.slice(parseFailureRequestStart).filter(req => req.url.includes('/__contact_parse_failure'));
+  if (!parseFailureRequests.length) {
+    fail('live JSON parse failure did not issue local mock backend request');
+  } else {
+    const parseFailureParams = parseParams(parseFailureRequests.at(-1).postData);
+    assertFullRequestBody('live JSON parse failure request body', parseFailureParams);
+    assertLeadContext('live JSON parse failure request body', parseFailureParams, true);
   }
 
   await page.goto(`${base}/contact-live-failure.html?lang=en&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });
@@ -255,6 +388,8 @@ try {
   const failureRequestStart = contactRequests.length;
   await fillForm(page);
   await page.click('#contactForm button[type="submit"]');
+  await page.waitForFunction(() => document.querySelector('#contactSubmitFeedback')?.dataset?.state === 'submitting');
+  assertMinimalPendingMarker('live failure pending storage', await readPendingMarker(page));
   await page.waitForFunction(() => document.querySelector('#contactSubmitFeedback')?.dataset?.state === 'failure');
   expectFeedbackState('live failure', await readFeedback(page), 'failure');
 
@@ -262,12 +397,14 @@ try {
   if (failureValues.name !== 'QA Reviewer' || failureValues.message !== 'QA evidence inline feedback check.') {
     fail(`live failure did not preserve user input: ${JSON.stringify(failureValues)}`);
   }
+  assertNoStoredFormContent('live failure stored pending marker', await readPendingMarker(page));
 
   const failureRequests = contactRequests.slice(failureRequestStart).filter(req => req.url.includes('/__contact_failure'));
   if (!failureRequests.length) {
     fail('live failure did not issue local mock backend request');
   } else {
     const failureParams = parseParams(failureRequests.at(-1).postData);
+    assertFullRequestBody('live failure request body', failureParams);
     assertLeadContext('live failure request body', failureParams, true);
   }
 

@@ -1,4 +1,4 @@
-import path from 'node:path';
+﻿import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadChromium } from './playwright-loader.mjs';
 
@@ -21,13 +21,13 @@ const expectedStatus = {
   'cookie-policy.html': {
     en: {
       live: 'Cookie Policy',
-      mid: 'Necessary Storage',
-      right: 'Analytics and marketing cookies are not enabled',
+      mid: 'Functional Storage',
+      right: 'Necessary and AI support storage notice',
     },
     zh: {
       live: 'Cookie 政策',
-      mid: '必要存储',
-      right: '当前未启用分析与营销 Cookie',
+      mid: '功能性存储',
+      right: '必要与 AI 客服存储说明',
     },
   },
   'terms.html': {

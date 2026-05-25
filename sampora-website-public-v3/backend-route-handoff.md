@@ -73,4 +73,6 @@ app.use((req, res, next) => {
 
 ## Contact Endpoint Gate
 
-The static handoff source may keep `[BACKEND_CONTACT_ENDPOINT]` in `contact.html`. Production must either replace that token during the release process or inject a real endpoint from the backend template response. If no real endpoint exists yet, this package is a staging/static handoff and must not be marked production ready.
+`contact.html` posts to `/api/contact`. Production must provide that route server-side and return JSON `{ "ok": true }` only after the lead payload is accepted. If `/api/contact` is not implemented in the deployment backend yet, this package is a frontend handoff and must not be marked production-ready for contact submissions.
+
+The frontend submits `FormData` through `URLSearchParams`, so `/api/contact` must accept `application/x-www-form-urlencoded`. The backend may also accept JSON for compatibility, but it must not be JSON-only. Required server-side fields are `name`, `company`, `email`, `role`, and `business_type`; `message` is optional and should be stored when provided.

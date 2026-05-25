@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="canonical" href="https://www.sampora.com/index.html">
+<link rel="canonical" href="https://getsampora.com/index.html">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -3555,6 +3555,7 @@
         #footer .sampora-footer-legal {
             display: flex !important;
             justify-content: center !important;
+            align-items: center !important;
             gap: 28px !important;
             flex-wrap: wrap !important;
             padding: 18px 24px !important;
@@ -3562,6 +3563,21 @@
             color: var(--muted, #7E92AC) !important;
             font: 12px var(--mono, monospace) !important;
             letter-spacing: .04em !important;
+        }
+        #footer .sampora-footer-legal .dot {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: auto !important;
+            height: auto !important;
+            min-width: 0 !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            flex: 0 0 auto !important;
+            color: var(--muted, #7E92AC) !important;
+            font: inherit !important;
+            line-height: 1 !important;
         }
 
         @media(max-width:1180px) {
@@ -4428,6 +4444,7 @@ body::before,
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
+<link rel="stylesheet" href="assets/footer-email-modal.css">
 </head>
 <body>
 <div aria-hidden="true" class="status">
@@ -4910,7 +4927,7 @@ body::before,
 <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
 <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
 <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
-<a href="contact.html" data-footer-i18n="navContact">Contact</a>
+<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
 </div>
 <div class="sampora-footer-col">
 <h3 data-footer-i18n="footerResources">Resources</h3>
@@ -4924,7 +4941,7 @@ body::before,
 <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Start trial</a>
 <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
 <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
-<a href="contact.html" data-footer-i18n="navContact">Contact</a>
+<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
 </div>
 </div>
 <div class="sampora-footer-contact">
@@ -5200,7 +5217,7 @@ body::before,
                 "customer3Role": "结算与发票负责人",
                 "customer3Type": "财务与结算",
                 "customersKicker": "05 / 角色场景",
-                "customersTitle": "运营角色，<em>对应真实工作流需求。</em>",
+                "customersTitle": "运营角色，<em>对应真实工作流需求.</em>",
                 "enterpriseRole": "适合多实体样本运营",
                 "enterpriseText": "适合同时管理客户、供应商、Panel、API 接收、权限、审核证据、财务记录和 Partner Network 工作流的团队。",
                 "entryLayer": "入门层",
@@ -5217,7 +5234,7 @@ body::before,
                 "faq3Q": "支持安全审查吗？",
                 "finalKicker": "07 / 开始试用",
                 "finalText": "告诉我们你如何处理项目接收、供应商分配、审核与结算。我们的团队会匹配合适的试用或演示路径。",
-                "finalTitle": "把你的样本运营工作流接入 Sampora。",
+                "finalTitle": "把你的样本运营工作流接入 Sampora.",
                 "footerDesc": "面向自有样本运营方与在线样本供应商的在线样本运营平台。",
                 "heroProof1Text": "记录客户、国家、CPI、IR/LOI、配额和上线规则。",
                 "heroProof1Title": "项目接收",
@@ -5226,7 +5243,7 @@ body::before,
                 "heroProof3Text": "连接审核证据、回调日志、供应商账单和客户发票。",
                 "heroProof3Title": "审核与结算",
                 "heroSub": "Sampora 面向自有样本运营方、在线样本供应商、伙伴供给和多来源交付团队，集中管理项目接收、供应商分配、交付跟踪、审核证据与结算记录。",
-                "heroTitle": "面向<em>自有样本运营方与在线样本供应商</em>的在线样本运营平台。",
+                "heroTitle": "面向<em>自有样本运营方与在线样本供应商</em>的在线样本运营平台",
                 "idle": "空闲",
                 "langSwitcher": "语言切换",
                 "cap1Label": "能力 01",
@@ -5277,7 +5294,7 @@ body::before,
                 "outcome4": "结果：交付跟踪",
                 "outcome5": "结果：财务与结算",
                 "outcomeKicker": "01 / 痛点 / 结果",
-                "outcomeTitle": "把分散的样本交付工作变成<em>可见的运营控制。</em>",
+                "outcomeTitle": "把分散的样本交付工作变成<em>可见的运营控制.</em>",
                 "pageTitle": "Sampora - 面向自有样本运营方与在线样本供应商的在线样本运营平台",
                 "pain1Text": "客户简报、API feeds 和内部请求常以不同格式进入，运营团队需要先整理信息，才能准备交付。",
                 "pain1Title": "项目来自不同渠道",
@@ -5293,12 +5310,12 @@ body::before,
                 "panelText": "适合沉淀长期受访者资产，并管理会员档案、激励、钱包和参与记录的团队。",
                 "plans": "版本方案",
                 "plansKicker": "06 / 版本方案",
-                "plansTitle": "选择匹配复杂度的<em>样本运营层。</em>",
+                "plansTitle": "选择匹配复杂度的<em>样本运营层.</em>",
                 "platformKicker": "02 / 产品能力",
-                "platformTitle": "九项产品能力，<em>共用一层样本运营底座。</em>",
+                "platformTitle": "九项产品能力，<em>共用一层样本运营底座.</em>",
                 "product": "产品",
                 "productSurfacesKicker": "04 / 产品界面",
-                "productSurfacesTitle": "三个产品界面，<em>串起一条运营主线。</em>",
+                "productSurfacesTitle": "三个产品界面，<em>串起一条运营主线.</em>",
                 "proofPanelText": "Sampora 将不同角色的具体需求连接到项目配置、供应商控制、交付核验和结算证据。",
                 "proofPanelTitle": "角色需求，连接在同一运营层",
                 "proofNeed1Title": "项目配置",
@@ -5383,7 +5400,7 @@ body::before,
                 "w4li2": "供应商账单",
                 "w4li3": "客户发票",
                 "workflowKicker": "03 / 工作流",
-                "workflowTitle": "接收。分配。跟踪。<em>结算。</em>",
+                "workflowTitle": "接收. 分配. 跟踪. <em>结算.</em>",
                 "consoleCrumbOps": "运营",
                 "consoleCrumbRuns": "项目运行",
                 "finalStep1": "01 说明你的工作流",
@@ -6101,5 +6118,7 @@ body::before,
 </script>
 <script src="assets/lead-attribution.js" defer></script>
 <script src="assets/sampora-cookie-preferences.js" defer></script>
+<script src="assets/footer-email-modal.js" defer></script>
+<script src="https://plugin-code.salesmartly.com/js/project_693595_715565_1777101144.js"></script>
 </body>
 </html>

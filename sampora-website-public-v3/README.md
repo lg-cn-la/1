@@ -14,7 +14,7 @@ Maintained public pages:
 - `contact.html`
 - `about.html`
 
-Canonical links currently use `https://www.sampora.com/...`. Confirm the final production domain before launch if it changes.
+Canonical links currently use `https://getsampora.com/...`.
 
 ## Compatibility Redirects
 
