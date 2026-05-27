@@ -4441,6 +4441,571 @@ body::before,
     border-radius: 16px !important;
     box-shadow: 0 18px 48px rgba(0, 0, 0, .16) !important;
 }
+#operating-proof-final.op-proof-v6 {
+    position: relative;
+    scroll-margin-top: 128px;
+    padding: 46px 0 72px;
+    border-top: 0;
+    overflow: hidden;
+}
+#operating-proof-final.op-proof-v6::before,
+#operating-proof-final .opv6-shell::after,
+#operating-proof-final .opv6-case::before,
+#operating-proof-final .opv6-workflows::before,
+#operating-proof-final .opv6-workflows::after {
+    display: none !important;
+    content: none !important;
+}
+.opv6-shell {
+    position: relative;
+    border: 1px solid rgba(129, 178, 214, .18);
+    border-radius: 30px;
+    background: linear-gradient(180deg, rgba(15, 30, 52, .88), rgba(7, 17, 31, .95));
+    box-shadow: 0 34px 96px rgba(0, 0, 0, .36), inset 0 1px 0 rgba(255, 255, 255, .05);
+    overflow: hidden;
+}
+.opv6-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .68), rgba(181, 240, 86, .30), transparent);
+}
+.opv6-head {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(390px, .95fr);
+    gap: 28px;
+    padding: 34px 34px 24px;
+}
+.opv6-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: max-content;
+    color: var(--cyan2);
+    font: 11px var(--mono);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+}
+.opv6-kicker::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 18px rgba(56, 210, 255, .7);
+}
+.opv6-title {
+    max-width: 760px;
+    margin: 20px 0 0;
+    color: var(--fg);
+    font-size: clamp(30px, 3.45vw, 50px);
+    line-height: 1.02;
+}
+.opv6-title em {
+    font-style: normal;
+    color: var(--cyan);
+}
+.opv6-lead {
+    max-width: 720px;
+    margin: 18px 0 0;
+    color: var(--fg2);
+    font-size: 16px;
+    line-height: 1.72;
+}
+.opv6-lead b {
+    color: var(--fg);
+    font-weight: 650;
+}
+.opv6-assurance {
+    align-self: stretch;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+.opv6-proof-chip {
+    position: relative;
+    min-height: 118px;
+    padding: 16px 16px 15px;
+    border: 1px solid rgba(129, 178, 214, .15);
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(6, 16, 31, .64), rgba(10, 22, 40, .58));
+    overflow: hidden;
+}
+.opv6-proof-chip::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 14px rgba(181, 240, 86, .54);
+}
+.opv6-proof-chip:nth-child(2)::before {
+    background: var(--cyan);
+    box-shadow: 0 0 14px rgba(56, 210, 255, .54);
+}
+.opv6-proof-chip:nth-child(3)::before {
+    background: var(--amber);
+    box-shadow: 0 0 14px rgba(255, 180, 84, .48);
+}
+.opv6-proof-chip:nth-child(4)::before {
+    background: var(--rose);
+    box-shadow: 0 0 14px rgba(255, 89, 116, .44);
+}
+.opv6-proof-chip strong {
+    display: block;
+    padding-left: 17px;
+    color: var(--fg);
+    font-size: 14px;
+    line-height: 1.25;
+}
+.opv6-proof-chip span {
+    display: block;
+    margin-top: 11px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+}
+.opv11-logo-stage {
+    position: relative;
+    z-index: 2;
+    margin: 0 34px 30px;
+    padding: 18px;
+    border: 1px solid rgba(56, 210, 255, .18);
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(6, 16, 31, .82), rgba(13, 27, 49, .78)), radial-gradient(620px 210px at 22% 0%, rgba(56, 210, 255, .15), transparent 72%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .045), 0 18px 52px rgba(0, 0, 0, .18);
+    overflow: visible;
+}
+.opv11-logo-stage::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 24px;
+    background: radial-gradient(520px 170px at 18% 0%, rgba(56, 210, 255, .12), transparent 78%), radial-gradient(480px 170px at 84% 0%, rgba(124, 92, 255, .07), transparent 74%);
+    pointer-events: none;
+    opacity: .78;
+}
+.opv11-logo-head {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    margin: 0 2px 16px;
+}
+.opv11-logo-head h3 {
+    margin: 0;
+    color: var(--fg);
+    font-size: 19px;
+    line-height: 1.22;
+}
+.opv11-logo-head p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+    max-width: 760px;
+}
+.opv11-live-pill {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border: 1px solid rgba(181, 240, 86, .22);
+    border-radius: 999px;
+    background: rgba(181, 240, 86, .055);
+    color: var(--lime);
+    font: 10px var(--mono);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+.opv11-live-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 10px rgba(181, 240, 86, .56);
+}
+.opv11-logo-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    perspective: 1000px;
+    align-items: stretch;
+}
+.opv11-brand-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 158px;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .060), rgba(255, 255, 255, .026));
+    box-shadow: 0 16px 32px rgba(0, 0, 0, .20), inset 0 1px 0 rgba(255, 255, 255, .04);
+    overflow: visible;
+    cursor: pointer;
+    outline: none;
+    transform: translateY(0) scale(1);
+    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease;
+}
+.opv11-brand-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 22px;
+    background: radial-gradient(260px 130px at 50% 0%, color-mix(in srgb, var(--brand-accent) 24%, transparent), transparent 72%);
+    opacity: .38;
+    pointer-events: none;
+    transition: opacity .22s ease, filter .22s ease;
+}
+.opv11-brand-card::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: -10px;
+    height: 22px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--brand-accent) 25%, transparent);
+    filter: blur(18px);
+    opacity: 0;
+    transition: opacity .22s ease, transform .22s ease;
+}
+.opv11-logo-plate {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    height: 104px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, .74);
+    border-radius: 16px;
+    background: linear-gradient(180deg, #fbfcfe, #eef3f8);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .88), 0 10px 24px rgba(0, 0, 0, .18);
+    overflow: hidden;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.opv11-logo-plate::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(280px 90px at 48% 0%, rgba(255, 255, 255, .96), transparent 74%), linear-gradient(135deg, rgba(56, 210, 255, .075), transparent 50%, rgba(181, 240, 86, .045));
+    pointer-events: none;
+}
+.opv11-logo-plate::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255, 255, 255, .36), transparent 38%, rgba(56, 210, 255, .055));
+    pointer-events: none;
+    opacity: .8;
+}
+.opv11-logo-plate img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 88%;
+    height: auto;
+    max-height: 96px;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 7px rgba(6, 17, 31, .10));
+    transform: translateZ(0);
+    transition: transform .22s ease, filter .22s ease;
+}
+.opv11-brand-meta {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 0 3px 1px;
+    min-height: 24px;
+}
+.opv11-brand-meta strong {
+    color: var(--fg);
+    font-size: 12px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.opv11-brand-meta span {
+    flex: 0 0 auto;
+    color: var(--muted);
+    font: 10px var(--mono);
+    letter-spacing: .10em;
+    transition: color .22s ease, text-shadow .22s ease;
+}
+.opv11-brand-card:hover,
+.opv11-brand-card:focus-visible,
+.opv11-brand-card.is-selected {
+    transform: translateY(-8px) scale(1.015);
+    border-color: color-mix(in srgb, var(--brand-accent) 48%, rgba(255, 255, 255, .16));
+    background: linear-gradient(180deg, rgba(255, 255, 255, .092), rgba(255, 255, 255, .035));
+    box-shadow: 0 28px 60px rgba(0, 0, 0, .35), 0 0 0 1px color-mix(in srgb, var(--brand-accent) 18%, transparent), 0 0 42px color-mix(in srgb, var(--brand-accent) 22%, transparent), inset 0 1px 0 rgba(255, 255, 255, .065);
+}
+.opv11-brand-card:hover::before,
+.opv11-brand-card:focus-visible::before,
+.opv11-brand-card.is-selected::before {
+    opacity: .88;
+    filter: saturate(1.08);
+}
+.opv11-brand-card:hover::after,
+.opv11-brand-card:focus-visible::after,
+.opv11-brand-card.is-selected::after {
+    opacity: .76;
+    transform: translateY(2px);
+}
+.opv11-brand-card:hover .opv11-logo-plate,
+.opv11-brand-card:focus-visible .opv11-logo-plate,
+.opv11-brand-card.is-selected .opv11-logo-plate {
+    border-color: rgba(255, 255, 255, .92);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 17px 34px rgba(0, 0, 0, .24), 0 0 24px color-mix(in srgb, var(--brand-accent) 18%, transparent);
+    transform: translateY(-1px);
+}
+.opv11-brand-card:hover .opv11-logo-plate img,
+.opv11-brand-card:focus-visible .opv11-logo-plate img,
+.opv11-brand-card.is-selected .opv11-logo-plate img {
+    transform: scale(1.035);
+    filter: drop-shadow(0 8px 12px rgba(6, 17, 31, .14));
+}
+.opv11-brand-card:hover .opv11-brand-meta span,
+.opv11-brand-card:focus-visible .opv11-brand-meta span,
+.opv11-brand-card.is-selected .opv11-brand-meta span {
+    color: color-mix(in srgb, var(--brand-accent) 70%, #dbeafe);
+    text-shadow: 0 0 16px color-mix(in srgb, var(--brand-accent) 42%, transparent);
+}
+.opv11-logo-note {
+    position: relative;
+    z-index: 1;
+    margin: 14px 2px 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.55;
+}
+.opv6-workflows {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    padding: 0 34px 30px;
+    background: transparent;
+    overflow: visible;
+}
+.opv6-case {
+    position: relative;
+    display: grid;
+    grid-template-rows: minmax(28px, auto) minmax(72px, auto) minmax(104px, auto) minmax(104px, auto) minmax(96px, auto);
+    gap: 10px;
+    min-height: 0;
+    padding: 25px 22px 23px;
+    border: 1px solid rgba(129, 178, 214, .13);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(14, 27, 47, .84), rgba(7, 17, 31, .95));
+    box-shadow: 0 16px 36px rgba(0, 0, 0, .17);
+    overflow: hidden;
+}
+.opv6-case-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 0;
+    color: var(--muted);
+    font: 11px var(--mono);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+.opv6-case-top b {
+    color: var(--cyan2);
+    font-weight: 500;
+}
+.opv6-case h3 {
+    margin: 0;
+    color: var(--fg);
+    font-size: 19px;
+    line-height: 1.14;
+}
+.opv6-steps {
+    display: contents;
+}
+.opv6-step {
+    padding: 12px 13px 11px;
+    border: 1px solid rgba(129, 178, 214, .12);
+    border-radius: 14px;
+    background: rgba(6, 16, 31, .34);
+}
+.opv6-step b {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--fg);
+    font: 10px var(--mono);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+.opv6-step p {
+    margin: 0;
+    color: var(--fg2);
+    font-size: 12.5px;
+    line-height: 1.48;
+}
+.opv6-outcome {
+    margin-top: 0;
+    padding: 13px 14px 12px;
+    border: 1px solid rgba(181, 240, 86, .22);
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(181, 240, 86, .06), rgba(181, 240, 86, .035));
+    color: #DDFBB2;
+    font-size: 12.5px;
+    line-height: 1.52;
+}
+.opv6-bottom {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 21px 34px 27px;
+    background: rgba(6, 16, 31, .34);
+}
+.opv6-bottom p {
+    margin: 0;
+    color: var(--fg2);
+    font-size: 13px;
+    line-height: 1.55;
+}
+.opv6-bottom strong {
+    color: var(--fg);
+    font-weight: 650;
+}
+.opv6-actions {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.opv6-actions .btn {
+    margin: 0;
+    min-height: 42px;
+    padding: 0 15px;
+    font-size: 13px;
+}
+@supports (grid-template-rows: subgrid) {
+    .opv6-workflows {
+        grid-template-rows: auto auto auto auto auto;
+    }
+    .opv6-case {
+        grid-row: span 5;
+        grid-template-rows: subgrid;
+    }
+}
+@media(max-width:1180px) {
+    .opv6-head {
+        grid-template-columns: 1fr;
+    }
+    .opv11-logo-grid,
+    .opv6-workflows {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .opv11-brand-card {
+        height: 154px;
+    }
+}
+@media(max-width:760px) {
+    #operating-proof-final.op-proof-v6 {
+        padding: 34px 0 54px;
+    }
+    .opv6-shell {
+        border-radius: 22px;
+    }
+    .opv6-head {
+        padding: 22px 22px 18px;
+    }
+    .opv6-title {
+        font-size: clamp(28px, 8vw, 38px);
+    }
+    .opv6-assurance,
+    .opv11-logo-grid,
+    .opv6-workflows {
+        grid-template-columns: 1fr;
+    }
+    .opv11-logo-stage {
+        margin: 0 22px 22px;
+        padding: 14px;
+        border-radius: 20px;
+    }
+    .opv11-logo-head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .opv11-brand-card {
+        height: 148px;
+    }
+    .opv11-logo-plate {
+        height: 96px;
+    }
+    .opv11-logo-plate img {
+        width: 90%;
+        max-height: 88px;
+    }
+    .opv6-workflows {
+        padding: 0 22px 24px;
+    }
+    .opv6-case {
+        display: block;
+        min-height: auto;
+        padding: 23px 20px;
+    }
+    .opv6-case-top {
+        margin-bottom: 18px;
+    }
+    .opv6-case h3 {
+        margin: 0 0 18px;
+    }
+    .opv6-steps {
+        display: grid;
+        gap: 10px;
+    }
+    .opv6-outcome {
+        margin-top: 14px;
+    }
+    .opv6-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 20px 22px 24px;
+    }
+    .opv6-actions {
+        justify-content: flex-start;
+        width: 100%;
+    }
+    .opv6-actions .btn {
+        width: 100%;
+    }
+    .opv11-brand-card:hover,
+    .opv11-brand-card:focus-visible,
+    .opv11-brand-card.is-selected {
+        transform: translateY(-4px) scale(1.01);
+    }
+}
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
@@ -4619,6 +5184,98 @@ body::before,
 <div class="chips"><span class="chip" data-i18n-html="chip1" data-tip="Build and reuse owned respondent assets">Owned panel <b>operations</b></span><span class="chip" data-i18n-html="chip2" data-tip="Coordinate project delivery and supplier quality">Sample supplier <b>networks</b></span><span class="chip" data-i18n-html="chip3" data-tip="Ask for transparent supply and operation evidence">Partner / aggregator <b>supply</b></span><span class="chip" data-i18n-html="chip4" data-tip="Connect API-based supplier routes">API-connected <b>suppliers</b></span><span class="chip" data-i18n-html="chip5" data-tip="Govern roles, records and finance workflows">Multi-entity <b>operations</b></span></div>
 </div>
 </div>
+<section aria-labelledby="operating-proof-title" class="op-proof-v6" id="operating-proof-final">
+<div class="container">
+<div class="opv6-shell">
+<div class="opv6-head">
+<div>
+<div class="opv6-kicker" data-i18n="opProofKicker">Operating proof</div>
+<h2 class="opv6-title" data-i18n-html="opProofTitle" id="operating-proof-title">Built with real <em>sample-supplier operations.</em></h2>
+<p class="opv6-lead" data-i18n-html="opProofLead">Sampora turns proven sample-industry operating experience into a SaaS workflow for <b>project launch, supplier routing, delivery review, and settlement evidence</b>.</p>
+</div>
+<div aria-label="Operational proof points" class="opv6-assurance" data-i18n-aria-label="opProofAssuranceLabel">
+<div class="opv6-proof-chip"><strong data-i18n="opProofChip1Title">Live supplier workflows</strong><span data-i18n="opProofChip1Text">Used around real project, routing, review, and finance handoffs.</span></div>
+<div class="opv6-proof-chip"><strong data-i18n="opProofChip2Title">Industry network support</strong><span data-i18n="opProofChip2Text">Shaped by teams who already operate sample supply at scale.</span></div>
+<div class="opv6-proof-chip"><strong data-i18n="opProofChip3Title">Evidence-first delivery</strong><span data-i18n="opProofChip3Text">Every stage is designed around records, owners, logs, and settlement proof.</span></div>
+<div class="opv6-proof-chip"><strong data-i18n="opProofChip4Title">Guided onboarding</strong><span data-i18n="opProofChip4Text">Buyers can review the workflow before moving operational data.</span></div>
+</div>
+</div>
+<div aria-label="Selected partners and supplier teams" class="opv11-logo-stage" data-i18n-aria-label="opProofLogoStageLabel">
+<div class="opv11-logo-head">
+<div>
+<h3 data-i18n="opProofLogoTitle">Selected partners and supplier teams</h3>
+<p data-i18n="opProofLogoText">Sample-industry organizations connected with Sampora cooperation, support, and supplier-side workflows.</p>
+</div>
+<span class="opv11-live-pill" data-i18n="opProofLogoPill">sample ecosystem</span>
+</div>
+<div aria-label="Partner logos" class="opv11-logo-grid" data-i18n-aria-label="opProofLogoGridLabel" role="list">
+<article class="opv11-brand-card unit is-selected" role="listitem" style="--brand-accent: rgb(39, 176, 162);" tabindex="0">
+<div class="opv11-logo-plate"><img alt="Unit Research Global Inc logo" decoding="async" height="480" loading="lazy" src="assets/trust-unit-research.png" width="1600"/></div>
+<div class="opv11-brand-meta"><strong>Unit Research Global Inc</strong><span data-i18n="opProofLogoUnitTag">Panel ops</span></div>
+</article>
+<article class="opv11-brand-card hldt" role="listitem" style="--brand-accent: rgb(56, 210, 255);" tabindex="0">
+<div class="opv11-logo-plate"><img alt="HLDT Survey logo" decoding="async" height="480" loading="lazy" src="assets/trust-hldt-survey.png" width="1600"/></div>
+<div class="opv11-brand-meta"><strong data-i18n="opProofLogoHldtName">HLDT Survey</strong><span data-i18n="opProofLogoHldtTag">Supply ops</span></div>
+</article>
+<article class="opv11-brand-card tc" role="listitem" style="--brand-accent: rgb(255, 180, 84);" tabindex="0">
+<div class="opv11-logo-plate"><img alt="TC Survey Limited logo" decoding="async" height="480" loading="lazy" src="assets/trust-tc-survey.png" width="1600"/></div>
+<div class="opv11-brand-meta"><strong>TC Survey Limited</strong><span data-i18n="opProofLogoTcTag">Enterprise ops</span></div>
+</article>
+<article class="opv11-brand-card tctask" role="listitem" style="--brand-accent: rgb(124, 92, 255);" tabindex="0">
+<div class="opv11-logo-plate"><img alt="TCtask logo" decoding="async" height="480" loading="lazy" src="assets/trust-tctask.png" width="1600"/></div>
+<div class="opv11-brand-meta"><strong>TCtask</strong><span data-i18n="opProofLogoTaskTag">Task flow</span></div>
+</article>
+</div>
+<p class="opv11-logo-note" data-i18n="opProofLogoNote">These logos represent selected organizations connected to Sampora-related cooperation, support, or operating workflows.</p>
+</div>
+<div aria-label="Real operational problems Sampora addresses" class="opv6-workflows" data-i18n-aria-label="opProofCasesLabel">
+<article class="opv6-case">
+<div class="opv6-case-top"><b>01</b><span data-i18n="opProofCase1Step">Launch setup</span></div>
+<h3 data-i18n="opProofCase1Title">Stop chasing old project specs before fieldwork starts.</h3>
+<div class="opv6-steps">
+<div class="opv6-step"><b data-i18n="opProofIssueLabel">Operational issue</b><p data-i18n="opProofCase1Issue">Briefs, CPI, IR/LOI, quota rules, countries, and redirects sit across chat, email, and sheets.</p></div>
+<div class="opv6-step"><b data-i18n="opProofControlLabel">Sampora control</b><p data-i18n="opProofCase1Control">One launch record keeps supplier-facing specs, market rules, owners, and update history together.</p></div>
+</div>
+<div class="opv6-outcome" data-i18n="opProofCase1Outcome">Teams assign suppliers against the latest approved setup instead of re-checking message history.</div>
+</article>
+<article class="opv6-case">
+<div class="opv6-case-top"><b>02</b><span data-i18n="opProofCase2Step">Supplier routing</span></div>
+<h3 data-i18n="opProofCase2Title">Make supplier choice less dependent on memory.</h3>
+<div class="opv6-steps">
+<div class="opv6-step"><b data-i18n="opProofIssueLabel">Operational issue</b><p data-i18n="opProofCase2Issue">Operators remember who can run a market, who should be blocked, and which CPI should stay hidden.</p></div>
+<div class="opv6-step"><b data-i18n="opProofControlLabel">Sampora control</b><p data-i18n="opProofCase2Control">Supplier allocation, block rules, and supplier-specific pricing are managed inside the project workflow.</p></div>
+</div>
+<div class="opv6-outcome" data-i18n="opProofCase2Outcome">Wrong sends, blocked-route mistakes, and supplier price exposure become easier to prevent.</div>
+</article>
+<article class="opv6-case">
+<div class="opv6-case-top"><b>03</b><span data-i18n="opProofCase3Step">Delivery review</span></div>
+<h3 data-i18n="opProofCase3Title">Keep dispute evidence before the dispute starts.</h3>
+<div class="opv6-steps">
+<div class="opv6-step"><b data-i18n="opProofIssueLabel">Operational issue</b><p data-i18n="opProofCase3Issue">Completes, rejects, callbacks, review notes, and exceptions are checked only after a client or supplier asks.</p></div>
+<div class="opv6-step"><b data-i18n="opProofControlLabel">Sampora control</b><p data-i18n="opProofCase3Control">Review history, callback records, operator actions, and delivery status stay tied to the same project trail.</p></div>
+</div>
+<div class="opv6-outcome" data-i18n="opProofCase3Outcome">Operations can trace why a delivery count changed without rebuilding the story from exports.</div>
+</article>
+<article class="opv6-case">
+<div class="opv6-case-top"><b>04</b><span data-i18n="opProofCase4Step">Settlement</span></div>
+<h3 data-i18n="opProofCase4Title">Give finance a traceable settlement packet.</h3>
+<div class="opv6-steps">
+<div class="opv6-step"><b data-i18n="opProofIssueLabel">Operational issue</b><p data-i18n="opProofCase4Issue">Supplier bills, client invoices, wallet changes, rejects, and approved completes are reconciled after export.</p></div>
+<div class="opv6-step"><b data-i18n="opProofControlLabel">Sampora control</b><p data-i18n="opProofCase4Control">Approved delivery records connect to billing, invoice, wallet, and settlement review status.</p></div>
+</div>
+<div class="opv6-outcome" data-i18n="opProofCase4Outcome">Finance can close with a clearer evidence chain instead of asking operations to explain every mismatch.</div>
+</article>
+</div>
+<div class="opv6-bottom">
+<p data-i18n-html="opProofBottom"><strong>Best next step:</strong> review the workflow with your current project, supplier, and finance handoff structure.</p>
+<div class="opv6-actions">
+<a class="btn primary" data-i18n="opProofDemoCta" href="contact.html?intent=book_demo#contact-form">Book a workflow demo</a>
+<a class="btn ghost" data-i18n="opProofExploreCta" href="#platform">Explore the platform</a>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section class="section" id="outcomes">
 <div class="container">
 <div class="section-head title-only">
@@ -5066,6 +5723,55 @@ body::before,
                 "networkState": "Sample supply pool state",
                 "openTopologyLabel": "Open operations topology",
                 "operatingFor": "Sample operations layer for",
+                "opProofAssuranceLabel": "Operational proof points",
+                "opProofBottom": "<strong>Best next step:</strong> review the workflow with your current project, supplier, and finance handoff structure.",
+                "opProofCase1Control": "One launch record keeps supplier-facing specs, market rules, owners, and update history together.",
+                "opProofCase1Issue": "Briefs, CPI, IR/LOI, quota rules, countries, and redirects sit across chat, email, and sheets.",
+                "opProofCase1Outcome": "Teams assign suppliers against the latest approved setup instead of re-checking message history.",
+                "opProofCase1Step": "Launch setup",
+                "opProofCase1Title": "Stop chasing old project specs before fieldwork starts.",
+                "opProofCase2Control": "Supplier allocation, block rules, and supplier-specific pricing are managed inside the project workflow.",
+                "opProofCase2Issue": "Operators remember who can run a market, who should be blocked, and which CPI should stay hidden.",
+                "opProofCase2Outcome": "Wrong sends, blocked-route mistakes, and supplier price exposure become easier to prevent.",
+                "opProofCase2Step": "Supplier routing",
+                "opProofCase2Title": "Make supplier choice less dependent on memory.",
+                "opProofCase3Control": "Review history, callback records, operator actions, and delivery status stay tied to the same project trail.",
+                "opProofCase3Issue": "Completes, rejects, callbacks, review notes, and exceptions are checked only after a client or supplier asks.",
+                "opProofCase3Outcome": "Operations can trace why a delivery count changed without rebuilding the story from exports.",
+                "opProofCase3Step": "Delivery review",
+                "opProofCase3Title": "Keep dispute evidence before the dispute starts.",
+                "opProofCase4Control": "Approved delivery records connect to billing, invoice, wallet, and settlement review status.",
+                "opProofCase4Issue": "Supplier bills, client invoices, wallet changes, rejects, and approved completes are reconciled after export.",
+                "opProofCase4Outcome": "Finance can close with a clearer evidence chain instead of asking operations to explain every mismatch.",
+                "opProofCase4Step": "Settlement",
+                "opProofCase4Title": "Give finance a traceable settlement packet.",
+                "opProofCasesLabel": "Real operational problems Sampora addresses",
+                "opProofChip1Text": "Used around real project, routing, review, and finance handoffs.",
+                "opProofChip1Title": "Live supplier workflows",
+                "opProofChip2Text": "Shaped by teams who already operate sample supply at scale.",
+                "opProofChip2Title": "Industry network support",
+                "opProofChip3Text": "Every stage is designed around records, owners, logs, and settlement proof.",
+                "opProofChip3Title": "Evidence-first delivery",
+                "opProofChip4Text": "Buyers can review the workflow before moving operational data.",
+                "opProofChip4Title": "Guided onboarding",
+                "opProofControlLabel": "Sampora control",
+                "opProofDemoCta": "Book a workflow demo",
+                "opProofExploreCta": "Explore the platform",
+                "opProofIssueLabel": "Operational issue",
+                "opProofKicker": "Operating proof",
+                "opProofLead": "Sampora turns proven sample-industry operating experience into a SaaS workflow for <b>project launch, supplier routing, delivery review, and settlement evidence</b>.",
+                "opProofLogoGridLabel": "Partner logos",
+                "opProofLogoHldtName": "HLDT Survey",
+                "opProofLogoHldtTag": "Supply ops",
+                "opProofLogoNote": "These logos represent selected organizations connected to Sampora-related cooperation, support, or operating workflows.",
+                "opProofLogoPill": "sample ecosystem",
+                "opProofLogoStageLabel": "Selected partners and supplier teams",
+                "opProofLogoTaskTag": "Task flow",
+                "opProofLogoTcTag": "Enterprise ops",
+                "opProofLogoText": "Sample-industry organizations connected with Sampora cooperation, support, and supplier-side workflows.",
+                "opProofLogoTitle": "Selected partners and supplier teams",
+                "opProofLogoUnitTag": "Panel ops",
+                "opProofTitle": "Built with real <em>sample-supplier operations.</em>",
                 "outcome1": "Outcome: project intake",
                 "outcome2": "Outcome: project setup",
                 "outcome3": "Outcome: supplier allocation",
@@ -5288,6 +5994,55 @@ body::before,
                 "networkState": "样本供给池状态",
                 "openTopologyLabel": "打开运营拓扑",
                 "operatingFor": "样本运营层服务于",
+                "opProofAssuranceLabel": "运营证明要点",
+                "opProofBottom": "<strong>下一步建议：</strong>用你们当前的项目、供应商和财务交接结构来走一遍这套流程。",
+                "opProofCase1Control": "一份上线记录把面向供应商的规格、市场规则、负责人和更新历史放在一起。",
+                "opProofCase1Issue": "项目简报、CPI、IR/LOI、配额规则、国家/地区和跳转链接散落在聊天、邮件和表格里。",
+                "opProofCase1Outcome": "团队按最新确认的配置分配供应商，不再反复翻查消息记录。",
+                "opProofCase1Step": "上线配置",
+                "opProofCase1Title": "项目执行开始前，不再追着旧版规格反复确认。",
+                "opProofCase2Control": "供应商分配、屏蔽规则和供应商级定价都在项目流程内管理。",
+                "opProofCase2Issue": "运营人员靠记忆判断哪些供应商能做某个市场、哪些需要屏蔽、哪些 CPI 不该外露。",
+                "opProofCase2Outcome": "错发项目、误走屏蔽路线和供应商价格外露更容易被提前避免。",
+                "opProofCase2Step": "供应商路由",
+                "opProofCase2Title": "让供应商选择不再过度依赖个人记忆。",
+                "opProofCase3Control": "审核历史、回调记录、操作动作和交付状态都绑定在同一条项目轨迹上。",
+                "opProofCase3Issue": "完成数、拒绝数、回调、审核备注和异常，常常等客户或供应商追问后才集中核对。",
+                "opProofCase3Outcome": "运营团队可以追溯交付数量为什么变化，而不必从导出表重新拼故事。",
+                "opProofCase3Step": "交付审核",
+                "opProofCase3Title": "在争议出现之前，就把证据留好。",
+                "opProofCase4Control": "已审核的交付记录连接到账单、发票、钱包和结算审核状态。",
+                "opProofCase4Issue": "供应商账单、客户发票、钱包变动、拒绝数和已审核完成数，常常在导出后才对账。",
+                "opProofCase4Outcome": "财务可以基于更清晰的证据链完成结算，不必让运营逐项解释差异。",
+                "opProofCase4Step": "结算",
+                "opProofCase4Title": "给财务一份可追溯的结算包。",
+                "opProofCasesLabel": "Sampora 处理的真实运营问题",
+                "opProofChip1Text": "围绕真实项目、供应商路由、审核和财务交接来设计。",
+                "opProofChip1Title": "实际供应商流程",
+                "opProofChip2Text": "由已经大规模运营样本供给的团队经验打磨。",
+                "opProofChip2Title": "行业网络支持",
+                "opProofChip3Text": "每个阶段都围绕记录、负责人、日志和结算证明来设计。",
+                "opProofChip3Title": "以证据为先的交付",
+                "opProofChip4Text": "团队可以先审阅流程，再迁移运营数据。",
+                "opProofChip4Title": "引导式上线",
+                "opProofControlLabel": "Sampora 控制项",
+                "opProofDemoCta": "预约流程演示",
+                "opProofExploreCta": "了解平台",
+                "opProofIssueLabel": "运营问题",
+                "opProofKicker": "运营证明",
+                "opProofLead": "Sampora 将经过验证的样本行业运营经验转化为 SaaS 工作流程，用于<b>项目启动、供应商路由、交付审核和结算证据</b>。",
+                "opProofLogoGridLabel": "合作方标识",
+                "opProofLogoHldtName": "HLDT Survey",
+                "opProofLogoHldtTag": "供给运营",
+                "opProofLogoNote": "这些标识代表与 Sampora 相关合作、支持或运营流程有关的部分组织。",
+                "opProofLogoPill": "样本生态",
+                "opProofLogoStageLabel": "部分合作方与供应商团队",
+                "opProofLogoTaskTag": "任务流程",
+                "opProofLogoTcTag": "企业运营",
+                "opProofLogoText": "样本行业组织示例，关联 Sampora 合作、支持和供应商侧工作流。",
+                "opProofLogoTitle": "部分合作方与供应商团队",
+                "opProofLogoUnitTag": "样本运营",
+                "opProofTitle": "基于真实的<em>样本供应商运营场景构建。</em>",
                 "outcome1": "结果：项目接收",
                 "outcome2": "结果：项目配置",
                 "outcome3": "结果：供应商分配",
@@ -6119,6 +6874,24 @@ body::before,
 <script src="assets/lead-attribution.js" defer></script>
 <script src="assets/sampora-cookie-preferences.js" defer></script>
 <script src="assets/footer-email-modal.js" defer></script>
+<script id="opv11-logo-selection">
+(function(){
+  const cards = Array.from(document.querySelectorAll('.opv11-brand-card'));
+  if (!cards.length) return;
+  const setActive = card => cards.forEach(item => item.classList.toggle('is-selected', item === card));
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => setActive(card));
+    card.addEventListener('focus', () => setActive(card));
+    card.addEventListener('click', () => setActive(card));
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        setActive(card);
+      }
+    });
+  });
+})();
+</script>
 <script src="https://plugin-code.salesmartly.com/js/project_693595_715565_1777101144.js"></script>
 </body>
 </html>
