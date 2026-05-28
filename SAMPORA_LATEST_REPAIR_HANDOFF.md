@@ -3497,3 +3497,143 @@ Historical detailed update-log entries that previously made this active handoff 
 **Verification run:** scoped operating-proof source scan found `Dashboard partner=0`, `Supplementary operations=0`, and one each for `Panel ops`, `Supply ops`, `Enterprise ops`, and `Task flow`; EN i18n scan confirmed the four demo logo tags and `Built with real <em>sample-supplier operations.</em>`; accent scan confirmed Unit `rgb(39, 176, 162)` and HLDT `rgb(56, 210, 255)`; script scan confirmed `opv11-logo-selection` still has `click`, `classList.toggle('is-selected')`, and now has `keydown` handling for `Enter` and `Space`; `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` returned `PASS final audit static checks`; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` returned `PASS static checks for 11 physical HTML files and 7 absent Chinese legacy redirects`.
 
 **Remaining failures / next agent:** no browser screenshot proof, visual acceptance, runtime geometry review, Lighthouse/axe, package/zip rebuild, staging, commit, push, or release validation was run. This is a scoped homepage source repair and is not acceptance-reviewed / 未做验收.
+
+### 2026-05-27 JST - Homepage operating proof CTA and logo hover-lock cleanup
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. Logo PNG assets, other HTML pages, QA scripts, V4/V5 folders, zips, screenshots, footer/contact/shared assets, `ACCEPTANCE_TESTS.md`, `ISSUE_LEDGER.md`, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** per the user's screenshots, the `Explore the platform` CTA was removed from the homepage operating-proof action row, leaving the adjacent `Book a workflow demo / 预约流程演示` CTA as the only action in that row. The green `sample ecosystem / 样本生态` logo-stage pill was removed from the visible source and EN/ZH translation keys. Logo cards no longer become permanently selected from mouse hover or focus, and no card starts pre-selected on load; persistent floating selection is now set only by click or keyboard activation.
+
+**Verification run:** TDD red source check first failed on the current page because the Explore CTA, two-action row, visible logo pill, `mouseenter`/`focus` selection handlers, and initial `is-selected` card were still present. Post-edit scoped source check returned `operating-proof scoped check OK`; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` returned `PASS static checks for 11 physical HTML files and 7 absent Chinese legacy redirects`; `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` returned `PASS final audit static checks`; `git diff --check -- "sampora-website-public-v3/index.html"` exited 0 with the existing LF/CRLF warning only.
+
+**Remaining failures / next agent:** no browser screenshot proof, visual acceptance, runtime geometry review, Lighthouse/axe, package/zip rebuild, staging, commit, push, or release validation was run. This is a scoped homepage source repair and is not acceptance-reviewed / 未做验收.
+
+### 2026-05-27 JST - Homepage translation-layer consolidation
+
+**Files changed:** `sampora-website-public-v3/index.html`, `ISSUE_LEDGER.md`, and this handoff only. Other HTML pages, shared assets, QA scripts, V4/V5 folders, zips, screenshots, `ACCEPTANCE_TESTS.md`, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** continuation of thread `019e6921-83f2-7b52-86b2-217e976cd2de`. The homepage no longer keeps a second chrome/footer translation layer for the same nav/footer copy: desktop nav dropped `data-sampora-nav`, footer visible copy now uses the main `data-i18n` dictionary, the old `applySamporaChromeTranslations` script and the independent `sampora-standard-footer-i18n` script were removed, and the mobile drawer labels now read from the main homepage dictionary through `window.__samporaTranslateKey`.
+
+**Verification run:** TDD red homepage i18n consolidation check first failed on duplicate nav helper attrs, chrome helper mutation path, `data-footer-i18n`, independent footer i18n script, and the mobile helper label object. Post-edit checks returned `homepage i18n consolidation check: OK`, `index inline script syntax: OK (4 scripts)`, `language layer structure check: OK`, `PASS header consistency check across 7 main pages`, `PASS static checks for 11 physical HTML files and 7 absent Chinese legacy redirects`, and `PASS final audit static checks`. `git diff --check -- "sampora-website-public-v3/index.html"` exited 0 with the existing LF/CRLF warning only.
+
+**Remaining failures / next agent:** no browser screenshot proof, visual acceptance, runtime geometry review, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. This is a scoped homepage source repair and is not acceptance-reviewed / 未做验收.
+
+### 2026-05-27 JST - Homepage header/lang CSS override cleanup
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. `ISSUE_LEDGER.md`, `ACCEPTANCE_TESTS.md`, other HTML pages, Operating proof copy/CSS/scripts, logo assets, QA scripts, screenshots, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** Package A homepage header/lang CSS cleanup removed the obsolete `final cleanup: unified navigation and language switcher` mini-block and duplicate mast-specific language style copies. The existing canonical `.lang` rules remain the language-switcher source, while the mobile mast block now carries the durable single-line 34px ghost CTA behavior directly. Desktop mast action rail geometry remains in the existing 430px rule; mobile primary CTA hiding and mobile nav toggle display rules remain present.
+
+**Verification run:** scoped source greps confirmed the obsolete final-cleanup comment is absent, no separate single-line `@media(max-width:760px){.mast .header-actions...` patch remains, and source rules for `.mobile-nav-toggle`, mobile hidden primary CTA, mobile 34px ghost CTA, and desktop `430px` action rail still exist. `git diff --check -- "sampora-website-public-v3/index.html" "SAMPORA_LATEST_REPAIR_HANDOFF.md"` exited 0 with existing LF/CRLF warnings only.
+
+**Remaining failures / next agent:** no browser visual acceptance, screenshots, runtime geometry review, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. This scoped CSS cleanup is not acceptance-reviewed / 未做验收.
+
+### 2026-05-27 JST - Homepage operating proof HLDT tag and CSS boundary cleanup
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. Header/lang CSS, footer/chrome i18n cleanup, other HTML pages, logo PNG assets, QA scripts, screenshots, zips, `ISSUE_LEDGER.md`, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** Package A homepage Operating proof scoped cleanup changed the visible HLDT logo tag from `Supply ops` to `Supplier Network Ops` in fallback HTML and EN i18n, changed the ZH `opProofLogoHldtTag` value from `供给运营` to `供应商网络运营`, added ASCII start/end comments around the Operating proof CSS block, and removed dead `.opv11-live-pill` / `.opv11-live-pill::before` CSS after the pill markup and i18n keys had already been removed by an earlier current change. Existing Operating proof card/layout/hover behavior was otherwise left unchanged.
+
+**Verification run:** RED source check first failed on missing `Supplier Network Ops`, remaining `Supply ops`, missing section comments, old ZH key value, and remaining `.opv11-live-pill`. Post-edit source checks returned `HLDT_EN_CHECK_OK`, `HLDT_ZH_CHECK_OK`, `OP_SECTION_COMMENT_CHECK_OK`, and `OPV11_LIVE_PILL_CHECK_OK`. `node "sampora-website-public-v3\qa-evidence\language-layer-structure-check.mjs"` returned `language layer structure check: OK`. `git diff --check -- "sampora-website-public-v3/index.html" "SAMPORA_LATEST_REPAIR_HANDOFF.md"` was run after the source edit and returned only existing LF/CRLF warnings.
+
+**Remaining failures / next agent:** no browser visual acceptance, screenshots, runtime geometry review, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. Existing unrelated dirty workspace changes remain preserved and unreviewed. This scoped homepage Operating proof repair is not acceptance-reviewed / 未做验收.
+
+### 2026-05-27 JST - Controller continuation closeout for thread 019e6994
+
+**Files changed by this continuation:** this handoff only. No source HTML, CSS, JS, assets, QA scripts, generated folders, zips, screenshots, staging, commit, or push were changed in this continuation. Prior Worker 1 and Worker 2 source/doc changes remain preserved.
+
+**Context closed:** continued interrupted controller thread `019e6994-ca5e-7142-9966-1983b6d1f4aa` after both implementation workers had completed. Worker 1 handled the homepage header/lang duplicate-style cleanup. Worker 2 handled the Operating proof HLDT tag and CSS-boundary cleanup. The controller did not dispatch additional workers or reopen visual acceptance.
+
+**Verification run:** fresh controller closeout checks returned `language layer structure check: OK`, `PASS final audit static checks`, `PASS static checks for 11 physical HTML files and 7 absent Chinese legacy redirects`, and `git diff --check -- "sampora-website-public-v3/index.html" "SAMPORA_LATEST_REPAIR_HANDOFF.md" "ISSUE_LEDGER.md"` exited 0 with existing LF/CRLF warnings only. Scoped source search confirmed `Supplier Network Ops` and Operating Proof section boundary comments are present, while the obsolete `final cleanup: unified navigation and language switcher`, old `Supply ops`, `opv11-live-pill`, and the separate single-line mast mobile CTA patch were not found.
+
+**Remaining failures / next agent:** no browser visual acceptance, screenshots, runtime geometry review, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. Existing unrelated dirty workspace changes and untracked artifacts remain preserved and unreviewed. This controller continuation is not acceptance-reviewed / 未做验收.
+
+### 2026-05-27 JST - Homepage Operating proof ZH title punctuation cleanup
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. Other HTML pages, CSS blocks, scripts, logo assets, QA scripts, generated folders, zips, screenshots, `ACCEPTANCE_TESTS.md`, `ISSUE_LEDGER.md`, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** user screenshot showed the Chinese Operating proof title ending with a full-width Chinese period inside `opProofTitle`. The repair changed the owning ZH dictionary value only, from `基于真实的<em>样本供应商运营场景构建。</em>` to `基于真实的<em>样本供应商运营场景构建.</em>`. No override layer, post-main language patch, CSS workaround, or browser-side text mutation was added.
+
+**Verification run:** TDD red source check first failed because the desired ASCII period value was missing. Post-edit encoding-safe scoped source check returned `OP_PROOF_ZH_PERIOD_CHECK_OK`; `language-layer-structure-check.mjs`, `final-audit-static-check.mjs`, and `page-layer-static-check.mjs` were rerun after the edit and returned OK/PASS. `git diff --check -- "sampora-website-public-v3/index.html" "SAMPORA_LATEST_REPAIR_HANDOFF.md"` exited 0 with existing LF/CRLF warnings only.
+
+**Remaining failures / next agent:** no browser visual acceptance, screenshots, runtime geometry review, full page-layer browser run, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. This scoped punctuation cleanup is not acceptance-reviewed / 未做验收.
+
+### 2026-05-27 JST - Homepage Operating proof ZH logo related-text copy fix
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. English copy, fallback markup, CSS, JS behavior, logo assets, QA scripts, other pages, generated V4/V5 folders, zips, screenshots, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** Package A homepage source-only Language/i18n repair changed the owning ZH `opProofLogoText` dictionary value from `样本行业组织示例，关联 Sampora 合作、支持和供应商侧工作流。` to `参与 Sampora 相关合作、支持和供应商侧工作流的样本行业组织。`. No overlay layer, Object.assign patch, runtime mutation, CSS workaround, duplicate dictionary, or English counterpart change was added.
+
+**Verification run:** TDD red source check first failed because ZH `opProofLogoText` still had the old value. Post-edit encoding-safe scoped source check returned `OP_PROOF_LOGO_TEXT_ZH_CHECK_OK`; `node "sampora-website-public-v3\qa-evidence\language-layer-structure-check.mjs"` returned `language layer structure check: OK`; `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` returned `PASS final audit static checks`; `git diff --check -- "sampora-website-public-v3/index.html" "SAMPORA_LATEST_REPAIR_HANDOFF.md"` was run after the source and handoff edits with only existing LF/CRLF warnings.
+
+**Remaining failures / next agent:** no browser screenshots, visual acceptance, runtime geometry review, full page-layer browser run, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. Existing unrelated dirty workspace changes remain preserved and unreviewed. This scoped homepage copy repair is not acceptance-reviewed / 未做验收.
+
+### 2026-05-27 JST - Homepage Ribbon hover-tip i18n cleanup
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. Operating proof logo copy, English visible chip labels, CSS, layout, logo assets, QA scripts, other pages, generated V4/V5 folders, zips, screenshots, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** user reported that Ribbon hover tips still showed English in the Chinese interface after the previous related-text repair. Root cause was that the Ribbon chip tooltip text was stored in hardcoded `data-tip` attributes used by `.chip[data-tip]::after`, while `applyTranslations` only updated visible text, HTML, aria-label, and native title attributes. The repair added `data-i18n-tip` ownership to the five Ribbon chips, added matching `chip1Tip` through `chip5Tip` values to the EN/ZH primary `translations` objects, and updated `applyTranslations` to write the current dictionary value back to `data-tip`. No overlay layer, post-main language patch, CSS workaround, duplicate dictionary, or browser-side one-off mutation was added.
+
+**Verification run:** TDD red source check first failed with `hasTipBinding: false`, `hasZhTips: false`, and `hasEnglishHardOnly: true`. Post-edit scoped source check returned `RIBBON_TIP_I18N_CHECK_OK`; `node "sampora-website-public-v3\qa-evidence\language-layer-structure-check.mjs"` returned `language layer structure check: OK`; `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` returned `PASS final audit static checks`; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` returned `PASS static checks for 11 physical HTML files and 7 absent Chinese legacy redirects`; `git diff --check -- "sampora-website-public-v3/index.html"` exited 0 with the existing LF/CRLF warning only.
+
+**Remaining failures / next agent:** no browser screenshots, visual acceptance, runtime geometry review, full page-layer browser run, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. Existing unrelated dirty workspace changes remain preserved and unreviewed. This scoped homepage hover-tip i18n repair is not acceptance-reviewed / 未做验收.
+
+### 2026-05-28 JST - Homepage role95 Role scenarios replacement
+
+**Files changed:** `sampora-website-public-v3/index.html`, `sampora-website-public-v3/assets/role-sample-operations-manager.png`, `sampora-website-public-v3/assets/role-supplier-network-manager.png`, `sampora-website-public-v3/assets/role-finance-operations-specialist.png`, and this handoff. Other pages, Operating Proof, header/footer, contact/backend, QA script source, generated V4/V5 folders, zips, screenshots, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** Worker 1 continued interrupted thread `019e6a82-cfef-7982-a774-a5337cb3859f` / `019e6a7a-22c3-7bc3-901a-aa7adcdcab6b` for the confirmed Package A homepage Role scenarios replacement. The old homepage `#customers` `proof-grid` / `quote-stack` / initials-avatar Role scenarios block was replaced with the `role95` role-card/image block from `E:/Downloads/sampora_role_scenarios_no_arrows_cards.html`. The three portrait images were extracted from line 6 of the parent-session JSONL and saved as normal PNG assets in role order: Sample Operations Manager, Supplier Network Manager, Finance Operations Specialist. No inline base64 images were embedded in `index.html`.
+
+**Verification run:** red source check before the repair failed because `#customers` still had no `role95` section and still used the old structure. Post-edit scoped source check confirmed `role95-section`, `role95-persona`, and `role95-flow` exist, the old `proof-grid`, `quote-stack`, `quote-role`, `.anon-icon`, and `.proof-panel` Role scenarios structures/CSS are absent, all three new asset references exist, no `data:image/` remains inside `#customers`, `role95-interaction` appears once, and `opv11-logo-selection` still appears once. Inline script syntax check parsed all 5 inline scripts. `node "sampora-website-public-v3\qa-evidence\language-layer-structure-check.mjs"` returned `language layer structure check: OK`; `node "sampora-website-public-v3\qa-evidence\final-audit-static-check.mjs"` returned `PASS final audit static checks`; `node "sampora-website-public-v3\qa-evidence\page-layer-static-check.mjs"` returned `PASS static checks for 11 physical HTML files and 7 absent Chinese legacy redirects`.
+
+**Remaining failures / next agent:** no browser screenshots, visual acceptance, runtime geometry review, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. Existing unrelated dirty workspace changes remain preserved and unreviewed. This scoped homepage Role scenarios replacement is not acceptance-reviewed / 未做验收.
+
+### 2026-05-28 JST - Homepage role95 click-lock and path-chip distribution
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. Role portrait PNG assets, other HTML pages, Operating Proof, header/footer, contact/backend, QA script source, generated V4/V5 folders, zips, screenshots, `ISSUE_LEDGER.md`, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** per the user's screenshots, Package A homepage `#customers` / Role scenarios cards no longer become permanently floated from mouse hover or focus. The first role card no longer starts with a preset persistent `is-active` class; persistent floating selection is now set only by click or Enter/Space keyboard activation, while hover/focus-visible remains transient CSS feedback. The bottom `.role95-path` chips now use equal three-column grid tracks with centered full-width chips so EN and ZH labels distribute evenly inside each large card.
+
+**Verification run:** scoped TDD red source check first failed on the preset active role card, `mouseenter` and `focus` persistent active handlers, missing keyboard activation, and flex/natural-width path chips. Post-edit scoped source check returned `ROLE95_SCOPED_CHECK_OK`; inline script syntax check returned `INLINE_SCRIPT_SYNTAX_OK 5`; `git diff --check -- "sampora-website-public-v3/index.html"` exited 0 with the existing LF/CRLF warning only.
+
+**Remaining failures / next agent:** no browser screenshots, visual acceptance, runtime geometry review, full page-layer browser run, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. Existing unrelated dirty workspace changes remain preserved and unreviewed. This scoped homepage Role scenarios behavior/layout repair is not acceptance-reviewed / 未做验收.
+
+### 2026-05-28 JST - Homepage role95 badge and first-card copy update
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. Role portrait PNG assets, other HTML pages, Operating Proof, header/footer, contact/backend, QA script source, generated V4/V5 folders, zips, screenshots, `ISSUE_LEDGER.md`, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** per the user's screenshots, the Role scenarios side badge text changed from `Workflow cards` / `工作流卡片` to `Handoff map` / `交接地图`. The first role card Sampora paragraph changed in fallback HTML and EN dictionary to `Keep project requirements, quota and launch rules, supplier allocation, redirect/callback records, and review status in one project trail.` The ZH dictionary counterpart was synchronized to `把项目需求、配额和上线规则、供应商分配、重定向/回调记录和审核状态保留在同一条项目轨迹里。`.
+
+**Verification run:** scoped TDD red source check first failed on old EN/ZH fallback and dictionary values for `role95FlowBadge` and `role95Card1Control`. Post-edit scoped source check returned `ROLE95_COPY_SCOPED_CHECK_OK`; `node "sampora-website-public-v3\qa-evidence\language-layer-structure-check.mjs"` returned `language layer structure check: OK`; inline script syntax check returned `INLINE_SCRIPT_SYNTAX_OK 5`; `git diff --check -- "sampora-website-public-v3/index.html"` exited 0 with the existing LF/CRLF warning only.
+
+**Remaining failures / next agent:** no browser screenshots, visual acceptance, runtime geometry review, full page-layer browser run, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. Existing unrelated dirty workspace changes remain preserved and unreviewed. This scoped homepage Role scenarios copy repair is not acceptance-reviewed / 未做验收.
+
+### 2026-05-28 JST - Homepage role95 first-card path labels update
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. Role portrait PNG assets, other HTML pages, Operating Proof, header/footer, contact/backend, QA script source, generated V4/V5 folders, zips, screenshots, `ISSUE_LEDGER.md`, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** per the user's screenshot, the first Role scenarios card path labels changed from `Project launch / Delivery tracking / Review records` to `Project launch / Redirect / callback / Review status` in fallback HTML and the EN dictionary. The ZH dictionary counterpart was synchronized from `项目上线 / 交付跟踪 / 审核记录` to `项目上线 / 重定向 / 回调 / 审核状态` inside the same three chip slots.
+
+**Verification run:** scoped TDD red source check first failed on the old fallback, EN dictionary, and ZH dictionary `customer1Impact` values. Post-edit scoped source check returned `ROLE95_PATH_COPY_SCOPED_CHECK_OK`; `node "sampora-website-public-v3\qa-evidence\language-layer-structure-check.mjs"` returned `language layer structure check: OK`; inline script syntax check returned `INLINE_SCRIPT_SYNTAX_OK 5`; `git diff --check -- "sampora-website-public-v3/index.html"` exited 0 with the existing LF/CRLF warning only.
+
+**Remaining failures / next agent:** no browser screenshots, visual acceptance, runtime geometry review, full page-layer browser run, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. Existing unrelated dirty workspace changes remain preserved and unreviewed. This scoped homepage Role scenarios path-label repair is not acceptance-reviewed / 未做验收.
+
+### 2026-05-28 JST - Homepage role95 role copy and Handoff Map update
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. CSS, layout, scripts, role portrait PNG assets, other HTML pages, Operating Proof, header/footer, contact/backend, QA script source, generated folders, zips, screenshots, `ISSUE_LEDGER.md`, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** `[CONFIRMED]` Package A homepage copy/i18n repair replaced the old `#customers` / `role95` role-card and Handoff Map wording in fallback HTML plus the existing EN/ZH primary translation values. The repair updated role needs/control copy, the first image alt text, `role95Lead`, `proofPanelTitle`, `proofPanelText`, Handoff Map node labels/titles/text, and the requested Supplier Network impact tags. No post-main override layer, duplicate dictionary, `Object.assign` patch, runtime mutation, CSS workaround, layout change, or script behavior change was added.
+
+**Verification run:** scoped source red check first failed on the old role95/Handoff Map copy. Post-edit scoped source copy check returned `ROLE95_COPY_SCOPED_CHECK_OK`; `node "sampora-website-public-v3\qa-evidence\language-layer-structure-check.mjs"` returned `language layer structure check: OK`; inline script syntax check returned `INLINE_SCRIPT_SYNTAX_OK 5`; `git diff --check -- "sampora-website-public-v3/index.html" "SAMPORA_LATEST_REPAIR_HANDOFF.md"` exited 0 with existing LF/CRLF warnings only.
+
+**Remaining failures / next agent:** no browser screenshots, visual acceptance, runtime geometry review, full page-layer browser run, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. Existing unrelated dirty workspace changes remain preserved and unreviewed. This scoped homepage role95 copy repair is not acceptance-reviewed / 未做验收.
+
+### 2026-05-28 JST - Homepage role95 Handoff Map title wording
+
+**Files changed:** `sampora-website-public-v3/index.html` and this handoff only. CSS, layout, scripts, images, other pages, QA scripts, `ISSUE_LEDGER.md`, screenshots, zips, staging, commit, and push were intentionally untouched.
+
+**Issue addressed:** per the user's screenshot and exact wording request, the Handoff Map title at `#customers` / `proofPanelTitle` changed from `Role needs, connected in one operating layer` to `Different role needs, connected in one operating layer`; the ZH counterpart changed from `角色需求，连接在同一运营层` to `把不同角色的需求，连接在同一运营层`. The change landed in fallback HTML plus the existing EN/ZH primary translation values only.
+
+**Verification run:** scoped red source check first failed on the old title values. Post-edit scoped source check returned `ROLE95_TITLE_CHECK_OK`; `node "sampora-website-public-v3\qa-evidence\language-layer-structure-check.mjs"` returned `language layer structure check: OK`; `git diff --check -- "sampora-website-public-v3/index.html" "SAMPORA_LATEST_REPAIR_HANDOFF.md"` exited 0 with existing LF/CRLF warnings only.
+
+**Remaining failures / next agent:** no browser screenshots, visual acceptance, runtime geometry review, full page-layer browser run, Lighthouse/axe, package/zip rebuild, staging, commit, push, release validation, or V5 artifact validation was run. Existing unrelated dirty workspace changes remain preserved and unreviewed. This scoped homepage title copy repair is not acceptance-reviewed / 未做验收.
