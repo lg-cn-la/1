@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
 <link rel="canonical" href="https://getsampora.com/resources.html">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <style>
         :root {
             --ink: #0A1628;
@@ -2628,7 +2628,7 @@ body::before {
 <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
 <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
 <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
-<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
+<a href="about.html" data-footer-i18n="footerWorkflow">Workflow</a>
 </div>
 <div class="sampora-footer-col">
 <h3 data-footer-i18n="footerResources">Resources</h3>
@@ -2648,11 +2648,12 @@ body::before {
 <div class="sampora-footer-contact">
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China</span></div>
 </div>
 <div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div>
 </div>
 </footer>
+<script src="assets/language-preference.js"></script>
 <script>
         const $ = (s, r = document) => r.querySelector(s);
         const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -2747,7 +2748,7 @@ body::before {
     "footerTrial": "Start trial",
     "footerJoin": "Talk to sales",
     "footerUpdates": "Information updates",
-    "footerAddress": "Room 1506, Block A, Hengyangguangcheng, Lu'an, Anhui, China",
+    "footerAddress": "Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China",
     "footerCopyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
     "footerCompanyLegal": "Anhui Jiayu Enterprise Service Co., Ltd.","privacy":"Privacy Policy","cookie":"Cookie Policy","terms":"Terms of Use","preferences":"Cookie Preferences",
     "copyright": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
@@ -2879,7 +2880,7 @@ body::before {
     "footerTrial": "开始试用",
     "footerJoin": "联系销售",
     "footerUpdates": "资讯获取",
-    "footerAddress": "中国安徽省六安市恒阳光城A座1506",
+    "footerAddress": "中国安徽省六安市恒生阳光城 A 座 1506 室",
     "footerCopyright": "© 2026",
     "footerCompanyLegal": "安徽省嘉禹企业服务有限公司","privacy":"隐私政策","cookie":"Cookie 政策","terms":"使用条款","preferences":"Cookie 偏好设置",
     "copyright": "© 2026 安徽省嘉禹企业服务有限公司",
@@ -3380,7 +3381,9 @@ body::before {
         const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("in-view"); observer.unobserve(entry.target); } }), { threshold: .12 });
         $$(".reveal").forEach(el => observer.observe(el));
 
-        try { const saved = localStorage.getItem("sampora_lang"); if (saved === "zh" || saved === "en") state.lang = saved; } catch (e) { }
+        const preferredLang = window.SamporaLanguagePreference?.getInitialLang?.();
+        if (preferredLang === "zh" || preferredLang === "en") state.lang = preferredLang;
+        else try { const saved = localStorage.getItem("sampora_lang"); if (saved === "zh" || saved === "en") state.lang = saved; } catch (e) { }
         startPacketMotion();
         renderAll();
         restartTopologyCycle();
@@ -3411,8 +3414,8 @@ body::before {
 <script id="sampora-standard-footer-i18n">
 (function(){
   const copy={
-    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'}};
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',footerWorkflow:'Workflow',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengsheng Sunshine City, Lu\'an, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',footerWorkflow:'工作流程',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒生阳光城 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'}};
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
     if(explicitRaw==='zh')return 'zh';

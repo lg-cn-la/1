@@ -84,6 +84,26 @@ const legalPageExpectations = {
   },
 };
 
+const correctedFooterAddress = {
+  en: /Room\s+1506,\s*Block\s+A,\s*Hengsheng\s+Sunshine\s+City,\s*Lu['’]?an,\s*Anhui,\s*China/i,
+  zh: /中国安徽省六安市恒生阳光城\s*A\s*座\s*1506\s*室?/,
+};
+
+const oldFooterAddressPatterns = [
+  /Hengyang\s+Guangcheng/i,
+  /Hengyangguangcheng/i,
+  /恒阳广场/,
+  /恒阳光城/,
+  /中国安徽省六安市恒阳广场\s*A\s*座\s*1506\s*室/,
+];
+
+const forbidden404SupportCopy = [
+  'Delivery workflow / Live',
+  'Minimal production handoff',
+  '交付工作流 / 在线',
+  '最小生产交付包',
+];
+
 function checkStyleBlock(file, css, index) {
   let depth = 0;
   let quote = '';
@@ -144,6 +164,17 @@ for (const file of publicHtmlPages) {
   if (/script\.google\.com\/macros|\/macros\/s\//i.test(html)) fail(`${file}: public HTML must not directly reference Google Apps Script`);
 }
 
+for (const file of publicHtmlPages) {
+  const html = read(file);
+  const hasFooterAddress = /sampora-footer-contact-item[\s\S]{0,260}(?:LOC|addressText)|(?:addressText|footerAddress)\s*:|data-(?:footer-)?i18n=["'](?:addressText|footerAddress)["']/i.test(html);
+  if (!hasFooterAddress) continue;
+  for (const pattern of oldFooterAddressPatterns) {
+    if (pattern.test(html)) fail(`${file}: old footer address variant remains (${pattern})`);
+  }
+  if (!correctedFooterAddress.en.test(html)) fail(`${file}: footer address surface missing corrected English address`);
+  if (!correctedFooterAddress.zh.test(html)) fail(`${file}: footer address surface missing corrected Chinese address`);
+}
+
 for (const file of chineseLegacyRedirectPages) {
   if (fs.existsSync(path.join(root, file))) {
     fail(`${file}: Chinese legacy redirect HTML file must not be present in public root; use a server/CDN rewrite rule`);
@@ -190,6 +221,17 @@ for (const [file, expected] of Object.entries(legalPageExpectations)) {
   if (!currentLinkPattern.test(html)) fail(`${file}: current footer legal link is not marked aria-current="page"`);
   const currentCount = (html.match(/aria-current=["']page["']/g) || []).length;
   if (currentCount !== 1) fail(`${file}: expected one aria-current page marker, found ${currentCount}`);
+}
+
+{
+  const notFound = read('404.html');
+  for (const text of forbidden404SupportCopy) {
+    if (notFound.includes(text)) fail(`404.html: stale public support wording remains: ${text}`);
+  }
+  const hero = notFound.match(/<section\b[^>]*class=["'][^"']*legal-hero[^"']*["'][\s\S]*?<\/section>/i)?.[0] || notFound;
+  if (/<a\b(?=[^>]*href=["']contact\.html["'])[\s\S]*?(?:Contact sales|联系销售)/i.test(hero)) {
+    fail('404.html: hero sales CTA must use contact.html?intent=contact_sales#contact-form, not bare contact.html');
+  }
 }
 
 for (const file of officialPages) {
@@ -331,7 +373,8 @@ for (const file of ['solutions.html', 'resources.html']) {
   else if (/(?:body|payload|FormData|URLSearchParams|name|email|company|message)\b/i.test(pendingSetItem[1])) {
     fail('contact.html: pending sessionStorage marker must not store form fields or user values');
   }
-  if (!/if\s*\(\s*res\.ok\s*&&\s*result\.ok\s*===\s*true\s*\)\s*{[\s\S]*setSubmitFeedback\('success'\)[\s\S]*sessionStorage\.removeItem\('sampora_contact_pending'\)[\s\S]*form\.reset\(\)/.test(contact)) fail('contact.html: success state must be backend-ok only and clear pending/input only there');
+  if (!/const\s+responsePayload\s*=\s*result\.data\s*\?\?\s*result\s*;/.test(contact)) fail('contact.html: success state must normalize data-wrapped backend payloads');
+  if (!/if\s*\(\s*res\.ok\s*&&\s*responsePayload\.ok\s*===\s*true\s*\)\s*{[\s\S]*setSubmitFeedback\('success'\)[\s\S]*sessionStorage\.removeItem\('sampora_contact_pending'\)[\s\S]*form\.reset\(\)/.test(contact)) fail('contact.html: success state must be backend-ok only and clear pending/input only there');
   if (!/setSubmitFeedback\('failure'\)/.test(contact)) fail('contact.html: failure feedback path missing');
 }
 

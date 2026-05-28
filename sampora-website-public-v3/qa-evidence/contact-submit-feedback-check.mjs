@@ -145,6 +145,11 @@ async function createServer() {
       res.end(renderContactVariant('/__contact_success'));
       return;
     }
+    if (url.pathname === '/contact-live-data-success.html') {
+      res.writeHead(200, { 'content-type': 'text/html' });
+      res.end(renderContactVariant('/__contact_data_success'));
+      return;
+    }
     if (url.pathname === '/contact-live-failure.html') {
       res.writeHead(200, { 'content-type': 'text/html' });
       res.end(renderContactVariant('/__contact_failure'));
@@ -173,6 +178,16 @@ async function createServer() {
         });
         res.end('{"ok":true}');
       }, 800);
+      return;
+    }
+    if (url.pathname === '/__contact_data_success') {
+      setTimeout(() => {
+        res.writeHead(200, {
+          'content-type': 'application/json',
+          'access-control-allow-origin': '*',
+        });
+        res.end('{"data":{"ok":true}}');
+      }, 500);
       return;
     }
     if (url.pathname === '/__contact_failure') {
@@ -319,6 +334,37 @@ try {
     const successParams = parseParams(successRequests.at(-1).postData);
     assertFullRequestBody('live success request body', successParams);
     assertLeadContext('live success request body', successParams, true);
+  }
+
+  await page.goto(`${base}/contact-live-data-success.html?lang=en&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });
+  await page.locator('#contact-form').scrollIntoViewIfNeeded();
+  const dataSuccessInitial = await readFeedback(page);
+  if (!dataSuccessInitial.exists) fail('live data-wrapped success initial: inline feedback element missing');
+  const dataSuccessRequestStart = contactRequests.length;
+  await fillForm(page);
+  await page.click('#contactForm button[type="submit"]');
+  await page.waitForFunction(() => document.querySelector('#contactSubmitFeedback')?.dataset?.state === 'submitting');
+  assertMinimalPendingMarker('live data-wrapped success pending storage', await readPendingMarker(page));
+  await page.waitForFunction(() => {
+    const state = document.querySelector('#contactSubmitFeedback')?.dataset?.state;
+    return state && state !== 'submitting';
+  });
+  expectFeedbackState('live data-wrapped success', await readFeedback(page), 'success');
+
+  const dataSuccessValues = await readFormValues(page);
+  if (dataSuccessValues.name || dataSuccessValues.company || dataSuccessValues.email || dataSuccessValues.message) {
+    fail(`live data-wrapped success did not clear user input: ${JSON.stringify(dataSuccessValues)}`);
+  }
+  const dataSuccessPending = await page.evaluate(() => sessionStorage.getItem('sampora_contact_pending') || '');
+  if (dataSuccessPending) fail(`live data-wrapped success did not clear pending storage: ${dataSuccessPending}`);
+
+  const dataSuccessRequests = contactRequests.slice(dataSuccessRequestStart).filter(req => req.url.includes('/__contact_data_success'));
+  if (!dataSuccessRequests.length) {
+    fail('live data-wrapped success did not issue local mock backend request');
+  } else {
+    const dataSuccessParams = parseParams(dataSuccessRequests.at(-1).postData);
+    assertFullRequestBody('live data-wrapped success request body', dataSuccessParams);
+    assertLeadContext('live data-wrapped success request body', dataSuccessParams, true);
   }
 
   await page.goto(`${base}/contact-live-json-failure.html?lang=en&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });

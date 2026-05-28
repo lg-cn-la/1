@@ -19,6 +19,7 @@ const targetPages = [
 
 const legalPages = ['privacy.html', 'cookie-policy.html', 'terms.html'];
 const salesmartlyUrl = 'https://' + 'plugin-code.salesmartly.com/js/project_693595_715565_1777101144.js';
+const salesmartlyHost = 'https://' + 'plugin-code.salesmartly.com';
 const directScriptTag = `<script src="${salesmartlyUrl}"></script>`;
 const removedAiSupportResidue = [
   'sampora_ai_support_notice_ack',
@@ -64,6 +65,24 @@ function listFiles(dir, filter) {
   });
 }
 
+function getAttribute(tag, name) {
+  return tag.match(new RegExp(`\\b${name}\\s*=\\s*(['"])([\\s\\S]*?)\\1`, 'i'))?.[2] || '';
+}
+
+function getCspMetaContents(html) {
+  return (html.match(/<meta\b[^>]*>/gi) || [])
+    .filter(tag => /^Content-Security-Policy$/i.test(getAttribute(tag, 'http-equiv')))
+    .map(tag => getAttribute(tag, 'content'))
+    .filter(Boolean);
+}
+
+function getCspDirective(csp, directiveName) {
+  return csp
+    .split(';')
+    .map(part => part.trim())
+    .find(part => part.toLowerCase().startsWith(`${directiveName.toLowerCase()} `)) || '';
+}
+
 for (const page of targetPages) {
   const html = readRoot(page);
   if (!html) continue;
@@ -80,6 +99,20 @@ for (const page of targetPages) {
   }
   for (const text of oldLowFrictionConflictCopy) {
     if (html.includes(text)) failures.push(`${page}: contains old AI confirmation copy ${text}`);
+  }
+}
+
+{
+  const about = readRoot('about.html');
+  if (about && about.includes(salesmartlyUrl)) {
+    const cspMetaContents = getCspMetaContents(about);
+    for (const csp of cspMetaContents) {
+      const scriptSrc = getCspDirective(csp, 'script-src');
+      const scriptSrcTokens = scriptSrc.split(/\s+/).slice(1);
+      if (!scriptSrc || !scriptSrcTokens.includes(salesmartlyHost)) {
+        failures.push(`about.html: CSP script-src must allow ${salesmartlyHost} when SaleSmartly is loaded`);
+      }
+    }
   }
 }
 

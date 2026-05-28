@@ -34,6 +34,8 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
 let lang = (() => {
+  const preferred = window.SamporaLanguagePreference?.getInitialLang?.();
+  if (preferred === 'zh' || preferred === 'en') return preferred;
   try {
     const v = localStorage.getItem('sampora_lang') || 'en';
     return v === 'zh' || v === 'en' ? v : 'en';

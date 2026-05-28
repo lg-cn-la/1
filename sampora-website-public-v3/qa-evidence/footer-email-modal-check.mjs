@@ -27,6 +27,28 @@ function read(rel) {
   return fs.readFileSync(file, 'utf8');
 }
 
+function normalizeSelector(selector) {
+  return selector.trim().replace(/\s+/g, ' ');
+}
+
+function ruleBodiesForSelector(css, selector) {
+  const normalized = normalizeSelector(selector);
+  const bodies = [];
+  for (const match of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const selectors = match[1].split(',').map(normalizeSelector);
+    if (selectors.includes(normalized)) bodies.push(match[2]);
+  }
+  return bodies;
+}
+
+function mergedRuleBody(css, selector) {
+  return ruleBodiesForSelector(css, selector).join('\n');
+}
+
+function hasForcedWhiteText(body) {
+  return /\bcolor\s*:\s*(?:#(?:fff|ffffff)\b|white\b|rgb\(\s*255\s*,\s*255\s*,\s*255\s*\))/i.test(body);
+}
+
 for (const page of pages) {
   const html = read(page);
   if (!html) continue;
@@ -39,8 +61,31 @@ for (const page of pages) {
     continue;
   }
   const footer = html.slice(footerStart, footerEnd);
+  const productCol = footer.match(/<div class=["']sampora-footer-col["']>\s*<h3 data-(?:footer-)?i18n=["']footerProduct["']>Product<\/h3>[\s\S]*?<\/div>/)?.[0] || '';
+  const getStartedCol = footer.match(/<div class=["']sampora-footer-col["']>\s*<h3 data-(?:footer-)?i18n=["']footerGetStarted["']>Get started<\/h3>[\s\S]*?<\/div>/)?.[0] || '';
   const triggerCount = (footer.match(/data-footer-email-open/g) || []).length;
-  if (triggerCount < 2) failures.push(`${page}: expected footer email triggers in Product and Get started columns, found ${triggerCount}`);
+  if (triggerCount < 1) failures.push(`${page}: expected footer email trigger in Get started column, found ${triggerCount}`);
+  if (!productCol) {
+    failures.push(`${page}: missing footer Product column`);
+  } else {
+    if (!/<a\b(?=[^>]*href=["']about\.html["'])(?=[^>]*data-(?:footer-)?i18n=["']footerWorkflow["'])[^>]*>\s*Workflow\s*<\/a>/i.test(productCol)) {
+      failures.push(`${page}: footer Product column must use i18n-owned Workflow link to about.html`);
+    }
+    if (/data-footer-email-open/.test(productCol)) {
+      failures.push(`${page}: footer Product column must not open the contact modal`);
+    }
+    if (!/footerWorkflow\s*:\s*['"]Workflow['"]|["']footerWorkflow["']\s*:\s*["']Workflow["']/.test(html)) {
+      failures.push(`${page}: missing English footerWorkflow copy`);
+    }
+    if (!/footerWorkflow\s*:\s*['"]工作流程['"]|["']footerWorkflow["']\s*:\s*["']工作流程["']/.test(html)) {
+      failures.push(`${page}: missing Chinese footerWorkflow copy`);
+    }
+  }
+  if (!getStartedCol) {
+    failures.push(`${page}: missing footer Get started column`);
+  } else if (!/type=["']button["'][^>]*data-footer-email-open|data-footer-email-open[^>]*type=["']button["']/.test(getStartedCol)) {
+    failures.push(`${page}: footer Get started contact trigger is not a button`);
+  }
   if (/href=["']contact\.html["'][^>]*data-(?:i18n|footer-i18n)=["'](?:contact|navContact)["']/.test(footer)) {
     failures.push(`${page}: footer Contact still links to contact.html`);
   }
@@ -128,6 +173,32 @@ if (css) {
   if (!css.includes('.footer-email-mark::before,')) failures.push('assets/footer-email-modal.css: missing homepage shared first expanding ring');
   const liveRule = css.match(/\.footer-email-live:empty\s*\{[^}]*\}/s)?.[0] || '';
   if (!liveRule.includes('display: none')) failures.push('assets/footer-email-modal.css: empty footer email live row must not reserve space');
+
+  const footerButton = '#footer .sampora-footer-col .sampora-footer-link-button';
+  const footerButtonBody = mergedRuleBody(css, footerButton);
+  const footerButtonAfterBody = mergedRuleBody(css, `${footerButton}::after`);
+  const footerButtonHoverBody = mergedRuleBody(css, `${footerButton}:hover`);
+  const footerButtonFocusBody = mergedRuleBody(css, `${footerButton}:focus-visible`);
+  const footerButtonHoverAfterBody = mergedRuleBody(css, `${footerButton}:hover::after`);
+  const footerButtonFocusAfterBody = mergedRuleBody(css, `${footerButton}:focus-visible::after`);
+
+  if (!footerButtonBody) failures.push(`assets/footer-email-modal.css: missing scoped footer trigger rule ${footerButton}`);
+  if (footerButtonBody && !/position:\s*relative/.test(footerButtonBody)) failures.push('assets/footer-email-modal.css: footer trigger button must support underline positioning');
+  if (footerButtonBody && !/transition:\s*[^;]*(?:color|transform|text-shadow)/.test(footerButtonBody)) failures.push('assets/footer-email-modal.css: footer trigger button missing link-like motion transition');
+  if (hasForcedWhiteText(footerButtonBody)) failures.push('assets/footer-email-modal.css: footer trigger button must not force white text');
+
+  if (!footerButtonAfterBody) failures.push('assets/footer-email-modal.css: missing footer trigger underline pseudo-element');
+  if (footerButtonAfterBody && !/transform:\s*scaleX\(0\)/.test(footerButtonAfterBody)) failures.push('assets/footer-email-modal.css: footer trigger underline must start collapsed');
+  if (footerButtonAfterBody && !/transition:\s*transform\b/.test(footerButtonAfterBody)) failures.push('assets/footer-email-modal.css: footer trigger underline missing transform transition');
+
+  if (!footerButtonHoverBody || !footerButtonFocusBody) failures.push('assets/footer-email-modal.css: footer trigger missing hover/focus-visible motion parity selectors');
+  const interactiveBody = `${footerButtonHoverBody}\n${footerButtonFocusBody}`;
+  if (interactiveBody.trim() && !/transform:\s*translateX\(/.test(interactiveBody)) failures.push('assets/footer-email-modal.css: footer trigger hover/focus must keep link-like motion parity');
+  if (hasForcedWhiteText(interactiveBody)) failures.push('assets/footer-email-modal.css: footer trigger hover/focus must not force white text');
+
+  if (!footerButtonHoverAfterBody || !footerButtonFocusAfterBody) failures.push('assets/footer-email-modal.css: footer trigger missing hover/focus underline parity selectors');
+  const interactiveAfterBody = `${footerButtonHoverAfterBody}\n${footerButtonFocusAfterBody}`;
+  if (interactiveAfterBody.trim() && !/transform:\s*scaleX\(1\)/.test(interactiveAfterBody)) failures.push('assets/footer-email-modal.css: footer trigger underline must expand on hover/focus');
 }
 
 const indexHtml = read('index.html');

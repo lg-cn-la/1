@@ -15,6 +15,9 @@
   }
 
   function readSavedLang(){
+    if (window.SamporaLanguagePreference?.savedLang) {
+      return window.SamporaLanguagePreference.savedLang();
+    }
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (isSupported(saved)) return saved;
@@ -30,6 +33,9 @@
   }
 
   function currentLang(){
+    const preferred = window.SamporaLanguagePreference?.getCurrentLang?.();
+    if (isSupported(preferred)) return preferred;
+
     const active = languageControls().find(btn => (
       btn.classList.contains('active') || btn.getAttribute('aria-pressed') === 'true'
     ));

@@ -1,21 +1,54 @@
-.sampora-footer-link-button {
+#footer .sampora-footer-col .sampora-footer-link-button {
   appearance: none;
   border: 0;
   background: transparent;
-  color: inherit;
+  color: rgba(218, 230, 246, .72) !important;
   cursor: pointer;
   display: block;
+  width: fit-content;
+  max-width: 100%;
   font: inherit;
-  padding: 0;
+  font-size: 15px;
+  line-height: 1.42;
+  margin: 0 0 13px;
+  overflow-wrap: anywhere;
+  padding: 1px 0 2px;
+  position: relative;
   text-align: left;
+  text-decoration: none;
+  transition:
+    color .18s var(--ease, cubic-bezier(.2, .7, .2, 1)),
+    transform .18s var(--ease, cubic-bezier(.2, .7, .2, 1)),
+    text-shadow .18s var(--ease, cubic-bezier(.2, .7, .2, 1));
 }
 
-.sampora-footer-link-button:hover,
-.sampora-footer-link-button:focus-visible {
-  color: var(--cyan, #38d2ff);
+#footer .sampora-footer-col .sampora-footer-link-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--cyan, #38D2FF), transparent);
+  opacity: .75;
+  transition: transform .18s var(--ease, cubic-bezier(.2, .7, .2, 1));
 }
 
-.sampora-footer-link-button:focus-visible {
+#footer .sampora-footer-col .sampora-footer-link-button:hover,
+#footer .sampora-footer-col .sampora-footer-link-button:focus-visible {
+  color: var(--cyan2, #7BE3FF) !important;
+  transform: translateX(2px);
+  text-shadow: 0 0 18px rgba(56, 216, 255, .20);
+}
+
+#footer .sampora-footer-col .sampora-footer-link-button:hover::after,
+#footer .sampora-footer-col .sampora-footer-link-button:focus-visible::after {
+  transform: scaleX(1);
+}
+
+#footer .sampora-footer-col .sampora-footer-link-button:focus-visible {
   outline: 2px solid rgba(56, 210, 255, .65);
   outline-offset: 4px;
   border-radius: 6px;

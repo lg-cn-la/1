@@ -941,7 +941,7 @@
         }
 
 
-        /* 缁熶竴椤堕儴瀵艰埅锛氳鈥滆仈绯绘垜浠€濋〉涓庝骇鍝?/ 瑙ｅ喅鏂规 / 璧勬簮 / 鐗堟湰鏂规椤典繚鎸佸悓涓€濂?tab 鏍?*/
+        /* Align contact page top navigation with the shared page header system. */
         .top-strip {
             position: sticky;
             top: 0;
@@ -1575,7 +1575,7 @@ main > section {
                     <article class="direct-card amber">
                         <span class="direct-icon">D</span>
                         <h3 data-i18n="directDemoTitle">Demo path</h3>
-                        <strong><a href="contact.html?intent=book_demo#contact-form" data-i18n="directDemoStrong">Book a product walkthrough</a></strong>
+                        <strong><a href="contact.html?intent=book_demo#contact-form" data-i18n="directDemoStrong">Book a demo</a></strong>
                         <p data-i18n="directDemoText">For teams that want to review project intake, supplier allocation, review, and settlement workflows.</p>
                     </article>
 
@@ -1608,7 +1608,7 @@ main > section {
                     <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
                     <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
                     <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
-                    <button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
+                    <a href="about.html" data-footer-i18n="footerWorkflow">Workflow</a>
                 </div>
                 <div class="sampora-footer-col">
                     <h3 data-footer-i18n="footerResources">Resources</h3>
@@ -1628,7 +1628,7 @@ main > section {
             <div class="sampora-footer-contact">
                 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
                 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
-                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
+                <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China</span></div>
             </div>
             <div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div>
         </div>
@@ -1638,7 +1638,8 @@ main > section {
     <div class="toast" id="toastSuccess"><b data-i18n="successTitle">Request submitted</b><span data-i18n="successText">Your request has been submitted. Our team will review your setup and follow up with the right next step.</span></div>
     <div class="toast" id="toastFailure"><b data-i18n="failureTitle">Submission failed</b><span data-i18n="failureText">We could not send the request. Please try again or contact sales@getsampora.com.</span></div>
 
-<script>
+  <script src="assets/language-preference.js"></script>
+  <script>
 (function(){
   var $ = function(selector, root){ return (root || document).querySelector(selector); };
   var $$ = function(selector, root){ return Array.from((root || document).querySelectorAll(selector)); };
@@ -1715,7 +1716,7 @@ main > section {
       directSalesTitle: 'Sales',
       directSalesText: 'For trial, demo, pricing, and enterprise discussions.',
       directDemoTitle: 'Demo path',
-      directDemoStrong: 'Book a product walkthrough',
+      directDemoStrong: 'Book a demo',
       directDemoText: 'For teams that want to review project intake, supplier allocation, review, and settlement workflows.',
       directResourceTitle: 'Resources',
       directResourceStrong: 'View manuals',
@@ -1735,7 +1736,7 @@ main > section {
       footerTalkToSales: 'Talk to sales',
       cardSupportTitle: 'View manuals',
       cardCommunityTitle: 'Talk to sales',
-      addressText: 'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',
+      addressText: 'Room 1506, Block A, Hengsheng Sunshine City, Lu\'an, Anhui, China',
       footerCopyright: '© 2026',
       footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences',
       toastTitle: 'Form connection pending',
@@ -1817,7 +1818,7 @@ main > section {
       directSalesTitle: '销售咨询',
       directSalesText: '适用于试用、演示、价格和企业方案咨询。',
       directDemoTitle: '演示路径',
-      directDemoStrong: '预约产品演示',
+      directDemoStrong: '预约演示',
       directDemoText: '适用于希望查看项目接收、供应商分配、审核和结算流程的团队。',
       directResourceTitle: '资源中心',
       directResourceStrong: '查看手册',
@@ -1837,7 +1838,7 @@ main > section {
       footerTalkToSales: '咨询销售',
       cardSupportTitle: '查看手册',
       cardCommunityTitle: '联系销售',
-      addressText: '中国安徽省六安市恒阳广场 A 座 1506 室',
+      addressText: '中国安徽省六安市恒生阳光城 A 座 1506 室',
       footerCopyright: '© 2026',
       footerCompanyLegal: '安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置',
       toastTitle: '在线提交暂未接通',
@@ -1867,7 +1868,8 @@ main > section {
     }
   }
   function currentLang(){
-    return safeLang(qs.get('lang') || savedLang() || document.documentElement.dataset.lang || (document.body && document.body.dataset ? document.body.dataset.lang : '') || document.documentElement.lang || 'en');
+    var preferred = window.SamporaLanguagePreference && window.SamporaLanguagePreference.getInitialLang ? window.SamporaLanguagePreference.getInitialLang() : '';
+    return safeLang(preferred || qs.get('lang') || savedLang() || document.documentElement.dataset.lang || (document.body && document.body.dataset ? document.body.dataset.lang : '') || document.documentElement.lang || 'en');
   }
   function syncHiddenLang(lang){
     var field = $('#langField');
@@ -1962,8 +1964,8 @@ main > section {
 <script id="sampora-standard-footer-i18n">
 (function(){
   const copy={
-    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'},
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',footerWorkflow:'Workflow',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengsheng Sunshine City, Lu\'an, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',footerWorkflow:'工作流程',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒生阳光城 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'},
     };
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
@@ -2039,7 +2041,8 @@ main > section {
     }
   };
   const currentPageLang = () => safeLang(document.documentElement.dataset.lang || document.body?.dataset.lang || document.documentElement.lang || 'en');
-  let activeLang = safeLang(qs.get('lang') || savedLang() || currentPageLang());
+  const preferredLang = window.SamporaLanguagePreference?.getInitialLang?.() || '';
+  let activeLang = safeLang(preferredLang || qs.get('lang') || savedLang() || currentPageLang());
   let copy = translations[activeLang] || translations.en || {};
   const intent = intentMap[qs.get('intent')] || 'contact_sales';
   const explicitPlan = qs.get('plan');
@@ -2210,7 +2213,8 @@ main > section {
       const res = await fetch(backendEndpoint, { method: 'POST', body });
       let result = {};
       try { result = await res.json(); } catch (e) {}
-      if (res.ok && result.ok === true) {
+      const responsePayload = result.data ?? result;
+      if (res.ok && responsePayload.ok === true) {
         setSubmitFeedback('success');
         try { sessionStorage.removeItem('sampora_contact_pending'); } catch (e) {}
         form.reset();

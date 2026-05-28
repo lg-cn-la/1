@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -12,7 +12,7 @@
 <link rel="canonical" href="https://getsampora.com/solutions.html">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <style>
     :root {
       --ink: #0A1628;
@@ -2616,7 +2616,9 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
     .console-summary h3,
     .console-summary p,
     #topoTitle,
-    #topoText {
+    #topoText,
+    [data-topology-original-id="topoTitle"],
+    [data-topology-original-id="topoText"] {
       width: 100%;
       max-width: 100% !important;
       white-space: normal !important;
@@ -2625,11 +2627,13 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
       hyphens: none !important;
     }
 
-    #topoTitle {
+    #topoTitle,
+    [data-topology-original-id="topoTitle"] {
       line-height: 1.08 !important;
     }
 
-    #topoText {
+    #topoText,
+    [data-topology-original-id="topoText"] {
       line-height: 1.58 !important;
       min-height: auto;
     }
@@ -2676,7 +2680,8 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
         min-height: auto;
       }
 
-      .solution-console #topoText {
+      .solution-console #topoText,
+      .solution-console [data-topology-original-id="topoText"] {
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
@@ -3063,7 +3068,7 @@ body::before {
 <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
 <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
 <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
-<button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
+<a href="about.html" data-footer-i18n="footerWorkflow">Workflow</a>
 </div>
 <div class="sampora-footer-col">
 <h3 data-footer-i18n="footerResources">Resources</h3>
@@ -3083,11 +3088,12 @@ body::before {
 <div class="sampora-footer-contact">
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China</span></div>
 </div>
 <div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div>
 </div>
 </footer>
+<script src="assets/language-preference.js"></script>
 <script>
         const I18N = {
   "en": {
@@ -3138,7 +3144,7 @@ body::before {
     "footerTrial": "Start trial",
     "footerJoin": "Contact sales",
     "footerNews": "Resources",
-    "footerAddress": "Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China",
+    "footerAddress": "Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China",
     "footerTag1": "Sample operations",
     "footerTag2": "Supplier coordination",
     "footerTag3": "Multi-party settlement",
@@ -3214,7 +3220,7 @@ body::before {
     "footerTrial": "开始试用",
     "footerJoin": "联系销售",
     "footerNews": "资源",
-    "footerAddress": "中国安徽省六安市恒阳光城A座1506",
+    "footerAddress": "中国安徽省六安市恒生阳光城 A 座 1506 室",
     "footerTag1": "样本运营",
     "footerTag2": "供应商协同",
     "footerTag3": "多方结算",
@@ -3911,7 +3917,8 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
       }, 3200);
     }
     function normalizeTopologyType(type) { return TOPO_ROUTE_ORDER.includes(type) ? type : 'network'; }
-    function setTopoText(id, value) { document.querySelectorAll(`#${id}`).forEach(el => { el.textContent = value; }); }
+    function topoTextTargets(id) { return document.querySelectorAll(`#${id}, [data-topology-original-id="${id}"]`); }
+    function setTopoText(id, value) { topoTextTargets(id).forEach(el => { el.textContent = value; }); }
     function renderStatus(type) {
       const activeType = normalizeTopologyType(type);
       const lang = I18N[currentLang] || I18N.en;
@@ -3928,7 +3935,7 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
       const activeType = normalizeTopologyType(type);
       const detail = TOPO_DETAIL[currentLang] || TOPO_DETAIL.en;
       const items = DATA[currentLang].solutions.map((s, i) => ({ id: s.id, num: String(i + 1).padStart(2, '0'), title: s.short, meta: s.badge }));
-      document.querySelectorAll('#topoModebar').forEach(bar => {
+      topoTextTargets('topoModebar').forEach(bar => {
         bar.innerHTML = items.map(x => `<button type="button" class="${x.id === activeType ? 'active' : ''}" data-mode="${x.id}" aria-pressed="${x.id === activeType ? 'true' : 'false'}"><small>${detail.modePrefix} ${x.num}</small><strong>${x.title}</strong><span>${x.meta}</span></button>`).join('');
         bar.querySelectorAll('[data-mode]').forEach(btn => btn.addEventListener('click', () => setTopologyFit(btn.dataset.mode, { userSelectedFit: true })));
       });
@@ -3966,16 +3973,16 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
       document.querySelectorAll(`.path-${activeType}`).forEach(el => el.classList.add('on'));
       const apply = (selector, ...classes) => document.querySelectorAll(selector).forEach(el => el.classList.add(...classes));
       if (activeType === 'panel') {
-        apply('.topo-svg .node[data-node="panel"], #labelPanel', 'active');
-        apply('.topo-svg .node[data-node="network"], #labelNetwork, .topo-svg .node[data-node="enterprise"], #labelEnterprise', 'dim');
+        apply('.topo-svg .node[data-node="panel"], #labelPanel, [data-topology-original-id="labelPanel"]', 'active');
+        apply('.topo-svg .node[data-node="network"], #labelNetwork, [data-topology-original-id="labelNetwork"], .topo-svg .node[data-node="enterprise"], #labelEnterprise, [data-topology-original-id="labelEnterprise"]', 'dim');
         apply('.topo-svg .hub[data-hub="control"], .topo-svg .hub[data-hub="evidence"]', 'is-active');
       } else if (activeType === 'network') {
-        apply('.topo-svg .node[data-node="panel"], #labelPanel, .topo-svg .node[data-node="enterprise"], #labelEnterprise', 'dim');
-        apply('.topo-svg .node[data-node="network"], #labelNetwork', 'warn');
+        apply('.topo-svg .node[data-node="panel"], #labelPanel, [data-topology-original-id="labelPanel"], .topo-svg .node[data-node="enterprise"], #labelEnterprise, [data-topology-original-id="labelEnterprise"]', 'dim');
+        apply('.topo-svg .node[data-node="network"], #labelNetwork, [data-topology-original-id="labelNetwork"]', 'warn');
         apply('.topo-svg .hub[data-hub="control"], .topo-svg .hub[data-hub="evidence"]', 'is-warn');
       } else {
-        apply('.topo-svg .node[data-node="panel"], #labelPanel, .topo-svg .node[data-node="enterprise"], #labelEnterprise', 'active');
-        apply('.topo-svg .node[data-node="network"], #labelNetwork', 'warn');
+        apply('.topo-svg .node[data-node="panel"], #labelPanel, [data-topology-original-id="labelPanel"], .topo-svg .node[data-node="enterprise"], #labelEnterprise, [data-topology-original-id="labelEnterprise"]', 'active');
+        apply('.topo-svg .node[data-node="network"], #labelNetwork, [data-topology-original-id="labelNetwork"]', 'warn');
         apply('.topo-svg .hub[data-hub="control"], .topo-svg .hub[data-hub="evidence"]', 'is-active');
       }
       window.solutionPacketReadyTimer = setTimeout(() => {
@@ -4059,7 +4066,35 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
       }, 3000);
     }
     function observeReveals() { if (!('IntersectionObserver' in window)) { return } const obs = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); obs.unobserve(entry.target) } }), { threshold: .12 }); $$('.reveal').forEach(el => { if (!el.classList.contains('in-view')) obs.observe(el) }); }
-    function initTopologyModal() { const modal = $('#topologyModal'); const body = $('#topologyModalBody'); const close = modal?.querySelector('.topology-modal__close'); if (!modal || !body || !close) return; const openModal = () => { const source = $('.solution-console'); if (!source) return; const clone = source.cloneNode(true); clone.querySelectorAll('[tabindex]').forEach(el => el.removeAttribute('tabindex')); body.replaceChildren(clone); renderHeroTopology(currentFit); modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('topology-modal-open'); close.focus({ preventScroll: true }); }; const closeModal = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('topology-modal-open'); body.replaceChildren(); }; document.addEventListener('click', e => { if (modal.classList.contains('open')) return; if (e.target.closest('button, a, input, select, textarea, [data-mode]')) return; if (e.target.closest('.solution-console, .console-window, .topo-stage, .topo-svg .node[data-node]')) openModal(); }); close.addEventListener('click', closeModal); modal.addEventListener('click', e => { if (e.target === modal) closeModal(); }); document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); }); }
+    function prepareTopologyModalClone(clone) {
+      const idMap = new Map();
+      clone.querySelectorAll('[id]').forEach(el => {
+        const oldId = el.id;
+        const newId = `modal-${oldId}`;
+        idMap.set(oldId, newId);
+        el.dataset.topologyOriginalId = oldId;
+        el.id = newId;
+      });
+      clone.querySelectorAll('*').forEach(el => {
+        ['aria-labelledby', 'aria-describedby', 'aria-controls', 'for'].forEach(attr => {
+          const value = el.getAttribute(attr);
+          if (!value) return;
+          const mapped = value.split(/\s+/).map(token => idMap.get(token) || token).join(' ');
+          if (mapped !== value) el.setAttribute(attr, mapped);
+        });
+        if (el.dataset.path && idMap.has(el.dataset.path)) el.dataset.path = idMap.get(el.dataset.path);
+        Array.from(el.attributes).forEach(attr => {
+          if (!attr.value) return;
+          let next = attr.value.replace(/url\(#([^)]+)\)/g, (match, id) => idMap.has(id) ? `url(#${idMap.get(id)})` : match);
+          if ((attr.name === 'href' || attr.name === 'xlink:href') && next.startsWith('#')) {
+            const ref = next.slice(1);
+            if (idMap.has(ref)) next = `#${idMap.get(ref)}`;
+          }
+          if (next !== attr.value) el.setAttribute(attr.name, next);
+        });
+      });
+    }
+    function initTopologyModal() { const modal = $('#topologyModal'); const body = $('#topologyModalBody'); const close = modal?.querySelector('.topology-modal__close'); if (!modal || !body || !close) return; const openModal = () => { const source = $('.solution-console'); if (!source) return; const clone = source.cloneNode(true); clone.querySelectorAll('[tabindex]').forEach(el => el.removeAttribute('tabindex')); prepareTopologyModalClone(clone); body.replaceChildren(clone); renderHeroTopology(currentFit); modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('topology-modal-open'); close.focus({ preventScroll: true }); }; const closeModal = () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('topology-modal-open'); body.replaceChildren(); }; document.addEventListener('click', e => { if (modal.classList.contains('open')) return; if (e.target.closest('button, a, input, select, textarea, [data-mode]')) return; if (e.target.closest('.solution-console, .console-window, .topo-stage, .topo-svg .node[data-node]')) openModal(); }); close.addEventListener('click', closeModal); modal.addEventListener('click', e => { if (e.target === modal) closeModal(); }); document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); }); }
     $$('.lang button').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.lang === 'zh' ? 'zh' : 'en')));
     document.addEventListener('click', e => { const node = e.target.closest('.topo-svg .node[data-node]'); if (node && !e.target.closest('.topology-modal')) { setTopologyFit(node.dataset.node, { userSelectedFit: true }); } });
     document.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.closest && e.target.closest('.topo-svg .node[data-node]')) { e.preventDefault(); const node = e.target.closest('.topo-svg .node[data-node]'); setTopologyFit(node.dataset.node, { userSelectedFit: true }); } });
@@ -4073,7 +4108,7 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
     }
     syncTopChrome();
     window.addEventListener('scroll', syncTopChrome, { passive: true });
-    initTopologyModal(); startSolutionPacketMotion(); let saved = 'en'; try { const stored = localStorage.getItem('sampora_lang'); saved = stored === 'zh' || stored === 'en' ? stored : 'en' } catch (e) { } setLang(saved); startTopologyRouteCycle(); startWorkflowRouteCycle();
+    initTopologyModal(); startSolutionPacketMotion(); let saved = window.SamporaLanguagePreference?.getInitialLang?.() || 'en'; try { const stored = localStorage.getItem('sampora_lang'); saved = saved === 'zh' || saved === 'en' ? saved : (stored === 'zh' || stored === 'en' ? stored : 'en') } catch (e) { saved = saved === 'zh' || saved === 'en' ? saved : 'en' } setLang(saved); startTopologyRouteCycle(); startWorkflowRouteCycle();
   </script>
 <script>
 (function(){
@@ -4101,8 +4136,8 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
 <script id="sampora-standard-footer-i18n">
 (function(){
   const copy={
-    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒阳广场 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'}};
+    en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',footerWorkflow:'Workflow',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengsheng Sunshine City, Lu\'an, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',footerWorkflow:'工作流程',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒生阳光城 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'}};
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
     if(explicitRaw==='zh')return 'zh';

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -1216,49 +1216,201 @@
             }
         }
 
-        .ribbon {
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-            background: rgba(8, 18, 34, .5);
-            margin-top: 24px
+        .scenario-ribbon {
+            margin-top: 22px;
+            background: transparent
         }
 
-        .ribbon-inner {
+        .scenario-ribbon__inner {
+            min-height: 58px;
+            display: grid;
+            grid-template-columns: auto auto minmax(0, 1fr);
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0
+        }
+
+        .scenario-ribbon__intro {
             display: flex;
             align-items: center;
-            gap: 24px;
-            padding: 18px 0;
-            flex-wrap: wrap
-        }
-
-        .ribbon-label {
-            font-family: var(--mono);
-            font-size: 11px;
-            letter-spacing: .12em;
-            color: var(--muted);
-            text-transform: uppercase
-        }
-
-        .chips {
-            display: flex;
             gap: 10px;
-            flex-wrap: wrap
+            min-width: 0
         }
 
-        .chip {
-            font-family: var(--mono);
-            font-size: 11.5px;
-            letter-spacing: .04em;
-            color: var(--fg2);
-            border: 1px solid var(--line);
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: rgba(14, 27, 47, .6)
+        .scenario-ribbon__mark {
+            flex: 0 0 auto;
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            color: #03111B;
+            font: 900 9.5px/1 var(--mono);
+            letter-spacing: 0;
+            background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+            box-shadow: 0 0 0 1px rgba(56, 210, 255, .34), 0 10px 24px rgba(56, 210, 255, .10)
         }
 
-        .chip b {
+        .scenario-ribbon__meta {
+            min-width: 0;
+            display: grid;
+            gap: 4px
+        }
+
+        .scenario-ribbon__kicker {
+            color: rgba(123, 227, 255, .82);
+            font: 900 9.5px/1 var(--mono);
+            letter-spacing: 0;
+            text-transform: uppercase;
+            white-space: nowrap
+        }
+
+        .scenario-ribbon__title {
             color: var(--fg);
-            font-weight: 600
+            font: 850 13px/1.12 var(--sans);
+            letter-spacing: 0;
+            white-space: nowrap
+        }
+
+        .scenario-ribbon__ticker {
+            position: relative;
+            min-width: 0;
+            width: max-content;
+            max-width: 100%;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 0 11px 0 9px;
+            border: 1px solid rgba(56, 210, 255, .20);
+            border-radius: 14px;
+            background: rgba(8, 20, 36, .48);
+            overflow: hidden;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035), 0 8px 22px rgba(0, 0, 0, .10)
+        }
+
+        .scenario-ribbon__ticker::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(90deg, rgba(56, 210, 255, .085), transparent 42%, rgba(181, 240, 86, .035));
+            opacity: .75
+        }
+
+        .scenario-ribbon__num {
+            position: relative;
+            z-index: 2;
+            flex: 0 0 auto;
+            width: 28px;
+            height: 22px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            color: var(--cyan2);
+            font: 900 10px/1 var(--mono);
+            border: 1px solid rgba(56, 210, 255, .18);
+            background: rgba(56, 210, 255, .075)
+        }
+
+        .scenario-ribbon__viewport {
+            position: relative;
+            z-index: 2;
+            flex: 0 1 auto;
+            min-width: 0;
+            width: max-content;
+            max-width: min(42vw, 260px);
+            height: 20px;
+            overflow: hidden
+        }
+
+        .scenario-ribbon__stack {
+            transform: translateY(0);
+            transition: transform .48s var(--ease)
+        }
+
+        .scenario-ribbon__item {
+            height: 20px;
+            display: block;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: var(--fg);
+            font: 900 11.5px/20px var(--mono);
+            letter-spacing: 0
+        }
+
+        .scenario-ribbon__copy {
+            min-width: 0;
+            margin: 0;
+            color: rgba(188, 203, 224, .78);
+            font-size: 13px;
+            line-height: 1.48;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            transition: opacity .22s var(--ease), transform .22s var(--ease)
+        }
+
+        .scenario-ribbon__copy.is-changing {
+            opacity: .28;
+            transform: translateY(2px)
+        }
+
+        .scenario-ribbon__progress {
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 100%;
+            height: 1px;
+            transform-origin: left;
+            transform: scaleX(0);
+            background: linear-gradient(90deg, var(--cyan), rgba(123, 227, 255, .48), transparent)
+        }
+
+        .scenario-ribbon.is-running .scenario-ribbon__progress {
+            animation: scenarioProgress 3s linear infinite
+        }
+
+        @keyframes scenarioProgress {
+            from {
+                transform: scaleX(0)
+            }
+
+            to {
+                transform: scaleX(1)
+            }
+        }
+
+        .scenario-ribbon:hover .scenario-ribbon__progress {
+            animation-play-state: paused
+        }
+
+        @media(max-width:1040px) {
+            .scenario-ribbon__inner {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding: 11px 0
+            }
+
+            .scenario-ribbon__ticker {
+                width: max-content
+            }
+
+            .scenario-ribbon__copy {
+                white-space: normal
+            }
+        }
+
+        @media(max-width:520px) {
+            .scenario-ribbon__title {
+                font-size: 12.5px
+            }
+
+            .scenario-ribbon__kicker {
+                font-size: 9px
+            }
         }
 
         .modules {
@@ -2186,8 +2338,7 @@
 
         .btn:focus-visible,
         .nav a:focus-visible,
-        .lang button:focus-visible,
-        .chip:focus-visible {
+        .lang button:focus-visible {
             outline: 1px solid rgba(56, 210, 255, .72);
             outline-offset: 3px;
             border-radius: 10px
@@ -2360,43 +2511,6 @@
             100% {
                 transform: translateX(120%)
             }
-        }
-
-        .chip {
-            position: relative;
-            transition: border-color .18s var(--ease), transform .18s var(--ease), background .18s var(--ease)
-        }
-
-        .chip:hover {
-            transform: translateY(-2px);
-            border-color: rgba(56, 210, 255, .38);
-            background: rgba(20, 40, 69, .70)
-        }
-
-        .chip[data-tip]::after {
-            content: attr(data-tip);
-            position: absolute;
-            left: 50%;
-            bottom: calc(100% + 10px);
-            transform: translate(-50%, 6px);
-            opacity: 0;
-            pointer-events: none;
-            width: max-content;
-            max-width: 260px;
-            padding: 8px 10px;
-            border: 1px solid rgba(56, 210, 255, .26);
-            border-radius: 10px;
-            background: rgba(6, 14, 28, .96);
-            color: var(--fg2);
-            font: 11px/1.4 var(--sans);
-            box-shadow: 0 14px 30px rgba(0, 0, 0, .38);
-            transition: opacity .18s var(--ease), transform .18s var(--ease);
-            z-index: 8
-        }
-
-        .chip[data-tip]:hover::after {
-            opacity: 1;
-            transform: translate(-50%, 0)
         }
 
         .outcome-grid {
@@ -2682,8 +2796,7 @@
 
 .brand small,
         .nav,
-        .status,
-        .ribbon-label {
+        .status {
             color: var(--body-mid);
         }
 
@@ -2721,7 +2834,6 @@
         .pricing-card ul,
         .step p,
         .step ul,
-        .chip,
         .surface-row,
         .proof-mini span,
         .proof-stat span,
@@ -4553,9 +4665,7 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
   .mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{height:34px!important;min-height:0!important;padding:0 8px!important;font-size:11.5px!important;line-height:1!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;flex:0 0 auto!important;border-radius:9px!important}
   .mast .lang{min-width:0!important;flex:0 1 auto!important}
   .mast .lang button,.mast .lang-btn{min-width:38px!important;padding-left:7px!important;padding-right:7px!important;font-size:10px!important}
-.mast .mobile-nav-toggle{width:36px!important;height:36px!important;flex:0 0 36px!important}
-  .ribbon{overflow-x:hidden!important}
-  .ribbon-inner,.chips{max-width:100%!important;min-width:0!important}
+  .mast .mobile-nav-toggle{width:36px!important;height:36px!important;flex:0 0 36px!important}
 }
 
 /* Sampora current responsive fixes */
@@ -4569,12 +4679,6 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
 @media(max-width:720px){
   .outcome-grid .outcome-card:last-child,
   .modules .module:last-child{grid-column:auto!important}
-}
-@media(max-width:1180px) and (min-width:761px){
-  .ribbon{overflow-x:hidden!important}
-  .ribbon-inner,
-  .chips{max-width:100%!important;min-width:0!important;overflow-x:hidden!important}
-  .chip{max-width:100%!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis}
 }
 /* Header actions parity with resources.html */
 .mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:transparent;border-color:var(--line,rgba(129,178,214,.18))}
@@ -5392,12 +5496,31 @@ body::before,
 </div>
 </div>
 </section>
-<div class="ribbon">
-<div class="container ribbon-inner">
-<div class="ribbon-label" data-i18n="operatingFor">Sample operations layer for</div>
-<div class="chips"><span class="chip" data-i18n-html="chip1" data-i18n-tip="chip1Tip" data-tip="Build and reuse owned respondent assets">Owned panel <b>operations</b></span><span class="chip" data-i18n-html="chip2" data-i18n-tip="chip2Tip" data-tip="Coordinate project delivery and supplier quality">Sample supplier <b>networks</b></span><span class="chip" data-i18n-html="chip3" data-i18n-tip="chip3Tip" data-tip="Ask for transparent supply and operation evidence">Partner / aggregator <b>supply</b></span><span class="chip" data-i18n-html="chip4" data-i18n-tip="chip4Tip" data-tip="Connect API-based supplier routes">API-connected <b>suppliers</b></span><span class="chip" data-i18n-html="chip5" data-i18n-tip="chip5Tip" data-tip="Govern roles, records and finance workflows">Multi-entity <b>operations</b></span></div>
+<section class="scenario-ribbon is-running" data-scenario-index="2" aria-label="Sample operation scenarios" data-i18n-aria-label="scenarioRibbonAria">
+<div class="container scenario-ribbon__inner">
+<div class="scenario-ribbon__intro">
+<span class="scenario-ribbon__mark">OPS</span>
+<div class="scenario-ribbon__meta">
+<div class="scenario-ribbon__kicker" data-i18n="scenarioRibbonKicker">Sample operation scenarios</div>
+<div class="scenario-ribbon__title" data-i18n="scenarioRibbonTitle">Built for real sample operations</div>
 </div>
 </div>
+<div class="scenario-ribbon__ticker" aria-live="polite">
+<span class="scenario-ribbon__num" data-scenario-num>03</span>
+<div class="scenario-ribbon__viewport">
+<div class="scenario-ribbon__stack" data-scenario-stack>
+<span class="scenario-ribbon__item" data-i18n="scenarioRibbonItem1">Owned Panel Ops</span>
+<span class="scenario-ribbon__item" data-i18n="scenarioRibbonItem2">Supplier Networks</span>
+<span class="scenario-ribbon__item" data-i18n="scenarioRibbonItem3">Partner / Aggregator Supply</span>
+<span class="scenario-ribbon__item" data-i18n="scenarioRibbonItem4">API-connected Suppliers</span>
+<span class="scenario-ribbon__item" data-i18n="scenarioRibbonItem5">Multi-entity Operations</span>
+</div>
+</div>
+<span class="scenario-ribbon__progress" aria-hidden="true"></span>
+</div>
+<p class="scenario-ribbon__copy" data-i18n="scenarioRibbonCopy3" data-scenario-copy>Bring partner teams, aggregator supply and external channels into the same project workflow.</p>
+</div>
+</section>
 <section aria-labelledby="operating-proof-title" class="op-proof-v6" id="operating-proof-final">
 <div class="container">
 <div class="opv6-shell">
@@ -5482,7 +5605,7 @@ body::before,
 <div class="opv6-bottom">
 <p data-i18n-html="opProofBottom"><strong>Best next step:</strong> review the workflow with your current project, supplier, and finance handoff structure.</p>
 <div class="opv6-actions">
-<a class="btn primary" data-i18n="opProofDemoCta" href="contact.html?intent=book_demo#contact-form">Book a workflow demo</a>
+<a class="btn primary" data-i18n="opProofDemoCta" href="contact.html?intent=book_demo#contact-form">Book a demo</a>
 </div>
 </div>
 </div>
@@ -5808,7 +5931,7 @@ body::before,
 <a href="index.html" data-i18n="footerPlatformOverview">Platform overview</a>
 <a href="solutions.html" data-i18n="navSolutions">Solutions</a>
 <a href="plans.html" data-i18n="navPlans">Plans</a>
-<button type="button" class="sampora-footer-link-button" data-footer-email-open data-i18n="navContact">Contact</button>
+<a href="about.html" data-i18n="footerWorkflow">Workflow</a>
 </div>
 <div class="sampora-footer-col">
 <h3 data-i18n="footerResources">Resources</h3>
@@ -5828,11 +5951,12 @@ body::before,
 <div class="sampora-footer-contact">
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
-<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-i18n="addressText">Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China</span></div>
+<div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-i18n="addressText">Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China</span></div>
 </div>
 <div class="sampora-footer-legal"><span data-i18n="footerLegalLine">© 2026 Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-i18n="preferences">Cookie Preferences</a></div>
 </div>
 </footer>
+<script src="assets/language-preference.js"></script>
 <script>
         (() => {
             const $ = (s, r = document) => r.querySelector(s);
@@ -5844,17 +5968,20 @@ body::before,
                 "auditFeedTitle": "Operation feed",
                 "bookDemo": "Book a demo",
                 "brandSub": "Operations console",
-                "addressText": "Room 1506, Block A, Hengyang Guangcheng, Luan, Anhui, China",
-                "chip1": "Owned panel <b>operations</b>",
-                "chip1Tip": "Build and reuse owned respondent assets",
-                "chip2": "Sample supplier <b>networks</b>",
-                "chip2Tip": "Coordinate project delivery and supplier quality",
-                "chip3": "Partner / aggregator <b>supply</b>",
-                "chip3Tip": "Ask for transparent supply and operation evidence",
-                "chip4": "API-connected <b>suppliers</b>",
-                "chip4Tip": "Connect API-based supplier routes",
-                "chip5": "Multi-entity <b>operations</b>",
-                "chip5Tip": "Govern roles, records and finance workflows",
+                "addressText": "Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China",
+                "scenarioRibbonAria": "Sample operation scenarios",
+                "scenarioRibbonKicker": "Sample operation scenarios",
+                "scenarioRibbonTitle": "Built for real sample operations",
+                "scenarioRibbonItem1": "Owned Panel Ops",
+                "scenarioRibbonItem2": "Supplier Networks",
+                "scenarioRibbonItem3": "Partner / Aggregator Supply",
+                "scenarioRibbonItem4": "API-connected Suppliers",
+                "scenarioRibbonItem5": "Multi-entity Operations",
+                "scenarioRibbonCopy1": "Manage owned respondent assets, member groups, participation records, wallets and project delivery in one operating layer.",
+                "scenarioRibbonCopy2": "Assign suppliers, manage block rules, maintain supplier pricing and keep delivery status visible.",
+                "scenarioRibbonCopy3": "Bring partner teams, aggregator supply and external channels into the same project workflow.",
+                "scenarioRibbonCopy4": "Receive or distribute projects through API and keep external suppliers inside a traceable delivery chain.",
+                "scenarioRibbonCopy5": "Coordinate permissions, records and settlement across multiple teams, business entities and suppliers.",
                 "contactSales": "Contact sales",
                 "cap1Label": "Capability 01",
                 "cap2Label": "Capability 02",
@@ -5923,6 +6050,7 @@ body::before,
                 "footerLegalLine": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
                 "footerOperationManual": "Operation manual",
                 "footerPlatformOverview": "Platform overview",
+                "footerWorkflow": "Workflow",
                 "footerProduct": "Product",
                 "footerResources": "Resources",
                 "footerResourcesOverview": "Resources overview",
@@ -5978,7 +6106,6 @@ body::before,
                 "startTrial": "Start trial",
                 "networkState": "Sample supply pool state",
                 "openTopologyLabel": "Open operations topology",
-                "operatingFor": "Sample operations layer for",
                 "opProofAssuranceLabel": "Operational proof points",
                 "opProofBottom": "<strong>Best next step:</strong> review the workflow with your current project, supplier, and finance handoff structure.",
                 "opProofCase1Control": "One launch record keeps supplier-facing specs, market rules, owners, and update history together.",
@@ -6011,7 +6138,7 @@ body::before,
                 "opProofChip4Text": "Buyers can review the workflow before moving operational data.",
                 "opProofChip4Title": "Guided onboarding",
                 "opProofControlLabel": "Sampora control",
-                "opProofDemoCta": "Book a workflow demo",
+                "opProofDemoCta": "Book a demo",
                 "opProofIssueLabel": "Operational issue",
                 "opProofKicker": "Operating proof",
                 "opProofLead": "Sampora turns proven sample-industry operating experience into a SaaS workflow for <b>project launch, supplier routing, delivery review, and settlement evidence</b>.",
@@ -6161,17 +6288,20 @@ body::before,
                 "auditFeedTitle": "运营动态",
                 "bookDemo": "预约演示",
                 "brandSub": "操作控制台",
-                "addressText": "中国安徽省六安市恒阳广场 A 座 1506 室",
-                "chip1": "自有样本<b>运营</b>",
-                "chip1Tip": "构建并复用自有受访者资产",
-                "chip2": "样本供应商<b>网络</b>",
-                "chip2Tip": "协调项目交付与供应商质量",
-                "chip3": "合作 / 聚合<b>供给</b>",
-                "chip3Tip": "要求透明的供给与运营证据",
-                "chip4": "API 对接<b>供应商</b>",
-                "chip4Tip": "连接基于 API 的供应商路由",
-                "chip5": "多实体<b>运营</b>",
-                "chip5Tip": "管理角色、记录和财务工作流",
+                "addressText": "中国安徽省六安市恒生阳光城 A 座 1506 室",
+                "scenarioRibbonAria": "适用样本运营场景",
+                "scenarioRibbonKicker": "样本运营场景",
+                "scenarioRibbonTitle": "基于真实样本运营构建",
+                "scenarioRibbonItem1": "自有 Panel 运营",
+                "scenarioRibbonItem2": "供应商网络",
+                "scenarioRibbonItem3": "合作 / 聚合供给",
+                "scenarioRibbonItem4": "API 对接供应商",
+                "scenarioRibbonItem5": "多实体运营",
+                "scenarioRibbonCopy1": "在同一运营层管理自有受访者资产、会员分组、参与记录、钱包和项目交付。",
+                "scenarioRibbonCopy2": "分配供应商、管理屏蔽规则、维护供应商定价，并让交付状态保持可见。",
+                "scenarioRibbonCopy3": "把合作伙伴团队、聚合供给和外部渠道带入同一项目工作流。",
+                "scenarioRibbonCopy4": "通过 API 接收或分发项目，并让外部供应商留在可追踪交付链路中。",
+                "scenarioRibbonCopy5": "跨多个团队、业务实体和供应商协调权限、记录和结算。",
                 "contactSales": "联系销售",
                 "custom": "定制",
                 "customer1Impact": "<span>项目上线</span><span>重定向 / 回调</span><span>审核状态</span>",
@@ -6184,7 +6314,7 @@ body::before,
                 "customer3Name": "财务运营专员",
                 "customer3Role": "结算与发票负责人",
                 "customersKicker": "05 / 角色交接",
-                "role95Title": "三个角色，<em>连接同一条样本交付工作流。</em>",
+                "role95Title": "三个角色，<em>连接同一条样本交付工作流.</em>",
                 "role95Lead": "Sampora 把项目上线、供应商网络运营、项目审核交付、对账结算开票这些角色相关工作放在同一条可追踪运营流程里。",
                 "role95CardsLabel": "角色场景卡片",
                 "role95Card1Badge": "项目交付",
@@ -6221,11 +6351,12 @@ body::before,
                 "finalText": "告诉我们你如何处理项目接收、供应商分配、审核与结算。我们的团队会匹配合适的试用或演示路径。",
                 "finalTitle": "把你的样本运营工作流接入 Sampora.",
                 "footerConfigurationGuide": "配置指南",
-                "footerDesc": "Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和 Partner Network。",
+                "footerDesc": "Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。",
                 "footerGetStarted": "开始使用",
                 "footerLegalLine": "© 2026 安徽省嘉禹企业服务有限公司",
                 "footerOperationManual": "操作手册",
                 "footerPlatformOverview": "平台概览",
+                "footerWorkflow": "工作流程",
                 "footerProduct": "产品",
                 "footerResources": "资源",
                 "footerResourcesOverview": "资源概览",
@@ -6286,7 +6417,6 @@ body::before,
                 "startTrial": "开始试用",
                 "networkState": "样本供给池状态",
                 "openTopologyLabel": "打开运营拓扑",
-                "operatingFor": "样本运营层服务于",
                 "opProofAssuranceLabel": "运营证明要点",
                 "opProofBottom": "<strong>下一步建议：</strong>用你们当前的项目、供应商和财务交接结构来走一遍这套流程。",
                 "opProofCase1Control": "一份上线记录把面向供应商的规格、市场规则、负责人和更新历史放在一起。",
@@ -6319,7 +6449,7 @@ body::before,
                 "opProofChip4Text": "团队可以先审阅流程，再迁移运营数据。",
                 "opProofChip4Title": "引导式上线",
                 "opProofControlLabel": "Sampora 控制项",
-                "opProofDemoCta": "预约流程演示",
+                "opProofDemoCta": "预约演示",
                 "opProofIssueLabel": "运营问题",
                 "opProofKicker": "运营证明",
                 "opProofLead": "Sampora 将经过验证的样本行业运营经验转化为 SaaS 工作流程，用于<b>项目启动、供应商路由、交付审核和结算证据</b>。",
@@ -6478,10 +6608,13 @@ body::before,
                 zh: { en: 'EN', zh: '中文'},
                 };
             const getSavedLang = () => {
+                const preferred = window.SamporaLanguagePreference?.getInitialLang?.();
+                if (translations[preferred]) return preferred;
                 try { return localStorage.getItem('sampora_lang') || 'en'; }
                 catch (_) { return 'en'; }
             };
             const saveLang = lang => {
+                if (window.SamporaLanguagePreference?.saveLang) { window.SamporaLanguagePreference.saveLang(lang); return; }
                 try { localStorage.setItem('sampora_lang', lang); }
                 catch (_) { }
             };
@@ -6494,7 +6627,8 @@ body::before,
             const updateLangPill = () => { };
             const setNavIndicator = () => { };
             const syncNavIndicator = () => { };
-            let currentLang = translations[getSavedLang()] ? getSavedLang() : 'en';
+            const initialLang = getSavedLang();
+            let currentLang = translations[initialLang] ? initialLang : 'en';
             window.__samporaTranslateKey = (key, lang = currentLang) => {
                 const normalized = (lang || '').toLowerCase().startsWith('zh') ? 'zh' : 'en';
                 const dict = translations[normalized] || translations.en;
@@ -6625,7 +6759,6 @@ body::before,
                 $$('[data-i18n-html]').forEach(el => setText(el, dict[el.dataset.i18nHtml] ?? translations.en[el.dataset.i18nHtml], true));
                 $$('[data-i18n-aria-label]').forEach(el => el.setAttribute('aria-label', dict[el.dataset.i18nAriaLabel] ?? translations.en[el.dataset.i18nAriaLabel] ?? ''));
                 $$('[data-i18n-title]').forEach(el => el.setAttribute('title', dict[el.dataset.i18nTitle] ?? translations.en[el.dataset.i18nTitle] ?? ''));
-                $$('[data-i18n-tip]').forEach(el => el.setAttribute('data-tip', dict[el.dataset.i18nTip] ?? translations.en[el.dataset.i18nTip] ?? ''));
                 $$('.lang button').forEach(btn => {
                     btn.textContent = (langLabels[lang] || langLabels.en)[btn.dataset.lang];
                     const active = btn.dataset.lang === lang;
@@ -6891,6 +7024,73 @@ body::before,
             applyTranslations(currentLang); timer = setInterval(() => updateProject(currentProject), 3600);
         })();
     </script>
+<script id="scenario-ribbon-cycle">
+        (() => {
+            const rail = document.querySelector('.scenario-ribbon');
+            if (!rail) return;
+            const stack = rail.querySelector('[data-scenario-stack]');
+            const num = rail.querySelector('[data-scenario-num]');
+            const copy = rail.querySelector('[data-scenario-copy]');
+            if (!stack || !num || !copy) return;
+
+            const items = [
+                { n: '01', copy: 'scenarioRibbonCopy1' },
+                { n: '02', copy: 'scenarioRibbonCopy2' },
+                { n: '03', copy: 'scenarioRibbonCopy3' },
+                { n: '04', copy: 'scenarioRibbonCopy4' },
+                { n: '05', copy: 'scenarioRibbonCopy5' }
+            ];
+            const itemHeight = 20;
+            const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+            let index = Math.min(Math.max(Number(rail.dataset.scenarioIndex || 0), 0), items.length - 1);
+            let timer = null;
+
+            const lang = () => (document.documentElement.lang || 'en').toLowerCase().startsWith('zh') ? 'zh' : 'en';
+            const translate = key => window.__samporaTranslateKey?.(key, lang()) || window.__samporaTranslateKey?.(key, 'en') || '';
+            const stop = () => {
+                if (timer) window.clearInterval(timer);
+                timer = null;
+                rail.classList.remove('is-running');
+            };
+            const start = () => {
+                stop();
+                if (reducedMotion) return;
+                rail.classList.add('is-running');
+                timer = window.setInterval(() => render(index + 1), 3000);
+            };
+            const render = (next, instant = false) => {
+                index = ((next % items.length) + items.length) % items.length;
+                const update = () => {
+                    const item = items[index];
+                    stack.style.transform = `translateY(-${index * itemHeight}px)`;
+                    num.textContent = item.n;
+                    copy.dataset.i18n = item.copy;
+                    copy.textContent = translate(item.copy);
+                    copy.classList.remove('is-changing');
+                    rail.dataset.scenarioIndex = String(index);
+                    rail.classList.remove('is-running');
+                    void rail.offsetWidth;
+                    if (!reducedMotion && timer) rail.classList.add('is-running');
+                };
+                if (instant) {
+                    update();
+                    return;
+                }
+                copy.classList.add('is-changing');
+                window.setTimeout(update, 110);
+            };
+
+            render(index, true);
+            start();
+            rail.addEventListener('mouseenter', stop);
+            rail.addEventListener('mouseleave', start);
+            rail.addEventListener('focusin', stop);
+            rail.addEventListener('focusout', start);
+            document.querySelectorAll('.lang button, [data-lang-btn]').forEach(btn => {
+                btn.addEventListener('click', () => window.setTimeout(() => render(index, true), 0));
+            });
+        })();
+    </script>
 <script>
         (function () {
             function initInstantWorkflowRelay() {
@@ -7069,7 +7269,7 @@ body::before,
   const routes=[['index.html','product'],['solutions.html','solutions'],['resources.html','resources'],['plans.html','plans'],['about.html','about'],['contact.html','contact']];
   function normalizeLang(raw){return (raw||'').toLowerCase().startsWith('zh')?'zh':'en'}
   function labelsFor(raw){const l=normalizeLang(raw);return labelKeys.map(key=>window.__samporaTranslateKey(key,l)||window.__samporaTranslateKey(key,'en')||key);}
-  function lang(){return localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
+  function lang(){return window.SamporaLanguagePreference?.getCurrentLang?.()||localStorage.getItem('sampora_lang')||document.documentElement.lang?.slice(0,2)||'en'}
   function sync(nextLang){const activeLabels=labelsFor(nextLang||lang());const fallback=labelsFor('en');document.querySelectorAll('[data-mobile-nav-label]').forEach((a,i)=>{a.textContent=activeLabels[i]||fallback[i];});}function bindLangSync(){document.querySelectorAll('.lang button,[data-lang-btn]').forEach(b=>b.addEventListener('click',()=>{const next=b.dataset.lang||b.dataset.langBtn;setTimeout(()=>sync(next),0);}));}
   if(document.querySelector('.mobile-nav-toggle')){sync();bindLangSync();return;}
   const nav=document.querySelector('nav.nav, .nav-links');
