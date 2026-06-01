@@ -1,4 +1,5 @@
-﻿:root{
+﻿/* stylelint-disable */
+:root{
   --ink:#0A1628;--deep:#06101F;--panel:#0E1B2F;--panel2:#142845;
   --line:rgba(129,178,214,.18);--line2:rgba(129,178,214,.10);
   --cyan:#38D2FF;--cyan2:#7BE3FF;--lime:#B5F056;--amber:#FFB454;--rose:#FF6B7A;

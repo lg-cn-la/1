@@ -171,7 +171,7 @@ html[data-lang="zh"] .section-head.title-only h2,html[data-lang="zh"] .solo-head
 <meta content="Sampora connects project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows for panel providers and sample suppliers." name="twitter:description"/>
 <meta content="https://getsampora.com/assets/og-sampora.png" name="twitter:image"/>
 <script id="org-jsonld" type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Sampora","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://getsampora.com/about.html","description":"Sampora is an online sample operations platform for panel providers and sample suppliers, connecting project intake, supplier allocation, review records, risk controls, and settlement evidence into traceable workflows."}</script>
-<meta content="default-src 'self'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://plugin-code.salesmartly.com; connect-src 'self'; base-uri 'self'; form-action 'self' mailto:; object-src 'none'" http-equiv="Content-Security-Policy"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://www.clarity.ms https://*.clarity.ms https://c.bing.com; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://plugin-code.salesmartly.com https://www.clarity.ms https://*.clarity.ms; connect-src 'self' https://www.clarity.ms https://*.clarity.ms https://c.bing.com; base-uri 'self'; form-action 'self' mailto:; object-src 'none'"/>
 <style id="sampora-standard-footer-css">
 #footer.sampora-site-footer{padding:64px 0 12px!important;border-top:1px solid rgba(129,178,214,.16)!important;color:var(--body,#A9B9CE)!important;background:radial-gradient(38% 34% at 18% 0%,rgba(56,210,255,.08),transparent 68%),linear-gradient(180deg,rgba(6,16,31,.22),rgba(6,16,31,.42))!important}
 #footer .sampora-footer-card{border:1px solid rgba(129,178,214,.22)!important;border-radius:24px!important;overflow:hidden!important;background:rgba(8,20,36,.72)!important;box-shadow:0 30px 90px rgba(0,0,0,.24)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
@@ -262,6 +262,14 @@ body::before {
 </style>
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 <link rel="stylesheet" href="assets/footer-email-modal.css">
+<!-- Clarity tracking code for https://getsampora.com -->
+<script>
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x043zw5rc6");
+</script>
 </head>
 <body>
 <div class="status"><div class="container inner"><span class="live" data-i18n="statusLive">About Sampora · Live</span><span class="sep">/</span><span data-i18n="statusDemoLabel">Sample operations platform</span><span class="right" data-i18n="statusControls">Traceable delivery, review and settlement</span></div></div>
