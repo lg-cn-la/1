@@ -3,8 +3,51 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
+<!-- Google Consent Mode default -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  analytics_storage:'denied',
+  ad_storage:'denied',
+  ad_user_data:'denied',
+  ad_personalization:'denied',
+  wait_for_update:500
+});
+(function(){
+  try{
+    var savedRaw=localStorage.getItem('sampora_cookie_consent');
+    var prefsRaw=localStorage.getItem('sampora_cookie_consent_preferences');
+    var saved=null;
+    var prefs=null;
+    try{saved=savedRaw?JSON.parse(savedRaw):null;}catch(e){saved=savedRaw;}
+    try{prefs=prefsRaw?JSON.parse(prefsRaw):null;}catch(e){prefs=null;}
+    var choice=typeof saved==='string'?saved:(saved&&(saved.choice||saved.status||saved.type||saved.consent));
+    var source=prefs||(saved&&typeof saved==='object'&&(saved.preferences||saved));
+    var update=null;
+    if(choice==='accepted'||choice==='accept_all'||choice==='all'||(saved&&saved.accepted===true)){
+      update={analytics_storage:'granted',ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted'};
+    }else if(choice==='custom'||source){
+      var analytics=!!(source&&(source.analytics===true||source.analytics_storage==='granted'||source.analyticsStorage==='granted'));
+      var marketing=!!(source&&(source.marketing===true||source.ads===true||source.ad_storage==='granted'||source.adStorage==='granted'||source.ad_user_data==='granted'||source.adUserData==='granted'||source.ad_personalization==='granted'||source.adPersonalization==='granted'));
+      update={analytics_storage:analytics?'granted':'denied',ad_storage:marketing?'granted':'denied',ad_user_data:marketing?'granted':'denied',ad_personalization:marketing?'granted':'denied'};
+    }
+    if(update)gtag('consent','update',update);
+  }catch(e){}
+})();
+</script>
+<!-- End Google Consent Mode default -->
+<!-- Google Tag Manager -->
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NC23T9B2');
+</script>
+<!-- End Google Tag Manager -->
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Sampora Solutions - Online sample operations layers</title>
+<title>Sample Supplier & Panel Operations Solutions | Sampora</title>
 <meta content="Sampora solution layers for sample operations, supplier coordination, API-connected sample delivery, and multi-party settlement for panel providers and sample suppliers." name="description"/>
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
@@ -2844,16 +2887,14 @@ body::before {
 </style>
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 <link rel="stylesheet" href="assets/footer-email-modal.css">
-<!-- Clarity tracking code for https://getsampora.com -->
-<script>
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "x043zw5rc6");
-</script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC23T9B2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div aria-hidden="true" class="status">
 <div class="container inner"><span class="live" data-i18n="statusLive"></span><span class="sep">/</span><span data-i18n="statusMid"></span><span class="sep">/</span><span data-i18n="statusLast"></span><span class="right" data-i18n="statusRight"></span></div>
 </div>
@@ -4145,7 +4186,7 @@ let currentLang = 'en'; let currentFit = 'panel'; let currentWorkflow = 'network
 (function(){
   const copy={
     en:{brandSub:'Operations console',footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner network operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',footerWorkflow:'Workflow',navSolutions:'Solutions',navPlans:'Plans',navContact:'Contact',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',ctaTop:'Start trial',ctaDemo:'Book a demo',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengsheng Sunshine City, Lu\'an, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
-    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',footerWorkflow:'工作流程',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒生阳光城 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'}};
+    zh:{brandSub:'操作控制台',footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',footerWorkflow:'工作流程',navSolutions:'解决方案',navPlans:'版本方案',navContact:'联系我们',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',ctaTop:'开始试用',ctaDemo:'预约演示',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒生阳光城 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie政策',terms:'使用条款',preferences:'Cookie 偏好设置'}};
   function lang(explicit){
     const explicitRaw=(explicit||'').toLowerCase().slice(0,2);
     if(explicitRaw==='zh')return 'zh';

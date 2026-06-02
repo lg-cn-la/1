@@ -2,9 +2,61 @@
 <html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Consent Mode default -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  analytics_storage:'denied',
+  ad_storage:'denied',
+  ad_user_data:'denied',
+  ad_personalization:'denied',
+  wait_for_update:500
+});
+(function(){
+  try {
+    const read = (key) => {
+      const value = localStorage.getItem(key);
+      if (!value) return null;
+      try { return JSON.parse(value); } catch (e) { return value; }
+    };
+    const source = read('sampora_cookie_consent_preferences') || read('sampora_cookie_consent');
+    if (!source) return;
+    const choice = typeof source === 'string' ? source.toLowerCase() : String(source.choice || source.status || source.mode || source.consent || '').toLowerCase();
+    const accepted = choice === 'accepted' || choice === 'accept' || choice === 'all' || source === true;
+    const custom = choice === 'custom' || choice === 'preferences';
+    const enabled = (key) => !!(source && typeof source === 'object' && (
+      source[key] === true ||
+      source[key] === 'granted' ||
+      source.categories?.[key] === true ||
+      source.preferences?.[key] === true
+    ));
+    const analytics = accepted || enabled('analytics') || enabled('analytics_storage');
+    const ads = accepted || enabled('marketing') || enabled('ads') || enabled('advertising') || enabled('ad_storage');
+    if (accepted || custom || analytics || ads) {
+      gtag('consent','update',{
+        analytics_storage: analytics ? 'granted' : 'denied',
+        ad_storage: ads ? 'granted' : 'denied',
+        ad_user_data: ads ? 'granted' : 'denied',
+        ad_personalization: ads ? 'granted' : 'denied'
+      });
+    }
+  } catch (e) {}
+})();
+</script>
+<!-- End Consent Mode default -->
+<!-- Google Tag Manager -->
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NC23T9B2');
+</script>
+<!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Terms of Use | Sampora</title>
-<meta name="description" content="Basic website Terms of Use for the public Sampora website, sales-led access, customer portal invitation, and payment processing through authorized providers.">
+<meta name="description" content="Read the terms for using the Sampora public website, sales-led access, customer portal invitations, and authorized payment processing.">
 <link rel="canonical" href="https://getsampora.com/terms.html">
 <meta property="og:title" content="Terms of Use | Sampora">
 <meta property="og:description" content="Basic website Terms of Use for the public Sampora website, sales-led access, customer portal invitation, and payment processing through authorized providers.">
@@ -18,19 +70,17 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/og-sampora.png">
 <link rel="stylesheet" href="assets/sampora-legal.css">
-<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 <link rel="stylesheet" href="assets/footer-email-modal.css">
-<!-- Clarity tracking code for https://getsampora.com -->
-<script>
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "x043zw5rc6");
-</script>
+<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 </head>
 <body class="terms-page">
 
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC23T9B2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div aria-hidden="true" class="status"><div class="container inner"><span class="live" data-i18n="statusLive">Terms of Use</span><span class="sep">/</span><span data-i18n="statusMid">Current Version</span><span class="right" data-i18n="statusRight">Website access and sales-led onboarding terms</span></div></div>
 <header class="mast"><div class="container inner"><a class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a>
 <nav aria-label="Primary navigation" class="nav product-nav sampora-nav-standard"><a class="nav-link" data-i18n="product" href="index.html">Product</a><a class="nav-link" data-i18n="solutions" href="solutions.html">Solutions</a><a class="nav-link" data-i18n="resources" href="resources.html">Resources</a><a class="nav-link" data-i18n="plans" href="plans.html">Plans</a><a class="nav-link" data-i18n="about" href="about.html">About</a><a class="nav-link" data-i18n="contact" href="contact.html">Contact</a></nav>
@@ -44,11 +94,11 @@
 <div class="sampora-footer-col"><h3 data-footer-i18n="footerResources">Resources</h3><a href="resources.html" data-footer-i18n="footerResourcesOverview">Resources overview</a><a href="resource-manuals.html#configuration-guide" data-footer-i18n="footerConfigurationGuide">Configuration guide</a><a href="resource-manuals.html#operation-manual" data-footer-i18n="footerOperationManual">Operation manual</a><a href="resource-manuals.html#rollout-notes" data-footer-i18n="footerRolloutNotes">Rollout notes</a></div>
 <div class="sampora-footer-col"><h3 data-footer-i18n="footerGetStarted">Get started</h3><a href="contact.html?intent=start_trial#contact-form" data-i18n="startTrial">Start trial</a><a href="contact.html?intent=book_demo#contact-form" data-i18n="bookDemo">Book a demo</a><a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a><button type="button" class="sampora-footer-link-button" data-footer-email-open data-i18n="contact">Contact</button></div></div>
 <div class="sampora-footer-contact"><div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div><div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div><div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China</span></div></div>
-<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms" aria-current="page">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-footer-i18n="preferences">Cookie Preferences</a></div></div></footer>
+<div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">© 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="#cookie-preferences" data-footer-i18n="cookiePreferences" data-cookie-preferences-open>Cookie Preferences</a><span class="dot">·</span><a href="terms.html" data-footer-i18n="terms" aria-current="page">Terms of Use</a></div></div></footer>
 
 <script src="assets/lead-attribution.js" defer></script>
-<script src="assets/sampora-cookie-preferences.js" defer></script>
 <script src="assets/footer-email-modal.js" defer></script>
+<script src="assets/sampora-cookie-preferences.js" defer></script>
 <script src="assets/language-preference.js"></script>
 <script>
 (function(){
@@ -57,8 +107,8 @@
     zh:{brandSub:'操作控制台',product:'产品',solutions:'解决方案',resources:'资源',plans:'版本方案',about:'关于',contact:'联系我们',bookDemo:'预约演示',startTrial:'开始试用',statusLive:'使用条款',statusMid:'当前版本',statusRight:'官网访问与销售承接规则',legalEyebrow:'Sampora / 使用条款'}
   };
   const footerCopy={
-    en:{footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',footerWorkflow:'Workflow',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengsheng Sunshine City, Lu\'an, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',terms:'Terms of Use',preferences:'Cookie Preferences'},
-    zh:{footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',footerWorkflow:'工作流程',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒生阳光城 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie 政策',terms:'使用条款',preferences:'Cookie 偏好设置'}
+    en:{footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier allocation, review records, finance, and partner operations.',tag1:'Sample supply',tag2:'Review workflow',tag3:'Settlement ledger',footerProduct:'Product',footerPlatformOverview:'Platform overview',footerWorkflow:'Workflow',footerResources:'Resources',footerResourcesOverview:'Resources overview',footerConfigurationGuide:'Configuration guide',footerOperationManual:'Operation manual',footerRolloutNotes:'Rollout notes',footerGetStarted:'Get started',footerTalkToSales:'Talk to sales',addressText:'Room 1506, Block A, Hengsheng Sunshine City, Lu\'an, Anhui, China',footerCopyright:'© 2026',footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',cookiePreferences:'Cookie Preferences',terms:'Terms of Use'},
+    zh:{footerDesc:'Sampora 是面向自有样本运营方与样本供应商的在线样本运营平台，覆盖项目交付管理、供应商分配、审核流程、结算台账、风控和合作网络。',tag1:'样本供给',tag2:'审核流程',tag3:'结算台账',footerProduct:'产品',footerPlatformOverview:'平台概览',footerWorkflow:'工作流程',footerResources:'资源',footerResourcesOverview:'资源概览',footerConfigurationGuide:'配置指南',footerOperationManual:'操作手册',footerRolloutNotes:'上线说明',footerGetStarted:'开始使用',footerTalkToSales:'咨询销售',addressText:'中国安徽省六安市恒生阳光城 A 座 1506 室',footerCopyright:'© 2026',footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie政策',cookiePreferences:'Cookie 偏好设置',terms:'使用条款'}
   };
   const mobileLabels={en:['Product','Solutions','Resources','Plans','About','Contact'],zh:['产品','解决方案','资源','版本方案','关于','联系我们']};
   function normalize(value){ value=String(value||'').toLowerCase(); return value.startsWith('zh')?'zh':'en'; }

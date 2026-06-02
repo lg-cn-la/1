@@ -1,142 +1,399 @@
-(function(){
-  const STORAGE_KEY = 'sampora_cookie_consent';
-  const VERSION = '2026-05';
-  const categories = ['necessary', 'functional', 'analytics', 'marketing'];
+(function () {
+  const CONSENT_KEY = 'sampora_cookie_consent';
+  const PREFS_KEY = 'sampora_cookie_consent_preferences';
+  const CLARITY_RETRY_COUNT = 8;
+  const CLARITY_RETRY_DELAY = 500;
+
   const copy = {
     en: {
-      title: 'Cookie Preferences',
-      intro: 'Sampora uses necessary storage for basic site operation. Functional / AI support storage is used for the SaleSmartly support chat. Analytics and marketing cookies are not currently used.',
-      necessaryTitle: 'Necessary storage',
-      necessaryDesc: 'Used for language preference, cookie preference, resource manual state, contact form fallback status, and basic site operation.',
-      functionalTitle: 'Functional / AI support storage',
-      functionalDesc: 'Used for SaleSmartly support chat, including chat state, vendor session continuity, misuse prevention, and follow-up when visitors choose to provide contact details.',
-      analyticsTitle: 'Analytics cookies',
-      analyticsDesc: 'Currently not used. Sampora does not load separate analytics cookies or dedicated website analytics tools on this public site.',
-      marketingTitle: 'Marketing cookies',
-      marketingDesc: 'Currently not used. Sampora does not use advertising pixels, retargeting cookies, or SaleSmartly marketing features on this public site.',
-      necessaryStatus: 'Always on',
-      functionalStatus: 'Used for support chat',
-      notUsed: 'Currently not used',
-      save: 'Save preferences',
+      bannerTitle: 'Cookie consent',
+      bannerText: 'We use necessary cookies to keep Sampora working. With your permission, analytics and marketing cookies help us measure website visits and improve campaigns.',
+      acceptAll: 'Accept all',
+      rejectNonEssential: 'Reject non-essential',
+      managePreferences: 'Manage preferences',
+      modalTitle: 'Cookie preferences',
+      modalIntro: 'Choose whether Sampora can use analytics and marketing cookies. Necessary cookies are always on.',
+      necessaryTitle: 'Necessary cookies',
+      necessaryDescription: 'Required for site security, language preference, cookie consent, and basic page functions. These cookies are always on.',
+      analyticsTitle: 'Analytics and marketing cookies',
+      analyticsDescription: 'Allow Google Analytics, Google Ads, Microsoft Clarity, and related tags configured through Google Tag Manager to measure website usage, improve campaigns, and understand visitor interactions.',
+      alwaysOn: 'Always on',
+      toggleOn: 'On',
+      toggleOff: 'Off',
+      savePreferences: 'Save preferences',
       close: 'Close'
     },
     zh: {
-      title: 'Cookie 偏好设置',
-      intro: 'Sampora 使用必要存储支持网站基础运行。功能性 / AI 客服存储用于 SaleSmartly 客服会话。分析 Cookie 和营销 Cookie 当前未启用。',
-      necessaryTitle: '必要存储',
-      necessaryDesc: '用于语言偏好、Cookie 偏好设置、资源手册状态、联系表单 fallback 状态和网站基础运行。',
-      functionalTitle: '功能性 / AI 客服存储',
-      functionalDesc: '用于 SaleSmartly 客服会话，包括保持聊天状态、服务商会话连续性、防止滥用，并在访问者主动提供联系方式时支持后续跟进。',
-      analyticsTitle: '分析 Cookie',
-      analyticsDesc: '当前未启用。Sampora 不会在本公开网站加载独立分析 Cookie 或专门的网站分析工具。',
-      marketingTitle: '营销 Cookie',
-      marketingDesc: '当前未启用。Sampora 不会在本公开网站使用广告像素、再营销 Cookie 或 SaleSmartly 营销功能。',
-      necessaryStatus: '始终开启',
-      functionalStatus: '用于客服会话',
-      notUsed: '当前未启用',
-      save: '保存偏好',
+      bannerTitle: 'Cookie 同意',
+      bannerText: '我们使用必要 Cookie 保障 Sampora 网站运行。经你同意后，分析和营销 Cookie 会帮助我们衡量网站访问并优化推广。',
+      acceptAll: '接受全部',
+      rejectNonEssential: '拒绝非必要',
+      managePreferences: '管理偏好',
+      modalTitle: 'Cookie 偏好设置',
+      modalIntro: '请选择 Sampora 是否可以使用分析和营销 Cookie。必要 Cookie 始终开启。',
+      necessaryTitle: '必要 Cookie',
+      necessaryDescription: '用于网站安全、语言偏好、Cookie 同意记录和基础页面功能。这些 Cookie 始终开启。',
+      analyticsTitle: '分析与营销 Cookie',
+      analyticsDescription: '允许通过 Google Tag Manager 配置的 Google Analytics、Google Ads、Microsoft Clarity 及相关标签衡量网站使用情况、优化推广并了解访问者互动。',
+      alwaysOn: '始终开启',
+      toggleOn: '开启',
+      toggleOff: '关闭',
+      savePreferences: '保存偏好',
       close: '关闭'
     }
   };
 
-  function currentLang(){
+  let clarityTimer = 0;
+
+  function readStorage(key) {
     try {
-      const saved = localStorage.getItem('sampora_lang');
-      if (saved === 'zh' || saved === 'en') return saved;
-    } catch(e) {}
-    const raw = (document.documentElement.dataset.lang || document.documentElement.lang || 'en').toLowerCase();
-    return raw.startsWith('zh') ? 'zh' : 'en';
+      return window.localStorage.getItem(key);
+    } catch (error) {
+      return null;
+    }
   }
 
-  function getCopy(){ return copy[currentLang()] || copy.en; }
-
-  function getConsent(){
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || null; } catch(e) { return null; }
+  function writeStorage(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch (error) {}
   }
 
-  function saveConsent(){
-    const payload = {
-      necessary: true,
-      functional: false,
-      analytics: false,
-      marketing: false,
-      version: VERSION,
+  function parsePreferences() {
+    const raw = readStorage(PREFS_KEY);
+    if (!raw) return { analyticsMarketing: false };
+    try {
+      const parsed = JSON.parse(raw);
+      return { analyticsMarketing: parsed.analyticsMarketing === true };
+    } catch (error) {
+      return { analyticsMarketing: false };
+    }
+  }
+
+  function saveChoice(choice, preferences) {
+    writeStorage(CONSENT_KEY, choice);
+    writeStorage(PREFS_KEY, JSON.stringify({
+      analyticsMarketing: preferences.analyticsMarketing === true,
       savedAt: new Date().toISOString()
+    }));
+  }
+
+  function normalizeLang(value) {
+    const lang = String(value || '').trim().toLowerCase();
+    if (lang === 'zh' || lang.startsWith('zh-')) return 'zh';
+    return lang === 'en' || lang.startsWith('en-') ? 'en' : '';
+  }
+
+  function currentLang() {
+    const root = document.documentElement;
+    const domLang = normalizeLang(root.dataset.lang) || normalizeLang(root.lang);
+    if (domLang) return domLang;
+    return normalizeLang(readStorage('sampora_lang')) || 'en';
+  }
+
+  function t() {
+    return copy[currentLang()] || copy.en;
+  }
+
+  function consentState(granted) {
+    const value = granted ? 'granted' : 'denied';
+    return {
+      analytics_storage: value,
+      ad_storage: value,
+      ad_user_data: value,
+      ad_personalization: value
     };
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(payload)); } catch(e) {}
-    window.dispatchEvent(new CustomEvent('sampora:cookie-consent', { detail: payload }));
-    return payload;
   }
 
-  function statusKey(category){
-    if (category === 'necessary') return 'necessaryStatus';
-    if (category === 'functional') return 'functionalStatus';
-    return 'notUsed';
+  function updateGtagConsent(granted) {
+    const state = consentState(granted);
+    const gtag = typeof window.gtag === 'function'
+      ? window.gtag
+      : function () {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(arguments);
+      };
+    gtag('consent', 'update', state);
   }
 
-  function buildRows(){
-    return categories.map(function(category){
-      return '<div class="cookie-row cookie-row--' + category + '" data-cookie-category="' + category + '">' +
-        '<strong data-cookie-copy="' + category + 'Title"></strong>' +
-        '<p data-cookie-copy="' + category + 'Desc"></p>' +
-        '<span class="cookie-status" data-cookie-copy="' + statusKey(category) + '"></span>' +
-        '</div>';
-    }).join('');
+  function updateClarityConsent(granted, retriesRemaining) {
+    const value = granted ? 'granted' : 'denied';
+    const payload = {
+      ad_Storage: value,
+      analytics_Storage: value
+    };
+
+    if (typeof window.clarity === 'function') {
+      window.clarity('consentv2', payload);
+      return;
+    }
+
+    if (retriesRemaining > 0) {
+      window.clearTimeout(clarityTimer);
+      clarityTimer = window.setTimeout(function () {
+        updateClarityConsent(granted, retriesRemaining - 1);
+      }, CLARITY_RETRY_DELAY);
+    }
   }
 
-  function ensureModal(){
+  function applyConsent(granted, options) {
+    updateGtagConsent(granted);
+    updateClarityConsent(granted, options && options.retryClarity ? CLARITY_RETRY_COUNT : 0);
+    window.dispatchEvent(new CustomEvent('sampora:cookie-consent', {
+      detail: {
+        choice: readStorage(CONSENT_KEY),
+        analyticsMarketing: granted === true
+      }
+    }));
+  }
+
+  function getSavedChoice() {
+    const saved = readStorage(CONSENT_KEY);
+    return saved === 'accepted' || saved === 'rejected' || saved === 'custom' ? saved : '';
+  }
+
+  function removeBanner() {
+    const banner = document.getElementById('sampora-cookie-banner');
+    if (banner) banner.remove();
+  }
+
+  function closePreferences() {
+    const backdrop = document.getElementById('sampora-cookie-modal-backdrop');
+    if (backdrop) {
+      backdrop.classList.remove('is-open');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function acceptAll() {
+    saveChoice('accepted', { analyticsMarketing: true });
+    applyConsent(true, { retryClarity: true });
+    removeBanner();
+    closePreferences();
+  }
+
+  function rejectNonEssential() {
+    saveChoice('rejected', { analyticsMarketing: false });
+    applyConsent(false, { retryClarity: true });
+    removeBanner();
+    closePreferences();
+  }
+
+  function saveCustomPreferences() {
+    const toggle = document.getElementById('sampora-cookie-analytics-toggle');
+    const analyticsMarketing = toggle ? toggle.checked === true : false;
+    saveChoice('custom', { analyticsMarketing: analyticsMarketing });
+    applyConsent(analyticsMarketing, { retryClarity: true });
+    removeBanner();
+    closePreferences();
+  }
+
+  function renderText(root) {
+    const strings = t();
+    root.querySelectorAll('[data-cookie-copy]').forEach(function (node) {
+      const key = node.getAttribute('data-cookie-copy');
+      if (strings[key]) node.textContent = strings[key];
+    });
+  }
+
+  function updateToggleLabel() {
+    const label = document.querySelector('[data-cookie-toggle-label]');
+    const toggle = document.getElementById('sampora-cookie-analytics-toggle');
+    if (!label || !toggle) return;
+    label.textContent = toggle.checked ? t().toggleOn : t().toggleOff;
+  }
+
+  function ensureBanner() {
+    let banner = document.getElementById('sampora-cookie-banner');
+    if (banner) return banner;
+
+    banner = document.createElement('section');
+    banner.id = 'sampora-cookie-banner';
+    banner.className = 'sampora-cookie-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-live', 'polite');
+    banner.setAttribute('aria-label', 'Cookie consent');
+    banner.innerHTML = [
+      '<div class="sampora-cookie-banner__copy">',
+      '<strong data-cookie-copy="bannerTitle"></strong>',
+      '<p data-cookie-copy="bannerText"></p>',
+      '</div>',
+      '<div class="sampora-cookie-banner__actions">',
+      '<button type="button" class="sampora-cookie-button sampora-cookie-button--primary" data-cookie-accept-all data-cookie-copy="acceptAll"></button>',
+      '<button type="button" class="sampora-cookie-button" data-cookie-reject data-cookie-copy="rejectNonEssential"></button>',
+      '<button type="button" class="sampora-cookie-button sampora-cookie-button--ghost" data-cookie-manage data-cookie-copy="managePreferences"></button>',
+      '</div>'
+    ].join('');
+
+    banner.querySelector('[data-cookie-accept-all]').addEventListener('click', acceptAll);
+    banner.querySelector('[data-cookie-reject]').addEventListener('click', rejectNonEssential);
+    banner.querySelector('[data-cookie-manage]').addEventListener('click', function () {
+      openPreferences();
+    });
+    document.body.appendChild(banner);
+    return banner;
+  }
+
+  function ensureModal() {
     let backdrop = document.getElementById('sampora-cookie-modal-backdrop');
     if (backdrop) return backdrop;
+
     backdrop = document.createElement('div');
     backdrop.id = 'sampora-cookie-modal-backdrop';
-    backdrop.className = 'cookie-modal-backdrop';
-    backdrop.innerHTML = '<div class="cookie-modal" role="dialog" aria-modal="true" aria-labelledby="sampora-cookie-title">' +
-      '<h2 id="sampora-cookie-title"></h2><p data-cookie-copy="intro"></p>' +
-      '<div class="cookie-category-list">' + buildRows() + '</div>' +
-      '<div class="cookie-actions"><button type="button" class="btn ghost" data-cookie-close></button><button type="button" class="btn primary" data-cookie-save></button></div>' +
-      '</div>';
-    document.body.appendChild(backdrop);
-    backdrop.addEventListener('click', function(e){ if(e.target === backdrop) closePreferences(); });
+    backdrop.className = 'sampora-cookie-modal-backdrop';
+    backdrop.setAttribute('aria-hidden', 'true');
+    backdrop.innerHTML = [
+      '<div class="sampora-cookie-modal" role="dialog" aria-modal="true" aria-labelledby="sampora-cookie-modal-title">',
+      '<div class="sampora-cookie-modal__header">',
+      '<h2 id="sampora-cookie-modal-title" data-cookie-copy="modalTitle"></h2>',
+      '<button type="button" class="sampora-cookie-icon-button" data-cookie-close aria-label="Close">X</button>',
+      '</div>',
+      '<p class="sampora-cookie-modal__intro" data-cookie-copy="modalIntro"></p>',
+      '<div class="sampora-cookie-category">',
+      '<div>',
+      '<strong data-cookie-copy="necessaryTitle"></strong>',
+      '<p data-cookie-copy="necessaryDescription"></p>',
+      '</div>',
+      '<label class="sampora-cookie-switch is-disabled">',
+      '<input type="checkbox" checked disabled>',
+      '<span aria-hidden="true"></span>',
+      '<em data-cookie-copy="alwaysOn"></em>',
+      '</label>',
+      '</div>',
+      '<div class="sampora-cookie-category">',
+      '<div>',
+      '<strong data-cookie-copy="analyticsTitle"></strong>',
+      '<p data-cookie-copy="analyticsDescription"></p>',
+      '</div>',
+      '<label class="sampora-cookie-switch">',
+      '<input type="checkbox" id="sampora-cookie-analytics-toggle">',
+      '<span aria-hidden="true"></span>',
+      '<em data-cookie-toggle-label></em>',
+      '</label>',
+      '</div>',
+      '<div class="sampora-cookie-modal__actions">',
+      '<button type="button" class="sampora-cookie-button" data-cookie-reject data-cookie-copy="rejectNonEssential"></button>',
+      '<button type="button" class="sampora-cookie-button sampora-cookie-button--primary" data-cookie-save data-cookie-copy="savePreferences"></button>',
+      '<button type="button" class="sampora-cookie-button sampora-cookie-button--ghost" data-cookie-accept-all data-cookie-copy="acceptAll"></button>',
+      '</div>',
+      '</div>'
+    ].join('');
+
+    backdrop.addEventListener('click', function (event) {
+      if (event.target === backdrop) closePreferences();
+    });
     backdrop.querySelector('[data-cookie-close]').addEventListener('click', closePreferences);
-    backdrop.querySelector('[data-cookie-save]').addEventListener('click', function(){ saveConsent(); closePreferences(); });
-    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closePreferences(); });
+    backdrop.querySelector('[data-cookie-reject]').addEventListener('click', rejectNonEssential);
+    backdrop.querySelector('[data-cookie-save]').addEventListener('click', saveCustomPreferences);
+    backdrop.querySelector('[data-cookie-accept-all]').addEventListener('click', acceptAll);
+    backdrop.querySelector('#sampora-cookie-analytics-toggle').addEventListener('change', updateToggleLabel);
+    document.body.appendChild(backdrop);
     return backdrop;
   }
 
-  function renderModal(){
-    const t = getCopy();
-    const backdrop = ensureModal();
-    backdrop.querySelector('#sampora-cookie-title').textContent = t.title;
-    backdrop.querySelectorAll('[data-cookie-copy]').forEach(function(el){
-      const key = el.getAttribute('data-cookie-copy');
-      if (t[key]) el.textContent = t[key];
-    });
-    backdrop.querySelector('[data-cookie-close]').textContent = t.close;
-    backdrop.querySelector('[data-cookie-save]').textContent = t.save;
+  function renderBanner() {
+    const banner = ensureBanner();
+    renderText(banner);
   }
 
-  function openPreferences(){ renderModal(); ensureModal().classList.add('open'); }
-  function closePreferences(){ const backdrop = document.getElementById('sampora-cookie-modal-backdrop'); if(backdrop) backdrop.classList.remove('open'); }
+  function renderModal() {
+    const backdrop = ensureModal();
+    const toggle = backdrop.querySelector('#sampora-cookie-analytics-toggle');
+    const saved = getSavedChoice();
+    const prefs = parsePreferences();
+    toggle.checked = saved === 'accepted' || (saved === 'custom' && prefs.analyticsMarketing === true);
+    renderText(backdrop);
+    updateToggleLabel();
+  }
 
-  function bindOpeners(){
-    document.addEventListener('click', function(e){
-      const trigger = e.target.closest('[data-cookie-preferences-open], a[href="#cookie-preferences"]');
+  function openPreferences() {
+    const backdrop = ensureModal();
+    renderModal();
+    backdrop.classList.add('is-open');
+    backdrop.setAttribute('aria-hidden', 'false');
+    const firstControl = backdrop.querySelector('button, input:not([disabled])');
+    if (firstControl) firstControl.focus({ preventScroll: true });
+  }
+
+  function rerender() {
+    const banner = document.getElementById('sampora-cookie-banner');
+    const modal = document.getElementById('sampora-cookie-modal-backdrop');
+    if (banner) renderText(banner);
+    if (modal) {
+      renderText(modal);
+      updateToggleLabel();
+    }
+  }
+
+  function bindOpeners() {
+    document.addEventListener('click', function (event) {
+      const trigger = event.target.closest('[data-cookie-preferences-open], a[href="#cookie-preferences"]');
       if (!trigger) return;
-      e.preventDefault();
+      event.preventDefault();
       openPreferences();
     });
+
+    document.addEventListener('click', function (event) {
+      if (event.target.closest('.lang button, [data-lang]')) {
+        window.setTimeout(rerender, 60);
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closePreferences();
+    });
+
+    window.addEventListener('storage', function (event) {
+      if (event.key === 'sampora_lang') rerender();
+    });
+
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(rerender);
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['lang', 'data-lang']
+      });
+    }
   }
 
-  function refresh(){
-    if (document.getElementById('sampora-cookie-modal-backdrop')) renderModal();
+  function applySavedConsent() {
+    const saved = getSavedChoice();
+    if (saved === 'accepted') {
+      applyConsent(true, { retryClarity: true });
+      return true;
+    }
+    if (saved === 'rejected') {
+      applyConsent(false, { retryClarity: true });
+      return true;
+    }
+    if (saved === 'custom') {
+      applyConsent(parsePreferences().analyticsMarketing === true, { retryClarity: true });
+      return true;
+    }
+    applyConsent(false, { retryClarity: false });
+    return false;
   }
 
-  window.SamporaCookiePreferences = { open: openPreferences, close: closePreferences, getConsent: getConsent, saveNecessaryOnly: saveConsent };
-  function init(){ bindOpeners(); if(location.hash === '#cookie-preferences') setTimeout(openPreferences, 80); }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
-  window.addEventListener('storage', refresh);
-  document.addEventListener('click', function(e){
-    const btn = e.target.closest('.lang button,[data-lang]');
-    if(btn) setTimeout(refresh, 40);
-  });
-})();
+  function init() {
+    bindOpeners();
+    if (!applySavedConsent()) renderBanner();
+    if (window.location.hash === '#cookie-preferences') {
+      window.setTimeout(openPreferences, 80);
+    }
+  }
+
+  window.SamporaCookiePreferences = {
+    open: openPreferences,
+    close: closePreferences,
+    acceptAll: acceptAll,
+    rejectNonEssential: rejectNonEssential,
+    getConsent: getSavedChoice,
+    getPreferences: parsePreferences
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+}());

@@ -65,11 +65,11 @@ const legalPageExpectations = {
   'cookie-policy.html': {
     eyebrow: 'Sampora / Cookie Policy',
     statusLiveEn: 'Cookie Policy',
-    statusMidEn: 'Functional Storage',
-    statusRightEn: 'Necessary and AI support storage notice',
+    statusMidEn: 'Public Website Cookies',
+    statusRightEn: 'GTM, GA4, and Clarity analytics notice',
     statusLiveZh: 'Cookie 政策',
-    statusMidZh: '功能性存储',
-    statusRightZh: '必要与 AI 客服存储说明',
+    statusMidZh: '官网 Cookie',
+    statusRightZh: 'GTM、GA4 与 Clarity 分析说明',
     currentHref: 'cookie-policy.html',
   },
   'terms.html': {

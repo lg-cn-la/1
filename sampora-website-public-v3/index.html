@@ -3,14 +3,60 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  analytics_storage:'denied',
+  ad_storage:'denied',
+  ad_user_data:'denied',
+  ad_personalization:'denied',
+  wait_for_update:500
+});
+(function(){
+  try {
+    var consentRaw = localStorage.getItem('sampora_cookie_consent');
+    var preferencesRaw = localStorage.getItem('sampora_cookie_consent_preferences');
+    if (!consentRaw && !preferencesRaw) return;
+    var parsedConsent = null;
+    var preferences = null;
+    try { parsedConsent = consentRaw && consentRaw.charAt(0) === '{' ? JSON.parse(consentRaw) : null; } catch(e) {}
+    try { preferences = preferencesRaw ? JSON.parse(preferencesRaw) : null; } catch(e) {}
+    var source = preferences || parsedConsent || {};
+    var accepted = consentRaw === 'accepted' || source.accepted === true || source.choice === 'accepted' || source.status === 'accepted';
+    var savedChoice = accepted || consentRaw === 'custom' || source.choice === 'custom' || preferences || typeof source.analytics === 'boolean' || typeof source.marketing === 'boolean';
+    if (!savedChoice) return;
+    var analyticsGranted = accepted || source.analytics === true || source.analytics_storage === 'granted';
+    var adStorageGranted = accepted || source.marketing === true || source.ad_storage === 'granted';
+    var adUserDataGranted = accepted || source.marketing === true || source.ad_user_data === 'granted' || source.adUserData === true;
+    var adPersonalizationGranted = accepted || source.marketing === true || source.ad_personalization === 'granted' || source.adPersonalization === true;
+    gtag('consent','update',{
+      analytics_storage: analyticsGranted ? 'granted' : 'denied',
+      ad_storage: adStorageGranted ? 'granted' : 'denied',
+      ad_user_data: adUserDataGranted ? 'granted' : 'denied',
+      ad_personalization: adPersonalizationGranted ? 'granted' : 'denied'
+    });
+  } catch(e) {}
+})();
+</script>
+<!-- Google Tag Manager -->
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NC23T9B2');
+</script>
+<!-- End Google Tag Manager -->
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Sampora - Online Sample Operations Platform for Panel Providers & Sample Suppliers</title>
+<title>Sample Supplier, Panel & Partner Operations Software | Sampora</title>
 <meta content="Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations." name="description"/>
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
 <meta name="msvalidate.01" content="0F37EC55E6AF64B1CFDC6D6A23A433DE" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://getsampora.com/index.html">
+<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -5327,18 +5373,15 @@ body::before,
 /* ===== End Operating Proof Section ===== */
 @media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
-<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 <link rel="stylesheet" href="assets/footer-email-modal.css">
-<!-- Clarity tracking code for https://getsampora.com -->
-<script>
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "x043zw5rc6");
-</script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC23T9B2"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div aria-hidden="true" class="status">
 <div class="container inner"><span class="live" data-i18n="statusLive">Delivery workflow / Live</span><span class="sep">/</span><span><b data-i18n="statusDemoLabel">Multi-source</b> <span data-i18n="statusNetworks">sample operations</span></span><span class="sep">/</span><span id="statusRegion">Supplier pool active</span><span class="right" data-i18n="statusControls">Privacy, review and export permissions</span></div>
 </div>
@@ -5962,7 +6005,7 @@ body::before,
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
 <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-i18n="addressText">Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China</span></div>
 </div>
-<div class="sampora-footer-legal"><span data-i18n="footerLegalLine">© 2026 Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-i18n="preferences">Cookie Preferences</a></div>
+<div class="sampora-footer-legal"><span data-i18n="footerLegalLine">© 2026 Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">·</span><a href="privacy.html" data-i18n="privacy">Privacy Policy</a><span class="dot">·</span><a href="cookie-policy.html" data-i18n="cookie">Cookie Policy</a><span class="dot">·</span><a href="terms.html" data-i18n="terms">Terms of Use</a><span class="dot">·</span><a href="#cookie-preferences" data-cookie-preferences-open data-i18n="cookiePreferences">Cookie Preferences</a></div>
 </div>
 </footer>
 <script src="assets/language-preference.js"></script>
@@ -6245,7 +6288,7 @@ body::before,
                 "privacy": "Privacy Policy",
                 "cookie": "Cookie Policy",
                 "terms": "Terms of Use",
-                "preferences": "Cookie Preferences",
+                "cookiePreferences": "Cookie Preferences",
                 "topoAggRole": "sample aggregator",
                 "topoAggTitle": "AGG_02",
                 "topoApiRole": "API supplier",
@@ -6546,9 +6589,9 @@ body::before,
                 "tag3": "结算台账",
                 "talkSales": "联系销售",
                 "privacy": "隐私政策",
-                "cookie": "Cookie 政策",
+                "cookie": "Cookie政策",
                 "terms": "使用条款",
-                "preferences": "Cookie 偏好设置",
+                "cookiePreferences": "Cookie 偏好设置",
                 "topoAggRole": "样本聚合商",
                 "topoAggTitle": "AGG_02",
                 "topoApiRole": "API 供应商",
@@ -7298,8 +7341,8 @@ body::before,
 </script>
 <script src="assets/i18n-sweep.js"></script>
 <script src="assets/lead-attribution.js" defer></script>
-<script src="assets/sampora-cookie-preferences.js" defer></script>
 <script src="assets/footer-email-modal.js" defer></script>
+<script src="assets/sampora-cookie-preferences.js" defer></script>
 <script id="opv11-logo-selection">
 (function(){
   const cards = Array.from(document.querySelectorAll('.opv11-brand-card'));
