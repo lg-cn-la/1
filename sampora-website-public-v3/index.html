@@ -5191,7 +5191,29 @@ body::before,
     border-radius: 20px;
     background: linear-gradient(180deg, rgba(14, 27, 47, .84), rgba(7, 17, 31, .95));
     box-shadow: 0 16px 36px rgba(0, 0, 0, .17);
+    cursor: pointer;
     overflow: hidden;
+    transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
+}
+.opv6-case:hover,
+.opv6-case:focus-visible {
+    border-color: rgba(56, 210, 255, .38);
+    background:
+        radial-gradient(240px 130px at 18% 0%, rgba(56, 210, 255, .10), transparent 72%),
+        linear-gradient(180deg, rgba(16, 31, 52, .88), rgba(8, 19, 34, .96));
+    box-shadow: 0 18px 42px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .045);
+    transform: translateY(-2px);
+}
+.opv6-case:focus-visible {
+    outline: 2px solid rgba(56, 210, 255, .56);
+    outline-offset: 3px;
+}
+.opv6-case.is-selected {
+    border-color: rgba(181, 240, 86, .48);
+    background:
+        radial-gradient(260px 140px at 14% 0%, rgba(181, 240, 86, .12), transparent 72%),
+        linear-gradient(180deg, rgba(17, 34, 52, .92), rgba(8, 19, 34, .96));
+    box-shadow: 0 20px 46px rgba(181, 240, 86, .08), inset 0 1px 0 rgba(255, 255, 255, .055);
 }
 .opv6-case-top {
     display: flex;
@@ -5548,26 +5570,29 @@ body::before,
 .opv12-flow-transition {
     position: relative;
     z-index: 1;
-    margin: 56px 34px 64px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(129, 178, 214, .16);
+    margin: 56px 59px 64px;
 }
 
 .opv12-flow-transition h3 {
-    max-width: 760px;
+    max-width: 920px;
     margin: 0;
     color: var(--fg);
-    font-size: 22px;
-    line-height: 1.25;
+    font-size: 36px;
+    line-height: 1.11;
     letter-spacing: 0;
 }
 
+.opv12-flow-transition h3 em {
+    font-style: normal;
+    color: var(--cyan);
+}
+
 .opv12-flow-transition p {
-    max-width: 780px;
-    margin: 10px 0 0;
+    max-width: 980px;
+    margin: 12px 0 0;
     color: var(--fg2);
-    font-size: 14px;
-    line-height: 1.68;
+    font-size: 14.5px;
+    line-height: 1.72;
 }
 
 @media(max-width:1180px) {
@@ -5605,17 +5630,17 @@ body::before,
     }
 
     .opv12-flow-transition {
-        margin: 34px 22px 38px;
-        padding-top: 14px;
+        margin: 34px 41px 38px;
     }
 
     .opv12-flow-transition h3 {
-        font-size: 18px;
+        font-size: 28px;
+        line-height: 1.11;
     }
 
     .opv12-flow-transition p {
-        font-size: 13.5px;
-        line-height: 1.62;
+        font-size: 14px;
+        line-height: 1.66;
     }
 }
 
@@ -5895,11 +5920,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </div>
 </div>
 <div class="opv12-flow-transition">
-<h3 data-i18n="opv12TransitionTitle">After cooperation starts, it enters the real operating flow.</h3>
+<h3 data-i18n-html="opv12TransitionTitle">After cooperation starts, it enters the<br><em>real operating workflow</em>.</h3>
 <p data-i18n="opv12TransitionText">Client and supplier relationships continue into project setup, supplier routing, delivery review, and settlement checks.</p>
 </div>
 <div aria-label="Real operational problems Sampora addresses" class="opv6-workflows" data-i18n-aria-label="opProofCasesLabel">
-<article class="opv6-case">
+<article class="opv6-case" tabindex="0" aria-selected="false">
 <div class="opv6-case-top"><b>01</b><span data-i18n="opProofCase1Step">Launch setup</span></div>
 <h3 data-i18n="opProofCase1Title">Stop chasing old project specs before fieldwork starts.</h3>
 <div class="opv6-steps">
@@ -5908,7 +5933,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </div>
 <div class="opv6-outcome" data-i18n="opProofCase1Outcome">Teams assign suppliers against the latest approved setup instead of re-checking message history.</div>
 </article>
-<article class="opv6-case">
+<article class="opv6-case" tabindex="0" aria-selected="false">
 <div class="opv6-case-top"><b>02</b><span data-i18n="opProofCase2Step">Supplier routing</span></div>
 <h3 data-i18n="opProofCase2Title">Make supplier choice less dependent on memory.</h3>
 <div class="opv6-steps">
@@ -5917,7 +5942,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </div>
 <div class="opv6-outcome" data-i18n="opProofCase2Outcome">Wrong sends, blocked-route mistakes, and supplier price exposure become easier to prevent.</div>
 </article>
-<article class="opv6-case">
+<article class="opv6-case" tabindex="0" aria-selected="false">
 <div class="opv6-case-top"><b>03</b><span data-i18n="opProofCase3Step">Delivery review</span></div>
 <h3 data-i18n="opProofCase3Title">Keep dispute evidence before the dispute starts.</h3>
 <div class="opv6-steps">
@@ -5926,7 +5951,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </div>
 <div class="opv6-outcome" data-i18n="opProofCase3Outcome">Operations can trace why a delivery count changed without rebuilding the story from exports.</div>
 </article>
-<article class="opv6-case">
+<article class="opv6-case" tabindex="0" aria-selected="false">
 <div class="opv6-case-top"><b>04</b><span data-i18n="opProofCase4Step">Settlement</span></div>
 <h3 data-i18n="opProofCase4Title">Give finance a clear settlement packet.</h3>
 <div class="opv6-steps">
@@ -6456,7 +6481,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "opv12Card4Tag": "Workflow handoff",
                 "opv12Card4Title": "What happens after cooperation starts?",
                 "opv12Card4Text": "Client and supplier relationships continue into project setup, routing, delivery review, and settlement checks.",
-                "opv12TransitionTitle": "After cooperation starts, it enters the real operating flow.",
+                "opv12TransitionTitle": "After cooperation starts, it enters the<br><em>real operating workflow</em>.",
                 "opv12TransitionText": "Client and supplier relationships continue into project setup, supplier routing, delivery review, and settlement checks.",
                 "opProofCoopCta": "Explore Cooperation Resources",
                 "opProofBottom": "<strong>Best next step:</strong> ask about cooperation resources or book a demo to see how client and supplier cooperation moves into the workflow.",
@@ -6786,7 +6811,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "opv12Card4Tag": "流程衔接",
                 "opv12Card4Title": "合作开始后如何继续？",
                 "opv12Card4Text": "客户和供应商关系会继续进入项目配置、供应商路由、交付审核和结算核对。",
-                "opv12TransitionTitle": "合作建立后，进入真实运营流",
+                "opv12TransitionTitle": "合作建立后，进入<em>真实运营流程</em>。",
                 "opv12TransitionText": "客户和供应商关系会继续进入项目配置、供应商路由、交付审核和结算核对流程。",
                 "opProofCoopCta": "了解合作资源",
                 "opProofBottom": "<strong>下一步建议：</strong>如果你想通过 Sampora 建立客户或供应商合作，可以先咨询合作资源，或预约演示查看合作如何进入项目流程。",
@@ -7685,6 +7710,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <script id="opv12-card-selection">
 (function(){
   const cards = Array.from(document.querySelectorAll('.opv12-card'));
+  if (!cards.length) return;
+  const setSelected = card => {
+    const nextState = !card.classList.contains('is-selected');
+    cards.forEach(item => {
+      const active = item === card && nextState;
+      item.classList.toggle('is-selected', active);
+      item.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+  };
+  cards.forEach(card => {
+    card.addEventListener('click', () => setSelected(card));
+    card.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      setSelected(card);
+    });
+  });
+})();
+</script>
+<script id="opv6-case-selection">
+(function(){
+  const cards = Array.from(document.querySelectorAll('.opv6-case'));
   if (!cards.length) return;
   const setSelected = card => {
     const nextState = !card.classList.contains('is-selected');
