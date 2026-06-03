@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const workspaceRoot = path.resolve(root, '..');
 const officialPages = ['index.html', 'solutions.html', 'resources.html', 'resource-manuals.html', 'plans.html', 'contact.html', 'about.html'];
-const supportPages = ['404.html', 'cookie-policy.html', 'privacy.html', 'terms.html'];
+const supportPages = ['404.html', 'cookie-policy.html', 'privacy.html', 'terms.html', 'thank-you.html'];
 const publicHtmlPages = [...officialPages, ...supportPages];
 const productionOrigin = 'https://getsampora.com';
 const staleFormalOrigin = 'https://www.' + 'sampora.com';
@@ -365,8 +365,7 @@ for (const file of ['solutions.html', 'resources.html']) {
   if (/X-Requested-With/i.test(contact)) fail('contact.html: X-Requested-With header must be removed');
   if (!/fetch\(/.test(contact)) fail('contact.html: fetch integration path missing');
   if (!/backend-ok only|success-only|\/api\/contact/i.test(contact)) fail('contact.html: /api/contact success-only submission contract is not clearly marked');
-  if (/thank-you\.html/i.test(contact)) fail('contact.html: contact form must not route to thank-you.html');
-  if (/(?:window\.)?location\.(?:href|assign|replace)\s*[=(]/.test(contact)) fail('contact.html: contact form must not redirect after submit');
+  if (!/thank-you\.html/i.test(contact)) fail('contact.html: contact form success path must route to thank-you.html');
   if (!/setSubmitFeedback\('submitting'\)[\s\S]*fetch\(/.test(contact)) fail('contact.html: live branch does not show submitting feedback before fetch');
   const pendingSetItem = contact.match(/sessionStorage\.setItem\(\s*['"]sampora_contact_pending['"]\s*,\s*([^\n;]+?)\s*\)/);
   if (!pendingSetItem) fail('contact.html: pending sessionStorage marker is missing');
@@ -374,8 +373,38 @@ for (const file of ['solutions.html', 'resources.html']) {
     fail('contact.html: pending sessionStorage marker must not store form fields or user values');
   }
   if (!/const\s+responsePayload\s*=\s*result\.data\s*\?\?\s*result\s*;/.test(contact)) fail('contact.html: success state must normalize data-wrapped backend payloads');
-  if (!/if\s*\(\s*res\.ok\s*&&\s*responsePayload\.ok\s*===\s*true\s*\)\s*{[\s\S]*setSubmitFeedback\('success'\)[\s\S]*sessionStorage\.removeItem\('sampora_contact_pending'\)[\s\S]*form\.reset\(\)/.test(contact)) fail('contact.html: success state must be backend-ok only and clear pending/input only there');
+  if (!/if\s*\(\s*res\.ok\s*&&\s*responsePayload\.ok\s*===\s*true\s*\)\s*{[\s\S]*setSubmitFeedback\('success'\)[\s\S]*sessionStorage\.removeItem\('sampora_contact_pending'\)[\s\S]*form\.reset\(\)[\s\S]*window\.location\.assign\(\s*['"]thank-you\.html['"]\s*\)/.test(contact)) fail('contact.html: success state must be backend-ok only, clear pending/input, and redirect to thank-you.html');
   if (!/setSubmitFeedback\('failure'\)/.test(contact)) fail('contact.html: failure feedback path missing');
+}
+
+{
+  const thankYou = read('thank-you.html');
+  if (!/<meta\b(?=[^>]*\bname=["']robots["'])(?=[^>]*\bcontent=["']noindex,\s*nofollow["'])[^>]*>/i.test(thankYou)) fail('thank-you.html: must stay noindex,nofollow');
+  if (!/sampora_thank_you_generate_lead_sent/.test(thankYou)) fail('thank-you.html: generate_lead session guard missing');
+  if (/\.thank-card::after/.test(thankYou) || /background-size:\s*18px\s+18px/i.test(thankYou)) fail('thank-you.html: removed decorative thank-card grid must not return');
+  const footerContactItems = (thankYou.match(/class=["']sampora-footer-contact-item["']/g) || []).length;
+  if (footerContactItems !== 3) fail(`thank-you.html: standard footer contact row must have 3 items, found ${footerContactItems}`);
+  if (!/<span class=["']sampora-footer-icon["']>TEL<\/span>\s*<span>400-660-0224<\/span>/i.test(thankYou)) fail('thank-you.html: standard footer TEL item is missing');
+  if (!/#footer\s+\.sampora-footer-contact\s*{[^}]*grid-template-columns:\s*repeat\(3,\s*1fr\)\s*!important/i.test(thankYou)) fail('thank-you.html: standard footer contact row must use the 3-column template');
+  if (/grid-template-columns:\s*minmax\(0,\s*\.8fr\)\s+minmax\(0,\s*1\.2fr\)/i.test(thankYou)) fail('thank-you.html: old two-column footer contact template remains');
+  if (!/width:\s*30px\s*!important[\s\S]{0,160}height:\s*30px\s*!important[\s\S]{0,180}border-radius:\s*8px\s*!important/i.test(thankYou)) fail('thank-you.html: footer S mark must match the standard 30px mark');
+  if (!/An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier assignment, review records, finance, and Cooperation Resources\./.test(thankYou)) fail('thank-you.html: standard plans-style footer description missing');
+  const footerLegal = thankYou.match(/<div class=["']sampora-footer-legal["']>([\s\S]*?)<\/div>/i)?.[1] || '';
+  if (!/data-footer-i18n=["']privacy["'][\s\S]*data-footer-i18n=["']cookie["'][\s\S]*data-footer-i18n=["']cookiePreferences["'][\s\S]*data-footer-i18n=["']terms["']/i.test(footerLegal)) {
+    fail('thank-you.html: standard footer legal links must keep Privacy, Cookie, Cookie Preferences, Terms order');
+  }
+  if (/Contact form success path|联系表单成功路径/.test(thankYou)) fail('thank-you.html: old top status success-path wording remains');
+  if (!/Contact form submitted/.test(thankYou) || !/联系表单已发出/.test(thankYou)) fail('thank-you.html: top status submitted wording must be synced in EN/ZH');
+  if (!/class=["']status-cycle["'][\s\S]*class=["']status-copy["'][\s\S]*class=["']status-copy alt["'][\s\S]*data-i18n=["']tickerText["'][\s\S]*Your request has been received/.test(thankYou)) fail('thank-you.html: status strip must cycle from the original text to the request-received text');
+  if (!/tickerText:\s*'你的请求已收到'/.test(thankYou)) fail('thank-you.html: Chinese ticker text missing');
+  if (/status-ticker|padding-left:\s*100%/i.test(thankYou)) fail('thank-you.html: status strip must not use the old extra ticker lane or layout padding');
+  if (!/\.status-cycle\s*{[\s\S]*overflow:\s*hidden;[\s\S]*contain:\s*paint;/i.test(thankYou) || !/@keyframes\s+status-original[\s\S]*@keyframes\s+status-alt/i.test(thankYou)) fail('thank-you.html: status cycle must animate inside its clipped lane');
+  if (!/\.status\s+\.inner\s*{[\s\S]*padding-left:\s*12px;[\s\S]*overflow:\s*hidden;/i.test(thankYou)) fail('thank-you.html: status strip must keep left padding so the live dot is not clipped');
+  if (!/\.kicker\s*{[\s\S]*height:\s*32px;[\s\S]*min-height:\s*32px;[\s\S]*padding:\s*0\s+14px;[\s\S]*font:\s*900\s+11px\/1/i.test(thankYou)) fail('thank-you.html: hero status pill must keep the compact standard size');
+  if (!/\.kicker-dot\s*{[\s\S]*width:\s*7px;[\s\S]*height:\s*7px;[\s\S]*overflow:\s*visible;/i.test(thankYou)) fail('thank-you.html: compact status dot must stay visible and unclipped');
+  if (!/class=["']content-copy["'][\s\S]*class=["']content-actions["'][\s\S]*class=["']status-strip["']/.test(thankYou)) fail('thank-you.html: thank-card content must keep grouped vertical distribution');
+  if (/style=["'][^"']*margin-bottom:\s*14px/i.test(thankYou)) fail('thank-you.html: inline kicker spacing style must not return');
+  if (/\.page-shell::before|\.page-shell::after|\.explore-card::after/i.test(thankYou)) fail('thank-you.html: removed decorative glow pseudo-elements must not return');
 }
 
 if (!failures) console.log('PASS final audit static checks');

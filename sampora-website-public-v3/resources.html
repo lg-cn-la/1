@@ -151,10 +151,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .section-head {
             display: grid;
-            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-            gap: 36px;
-            align-items: end;
-            margin-bottom: 36px
+            grid-template-columns: minmax(0, 1fr);
+            gap: 14px;
+            align-items: start;
+            margin-bottom: 40px
         }
 
         .section-kicker {
@@ -169,7 +169,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: clamp(32px, 4vw, 50px);
             line-height: 1.04;
             letter-spacing: -.03em;
-            max-width: 720px
+            max-width: none;
+            white-space: nowrap
         }
 
         .section-head h2 em,
@@ -182,8 +183,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin: 0;
             color: var(--body);
             font-size: 16px;
-            max-width: 760px;
-            line-height: 1.72
+            max-width: none;
+            width: 100%;
+            line-height: 1.72;
+            white-space: nowrap
         }
 
         .status {
@@ -2035,6 +2038,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             .section {
                 padding: 66px 0
+            }
+
+            .section-head h2,
+            .section-head p {
+                white-space: normal
             }
 
             #surfaces {

@@ -24,7 +24,7 @@ if (!fs.existsSync(targetRoot)) {
   }
 
   const htmlFiles = fs.readdirSync(targetRoot).filter((entry) => entry.endsWith('.html')).sort();
-  const expectedHtml = ['404.html', 'about.html', 'contact.html', 'cookie-policy.html', 'index.html', 'plans.html', 'privacy.html', 'resource-manuals.html', 'resources.html', 'solutions.html', 'terms.html'];
+  const expectedHtml = ['404.html', 'about.html', 'contact.html', 'cookie-policy.html', 'index.html', 'plans.html', 'privacy.html', 'resource-manuals.html', 'resources.html', 'solutions.html', 'terms.html', 'thank-you.html'];
   if (JSON.stringify(htmlFiles) !== JSON.stringify(expectedHtml)) {
     fail(`production root HTML files mismatch: expected ${JSON.stringify(expectedHtml)}, found ${JSON.stringify(htmlFiles)}`);
   }

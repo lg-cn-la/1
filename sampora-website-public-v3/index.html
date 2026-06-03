@@ -168,9 +168,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             max-width: 860px
         }
 
+        #pricing .section-head.title-only h2 {
+            max-width: none
+        }
+
+        #pricing .plans-title-line {
+            white-space: nowrap
+        }
+
         @media(max-width:980px) {
             .section-head {
                 grid-template-columns: 1fr
+            }
+
+            #pricing .plans-title-line {
+                white-space: normal
             }
 
             .section-head.title-only {
@@ -239,11 +251,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .status .sep {
             color: var(--muted2)
-        }
-
-        .status .right {
-            margin-left: auto;
-            color: var(--fg2)
         }
 
         .mast {
@@ -356,9 +363,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 display: none
             }
 
-            .status .right {
-                display: none
-            }
         }
 
         .btn {
@@ -1726,19 +1730,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .role95-head {
             display: grid;
-            grid-template-columns: minmax(0, .92fr) minmax(420px, .58fr);
-            gap: 36px;
-            align-items: end;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            align-items: start;
             margin-bottom: 34px
+        }
+
+        .role95-head>div {
+            min-width: 0
         }
 
         .role95-head h2 {
             margin: 14px 0 0;
-            max-width: 760px;
+            max-width: none;
             color: var(--heading-soft, var(--fg));
-            font-size: clamp(34px, 4.2vw, 56px);
-            line-height: 1.03;
-            letter-spacing: -.025em
+            font-size: clamp(30px, 4vw, 46px);
+            line-height: 1.04;
+            letter-spacing: -.02em;
+            white-space: nowrap
         }
 
         .role95-head h2 em {
@@ -1751,7 +1760,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: var(--body-soft, var(--fg2));
             font-size: 16px;
             line-height: 1.7;
-            max-width: 620px
+            max-width: none;
+            white-space: nowrap
         }
 
         .role95-shell {
@@ -2062,8 +2072,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         @media(max-width:1180px) {
-            .role95-head {
-                grid-template-columns: 1fr
+            .role95-head h2,
+            .role95-head p {
+                white-space: normal
             }
 
             .role95-personas {
@@ -2092,10 +2103,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             .role95-head {
                 gap: 16px;
                 margin-bottom: 24px
-            }
-
-            .role95-head h2 {
-                font-size: clamp(32px, 9vw, 42px)
             }
 
             .role95-persona {
@@ -5383,7 +5390,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div aria-hidden="true" class="status">
-<div class="container inner"><span class="live" data-i18n="statusLive">Delivery workflow / Live</span><span class="sep">/</span><span><b data-i18n="statusDemoLabel">Multi-source</b> <span data-i18n="statusNetworks">sample operations</span></span><span class="sep">/</span><span id="statusRegion">Supplier pool active</span><span class="right" data-i18n="statusControls">Privacy, review and export permissions</span></div>
+<div class="container inner"><span class="live" id="statusLive" data-i18n="statusLive">Delivery workflow / Live</span><span class="sep">/</span><span><b id="statusDemoLabel" data-i18n="statusDemoLabel">Multi-source</b> <span id="statusNetworks" data-i18n="statusNetworks">sample operations</span></span><span class="sep">/</span><span id="statusRegion">Supplier pool active</span><span class="sep">/</span><span id="statusDetail">Panel and aggregator routes active</span></div>
 </div>
 <header class="mast">
 <div class="container inner"><a class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a>
@@ -5551,7 +5558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <section class="scenario-ribbon is-running" data-scenario-index="2" aria-label="Sample operation scenarios" data-i18n-aria-label="scenarioRibbonAria">
 <div class="container scenario-ribbon__inner">
 <div class="scenario-ribbon__intro">
-<span class="scenario-ribbon__mark">OPS</span>
+<span class="scenario-ribbon__mark notranslate" translate="no" lang="en" aria-label="OPS">OPS</span>
 <div class="scenario-ribbon__meta">
 <div class="scenario-ribbon__kicker" data-i18n="scenarioRibbonKicker">Sample operation scenarios</div>
 <div class="scenario-ribbon__title" data-i18n="scenarioRibbonTitle">Built for real sample operations</div>
@@ -5707,7 +5714,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="section-head title-only">
 <div>
 <div class="section-kicker" data-i18n="platformKicker">02 / Platform</div>
-<h2 data-i18n-html="platformTitle">Nine product capabilities, <em>one sample operations workspace.</em></h2>
+<h2 data-i18n-html="platformTitle">Nine product capabilities<br><em>one sample operations workspace.</em></h2>
 </div>
 </div>
 <div class="modules">
@@ -5788,8 +5795,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="section-head title-only">
 <div>
 <div class="section-kicker" data-i18n="productSurfacesKicker">04 / Product Surfaces</div>
-<h2 data-i18n-html="productSurfacesTitle">Connected interfaces for <em>three real operating
-                            surfaces.</em></h2>
+<h2 data-i18n-html="productSurfacesTitle">Three product interfaces<br><em>one operations story.</em></h2>
 </div>
 
 </div>
@@ -5894,8 +5900,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="section-head title-only">
 <div>
 <div class="section-kicker" data-i18n="plansKicker">06 / Plans</div>
-<h2 data-i18n-html="plansTitle">Choose the sample operations workspace <em>that matches your complexity.</em>
-</h2>
+<h2 data-i18n-html="plansTitle"><span class="plans-title-line">Choose the sample operations workspace</span><br><em class="plans-title-line">that matches your complexity.</em></h2>
 </div>
 
 </div>
@@ -6231,12 +6236,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "panelText": "For teams building long-term respondent programs, profile rules, incentive ledgers, wallet records, and participation history.",
                 "plans": "Plans",
                 "plansKicker": "06 / Plans",
-                "plansTitle": "Choose the sample operations workspace <em>that matches your complexity.</em>",
+                "plansTitle": "<span class=\"plans-title-line\">Choose the sample operations workspace</span><br><em class=\"plans-title-line\">that matches your complexity.</em>",
                 "platformKicker": "02 / Platform",
-                "platformTitle": "Nine product capabilities, <em>one sample operations workspace.</em>",
+                "platformTitle": "Nine product capabilities<br><em>one sample operations workspace.</em>",
                 "product": "Product",
                 "productSurfacesKicker": "04 / Product Surfaces",
-                "productSurfacesTitle": "Three product interfaces, <em>one operations story.</em>",
+                "productSurfacesTitle": "Three product interfaces<br><em>one operations story.</em>",
                 "proofPanelText": "Sampora keeps project launch, supplier work, delivery review, and settlement checks connected in one workflow.",
                 "proofPanelTitle": "Different role needs, kept in one workspace",
                 "proofNeed1Title": "Project Launch",
@@ -6538,12 +6543,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "panelText": "适合沉淀长期受访者资产，并管理会员档案、激励、钱包和参与记录的团队。",
                 "plans": "版本方案",
                 "plansKicker": "06 / 版本方案",
-                "plansTitle": "选择匹配复杂度的<em>样本运营工作台.</em>",
+                "plansTitle": "<span class=\"plans-title-line\">选择匹配复杂度的</span><br><em class=\"plans-title-line\">样本运营工作台.</em>",
                 "platformKicker": "02 / 产品能力",
-                "platformTitle": "九项产品能力，<em>共用一层样本运营底座.</em>",
+                "platformTitle": "九项产品能力<br><em>共用一层样本运营底座.</em>",
                 "product": "产品",
                 "productSurfacesKicker": "04 / 产品界面",
-                "productSurfacesTitle": "三个产品界面，<em>串起一条运营主线.</em>",
+                "productSurfacesTitle": "三个产品界面<br><em>串起一条运营主线.</em>",
                 "proofPanelText": "Sampora 把项目上线、供应商网络运营、项目审核交付和对账结算开票连接在同一条运营流程里。",
                 "proofPanelTitle": "把不同角色的需求，放进同一个工作台",
                 "proofNeed1Title": "项目上线",
@@ -6998,7 +7003,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 currentProject = keepIndex ? index % list.length : (index + 1) % list.length;
                 const p = list[currentProject], enP = projects['en'][currentProject];
                 setText($('#heroProject'), p.id);
+                setText($('#statusLive'), p.state || translations[currentLang]?.statusLive || translations.en.statusLive);
+                setText($('#statusDemoLabel'), p.id || translations[currentLang]?.statusDemoLabel || translations.en.statusDemoLabel);
+                setText($('#statusNetworks'), p.title || translations[currentLang]?.statusNetworks || translations.en.statusNetworks);
                 setText($('#statusRegion'), p.statusRegion);
+                setText($('#statusDetail'), p.ticker);
                 const source = $('#network');
                 applyProjectView(source, p);
                 applyTopologyState(source, p);

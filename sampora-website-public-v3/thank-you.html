@@ -1,0 +1,1605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager consent defaults -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  analytics_storage: 'denied',
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  wait_for_update: 500
+});
+</script>
+<!-- Google Tag Manager -->
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NC23T9B2');
+</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Sampora request received confirmation page for contact form submissions.">
+<meta property="og:title" content="Request Received | Sampora">
+<meta property="og:description" content="Your Sampora contact request has been received.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://getsampora.com/thank-you.html">
+<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://getsampora.com/thank-you.html">
+<link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700;800&amp;family=Noto+Sans+SC:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<title>Request Received | Sampora</title>
+<script>
+window.dataLayer = window.dataLayer || [];
+(function () {
+  var key = 'sampora_thank_you_generate_lead_sent';
+  try {
+    if (sessionStorage.getItem(key)) return;
+    window.dataLayer.push({
+      event: 'generate_lead',
+      lead_form: 'contact',
+      lead_stage: 'request_received',
+      page_type: 'thank_you'
+    });
+    sessionStorage.setItem(key, '1');
+  } catch (error) {
+    window.dataLayer.push({
+      event: 'generate_lead',
+      lead_form: 'contact',
+      lead_stage: 'request_received',
+      page_type: 'thank_you'
+    });
+  }
+})();
+</script>
+<style>
+:root {
+  --bg: #071120;
+  --bg2: #09192a;
+  --panel: rgba(9, 20, 36, .78);
+  --panel-strong: rgba(7, 17, 31, .94);
+  --fg: #e8eef5;
+  --fg2: #bccbe0;
+  --body: #a9b9ce;
+  --muted: #7e92ac;
+  --cyan: #38d2ff;
+  --cyan2: #7be3ff;
+  --green: #b5f056;
+  --line: rgba(129, 178, 214, .18);
+  --line-soft: rgba(129, 178, 214, .10);
+  --shadow: 0 30px 88px rgba(0, 0, 0, .34);
+  --radius-lg: 30px;
+  --radius-md: 20px;
+  --max: 1180px;
+  --shell: 1360px;
+  --sans: Inter, "Noto Sans SC", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", "Noto Sans SC", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--fg);
+  background:
+    radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
+    radial-gradient(42% 34% at 10% 100%, rgba(181, 240, 86, .045) 0, transparent 64%),
+    linear-gradient(180deg, #0a1628 0%, #06111f 48%, #08172a 100%);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+.container { width: min(var(--shell), calc(100% - 48px)); margin: 0 auto; }
+.status {
+  position: sticky;
+  top: 0;
+  z-index: 61;
+  height: 34px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  background: rgba(6, 16, 31, .86);
+  font: 11px var(--mono);
+  letter-spacing: .06em;
+  backdrop-filter: blur(8px);
+  transition: transform .26s var(--ease), opacity .22s var(--ease), height .26s var(--ease);
+}
+.status .inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  padding-left: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.status-cycle {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 34px;
+  overflow: hidden;
+  contain: paint;
+}
+.status-copy {
+  position: absolute;
+  inset: 0 auto 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: max-content;
+  overflow: visible;
+  animation: status-original 14s ease-in-out infinite;
+}
+.status-copy.alt {
+  animation-name: status-alt;
+}
+.status .live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  overflow: visible;
+  color: var(--green);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.status .live::before {
+  content: "";
+  display: inline-flex;
+  flex: 0 0 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 0 rgba(169, 255, 95, .48);
+  animation: pulse-green 1.9s ease-out infinite;
+}
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(169, 255, 95, .48); }
+  72% { box-shadow: 0 0 0 9px rgba(169, 255, 95, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(169, 255, 95, 0); }
+}
+.status .sep { color: rgba(232, 238, 245, .42); }
+.status .right {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--body);
+  text-overflow: ellipsis;
+}
+@keyframes status-original {
+  0%, 38% { transform: translateX(0); opacity: 1; }
+  48%, 88% { transform: translateX(-112%); opacity: 0; }
+  96%, 100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes status-alt {
+  0%, 42% { transform: translateX(112%); opacity: 0; }
+  52%, 82% { transform: translateX(0); opacity: 1; }
+  92%, 100% { transform: translateX(112%); opacity: 0; }
+}
+.mast {
+  position: sticky;
+  top: 34px;
+  z-index: 60;
+  border-bottom: 1px solid var(--line);
+  background: rgba(10, 22, 40, .84);
+  backdrop-filter: blur(14px);
+  transition: top .26s var(--ease), background .26s var(--ease), box-shadow .26s var(--ease);
+}
+.mast .inner {
+  height: 66px;
+  display: grid;
+  grid-template-columns: 169.61px minmax(0, 1fr) 430px;
+  align-items: center;
+  gap: 24px;
+}
+.mast .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 169.61px;
+  color: var(--fg);
+}
+.mast .mark {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(56, 210, 255, .35);
+  border-radius: 8px;
+  color: var(--cyan);
+  background: linear-gradient(160deg, #1a3a5f, #0e1b2f);
+  font: 800 13px var(--mono);
+}
+.brand-name {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.56;
+  letter-spacing: -.01em;
+}
+.brand-sub {
+  display: block;
+  margin-top: 0;
+  color: #70849e;
+  font: 400 10px var(--mono);
+  line-height: 1.58;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.mast .nav {
+  width: 100%;
+  height: 66px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: 0;
+  color: rgba(232, 238, 245, .84);
+  font-size: 14px;
+}
+.mast .nav a {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 66px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  white-space: nowrap;
+  opacity: .86;
+  transition: color .18s var(--ease), opacity .18s var(--ease);
+}
+.mast .nav a:hover,
+.mast .nav a.active { color: var(--cyan); opacity: 1; }
+.mast .nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 13px;
+  width: 38px;
+  height: 2px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  box-shadow: 0 0 16px rgba(56, 210, 255, .65);
+}
+.header-actions {
+  width: 430px;
+  min-width: 430px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-width: max-content;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(6, 14, 28, .48);
+}
+.lang button {
+  min-width: 42px;
+  height: 34px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  font: 800 11px var(--mono);
+  cursor: pointer;
+}
+.lang button.active,
+.lang button[aria-pressed="true"] {
+  color: var(--cyan2);
+  background: rgba(56, 210, 255, .14);
+  box-shadow: inset 0 0 0 1px rgba(56, 210, 255, .18);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 13.5px;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform .14s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
+}
+.btn:hover,
+.btn:focus-visible { transform: translateY(-1px); outline: 0; }
+.btn.primary {
+  border: 1px solid transparent;
+  color: #06101e;
+  background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+  box-shadow: 0 0 0 1px rgba(56, 210, 255, .5), 0 12px 32px rgba(56, 210, 255, .18);
+}
+.btn.ghost {
+  border: 1px solid var(--line);
+  color: var(--fg);
+  background: transparent;
+}
+.btn.ghost:hover,
+.btn.ghost:focus-visible {
+  color: var(--cyan2);
+  border-color: rgba(56, 210, 255, .45);
+  background: rgba(20, 40, 69, .22);
+}
+body.nav-condensed .status {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-34px);
+}
+body.nav-condensed .mast {
+  top: 0;
+  background: rgba(5, 13, 25, .92);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .28), 0 1px 0 rgba(56, 210, 255, .08);
+}
+.mobile-nav-toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--fg);
+  background: rgba(6, 14, 28, .48);
+  font: 900 18px var(--sans);
+}
+.mobile-nav-drawer {
+  position: fixed;
+  top: 66px;
+  left: 14px;
+  right: 14px;
+  z-index: 80;
+  display: none;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(6, 16, 31, .96);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, .36);
+}
+.mobile-nav-drawer a {
+  display: block;
+  padding: 14px;
+  border-radius: 12px;
+  color: var(--fg2);
+  font-weight: 800;
+}
+.mobile-nav-drawer a.active,
+.mobile-nav-drawer a:hover { color: var(--cyan2); background: rgba(56, 210, 255, .08); }
+body.mobile-nav-open .mobile-nav-drawer { display: block; }
+.page-shell {
+  position: relative;
+  isolation: isolate;
+}
+.hero {
+  width: min(var(--max), calc(100% - 48px));
+  margin: 48px auto 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(380px, .94fr);
+  gap: 24px;
+  align-items: start;
+}
+.thank-card,
+.panel,
+.explore-card,
+.update-strip {
+  border: 1px solid rgba(129, 178, 214, .14);
+  background: linear-gradient(180deg, var(--panel), var(--panel-strong));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+.thank-card {
+  position: relative;
+  display: flex;
+  min-height: 620px;
+  overflow: hidden;
+  padding: 44px;
+  border-color: rgba(56, 210, 255, .20);
+  border-radius: var(--radius-lg);
+}
+.thank-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .68), rgba(181, 240, 86, .30), transparent);
+}
+.content {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  align-content: start;
+  gap: clamp(28px, 3.2vh, 36px);
+  max-width: 680px;
+  min-width: 0;
+}
+.content-copy,
+.content-actions {
+  min-width: 0;
+}
+.content-copy {
+  display: grid;
+  align-content: start;
+  gap: clamp(18px, 2.3vh, 26px);
+}
+.content-actions {
+  display: grid;
+  align-content: start;
+  gap: clamp(22px, 3vh, 32px);
+  max-width: 630px;
+  margin-top: 0;
+}
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  align-self: start;
+  justify-self: start;
+  gap: 9px;
+  width: fit-content;
+  height: 32px;
+  min-height: 32px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border: 1px solid rgba(181, 240, 86, .24);
+  border-radius: 999px;
+  color: var(--green);
+  background: rgba(181, 240, 86, .055);
+  font: 900 11px/1 var(--mono);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.kicker > span:not(.kicker-dot) {
+  display: block;
+  line-height: 1;
+}
+.kicker-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  display: block;
+  flex: 0 0 7px;
+  border-radius: 999px;
+  overflow: visible;
+  background: var(--green);
+  box-shadow: 0 0 14px rgba(181, 240, 86, .65);
+}
+.kicker-dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(181, 240, 86, .46);
+  animation: pulse-green 1.9s ease-out infinite;
+}
+html[lang^="zh"] .kicker,
+html.translated-ltr .kicker,
+html.translated-rtl .kicker,
+html[lang^="zh"] .status .live,
+html.translated-ltr .status .live,
+html.translated-rtl .status .live,
+html[lang^="zh"] .status-item span,
+html.translated-ltr .status-item span,
+html.translated-rtl .status-item span,
+html[lang^="zh"] .pill,
+html.translated-ltr .pill,
+html.translated-rtl .pill {
+  font-family: var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+}
+html[lang^="zh"] .kicker,
+html.translated-ltr .kicker,
+html.translated-rtl .kicker {
+  height: 34px;
+  min-height: 34px;
+  min-width: max-content;
+  padding-inline: 16px;
+  font-size: 13px;
+  line-height: 1;
+}
+html[lang^="zh"] .kicker > span:not(.kicker-dot),
+html.translated-ltr .kicker > span:not(.kicker-dot),
+html.translated-rtl .kicker > span:not(.kicker-dot) {
+  line-height: 1;
+}
+html[lang^="zh"] .status .live,
+html.translated-ltr .status .live,
+html.translated-rtl .status .live,
+html[lang^="zh"] .pill,
+html.translated-ltr .pill,
+html.translated-rtl .pill {
+  font-size: 12px;
+  line-height: 1;
+}
+html[lang^="zh"] .status-item span,
+html.translated-ltr .status-item span,
+html.translated-rtl .status-item span {
+  font-size: 12px;
+  line-height: 1.15;
+}
+h1 {
+  max-width: 720px;
+  margin: 0;
+  color: var(--fg);
+  font-size: clamp(42px, 4.8vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -.045em;
+  font-weight: 900;
+}
+h1 em {
+  color: var(--cyan);
+  font-style: normal;
+}
+.lead {
+  max-width: 630px;
+  margin: 0;
+  color: var(--fg2);
+  font-size: 18px;
+  line-height: 1.7;
+  letter-spacing: -.01em;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 0;
+}
+.actions .btn {
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 14px;
+  font-size: 15px;
+}
+.microcopy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.status-strip {
+  max-width: 650px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  align-self: start;
+  margin-top: 0;
+}
+.status-item {
+  padding: 16px;
+  border: 1px solid rgba(129, 178, 214, .14);
+  border-radius: 18px;
+  background: rgba(6, 16, 31, .38);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .028);
+}
+.status-item span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--cyan2);
+  font: 850 11px var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.status-item strong {
+  display: block;
+  color: var(--fg);
+  font-size: 16px;
+  letter-spacing: -.02em;
+}
+.side {
+  display: grid;
+  grid-template-rows: auto auto;
+  align-self: start;
+  gap: 20px;
+}
+.panel {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+}
+.side > .panel.float:not(.mini-dashboard) {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+.panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.panel-title h2,
+.panel-title h3 {
+  margin: 0;
+  font-size: 21px;
+  letter-spacing: -.035em;
+}
+.pill {
+  white-space: nowrap;
+  border: 1px solid rgba(56, 210, 255, .18);
+  border-radius: 999px;
+  padding: 8px 11px;
+  color: var(--cyan2);
+  background: rgba(56, 210, 255, .08);
+  font: 850 12px var(--mono);
+}
+.timeline {
+  display: grid;
+  gap: 12px;
+  height: 100%;
+  align-content: space-between;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.timeline li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.step-no {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(56, 210, 255, .16);
+  border-radius: 12px;
+  color: var(--cyan2);
+  background: rgba(56, 210, 255, .08);
+  font-family: var(--mono);
+  font-weight: 850;
+  box-shadow: 0 10px 22px rgba(56, 210, 255, .06);
+}
+.timeline strong {
+  display: block;
+  margin: 1px 0 3px;
+  font-size: 14px;
+  letter-spacing: -.015em;
+}
+.timeline p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.mini-dashboard {
+  min-height: 0;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(56, 210, 255, .12), transparent 46%),
+    linear-gradient(180deg, rgba(14, 27, 47, .82), rgba(7, 17, 31, .94));
+}
+.receipt {
+  overflow: hidden;
+  border: 1px solid rgba(129, 178, 214, .14);
+  border-radius: 24px;
+  background: rgba(6, 16, 31, .42);
+  box-shadow: 0 20px 46px rgba(0, 0, 0, .12);
+}
+.receipt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line-soft);
+  background: rgba(56, 210, 255, .045);
+}
+.signal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 850;
+}
+.signal::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 5px rgba(181, 240, 86, .12);
+}
+.receipt-body {
+  display: grid;
+  gap: 8px;
+  padding: 14px 16px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(129, 178, 214, .10);
+  color: var(--muted);
+  font-size: 13px;
+}
+.row:last-child { border-bottom: 0; }
+.row strong {
+  color: var(--fg);
+  font-size: 13px;
+  text-align: right;
+}
+.progress-card {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid rgba(56, 210, 255, .18);
+  border-radius: 22px;
+  color: var(--fg);
+  background: linear-gradient(135deg, rgba(56, 210, 255, .18), rgba(10, 22, 40, .90));
+  box-shadow: 0 16px 32px rgba(56, 210, 255, .08);
+}
+.progress-card span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+.progress-card strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -.035em;
+}
+.bar {
+  position: relative;
+  height: 8px;
+  margin-top: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(56, 210, 255, .10), rgba(181, 240, 86, .08)),
+    rgba(255, 255, 255, .12);
+}
+.bar::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 38%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--cyan2));
+  box-shadow: 0 0 16px rgba(56, 210, 255, .34);
+}
+.bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: none;
+  width: 18%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .72), transparent);
+  filter: blur(.4px);
+}
+@keyframes thank-progress-load {
+  0% { transform: translateX(-125%); }
+  58% { transform: translateX(140%); }
+  100% { transform: translateX(250%); }
+}
+@keyframes thank-progress-glint {
+  0%, 18% { opacity: 0; transform: translateX(-220%); }
+  46%, 68% { opacity: .72; }
+  100% { opacity: 0; transform: translateX(560%); }
+}
+.post-flow {
+  width: min(var(--max), calc(100% - 48px));
+  margin: 76px auto 88px;
+  display: grid;
+  gap: 42px;
+}
+.below {
+  width: auto;
+  margin: 0;
+}
+.below {
+  display: grid;
+  gap: 42px;
+}
+.section-head {
+  display: grid;
+  align-items: start;
+  justify-content: start;
+  gap: 18px;
+  width: fit-content;
+  max-width: min(760px, 100%);
+  margin: 0 0 6px;
+}
+.section-head h2 {
+  margin: 0;
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+.section-head h2 .brand-emphasis {
+  color: var(--cyan);
+  font-style: normal;
+}
+.section-head p {
+  width: min(100%, 42rem);
+  max-width: 100%;
+  margin: 0;
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.68;
+  text-align: left;
+}
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+.explore-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  min-height: 224px;
+  overflow: hidden;
+  padding: 32px;
+  border-radius: 24px;
+  transition: transform .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.explore-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56, 210, 255, .34);
+  box-shadow: 0 30px 88px rgba(0, 0, 0, .40), 0 0 0 1px rgba(56, 210, 255, .08) inset;
+}
+.explore-card:focus-visible {
+  outline: 2px solid rgba(56, 210, 255, .70);
+  outline-offset: 4px;
+}
+.explore-card > * {
+  position: relative;
+  z-index: 1;
+}
+.icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 22px;
+  border: 1px solid rgba(56, 210, 255, .16);
+  border-radius: 15px;
+  color: var(--cyan2);
+  background: rgba(56, 210, 255, .08);
+}
+.explore-card h3 {
+  margin: 0 0 12px;
+  font-size: 20px;
+  line-height: 1.16;
+  letter-spacing: 0;
+}
+.explore-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.68;
+}
+.update-strip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: clamp(30px, 4vw, 56px);
+  overflow: hidden;
+  padding: 30px 32px;
+  border-radius: 24px;
+}
+.update-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .58), rgba(181, 240, 86, .24), transparent);
+}
+.update-strip > * {
+  position: relative;
+  z-index: 1;
+}
+.update-strip strong {
+  display: block;
+  color: var(--fg);
+  font-size: 19px;
+  line-height: 1.2;
+  letter-spacing: -.035em;
+}
+.update-strip p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.update-strip .btn {
+  min-height: 46px;
+  padding-inline: 18px;
+  flex: 0 0 auto;
+}
+#footer.sampora-site-footer{position:relative!important;isolation:isolate!important;padding:64px 0 12px!important;border-top:0!important;color:var(--body,#A9B9CE)!important;background:transparent!important}
+#footer.sampora-site-footer::before{content:none!important;display:none!important}
+#footer .sampora-footer-card{position:relative!important;z-index:1!important;border:1px solid rgba(129,178,214,.10)!important;border-radius:24px!important;overflow:hidden!important;background:linear-gradient(180deg,rgba(8,20,36,.66),rgba(8,20,36,.72))!important;box-shadow:0 0 0 1px rgba(255,255,255,.018) inset,0 24px 76px rgba(0,0,0,.20)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
+#footer .sampora-footer-main{display:grid!important;grid-template-columns:minmax(320px,1.32fr) repeat(3,minmax(150px,.78fr))!important;gap:clamp(32px,4vw,54px)!important;align-items:start!important;padding:42px 48px 36px!important}
+#footer .sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--fg,#E8EEF5)!important;margin-bottom:22px!important}
+#footer .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
+#footer .sampora-footer-logo b{display:block!important;font-size:24px!important;line-height:1!important;letter-spacing:-.03em!important;color:var(--fg,#E8EEF5)!important}
+#footer .sampora-footer-logo small{display:block!important;margin-top:4px!important;font:800 10px var(--mono,monospace)!important;letter-spacing:.10em!important;color:var(--muted,#7E92AC)!important}
+#footer .sampora-footer-brand p{margin:0!important;max-width:430px!important;color:var(--body,#A9B9CE)!important;font-size:16px!important;line-height:1.75!important}
+#footer .sampora-footer-badges{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:24px!important}
+#footer .sampora-footer-badges span{display:inline-flex!important;height:26px!important;align-items:center!important;padding:0 12px!important;border-radius:999px!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;color:var(--cyan2,#7BE3FF)!important;font:800 11px var(--mono,monospace)!important}
+#footer .sampora-footer-col{min-width:0!important;padding:0!important;border:0!important;background:transparent!important}
+#footer .sampora-footer-col h3{position:relative!important;margin:0 0 18px!important;padding:0 0 16px!important;border:0!important;color:var(--fg,#E8EEF5)!important;font-size:18px!important;line-height:1.15!important;letter-spacing:0!important}
+#footer .sampora-footer-col h3::after{content:""!important;position:absolute!important;left:0!important;bottom:0!important;width:min(100%,220px)!important;height:1px!important;border-radius:999px!important;background:linear-gradient(90deg,rgba(129,178,214,.45),rgba(56,210,255,.18),transparent)!important}
+#footer .sampora-footer-col a{position:relative!important;display:block!important;width:fit-content!important;max-width:100%!important;margin:0 0 13px!important;padding:1px 0 2px!important;color:rgba(218,230,246,.72)!important;font-size:15px!important;line-height:1.42!important;text-decoration:none!important;overflow-wrap:anywhere!important;transition:color .18s var(--ease,cubic-bezier(.2,.7,.2,1)),transform .18s var(--ease,cubic-bezier(.2,.7,.2,1)),text-shadow .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
+#footer .sampora-footer-col a::after{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:-2px!important;height:1px!important;transform:scaleX(0)!important;transform-origin:left!important;background:linear-gradient(90deg,var(--cyan,#38D2FF),transparent)!important;opacity:.75!important;transition:transform .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
+#footer .sampora-footer-col a:hover,#footer .sampora-footer-col a:focus-visible{color:var(--cyan2,#7BE3FF)!important;transform:translateX(2px)!important;text-shadow:0 0 18px rgba(56,216,255,.20)!important}
+#footer .sampora-footer-col a:hover::after,#footer .sampora-footer-col a:focus-visible::after{transform:scaleX(1)!important}
+#footer .sampora-footer-contact{display:grid!important;grid-template-columns:repeat(3,1fr)!important;border-top:0!important}
+#footer .sampora-footer-contact-item{display:flex!important;align-items:center!important;gap:18px!important;min-height:74px!important;padding:0 48px!important;border-right:1px solid rgba(129,178,214,.18)!important;border-bottom:0!important;color:var(--fg,#E8EEF5)!important;font-size:16px!important;font-weight:760!important}
+#footer .sampora-footer-contact-item:last-child{border-right:0!important}
+#footer .sampora-footer-icon{width:34px!important;height:34px!important;border-radius:999px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;flex:0 0 auto!important;box-sizing:border-box!important;overflow:hidden!important;text-align:center!important;font:800 10.5px/1 var(--mono,monospace)!important;letter-spacing:.02em!important}
+#footer .sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
+#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;align-items:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:0!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+#footer .sampora-footer-legal .dot{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:auto!important;min-width:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;flex:0 0 auto!important;color:var(--muted,#7E92AC)!important;font:inherit!important;line-height:1!important}
+#footer .sampora-footer-legal a{transition:color .2s ease,transform .2s ease,text-shadow .2s ease!important}
+#footer .sampora-footer-legal a:hover,#footer .sampora-footer-legal a:focus-visible{color:#38d8ff!important;transform:translateX(3px)!important;text-shadow:0 0 18px rgba(56,216,255,.28)!important}
+@media (prefers-reduced-motion: no-preference) {
+  .bar::before {
+    width: 46%;
+    background: linear-gradient(90deg, transparent, rgba(122, 232, 255, .96) 28%, rgba(181, 240, 86, .86) 72%, transparent);
+    transform: translateX(-125%);
+    will-change: transform;
+    animation: thank-progress-load 1.65s cubic-bezier(.45, 0, .22, 1) infinite;
+  }
+  .bar::after {
+    display: block;
+    opacity: 0;
+    transform: translateX(-220%);
+    will-change: transform, opacity;
+    animation: thank-progress-glint 1.65s cubic-bezier(.45, 0, .22, 1) infinite;
+  }
+  .float { animation: float 7s ease-in-out infinite; }
+  .float.delay { animation-delay: -2.2s; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+}
+.hero .float {
+  animation: none !important;
+  transform: none !important;
+}
+@media (min-width: 981px) {
+  .thank-card { min-height: 759px; }
+  .content-copy { min-height: 320px; }
+  .side > .panel.float:not(.mini-dashboard) { min-height: 316px; }
+  .side > .panel.mini-dashboard { min-height: 423px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .status-copy,
+  .kicker-dot::before,
+  .status .live::before {
+    animation: none !important;
+  }
+  .status-copy.alt { display: none; }
+}
+@media (max-width: 1180px) {
+  .mast .inner { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .mast .brand { min-width: max-content; }
+  .mast .nav { display: none; }
+  .header-actions { width: auto; min-width: 0; }
+  #footer .sampora-footer-main { grid-template-columns: 1fr 1fr !important; padding: 34px 28px 32px !important; }
+  #footer .sampora-footer-brand { grid-column: 1 / -1 !important; }
+  #footer .sampora-footer-contact { grid-template-columns: 1fr !important; }
+  #footer .sampora-footer-contact-item { border-right: 0 !important; border-bottom: 0 !important; padding: 18px 28px !important; }
+  #footer .sampora-footer-contact-item:last-child { border-bottom: 0 !important; }
+}
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; margin-top: 36px; }
+  .thank-card { min-height: auto; padding: 40px 32px; }
+  .post-flow {
+    width: min(var(--max), calc(100% - 48px));
+    margin-top: 48px;
+  }
+  .content {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    gap: 32px;
+  }
+  .content-copy,
+  .content-actions { align-content: start; }
+  .status-strip,
+  .explore-grid { grid-template-columns: 1fr; }
+  .side { grid-template-rows: auto auto; }
+  .side > .panel.float:not(.mini-dashboard) .timeline {
+    height: auto;
+    align-content: start;
+  }
+  .section-head { align-items: start; }
+  .section-head p { text-align: left; }
+  .update-strip { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 760px) {
+  .container,
+  .hero,
+  .post-flow { width: min(100% - 28px, var(--max)); }
+  .post-flow {
+    margin-top: 44px;
+    margin-bottom: 64px;
+    gap: 30px;
+  }
+  .status { display: none; }
+  .mast,
+  body.nav-condensed .mast { top: 0; }
+  .mast .inner {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 8px;
+    height: 66px;
+  }
+  .mast .brand { min-width: 0; overflow: hidden; }
+  .brand-sub { display: none; }
+  .header-actions { gap: 8px; }
+  .header-actions .btn.primary { display: none; }
+  .mobile-nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .thank-card,
+  .panel { border-radius: 24px; padding: 28px 22px; }
+  h1 { font-size: 40px; letter-spacing: -.04em; }
+  .section-head h2,
+  .section-head p { white-space: normal; }
+  .section-head h2 { font-size: 34px; }
+  .explore-card { min-height: auto; padding: 26px; }
+  .update-strip { padding: 26px; }
+  .lead { font-size: 16px; }
+  .explore-grid { grid-template-columns: 1fr; }
+  .actions .btn { width: 100%; min-height: 52px; }
+  .update-strip .btn { width: 100%; min-height: 52px; }
+  #footer .sampora-footer-main { grid-template-columns: 1fr !important; gap: 26px !important; padding: 30px 24px 28px !important; }
+  #footer .sampora-footer-brand { grid-column: auto !important; }
+  #footer .sampora-footer-brand p,
+  #footer .sampora-footer-col a,
+  #footer .sampora-footer-contact-item { overflow-wrap: anywhere !important; }
+}
+@media (max-width: 480px) {
+  .header-actions .btn.ghost { display: none; }
+  .lang button { min-width: 38px; padding-left: 7px; padding-right: 7px; font-size: 10px; }
+  #footer .sampora-footer-card { width: min(100% - 28px, var(--shell)) !important; }
+}
+</style>
+<link rel="stylesheet" href="assets/footer-email-modal.css">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC23T9B2" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="page-shell">
+  <div class="status">
+    <div class="container inner">
+      <span class="status-cycle">
+        <span class="status-copy">
+          <span class="live" data-i18n="topLine">REQUEST RECEIVED</span>
+          <span class="sep">/</span>
+          <span data-i18n="topMid">Contact form submitted</span>
+          <span class="sep">/</span>
+          <span class="right" data-i18n="topRight">Follow-up review is ready</span>
+        </span>
+        <span class="status-copy alt">
+          <span class="live" data-i18n="topLine">REQUEST RECEIVED</span>
+          <span class="sep">/</span>
+          <span data-i18n="tickerText">Your request has been received</span>
+          <span class="sep">/</span>
+          <span class="right" data-i18n="tickerFollowUp">Sales is preparing demo materials</span>
+        </span>
+      </span>
+    </div>
+  </div>
+  <header class="mast">
+    <div class="container inner">
+      <a class="brand" href="index.html" aria-label="Sampora home">
+        <span class="mark">S</span>
+        <span><span class="brand-name">Sampora</span><span class="brand-sub" data-i18n="brandSub">Operations console</span></span>
+      </a>
+      <nav class="nav sampora-nav-standard" aria-label="Primary navigation">
+        <a href="index.html" data-i18n="navProduct">Product</a>
+        <a href="solutions.html" data-i18n="navSolutions">Solutions</a>
+        <a href="resources.html" data-i18n="navResources">Resources</a>
+        <a href="plans.html" data-i18n="navPlans">Plans</a>
+        <a href="about.html" data-i18n="navAbout">About</a>
+        <a href="contact.html" class="active" data-i18n="navContact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div aria-label="Language" class="lang" data-i18n-aria-label="langSwitcher">
+          <button class="active" data-lang="en" type="button" aria-pressed="true">EN</button>
+          <button data-lang="zh" type="button" aria-pressed="false">中文</button>
+        </div>
+        <a class="btn ghost" href="contact.html?intent=book_demo#contact-form" data-i18n="ctaDemo">Book a demo</a>
+        <a class="btn primary" href="contact.html?intent=start_trial#contact-form" data-i18n="ctaTop">Apply for trial</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="thank-you-title">
+      <article class="thank-card">
+        <div class="content">
+          <div class="kicker"><span class="kicker-dot" aria-hidden="true"></span><span data-i18n="kicker">Request received</span></div>
+          <div class="content-copy">
+            <h1 id="thank-you-title" data-i18n-html="title">Thanks &mdash; your request has been <em>received.</em></h1>
+            <p class="lead" data-i18n="lead">We received the contact details, role, request type, and message you submitted. The Sampora team will use this information to decide the right follow-up path.</p>
+          </div>
+          <div class="content-actions">
+            <div class="actions" aria-label="Next actions" data-i18n-aria-label="actionsLabel">
+              <a class="btn primary" href="index.html" data-i18n="backHome">Back to homepage</a>
+              <a class="btn ghost" href="plans.html" data-i18n="viewPlans">View plans</a>
+            </div>
+            <p class="microcopy" data-i18n="microcopy">You do not need to submit the form again. A member of our team will use the information you provided to prepare a more relevant follow-up.</p>
+          </div>
+          <div class="status-strip" aria-label="Submission highlights" data-i18n-aria-label="submissionHighlights">
+            <div class="status-item"><span data-i18n="statusLabel">Status</span><strong data-i18n="statusValue">Received</strong></div>
+            <div class="status-item"><span data-i18n="requestLabel">Request</span><strong data-i18n="requestValue">In review</strong></div>
+            <div class="status-item"><span data-i18n="nextLabel">Next</span><strong data-i18n="nextValue">Follow-up</strong></div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="side" aria-label="What happens next" data-i18n-aria-label="nextAsideLabel">
+        <section class="panel float">
+          <div class="panel-title">
+            <h2 data-i18n="whatNextTitle">What happens next</h2>
+            <span class="pill" data-i18n="fourSteps">4 steps</span>
+          </div>
+          <ol class="timeline">
+            <li>
+              <span class="step-no">1</span>
+              <div><strong data-i18n="step1Title">Confirm your request</strong><p data-i18n="step1Text">We review the selected request type and message content.</p></div>
+            </li>
+            <li>
+              <span class="step-no">2</span>
+              <div><strong data-i18n="step2Title">Choose the right path</strong><p data-i18n="step2Text">We decide whether demo, trial, or sales discussion is the best next step.</p></div>
+            </li>
+            <li>
+              <span class="step-no">3</span>
+              <div><strong data-i18n="step3Title">Follow up</strong><p data-i18n="step3Text">We contact you through the submitted email or contact details.</p></div>
+            </li>
+            <li>
+              <span class="step-no">4</span>
+              <div><strong data-i18n="step4Title">Move toward real use</strong><p data-i18n="step4Text">If there is a fit, we guide your team toward using Sampora for real operations issues.</p></div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="panel mini-dashboard float delay">
+          <div class="panel-title">
+            <h3 data-i18n="snapshotTitle">Request snapshot</h3>
+            <span class="pill" data-i18n="snapshotPill">Live</span>
+          </div>
+          <div class="receipt" aria-label="Submission snapshot" data-i18n-aria-label="snapshotAria">
+            <div class="receipt-head">
+              <strong data-i18n="receiptTitle">Contact request</strong>
+              <span class="signal" data-i18n="receiptSignal">Received</span>
+            </div>
+            <div class="receipt-body">
+              <div class="row"><span data-i18n="submittedDetails">Submitted details</span><strong data-i18n="submittedDetailsValue">Contact &middot; Role &middot; Request &middot; Message</strong></div>
+              <div class="row"><span data-i18n="reviewPath">Review path</span><strong data-i18n="reviewPathValue">Demo / trial / sales discussion</strong></div>
+              <div class="row"><span data-i18n="replyChannel">Reply channel</span><strong data-i18n="replyChannelValue">Submitted contact details</strong></div>
+            </div>
+          </div>
+          <div class="progress-card">
+            <span data-i18n="progressLabel">Follow-up preparation</span>
+            <strong data-i18n="progressText">Your request is now ready for the first review.</strong>
+            <div class="bar" aria-hidden="true"></div>
+          </div>
+        </section>
+      </aside>
+    </section>
+
+    <div class="post-flow">
+      <section class="below" aria-labelledby="explore-title">
+        <div class="section-head">
+          <h2 id="explore-title" data-i18n-html="exploreTitle">Continue exploring <span class="brand-emphasis">Sampora</span></h2>
+          <p data-i18n="exploreLead">Use the same site navigation while our team reviews your request.</p>
+        </div>
+        <div class="explore-grid">
+          <a class="explore-card" href="solutions.html">
+            <div class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7.5h16M7 12h10M9 16.5h6" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><rect x="3" y="4" width="18" height="16" rx="4" stroke="currentColor" stroke-width="2.1"/></svg></div>
+            <h3 data-i18n="exploreSolutionsTitle">Solutions</h3>
+            <p data-i18n="exploreSolutionsText">See how Sampora supports panel operations, supplier routing, quality checks, and settlement.</p>
+          </a>
+          <a class="explore-card" href="plans.html">
+            <div class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 9h14M7 15h10" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.1"/></svg></div>
+            <h3 data-i18n="explorePlansTitle">Plans</h3>
+            <p data-i18n="explorePlansText">Compare Sampora plans against your operating model and team complexity.</p>
+          </a>
+          <a class="explore-card" href="resources.html">
+            <div class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 5h12v14H6zM9 9h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3 data-i18n="exploreResourcesTitle">Resources</h3>
+            <p data-i18n="exploreResourcesText">Review operating guides and workflow references before the follow-up conversation.</p>
+          </a>
+        </div>
+        <div class="update-strip">
+          <div>
+            <strong data-i18n="updateTitle">Need to update your request?</strong>
+            <p data-i18n="updateText">Return to the contact page and send any missing details.</p>
+          </div>
+          <a class="btn ghost" href="contact.html" data-i18n="updateCta">Back to contact</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="sampora-site-footer" id="footer">
+    <div class="container sampora-footer-card">
+      <div class="sampora-footer-main">
+        <div class="sampora-footer-brand">
+          <a aria-label="Sampora home" class="sampora-footer-logo" href="index.html">
+            <span class="sampora-footer-mark">S</span>
+            <span><b>Sampora</b><small data-footer-i18n="brandSub">Operations console</small></span>
+          </a>
+          <p data-footer-i18n="footerDesc">An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier assignment, review records, finance, and Cooperation Resources.</p>
+          <div class="sampora-footer-badges"><span data-footer-i18n="tag1">Sample supply</span><span data-footer-i18n="tag2">Review workflow</span><span data-footer-i18n="tag3">Settlement ledger</span></div>
+        </div>
+        <div class="sampora-footer-col">
+          <h3 data-footer-i18n="footerProduct">Product</h3>
+          <a href="index.html" data-footer-i18n="footerPlatformOverview">Platform overview</a>
+          <a href="solutions.html" data-footer-i18n="navSolutions">Solutions</a>
+          <a href="plans.html" data-footer-i18n="navPlans">Plans</a>
+          <a href="about.html" data-footer-i18n="footerWorkflow">Workflow</a>
+        </div>
+        <div class="sampora-footer-col">
+          <h3 data-footer-i18n="footerResources">Resources</h3>
+          <a href="resources.html" data-footer-i18n="footerResourcesOverview">Resources overview</a>
+          <a href="resource-manuals.html#configuration-guide" data-footer-i18n="footerConfigurationGuide">Configuration guide</a>
+          <a href="resource-manuals.html#operation-manual" data-footer-i18n="footerOperationManual">Operation manual</a>
+          <a href="resource-manuals.html#rollout-notes" data-footer-i18n="footerRolloutNotes">Rollout notes</a>
+        </div>
+        <div class="sampora-footer-col">
+          <h3 data-footer-i18n="footerGetStarted">Get started</h3>
+          <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Apply for trial</a>
+          <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
+          <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
+          <button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
+        </div>
+      </div>
+      <div class="sampora-footer-contact">
+        <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">TEL</span><span>400-660-0224</span></div>
+        <div class="sampora-footer-contact-item"><span class="sampora-footer-icon sampora-footer-icon--at" aria-label="Email">@</span><span>sales@getsampora.com</span></div>
+        <div class="sampora-footer-contact-item"><span class="sampora-footer-icon">LOC</span><span data-footer-i18n="addressText">Room 1506, Block A, Hengsheng Sunshine City, Lu'an, Anhui, China</span></div>
+      </div>
+      <div class="sampora-footer-legal"><span data-footer-i18n="footerCopyright">&copy; 2026</span><span data-footer-i18n="footerCompanyLegal">Anhui Jiayu Enterprise Service Co., Ltd.</span><span class="dot">&middot;</span><a href="privacy.html" data-footer-i18n="privacy">Privacy Policy</a><span class="dot">&middot;</span><a href="cookie-policy.html" data-footer-i18n="cookie">Cookie Policy</a><span class="dot">&middot;</span><a href="#cookie-preferences" data-footer-i18n="cookiePreferences" data-cookie-preferences-open>Cookie Preferences</a><span class="dot">&middot;</span><a href="terms.html" data-footer-i18n="terms">Terms of Use</a></div>
+    </div>
+  </footer>
+</div>
+
+<script src="assets/language-preference.js"></script>
+<script>
+(function () {
+  var $ = function(selector, root){ return (root || document).querySelector(selector); };
+  var $$ = function(selector, root){ return Array.from((root || document).querySelectorAll(selector)); };
+  var langLabels = { en: { en: 'EN', zh: '中文' }, zh: { en: 'EN', zh: '中文' } };
+  var copy = {
+    en: {
+      topLine: 'REQUEST RECEIVED',
+      topMid: 'Contact form submitted',
+      topRight: 'Follow-up review is ready',
+      tickerText: 'Your request has been received',
+      tickerFollowUp: 'Sales is preparing demo materials',
+      brandSub: 'Operations console',
+      navProduct: 'Product',
+      navSolutions: 'Solutions',
+      navResources: 'Resources',
+      navPlans: 'Plans',
+      navAbout: 'About',
+      navContact: 'Contact',
+      langSwitcher: 'Language',
+      ctaDemo: 'Book a demo',
+      ctaTop: 'Apply for trial',
+      kicker: 'Request received',
+      title: 'Thanks &mdash; your request has been <em>received.</em>',
+      lead: 'We received the contact details, role, request type, and message you submitted. The Sampora team will use this information to decide the right follow-up path.',
+      actionsLabel: 'Next actions',
+      backHome: 'Back to homepage',
+      viewPlans: 'View plans',
+      microcopy: 'You do not need to submit the form again. A member of our team will use the information you provided to prepare a more relevant follow-up.',
+      submissionHighlights: 'Submission highlights',
+      statusLabel: 'Status',
+      statusValue: 'Received',
+      requestLabel: 'Request',
+      requestValue: 'In review',
+      nextLabel: 'Next',
+      nextValue: 'Follow-up',
+      nextAsideLabel: 'What happens next',
+      whatNextTitle: 'What happens next',
+      fourSteps: '4 steps',
+      step1Title: 'Confirm your request',
+      step1Text: 'We review the selected request type and message content.',
+      step2Title: 'Choose the right path',
+      step2Text: 'We decide whether demo, trial, or sales discussion is the best next step.',
+      step3Title: 'Follow up',
+      step3Text: 'We contact you through the submitted email or contact details.',
+      step4Title: 'Move toward real use',
+      step4Text: 'If there is a fit, we guide your team toward using Sampora for real operations issues.',
+      snapshotTitle: 'Request snapshot',
+      snapshotPill: 'Live',
+      snapshotAria: 'Submission snapshot',
+      receiptTitle: 'Contact request',
+      receiptSignal: 'Received',
+      submittedDetails: 'Submitted details',
+      submittedDetailsValue: 'Contact · Role · Request · Message',
+      reviewPath: 'Review path',
+      reviewPathValue: 'Demo / trial / sales discussion',
+      replyChannel: 'Reply channel',
+      replyChannelValue: 'Submitted contact details',
+      progressLabel: 'Follow-up preparation',
+      progressText: 'Your request is now ready for the first review.',
+      exploreTitle: 'Continue exploring <span class="brand-emphasis">Sampora</span>',
+      exploreLead: 'Use the same site navigation while our team reviews your request.',
+      exploreSolutionsTitle: 'Solutions',
+      exploreSolutionsText: 'See how Sampora supports panel operations, supplier routing, quality checks, and settlement.',
+      explorePlansTitle: 'Plans',
+      explorePlansText: 'Compare Sampora plans against your operating model and team complexity.',
+      exploreResourcesTitle: 'Resources',
+      exploreResourcesText: 'Review operating guides and workflow references before the follow-up conversation.',
+      updateTitle: 'Need to update your request?',
+      updateText: 'Return to the contact page and send any missing details.',
+      updateCta: 'Back to contact',
+      footerDesc: 'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier assignment, review records, finance, and Cooperation Resources.',
+      tag1: 'Sample supply',
+      tag2: 'Review workflow',
+      tag3: 'Settlement ledger',
+      footerProduct: 'Product',
+      footerPlatformOverview: 'Platform overview',
+      footerWorkflow: 'Workflow',
+      footerResources: 'Resources',
+      footerResourcesOverview: 'Resources overview',
+      footerConfigurationGuide: 'Configuration guide',
+      footerOperationManual: 'Operation manual',
+      footerRolloutNotes: 'Rollout notes',
+      footerGetStarted: 'Get started',
+      footerTalkToSales: 'Talk to sales',
+      addressText: 'Room 1506, Block A, Hengsheng Sunshine City, Lu\'an, Anhui, China',
+      footerCopyright: '© 2026',
+      footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.',
+      privacy: 'Privacy Policy',
+      cookie: 'Cookie Policy',
+      cookiePreferences: 'Cookie Preferences',
+      terms: 'Terms of Use'
+    },
+    zh: {
+      topLine: '请求已收到',
+      topMid: '联系表单已发出',
+      topRight: '后续跟进已进入评估',
+      tickerText: '你的请求已收到',
+      tickerFollowUp: '销售正在准备演示材料',
+      brandSub: '操作控制台',
+      navProduct: '产品',
+      navSolutions: '解决方案',
+      navResources: '资源',
+      navPlans: '版本方案',
+      navAbout: '关于',
+      navContact: '联系我们',
+      langSwitcher: '语言',
+      ctaDemo: '预约演示',
+      ctaTop: '申请试用',
+      kicker: '请求已收到',
+      title: '谢谢，你的请求已被 <em>收到。</em>',
+      lead: '我们已收到你提交的联系方式、角色、请求类型和留言。Sampora 团队会根据这些信息判断合适的后续跟进方式。',
+      actionsLabel: '下一步操作',
+      backHome: '返回首页',
+      viewPlans: '查看版本方案',
+      microcopy: '你不需要再次提交表单。我们的团队会使用你提供的信息，准备更贴合需求的后续沟通。',
+      submissionHighlights: '提交状态摘要',
+      statusLabel: '状态',
+      statusValue: '已收到',
+      requestLabel: '请求',
+      requestValue: '评估中',
+      nextLabel: '下一步',
+      nextValue: '后续跟进',
+      nextAsideLabel: '后续流程',
+      whatNextTitle: '接下来会发生什么',
+      fourSteps: '4 步',
+      step1Title: '确认你的请求',
+      step1Text: '我们会查看你选择的请求类型和留言内容。',
+      step2Title: '选择合适路径',
+      step2Text: '我们会判断演示、试用或销售沟通哪一种最适合作为下一步。',
+      step3Title: '进行跟进',
+      step3Text: '我们会通过你提交的邮箱或联系方式与你沟通。',
+      step4Title: '推进真实使用',
+      step4Text: '如果需求匹配，我们会引导你的团队把 Sampora 用到真实运营问题中。',
+      snapshotTitle: '请求快照',
+      snapshotPill: '在线',
+      snapshotAria: '提交快照',
+      receiptTitle: '联系请求',
+      receiptSignal: '已收到',
+      submittedDetails: '已提交信息',
+      submittedDetailsValue: '联系方式 · 角色 · 请求 · 留言',
+      reviewPath: '评估路径',
+      reviewPathValue: '演示 / 试用 / 销售沟通',
+      replyChannel: '回复渠道',
+      replyChannelValue: '已提交的联系方式',
+      progressLabel: '跟进准备',
+      progressText: '你的请求已准备好进入第一轮评估。',
+      exploreTitle: '继续了解 <span class="brand-emphasis">Sampora</span>',
+      exploreLead: '在团队评估你的请求时，你可以继续通过站点导航了解相关内容。',
+      exploreSolutionsTitle: '解决方案',
+      exploreSolutionsText: '了解 Sampora 如何支持样本运营、供应商分配、质量审核与结算。',
+      explorePlansTitle: '版本方案',
+      explorePlansText: '比较不同版本方案，判断哪一种更适合你的运营复杂度。',
+      exploreResourcesTitle: '资源中心',
+      exploreResourcesText: '在后续沟通前，先查看运营指南和流程参考资料。',
+      updateTitle: '需要补充你的请求？',
+      updateText: '返回联系页，补充遗漏的需求细节。',
+      updateCta: '返回联系页',
+      footerDesc: 'Sampora 面向自有样本运营方与在线样本供应商，覆盖项目交付、分供应、审核流程、结算台账、风控和合作资源。',
+      tag1: '样本供给',
+      tag2: '审核流程',
+      tag3: '结算台账',
+      footerProduct: '产品',
+      footerPlatformOverview: '平台概览',
+      footerWorkflow: '工作流程',
+      footerResources: '资源',
+      footerResourcesOverview: '资源概览',
+      footerConfigurationGuide: '配置指南',
+      footerOperationManual: '操作手册',
+      footerRolloutNotes: '上线说明',
+      footerGetStarted: '开始使用',
+      footerTalkToSales: '咨询销售',
+      addressText: '中国安徽省六安市恒生阳光城 A 座 1506 室',
+      footerCopyright: '© 2026',
+      footerCompanyLegal: '安徽省嘉禹企业服务有限公司',
+      privacy: '隐私政策',
+      cookie: 'Cookie政策',
+      cookiePreferences: 'Cookie 偏好设置',
+      terms: '使用条款'
+    }
+  };
+
+  function safeLang(value) {
+    var lang = String(value || '').toLowerCase();
+    if (lang.indexOf('zh') === 0) return 'zh';
+    return 'en';
+  }
+
+  function currentLang() {
+    var api = window.SamporaLanguagePreference || window.__samporaLanguagePreference;
+    return safeLang(api && api.getInitialLang ? api.getInitialLang() : document.documentElement.lang);
+  }
+
+  function setText(el, value) {
+    if (value === undefined) return;
+    el.textContent = value;
+  }
+
+  function apply(lang) {
+    lang = safeLang(lang);
+    var dict = copy[lang] || copy.en;
+    var api = window.SamporaLanguagePreference || window.__samporaLanguagePreference;
+    if (api && api.syncDocumentLang) api.syncDocumentLang(lang);
+    else {
+      document.documentElement.dataset.lang = lang;
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      if (document.body) document.body.dataset.lang = lang;
+    }
+    $$('.lang button[data-lang]').forEach(function(btn){
+      btn.textContent = (langLabels[lang] || langLabels.en)[btn.dataset.lang] || btn.textContent;
+      var active = btn.dataset.lang === lang;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+    $$('[data-i18n]').forEach(function(el){
+      setText(el, dict[el.getAttribute('data-i18n')]);
+    });
+    $$('[data-footer-i18n]').forEach(function(el){
+      setText(el, dict[el.getAttribute('data-footer-i18n')]);
+    });
+    $$('[data-i18n-html]').forEach(function(el){
+      var value = dict[el.getAttribute('data-i18n-html')];
+      if (value !== undefined) el.innerHTML = value;
+    });
+    $$('[data-i18n-aria-label]').forEach(function(el){
+      var value = dict[el.getAttribute('data-i18n-aria-label')];
+      if (value !== undefined) el.setAttribute('aria-label', value);
+    });
+    try {
+      if (api && api.saveLang) api.saveLang(lang);
+      else localStorage.setItem('sampora_lang', lang);
+    } catch (e) {}
+    return lang;
+  }
+
+  function syncTopChrome() {
+    var compact = window.scrollY > 56;
+    var mast = document.querySelector('.mast');
+    if (mast) mast.classList.toggle('compact', compact);
+    document.body.classList.toggle('nav-condensed', compact);
+  }
+
+  function ensureMobileNav() {
+    if ($('.mobile-nav-toggle') || $('.mobile-nav-drawer')) return;
+    var actions = $('.header-actions');
+    var routes = [
+      ['index.html', 'navProduct'],
+      ['solutions.html', 'navSolutions'],
+      ['resources.html', 'navResources'],
+      ['plans.html', 'navPlans'],
+      ['about.html', 'navAbout'],
+      ['contact.html', 'navContact']
+    ];
+    if (!actions) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'mobile-nav-toggle';
+    btn.setAttribute('aria-label', 'Open navigation');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = '\u2630';
+    var drawer = document.createElement('nav');
+    drawer.className = 'mobile-nav-drawer';
+    drawer.setAttribute('aria-label', 'Mobile navigation');
+    routes.forEach(function(route){
+      var a = document.createElement('a');
+      a.href = route[0];
+      a.setAttribute('data-i18n', route[1]);
+      if (route[0] === 'contact.html') a.className = 'active';
+      drawer.appendChild(a);
+    });
+    actions.appendChild(btn);
+    document.body.appendChild(drawer);
+    btn.addEventListener('click', function(){
+      var open = document.body.classList.toggle('mobile-nav-open');
+      btn.setAttribute('aria-expanded', String(open));
+      if (open) drawer.querySelector('a')?.focus();
+    });
+    drawer.addEventListener('click', function(event){
+      if (event.target.closest('a')) document.body.classList.remove('mobile-nav-open');
+    });
+    document.addEventListener('keydown', function(event){
+      if (event.key === 'Escape') document.body.classList.remove('mobile-nav-open');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    ensureMobileNav();
+    var lang = apply(currentLang());
+    $$('.lang button[data-lang]').forEach(function(btn){
+      btn.addEventListener('click', function(){ apply(btn.dataset.lang); });
+    });
+    syncTopChrome();
+    window.addEventListener('scroll', syncTopChrome, { passive: true });
+    window.dispatchEvent(new CustomEvent('sampora:languagechange', { detail: { lang: lang } }));
+  });
+  window.addEventListener('sampora:languagechange', function(event){
+    if (event.detail && event.detail.lang) apply(event.detail.lang);
+  });
+})();
+</script>
+<script src="assets/lead-attribution.js" defer></script>
+<script src="assets/footer-email-modal.js" defer></script>
+<script src="assets/sampora-cookie-preferences.js" defer></script>
+<script src="https://plugin-code.salesmartly.com/js/project_693595_715565_1777101144.js"></script>
+</body>
+</html>

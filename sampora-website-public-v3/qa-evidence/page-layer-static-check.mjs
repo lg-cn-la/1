@@ -18,6 +18,7 @@ const supportPages = [
   'cookie-policy.html',
   'privacy.html',
   'terms.html',
+  'thank-you.html',
 ];
 const chineseLegacyRedirects = [
   '\u9996\u9875.html',

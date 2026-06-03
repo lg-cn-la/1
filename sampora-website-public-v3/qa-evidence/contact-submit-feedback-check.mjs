@@ -280,6 +280,27 @@ async function readPendingMarker(page) {
   return page.evaluate(() => sessionStorage.getItem('sampora_contact_pending') || '');
 }
 
+async function expectThankYouRedirect(page, label) {
+  const isThankYou = () => {
+    try {
+      return new URL(page.url()).pathname === '/thank-you.html';
+    } catch (error) {
+      return false;
+    }
+  };
+  if (!isThankYou()) {
+    await page.waitForURL('**/thank-you.html', { timeout: 5000 }).catch(() => {
+      fail(`${label}: did not redirect to thank-you.html, current URL ${page.url()}`);
+    });
+  }
+  const current = new URL(page.url());
+  if (current.pathname !== '/thank-you.html') {
+    fail(`${label}: redirected to ${current.pathname} instead of /thank-you.html`);
+  }
+  const pending = await readPendingMarker(page);
+  if (pending) fail(`${label}: pending storage remained after thank-you redirect: ${pending}`);
+}
+
 const server = await createServer();
 const { port } = server.address();
 const base = `http://127.0.0.1:${port}`;
@@ -317,15 +338,7 @@ try {
   const pendingValues = await readFormValues(page);
   if (pendingValues.submitDisabled) fail('live success pending disabled the submit button');
   assertMinimalPendingMarker('live success pending storage', await readPendingMarker(page));
-  await page.waitForFunction(() => document.querySelector('#contactSubmitFeedback')?.dataset?.state === 'success');
-  expectFeedbackState('live success', await readFeedback(page), 'success');
-
-  const successValues = await readFormValues(page);
-  if (successValues.name || successValues.company || successValues.email || successValues.message) {
-    fail(`live success did not clear user input: ${JSON.stringify(successValues)}`);
-  }
-  const successPending = await page.evaluate(() => sessionStorage.getItem('sampora_contact_pending') || '');
-  if (successPending) fail(`live success did not clear pending storage: ${successPending}`);
+  await expectThankYouRedirect(page, 'live success');
 
   const successRequests = contactRequests.slice(successRequestStart).filter(req => req.url.includes('/__contact_success'));
   if (!successRequests.length) {
@@ -345,18 +358,7 @@ try {
   await page.click('#contactForm button[type="submit"]');
   await page.waitForFunction(() => document.querySelector('#contactSubmitFeedback')?.dataset?.state === 'submitting');
   assertMinimalPendingMarker('live data-wrapped success pending storage', await readPendingMarker(page));
-  await page.waitForFunction(() => {
-    const state = document.querySelector('#contactSubmitFeedback')?.dataset?.state;
-    return state && state !== 'submitting';
-  });
-  expectFeedbackState('live data-wrapped success', await readFeedback(page), 'success');
-
-  const dataSuccessValues = await readFormValues(page);
-  if (dataSuccessValues.name || dataSuccessValues.company || dataSuccessValues.email || dataSuccessValues.message) {
-    fail(`live data-wrapped success did not clear user input: ${JSON.stringify(dataSuccessValues)}`);
-  }
-  const dataSuccessPending = await page.evaluate(() => sessionStorage.getItem('sampora_contact_pending') || '');
-  if (dataSuccessPending) fail(`live data-wrapped success did not clear pending storage: ${dataSuccessPending}`);
+  await expectThankYouRedirect(page, 'live data-wrapped success');
 
   const dataSuccessRequests = contactRequests.slice(dataSuccessRequestStart).filter(req => req.url.includes('/__contact_data_success'));
   if (!dataSuccessRequests.length) {
