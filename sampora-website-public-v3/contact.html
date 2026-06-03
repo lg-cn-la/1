@@ -544,6 +544,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 16px;
         }
 
+        .field-helper {
+            margin: -6px 0 16px;
+            color: var(--body);
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
         label {
             color: #dce8f5;
             font-size: 13px;
@@ -1500,7 +1507,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
         <div class="container hero-inner">
             <div class="eyebrow" data-i18n="heroEyebrow">CONTACT CENTER</div>
             <h1 data-i18n="heroTitle">Talk to us about your sample operations.</h1>
-            <p data-i18n="heroSub">Tell us what you need next: trial access, a product demo, sales help, or cooperation consultation.</p>
+            <p data-i18n="heroSub">Tell us what you need next: trial access, a product demo, sales help, or cooperation resources.</p>
         </div>
     </section>
 
@@ -1512,7 +1519,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                     <h2 data-i18n="formTitle">Submit a request</h2>
                     <p data-i18n="formIntro">Share your company, role, and request type so we can point you to the right next step.</p>
                     <ul class="tick-list">
-                        <li data-i18n="bullet1">Choose whether you want trial access, a demo, sales help, or cooperation consultation.</li>
+                        <li data-i18n="bullet1">Choose whether you want trial access, a demo, sales help, or cooperation resources.</li>
                         <li data-i18n="bullet2">Add the details that help us understand your clients, suppliers, coverage, or API needs.</li>
                         <li data-i18n="bullet3">Keep the message short if you are not ready to share a full operating model.</li>
                         <li data-i18n="bullet4">Our team will follow up with the right path for your team.</li>
@@ -1574,9 +1581,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                             <option value="book_demo" data-i18n="businessDemo">Book a demo</option>
                             <option value="contact_sales" data-i18n="businessSales">Talk to sales</option>
                             <option value="enterprise_demo" data-i18n="businessEnterprise">Enterprise plan discussion</option>
-                            <option value="resource_question" data-i18n="businessResource">Cooperation consultation</option>
+                            <option value="cooperation" data-i18n="businessResource">Explore Cooperation Resources</option>
                         </select>
                     </div>
+                    <p class="field-helper" data-i18n="businessTypeHelper">Tell us whether you want to find clients, find suppliers, or manage both client and supplier cooperation through Sampora.</p>
                     <div class="field">
                         <label for="message" data-i18n="msgLabel">Message</label>
                         <textarea id="message" name="message"></textarea>
@@ -1718,11 +1726,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       ctaTop: 'Apply for trial',
       heroEyebrow: 'CONTACT CENTER',
       heroTitle: 'Talk to us about your sample operations.',
-      heroSub: 'Tell us what you need next: trial access, a product demo, sales help, or cooperation consultation.',
+      heroSub: 'Tell us what you need next: trial access, a product demo, sales help, or cooperation resources.',
       formKicker: 'CONTACT FORM',
       formTitle: 'Submit a request',
       formIntro: 'Share your company, role, and request type so we can point you to the right next step.',
-      bullet1: 'Choose whether you want trial access, a demo, sales help, or cooperation consultation.',
+      bullet1: 'Choose whether you want trial access, a demo, sales help, or cooperation resources.',
       bullet2: 'Add the details that help us understand your clients, suppliers, coverage, or API needs.',
       bullet3: 'Keep the message short if you are not ready to share a full operating model.',
       bullet4: 'Our team will follow up with the right path for your team.',
@@ -1737,7 +1745,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       namePlaceholder: 'Your name',
       companyPlaceholder: 'Company or team',
       emailPlaceholder: 'name@company.com',
-      messagePlaceholder: 'Tell us whether you want to work with clients, suppliers, or both. You can also include your country coverage, website, LinkedIn page, and API needs.',
+      messagePlaceholder: 'Add country coverage, website / LinkedIn, API needs, or other cooperation details.',
+      businessTypeHelper: 'Tell us whether you want to find clients, find suppliers, or manage both client and supplier cooperation through Sampora.',
       rolePh: 'Select your role',
       businessTypePh: 'Select request intent',
       rolePanel: 'Panel Provider',
@@ -1752,7 +1761,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       businessDemo: 'Book a demo',
       businessSales: 'Talk to sales',
       businessEnterprise: 'Enterprise plan discussion',
-      businessResource: 'Cooperation consultation',
+      businessResource: 'Explore Cooperation Resources',
       submit: 'Submit request',
       submitPending: 'Submitting your request…',
       submitSuccess: 'Thanks — we received your request. Our team will review it and follow up with the right Sampora next step. If your request is urgent, you can also email us at sales@getsampora.com.',
@@ -1807,7 +1816,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     },
     zh: {
       topLine: '联系中心 / 在线',
-      topRight: '试用、演示、销售和合作咨询',
+      topRight: '试用、演示、销售和合作资源',
       brandSub: '操作控制台',
       navProduct: '产品',
       navSolutions: '解决方案',
@@ -1820,7 +1829,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       ctaTop: '申请试用',
       heroEyebrow: '联系中心',
       heroTitle: '告诉我们你的样本运营场景',
-      heroSub: '告诉我们你下一步需要什么：试用申请、产品演示、销售咨询或合作咨询。',
+      heroSub: '告诉我们你下一步需要什么：试用申请、产品演示、销售咨询或合作资源。',
       formKicker: '联系表单',
       formTitle: '提交请求',
       formIntro: '填写公司、角色和请求类型，方便我们判断合适的下一步。',
@@ -1839,7 +1848,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       namePlaceholder: '你的姓名',
       companyPlaceholder: '公司或团队名称',
       emailPlaceholder: 'name@company.com',
-      messagePlaceholder: '请说明你希望与客户、供应商，还是二者都建立合作；也可以补充覆盖国家、官网或 LinkedIn，以及是否需要 API 合作。',
+      messagePlaceholder: '可补充覆盖国家、官网 / LinkedIn、API 需求或其他合作信息。',
+      businessTypeHelper: '请说明你希望通过 Sampora 找客户、找供应商，还是同时管理客户和供应商合作。',
       rolePh: '请选择角色',
       businessTypePh: '请选择请求意图',
       rolePanel: '自有样本运营方',
@@ -1854,7 +1864,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       businessDemo: '预约演示',
       businessSales: '咨询销售',
       businessEnterprise: '企业方案咨询',
-      businessResource: '合作咨询',
+      businessResource: '了解合作资源',
       submit: '提交请求',
       submitPending: '正在提交你的请求……',
       submitSuccess: '谢谢，我们已收到你的请求。我们的团队会评估你的需求，并跟进合适的 Sampora 下一步。如需紧急联系，也可以发送邮件至 sales@getsampora.com。',
@@ -2059,7 +2069,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     book_demo: 'book_demo',
     contact_sales: 'contact_sales',
     enterprise_demo: 'enterprise_demo',
-    resource_question: 'resource_question'
+    cooperation: 'cooperation'
   };
 
   const form = document.getElementById('contactForm');

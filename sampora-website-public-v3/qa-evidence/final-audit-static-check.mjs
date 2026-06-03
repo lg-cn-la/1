@@ -238,7 +238,7 @@ for (const file of officialPages) {
   const html = read(file);
   [...html.matchAll(/\bhref=["'](contact\.html\?intent=[^"']+)["']/gi)].forEach((match) => {
     const href = match[1];
-    if (!/^contact\.html\?intent=(start_trial|book_demo|contact_sales|enterprise_demo|resource_question)#contact-form$/.test(href)) {
+    if (!/^contact\.html\?intent=(start_trial|book_demo|contact_sales|enterprise_demo|cooperation)#contact-form$/.test(href)) {
       fail(`${file}: invalid contact intent href ${href}`);
     }
   });
@@ -405,6 +405,51 @@ for (const file of ['solutions.html', 'resources.html']) {
   if (!/class=["']content-copy["'][\s\S]*class=["']content-actions["'][\s\S]*class=["']status-strip["']/.test(thankYou)) fail('thank-you.html: thank-card content must keep grouped vertical distribution');
   if (/style=["'][^"']*margin-bottom:\s*14px/i.test(thankYou)) fail('thank-you.html: inline kicker spacing style must not return');
   if (/\.page-shell::before|\.page-shell::after|\.explore-card::after/i.test(thankYou)) fail('thank-you.html: removed decorative glow pseudo-elements must not return');
+  const condensedMastRule = thankYou.match(/body\.nav-condensed\s+\.mast\s*{([^}]*)}/i)?.[1] || '';
+  if (/background\s*:/i.test(condensedMastRule)) fail('thank-you.html: condensed mast must inherit the standard page nav background instead of a separate black override');
+  if (!/\.mast\s*{[\s\S]*background:\s*rgba\(10,\s*22,\s*40,\s*\.84\)/i.test(thankYou)) fail('thank-you.html: mast must use the standard dark chrome background');
+}
+
+{
+  const forbiddenScopedCopy = [
+    'Cooperation consultation',
+    '合作咨询',
+    'Public Cooperation Resources',
+    '公开合作资源',
+    'Public matching',
+    '公开合作撮合',
+    'Cooperation board',
+    '合作板块',
+    'Cooperation feature',
+    '合作功能',
+  ];
+  for (const file of ['index.html', 'contact.html']) {
+    const html = read(file);
+    for (const text of forbiddenScopedCopy) {
+      if (html.includes(text)) fail(`${file}: forbidden scoped visible cooperation label remains: ${text}`);
+    }
+  }
+  const index = read('index.html');
+  if (!/href=["']contact\.html\?intent=cooperation#contact-form["'][^>]*>\s*Explore Cooperation Resources\s*<\/a>/i.test(index)) {
+    fail('index.html: cooperation resources CTA must use visible Explore Cooperation Resources and intent=cooperation');
+  }
+  if (!/"opProofCoopCta"\s*:\s*"Explore Cooperation Resources"/.test(index) || !/"opProofCoopCta"\s*:\s*"了解合作资源"/.test(index)) {
+    fail('index.html: EN/ZH cooperation resources CTA labels are not aligned');
+  }
+  if (!/"opProofKicker"\s*:\s*"Product foundation"/.test(index) || !/"opProofKicker"\s*:\s*"构建基础"/.test(index)) {
+    fail('index.html: operating proof section kicker must be Product foundation / 构建基础');
+  }
+  const contact = read('contact.html');
+  if (!/<option\s+value=["']cooperation["'][^>]*data-i18n=["']businessResource["'][^>]*>\s*Explore Cooperation Resources\s*<\/option>/i.test(contact)) {
+    fail('contact.html: cooperation request type option must use value=cooperation and Explore Cooperation Resources');
+  }
+  const retiredCooperationIntent = 'resource' + '_question';
+  if (contact.includes(retiredCooperationIntent)) {
+    fail('contact.html: former cooperation compatibility intent mapping must not remain');
+  }
+  if (!contact.includes('Tell us whether you want to find clients, find suppliers, or manage both client and supplier cooperation through Sampora.')) {
+    fail('contact.html: cooperation helper text is missing');
+  }
 }
 
 if (!failures) console.log('PASS final audit static checks');

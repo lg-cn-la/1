@@ -143,6 +143,23 @@ function checkCookiePreferencesAsset() {
   assertPattern(rel, js, /checkbox|role=["']switch["']|data-cookie-toggle/i, 'Analytics/marketing toggle control');
 }
 
+function checkCookiePreferencesStyles() {
+  const rel = 'assets/sampora-cookie-preferences.css';
+  const css = read(rel);
+  assertPattern(
+    rel,
+    css,
+    /\.sampora-cookie-switch\s*\{[\s\S]*?grid-template-columns:\s*46px\s+minmax\(64px,\s*auto\);[\s\S]*?justify-content:\s*start;[\s\S]*?justify-items:\s*start;[\s\S]*?justify-self:\s*end;[\s\S]*?width:\s*118px;/,
+    'track-aligned fixed cookie switch columns',
+  );
+  assertPattern(
+    rel,
+    css,
+    /\.sampora-cookie-switch em\s*\{[\s\S]*?min-width:\s*64px;[\s\S]*?text-align:\s*left;[\s\S]*?white-space:\s*nowrap;/,
+    'stable cookie switch label width',
+  );
+}
+
 function checkPolicyDisclosures() {
   const privacy = read('privacy.html');
   const cookiePolicy = read('cookie-policy.html');
@@ -185,6 +202,7 @@ const pages = listRootHtmlPages();
 if (!pages.length) fail('public root: no root HTML pages found');
 for (const page of pages) checkPage(page);
 checkCookiePreferencesAsset();
+checkCookiePreferencesStyles();
 checkPolicyDisclosures();
 checkForbiddenDirectTags();
 

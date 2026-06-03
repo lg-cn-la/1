@@ -4,6 +4,7 @@ import { loadChromium } from './playwright-loader.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const pages = ['privacy.html', 'cookie-policy.html', 'terms.html'];
+const footerLegalLinks = ['privacy.html', 'cookie-policy.html', 'terms.html', '#cookie-preferences'];
 const failures = [];
 const expectedStatus = {
   'privacy.html': {
@@ -21,13 +22,13 @@ const expectedStatus = {
   'cookie-policy.html': {
     en: {
       live: 'Cookie Policy',
-      mid: 'Functional Storage',
-      right: 'Necessary and AI support storage notice',
+      mid: 'Public Website Cookies',
+      right: 'GTM, GA4, and Clarity analytics notice',
     },
     zh: {
       live: 'Cookie 政策',
-      mid: '功能性存储',
-      right: '必要与 AI 客服存储说明',
+      mid: '官网 Cookie',
+      right: 'GTM、GA4 与 Clarity 分析说明',
     },
   },
   'terms.html': {
@@ -108,7 +109,7 @@ async function readLegalPage(pageName, lang) {
 async function readScrollState(pageName) {
   await page.goto(pathToFileURL(path.join(root, pageName)).href, { waitUntil: 'domcontentloaded' });
   await page.evaluate(() => window.scrollTo(0, 180));
-  await page.waitForTimeout(320);
+  await page.waitForTimeout(520);
   return page.evaluate(() => {
     const status = document.querySelector('.status')?.getBoundingClientRect();
     const mast = document.querySelector('.mast')?.getBoundingClientRect();
@@ -141,9 +142,9 @@ for (const lang of ['en', 'zh']) {
   if (statusSet.size !== pages.length) fail(`${lang}: legal status-right labels are not page-specific: ${JSON.stringify([...statusSet])}`);
 
   for (const sample of samples[lang]) {
-    const legalLinks = sample.links.slice(0, 3).map(link => link.href);
-    if (JSON.stringify(legalLinks) !== JSON.stringify(pages)) {
-      fail(`${lang}/${sample.path}: footer legal links are not privacy/cookie/terms in order: ${JSON.stringify(legalLinks)}`);
+    const legalLinks = sample.links.map(link => link.href);
+    if (JSON.stringify(legalLinks) !== JSON.stringify(footerLegalLinks)) {
+      fail(`${lang}/${sample.path}: footer legal links are not privacy/cookie/terms/preferences in order: ${JSON.stringify(legalLinks)}`);
     }
 
     const expected = expectedStatus[sample.path]?.[lang];

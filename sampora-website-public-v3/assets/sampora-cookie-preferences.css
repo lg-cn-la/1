@@ -197,9 +197,13 @@
 
 .sampora-cookie-switch {
   display: inline-grid;
-  grid-template-columns: 46px auto;
+  grid-template-columns: 46px minmax(64px, auto);
   gap: 8px;
   align-items: center;
+  justify-content: start;
+  justify-items: start;
+  justify-self: end;
+  width: 118px;
   color: #aeefff;
   font: 800 11px/1 var(--sans, "Inter", "Noto Sans SC", Arial, sans-serif);
   cursor: pointer;
@@ -256,6 +260,8 @@
 
 .sampora-cookie-switch em {
   font-style: normal;
+  min-width: 64px;
+  text-align: left;
   white-space: nowrap;
 }
 
