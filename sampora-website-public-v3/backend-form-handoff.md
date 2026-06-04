@@ -22,6 +22,20 @@ Form contract:
 - honeypot field: `website`
 - submit label: `Submit request`
 
+Current `role` values:
+
+- `panel_provider` - Owned panel / sample operations team
+- `sample_supplier` - Sample supplier / delivery partner
+- `client_side` - Client-side team / project buyer
+- `two_sided_operations` - Two-sided operations team
+- `aggregator_network` - Sample aggregator / supplier network operator
+- `api_supplier` - API-connected supplier
+- `enterprise_multi_entity` - Enterprise / multi-entity operations team
+- `not_sure` - Not sure / explore cooperation first
+- `Other` - Other / please specify
+
+`role` is a visible Contact form field. Store it in the Sheet row and include it in the lead email with the other visible fields. If the backend receives an unknown `role` value, trim and store the raw cleaned string; do not fail an otherwise valid lead only because the role value does not match this frontend option list.
+
 ## Intent Map
 
 Supported conversion intent values:
@@ -91,6 +105,10 @@ For every frontend `dataLayer` event that should reach GA4, the GTM operator mus
 
 - a Custom Event Trigger whose event name exactly matches the pushed `dataLayer` event, and
 - a GA4 Event Tag that uses that trigger and maps the event parameters needed for reporting.
+
+GA4 event parameters should map only the sanitized analysis fields pushed in the event payload: `cta_text`, `cta_location`, `cta_intent`, `cta_event`, `resource_slug`, `plan_slug`, `source_page`, `source_section`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `landing_page_path`, `conversion_page_path`, `referrer_domain`, `first_utm_source`, `first_utm_medium`, `first_utm_campaign`, `first_landing_page_path`, `last_landing_page_path`, `language`, `has_gclid`, `has_fbclid`, `has_msclkid`, and `click_id_type`.
+
+Do not map raw `gclid`, `fbclid`, `msclkid`, full `referrer`, full `landing_page`, full `conversion_page`, or Contact form-body fields such as `name`, `email`, `company`, `role`, `role_other`, `business_type`, or `message` as GA4 event parameters. Those raw values and form-body values stay in Contact hidden fields or visible fields for `/api/contact`, Google Sheet storage, and email notification context only.
 
 Initial event setup:
 

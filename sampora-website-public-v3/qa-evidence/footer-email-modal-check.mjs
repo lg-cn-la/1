@@ -31,10 +31,14 @@ function normalizeSelector(selector) {
   return selector.trim().replace(/\s+/g, ' ');
 }
 
+function stripCssComments(css) {
+  return css.replace(/\/\*[\s\S]*?\*\//g, '');
+}
+
 function ruleBodiesForSelector(css, selector) {
   const normalized = normalizeSelector(selector);
   const bodies = [];
-  for (const match of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+  for (const match of stripCssComments(css).matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
     const selectors = match[1].split(',').map(normalizeSelector);
     if (selectors.includes(normalized)) bodies.push(match[2]);
   }

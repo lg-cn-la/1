@@ -56,12 +56,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 <!-- End Google Tag Manager -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Contact Sampora to discuss trial, demo, sales, enterprise, or resource questions for online sample operations." />
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
-<meta property="og:url" content="https://getsampora.com/contact.html">
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="Contact Sampora to discuss trial, demo, sales, enterprise, or resource questions for online sample operations." /><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://getsampora.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Book a Sample Operations Demo | Sampora">
+<meta property="og:description" content="Contact Sampora to discuss trial, demo, sales, enterprise, or resource questions for online sample operations.">
+<meta property="og:url" content="https://getsampora.com/contact.html">
+<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+<meta property="og:image:width" content="1732">
+<meta property="og:image:height" content="908">
+<meta property="og:image:alt" content="Sampora sample supplier and panel operations software">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Book a Sample Operations Demo | Sampora">
+<meta name="twitter:description" content="Contact Sampora to discuss trial, demo, sales, enterprise, or resource questions for online sample operations.">
+<meta name="twitter:image" content="https://getsampora.com/assets/og-sampora.png">
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 <title>Book a Sample Operations Demo | Sampora</title>
     <style>
@@ -583,6 +591,153 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             box-shadow: 0 0 0 3px rgba(57, 215, 255, .08);
         }
 
+        select option {
+            background: #0b182b;
+            color: var(--text);
+        }
+
+        select option:disabled {
+            color: rgba(185, 202, 222, .55);
+        }
+
+        .select-enhanced {
+            position: relative;
+        }
+
+        .select-enhanced select.native-select {
+            position: absolute;
+            inset: 28px 0 0;
+            z-index: 1;
+            min-height: 50px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .select-trigger {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            min-height: 50px;
+            padding: 14px 46px 14px 15px;
+            border: 1px solid rgba(129, 178, 214, .20);
+            border-radius: 12px;
+            background: rgba(5, 15, 27, .72);
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.4;
+            text-align: left;
+            cursor: pointer;
+            box-shadow: none;
+            transition: border-color .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease);
+        }
+
+        .select-trigger::after {
+            content: "";
+            position: absolute;
+            right: 17px;
+            top: 50%;
+            width: 7px;
+            height: 7px;
+            border-right: 2px solid rgba(232, 238, 245, .94);
+            border-bottom: 2px solid rgba(232, 238, 245, .94);
+            transform: translateY(-68%) rotate(45deg);
+            transition: transform .18s var(--ease), border-color .18s var(--ease);
+        }
+
+        .select-enhanced[data-empty="true"] .select-trigger {
+            color: var(--text);
+        }
+
+        .select-enhanced.is-open .select-trigger,
+        .select-trigger:focus-visible,
+        .select-trigger[aria-invalid="true"] {
+            outline: none;
+            border-color: rgba(57, 215, 255, .56);
+            box-shadow: 0 0 0 3px rgba(57, 215, 255, .08);
+            background: rgba(5, 15, 27, .72);
+        }
+
+        .select-enhanced.is-open .select-trigger::after {
+            transform: translateY(-25%) rotate(225deg);
+            border-color: rgba(232, 238, 245, .94);
+        }
+
+        .select-menu {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: calc(100% + 8px);
+            z-index: 28;
+            max-height: 270px;
+            overflow: auto;
+            padding: 7px;
+            border: 1px solid rgba(57, 215, 255, .28);
+            border-radius: 16px;
+            background:
+                linear-gradient(180deg, rgba(16, 37, 60, .98), rgba(7, 18, 31, .98));
+            box-shadow: 0 24px 68px rgba(0, 0, 0, .42), inset 0 1px 0 rgba(255, 255, 255, .04);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-6px) scale(.985);
+            transform-origin: top center;
+            transition: opacity .16s var(--ease), transform .16s var(--ease), visibility .16s var(--ease);
+        }
+
+        .select-enhanced.is-open .select-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .select-option {
+            min-height: 38px;
+            display: flex;
+            align-items: center;
+            padding: 9px 11px;
+            border-radius: 10px;
+            color: rgba(232, 238, 245, .88);
+            font-size: 14px;
+            font-weight: 760;
+            line-height: 1.35;
+            cursor: pointer;
+            transition: color .16s var(--ease), background .16s var(--ease), box-shadow .16s var(--ease);
+        }
+
+        .select-option:hover,
+        .select-option:focus-visible {
+            outline: none;
+            color: var(--cyan2);
+            background: rgba(57, 215, 255, .105);
+            box-shadow: inset 0 0 0 1px rgba(57, 215, 255, .14);
+        }
+
+        .select-option[aria-selected="true"] {
+            color: #ecfbff;
+            background: linear-gradient(90deg, rgba(57, 215, 255, .25), rgba(57, 215, 255, .08));
+            box-shadow: inset 0 0 0 1px rgba(57, 215, 255, .22);
+        }
+
+        .select-option.is-disabled {
+            color: rgba(185, 202, 222, .46);
+            cursor: default;
+        }
+
+        .select-option.is-disabled:hover,
+        .select-option.is-disabled:focus-visible {
+            color: rgba(185, 202, 222, .46);
+            background: transparent;
+            box-shadow: none;
+        }
+
+        @media(max-width:760px) {
+            .select-menu {
+                max-height: 230px;
+            }
+        }
+
         .field[hidden] {
             display: none;
         }
@@ -794,130 +949,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
 
-        footer {
-            padding: 70px 0 34px;
-            border-top: 1px solid var(--line);
-        }
-
-        .footer-card {
-            border: 1px solid var(--line);
-            border-radius: 24px;
-            background: rgba(10, 24, 42, .58);
-            overflow: hidden;
-        }
-
-        .footer-top {
-            display: grid;
-            grid-template-columns: 1.25fr .75fr .75fr .75fr;
-            gap: 28px;
-            padding: 36px 40px;
-        }
-
-        .footer-desc {
-            color: var(--body);
-            font-size: 15px;
-            line-height: 1.7;
-            max-width: 420px;
-            margin-top: 20px;
-        }
-
-        .footer-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 18px;
-        }
-
-        .footer-tags span {
-            border: 1px solid rgba(57, 215, 255, .22);
-            color: var(--cyan2);
-            border-radius: 999px;
-            padding: 6px 10px;
-            font: 900 11px var(--mono);
-        }
-
-        .footer-col h4 {
-            margin: 0 0 16px;
-            font-size: 16px;
-        }
-
-        .footer-col a {
-            display: block;
-            color: var(--body);
-            margin: 12px 0;
-            font-size: 14px;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--line);
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .contact-item {
-            min-height: 70px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 0 32px;
-            border-right: 1px solid var(--line);
-            color: #cfd9e8;
-            font-weight: 800;
-        }
-
-        .contact-item:last-child {
-            border-right: 0;
-        }
-
-        .contact-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 999px;
-            display: grid;
-            place-items: center;
-            border: 1px solid rgba(57, 215, 255, .25);
-            color: var(--cyan2);
-            background: rgba(57, 215, 255, .07);
-        }
-
-        .copyright {
-            border-top: 1px solid var(--line);
-            padding: 18px 32px;
-            text-align: center;
-            color: var(--muted);
-            font: 12px var(--mono);
-        }
-
-        .toast {
-            position: fixed;
-            right: 24px;
-            bottom: 24px;
-            z-index: 200;
-            border: 1px solid rgba(57, 215, 255, .35);
-            border-radius: 16px;
-            background: rgba(7, 18, 31, .96);
-            box-shadow: 0 20px 70px rgba(0, 0, 0, .35);
-            padding: 18px 20px;
-            max-width: 360px;
-            display: none;
-        }
-
-        .toast.show {
-            display: block;
-        }
-
-        .toast b {
-            display: block;
-            color: var(--cyan2);
-            margin-bottom: 8px;
-        }
-
-        .toast span {
-            color: var(--body);
-            font-size: 14px;
-            line-height: 1.55;
-        }
-
         @media(max-width:1100px) {
             .option-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -976,9 +1007,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
             .option-grid,
             .form-row,
-            .direct-grid,
-            .footer-top,
-            .footer-bottom {
+            .direct-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1164,38 +1193,12 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
 
 
 
-/* Unified footer link motion */
-.footer-card a,
-.site-footer a,
-.footer-col a,
-.sampora-footer-card a,
-.sampora-site-footer a,
-.sampora-footer-col a {
-  color: rgba(218, 230, 246, .72);
-  text-decoration: none;
-  transition: color .2s ease, transform .2s ease, text-shadow .2s ease;
-}
-
-.footer-card a:hover,
-.site-footer a:hover,
-.footer-col a:hover,
-.sampora-footer-card a:hover,
-.sampora-site-footer a:hover,
-.sampora-footer-col a:hover,
-.footer-card a:focus-visible,
-.site-footer a:focus-visible,
-.footer-col a:focus-visible,
-.sampora-footer-card a:focus-visible,
-.sampora-site-footer a:focus-visible,
-.sampora-footer-col a:focus-visible {
-  color: #38d8ff;
-  transform: translateX(3px);
-  text-shadow: 0 0 18px rgba(56, 216, 255, .28);
-}
-
-/* Package C: scoped Contact footer contract aligned to current Plans footer baseline */
-#footer.sampora-site-footer{padding:64px 0 12px!important;border-top:0!important;color:var(--body,#A9B9CE)!important;background:transparent!important}
-#footer .sampora-footer-card{border:1px solid rgba(129,178,214,.22)!important;border-radius:24px!important;overflow:hidden!important;background:rgba(8,20,36,.72)!important;box-shadow:0 30px 90px rgba(0,0,0,.24)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
+/* Contact footer */
+#footer.sampora-site-footer{position:relative;z-index:1;padding:30px 0 12px!important;border-top:0!important;color:var(--body,#A9B9CE)!important;background:transparent!important;overflow:visible}
+#footer.sampora-site-footer::before{content:"";position:absolute;left:50%;top:-70px;width:min(980px,78vw);height:190px;transform:translateX(-50%);z-index:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(56,210,255,.075) 0%,rgba(56,210,255,.028) 42%,transparent 70%);mask-image:linear-gradient(180deg,transparent 0%,#000 26%,#000 70%,transparent 100%)}
+#footer.sampora-site-footer a{color:rgba(218,230,246,.72);text-decoration:none;transition:color .2s ease,transform .2s ease,text-shadow .2s ease}
+#footer.sampora-site-footer a:hover,#footer.sampora-site-footer a:focus-visible{color:#38d8ff;transform:translateX(3px);text-shadow:0 0 18px rgba(56,216,255,.28)}
+#footer .sampora-footer-card{position:relative;z-index:1;border:1px solid rgba(129,178,214,.12)!important;border-top-color:rgba(129,178,214,.08)!important;border-radius:24px!important;overflow:hidden!important;background:linear-gradient(180deg,rgba(9,22,38,.72),rgba(7,18,32,.60))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 26px 80px rgba(0,0,0,.22)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
 #footer .sampora-footer-main{display:grid!important;grid-template-columns:minmax(320px,1.32fr) repeat(3,minmax(150px,.78fr))!important;gap:clamp(32px,4vw,54px)!important;align-items:start!important;padding:42px 48px 36px!important}
 #footer .sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--fg,#E8EEF5)!important;margin-bottom:22px!important}
 #footer .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
@@ -1211,121 +1214,53 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
 #footer .sampora-footer-col a::after{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:-2px!important;height:1px!important;transform:scaleX(0)!important;transform-origin:left!important;background:linear-gradient(90deg,var(--cyan,#38D2FF),transparent)!important;opacity:.75!important;transition:transform .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
 #footer .sampora-footer-col a:hover,#footer .sampora-footer-col a:focus-visible{color:var(--cyan2,#7BE3FF)!important;transform:translateX(2px)!important;text-shadow:0 0 18px rgba(56,216,255,.20)!important}
 #footer .sampora-footer-col a:hover::after,#footer .sampora-footer-col a:focus-visible::after{transform:scaleX(1)!important}
-#footer .sampora-footer-contact{display:grid!important;grid-template-columns:repeat(3,1fr)!important;border-top:1px solid rgba(129,178,214,.18)!important}
+#footer .sampora-footer-contact{display:grid!important;grid-template-columns:repeat(3,1fr)!important;border-top:0!important}
 #footer .sampora-footer-contact-item{display:flex!important;align-items:center!important;gap:18px!important;min-height:74px!important;padding:0 48px!important;border-right:1px solid rgba(129,178,214,.18)!important;border-bottom:0!important;color:var(--fg,#E8EEF5)!important;font-size:16px!important;font-weight:760!important}
 #footer .sampora-footer-contact-item:last-child{border-right:0!important}
 #footer .sampora-footer-icon{width:34px!important;height:34px!important;border-radius:999px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;flex:0 0 auto!important;box-sizing:border-box!important;overflow:hidden!important;text-align:center!important;font:800 10.5px/1 var(--mono,monospace)!important;letter-spacing:.02em!important}
 #footer .sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
-#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:1px solid rgba(129,178,214,.10)!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
+#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:0!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
 @media(max-width:1180px){#footer .sampora-footer-main{grid-template-columns:1fr 1fr!important;padding:34px 28px 32px!important}#footer .sampora-footer-brand{grid-column:1/-1!important}#footer .sampora-footer-contact{grid-template-columns:1fr!important}#footer .sampora-footer-contact-item{border-right:0!important;border-bottom:1px solid rgba(129,178,214,.18)!important;padding:18px 28px!important}#footer .sampora-footer-contact-item:last-child{border-bottom:0!important}}
 @media(max-width:760px){#footer .sampora-footer-main{grid-template-columns:1fr!important;gap:26px!important;padding:30px 24px 28px!important}#footer .sampora-footer-brand{grid-column:auto!important}#footer .sampora-footer-col h3::after{width:min(100%,280px)!important}#footer .sampora-footer-brand p,#footer .sampora-footer-col a,#footer .sampora-footer-contact-item{overflow-wrap:anywhere!important}}
 
-/* final cleanup: unified navigation and language switcher */
-.lang,.lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
-.lang button,.lang-btn{min-width:42px;height:34px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px/1 var(--mono,ui-monospace,monospace);letter-spacing:.03em;cursor:pointer;transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
-.lang button:hover,.lang button:focus-visible,.lang-btn:hover,.lang-btn:focus-visible{color:var(--cyan2,var(--cyan,#61e7ff));outline:0;box-shadow:0 0 0 1px rgba(56,210,255,.24)}
-.lang button.active,.lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
-@media(max-width:1100px){.nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:none!important}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}.nav.sampora-nav-standard,.sampora-nav-standard{gap:28px!important}}
-@media(max-width:760px){.brand small{display:none!important}.mast .inner,.nav-inner{gap:14px!important}.response-grid{grid-template-columns:1fr}.response-card{min-height:auto}}
-@media(max-width:360px){.container{width:min(100% - 24px,var(--max))!important}.brand b{display:none!important}.lang button,.lang-btn{min-width:34px!important;padding:0 6px!important;font-size:10px!important}.mobile-nav-toggle{width:36px!important;height:36px!important}.header-actions,.nav-actions,.actions{gap:6px!important}}
-
-
-/* final cleanup: contact header alignment */
-.status{height:34px;border-bottom:1px solid var(--line);background:rgba(6,16,31,.86);backdrop-filter:blur(8px);color:var(--muted);font:11px var(--mono);letter-spacing:.06em;position:sticky;top:0;z-index:61}.status .inner{height:100%;display:flex;align-items:center;justify-content:flex-start;gap:12px;padding-left:10px;overflow:hidden;white-space:nowrap}.status .status-copy{min-width:0;max-width:100%;display:inline-flex;align-items:center;gap:10px;overflow:visible}.status .live{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-weight:900;text-transform:uppercase}.status .live:before{content:"";display:inline-flex;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(169,255,95,.48);animation:pulse-green 1.9s ease-out infinite}@keyframes pulse-green{0%{box-shadow:0 0 0 0 rgba(169,255,95,.48)}72%{box-shadow:0 0 0 9px rgba(169,255,95,0)}100%{box-shadow:0 0 0 0 rgba(169,255,95,0)}}.status .sep{color:rgba(232,238,245,.42)}.status .right{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--body)}.mast{height:70px;position:sticky;top:34px;z-index:60;border-bottom:1px solid var(--line);background:rgba(10,22,40,.84);backdrop-filter:blur(14px)}.mast .inner{height:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px}.mast .brand{display:inline-flex;align-items:center;gap:12px;min-width:max-content}.mast .mark{width:32px;height:32px;border:1px solid rgba(57,215,255,.48);border-radius:9px;display:grid;place-items:center;color:var(--cyan2);font-family:var(--mono);background:rgba(10,59,85,.42);box-shadow:inset 0 0 22px rgba(57,215,255,.12)}.mast .nav{height:auto;position:static;z-index:auto;border:0;background:transparent;backdrop-filter:none;display:flex;align-items:center;justify-content:center;gap:36px;color:rgba(232,238,245,.84);font-size:14px;white-space:nowrap}.mast .nav a{position:relative;padding:26px 0;opacity:.86}.mast .nav a:hover,.mast .nav a.active{color:#38D2FF;opacity:1}.mast .nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:15px;height:2px;border-radius:99px;background:linear-gradient(90deg,transparent,#38D2FF,transparent)}.header-actions{display:flex;align-items:center;justify-content:flex-end;gap:12px}@media(max-width:1100px){.mast .nav{display:none!important}.status .right,.status .sep{display:none}}@media(max-width:760px){.status{display:none}.mast{top:0}.mast .inner{display:flex;gap:14px}.header-actions .btn.primary{display:none!important}}@media(max-width:360px){.brand-name,.brand-sub{display:none!important}.footer-bottom{grid-template-columns:1fr!important}.contact-item{min-width:0!important;padding-left:14px!important;padding-right:14px!important;overflow-wrap:anywhere!important}}
-
-/* Worker A: unified desktop navigation */
-@media(min-width:1101px){
-  .mast{height:auto!important;top:34px!important}
-  .mast.compact{background:rgba(10,22,40,.82)!important}
-  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important}
-  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
-  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
-  .header-actions,.nav-actions,.actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-left:0!important}
-}
-
-/* Worker F: measured desktop header parity */
-@media(min-width:1101px){
-  .status,.topline{height:auto!important}
-  .status .inner,.topline .inner{height:34px!important}
-  .status .container,.topline .container,.mast .container{width:min(1360px,calc(100% - 48px))!important}
-  .mast{height:auto!important;top:34px!important}
-  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:167.36px minmax(0,1fr) 430px!important;align-items:center!important;gap:24px!important}
-  .mast .brand{width:167.36px!important;min-width:167.36px!important;gap:10px!important}
-  .mast .mark,.brand .mark{width:30px!important;height:30px!important}
-  .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;padding:0!important}
-  .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
-  .mast .nav.sampora-nav-standard a.active::after,.mast .nav-links.sampora-nav-standard a.active::after,.mast .sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,#38D2FF,transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
-  .mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box!important;width:430px!important;min-width:430px!important;height:44.92px!important;align-self:center!important;justify-self:end!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;flex-wrap:nowrap!important;overflow:visible!important;margin-left:0!important}
-  .mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto!important;white-space:nowrap!important}
-}
-
-/* Package C: header Start trial visual parity with resources.html */
-.mast .header-actions > .btn.primary{
-  min-height:auto;
-  padding:12px 18px;
-  border:1px solid transparent;
-  border-radius:10px;
-  background:linear-gradient(135deg,#38D2FF,#7BE3FF);
-  color:#03111B;
-  font-weight:800;
-  font-size:13.5px;
-  line-height:1.56;
-  letter-spacing:.01em;
-  box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18);
-  transition:transform .14s cubic-bezier(.2,.7,.2,1),box-shadow .18s cubic-bezier(.2,.7,.2,1),background .18s cubic-bezier(.2,.7,.2,1),border-color .18s cubic-bezier(.2,.7,.2,1);
-}
-.mast .header-actions > .btn.primary:hover{
-  transform:translateY(-1px);
-  background:linear-gradient(135deg,#38D2FF,#7BE3FF);
-  border-color:transparent;
-  box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24);
-}
-
-/* Package C: fixed header stack for reliable top-block/footer scroll */
+/* Contact header stack */
 body{padding-top:100px}
-.status{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:80!important;height:34px!important}
-.mast{position:fixed!important;top:34px!important;left:0!important;right:0!important;z-index:79!important}
-@media(min-width:761px){
-  .status,.mast,.mast .inner{transition:transform .26s var(--ease),opacity .22s var(--ease),height .26s var(--ease),top .26s var(--ease),background .26s var(--ease),box-shadow .26s var(--ease),border-color .26s var(--ease)}
-  body.nav-condensed .status{height:0!important;transform:translateY(-100%)!important;opacity:0!important;pointer-events:none!important;border-bottom-color:transparent!important;border-bottom-width:0!important;overflow:hidden!important}
-  body.nav-condensed .mast{top:0!important}
-}
-@media(max-width:760px){
-  body{padding-top:66px}
-  .status{display:none!important}
-  .mast{top:0!important}
-  .mast .inner,.mast.compact .inner,.nav-inner{display:grid!important;grid-template-columns:auto minmax(0,1fr)!important;gap:8px!important}
-  .mast .brand{min-width:0!important;overflow:hidden!important;gap:10px!important}
-  .mast .brand .brand-sub{display:none!important}
-  .mast .brand .brand-name{white-space:nowrap!important}
-  .mast .header-actions,.mast .nav-actions,.mast .actions{min-width:0!important;max-width:100%!important;justify-self:end!important;gap:8px!important}
-  .mast .lang{min-width:0!important;flex:0 1 auto!important}
-  .mast .mobile-nav-toggle{width:36px!important;height:36px!important;flex:0 0 36px!important}
-}
-@media(max-width:480px){
-  .mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{display:none!important}
-  .mast .lang button,.mast .lang-btn{min-width:38px!important;padding-left:7px!important;padding-right:7px!important;font-size:10px!important}
-}
-
-/* Header actions parity with resources.html */
-.mast .lang,.mast .lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
-.mast .lang button,.mast .lang-btn{height:34px;min-width:42px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px var(--mono,ui-monospace,monospace);transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
-.mast .lang button.active,.mast .lang button[aria-pressed="true"],.mast .lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
-.mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:transparent;border-color:var(--line,rgba(129,178,214,.18))}
-.mast .header-actions .btn.ghost:hover,.mast .nav-actions .btn.ghost:hover,.mast .actions .btn.ghost:hover,.mast .header-actions .btn.ghost:focus-visible,.mast .nav-actions .btn.ghost:focus-visible,.mast .actions .btn.ghost:focus-visible{transform:translateY(-1px);color:var(--cyan2,var(--cyan,#61e7ff));border-color:rgba(56,210,255,.45);background:rgba(20,40,69,.22)}
-.mast .header-actions .btn.primary,.mast .nav-actions .btn.primary,.mast .actions .btn.primary{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
-.mast .header-actions .btn.primary:hover,.mast .nav-actions .btn.primary:hover,.mast .actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible,.mast .nav-actions .btn.primary:focus-visible,.mast .actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:active,.mast .nav-actions .btn.primary:active,.mast .actions .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
-@media(min-width:1101px){.mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box;width:430px;min-width:430px;align-self:center;justify-self:end;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:nowrap;overflow:visible}.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto;white-space:nowrap}}
-</style>
-<style id="header-brand-visual-parity">
-.mast .brand{display:flex!important;align-items:center!important;gap:10px!important}
+.status{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:80!important;height:34px!important;border-bottom:1px solid var(--line);background:rgba(6,16,31,.86);backdrop-filter:blur(8px);color:var(--muted);font:11px var(--mono);letter-spacing:.06em}
+.status .inner{height:34px!important;display:flex;align-items:center;justify-content:flex-start;gap:12px;padding-left:10px;overflow:hidden;white-space:nowrap}
+.status .status-copy{min-width:0;max-width:100%;display:inline-flex;align-items:center;gap:10px;overflow:visible}
+.status .live{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-weight:900;text-transform:uppercase}
+.status .live:before{content:"";display:inline-flex;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(169,255,95,.48);animation:pulse-green 1.9s ease-out infinite}
+@keyframes pulse-green{0%{box-shadow:0 0 0 0 rgba(169,255,95,.48)}72%{box-shadow:0 0 0 9px rgba(169,255,95,0)}100%{box-shadow:0 0 0 0 rgba(169,255,95,0)}}
+.status .sep{color:rgba(232,238,245,.42)}
+.status .right{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--body)}
+.mast{position:fixed!important;top:34px!important;left:0!important;right:0!important;z-index:79!important;height:auto!important;border-bottom:1px solid var(--line);background:rgba(10,22,40,.84);backdrop-filter:blur(14px)}
+.mast.compact{background:rgba(10,22,40,.82)!important}
+.mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important}
+.mast .brand{display:flex!important;align-items:center!important;gap:10px!important;min-width:max-content!important}
 .mast .brand .mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
 .mast .brand b,.mast .brand .brand-name{display:block!important;font-size:16px!important;font-weight:800!important;line-height:1.56!important;letter-spacing:-.01em!important}
 .mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
-@media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
-@media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
-</style>
-<style id="sampora-horizontal-line-cleanup">
+.mast .nav{height:auto;position:static;z-index:auto;border:0;background:transparent;backdrop-filter:none;color:rgba(232,238,245,.84);font-size:14px;white-space:nowrap}
+.mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;padding:0!important}
+.mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
+.mast .nav.sampora-nav-standard a:hover,.mast .nav.sampora-nav-standard a.active{color:#38D2FF;opacity:1}
+.mast .nav.sampora-nav-standard a.active::after,.mast .nav-links.sampora-nav-standard a.active::after,.mast .sampora-nav-standard a.active::after{content:""!important;position:absolute!important;left:50%!important;bottom:13px!important;width:38px!important;height:2px!important;border-radius:999px!important;transform:translateX(-50%)!important;background:linear-gradient(90deg,transparent,#38D2FF,transparent)!important;box-shadow:0 0 16px rgba(56,210,255,.65)!important}
+.mast .header-actions,.mast .nav-actions,.mast .actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-left:0!important}
+.mast .lang,.mast .lang-switch,.lang,.lang-switch{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line,rgba(129,178,214,.18));border-radius:999px;background:rgba(6,14,28,.48);overflow:visible;white-space:nowrap;min-width:max-content}
+.mast .lang button,.mast .lang-btn,.lang button,.lang-btn{height:34px;min-width:42px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--muted,var(--body,#aebed2));font:800 11px var(--mono,ui-monospace,monospace);letter-spacing:.03em;cursor:pointer;transition:background .18s var(--ease,cubic-bezier(.2,.85,.2,1)),color .18s var(--ease,cubic-bezier(.2,.85,.2,1)),box-shadow .18s var(--ease,cubic-bezier(.2,.85,.2,1))}
+.mast .lang button:hover,.mast .lang button:focus-visible,.lang button:hover,.lang button:focus-visible,.lang-btn:hover,.lang-btn:focus-visible{color:var(--cyan2,var(--cyan,#61e7ff));outline:0;box-shadow:0 0 0 1px rgba(56,210,255,.24)}
+.mast .lang button.active,.mast .lang button[aria-pressed="true"],.mast .lang-btn.active,.lang button.active,.lang-btn.active{background:rgba(56,210,255,.14);color:var(--cyan2,var(--cyan,#61e7ff));box-shadow:inset 0 0 0 1px rgba(56,210,255,.18)}
+.mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:transparent;border-color:var(--line,rgba(129,178,214,.18))}
+.mast .header-actions .btn.ghost:hover,.mast .nav-actions .btn.ghost:hover,.mast .actions .btn.ghost:hover,.mast .header-actions .btn.ghost:focus-visible,.mast .nav-actions .btn.ghost:focus-visible,.mast .actions .btn.ghost:focus-visible{transform:translateY(-1px);color:var(--cyan2,var(--cyan,#61e7ff));border-color:rgba(56,210,255,.45);background:rgba(20,40,69,.22)}
+.mast .header-actions .btn.primary,.mast .nav-actions .btn.primary,.mast .actions .btn.primary{min-height:auto;font-weight:800;font-size:13.5px;line-height:1.56;letter-spacing:.01em;padding:12px 18px;border:1px solid transparent;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#03111B;box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18);transition:transform .14s cubic-bezier(.2,.7,.2,1),box-shadow .18s cubic-bezier(.2,.7,.2,1),background .18s cubic-bezier(.2,.7,.2,1),border-color .18s cubic-bezier(.2,.7,.2,1)}
+.mast .header-actions .btn.primary:hover,.mast .nav-actions .btn.primary:hover,.mast .actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible,.mast .nav-actions .btn.primary:focus-visible,.mast .actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:active,.mast .nav-actions .btn.primary:active,.mast .actions .btn.primary:active{transform:translateY(-1px);background:linear-gradient(135deg,#38D2FF,#7BE3FF);border-color:transparent;box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
+@media(min-width:761px){.status,.mast,.mast .inner{transition:transform .26s var(--ease),opacity .22s var(--ease),height .26s var(--ease),top .26s var(--ease),background .26s var(--ease),box-shadow .26s var(--ease),border-color .26s var(--ease)}body.nav-condensed .status{height:0!important;transform:translateY(-100%)!important;opacity:0!important;pointer-events:none!important;border-bottom-color:transparent!important;border-bottom-width:0!important;overflow:hidden!important}body.nav-condensed .mast{top:0!important}}
+@media(min-width:1101px){.status .container,.topline .container,.mast .container{width:min(1360px,calc(100% - 48px))!important}.mast .inner,.mast.compact .inner,.nav-inner{grid-template-columns:167.36px minmax(0,1fr) 430px!important}.mast .brand{width:169.61px!important;min-width:169.61px!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}.mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box;width:430px!important;min-width:430px!important;height:44.92px!important;align-self:center!important;justify-self:end!important;flex-wrap:nowrap!important;overflow:visible!important}.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto!important;white-space:nowrap!important}}
+@media(max-width:1100px){.nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:none!important}.status .right,.status .sep{display:none}.header-actions>.btn.primary,.nav-actions>.btn.primary,.actions>.btn.primary{display:none!important}.nav.sampora-nav-standard,.sampora-nav-standard{gap:28px!important}}
+@media(max-width:760px){body{padding-top:66px}.status{display:none!important}.mast{top:0!important}.mast .inner,.mast.compact .inner,.nav-inner{display:grid!important;grid-template-columns:auto minmax(0,1fr)!important;gap:8px!important}.mast .brand{min-width:0!important;overflow:hidden!important;gap:10px!important}.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}.mast .brand .brand-name{white-space:nowrap!important}.mast .header-actions,.mast .nav-actions,.mast .actions{min-width:0!important;max-width:100%!important;justify-self:end!important;gap:8px!important}.mast .lang{min-width:0!important;flex:0 1 auto!important}.mast .mobile-nav-toggle{width:36px!important;height:36px!important;flex:0 0 36px!important}.response-grid{grid-template-columns:1fr}.response-card{min-height:auto}}
+@media(max-width:480px){.mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{display:none!important}.mast .lang button,.mast .lang-btn{min-width:38px!important;padding-left:7px!important;padding-right:7px!important;font-size:10px!important}}
+@media(max-width:360px){.container{width:min(100% - 24px,var(--max))!important}.brand b{display:none!important}.lang button,.lang-btn{min-width:34px!important;padding:0 6px!important;font-size:10px!important}.mobile-nav-toggle{width:36px!important;height:36px!important}.header-actions,.nav-actions,.actions{gap:6px!important}}
+/* Contact canvas bridge */
 body {
     position: relative;
     background:
@@ -1347,11 +1282,8 @@ body::before {
     opacity: .58 !important;
     mask-image: linear-gradient(180deg, rgba(0, 0, 0, .58) 0%, rgba(0, 0, 0, .34) 36%, rgba(0, 0, 0, .20) 100%) !important;
 }
-.status,
-.mast,
 .hero,
-main,
-#footer.sampora-site-footer {
+main {
     position: relative;
     z-index: 1;
 }
@@ -1417,46 +1349,6 @@ main > section {
     border-top: 0 !important;
     background: transparent !important;
 }
-#footer.sampora-site-footer {
-    padding: 30px 0 12px !important;
-    border-top: 0 !important;
-    background: transparent !important;
-    overflow: visible;
-}
-#footer.sampora-site-footer::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -70px;
-    width: min(980px, 78vw);
-    height: 190px;
-    transform: translateX(-50%);
-    z-index: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center, rgba(56, 210, 255, .075) 0%, rgba(56, 210, 255, .028) 42%, transparent 70%);
-    mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 70%, transparent 100%);
-}
-#footer .sampora-footer-card {
-    position: relative;
-    z-index: 1;
-    border-color: rgba(129, 178, 214, .12) !important;
-    border-top-color: rgba(129, 178, 214, .08) !important;
-    background: linear-gradient(180deg, rgba(9, 22, 38, .72), rgba(7, 18, 32, .60)) !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035), 0 26px 80px rgba(0, 0, 0, .22) !important;
-}
-#footer .sampora-footer-contact,
-#footer .sampora-footer-legal {
-    border-top: 0 !important;
-}
-#footer .sampora-footer-contact-item {
-    border-bottom: 0 !important;
-}
-@media(max-width:1180px) {
-    #footer .sampora-footer-contact-item {
-        border-bottom: 0 !important;
-    }
-}
-@media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
 <link rel="stylesheet" href="assets/footer-email-modal.css">
 </head>
@@ -1578,13 +1470,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                     <div class="field">
                         <label for="role" data-i18n="roleLabel">Role / business type*</label>
                         <select id="role" name="role" required>
-                            <option value="" selected disabled data-i18n="rolePh">Select your role</option>
-                            <option value="Panel Provider" data-i18n="rolePanel">Panel Provider</option>
-                            <option value="Sample Supplier" data-i18n="roleSupplier">Sample Supplier</option>
-                            <option value="Sample Aggregator / Network Operator" data-i18n="roleAggregator">Sample Aggregator / Network Operator</option>
-                            <option value="API-connected Supplier" data-i18n="roleApi">API-connected Supplier</option>
-                            <option value="Enterprise / Multi-entity Team" data-i18n="roleEnterprise">Enterprise / Multi-entity Team</option>
-                            <option value="Other" data-i18n="roleOther">Other</option>
+                            <option value="" selected disabled data-i18n="rolePh">Select the closest match</option>
+                            <option value="panel_provider" data-i18n="rolePanelProvider">Owned panel / sample operations team</option>
+                            <option value="sample_supplier" data-i18n="roleSampleSupplier">Sample supplier / delivery partner</option>
+                            <option value="client_side" data-i18n="roleClientSide">Client-side team / project buyer</option>
+                            <option value="two_sided_operations" data-i18n="roleTwoSided">Two-sided operations team</option>
+                            <option value="aggregator_network" data-i18n="roleAggregator">Sample aggregator / supplier network operator</option>
+                            <option value="api_supplier" data-i18n="roleApi">API-connected supplier</option>
+                            <option value="enterprise_multi_entity" data-i18n="roleEnterprise">Enterprise / multi-entity operations team</option>
+                            <option value="not_sure" data-i18n="roleNotSure">Not sure / explore cooperation first</option>
+                            <option value="Other" data-i18n="roleOther">Other / please specify</option>
                         </select>
                     </div>
                     <div class="field" id="roleOtherField" hidden>
@@ -1602,7 +1497,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                             <option value="cooperation" data-i18n="businessResource">Explore Cooperation Resources</option>
                         </select>
                     </div>
-                    <p class="field-helper" data-i18n="businessTypeHelper">Tell us whether you want to find clients, find suppliers, or manage both client and supplier cooperation through Sampora.</p>
+                    <p class="field-helper" id="businessTypeHelper" data-i18n="businessTypeHelper" hidden>Tell us whether you want to find clients, find suppliers, or need both through Sampora.</p>
                     <div class="field">
                         <label for="message" data-i18n="msgLabel">Message</label>
                         <textarea id="message" name="message"></textarea>
@@ -1718,10 +1613,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
         </div>
     </footer>
 
-    <div class="toast" id="toast"><b data-i18n="toastTitle">Form connection pending</b><span data-i18n="toastText">Online submission is not connected yet. Please email sales@getsampora.com or use the contact details below.</span></div>
-    <div class="toast" id="toastSuccess"><b data-i18n="successTitle">Request submitted</b><span data-i18n="successText">Your request has been submitted. Our team will review your setup and follow up with the right next step.</span></div>
-    <div class="toast" id="toastFailure"><b data-i18n="failureTitle">Submission failed</b><span data-i18n="failureText">We could not send the request. Please try again or contact sales@getsampora.com.</span></div>
-
   <script src="assets/language-preference.js"></script>
   <script>
 (function(){
@@ -1764,15 +1655,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       companyPlaceholder: 'Company or team',
       emailPlaceholder: 'name@company.com',
       messagePlaceholder: 'Add country coverage, website / LinkedIn, API needs, or other cooperation details.',
-      businessTypeHelper: 'Tell us whether you want to find clients, find suppliers, or manage both client and supplier cooperation through Sampora.',
-      rolePh: 'Select your role',
+      businessTypeHelper: 'Tell us whether you want to find clients, find suppliers, or need both through Sampora.',
+      rolePh: 'Select the closest match',
       businessTypePh: 'Select request intent',
-      rolePanel: 'Panel Provider',
-      roleSupplier: 'Sample Supplier',
-      roleAggregator: 'Sample Aggregator / Network Operator',
-      roleApi: 'API-connected Supplier',
-      roleEnterprise: 'Enterprise / Multi-entity Team',
-      roleOther: 'Other',
+      rolePanelProvider: 'Owned panel / sample operations team',
+      roleSampleSupplier: 'Sample supplier / delivery partner',
+      roleClientSide: 'Client-side team / project buyer',
+      roleTwoSided: 'Two-sided operations team',
+      roleAggregator: 'Sample aggregator / supplier network operator',
+      roleApi: 'API-connected supplier',
+      roleEnterprise: 'Enterprise / multi-entity operations team',
+      roleNotSure: 'Not sure / explore cooperation first',
+      roleOther: 'Other / please specify',
       roleOtherDetailLabel: 'Please describe your role / business type*',
       roleOtherDetailPlaceholder: 'e.g. sample buyer, project operations, channel partner, data services team',
       businessTrial: 'Apply for trial',
@@ -1824,12 +1718,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       addressText: 'Room 1506, Block A, Hengsheng Sunshine City, Lu\'an, Anhui, China',
       footerCopyright: '© 2026',
       footerCompanyLegal: 'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',cookiePreferences:'Cookie Preferences',terms:'Terms of Use',
-      toastTitle: 'Form connection pending',
-      toastText: 'Online submission is not connected yet. Please email sales@getsampora.com or use the contact details below.',
-      successTitle: 'Request submitted',
-      successText: 'Your request has been submitted. Our team will review your setup and follow up with the right next step.',
-      failureTitle: 'Submission failed',
-      failureText: 'We could not send the request. Please try again or contact sales@getsampora.com.',
       legalStaticGuard: '© 2026 Anhui Jiayu Enterprise Service Co., Ltd.'
     },
     zh: {
@@ -1867,15 +1755,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       companyPlaceholder: '公司或团队名称',
       emailPlaceholder: 'name@company.com',
       messagePlaceholder: '可补充覆盖国家、官网 / LinkedIn、API 需求或其他合作信息。',
-      businessTypeHelper: '请说明你希望通过 Sampora 找客户、找供应商，还是同时管理客户和供应商合作。',
-      rolePh: '请选择角色',
+      businessTypeHelper: '请说明你想通过 Sampora 寻找客户、寻找供应商，还是两者都需要。',
+      rolePh: '请选择最接近你的身份',
       businessTypePh: '请选择请求意图',
-      rolePanel: '自有样本运营方',
-      roleSupplier: '样本供应商',
-      roleAggregator: '样本聚合商 / 供应网络运营方',
+      rolePanelProvider: '自有 Panel / 样本运营团队',
+      roleSampleSupplier: '样本供应商 / 交付合作方',
+      roleClientSide: '客户方 / 项目发布方',
+      roleTwoSided: '双向运营团队：同时管理客户和供应商',
+      roleAggregator: '样本聚合 / 供应网络运营方',
       roleApi: 'API 对接供应商',
       roleEnterprise: '企业 / 多实体运营团队',
-      roleOther: '其他',
+      roleNotSure: '不确定：先了解合作资源',
+      roleOther: '其他 / 手动填写',
       roleOtherDetailLabel: '请填写你的角色 / 业务类型*',
       roleOtherDetailPlaceholder: '例如：样本采购、项目运营、渠道合作、数据服务团队',
       businessTrial: '申请试用',
@@ -1926,13 +1817,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       cardCommunityTitle: '联系销售',
       addressText: '中国安徽省六安市恒生阳光城 A 座 1506 室',
       footerCopyright: '© 2026',
-      footerCompanyLegal: '安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie政策',cookiePreferences:'Cookie 偏好设置',terms:'使用条款',
-      toastTitle: '在线提交暂未接通',
-      toastText: '当前表单提交接口尚未接通，请通过 sales@getsampora.com 或页面底部联系方式联系我们。',
-      successTitle: '请求已提交',
-      successText: '你的请求已提交。我们会根据你的业务场景跟进合适的下一步。',
-      failureTitle: '提交失败',
-      failureText: '请求未能发送，请稍后再试，或通过 sales@getsampora.com 联系我们。'
+      footerCompanyLegal: '安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie政策',cookiePreferences:'Cookie 偏好设置',terms:'使用条款'
     },
     };
   window.__samporaContactTranslations = texts;
@@ -2104,12 +1989,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       return hashIndex >= 0 ? fallback.slice(0, hashIndex) : fallback;
     }
   };
+  const pathFromUrl = (rawUrl) => {
+    const source = trimValue(rawUrl);
+    if (!source) return '';
+    try {
+      return new URL(source, window.location.href).pathname || '';
+    } catch (error) {
+      const fallback = String(rawUrl || '');
+      const queryIndex = fallback.indexOf('?');
+      const hashIndex = fallback.indexOf('#');
+      let end = fallback.length;
+      if (queryIndex >= 0) end = Math.min(end, queryIndex);
+      if (hashIndex >= 0) end = Math.min(end, hashIndex);
+      return fallback.slice(0, end);
+    }
+  };
+  const hostnameFromUrl = (rawUrl) => {
+    const source = trimValue(rawUrl);
+    if (!source) return '';
+    try {
+      return new URL(source, window.location.href).hostname || '';
+    } catch (error) {
+      return '';
+    }
+  };
+  const clickIdType = (values) => {
+    if (trimValue(values.gclid)) return 'google_ads';
+    if (trimValue(values.fbclid)) return 'meta';
+    if (trimValue(values.msclkid)) return 'microsoft_ads';
+    return 'none';
+  };
 
-  const actionAttr = trimValue(form.getAttribute('action'));
-  const dataEndpointAttr = trimValue(form.getAttribute('data-endpoint'));
-  if (actionAttr !== CONTACT_ENDPOINT || dataEndpointAttr !== CONTACT_ENDPOINT) {
-    console.warn('[Sampora Contact] Endpoint mismatch detected; normalizing to CONTACT_ENDPOINT.');
-  }
   form.setAttribute('action', CONTACT_ENDPOINT);
   form.setAttribute('data-endpoint', CONTACT_ENDPOINT);
 
@@ -2140,6 +2050,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
   const roleOtherField = document.getElementById('roleOtherField');
   const roleOtherInput = document.getElementById('role_other');
   const businessSelect = document.getElementById('business_type');
+  const businessTypeHelper = document.getElementById('businessTypeHelper');
   const attributionFields = {
     landing_page: document.getElementById('landingPageField'),
     referrer: document.getElementById('referrerField'),
@@ -2221,6 +2132,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     return output;
   }
 
+  function buildContactDataLayerPayload(values) {
+    const landingPage = trimValue(values.landing_page) || normalizeUrlWithoutHash(window.location.href);
+    const conversionPage = trimValue(values.conversion_page) || normalizeUrlWithoutHash(window.location.href);
+    const firstLandingPage = trimValue(values.first_landing_page) || landingPage;
+    const lastLandingPage = trimValue(values.last_landing_page) || conversionPage || landingPage;
+    return {
+      cta_text: trimValue(values.cta_text),
+      cta_location: trimValue(values.cta_location),
+      cta_intent: trimValue(values.cta_intent),
+      cta_event: trimValue(values.cta_event) || 'contact_request_submit',
+      resource_slug: trimValue(values.resource_slug),
+      plan_slug: trimValue(values.plan_slug),
+      source_page: trimValue(values.source_page) || sourcePage,
+      source_section: trimValue(values.source_section) || sourceSection,
+      utm_source: trimValue(values.utm_source),
+      utm_medium: trimValue(values.utm_medium),
+      utm_campaign: trimValue(values.utm_campaign),
+      utm_term: trimValue(values.utm_term),
+      utm_content: trimValue(values.utm_content),
+      landing_page_path: pathFromUrl(landingPage),
+      conversion_page_path: pathFromUrl(conversionPage),
+      referrer_domain: hostnameFromUrl(values.referrer),
+      first_utm_source: trimValue(values.first_utm_source),
+      first_utm_medium: trimValue(values.first_utm_medium),
+      first_utm_campaign: trimValue(values.first_utm_campaign),
+      first_landing_page_path: pathFromUrl(firstLandingPage),
+      last_landing_page_path: pathFromUrl(lastLandingPage),
+      language: currentPageLang(),
+      has_gclid: !!trimValue(values.gclid),
+      has_fbclid: !!trimValue(values.fbclid),
+      has_msclkid: !!trimValue(values.msclkid),
+      click_id_type: clickIdType(values)
+    };
+  }
+
+  function resolveContactSubmitDataLayerPayload(values) {
+    try {
+      if (window.SamporaLeadAttribution && typeof window.SamporaLeadAttribution.toDataLayer === 'function') {
+        return window.SamporaLeadAttribution.toDataLayer(values);
+      }
+    } catch (error) {}
+    return buildContactDataLayerPayload(values);
+  }
+
   function resolvePlan() {
     if (explicitPlan) return explicitPlan;
     if (intent === 'enterprise_demo') return 'enterprise';
@@ -2247,6 +2202,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       roleOtherInput.required = isOther;
       if (!isOther) roleOtherInput.value = '';
     }
+  }
+
+  function updateBusinessTypeHelperState() {
+    if (!businessTypeHelper || !businessSelect) return;
+    businessTypeHelper.hidden = businessSelect.value !== 'cooperation';
   }
 
   const labelMap = ['nameLabel', 'companyLabel', 'emailLabel', 'roleLabel', 'roleOtherDetailLabel', 'businessTypeLabel', 'msgLabel'];
@@ -2303,11 +2263,168 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
   }
 
   const optionText = {
-    role: ['rolePh','rolePanel','roleSupplier','roleAggregator','roleApi','roleEnterprise','roleOther'],
+    role: ['rolePh','rolePanelProvider','roleSampleSupplier','roleClientSide','roleTwoSided','roleAggregator','roleApi','roleEnterprise','roleNotSure','roleOther'],
     business: ['businessTypePh','businessTrial','businessDemo','businessSales','businessEnterprise','businessResource']
   };
   const roleOptions = document.querySelectorAll('#role option');
   const bizOptions = document.querySelectorAll('#business_type option');
+  const enhancedSelects = [];
+
+  function enhanceSelect(select) {
+    if (!select || select.dataset.samporaEnhancedSelect === 'true') return null;
+    const field = select.closest('.field');
+    if (!field) return null;
+    select.dataset.samporaEnhancedSelect = 'true';
+    select.classList.add('native-select');
+    select.tabIndex = -1;
+    select.setAttribute('aria-hidden', 'true');
+    field.classList.add('select-enhanced');
+
+    const label = field.querySelector(`label[for="${select.id}"]`);
+    if (label && !label.id) label.id = `${select.id}Label`;
+
+    const trigger = document.createElement('button');
+    trigger.type = 'button';
+    trigger.id = `${select.id}Trigger`;
+    trigger.className = 'select-trigger';
+    trigger.setAttribute('aria-haspopup', 'listbox');
+    trigger.setAttribute('aria-expanded', 'false');
+    if (label) trigger.setAttribute('aria-labelledby', `${label.id} ${trigger.id}`);
+
+    const menu = document.createElement('div');
+    menu.id = `${select.id}Menu`;
+    menu.className = 'select-menu';
+    menu.setAttribute('role', 'listbox');
+    trigger.setAttribute('aria-controls', menu.id);
+
+    select.insertAdjacentElement('afterend', trigger);
+    trigger.insertAdjacentElement('afterend', menu);
+
+    let items = [];
+    const enabledItems = () => items.filter(item => !item.hidden && item.getAttribute('aria-disabled') !== 'true');
+    const selectedText = () => {
+      const option = select.selectedOptions && select.selectedOptions[0] ? select.selectedOptions[0] : select.options[0];
+      return option ? option.textContent.trim() : '';
+    };
+
+    function refresh() {
+      const options = Array.from(select.options);
+      if (items.length !== options.length) {
+        menu.replaceChildren();
+        items = options.map((option, index) => {
+          const item = document.createElement('div');
+          item.id = `${select.id}Option${index}`;
+          item.className = 'select-option';
+          item.setAttribute('role', 'option');
+          item.tabIndex = -1;
+          item.addEventListener('click', () => choose(index));
+          item.addEventListener('keydown', event => handleOptionKeydown(event, index));
+          menu.appendChild(item);
+          return item;
+        });
+      }
+      options.forEach((option, index) => {
+        const item = items[index];
+        const disabled = option.disabled;
+        item.textContent = option.textContent.trim();
+        item.dataset.value = option.value;
+        item.hidden = option.hidden;
+        item.classList.toggle('is-disabled', disabled);
+        item.setAttribute('aria-disabled', String(disabled));
+        item.setAttribute('aria-selected', String(option.selected && !disabled));
+      });
+      trigger.textContent = selectedText();
+      field.dataset.empty = select.value ? 'false' : 'true';
+    }
+
+    function closeMenu() {
+      field.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    function focusCurrent() {
+      const selected = items.find(item => item.getAttribute('aria-selected') === 'true');
+      const fallback = enabledItems()[0];
+      (selected || fallback || trigger).focus();
+    }
+
+    function openMenu() {
+      enhancedSelects.forEach(widget => {
+        if (widget.close !== closeMenu) widget.close();
+      });
+      refresh();
+      field.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+      focusCurrent();
+    }
+
+    function choose(index) {
+      const option = select.options[index];
+      if (!option || option.disabled) return;
+      select.value = option.value;
+      trigger.removeAttribute('aria-invalid');
+      select.dispatchEvent(new Event('input', { bubbles: true }));
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+      refresh();
+      closeMenu();
+      trigger.focus();
+    }
+
+    function handleOptionKeydown(event, index) {
+      const list = enabledItems();
+      const current = list.indexOf(items[index]);
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        const direction = event.key === 'ArrowDown' ? 1 : -1;
+        const next = list[(current + direction + list.length) % list.length];
+        if (next) next.focus();
+      }
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        choose(index);
+      }
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeMenu();
+        trigger.focus();
+      }
+      if (event.key === 'Tab') closeMenu();
+    }
+
+    trigger.addEventListener('click', event => {
+      event.preventDefault();
+      if (field.classList.contains('is-open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+    trigger.addEventListener('keydown', event => {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openMenu();
+      }
+      if (event.key === 'Escape') closeMenu();
+    });
+    select.addEventListener('input', refresh);
+    select.addEventListener('change', refresh);
+    select.addEventListener('invalid', () => {
+      trigger.setAttribute('aria-invalid', 'true');
+      trigger.focus();
+    });
+    document.addEventListener('click', event => {
+      if (!field.contains(event.target)) closeMenu();
+    });
+
+    const widget = { field, refresh, close: closeMenu };
+    enhancedSelects.push(widget);
+    refresh();
+    return widget;
+  }
+
+  enhanceSelect(roleSelect);
+  enhanceSelect(businessSelect);
+  form.addEventListener('reset', () => setTimeout(() => enhancedSelects.forEach(widget => widget.refresh()), 0));
 
   function applyRuntimeCopy(nextLang) {
     activeLang = safeLang(nextLang || currentPageLang());
@@ -2325,9 +2442,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     bizOptions.forEach((opt, i) => { if (copy[optionText.business[i]]) opt.textContent = copy[optionText.business[i]]; });
     const selectedRequest = businessSelect && businessSelect.value ? businessSelect.value : intent;
     if (businessSelect && Array.from(businessSelect.options).some(opt => opt.value === selectedRequest)) businessSelect.value = selectedRequest;
+    enhancedSelects.forEach(widget => widget.refresh());
     if (window.__samporaContactApplyLanguage) window.__samporaContactApplyLanguage(activeLang);
     if (submitFeedbackState) setSubmitFeedback(submitFeedbackState);
     updateRoleOtherState();
+    updateBusinessTypeHelperState();
     setHiddenFields();
   }
   applyRuntimeCopy(activeLang);
@@ -2337,18 +2456,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     btn.addEventListener('click', () => setTimeout(() => applyRuntimeCopy(btn.dataset.lang), 40));
   });
   if (businessSelect) {
-    businessSelect.addEventListener('change', setHiddenFields);
-    businessSelect.addEventListener('input', setHiddenFields);
+    businessSelect.addEventListener('change', () => {
+      setHiddenFields();
+      updateBusinessTypeHelperState();
+    });
+    businessSelect.addEventListener('input', () => {
+      setHiddenFields();
+      updateBusinessTypeHelperState();
+    });
   }
   if (roleSelect) {
     roleSelect.addEventListener('change', updateRoleOtherState);
     roleSelect.addEventListener('input', updateRoleOtherState);
   }
-
-  const toast = document.getElementById('toast');
-  const toastSuccess = document.getElementById('toastSuccess');
-  const toastFailure = document.getElementById('toastFailure');
-  const show = (el) => { if (!el) return; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 3800); };
 
   function responseIdentifier(result, responsePayload) {
     const candidates = [
@@ -2377,14 +2497,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     if (trackedSubmitSuccess) return;
     trackedSubmitSuccess = true;
     const attribution = resolveLeadAttribution();
+    const submitAttribution = Object.assign({}, attribution, {
+      cta_intent: attribution.cta_intent || (intent === 'start_trial' ? 'trial_request' : intent),
+      cta_event: attribution.cta_event || (intent === 'start_trial' ? 'apply_for_trial_click' : 'contact_request_submit'),
+      cta_location: attribution.cta_location || sourceSection,
+      source_page: sourcePage,
+      source_section: sourceSection
+    });
+    const analyticsPayload = resolveContactSubmitDataLayerPayload(submitAttribution);
     try {
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push(Object.assign({}, attribution, {
+      window.dataLayer.push(Object.assign({
         event: 'contact_form_submit',
+      }, analyticsPayload, {
         form_name: 'contact',
-        intent: intent,
-        cta_intent: attribution.cta_intent || (intent === 'start_trial' ? 'trial_request' : intent),
-        cta_event: attribution.cta_event || (intent === 'start_trial' ? 'apply_for_trial_click' : 'contact_request_submit')
+        intent: intent
       }));
     } catch (error) {}
   }

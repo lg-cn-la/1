@@ -43,10 +43,22 @@ const requiredFormBody = {
   name: 'QA Reviewer',
   company: 'QA Evidence Co',
   email: 'qa@example.com',
-  role: 'Sample Supplier',
+  role: 'sample_supplier',
   business_type: 'contact_sales',
   message: 'QA evidence inline feedback check.',
 };
+const expectedRoleOptions = [
+  { value: '', key: 'rolePh', en: 'Select the closest match', zh: '请选择最接近你的身份', disabled: true },
+  { value: 'panel_provider', key: 'rolePanelProvider', en: 'Owned panel / sample operations team', zh: '自有 Panel / 样本运营团队' },
+  { value: 'sample_supplier', key: 'roleSampleSupplier', en: 'Sample supplier / delivery partner', zh: '样本供应商 / 交付合作方' },
+  { value: 'client_side', key: 'roleClientSide', en: 'Client-side team / project buyer', zh: '客户方 / 项目发布方' },
+  { value: 'two_sided_operations', key: 'roleTwoSided', en: 'Two-sided operations team', zh: '双向运营团队：同时管理客户和供应商' },
+  { value: 'aggregator_network', key: 'roleAggregator', en: 'Sample aggregator / supplier network operator', zh: '样本聚合 / 供应网络运营方' },
+  { value: 'api_supplier', key: 'roleApi', en: 'API-connected supplier', zh: 'API 对接供应商' },
+  { value: 'enterprise_multi_entity', key: 'roleEnterprise', en: 'Enterprise / multi-entity operations team', zh: '企业 / 多实体运营团队' },
+  { value: 'not_sure', key: 'roleNotSure', en: 'Not sure / explore cooperation first', zh: '不确定：先了解合作资源' },
+  { value: 'Other', key: 'roleOther', en: 'Other / please specify', zh: '其他 / 手动填写' },
+];
 const sensitivePendingTerms = [
   ...Object.keys(requiredFormBody),
   ...Object.values(requiredFormBody),
@@ -58,6 +70,44 @@ const sensitivePendingTerms = [
 
 function fail(message) {
   failures.push(message);
+}
+
+function normalizeText(value) {
+  return String(value || '').replace(/\s+/g, ' ').trim();
+}
+
+function assertRoleSourceContract() {
+  const selectTag = contactHtml.match(/<select\b[^>]*\bid=["']role["'][^>]*>/i)?.[0] || '';
+  if (!/\bname=["']role["']/.test(selectTag)) fail('source role select must keep name="role"');
+  const selectBlock = contactHtml.match(/<select\b[^>]*\bid=["']role["'][^>]*>[\s\S]*?<\/select>/i)?.[0] || '';
+  if (!selectBlock) {
+    fail('source role select block missing');
+    return;
+  }
+  const options = [...selectBlock.matchAll(/<option\b([^>]*)>([\s\S]*?)<\/option>/gi)].map(match => {
+    const attrs = match[1];
+    return {
+      value: attrs.match(/\bvalue=["']([^"']*)["']/i)?.[1] ?? null,
+      key: attrs.match(/\bdata-i18n=["']([^"']+)["']/i)?.[1] || '',
+      text: normalizeText(match[2]),
+      disabled: /\bdisabled\b/i.test(attrs),
+    };
+  });
+  if (options.length !== expectedRoleOptions.length) {
+    fail(`source role option count ${options.length} !== ${expectedRoleOptions.length}`);
+  }
+  expectedRoleOptions.forEach((expected, index) => {
+    const actual = options[index] || {};
+    if (actual.value !== expected.value) fail(`source role option ${index} value ${JSON.stringify(actual.value)} !== ${JSON.stringify(expected.value)}`);
+    if (actual.key !== expected.key) fail(`source role option ${index} data-i18n ${JSON.stringify(actual.key)} !== ${JSON.stringify(expected.key)}`);
+    if (actual.text !== expected.en) fail(`source role option ${index} EN text ${JSON.stringify(actual.text)} !== ${JSON.stringify(expected.en)}`);
+    if (!!actual.disabled !== !!expected.disabled) fail(`source role option ${index} disabled ${!!actual.disabled} !== ${!!expected.disabled}`);
+  });
+  const exactOptionText = "role: ['rolePh','rolePanelProvider','roleSampleSupplier','roleClientSide','roleTwoSided','roleAggregator','roleApi','roleEnterprise','roleNotSure','roleOther']";
+  if (!contactHtml.includes(exactOptionText)) fail('source optionText.role does not match Scheme B exact key list');
+  if (!/roleSelect\s*&&\s*roleSelect\.value\s*===\s*['"]Other['"]/.test(contactHtml)) {
+    fail('source updateRoleOtherState must continue to compare roleSelect.value === "Other"');
+  }
 }
 
 function parseParams(raw) {
@@ -277,9 +327,56 @@ async function fillForm(page) {
   await page.fill('#name', 'QA Reviewer');
   await page.fill('#company', 'QA Evidence Co');
   await page.fill('#email', 'qa@example.com');
-  await page.selectOption('#role', 'Sample Supplier');
+  await page.selectOption('#role', 'sample_supplier');
   await page.selectOption('#business_type', 'contact_sales');
   await page.fill('#message', 'QA evidence inline feedback check.');
+}
+
+async function readRoleOptions(page) {
+  return page.evaluate(() => [...document.querySelectorAll('#role option')].map(option => ({
+    value: option.value,
+    text: option.textContent.trim().replace(/\s+/g, ' '),
+    disabled: option.disabled,
+  })));
+}
+
+async function assertRoleOptionsRuntime(page, lang) {
+  const options = await readRoleOptions(page);
+  if (options.length !== expectedRoleOptions.length) {
+    fail(`${lang} role option count ${options.length} !== ${expectedRoleOptions.length}`);
+  }
+  expectedRoleOptions.forEach((expected, index) => {
+    const actual = options[index] || {};
+    const expectedText = expected[lang];
+    if (actual.value !== expected.value) fail(`${lang} role option ${index} value ${JSON.stringify(actual.value)} !== ${JSON.stringify(expected.value)}`);
+    if (actual.text !== expectedText) fail(`${lang} role option ${index} text ${JSON.stringify(actual.text)} !== ${JSON.stringify(expectedText)}`);
+    if (!!actual.disabled !== !!expected.disabled) fail(`${lang} role option ${index} disabled ${!!actual.disabled} !== ${!!expected.disabled}`);
+  });
+}
+
+async function readRoleOtherState(page) {
+  return page.evaluate(() => ({
+    role: document.querySelector('#role')?.value || '',
+    hidden: document.querySelector('#roleOtherField')?.hidden ?? null,
+    disabled: document.querySelector('#role_other')?.disabled ?? null,
+    required: document.querySelector('#role_other')?.required ?? null,
+  }));
+}
+
+async function assertRoleOtherToggleBehavior(page) {
+  await page.selectOption('#role', 'Other');
+  const otherState = await readRoleOtherState(page);
+  if (otherState.role !== 'Other') fail(`Other toggle role value ${JSON.stringify(otherState.role)} !== "Other"`);
+  if (otherState.hidden) fail('Other toggle should show role_other field');
+  if (otherState.disabled) fail('Other toggle should enable role_other input');
+  if (!otherState.required) fail('Other toggle should require role_other input');
+
+  await page.selectOption('#role', 'not_sure');
+  const notSureState = await readRoleOtherState(page);
+  if (notSureState.role !== 'not_sure') fail(`not_sure toggle role value ${JSON.stringify(notSureState.role)} !== "not_sure"`);
+  if (!notSureState.hidden) fail('not_sure toggle should hide role_other field');
+  if (!notSureState.disabled) fail('not_sure toggle should disable role_other input');
+  if (notSureState.required) fail('not_sure toggle should not require role_other input');
 }
 
 async function readFeedback(page) {
@@ -348,6 +445,7 @@ const contactRequests = [];
 const appsScriptRequests = [];
 
 assertSourceEndpointContract();
+assertRoleSourceContract();
 
 await page.route('https://script.google.com/**', route => {
   appsScriptRequests.push(route.request().url());
@@ -367,6 +465,8 @@ page.on('request', request => {
 try {
   await page.goto(`${base}/contact-live-success.html?lang=en&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });
   await page.locator('#contact-form').scrollIntoViewIfNeeded();
+  await assertRoleOptionsRuntime(page, 'en');
+  await assertRoleOtherToggleBehavior(page);
   const successInitial = await readFeedback(page);
   if (!successInitial.exists) fail('live success initial: inline feedback element missing');
   const successRequestStart = contactRequests.length;
@@ -386,6 +486,10 @@ try {
     assertFullRequestBody('live success request body', successParams);
     assertLeadContext('live success request body', successParams, true);
   }
+
+  await page.goto(`${base}/contact-live-success.html?lang=zh&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });
+  await page.locator('#contact-form').scrollIntoViewIfNeeded();
+  await assertRoleOptionsRuntime(page, 'zh');
 
   await page.goto(`${base}/contact-live-data-success.html?lang=en&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });
   await page.locator('#contact-form').scrollIntoViewIfNeeded();

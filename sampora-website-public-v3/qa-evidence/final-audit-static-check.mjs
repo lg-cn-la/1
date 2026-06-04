@@ -326,7 +326,7 @@ for (const file of ['solutions.html', 'resources.html']) {
   if (!/@keyframes\s+topoDash/.test(html)) fail(`${file}: missing topoDash keyframes`);
   if (!/\.topo-svg\s+\.flow\.on\s*{[\s\S]*?animation:\s*topoDash/.test(html)) fail(`${file}: active topology flow is not bound to topoDash`);
   if (!/\.topo-svg\s+\.flow-group\.on\s+\.flow\s*{[\s\S]*?animation:\s*topoDash/.test(html)) fail(`${file}: active topology flow group is not bound to topoDash`);
-  if (!/\.topo-scan\s*{[\s\S]*?animation:\s*topoScan/.test(html)) fail(`${file}: topo scan is not bound to topoScan`);
+  if (/topo-scan/.test(html) && !/\.topo-scan\s*{[\s\S]*?animation:\s*topoScan/.test(html)) fail(`${file}: topo scan is present but not bound to topoScan`);
   if (!/\.topo-svg\s+\.packet\.on\s*{[\s\S]*?opacity:\s*\.(?:7|72|75|85|9|95|96)/.test(html)
     && !/\.topo-svg\s+\.packet-group\.on\s+\.packet\s*{[\s\S]*?opacity:\s*\.(?:7|72|75|85|9|95|96)/.test(html)) {
     fail(`${file}: active topology packet visibility missing`);
@@ -447,7 +447,10 @@ for (const file of ['solutions.html', 'resources.html']) {
   if (contact.includes(retiredCooperationIntent)) {
     fail('contact.html: former cooperation compatibility intent mapping must not remain');
   }
-  if (!contact.includes('Tell us whether you want to find clients, find suppliers, or manage both client and supplier cooperation through Sampora.')) {
+  if (!contact.includes('<p class="field-helper" id="businessTypeHelper" data-i18n="businessTypeHelper" hidden>')) {
+    fail('contact.html: cooperation helper must be hidden by default');
+  }
+  if (!contact.includes('Tell us whether you want to find clients, find suppliers, or need both through Sampora.')) {
     fail('contact.html: cooperation helper text is missing');
   }
 }

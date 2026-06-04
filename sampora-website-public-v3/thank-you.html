@@ -25,13 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Sampora request received confirmation page for contact form submissions.">
-<meta property="og:title" content="Request Received | Sampora">
-<meta property="og:description" content="Your Sampora contact request has been received.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://getsampora.com/thank-you.html">
-<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="description" content="Sampora request received confirmation page for contact form submissions."><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://getsampora.com/thank-you.html">
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,11 +38,111 @@ window.dataLayer = window.dataLayer || [];
   var markerKey = 'sampora_contact_success_marker';
   var directTokenKey = 'sampora_thank_you_session_token';
   var sentPrefix = 'sampora_thank_you_generate_lead_sent:';
+  var attributionKey = 'sampora_attribution';
+  var legacyAttributionKey = 'sampora_lead_attribution_v1';
+  var firstTouchKey = 'sampora_first_touch';
+  var lastTouchKey = 'sampora_last_touch';
+  function clean(value) {
+    return typeof value === 'string' && value.trim() ? value.trim() : '';
+  }
+  function readStorage(area, key) {
+    try { return window[area].getItem(key) || ''; } catch (error) { return ''; }
+  }
   function readSession(key) {
-    try { return sessionStorage.getItem(key) || ''; } catch (error) { return ''; }
+    return readStorage('sessionStorage', key);
   }
   function writeSession(key, value) {
     try { sessionStorage.setItem(key, value); } catch (error) {}
+  }
+  function readJson(area, key) {
+    var raw = readStorage(area, key);
+    if (!raw) return {};
+    try {
+      var parsed = JSON.parse(raw);
+      return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+    } catch (error) {
+      return {};
+    }
+  }
+  function pathFromUrl(rawUrl) {
+    var source = clean(rawUrl);
+    if (!source) return '';
+    try {
+      return new URL(source, window.location.href).pathname || '';
+    } catch (error) {
+      var fallback = String(rawUrl || '');
+      var queryIndex = fallback.indexOf('?');
+      var hashIndex = fallback.indexOf('#');
+      var end = fallback.length;
+      if (queryIndex >= 0) end = Math.min(end, queryIndex);
+      if (hashIndex >= 0) end = Math.min(end, hashIndex);
+      return fallback.slice(0, end);
+    }
+  }
+  function hostnameFromUrl(rawUrl) {
+    var source = clean(rawUrl);
+    if (!source) return '';
+    try {
+      return new URL(source, window.location.href).hostname || '';
+    } catch (error) {
+      return '';
+    }
+  }
+  function currentSourcePage() {
+    var currentPath = pathFromUrl(window.location.href);
+    var parts = currentPath.split('/').filter(Boolean);
+    return parts.pop() || 'thank-you.html';
+  }
+  function currentLanguage() {
+    var raw = clean(document.documentElement.dataset.lang)
+      || clean(document.body && document.body.dataset && document.body.dataset.lang)
+      || clean(document.documentElement.lang)
+      || 'en';
+    return raw.toLowerCase().split('-')[0] || 'en';
+  }
+  function clickIdType(values) {
+    if (clean(values.gclid)) return 'google_ads';
+    if (clean(values.fbclid)) return 'meta';
+    if (clean(values.msclkid)) return 'microsoft_ads';
+    return 'none';
+  }
+  function leadEventPayload() {
+    var session = readJson('sessionStorage', attributionKey);
+    if (!Object.keys(session).length) session = readJson('sessionStorage', legacyAttributionKey);
+    var first = readJson('localStorage', firstTouchKey);
+    var last = readJson('localStorage', lastTouchKey);
+    var landingPage = clean(session.landing_page) || window.location.href;
+    var conversionPage = clean(session.conversion_page) || window.location.href;
+    var firstLandingPage = clean(session.first_landing_page) || clean(first.landing_page) || landingPage;
+    var lastLandingPage = clean(session.last_landing_page) || clean(last.landing_page) || conversionPage || landingPage;
+    return {
+      cta_text: clean(session.cta_text),
+      cta_location: clean(session.cta_location),
+      cta_intent: clean(session.cta_intent),
+      cta_event: clean(session.cta_event),
+      resource_slug: clean(session.resource_slug),
+      plan_slug: clean(session.plan_slug),
+      source_page: clean(session.source_page) || currentSourcePage(),
+      source_section: clean(session.source_section) || clean(session.cta_location),
+      utm_source: clean(session.utm_source),
+      utm_medium: clean(session.utm_medium),
+      utm_campaign: clean(session.utm_campaign),
+      utm_term: clean(session.utm_term),
+      utm_content: clean(session.utm_content),
+      landing_page_path: pathFromUrl(landingPage),
+      conversion_page_path: pathFromUrl(conversionPage),
+      referrer_domain: hostnameFromUrl(session.referrer),
+      first_utm_source: clean(session.first_utm_source) || clean(first.utm_source),
+      first_utm_medium: clean(session.first_utm_medium) || clean(first.utm_medium),
+      first_utm_campaign: clean(session.first_utm_campaign) || clean(first.utm_campaign),
+      first_landing_page_path: pathFromUrl(firstLandingPage),
+      last_landing_page_path: pathFromUrl(lastLandingPage),
+      language: currentLanguage(),
+      has_gclid: !!clean(session.gclid),
+      has_fbclid: !!clean(session.fbclid),
+      has_msclkid: !!clean(session.msclkid),
+      click_id_type: clickIdType(session)
+    };
   }
   function getFallbackToken() {
     var token = readSession(directTokenKey);
@@ -60,12 +154,12 @@ window.dataLayer = window.dataLayer || [];
   var marker = readSession(markerKey) || getFallbackToken();
   var dedupeKey = sentPrefix + marker;
   function pushGenerateLead() {
-    window.dataLayer.push({
+    window.dataLayer.push(Object.assign({
       event: 'generate_lead',
       lead_form: 'contact',
       lead_stage: 'request_received',
       page_type: 'thank_you'
-    });
+    }, leadEventPayload()));
   }
   try {
     if (sessionStorage.getItem(dedupeKey)) return;
@@ -508,25 +602,12 @@ body.mobile-nav-open .mobile-nav-drawer { display: block; }
   box-shadow: 0 0 0 0 rgba(181, 240, 86, .46);
   animation: pulse-green 1.9s ease-out infinite;
 }
-html[lang^="zh"] .kicker,
-html.translated-ltr .kicker,
-html.translated-rtl .kicker,
-html[lang^="zh"] .status .live,
-html.translated-ltr .status .live,
-html.translated-rtl .status .live,
-html[lang^="zh"] .status-item span,
-html.translated-ltr .status-item span,
-html.translated-rtl .status-item span,
-html[lang^="zh"] .pill,
-html.translated-ltr .pill,
-html.translated-rtl .pill {
+html:is([lang^="zh"], .translated-ltr, .translated-rtl) :is(.kicker, .status .live, .status-item span, .pill) {
   font-family: var(--sans);
   letter-spacing: 0;
   text-transform: none;
 }
-html[lang^="zh"] .kicker,
-html.translated-ltr .kicker,
-html.translated-rtl .kicker {
+html:is([lang^="zh"], .translated-ltr, .translated-rtl) .kicker {
   height: 34px;
   min-height: 34px;
   min-width: max-content;
@@ -534,23 +615,14 @@ html.translated-rtl .kicker {
   font-size: 13px;
   line-height: 1;
 }
-html[lang^="zh"] .kicker > span:not(.kicker-dot),
-html.translated-ltr .kicker > span:not(.kicker-dot),
-html.translated-rtl .kicker > span:not(.kicker-dot) {
+html:is([lang^="zh"], .translated-ltr, .translated-rtl) .kicker > span:not(.kicker-dot) {
   line-height: 1;
 }
-html[lang^="zh"] .status .live,
-html.translated-ltr .status .live,
-html.translated-rtl .status .live,
-html[lang^="zh"] .pill,
-html.translated-ltr .pill,
-html.translated-rtl .pill {
+html:is([lang^="zh"], .translated-ltr, .translated-rtl) :is(.status .live, .pill) {
   font-size: 12px;
   line-height: 1;
 }
-html[lang^="zh"] .status-item span,
-html.translated-ltr .status-item span,
-html.translated-rtl .status-item span {
+html:is([lang^="zh"], .translated-ltr, .translated-rtl) .status-item span {
   font-size: 12px;
   line-height: 1.15;
 }
@@ -831,8 +903,6 @@ h1 em {
 .below {
   width: auto;
   margin: 0;
-}
-.below {
   display: grid;
   gap: 42px;
 }
@@ -955,33 +1025,237 @@ h1 em {
   padding-inline: 18px;
   flex: 0 0 auto;
 }
-#footer.sampora-site-footer{position:relative!important;isolation:isolate!important;padding:64px 0 12px!important;border-top:0!important;color:var(--body,#A9B9CE)!important;background:transparent!important}
-#footer.sampora-site-footer::before{content:none!important;display:none!important}
-#footer .sampora-footer-card{position:relative!important;z-index:1!important;border:1px solid rgba(129,178,214,.10)!important;border-radius:24px!important;overflow:hidden!important;background:linear-gradient(180deg,rgba(8,20,36,.66),rgba(8,20,36,.72))!important;box-shadow:0 0 0 1px rgba(255,255,255,.018) inset,0 24px 76px rgba(0,0,0,.20)!important;width:min(1360px,calc(100% - 48px))!important;margin:0 auto!important}
-#footer .sampora-footer-main{display:grid!important;grid-template-columns:minmax(320px,1.32fr) repeat(3,minmax(150px,.78fr))!important;gap:clamp(32px,4vw,54px)!important;align-items:start!important;padding:42px 48px 36px!important}
-#footer .sampora-footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;color:var(--fg,#E8EEF5)!important;margin-bottom:22px!important}
-#footer .sampora-footer-mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
-#footer .sampora-footer-logo b{display:block!important;font-size:24px!important;line-height:1!important;letter-spacing:-.03em!important;color:var(--fg,#E8EEF5)!important}
-#footer .sampora-footer-logo small{display:block!important;margin-top:4px!important;font:800 10px var(--mono,monospace)!important;letter-spacing:.10em!important;color:var(--muted,#7E92AC)!important}
-#footer .sampora-footer-brand p{margin:0!important;max-width:430px!important;color:var(--body,#A9B9CE)!important;font-size:16px!important;line-height:1.75!important}
-#footer .sampora-footer-badges{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:24px!important}
-#footer .sampora-footer-badges span{display:inline-flex!important;height:26px!important;align-items:center!important;padding:0 12px!important;border-radius:999px!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;color:var(--cyan2,#7BE3FF)!important;font:800 11px var(--mono,monospace)!important}
-#footer .sampora-footer-col{min-width:0!important;padding:0!important;border:0!important;background:transparent!important}
-#footer .sampora-footer-col h3{position:relative!important;margin:0 0 18px!important;padding:0 0 16px!important;border:0!important;color:var(--fg,#E8EEF5)!important;font-size:18px!important;line-height:1.15!important;letter-spacing:0!important}
-#footer .sampora-footer-col h3::after{content:""!important;position:absolute!important;left:0!important;bottom:0!important;width:min(100%,220px)!important;height:1px!important;border-radius:999px!important;background:linear-gradient(90deg,rgba(129,178,214,.45),rgba(56,210,255,.18),transparent)!important}
-#footer .sampora-footer-col a{position:relative!important;display:block!important;width:fit-content!important;max-width:100%!important;margin:0 0 13px!important;padding:1px 0 2px!important;color:rgba(218,230,246,.72)!important;font-size:15px!important;line-height:1.42!important;text-decoration:none!important;overflow-wrap:anywhere!important;transition:color .18s var(--ease,cubic-bezier(.2,.7,.2,1)),transform .18s var(--ease,cubic-bezier(.2,.7,.2,1)),text-shadow .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
-#footer .sampora-footer-col a::after{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:-2px!important;height:1px!important;transform:scaleX(0)!important;transform-origin:left!important;background:linear-gradient(90deg,var(--cyan,#38D2FF),transparent)!important;opacity:.75!important;transition:transform .18s var(--ease,cubic-bezier(.2,.7,.2,1))!important}
-#footer .sampora-footer-col a:hover,#footer .sampora-footer-col a:focus-visible{color:var(--cyan2,#7BE3FF)!important;transform:translateX(2px)!important;text-shadow:0 0 18px rgba(56,216,255,.20)!important}
-#footer .sampora-footer-col a:hover::after,#footer .sampora-footer-col a:focus-visible::after{transform:scaleX(1)!important}
-#footer .sampora-footer-contact{display:grid!important;grid-template-columns:repeat(3,1fr)!important;border-top:0!important}
-#footer .sampora-footer-contact-item{display:flex!important;align-items:center!important;gap:18px!important;min-height:74px!important;padding:0 48px!important;border-right:1px solid rgba(129,178,214,.18)!important;border-bottom:0!important;color:var(--fg,#E8EEF5)!important;font-size:16px!important;font-weight:760!important}
-#footer .sampora-footer-contact-item:last-child{border-right:0!important}
-#footer .sampora-footer-icon{width:34px!important;height:34px!important;border-radius:999px!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;border:1px solid rgba(56,210,255,.28)!important;background:rgba(56,210,255,.08)!important;flex:0 0 auto!important;box-sizing:border-box!important;overflow:hidden!important;text-align:center!important;font:800 10.5px/1 var(--mono,monospace)!important;letter-spacing:.02em!important}
-#footer .sampora-footer-icon--at{font-size:17px!important;line-height:1!important;font-family:var(--sans,system-ui,sans-serif)!important;font-weight:800!important;letter-spacing:0!important}
-#footer .sampora-footer-legal{display:flex!important;justify-content:center!important;align-items:center!important;gap:28px!important;flex-wrap:wrap!important;padding:18px 24px!important;border-top:0!important;color:var(--muted,#7E92AC)!important;font:12px var(--mono,monospace)!important;letter-spacing:.04em!important}
-#footer .sampora-footer-legal .dot{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:auto!important;min-width:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;flex:0 0 auto!important;color:var(--muted,#7E92AC)!important;font:inherit!important;line-height:1!important}
-#footer .sampora-footer-legal a{transition:color .2s ease,transform .2s ease,text-shadow .2s ease!important}
-#footer .sampora-footer-legal a:hover,#footer .sampora-footer-legal a:focus-visible{color:#38d8ff!important;transform:translateX(3px)!important;text-shadow:0 0 18px rgba(56,216,255,.28)!important}
+#footer.sampora-site-footer {
+  position: relative !important;
+  isolation: isolate !important;
+  padding: 64px 0 12px !important;
+  border-top: 0 !important;
+  color: var(--body, #A9B9CE) !important;
+  background: transparent !important;
+}
+#footer.sampora-site-footer::before {
+  content: none !important;
+}
+#footer .sampora-footer-card {
+  position: relative !important;
+  z-index: 1 !important;
+  width: min(1360px, calc(100% - 48px)) !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(129, 178, 214, .10) !important;
+  border-radius: 24px !important;
+  background: linear-gradient(180deg, rgba(8, 20, 36, .66), rgba(8, 20, 36, .72)) !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .018) inset, 0 24px 76px rgba(0, 0, 0, .20) !important;
+}
+#footer .sampora-footer-main {
+  display: grid !important;
+  grid-template-columns: minmax(320px, 1.32fr) repeat(3, minmax(150px, .78fr)) !important;
+  gap: clamp(32px, 4vw, 54px) !important;
+  align-items: start !important;
+  padding: 42px 48px 36px !important;
+}
+#footer .sampora-footer-logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 22px !important;
+  color: var(--fg, #E8EEF5) !important;
+}
+#footer .sampora-footer-mark {
+  display: grid !important;
+  place-items: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  border: 1px solid rgba(56, 210, 255, .35) !important;
+  border-radius: 8px !important;
+  color: var(--cyan, #38D2FF) !important;
+  background: linear-gradient(160deg, #1a3a5f, #0e1b2f) !important;
+  box-shadow: none !important;
+  font: 800 13px "JetBrains Mono", "Noto Sans SC", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+}
+#footer .sampora-footer-logo b {
+  display: block !important;
+  color: var(--fg, #E8EEF5) !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  letter-spacing: -.03em !important;
+}
+#footer .sampora-footer-logo small {
+  display: block !important;
+  margin-top: 4px !important;
+  color: var(--muted, #7E92AC) !important;
+  font: 800 10px var(--mono, monospace) !important;
+  letter-spacing: .10em !important;
+}
+#footer .sampora-footer-brand p {
+  max-width: 430px !important;
+  margin: 0 !important;
+  color: var(--body, #A9B9CE) !important;
+  font-size: 16px !important;
+  line-height: 1.75 !important;
+}
+#footer .sampora-footer-badges {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin-top: 24px !important;
+}
+#footer .sampora-footer-badges span {
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 26px !important;
+  padding: 0 12px !important;
+  border: 1px solid rgba(56, 210, 255, .28) !important;
+  border-radius: 999px !important;
+  color: var(--cyan2, #7BE3FF) !important;
+  background: rgba(56, 210, 255, .08) !important;
+  font: 800 11px var(--mono, monospace) !important;
+}
+#footer .sampora-footer-col {
+  min-width: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+#footer .sampora-footer-col h3 {
+  position: relative !important;
+  margin: 0 0 18px !important;
+  padding: 0 0 16px !important;
+  border: 0 !important;
+  color: var(--fg, #E8EEF5) !important;
+  font-size: 18px !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0 !important;
+}
+#footer .sampora-footer-col h3::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: min(100%, 220px) !important;
+  height: 1px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, rgba(129, 178, 214, .45), rgba(56, 210, 255, .18), transparent) !important;
+}
+#footer .sampora-footer-col a {
+  position: relative !important;
+  display: block !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 0 13px !important;
+  padding: 1px 0 2px !important;
+  color: rgba(218, 230, 246, .72) !important;
+  font-size: 15px !important;
+  line-height: 1.42 !important;
+  text-decoration: none !important;
+  overflow-wrap: anywhere !important;
+  transition:
+    color .18s var(--ease, cubic-bezier(.2, .7, .2, 1)),
+    transform .18s var(--ease, cubic-bezier(.2, .7, .2, 1)),
+    text-shadow .18s var(--ease, cubic-bezier(.2, .7, .2, 1)) !important;
+}
+#footer .sampora-footer-col a::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: -2px !important;
+  height: 1px !important;
+  transform: scaleX(0) !important;
+  transform-origin: left !important;
+  background: linear-gradient(90deg, var(--cyan, #38D2FF), transparent) !important;
+  opacity: .75 !important;
+  transition: transform .18s var(--ease, cubic-bezier(.2, .7, .2, 1)) !important;
+}
+#footer .sampora-footer-col a:hover,
+#footer .sampora-footer-col a:focus-visible {
+  color: var(--cyan2, #7BE3FF) !important;
+  transform: translateX(2px) !important;
+  text-shadow: 0 0 18px rgba(56, 216, 255, .20) !important;
+}
+#footer .sampora-footer-col a:hover::after,
+#footer .sampora-footer-col a:focus-visible::after {
+  transform: scaleX(1) !important;
+}
+#footer .sampora-footer-contact {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  border-top: 0 !important;
+}
+#footer .sampora-footer-contact-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 18px !important;
+  min-height: 74px !important;
+  padding: 0 48px !important;
+  border-right: 1px solid rgba(129, 178, 214, .18) !important;
+  border-bottom: 0 !important;
+  color: var(--fg, #E8EEF5) !important;
+  font-size: 16px !important;
+  font-weight: 760 !important;
+}
+#footer .sampora-footer-contact-item:last-child {
+  border-right: 0 !important;
+}
+#footer .sampora-footer-icon {
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 auto !important;
+  box-sizing: border-box !important;
+  width: 34px !important;
+  height: 34px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(56, 210, 255, .28) !important;
+  border-radius: 999px !important;
+  color: var(--cyan, #38D2FF) !important;
+  background: rgba(56, 210, 255, .08) !important;
+  text-align: center !important;
+  font: 800 10.5px/1 var(--mono, monospace) !important;
+  letter-spacing: .02em !important;
+}
+#footer .sampora-footer-icon--at {
+  font-size: 17px !important;
+  line-height: 1 !important;
+  font-family: var(--sans, system-ui, sans-serif) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+}
+#footer .sampora-footer-legal {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 28px !important;
+  padding: 18px 24px !important;
+  border-top: 0 !important;
+  color: var(--muted, #7E92AC) !important;
+  font: 12px var(--mono, monospace) !important;
+  letter-spacing: .04em !important;
+}
+#footer .sampora-footer-legal .dot {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  border-radius: 0 !important;
+  color: var(--muted, #7E92AC) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font: inherit !important;
+  line-height: 1 !important;
+}
+#footer .sampora-footer-legal a {
+  transition: color .2s ease, transform .2s ease, text-shadow .2s ease !important;
+}
+#footer .sampora-footer-legal a:hover,
+#footer .sampora-footer-legal a:focus-visible {
+  color: #38d8ff !important;
+  transform: translateX(3px) !important;
+  text-shadow: 0 0 18px rgba(56, 216, 255, .28) !important;
+}
 @media (prefers-reduced-motion: no-preference) {
   .bar::before {
     width: 46%;
@@ -996,12 +1270,6 @@ h1 em {
     transform: translateX(-220%);
     will-change: transform, opacity;
     animation: thank-progress-glint 1.65s cubic-bezier(.45, 0, .22, 1) infinite;
-  }
-  .float { animation: float 7s ease-in-out infinite; }
-  .float.delay { animation-delay: -2.2s; }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
   }
 }
 .hero .float {
@@ -1208,7 +1476,7 @@ h1 em {
           </ol>
         </section>
 
-        <section class="panel mini-dashboard float delay">
+        <section class="panel mini-dashboard float">
           <div class="panel-title">
             <h3 data-i18n="snapshotTitle">Request snapshot</h3>
             <span class="pill" data-i18n="snapshotPill">Live</span>
@@ -1548,8 +1816,6 @@ h1 em {
 
   function syncTopChrome() {
     var compact = window.scrollY > 56;
-    var mast = document.querySelector('.mast');
-    if (mast) mast.classList.toggle('compact', compact);
     document.body.classList.toggle('nav-condensed', compact);
   }
 

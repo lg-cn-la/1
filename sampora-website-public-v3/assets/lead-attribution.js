@@ -21,9 +21,14 @@
     'landing_page',
     'referrer',
     'conversion_page',
+    'cta_text',
     'cta_intent',
     'cta_location',
     'cta_event',
+    'resource_slug',
+    'plan_slug',
+    'source_page',
+    'source_section',
     'captured_at',
     'first_landing_page',
     'first_referrer',
@@ -52,6 +57,57 @@
       var hashIndex = fallback.indexOf('#');
       return hashIndex >= 0 ? fallback.slice(0, hashIndex) : fallback;
     }
+  }
+
+  function pathFromUrl(rawUrl) {
+    var source = normalizeString(rawUrl);
+    if (!source) return '';
+    try {
+      return new URL(source, window.location.href).pathname || '';
+    } catch (error) {
+      var fallback = String(rawUrl || '');
+      var hashIndex = fallback.indexOf('#');
+      var queryIndex = fallback.indexOf('?');
+      var end = fallback.length;
+      if (hashIndex >= 0) end = Math.min(end, hashIndex);
+      if (queryIndex >= 0) end = Math.min(end, queryIndex);
+      return fallback.slice(0, end);
+    }
+  }
+
+  function hostnameFromUrl(rawUrl) {
+    var source = normalizeString(rawUrl);
+    if (!source) return '';
+    try {
+      return new URL(source, window.location.href).hostname || '';
+    } catch (error) {
+      return '';
+    }
+  }
+
+  function currentSourcePage() {
+    var currentPath = pathFromUrl(window.location.href);
+    var parts = currentPath.split('/').filter(Boolean);
+    return parts.pop() || 'index.html';
+  }
+
+  function currentLanguage() {
+    var raw = normalizeString(document.documentElement.dataset.lang)
+      || normalizeString(document.body && document.body.dataset && document.body.dataset.lang)
+      || normalizeString(document.documentElement.lang)
+      || 'en';
+    return raw.toLowerCase().split('-')[0] || 'en';
+  }
+
+  function textFromElement(element) {
+    return normalizeString((element && element.textContent || '').replace(/\s+/g, ' '));
+  }
+
+  function clickIdType(values) {
+    if (normalizeString(values.gclid)) return 'google_ads';
+    if (normalizeString(values.fbclid)) return 'meta';
+    if (normalizeString(values.msclkid)) return 'microsoft_ads';
+    return 'none';
   }
 
   function readStorage(area, key) {
@@ -194,6 +250,42 @@
     return next;
   }
 
+  function buildDataLayerPayload(payload) {
+    var values = flatClean(Object.assign({}, getAttribution(), payload || {}));
+    var landingPage = values.landing_page || normalizeUrlWithoutHash(window.location.href);
+    var conversionPage = values.conversion_page || normalizeUrlWithoutHash(window.location.href);
+    var firstLandingPage = values.first_landing_page || landingPage;
+    var lastLandingPage = values.last_landing_page || conversionPage || landingPage;
+    return {
+      cta_text: values.cta_text,
+      cta_location: values.cta_location,
+      cta_intent: values.cta_intent,
+      cta_event: values.cta_event || 'cta_click',
+      resource_slug: values.resource_slug,
+      plan_slug: values.plan_slug,
+      source_page: values.source_page || currentSourcePage(),
+      source_section: values.source_section || values.cta_location,
+      utm_source: values.utm_source,
+      utm_medium: values.utm_medium,
+      utm_campaign: values.utm_campaign,
+      utm_term: values.utm_term,
+      utm_content: values.utm_content,
+      landing_page_path: pathFromUrl(landingPage),
+      conversion_page_path: pathFromUrl(conversionPage),
+      referrer_domain: hostnameFromUrl(values.referrer),
+      first_utm_source: values.first_utm_source,
+      first_utm_medium: values.first_utm_medium,
+      first_utm_campaign: values.first_utm_campaign,
+      first_landing_page_path: pathFromUrl(firstLandingPage),
+      last_landing_page_path: pathFromUrl(lastLandingPage),
+      language: currentLanguage(),
+      has_gclid: !!normalizeString(values.gclid),
+      has_fbclid: !!normalizeString(values.fbclid),
+      has_msclkid: !!normalizeString(values.msclkid),
+      click_id_type: clickIdType(values)
+    };
+  }
+
   function inferIntent(element) {
     var explicit = normalizeString(element.getAttribute('data-ga-intent'));
     if (explicit) return explicit;
@@ -217,10 +309,16 @@
 
   function ctaPayload(element) {
     var intent = inferIntent(element);
+    var ctaLocation = normalizeString(element.getAttribute('data-ga-location'));
     var payload = {
+      cta_text: textFromElement(element),
       cta_event: inferEvent(element, intent),
       cta_intent: intent,
-      cta_location: normalizeString(element.getAttribute('data-ga-location')),
+      cta_location: ctaLocation,
+      source_page: currentSourcePage(),
+      source_section: normalizeString(element.getAttribute('data-ga-section'))
+        || normalizeString(element.getAttribute('data-source-section'))
+        || ctaLocation,
       conversion_page: normalizeUrlWithoutHash(window.location.href),
       captured_at: new Date().toISOString()
     };
@@ -234,8 +332,13 @@
   function saveCtaState(payload) {
     var current = flatClean(readCurrentSession());
     current.cta_event = payload.cta_event;
+    current.cta_text = payload.cta_text;
     current.cta_intent = payload.cta_intent;
     current.cta_location = payload.cta_location;
+    current.resource_slug = payload.resource_slug;
+    current.plan_slug = payload.plan_slug;
+    current.source_page = payload.source_page;
+    current.source_section = payload.source_section;
     current.conversion_page = payload.conversion_page;
     current.captured_at = payload.captured_at;
     writeStorage('sessionStorage', SESSION_KEY, current);
@@ -243,10 +346,11 @@
 
   function pushDataLayer(payload) {
     try {
+      var analyticsPayload = buildDataLayerPayload(payload);
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push(Object.assign({
-        event: payload.cta_event
-      }, getAttribution(), payload));
+        event: analyticsPayload.cta_event
+      }, analyticsPayload));
     } catch (error) {}
   }
 
@@ -278,7 +382,8 @@
     enumerable: true,
     writable: false,
     value: Object.freeze({
-      get: getAttribution
+      get: getAttribution,
+      toDataLayer: buildDataLayerPayload
     })
   });
 }());

@@ -50,13 +50,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Sample Supplier, Panel & Partner Operations Software | Sampora</title>
-<meta content="Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations." name="description"/>
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
-<meta property="og:url" content="https://getsampora.com/index.html">
-<meta name="msvalidate.01" content="0F37EC55E6AF64B1CFDC6D6A23A433DE" />
+<meta content="Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations." name="description"/><meta name="msvalidate.01" content="0F37EC55E6AF64B1CFDC6D6A23A433DE" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://getsampora.com/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sample Supplier, Panel &amp; Partner Operations Software | Sampora">
+<meta property="og:description" content="Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations.">
+<meta property="og:url" content="https://getsampora.com/index.html">
+<meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+<meta property="og:image:width" content="1732">
+<meta property="og:image:height" content="908">
+<meta property="og:image:alt" content="Sampora sample supplier and panel operations software">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sample Supplier, Panel &amp; Partner Operations Software | Sampora">
+<meta name="twitter:description" content="Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations.">
+<meta name="twitter:image" content="https://getsampora.com/assets/og-sampora.png">
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://getsampora.com/#organization","name":"Sampora","url":"https://getsampora.com/index.html","logo":"https://getsampora.com/assets/og-sampora.png"},{"@type":"WebSite","@id":"https://getsampora.com/#website","url":"https://getsampora.com/index.html","name":"Sampora","publisher":{"@id":"https://getsampora.com/#organization"}},{"@type":"SoftwareApplication","@id":"https://getsampora.com/#software","name":"Sampora","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://getsampora.com/index.html","description":"Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations.","publisher":{"@id":"https://getsampora.com/#organization"}}]}</script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -123,7 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .section {
             padding: 104px 0;
-            border-top: 1px solid var(--line)
+            border-top: 0
         }
 
         .section-head {
@@ -293,16 +301,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 13px
         }
 
-        .brand b {
-            font-weight: 700;
+        .brand b,
+        .brand .brand-name {
+            display: block;
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 1.56;
             letter-spacing: -.01em
         }
 
-        .brand small {
+        .brand small,
+        .brand .brand-sub,
+        .brand [data-brand-sub] {
             display: block;
-            color: var(--muted);
-            font-size: 10px;
-            font-family: var(--mono);
+            margin-top: 0;
+            color: #70849e;
+            font: 400 10px var(--mono);
+            line-height: 1.58;
             letter-spacing: .12em;
             text-transform: uppercase
         }
@@ -334,6 +349,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             display: flex;
             align-items: center;
             gap: 12px
+        }
+
+        .mast .header-actions .btn.ghost,
+        .mast .nav-actions .btn.ghost,
+        .mast .actions .btn.ghost {
+            font-weight: 800;
+            font-size: 13.5px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: transparent;
+            border-color: var(--line, rgba(129, 178, 214, .18))
+        }
+
+        .mast .header-actions .btn.ghost:hover,
+        .mast .nav-actions .btn.ghost:hover,
+        .mast .actions .btn.ghost:hover,
+        .mast .header-actions .btn.ghost:focus-visible,
+        .mast .nav-actions .btn.ghost:focus-visible,
+        .mast .actions .btn.ghost:focus-visible {
+            transform: translateY(-1px);
+            color: var(--cyan2, var(--cyan, #61e7ff));
+            border-color: rgba(56, 210, 255, .45);
+            background: rgba(20, 40, 69, .22)
+        }
+
+        .mast .header-actions .btn.primary,
+        .mast .nav-actions .btn.primary,
+        .mast .actions .btn.primary {
+            font-weight: 800;
+            font-size: 13.5px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+            box-shadow: 0 0 0 1px rgba(56, 210, 255, .5), 0 12px 32px rgba(56, 210, 255, .18)
+        }
+
+        .mast .header-actions .btn.primary:hover,
+        .mast .nav-actions .btn.primary:hover,
+        .mast .actions .btn.primary:hover,
+        .mast .header-actions .btn.primary:focus-visible,
+        .mast .nav-actions .btn.primary:focus-visible,
+        .mast .actions .btn.primary:focus-visible,
+        .mast .header-actions .btn.primary:active,
+        .mast .nav-actions .btn.primary:active,
+        .mast .actions .btn.primary:active {
+            transform: translateY(-1px);
+            box-shadow: 0 0 0 1px rgba(56, 210, 255, .56), 0 18px 42px rgba(56, 210, 255, .24)
         }
 
         .lang {
@@ -1469,17 +1531,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .modules {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1px;
-            background: var(--line);
-            border: 1px solid var(--line);
+            gap: 16px;
+            background: transparent;
+            border: 0;
             border-radius: 16px;
-            overflow: hidden
+            overflow: visible
         }
 
         .module {
             background: linear-gradient(180deg, rgba(14, 27, 47, .94), rgba(10, 22, 40, .98));
             padding: 28px 24px;
             min-height: 220px;
+            border: 1px solid rgba(129, 178, 214, .12);
+            border-radius: 16px;
+            box-shadow: 0 18px 48px rgba(0, 0, 0, .16);
             transition: background .18s var(--ease)
         }
 
@@ -2424,13 +2489,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         .hero::before {
-            content: "";
-            position: absolute;
-            inset: 18px 0 auto 0;
-            height: 520px;
-            pointer-events: none;
-            background: radial-gradient(42% 34% at 64% 22%, rgba(56, 210, 255, .105), transparent 64%), radial-gradient(28% 26% at 30% 88%, rgba(246, 169, 59, .065), transparent 72%);
-            opacity: .92
+            content: none;
+            display: none
         }
 
         .hero-grid {
@@ -2442,7 +2502,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             position: relative;
             display: flex;
             flex-direction: column;
-            align-items: flex-start
+            align-items: flex-start;
+            min-width: 0
         }
 
         .hero-copy::after {
@@ -3373,253 +3434,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
 
         /* =========================================================
-           Bottom footer 路 Screenshot content adapted to Sampora style
-           ========================================================= */
-        .site-footer {
-            padding: 0;
-            border-top: 1px solid rgba(129, 178, 214, .18);
-            background:
-                radial-gradient(42% 38% at 18% 0%, rgba(56, 210, 255, .10), transparent 66%),
-                radial-gradient(34% 42% at 86% 18%, rgba(246, 169, 59, .06), transparent 70%),
-                linear-gradient(180deg, rgba(6, 16, 31, .94), rgba(5, 12, 23, .98));
-            color: var(--body-mid);
-            font-family: var(--sans);
-            letter-spacing: 0;
-        }
-
-        .footer-shell {
-            padding: 58px 0 32px;
-        }
-
-        .footer-main {
-            display: grid;
-            grid-template-columns: minmax(280px, .88fr) minmax(520px, 1.12fr);
-            gap: 54px;
-            align-items: start;
-            padding: 34px;
-            border: 1px solid rgba(129, 178, 214, .18);
-            border-radius: 22px 22px 0 0;
-            background: linear-gradient(180deg, rgba(14, 27, 47, .78), rgba(8, 18, 34, .62));
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .045), 0 28px 74px rgba(0, 0, 0, .28);
-        }
-
-        .footer-logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-
-        .footer-logo .mark {
-            width: 38px;
-            height: 38px;
-            border-radius: 11px;
-            display: grid;
-            place-items: center;
-            color: var(--cyan2);
-            font: 800 15px var(--mono);
-            background: linear-gradient(160deg, rgba(56, 210, 255, .20), rgba(14, 27, 47, .92));
-            border: 1px solid rgba(56, 210, 255, .42);
-            box-shadow: 0 0 24px rgba(56, 210, 255, .10);
-        }
-
-        .footer-logo b {
-            display: block;
-            color: var(--heading-soft);
-            font-size: 24px;
-            line-height: 1;
-            letter-spacing: -.02em;
-        }
-
-        .footer-logo small {
-            display: block;
-            margin-top: 6px;
-            color: var(--body-mid);
-            font: 10px var(--mono);
-            letter-spacing: .16em;
-            text-transform: uppercase;
-        }
-
-        .footer-brand p {
-            max-width: 440px;
-            margin: 0 0 20px;
-            color: var(--card-copy);
-            font-size: 15px;
-            line-height: 1.72;
-        }
-
-        .footer-badges {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .footer-badges span {
-            display: inline-flex;
-            align-items: center;
-            height: 30px;
-            padding: 0 11px;
-            border: 1px solid rgba(56, 210, 255, .20);
-            border-radius: 999px;
-            background: rgba(56, 210, 255, .055);
-            color: var(--cyan2);
-            font: 11px var(--mono);
-            letter-spacing: .06em;
-        }
-
-        .footer-links {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 28px;
-        }
-
-        .footer-col h3 {
-            margin: 0 0 18px;
-            padding-bottom: 13px;
-            color: var(--heading-soft);
-            font-size: 17px;
-            line-height: 1.2;
-            border-bottom: 1px solid rgba(129, 178, 214, .16);
-        }
-
-        .footer-col a {
-            display: block;
-            width: fit-content;
-            color: var(--card-copy);
-            font-size: 14.5px;
-            line-height: 1.25;
-            margin: 0 0 15px;
-            transition: color .18s var(--ease), transform .18s var(--ease);
-        }
-
-        .footer-col a:hover {
-            color: var(--cyan2);
-            transform: translateX(3px);
-        }
-
-        .footer-contact {
-            display: grid;
-            grid-template-columns: .78fr .92fr 1.3fr;
-            gap: 1px;
-            padding: 0 34px;
-            border-left: 1px solid rgba(129, 178, 214, .18);
-            border-right: 1px solid rgba(129, 178, 214, .18);
-            background: rgba(6, 14, 28, .48);
-        }
-
-        .footer-contact-item {
-            min-height: 76px;
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            padding: 18px 24px;
-            color: var(--heading-soft);
-            font-size: 15px;
-            border-top: 1px solid rgba(129, 178, 214, .12);
-            border-bottom: 1px solid rgba(129, 178, 214, .12);
-        }
-
-        .footer-contact-item+.footer-contact-item {
-            border-left: 1px solid rgba(129, 178, 214, .12);
-        }
-
-        .footer-icon {
-            width: 34px;
-            height: 34px;
-            flex: 0 0 auto;
-            display: grid;
-            place-items: center;
-            border-radius: 50%;
-            color: var(--cyan2);
-            background: rgba(56, 210, 255, .10);
-            border: 1px solid rgba(56, 210, 255, .20);
-            box-shadow: 0 0 24px rgba(56, 210, 255, .08);
-            font-size: 15px;
-        }
-
-        .footer-legal {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            flex-wrap: wrap;
-            padding: 17px 24px 0;
-            min-height: 54px;
-            border: 1px solid rgba(129, 178, 214, .18);
-            border-top: 0;
-            border-radius: 0 0 22px 22px;
-            background: rgba(10, 22, 40, .70);
-            color: var(--body-mid);
-            font: 12px var(--mono);
-            letter-spacing: .02em;
-            text-align: center;
-        }
-
-        @media(max-width: 1040px) {
-            .footer-main {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .footer-contact {
-                grid-template-columns: 1fr;
-                padding: 0;
-            }
-
-            .footer-contact-item {
-                border-left: 1px solid rgba(129, 178, 214, .18);
-                border-right: 1px solid rgba(129, 178, 214, .18);
-            }
-
-            .footer-contact-item+.footer-contact-item {
-                border-left: 1px solid rgba(129, 178, 214, .18);
-            }
-        }
-
-        @media(max-width: 720px) {
-            .footer-shell {
-                padding: 42px 0 24px;
-            }
-
-            .footer-main {
-                padding: 24px;
-            }
-
-            .footer-links {
-                grid-template-columns: 1fr;
-                gap: 18px;
-            }
-
-            .footer-contact-item {
-                padding: 16px 20px;
-                align-items: flex-start;
-            }
-
-            .footer-legal {
-                justify-content: flex-start;
-                text-align: left;
-                padding: 16px 20px;
-            }
-        }
-
-
-
-        /* =========================================================
-           Subtle commercial-page background motion
-           Uses pure CSS, no images, no extra library.
-           Keep motion low-frequency so the console and content stay primary.
+           Page layer boundaries
            ========================================================= */
         body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            opacity: .36;
-            background:
-                radial-gradient(620px 360px at 78% 18%, rgba(56, 210, 255, .075), transparent 68%),
-                radial-gradient(520px 300px at 18% 72%, rgba(246, 169, 59, .045), transparent 70%),
-                linear-gradient(115deg, transparent 0 35%, rgba(56, 210, 255, .035) 46%, transparent 57% 100%);
-            transform: translate3d(0, 0, 0);
+            content: none;
+            display: none;
         }
 
         body::after {
@@ -3646,62 +3465,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         #outcomes::before,
         #product-surfaces::before,
         #contact::before {
-            content: "";
-            position: absolute;
-            pointer-events: none;
-            inset: 12% -18% auto -18%;
-            height: 360px;
-            opacity: .32;
-            background:
-                radial-gradient(closest-side at 18% 50%, rgba(56, 210, 255, .12), transparent 70%),
-                radial-gradient(closest-side at 72% 38%, rgba(246, 169, 59, .075), transparent 72%);
-            filter: blur(.2px);
-            transform: translate3d(0, 0, 0);
+            content: none;
+            display: none;
         }
 
         #workflow::before {
-            content: "";
-            position: absolute;
-            pointer-events: none;
-            left: -12%;
-            right: -12%;
-            top: 8%;
-            height: 1px;
-            opacity: .55;
-            background: linear-gradient(90deg, transparent, rgba(56, 210, 255, .34), rgba(246, 169, 59, .16), transparent);
-            animation: none;
-            transform: translateX(0);
-            opacity: .36;
+            content: none;
+            display: none;
         }
-
-        #workflow.workflow-animate-once::before { animation: workflowSignal 9s ease-in-out infinite; }
-
-        @keyframes workflowSignal {
-
-            0%,
-            100% {
-                transform: translateX(-10%);
-                opacity: .22;
-            }
-
-            50% {
-                transform: translateX(10%);
-                opacity: .62;
-            }
-        }
-
-        @media(prefers-reduced-motion: reduce) {
-
-            body::before,
-            body::after,
-            #outcomes::before,
-            #product-surfaces::before,
-            #contact::before,
-            #workflow::before {
-                animation: none !important;
-            }
-        }
-
 
         .sampora-nav-standard,
         .nav.sampora-nav-standard,
@@ -3759,18 +3530,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         #footer.sampora-site-footer {
             padding: 64px 0 12px !important;
-            border-top: 1px solid rgba(129, 178, 214, .16) !important;
+            border-top: 0 !important;
             color: var(--body, #A9B9CE) !important;
-            background:
-                radial-gradient(38% 34% at 18% 0%, rgba(56, 210, 255, .08), transparent 68%),
-                linear-gradient(180deg, rgba(6, 16, 31, .22), rgba(6, 16, 31, .42)) !important;
+            background: transparent !important;
         }
 
         #footer .sampora-footer-card {
-            border: 1px solid rgba(129, 178, 214, .22) !important;
+            border: 1px solid rgba(129, 178, 214, .10) !important;
+            border-top-color: rgba(129, 178, 214, .04) !important;
             border-radius: 24px !important;
             overflow: hidden !important;
-            background: rgba(8, 20, 36, .72) !important;
+            background: rgba(8, 20, 36, .62) !important;
             box-shadow: 0 30px 90px rgba(0, 0, 0, .24) !important;
             width: min(1360px, calc(100% - 48px)) !important;
             margin: 0 auto !important;
@@ -3921,7 +3691,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         #footer .sampora-footer-contact {
             display: grid !important;
             grid-template-columns: repeat(3, 1fr) !important;
-            border-top: 1px solid rgba(129, 178, 214, .18) !important;
+            border-top: 0 !important;
         }
 
         #footer .sampora-footer-contact-item {
@@ -3930,7 +3700,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             gap: 18px !important;
             min-height: 74px !important;
             padding: 0 48px !important;
-            border-right: 1px solid rgba(129, 178, 214, .18) !important;
+            border-right: 0 !important;
             border-bottom: 0 !important;
             color: var(--fg, #E8EEF5) !important;
             font-size: 16px !important;
@@ -3973,7 +3743,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             gap: 28px !important;
             flex-wrap: wrap !important;
             padding: 18px 24px !important;
-            border-top: 1px solid rgba(129, 178, 214, .10) !important;
+            border-top: 0 !important;
             color: var(--muted, #7E92AC) !important;
             font: 12px var(--mono, monospace) !important;
             letter-spacing: .04em !important;
@@ -4063,9 +3833,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-        /* Performance note: workflow relay now animates only transform + opacity; filter/background/box-shadow animation removed to reduce jank. */
-
-
         #workflow .workflow-grid {
             position: relative;
         }
@@ -4104,14 +3871,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             opacity: 1;
             transform: translateY(-3px) translateZ(0);
             border-color: rgba(57, 215, 255, .54) !important;
-            /* Simplified: single box-shadow (no multi-layer compositing cost), no background radial gradient */
             box-shadow: 0 10px 28px rgba(0, 0, 0, .20), 0 0 0 1px rgba(57, 215, 255, .14);
         }
 
         #workflow .workflow-grid .step.relay-receive {
             opacity: .98;
             border-color: rgba(57, 215, 255, .40) !important;
-            /* Removed radial-gradient background (paint cost) and filter animation */
             animation: relayReceiveCardFast .72s cubic-bezier(.2, .85, .2, 1) both;
         }
 
@@ -4123,120 +3888,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 inset 0 0 16px rgba(56, 210, 255, .025);
         }
 
-        #workflow .step .relay-glow,
-        #workflow .step .relay-edge,
-        #workflow .step .relay-track,
-        #workflow .step .relay-connector {
-            position: absolute;
-            pointer-events: none;
-            z-index: 8;
-            opacity: 0;
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            transform-style: preserve-3d;
-            will-change: transform, opacity;
-        }
-
-        #workflow .step .relay-glow {
-            inset: -1px;
-            border-radius: inherit;
-            z-index: 0;
-            background:
-                radial-gradient(circle at 14% 8%, rgba(57, 215, 255, .10), transparent 30%);
-        }
-
-        #workflow .step>*:not(.relay-glow):not(.relay-edge):not(.relay-track):not(.relay-connector) {
+        #workflow .step>* {
             position: relative;
             z-index: 2;
-        }
-
-        #workflow .step .relay-left {
-            left: -1px;
-            top: 16px;
-            width: 2px;
-            height: calc(100% - 32px);
-            border-radius: 999px;
-            transform: scaleY(0);
-            transform-origin: center bottom;
-            background: linear-gradient(0deg, transparent, rgba(57, 215, 255, .22), rgba(126, 234, 255, 1), rgba(57, 215, 255, .22), transparent);
-            box-shadow: 0 0 5px rgba(57, 215, 255, .38), 0 0 10px rgba(57, 215, 255, .12);
-        }
-
-        #workflow .step .relay-top {
-            left: 14px;
-            top: -1px;
-            width: calc(100% - 28px);
-            height: 2px;
-            border-radius: 999px;
-            transform: scaleX(0);
-            transform-origin: left center;
-            background: linear-gradient(90deg, rgba(57, 215, 255, .02), rgba(57, 215, 255, .34), rgba(126, 234, 255, 1), rgba(57, 215, 255, .34), rgba(57, 215, 255, .02));
-            box-shadow: 0 0 5px rgba(57, 215, 255, .40), 0 0 10px rgba(57, 215, 255, .12);
-        }
-
-        #workflow .step .relay-right {
-            right: -1px;
-            top: 16px;
-            width: 2px;
-            height: calc(100% - 32px);
-            border-radius: 999px;
-            transform: scaleY(0);
-            transform-origin: center top;
-            background: linear-gradient(180deg, transparent, rgba(57, 215, 255, .22), rgba(126, 234, 255, 1), rgba(57, 215, 255, .22), transparent);
-            box-shadow: 0 0 5px rgba(57, 215, 255, .38), 0 0 10px rgba(57, 215, 255, .12);
-        }
-
-        #workflow .step:not(:last-child) .relay-track {
-            left: calc(100% + 0px);
-            top: 50%;
-            width: 28px;
-            height: 2px;
-            transform: translateY(-50%);
-            border-radius: 999px;
-            z-index: 6;
-            opacity: .46;
-            background: linear-gradient(90deg, rgba(57, 215, 255, .10), rgba(57, 215, 255, .22), rgba(57, 215, 255, .10));
-        }
-
-        #workflow .step .relay-connector {
-            left: calc(100% + 0px);
-            top: 50%;
-            width: 28px;
-            height: 3px;
-            border-radius: 999px;
-            transform: translateY(-50%) scaleX(0);
-            transform-origin: left center;
-            background: linear-gradient(90deg, transparent, rgba(57, 215, 255, .18), rgba(126, 234, 255, 1), rgba(57, 215, 255, .18), transparent);
-            box-shadow: 0 0 6px rgba(57, 215, 255, .36), 0 0 12px rgba(57, 215, 255, .12);
-        }
-
-        #workflow .step:last-child .relay-track,
-        #workflow .step:last-child .relay-connector {
-            display: none !important;
-        }
-
-        #workflow .step.relay-running .relay-glow {
-            animation: relayGlowOnce 1.92s linear both;
-        }
-
-        #workflow .step.relay-running .relay-left {
-            animation: relayLeftOnce .48s cubic-bezier(.22, .82, .22, 1) 0s both;
-        }
-
-        #workflow .step.relay-running .relay-top {
-            animation: relayTopOnce .72s cubic-bezier(.22, .82, .22, 1) .32s both;
-        }
-
-        #workflow .step.relay-running .relay-right {
-            animation: relayRightOnce .46s cubic-bezier(.22, .82, .22, 1) 1.04s both;
-        }
-
-        #workflow .step.relay-running .relay-connector {
-            animation: relayConnectorOnce .56s cubic-bezier(.22, .82, .22, 1) 1.38s both;
-        }
-
-        #workflow .step.relay-receive .relay-left {
-            animation: relayReceiveEdgeOnce .52s cubic-bezier(.22, .82, .22, 1) 1.34s both;
         }
 
         #workflow .workflow-grid .step.relay-running .tag,
@@ -4251,110 +3905,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         #workflow .workflow-grid .step.relay-receive h3 {
             color: var(--fg, #E8EEF5);
             text-shadow: 0 0 14px rgba(57, 215, 255, .10);
-        }
-
-        @keyframes relayGlowOnce {
-            0% {
-                opacity: 0;
-            }
-
-            12%,
-            70% {
-                opacity: .68;
-            }
-
-            100% {
-                opacity: 0;
-            }
-        }
-
-        @keyframes relayLeftOnce {
-            0% {
-                opacity: 0;
-                transform: scaleY(0);
-            }
-
-            45% {
-                opacity: 1;
-                transform: scaleY(.54);
-            }
-
-            100% {
-                opacity: .95;
-                transform: scaleY(1);
-            }
-        }
-
-        @keyframes relayTopOnce {
-            0% {
-                opacity: 0;
-                transform: scaleX(0);
-            }
-
-            18% {
-                opacity: 1;
-                transform: scaleX(.20);
-            }
-
-            82%,
-            100% {
-                opacity: .95;
-                transform: scaleX(1);
-            }
-        }
-
-        @keyframes relayRightOnce {
-            0% {
-                opacity: 0;
-                transform: scaleY(0);
-            }
-
-            45% {
-                opacity: 1;
-                transform: scaleY(.54);
-            }
-
-            100% {
-                opacity: .92;
-                transform: scaleY(1);
-            }
-        }
-
-        @keyframes relayConnectorOnce {
-            0% {
-                opacity: 0;
-                transform: translateY(-50%) scaleX(0);
-            }
-
-            24% {
-                opacity: 1;
-                transform: translateY(-50%) scaleX(.22);
-            }
-
-            86%,
-            100% {
-                opacity: .94;
-                transform: translateY(-50%) scaleX(1);
-            }
-        }
-
-        @keyframes relayReceiveEdgeOnce {
-
-            0%,
-            35% {
-                opacity: 0;
-                transform: scaleY(0);
-            }
-
-            70% {
-                opacity: 1;
-                transform: scaleY(.58);
-            }
-
-            100% {
-                opacity: .74;
-                transform: scaleY(1);
-            }
         }
 
         @keyframes relayReceiveCardFast {
@@ -4526,34 +4076,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }
         }
 
-        #workflow .step .relay-glow,
-        #workflow .step .relay-edge,
-        #workflow .step .relay-track,
-        #workflow .step .relay-connector {
-            display: none !important;
-        }
-
         @media (max-width: 1024px) {
 
             #workflow .workflow-flow-lines {
                 display: none;
             }
 
-            #workflow .step .relay-track,
-            #workflow .step .relay-connector {
-                display: none !important;
-            }
         }
 
         @media (prefers-reduced-motion: reduce) {
 
             #workflow .workflow-grid .step,
             #workflow .workflow-grid .step *,
-            #workflow .workflow-flow-lines span::after,
-            #workflow .step .relay-glow,
-            #workflow .step .relay-edge,
-            #workflow .step .relay-track,
-            #workflow .step .relay-connector {
+            #workflow .workflow-flow-lines span::after {
                 animation: none !important;
                 transition: none !important;
             }
@@ -4570,9 +4105,6 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
 
 
 /* Unified footer link motion */
-.footer-card a,
-.site-footer a,
-.footer-col a,
 .sampora-footer-card a,
 .sampora-site-footer a,
 .sampora-footer-col a {
@@ -4581,15 +4113,9 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
   transition: color .2s ease, transform .2s ease, text-shadow .2s ease;
 }
 
-.footer-card a:hover,
-.site-footer a:hover,
-.footer-col a:hover,
 .sampora-footer-card a:hover,
 .sampora-site-footer a:hover,
 .sampora-footer-col a:hover,
-.footer-card a:focus-visible,
-.site-footer a:focus-visible,
-.footer-col a:focus-visible,
 .sampora-footer-card a:focus-visible,
 .sampora-site-footer a:focus-visible,
 .sampora-footer-col a:focus-visible {
@@ -4598,19 +4124,9 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
   text-shadow: 0 0 18px rgba(56, 216, 255, .28);
 }
 
-@media(max-width:360px){.sampora-footer-contact,.footer-contact{grid-template-columns:1fr!important}.sampora-footer-contact-item,.footer-contact-item{min-width:0!important;padding-left:14px!important;padding-right:14px!important;overflow-wrap:anywhere!important}}
+@media(max-width:360px){.sampora-footer-contact{grid-template-columns:1fr!important}.sampora-footer-contact-item{min-width:0!important;padding-left:14px!important;padding-right:14px!important;overflow-wrap:anywhere!important}}
 
 
-@media(min-width:1101px){
-  .mast{height:auto!important;top:34px!important}
-  .mast.compact{background:rgba(10,22,40,.82)!important}
-  body.nav-condensed .mast{top:0!important}
-  .mast .inner,.mast.compact .inner,body.nav-condensed .mast .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;align-items:center!important;gap:24px!important}
-  .nav.sampora-nav-standard,.nav-links.sampora-nav-standard{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;font-size:14px!important;line-height:1!important;color:rgba(232,238,245,.84)!important}
-  .nav.sampora-nav-standard a,.nav-links.sampora-nav-standard a,.sampora-nav-standard a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
-  .header-actions,.nav-actions,.actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;margin-left:0!important}
-  .hero-copy{min-width:0}
-}
 @media(min-width:1101px) and (max-width:1240px){
   .hero{padding:58px 0 46px}
   .hero-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);max-width:none;gap:28px;align-items:center}
@@ -4703,8 +4219,8 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
   .status .container,.topline .container,.mast .container{width:min(1360px,calc(100% - 48px))!important}
   .mast{height:auto!important;top:34px!important}
   body.nav-condensed .mast{top:0!important}
-  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:167.36px minmax(0,1fr) 430px!important;align-items:center!important;gap:24px!important}
-  .mast .brand{width:167.36px!important;min-width:167.36px!important;gap:10px!important}
+  .mast .inner,.mast.compact .inner,.nav-inner{height:66px!important;display:grid!important;grid-template-columns:169.61px minmax(0,1fr) 430px!important;align-items:center!important;gap:24px!important}
+  .mast .brand{width:169.61px!important;min-width:169.61px!important;gap:10px!important}
   .mast .mark,.brand .mark{width:30px!important;height:30px!important}
   .mast .nav.sampora-nav-standard,.mast .nav-links.sampora-nav-standard{box-sizing:border-box!important;width:100%!important;height:66px!important;align-self:stretch!important;justify-self:stretch!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:center!important;justify-items:center!important;gap:0!important;margin:0!important;padding:0!important}
   .mast .nav.sampora-nav-standard a,.mast .nav-links.sampora-nav-standard a,.mast .sampora-nav-standard a{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;height:66px!important;padding:0 4px!important;border:0!important;white-space:nowrap!important}
@@ -4717,6 +4233,7 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
   .mast,.mast.compact,body.nav-condensed .mast{top:0!important}
   .mast .inner,.mast.compact .inner,.nav-inner{grid-template-columns:auto minmax(0,1fr)!important;gap:8px!important}
   .mast .brand{min-width:0!important}
+  .mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}
   .mast .header-actions,.mast .nav-actions,.mast .actions{min-width:0!important;width:auto!important;justify-self:end!important;align-items:center!important;gap:6px!important;flex-wrap:nowrap!important;overflow:visible!important}
   .mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{height:34px!important;min-height:0!important;padding:0 8px!important;font-size:11.5px!important;line-height:1!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;flex:0 0 auto!important;border-radius:9px!important}
   .mast .lang{min-width:0!important;flex:0 1 auto!important}
@@ -4724,7 +4241,7 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
   .mast .mobile-nav-toggle{width:36px!important;height:36px!important;flex:0 0 36px!important}
 }
 
-/* Sampora current responsive fixes */
+/* Responsive layout adjustments */
 @media(max-width:1100px) and (min-width:721px){
   .outcome-grid .outcome-card:last-child{grid-column:1/-1!important;min-height:190px}
 }
@@ -4736,32 +4253,6 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
   .outcome-grid .outcome-card:last-child,
   .modules .module:last-child{grid-column:auto!important}
 }
-/* Header actions parity with resources.html */
-.mast .header-actions .btn.ghost,.mast .nav-actions .btn.ghost,.mast .actions .btn.ghost{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:transparent;border-color:var(--line,rgba(129,178,214,.18))}
-.mast .header-actions .btn.ghost:hover,.mast .nav-actions .btn.ghost:hover,.mast .actions .btn.ghost:hover,.mast .header-actions .btn.ghost:focus-visible,.mast .nav-actions .btn.ghost:focus-visible,.mast .actions .btn.ghost:focus-visible{transform:translateY(-1px);color:var(--cyan2,var(--cyan,#61e7ff));border-color:rgba(56,210,255,.45);background:rgba(20,40,69,.22)}
-.mast .header-actions .btn.primary,.mast .nav-actions .btn.primary,.mast .actions .btn.primary{font-weight:800;font-size:13.5px;padding:12px 18px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--cyan2));box-shadow:0 0 0 1px rgba(56,210,255,.5),0 12px 32px rgba(56,210,255,.18)}
-.mast .header-actions .btn.primary:hover,.mast .nav-actions .btn.primary:hover,.mast .actions .btn.primary:hover,.mast .header-actions .btn.primary:focus-visible,.mast .nav-actions .btn.primary:focus-visible,.mast .actions .btn.primary:focus-visible,.mast .header-actions .btn.primary:active,.mast .nav-actions .btn.primary:active,.mast .actions .btn.primary:active{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(56,210,255,.56),0 18px 42px rgba(56,210,255,.24)}
-@media(min-width:1101px){.mast .header-actions,.mast .nav-actions,.mast .actions{box-sizing:border-box;width:430px;min-width:430px;align-self:center;justify-self:end;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:nowrap;overflow:visible}.mast .header-actions .btn,.mast .nav-actions .btn,.mast .actions .btn,.mast .lang{flex:0 0 auto;white-space:nowrap}}
-</style>
-<style id="header-brand-visual-parity">
-.mast .brand{display:flex!important;align-items:center!important;gap:10px!important}
-.mast .brand .mark{width:30px!important;height:30px!important;border-radius:8px!important;background:linear-gradient(160deg,#1a3a5f,#0e1b2f)!important;border:1px solid rgba(56,210,255,.35)!important;display:grid!important;place-items:center!important;color:var(--cyan,#38D2FF)!important;font:800 13px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;box-shadow:none!important}
-.mast .brand b,.mast .brand .brand-name{display:block!important;font-size:16px!important;font-weight:800!important;line-height:1.56!important;letter-spacing:-.01em!important}
-.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:block!important;margin-top:0!important;color:#70849e!important;font:400 10px "JetBrains Mono","Noto Sans SC",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;line-height:1.58!important;letter-spacing:.12em!important;text-transform:uppercase!important}
-@media(min-width:1101px){.mast .brand{width:auto!important;min-width:max-content!important;height:auto!important;overflow:visible!important;align-self:center!important;justify-self:start!important}}
-@media(max-width:760px){.mast .brand small,.mast .brand .brand-sub,.mast .brand [data-brand-sub]{display:none!important}}
-</style>
-<style id="sampora-horizontal-line-cleanup">
-body {
-    background-image:
-        linear-gradient(rgba(120, 172, 216, .026) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(120, 172, 216, .024) 1px, transparent 1px),
-        radial-gradient(54% 42% at 84% 0, rgba(56, 210, 255, .10) 0, transparent 62%),
-        radial-gradient(45% 34% at 8% 100%, rgba(255, 180, 84, 0) 0, transparent 64%),
-        linear-gradient(180deg, var(--ink), #06111F 42%, #08172A 100%) !important;
-    background-size: 44px 44px, 44px 44px, auto, auto, auto !important;
-}
-
 @media(min-width:1101px) and (max-width:1240px){
   html[lang="zh"] .hero h1,
   html[lang="zh-CN"] .hero h1{
@@ -4776,64 +4267,6 @@ body {
     font-size:clamp(34px,6.2vw,46px);
     line-height:1.12;
   }
-}
-body::before,
-.hero::before,
-.hero:before,
-#outcomes::before,
-#product-surfaces::before,
-#contact::before,
-#workflow::before {
-    content: none !important;
-    display: none !important;
-}
-.section,
-.sampora-site-footer,
-.sampora-footer-contact,
-.sampora-footer-legal {
-    border-top: 0 !important;
-}
-.sampora-footer-col h3,
-.sampora-footer-col h4 {
-    border-bottom: 1px solid rgba(129, 178, 214, .18) !important;
-    padding-bottom: 16px !important;
-}
-.sampora-footer-contact-item {
-    border-right: 0 !important;
-    border-bottom: 0 !important;
-}
-#footer.sampora-site-footer {
-    padding: 64px 0 12px !important;
-    border-top: 0 !important;
-    background: transparent !important;
-}
-#footer .sampora-footer-card {
-    border-color: rgba(129, 178, 214, .10) !important;
-    border-top-color: rgba(129, 178, 214, .04) !important;
-    background: rgba(8, 20, 36, .62) !important;
-}
-#footer .sampora-footer-contact,
-#footer .sampora-footer-legal {
-    border-top: 0 !important;
-}
-#footer .sampora-footer-contact-item {
-    border-bottom: 0 !important;
-}
-@media(max-width:1180px) {
-    #footer .sampora-footer-contact-item {
-        border-bottom: 0 !important;
-    }
-}
-.modules {
-    gap: 16px !important;
-    background: transparent !important;
-    border: 0 !important;
-    overflow: visible !important;
-}
-.module {
-    border: 1px solid rgba(129, 178, 214, .12) !important;
-    border-radius: 16px !important;
-    box-shadow: 0 18px 48px rgba(0, 0, 0, .16) !important;
 }
 /* ===== Operating Proof Section ===== */
 #operating-proof-final.op-proof-v6 {
@@ -4879,18 +4312,41 @@ body::before,
     align-items: center;
     gap: 10px;
     width: max-content;
+    padding: 7px 14px;
+    border: 1px solid rgba(56, 210, 255, .28);
+    border-radius: 999px;
+    background: rgba(56, 210, 255, .075);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 12px 28px rgba(0, 0, 0, .18);
     color: var(--cyan2);
-    font: 11px var(--mono);
-    letter-spacing: .15em;
-    text-transform: none;
+    font: 700 11px var(--mono);
+    letter-spacing: .14em;
+    text-transform: uppercase;
 }
 .opv6-kicker::before {
     content: "";
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
+    flex: 0 0 6px;
     border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 18px rgba(56, 210, 255, .7);
+    background: var(--cyan2);
+    box-shadow: 0 0 14px rgba(56, 210, 255, .38);
+    transform-origin: center;
+    animation: opv6KickerPulse 1.8s ease-in-out infinite;
+}
+@keyframes opv6KickerPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(56, 210, 255, .42), 0 0 0 0 rgba(56, 210, 255, .24);
+    }
+    50% {
+        transform: scale(1.22);
+        box-shadow: 0 0 18px rgba(56, 210, 255, .72), 0 0 0 5px rgba(56, 210, 255, .08);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .opv6-kicker::before {
+        animation: none;
+    }
 }
 .opv6-title {
     max-width: 760px;
@@ -5647,7 +5103,6 @@ body::before,
 }
 
 /* ===== End Operating Proof Section ===== */
-@media(min-width:1101px){.mast .brand{width:169.61px!important;min-width:169.61px!important}}
 </style>
 <link rel="stylesheet" href="assets/footer-email-modal.css">
 </head>
@@ -6813,7 +6268,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "opv12Card4Tag": "流程衔接",
                 "opv12Card4Title": "合作开始后如何继续？",
                 "opv12Card4Text": "客户和供应商关系会继续进入项目配置、供应商路由、交付审核和结算核对。",
-                "opv12TransitionTitle": "合作建立后，进入<em>真实运营流程</em>。",
+    "opv12TransitionTitle": "合作建立后，进入<em>真实运营流程</em>",
                 "opv12TransitionText": "客户和供应商关系会继续进入项目配置、供应商路由、交付审核和结算核对流程。",
                 "opProofCoopCta": "了解合作资源",
                 "opProofBottom": "<strong>下一步建议：</strong>如果你想通过 Sampora 建立客户或供应商合作，可以先咨询合作资源，或预约演示查看合作如何进入项目流程。",
@@ -7413,13 +6868,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
             $('.nav')?.addEventListener('mouseleave', syncNavIndicator);
             window.addEventListener('resize', () => { syncNavIndicator(); updateLangPill(); });
             requestAnimationFrame(() => { syncNavIndicator(); updateLangPill(); });
-            const workflowSection = $('#workflow');
-            if (workflowSection && 'IntersectionObserver' in window) {
-                const workflowObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-                    if (entry.isIntersecting) { workflowSection.classList.add('workflow-animate-once'); workflowObserver.unobserve(workflowSection); }
-                }), { threshold: .22 });
-                workflowObserver.observe(workflowSection);
-            } else if (workflowSection) { workflowSection.classList.add('workflow-animate-once'); }
             const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); } }), { threshold: .14 });
             $$('.reveal-card,.module,.pricing-card,.faq-item').forEach(el => { el.classList.add('reveal-card'); observer.observe(el); });
             startTopologyPacketMotion();
@@ -7514,32 +6962,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                         'relay-complete',
                         'relay-last'
                     );
-
-                    step.querySelectorAll('.relay-glow, .relay-edge, .relay-track, .relay-connector').forEach(el => el.remove());
                 });
-
-                // Force a synchronous style recalc so the browser promotes layers NOW,
-                // before any animation fires. This eliminates the first-frame jank.
-                workflow.offsetHeight;
 
                 let index = 0;
                 let paused = true;
                 let timer = null;
                 let started = false;
                 let startFallbackTimer = null;
-                // Track each step's last-applied state to avoid redundant classList mutations
                 const stepState = new Array(steps.length).fill('');
 
                 function applyState(step, i, state) {
-                    if (stepState[i] === state) return; // skip no-op
+                    if (stepState[i] === state) return;
                     step.classList.remove('relay-idle', 'relay-running', 'relay-receive', 'relay-complete', 'relay-last');
                     if (state) step.classList.add(state);
                     stepState[i] = state;
                 }
 
-                // Pre-warm idle layers only; the first visible relay state is applied by runStep().
                 steps.forEach((step, i) => applyState(step, i, 'relay-idle'));
-                workflow.offsetHeight; // second forced layout to commit layer promotion
 
                 function clearTimer() {
                     if (timer) {
@@ -7588,13 +7027,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                     const isLast = index === steps.length - 1;
                     const receiverIndex = isLast ? null : index + 1;
 
-                    // Use applyState() so we only touch the DOM when state actually changes.
-                    // This avoids redundant style recalcs on unchanged steps.
                     steps.forEach((step, i) => {
                         if (i < index) applyState(step, i, 'relay-complete');
-                        else if (i === index) { /* set below */ }
-                        else if (receiverIndex !== null && i === receiverIndex) { /* set below */ }
-                        else applyState(step, i, 'relay-idle');
+                        else if (i !== index && i !== receiverIndex) applyState(step, i, 'relay-idle');
                     });
 
                     applyState(steps[index], index, 'relay-running');
