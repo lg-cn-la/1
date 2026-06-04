@@ -9,7 +9,11 @@ const corePages = ['index.html', 'solutions.html', 'resources.html', 'plans.html
 const supportPages = ['404.html', 'privacy.html', 'cookie-policy.html', 'terms.html'];
 const allPages = [...corePages, ...supportPages, 'thank-you.html'];
 const ogImageUrl = 'https://getsampora.com/assets/og-sampora.png';
+const organizationLogoUrl = 'https://getsampora.com/assets/sampora-logo.png';
+const homepageUrl = 'https://getsampora.com/';
 const ogImageAlt = 'Sampora sample supplier and panel operations software';
+const organizationDescription = 'Sampora is an online sample operations platform for panel providers, sample suppliers, and partner networks.';
+const softwareDescription = 'Sampora helps sample suppliers, panel providers, and partner networks manage project launch, supplier routing, delivery review, settlement, invoicing, and partner operations.';
 const requiredCoreSocialMeta = [
   'og:type',
   'og:title',
@@ -183,6 +187,11 @@ function typeNames(value) {
   return nodes.map((node) => node && node['@type']).flat().filter(Boolean);
 }
 
+function graphNodes(value) {
+  if (!value || typeof value !== 'object') return [];
+  return Array.isArray(value['@graph']) ? value['@graph'] : [value];
+}
+
 function checkForbiddenDirectTags() {
   const directTagPatterns = [
     [/googletagmanager\.com\/gtag\/js/i, 'direct gtag.js loader'],
@@ -201,6 +210,7 @@ function checkForbiddenDirectTags() {
 
 function checkOgAndJsonLd() {
   const ogImageSize = pngSize('assets/og-sampora.png');
+  pngSize('assets/sampora-logo.png');
 
   for (const page of [...corePages, ...supportPages]) {
     const html = read(page);
@@ -237,10 +247,13 @@ function checkOgAndJsonLd() {
   for (const page of allPages) {
     const scripts = extractJsonLd(read(page), page);
     const types = scripts.flatMap(typeNames);
-    for (const forbidden of ['Review', 'Rating', 'AggregateRating']) {
+    for (const forbidden of ['Review', 'Rating', 'AggregateRating', 'Offer', 'Product']) {
       if (types.includes(forbidden) || JSON.stringify(scripts).includes(`"${forbidden}"`)) {
         fail(`${page}: JSON-LD must not include ${forbidden}`);
       }
+    }
+    if (/"price"\s*:/.test(JSON.stringify(scripts))) {
+      fail(`${page}: JSON-LD must not include price`);
     }
     if (page !== 'index.html' && scripts.length) {
       fail(`${page}: JSON-LD must not be added outside homepage`);
@@ -252,8 +265,24 @@ function checkOgAndJsonLd() {
   for (const required of ['Organization', 'WebSite', 'SoftwareApplication']) {
     if (!indexTypes.has(required)) fail(`index.html: missing ${required} JSON-LD`);
   }
-  if (!JSON.stringify(indexScripts).includes('https://getsampora.com/assets/og-sampora.png')) {
-    fail('index.html: Organization.logo should use assets/og-sampora.png fallback');
+  const indexNodes = indexScripts.flatMap(graphNodes);
+  const organization = indexNodes.find((node) => node && node['@type'] === 'Organization');
+  const website = indexNodes.find((node) => node && node['@type'] === 'WebSite');
+  const software = indexNodes.find((node) => node && node['@type'] === 'SoftwareApplication');
+  if (organization?.url !== homepageUrl) fail(`index.html: Organization.url must be ${homepageUrl}`);
+  if (website?.url !== homepageUrl) fail(`index.html: WebSite.url must be ${homepageUrl}`);
+  if (software?.url !== homepageUrl) fail(`index.html: SoftwareApplication.url must be ${homepageUrl}`);
+  if (organization?.logo !== organizationLogoUrl) {
+    fail(`index.html: Organization.logo must use ${organizationLogoUrl}`);
+  }
+  if (organization?.description !== organizationDescription) {
+    fail('index.html: Organization.description does not match current structured-data copy');
+  }
+  if (software?.description !== softwareDescription) {
+    fail('index.html: SoftwareApplication.description does not match current structured-data copy');
+  }
+  if (JSON.stringify(indexScripts).includes('/index.html')) {
+    fail('index.html: JSON-LD URLs must not include /index.html');
   }
 }
 

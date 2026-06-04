@@ -26,7 +26,7 @@ Package E refreshed the public-package evidence on 2026-05-18 after the latest d
 - Static page baseline is clean for balanced style blocks and official title/meta/absolute canonical coverage.
 - Legal/company wording is standardized to `漏 2026 Anhui Jiayu Enterprise Service Co., Ltd.` and `瀹夊窘鐪佸槈绂逛紒涓氭湇鍔℃湁闄愬叕鍙竊.
 - Contact form is backend-ready with `method`, `action`, `data-endpoint`, hidden context fields, and fetch-path behavior for the configured endpoint.
-- Placeholder contact submission remains conservative and does not claim backend receipt while `[BACKEND_CONTACT_ENDPOINT]` is still present.
+- Contact submission is wired to the same-origin `/api/contact` route; backend receipt still requires deployed endpoint evidence.
 - Index workflow and topology runtime initialization are restored.
 - Solutions/resources topology motion is active.
 - Homepage hero left vertical line is disabled.
@@ -74,7 +74,7 @@ Evidence: stale terminology grep returned no blocked hits outside `qa-evidence/*
 
 ## Backend Handoff Note
 
-The contact form is frontend-ready with `[BACKEND_CONTACT_ENDPOINT]` as the placeholder. Backend still needs to replace that value and verify the real submission endpoint.
+The contact form is frontend-ready with `/api/contact` as the same-origin submission route. Backend still needs deployed endpoint verification before claiming production Sheet/mail side effects.
 
 ## External Confirmation Items
 

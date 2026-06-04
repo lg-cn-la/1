@@ -42,8 +42,8 @@ Official public entry points use English paths only. The public source ships onl
 
 - Controller must rebuild and inspect the current versioned public zip; this Package E subagent did not rebuild zips.
 - Controller must ensure rebuilt public zip does not contain the seven Chinese legacy redirect HTML files.
-- The static handoff package may keep `[BACKEND_CONTACT_ENDPOINT]` before production launch. In placeholder mode, the contact form stores a pending payload and shows the fallback/pending contact message instead of issuing a backend request.
-- Replace `[BACKEND_CONTACT_ENDPOINT]` with the real backend endpoint before production form launch. After replacement, rerun browser QA in live endpoint mode and confirm POST submission plus success/failure response handling.
+- The production contact form uses the same-origin `/api/contact` route. The deployed backend must accept the form body and return JSON with `ok: true` only after accepting the lead.
+- After backend or deploy-route changes, rerun browser QA in live endpoint mode and confirm POST submission plus success/failure response handling.
 - Do not disable the form only because the static handoff package has not configured the production endpoint yet.
 - Re-run full delivery verification before any final delivery claim.
 

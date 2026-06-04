@@ -170,6 +170,26 @@ function assertSourceEndpointContract() {
   }
 }
 
+function assertRequestIntentSourceContract() {
+  const intentInputTag = contactHtml.match(/<input\b[^>]*\bid=["']intentField["'][^>]*>/i)?.[0] || '';
+  if (!intentInputTag) fail('source hidden intentField input missing');
+  if (intentInputTag && !/\bvalue=(['"])\1/i.test(intentInputTag)) {
+    fail('source hidden intentField must start blank until a request type is selected or URL intent is supplied');
+  }
+  if (/const\s+intent\s*=\s*intentMap\[qs\.get\('intent'\)\]\s*\|\|\s*['"]contact_sales['"]/.test(contactHtml)) {
+    fail('source contact.html must not default a missing URL intent to contact_sales');
+  }
+  if (!/const\s+intent\s*=\s*intentMap\[qs\.get\('intent'\)\]\s*\|\|\s*(['"])\1/.test(contactHtml)) {
+    fail('source contact.html must default a missing URL intent to an empty request intent');
+  }
+  if (!/function\s+currentRequestIntent\(\)\s*{[\s\S]*businessSelect\s*&&\s*businessSelect\.value\s*\?\s*businessSelect\.value\s*:\s*intent[\s\S]*}/.test(contactHtml)) {
+    fail('source currentRequestIntent must resolve the live request type before falling back to URL intent');
+  }
+  if (!/document\.getElementById\('intentField'\)\.value\s*=\s*currentRequestIntent\(\)/.test(contactHtml)) {
+    fail('source hidden intentField must use the live request type value');
+  }
+}
+
 function assertFullRequestBody(label, params) {
   for (const [key, expected] of Object.entries(requiredFormBody)) {
     if (params[key] !== expected) {
@@ -413,6 +433,48 @@ async function readFormValues(page) {
   }));
 }
 
+async function readRequestIntentState(page) {
+  return page.evaluate(() => {
+    const text = value => String(value || '').replace(/\s+/g, ' ').trim();
+    const salesOption = [...document.querySelectorAll('#business_typeMenu .select-option')]
+      .find(option => option.dataset.value === 'contact_sales');
+    return {
+      businessType: document.querySelector('#business_type')?.value || '',
+      hiddenIntent: document.querySelector('#intentField')?.value || '',
+      plan: document.querySelector('#planField')?.value || '',
+      ctaIntent: document.querySelector('#ctaIntentField')?.value || '',
+      ctaEvent: document.querySelector('#ctaEventField')?.value || '',
+      triggerText: text(document.querySelector('#business_typeTrigger')?.textContent),
+      salesOptionSelected: salesOption?.getAttribute('aria-selected') || '',
+    };
+  });
+}
+
+async function assertRequestIntentRuntime(page, baseUrl) {
+  await page.goto(`${baseUrl}/contact-live-success.html?lang=en#contact-form`, { waitUntil: 'load' });
+  await page.locator('#contact-form').scrollIntoViewIfNeeded();
+  const defaultState = await readRequestIntentState(page);
+  if (defaultState.businessType !== '') fail(`default request type should stay blank, got ${JSON.stringify(defaultState.businessType)}`);
+  if (defaultState.hiddenIntent !== '') fail(`default hidden intent should stay blank, got ${JSON.stringify(defaultState.hiddenIntent)}`);
+  if (defaultState.triggerText !== 'Select request intent') fail(`default enhanced request trigger should show placeholder, got ${JSON.stringify(defaultState.triggerText)}`);
+  if (defaultState.salesOptionSelected === 'true') fail('default request type must not mark contact_sales as selected');
+
+  await page.selectOption('#business_type', 'contact_sales');
+  const selectedState = await readRequestIntentState(page);
+  if (selectedState.businessType !== 'contact_sales') fail(`manual sales request type selection failed, got ${JSON.stringify(selectedState.businessType)}`);
+  if (selectedState.hiddenIntent !== 'contact_sales') fail(`manual sales request type should sync hidden intent, got ${JSON.stringify(selectedState.hiddenIntent)}`);
+  if (selectedState.ctaIntent !== 'sales_contact') fail(`manual sales request type should sync sales_contact cta_intent, got ${JSON.stringify(selectedState.ctaIntent)}`);
+  if (selectedState.ctaEvent !== 'contact_sales_click') fail(`manual sales request type should sync contact_sales_click cta_event, got ${JSON.stringify(selectedState.ctaEvent)}`);
+
+  await page.goto(`${baseUrl}/contact-live-success.html?intent=contact_sales&lang=en#contact-form`, { waitUntil: 'load' });
+  await page.locator('#contact-form').scrollIntoViewIfNeeded();
+  const explicitState = await readRequestIntentState(page);
+  if (explicitState.businessType !== 'contact_sales') fail(`explicit contact_sales URL intent should preselect request type, got ${JSON.stringify(explicitState.businessType)}`);
+  if (explicitState.hiddenIntent !== 'contact_sales') fail(`explicit contact_sales URL intent should sync hidden intent, got ${JSON.stringify(explicitState.hiddenIntent)}`);
+  if (explicitState.ctaIntent !== 'sales_contact') fail(`explicit contact_sales URL intent should sync sales_contact cta_intent, got ${JSON.stringify(explicitState.ctaIntent)}`);
+  if (explicitState.ctaEvent !== 'contact_sales_click') fail(`explicit contact_sales URL intent should sync contact_sales_click cta_event, got ${JSON.stringify(explicitState.ctaEvent)}`);
+}
+
 async function readPendingMarker(page) {
   return page.evaluate(() => sessionStorage.getItem('sampora_contact_pending') || '');
 }
@@ -445,6 +507,7 @@ const contactRequests = [];
 const appsScriptRequests = [];
 
 assertSourceEndpointContract();
+assertRequestIntentSourceContract();
 assertRoleSourceContract();
 
 await page.route('https://script.google.com/**', route => {
@@ -463,6 +526,8 @@ page.on('request', request => {
 });
 
 try {
+  await assertRequestIntentRuntime(page, base);
+
   await page.goto(`${base}/contact-live-success.html?lang=en&utm_source=qa_source&utm_medium=qa_medium&utm_campaign=qa_campaign#contact-form`, { waitUntil: 'load' });
   await page.locator('#contact-form').scrollIntoViewIfNeeded();
   await assertRoleOptionsRuntime(page, 'en');

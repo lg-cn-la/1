@@ -49,24 +49,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 <!-- End Google Tag Manager -->
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Sample Supplier, Panel & Partner Operations Software | Sampora</title>
-<meta content="Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations." name="description"/><meta name="msvalidate.01" content="0F37EC55E6AF64B1CFDC6D6A23A433DE" />
+<title>Sampora | Sample Operations Software &amp; Panel Management Software</title>
+<meta content="Sampora is sample operations software for panel providers and sample suppliers, helping market research teams manage supplier routing, delivery review, and settlement workflows in one workspace." name="description"/><meta name="msvalidate.01" content="0F37EC55E6AF64B1CFDC6D6A23A433DE" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://getsampora.com/index.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sample Supplier, Panel &amp; Partner Operations Software | Sampora">
-<meta property="og:description" content="Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations.">
+<meta property="og:title" content="Sampora | Sample Operations Software &amp; Panel Management Software">
+<meta property="og:description" content="Sampora is sample operations software for panel providers and sample suppliers, helping market research teams manage supplier routing, delivery review, and settlement workflows in one workspace.">
 <meta property="og:url" content="https://getsampora.com/index.html">
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
 <meta property="og:image:width" content="1732">
 <meta property="og:image:height" content="908">
 <meta property="og:image:alt" content="Sampora sample supplier and panel operations software">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sample Supplier, Panel &amp; Partner Operations Software | Sampora">
-<meta name="twitter:description" content="Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations.">
+<meta name="twitter:title" content="Sampora | Sample Operations Software &amp; Panel Management Software">
+<meta name="twitter:description" content="Sampora is sample operations software for panel providers and sample suppliers, helping market research teams manage supplier routing, delivery review, and settlement workflows in one workspace.">
 <meta name="twitter:image" content="https://getsampora.com/assets/og-sampora.png">
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://getsampora.com/#organization","name":"Sampora","url":"https://getsampora.com/index.html","logo":"https://getsampora.com/assets/og-sampora.png"},{"@type":"WebSite","@id":"https://getsampora.com/#website","url":"https://getsampora.com/index.html","name":"Sampora","publisher":{"@id":"https://getsampora.com/#organization"}},{"@type":"SoftwareApplication","@id":"https://getsampora.com/#software","name":"Sampora","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://getsampora.com/index.html","description":"Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations.","publisher":{"@id":"https://getsampora.com/#organization"}}]}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://getsampora.com/#organization",
+      "name": "Sampora",
+      "url": "https://getsampora.com/",
+      "logo": "https://getsampora.com/assets/sampora-logo.png",
+      "description": "Sampora is an online sample operations platform for panel providers, sample suppliers, and partner networks."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://getsampora.com/#website",
+      "url": "https://getsampora.com/",
+      "name": "Sampora",
+      "publisher": {
+        "@id": "https://getsampora.com/#organization"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://getsampora.com/#software",
+      "name": "Sampora",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://getsampora.com/",
+      "description": "Sampora helps sample suppliers, panel providers, and partner networks manage project launch, supplier routing, delivery review, settlement, invoicing, and partner operations.",
+      "publisher": {
+        "@id": "https://getsampora.com/#organization"
+      }
+    }
+  ]
+}
+</script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -176,6 +211,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         .section-head.title-only h2 {
             max-width: 860px
+        }
+
+        @media(min-width:981px) {
+            .section-head.title-only h2.section-title-single {
+                max-width: none;
+                white-space: nowrap;
+                font-size: clamp(30px, 3.15vw, 44px);
+            }
+
+            html[lang="zh"] .section-head.title-only h2.zh-title-single,
+            html[lang="zh-CN"] .section-head.title-only h2.zh-title-single {
+                max-width: none;
+                white-space: nowrap;
+            }
         }
 
         #pricing .section-head.title-only h2 {
@@ -2484,10 +2533,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             height: 56px
         }
 
-        .mast.compact {
-            background: rgba(6, 16, 31, .90)
-        }
-
         .hero::before {
             content: none;
             display: none
@@ -3099,7 +3144,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         body.nav-condensed .mast {
             top: 0;
-            background: rgba(5, 13, 25, .92);
             box-shadow: 0 18px 44px rgba(0, 0, 0, .28), 0 1px 0 rgba(56, 210, 255, .08);
         }
 
@@ -4923,6 +4967,15 @@ body.mobile-nav-open .mobile-nav-drawer{display:grid;gap:4px}
     color: var(--cyan);
 }
 
+@media(min-width:981px) {
+    html[lang="zh"] .opv12-coop-head h3.zh-title-single,
+    html[lang="zh-CN"] .opv12-coop-head h3.zh-title-single {
+        max-width: none;
+        white-space: nowrap;
+        font-size: clamp(28px, 2.65vw, 36px);
+    }
+}
+
 .opv12-coop-head p {
     max-width: 980px;
     margin: 12px 0 0;
@@ -5135,8 +5188,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="container hero-grid">
 <div class="hero-copy">
 <div class="eyebrow localized settle d1" data-i18n="eyebrow">Online sample operations platform / control console</div>
-<h1 class="settle d2" data-i18n-html="heroTitle">Online Sample Operations Platform for <em>Panel Providers &amp; Sample Suppliers.</em></h1>
-<p class="hero-sub settle d3" data-i18n-html="heroSub">Manage sample projects, suppliers, reviews, and settlement checks in one workspace.</p>
+<h1 class="settle d2" data-i18n-html="heroTitle">Online Sample Operations Platform and Panel Management Software for <em>Panel Providers &amp; Sample Suppliers.</em></h1>
+<p class="hero-sub settle d3" data-i18n-html="heroSub">Manage project intake, supplier routing, delivery review, and settlement workflows in one traceable workspace.</p>
 <div class="cta-row settle d3"><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="header">Apply for trial</a><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="header">Book a demo</a></div>
 <div class="hero-proof-grid settle d4">
 <div class="proof-mini cyan"><strong data-i18n="heroProof1Title">Receive projects</strong><span data-i18n="heroProof1Text">Keep client, country, CPI, IR/LOI, quota, and launch rules together.</span></div>
@@ -5311,7 +5364,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div>
 <div class="opv6-kicker" data-i18n="opProofKicker">Product foundation</div>
 <h2 class="opv6-title" data-i18n-html="opProofTitle" id="operating-proof-title">Built with real sample-supplier operations.</h2>
-<p class="opv6-lead" data-i18n-html="opProofLead">Sampora turns proven sample-industry operating experience into one workspace for <b>project launch, supplier routing, delivery review, and settlement checks</b>.</p>
+<p class="opv6-lead" data-i18n-html="opProofLead">Sampora turns proven market research sample operations into one workspace for <b>project launch, supplier routing, delivery review, and settlement workflows</b>.</p>
 </div>
 <div aria-label="Operational proof points" class="opv6-assurance" data-i18n-aria-label="opProofAssuranceLabel">
 <div class="opv6-proof-chip"><strong data-i18n="opProofChip1Title">Live supplier workflows</strong><span data-i18n="opProofChip1Text">Used around real project, routing, review, and finance handoffs.</span></div>
@@ -5350,7 +5403,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="opv12-coop-bridge" aria-label="Cooperation Resources" data-i18n-aria-label="opv12Aria">
 <div class="opv12-coop-head">
 <div class="opv12-kicker" data-i18n="opv12Kicker">Cooperation Resources</div>
-<h3 data-i18n-html="opv12Title">Use Sampora to find <em>reliable clients</em> and <em>stable suppliers</em>, then start cooperation.</h3>
+<h3 class="zh-title-single" data-i18n-html="opv12Title">Use Sampora to find <em>reliable clients</em> and <em>stable suppliers</em>, then start cooperation.</h3>
 <p data-i18n="opv12Lead">Sampora brings client and supplier cooperation signals into the system: recent project activity, delivery activity, settlement cycle, and star ratings. Teams can judge fit before moving into the project workflow.</p>
 </div>
 <div class="opv12-coop-grid" role="list">
@@ -5395,7 +5448,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <h3 data-i18n="opProofCase2Title">Make supplier choice less dependent on memory.</h3>
 <div class="opv6-steps">
 <div class="opv6-step"><b data-i18n="opProofIssueLabel">Operational issue</b><p data-i18n="opProofCase2Issue">Operators remember who can run a market, who should be blocked, and which CPI should stay hidden.</p></div>
-<div class="opv6-step"><b data-i18n="opProofControlLabel">Sampora control</b><p data-i18n="opProofCase2Control">Supplier assignment, block rules, and supplier pricing are managed inside the project workflow.</p></div>
+<div class="opv6-step"><b data-i18n="opProofControlLabel">Sampora control</b><p data-i18n="opProofCase2Control">The supplier routing workflow keeps assignment, block rules, and supplier pricing inside the project record.</p></div>
 </div>
 <div class="opv6-outcome" data-i18n="opProofCase2Outcome">Wrong sends, blocked-route mistakes, and supplier price exposure become easier to prevent.</div>
 </article>
@@ -5413,7 +5466,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <h3 data-i18n="opProofCase4Title">Give finance a clear settlement packet.</h3>
 <div class="opv6-steps">
 <div class="opv6-step"><b data-i18n="opProofIssueLabel">Operational issue</b><p data-i18n="opProofCase4Issue">Supplier bills, client invoices, wallet changes, rejects, and approved completes are reconciled after export.</p></div>
-<div class="opv6-step"><b data-i18n="opProofControlLabel">Sampora control</b><p data-i18n="opProofCase4Control">Approved delivery records connect to billing, invoice, wallet, and settlement review status.</p></div>
+<div class="opv6-step"><b data-i18n="opProofControlLabel">Sampora control</b><p data-i18n="opProofCase4Control">Approved delivery records connect to billing, invoice, wallet, and the settlement workflow.</p></div>
 </div>
 <div class="opv6-outcome" data-i18n="opProofCase4Outcome">Finance can close with a clearer evidence chain instead of asking operations to explain every mismatch.</div>
 </article>
@@ -5433,7 +5486,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="section-head title-only">
 <div>
 <div class="section-kicker" data-i18n="outcomeKicker">01 / Pain -> Outcome</div>
-<h2 data-i18n-html="outcomeTitle">Turn fragmented sample delivery into <em>visible operations control.</em>
+<h2 class="zh-title-single" data-i18n-html="outcomeTitle">Turn fragmented sample delivery into <em>visible operations control.</em>
 </h2>
 </div>
 
@@ -5472,7 +5525,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="section-head title-only">
 <div>
 <div class="section-kicker" data-i18n="platformKicker">02 / Platform</div>
-<h2 data-i18n-html="platformTitle">Nine product capabilities<br><em>one sample operations workspace.</em></h2>
+<h2 class="section-title-single" data-i18n-html="platformTitle">Nine product capabilities <em>one sample operations workspace.</em></h2>
 </div>
 </div>
 <div class="modules">
@@ -5553,7 +5606,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="section-head title-only">
 <div>
 <div class="section-kicker" data-i18n="productSurfacesKicker">04 / Product Surfaces</div>
-<h2 data-i18n-html="productSurfacesTitle">Three product interfaces<br><em>one operations story.</em></h2>
+<h2 class="section-title-single" data-i18n-html="productSurfacesTitle">Three product interfaces <em>one operations story.</em></h2>
 </div>
 
 </div>
@@ -5613,7 +5666,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </article>
 <article class="role95-persona" role="listitem" style="--role-accent: var(--lime);" tabindex="0">
 <div class="role95-persona-top">
-<figure class="role95-photo"><img alt="Supplier network manager workflow persona" decoding="async" loading="lazy" src="assets/role-supplier-network-manager.png"/></figure>
+<figure class="role95-photo"><img alt="Supplier routing workflow for sample supplier operations" decoding="async" loading="lazy" src="assets/role-supplier-network-manager.png"/></figure>
 <div class="role95-meta"><span data-i18n="role95Card2Badge">Supplier network</span><h3 data-i18n="customer2Name">Supplier Network Manager</h3><p data-i18n="customer2Role">Supplier routing and pricing owner</p></div>
 </div>
 <div class="role95-body">
@@ -5624,7 +5677,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </article>
 <article class="role95-persona" role="listitem" style="--role-accent: var(--amber);" tabindex="0">
 <div class="role95-persona-top">
-<figure class="role95-photo"><img alt="Finance operations specialist workflow persona" decoding="async" loading="lazy" src="assets/role-finance-operations-specialist.png"/></figure>
+<figure class="role95-photo"><img alt="Settlement workflow for supplier bills and client invoices" decoding="async" loading="lazy" src="assets/role-finance-operations-specialist.png"/></figure>
 <div class="role95-meta"><span data-i18n="role95Card3Badge">Finance settlement</span><h3 data-i18n="customer3Name">Finance Operations Specialist</h3><p data-i18n="customer3Role">Settlement and invoice owner</p></div>
 </div>
 <div class="role95-body">
@@ -5738,7 +5791,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <span class="sampora-footer-mark">S</span>
 <span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span>
 </a>
-<p data-i18n="footerDesc">Manage sample projects, suppliers, reviews, and settlement checks in one workspace.</p>
+<p data-i18n="footerDesc">Sample operations software for panel providers and sample suppliers, covering project intake, supplier routing, delivery review, and settlement workflows.</p>
 <div class="sampora-footer-badges"><span data-i18n="tag1">Sample supply</span><span data-i18n="tag2">Review workflow</span><span data-i18n="tag3">Settlement ledger</span></div>
 </div>
 <div class="sampora-footer-col">
@@ -5860,7 +5913,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "finalText": "Tell us how you receive projects, route supply, review delivery, and handle settlement checks. Our team will map the right trial or demo path.",
                 "finalTitle": "Bring your sample operations workflow into Sampora.",
                 "footerConfigurationGuide": "Configuration guide",
-                "footerDesc": "Manage sample projects, suppliers, reviews, and settlement checks in one workspace.",
+                "footerDesc": "Sample operations software for panel providers and sample suppliers, covering project intake, supplier routing, delivery review, and settlement workflows.",
                 "footerGetStarted": "Get started",
                 "footerLegalLine": "© 2026 Anhui Jiayu Enterprise Service Co., Ltd.",
                 "footerOperationManual": "Operation manual",
@@ -5877,8 +5930,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "heroProof2Title": "Assign suppliers",
                 "heroProof3Text": "Connect review records, callbacks, supplier bills, and client invoices.",
                 "heroProof3Title": "Review & settle",
-                "heroSub": "Manage sample projects, suppliers, reviews, and settlement checks in one workspace.",
-                "heroTitle": "Online Sample Operations Platform for <em>Panel Providers & Sample Suppliers.</em>",
+                "heroSub": "Manage project intake, supplier routing, delivery review, and settlement workflows in one traceable workspace.",
+                "heroTitle": "Online Sample Operations Platform and Panel Management Software for <em>Panel Providers & Sample Suppliers.</em>",
                 "idle": "idle",
                 "kpiCompletes": "Completes",
                 "kpiCpiAvg": "CPI avg",
@@ -5947,7 +6000,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "opProofCase1Outcome": "Teams assign suppliers against the latest approved setup instead of re-checking message history.",
                 "opProofCase1Step": "Launch setup",
                 "opProofCase1Title": "Stop chasing old project specs before fieldwork starts.",
-                "opProofCase2Control": "Supplier assignment, block rules, and supplier pricing are managed inside the project workflow.",
+                "opProofCase2Control": "The supplier routing workflow keeps assignment, block rules, and supplier pricing inside the project record.",
                 "opProofCase2Issue": "Operators remember who can run a market, who should be blocked, and which CPI should stay hidden.",
                 "opProofCase2Outcome": "Wrong sends, blocked-route mistakes, and supplier price exposure become easier to prevent.",
                 "opProofCase2Step": "Supplier routing",
@@ -5957,7 +6010,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "opProofCase3Outcome": "Operations can trace why a delivery count changed without rebuilding the story from exports.",
                 "opProofCase3Step": "Delivery review",
                 "opProofCase3Title": "Keep dispute evidence before the dispute starts.",
-                "opProofCase4Control": "Approved delivery records connect to billing, invoices, wallets, and settlement checks.",
+                "opProofCase4Control": "Approved delivery records connect to billing, invoice, wallet, and the settlement workflow.",
                 "opProofCase4Issue": "Supplier bills, client invoices, wallet changes, rejects, and approved completes are reconciled after export.",
                 "opProofCase4Outcome": "Finance can close with a clearer evidence chain instead of asking operations to explain every mismatch.",
                 "opProofCase4Step": "Settlement",
@@ -5975,7 +6028,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "opProofDemoCta": "Book a demo",
                 "opProofIssueLabel": "Operational issue",
                 "opProofKicker": "Product foundation",
-                "opProofLead": "Sampora turns proven sample-industry operating experience into one workspace for <b>project launch, supplier routing, delivery review, and settlement checks</b>.",
+                "opProofLead": "Sampora turns proven market research sample operations into one workspace for <b>project launch, supplier routing, delivery review, and settlement workflows</b>.",
                 "opProofLogoGridLabel": "Partner logos",
                 "opProofLogoHldtName": "HLDT Survey",
                 "opProofLogoHldtTag": "Supplier Network Ops",
@@ -5994,7 +6047,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "outcome5": "Outcome: settlement checks",
                 "outcomeKicker": "01 / Pain / Outcome",
                 "outcomeTitle": "Turn fragmented sample delivery into <em>visible operations control.</em>",
-                "pageTitle": "Sampora - Online Sample Operations Platform for Panel Providers & Sample Suppliers",
+                "pageTitle": "Sampora | Sample Operations Software & Panel Management Software",
                 "panelPlanLi1": "Panel member management",
                 "panelPlanLi2": "Member groups and levels",
                 "panelPlanLi3": "Incentive / wallet workflows",
@@ -6015,10 +6068,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "plansKicker": "06 / Plans",
                 "plansTitle": "<span class=\"plans-title-line\">Choose the sample operations workspace</span><br><em class=\"plans-title-line\">that matches your complexity.</em>",
                 "platformKicker": "02 / Platform",
-                "platformTitle": "Nine product capabilities<br><em>one sample operations workspace.</em>",
+                "platformTitle": "Nine product capabilities <em>one sample operations workspace.</em>",
                 "product": "Product",
                 "productSurfacesKicker": "04 / Product Surfaces",
-                "productSurfacesTitle": "Three product interfaces<br><em>one operations story.</em>",
+                "productSurfacesTitle": "Three product interfaces <em>one operations story.</em>",
                 "proofPanelText": "Sampora keeps project launch, supplier work, delivery review, and settlement checks connected in one workflow.",
                 "proofPanelTitle": "Different role needs, kept in one workspace",
                 "proofNeed1Title": "Project Launch",
@@ -6185,7 +6238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "finalText": "请说明你如何接项目、分供应、审核交付和处理结算核对。我们的团队会匹配合适的试用或演示路径。",
                 "finalTitle": "把你的样本运营工作流接入 Sampora.",
                 "footerConfigurationGuide": "配置指南",
-                "footerDesc": "把样本项目、供应商、审核和结算核对放到一个工作台里。",
+                "footerDesc": "面向自有样本库运营方与样本供应商的样本运营软件，覆盖项目接收、供应商路由流程、交付审核流程和结算流程。",
                 "footerGetStarted": "开始使用",
                 "footerLegalLine": "© 2026 安徽省嘉禹企业服务有限公司",
                 "footerOperationManual": "操作手册",
@@ -6202,8 +6255,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "heroProof2Title": "分供应",
                 "heroProof3Text": "连接审核记录、回调、供应商账单和客户发票。",
                 "heroProof3Title": "审核与结算核对",
-                "heroSub": "把样本项目、供应商、审核和结算核对放到一个工作台里。",
-                "heroTitle": "面向<em>自有样本运营方与在线样本供应商</em>的在线样本运营平台",
+                "heroSub": "在一个可追溯工作台中管理项目接收、供应商路由流程、交付审核流程和结算流程。",
+                "heroTitle": "面向 <em>自有样本库运营方与样本供应商</em> 的在线样本运营平台与自有样本库管理软件",
                 "idle": "空闲",
                 "langSwitcher": "语言切换",
                 "cap1Label": "能力 01",
@@ -6277,7 +6330,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "opProofCase1Outcome": "团队按最新确认的配置分配供应商，不再反复翻查消息记录。",
                 "opProofCase1Step": "上线配置",
                 "opProofCase1Title": "项目执行开始前，不再追着旧版规格反复确认。",
-                "opProofCase2Control": "供应商安排、屏蔽规则和供应商定价都在项目流程内管理。",
+                "opProofCase2Control": "供应商路由流程将分配、屏蔽规则和供应商定价保留在同一项目记录中。",
                 "opProofCase2Issue": "运营人员靠记忆判断哪些供应商能做某个市场、哪些需要屏蔽、哪些 CPI 不该外露。",
                 "opProofCase2Outcome": "错发项目、误走屏蔽路线和供应商价格外露更容易被提前避免。",
                 "opProofCase2Step": "供应商路由",
@@ -6287,7 +6340,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "opProofCase3Outcome": "运营团队可以追溯交付数量为什么变化，而不必从导出表重新拼故事。",
                 "opProofCase3Step": "交付审核",
                 "opProofCase3Title": "在争议出现之前，就把证据留好。",
-                "opProofCase4Control": "已审核的交付记录连接到账单、发票、钱包和结算核对。",
+                "opProofCase4Control": "已审核的交付记录会连接账单、发票、钱包记录和结算流程。",
                 "opProofCase4Issue": "供应商账单、客户发票、钱包变动、拒绝数和已审核完成数，常常在导出后才对账。",
                 "opProofCase4Outcome": "财务可以基于更清晰的证据链完成结算，不必让运营逐项解释差异。",
                 "opProofCase4Step": "结算",
@@ -6305,7 +6358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "opProofDemoCta": "预约演示",
                 "opProofIssueLabel": "运营问题",
                 "opProofKicker": "构建基础",
-                "opProofLead": "Sampora 将经过验证的样本行业运营经验放进一个工作台，用于<b>项目启动、供应商路由、交付审核和结算核对</b>。",
+                "opProofLead": "Sampora 将市场研究样本运营经验放进同一个工作台，覆盖<b>项目启动、供应商路由流程、交付审核流程和结算流程</b>。",
                 "opProofLogoGridLabel": "合作方标识",
                 "opProofLogoHldtName": "HLDT Survey",
                 "opProofLogoHldtTag": "供应商网络运营",
@@ -6324,7 +6377,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "outcome5": "结果：财务与结算",
                 "outcomeKicker": "01 / 痛点 / 结果",
                 "outcomeTitle": "把分散的样本交付工作变成<em>可见的运营控制.</em>",
-                "pageTitle": "Sampora - 面向自有样本运营方与在线样本供应商的在线样本运营平台",
+                "pageTitle": "Sampora｜样本运营软件与自有样本库管理软件",
                 "pain1Text": "客户简报、API feeds 和内部请求常以不同格式进入，运营团队需要先整理信息，才能准备交付。",
                 "pain1Title": "项目来自不同渠道",
                 "pain2Text": "CPI、IR/LOI、目标人群、区域规则和供应商交付配置，常常需要跨多个工具和表格反复确认。",
@@ -6339,12 +6392,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "panelText": "适合沉淀长期受访者资产，并管理会员档案、激励、钱包和参与记录的团队。",
                 "plans": "版本方案",
                 "plansKicker": "06 / 版本方案",
-                "plansTitle": "<span class=\"plans-title-line\">选择匹配复杂度的</span><br><em class=\"plans-title-line\">样本运营工作台.</em>",
+                "plansTitle": "<span class=\"plans-title-line\">选择匹配复杂度的</span><em class=\"plans-title-line\">样本运营工作台.</em>",
                 "platformKicker": "02 / 产品能力",
-                "platformTitle": "九项产品能力<br><em>共用一层样本运营底座.</em>",
+                "platformTitle": "九项产品能力<em>共用一层样本运营底座.</em>",
                 "product": "产品",
                 "productSurfacesKicker": "04 / 产品界面",
-                "productSurfacesTitle": "三个产品界面<br><em>串起一条运营主线.</em>",
+                "productSurfacesTitle": "三个产品界面<em>串起一条运营主线.</em>",
                 "proofPanelText": "Sampora 把项目上线、供应商网络运营、项目审核交付和对账结算开票连接在同一条运营流程里。",
                 "proofPanelTitle": "把不同角色的需求，放进同一个工作台",
                 "proofNeed1Title": "项目上线",
