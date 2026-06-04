@@ -1,6 +1,18 @@
 (function () {
   const CONSENT_KEY = 'sampora_cookie_consent';
   const PREFS_KEY = 'sampora_cookie_consent_preferences';
+  const ATTRIBUTION_STORAGE_KEYS = [
+    'sampora_attribution',
+    'sampora_first_touch',
+    'sampora_last_touch',
+    'sampora_lead_attribution_v1',
+    'sampora_gclid',
+    'sampora_fbclid',
+    'sampora_msclkid',
+    'gclid',
+    'fbclid',
+    'msclkid'
+  ];
   const CLARITY_RETRY_COUNT = 8;
   const CLARITY_RETRY_DELAY = 500;
 
@@ -57,6 +69,25 @@
     try {
       window.localStorage.setItem(key, value);
     } catch (error) {}
+  }
+
+  function removeStorage(key) {
+    try {
+      window.localStorage.removeItem(key);
+    } catch (error) {}
+  }
+
+  function removeSessionStorage(key) {
+    try {
+      window.sessionStorage.removeItem(key);
+    } catch (error) {}
+  }
+
+  function clearAttributionStorage() {
+    ATTRIBUTION_STORAGE_KEYS.forEach(function (key) {
+      removeStorage(key);
+      removeSessionStorage(key);
+    });
   }
 
   function parsePreferences() {
@@ -174,6 +205,7 @@
 
   function rejectNonEssential() {
     saveChoice('rejected', { analyticsMarketing: false });
+    clearAttributionStorage();
     applyConsent(false, { retryClarity: true });
     removeBanner();
     closePreferences();
@@ -183,6 +215,7 @@
     const toggle = document.getElementById('sampora-cookie-analytics-toggle');
     const analyticsMarketing = toggle ? toggle.checked === true : false;
     saveChoice('custom', { analyticsMarketing: analyticsMarketing });
+    if (!analyticsMarketing) clearAttributionStorage();
     applyConsent(analyticsMarketing, { retryClarity: true });
     removeBanner();
     closePreferences();
@@ -363,11 +396,14 @@
       return true;
     }
     if (saved === 'rejected') {
+      clearAttributionStorage();
       applyConsent(false, { retryClarity: true });
       return true;
     }
     if (saved === 'custom') {
-      applyConsent(parsePreferences().analyticsMarketing === true, { retryClarity: true });
+      const analyticsMarketing = parsePreferences().analyticsMarketing === true;
+      if (!analyticsMarketing) clearAttributionStorage();
+      applyConsent(analyticsMarketing, { retryClarity: true });
       return true;
     }
     applyConsent(false, { retryClarity: false });

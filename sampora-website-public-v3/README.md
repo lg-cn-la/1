@@ -53,17 +53,23 @@ This is the overseas-server stage. Do not add mainland filing display text until
 
 ## Contact Form Endpoint Policy
 
-`contact.html` is configured to the live Apps Script Web App endpoint:
+`contact.html` is configured to the same-origin production contact route:
 
-- `https://script.google.com/macros/s/AKfycbyHALTY5VRPba0ok2PKkPAUzBHWr8LIASQS1zZ3KCRsj4fg50tqIQltCQzLTP6i4GKP/exec`
+- `/api/contact`
 
 The form `action`, `data-endpoint`, and submit-script `CONTACT_ENDPOINT` must stay identical.
+
+Explore Cooperation Resources links use `contact.html?intent=cooperation#contact-form`; docs must not describe a separate legacy resource/implementation intent mapping as current behavior.
 
 Lead context fields submitted with the form include:
 
 - Core context: `intent`, `source_page`, `source_section`, `plan`, `lang`
-- Attribution context: `landing_page`, `referrer`, `utm_source`, `utm_medium`, `utm_campaign`
+- Attribution context: `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `fbclid`, `msclkid`, `referrer`, `landing_page`, `conversion_page`, `cta_intent`, `cta_location`, `cta_event`, `captured_at`, `first_landing_page`, `first_referrer`, `first_utm_source`, `first_utm_medium`, `first_utm_campaign`, `last_landing_page`, `last_referrer`
 - Honeypot: `website`
+
+The bundled `backend/google-apps-script-contact.gs` file is an example backend handoff, not proof of a production backend. A real `/api/contact` implementation should accept the frontend `application/x-www-form-urlencoded` body, may keep JSON compatibility, trim and length-limit submitted values, store attribution in lead records, and keep missing or overlong attribution from failing an otherwise valid form submission.
+
+Marketing tracking remains GTM-operated. GA4 and Clarity should stay inside GTM with no direct public HTML tags. Each frontend `dataLayer` event needs a GTM Custom Event Trigger plus a GA4 Event Tag; mark only `generate_lead` as the initial GA4 Key event / Conversion. Keep `contact_form_submit` as debug/auxiliary, add `apply_for_trial_click`, and do not depend on `start_trial_click`.
 
 ## QA Evidence
 

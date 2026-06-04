@@ -60,6 +60,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="description" content="Compare Sampora plans for Panel, Supplier Network, and Enterprise sample operations across delivery, review, settlement, API intake, and Partner Network workflows."/>
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+<meta property="og:url" content="https://getsampora.com/plans.html">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
 <link rel="canonical" href="https://getsampora.com/plans.html">
@@ -348,8 +349,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </nav>
 <div class="header-actions">
 <div aria-label="Language" class="lang" data-i18n-aria-label="langSwitcher"><button class="active" data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button></div>
-<a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a>
-<a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Apply for trial</a>
+<a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="header">Book a demo</a>
+<a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="header">Apply for trial</a>
 </div>
 </div>
 </header>
@@ -357,18 +358,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <section class="hero container">
 <div class="hero-grid">
 <div class="hero-copy-panel">
-<span class="eyebrow" data-i18n="heroEyebrow">Plans / operating model</span>
-<h1 data-i18n="heroTitle">Choose the <span class="grad">Sampora plan</span> for your operating model.</h1>
-<p class="lead" data-i18n="heroText">Sampora plans are grouped by what your team operates: owned panels, external supplier networks, or multi-entity sample operations across clients, suppliers, panels, APIs, and finance.</p>
-<div class="hero-actions"><a class="btn primary" data-i18n="heroPrimary" href="contact.html?intent=start_trial#contact-form">Apply for trial</a><a class="btn ghost" data-i18n="heroSecondary" href="contact.html?intent=book_demo#contact-form">Book a demo</a></div>
+<span class="eyebrow" data-i18n="heroEyebrow">Plans / team fit</span>
+<h1 data-i18n="heroTitle">Choose the <span class="grad">Sampora plan</span> that matches your team.</h1>
+<p class="lead" data-i18n="heroText">Compare versions by what your team manages: owned panels, supplier coordination, or multi-entity work across clients, suppliers, panels, APIs, and finance.</p>
+<div class="hero-actions"><a class="btn primary" data-i18n="heroPrimary" href="contact.html?intent=start_trial#contact-form" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="hero">Apply for trial</a><a class="btn ghost" data-i18n="heroSecondary" href="contact.html?intent=book_demo#contact-form" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="hero">Book a demo</a></div>
 </div>
 <aside aria-label="Plan selector preview" class="console-card plan-selector-card">
-<div class="console-head"><span class="console-lights" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="selectorTitle">sample operations / plans</span><span data-i18n="selectorMapLabel">OPERATING MODEL MAP</span></div>
+<div class="console-head"><span class="console-lights" aria-hidden="true"><i></i><i></i><i></i></span><span data-i18n="selectorTitle">sample operations / plans</span><span data-i18n="selectorMapLabel">TEAM FIT MAP</span></div>
 <div class="console-body">
 <div class="plan-fit-summary">
 <small data-i18n="selectorKicker">Version logic</small>
-<h3 data-i18n="selectorHeading">Match the plan to the operating responsibility your team owns.</h3>
-<p data-i18n="selectorText">Choose by what your team controls: owned panel operations, supplier coordination, or the full client-supplier-panel-finance loop.</p>
+<h3 data-i18n="selectorHeading">Match the plan to what your team manages.</h3>
+<p data-i18n="selectorText">Choose by daily work: owned panels, supplier coordination, or the full client-supplier-panel-finance loop.</p>
 </div>
 <div class="plan-fit-list">
 <a class="plan-fit-row" href="#plans">
@@ -393,9 +394,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="section-head">
 <div>
 <div class="section-kicker" data-i18n="plansKicker">Sample operations versions</div>
-<h2 data-i18n="plansTitle">Three versions for three operating responsibilities.</h2>
+<h2 data-i18n="plansTitle">Three versions for three team needs.</h2>
 </div>
-<p data-i18n="plansLead">Decide by what your team actually owns: panel operations, supplier coordination, or the complete multi-entity operations loop.</p>
+<p data-i18n="plansLead">Decide by what your team needs to manage: owned panels, supplier coordination, or the complete multi-entity loop.</p>
 </div>
 <div class="plans-grid" id="plansGrid"></div>
 </div>
@@ -405,7 +406,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="section-head">
 <div>
 <div class="section-kicker" data-i18n="matrixKicker">Capability matrix</div>
-<h2 data-i18n="matrixTitle">Compare plans by operating responsibility.</h2>
+<h2 data-i18n="matrixTitle">Compare what each plan helps you manage.</h2>
 </div>
 <p data-i18n="matrixLead">Compare what each version helps your team manage across projects, suppliers, clients, members, settlement, API delivery, and Cooperation Resources.</p>
 </div>
@@ -420,9 +421,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <p data-i18n="finalText">Tell us how you manage panel, supplier, API, review, and settlement workflows. We will map the right version for your team.</p>
 </div>
 <div class="final-actions">
-<a class="btn primary" data-i18n="finalPrimary" href="contact.html?intent=start_trial#contact-form">Apply for trial</a>
-<a class="btn ghost" data-i18n="finalSecondary" href="contact.html?intent=book_demo#contact-form">Book a demo</a>
-<a class="btn ghost" data-i18n="finalTertiary" href="contact.html?intent=contact_sales#contact-form">Talk to sales</a>
+<a class="btn primary" data-i18n="finalPrimary" href="contact.html?intent=start_trial#contact-form" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="final">Apply for trial</a>
+<a class="btn ghost" data-i18n="finalSecondary" href="contact.html?intent=book_demo#contact-form" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="final">Book a demo</a>
+<a class="btn ghost" data-i18n="finalTertiary" href="contact.html?intent=contact_sales#contact-form" data-ga-event="contact_sales_click" data-ga-intent="sales_contact" data-ga-location="final">Talk to sales</a>
 </div>
 </div>
 </div>
@@ -455,9 +456,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </div>
 <div class="sampora-footer-col">
 <h3 data-footer-i18n="footerGetStarted">Get started</h3>
-<a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Apply for trial</a>
-<a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
-<a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
+<a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="footer">Apply for trial</a>
+<a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="footer">Book a demo</a>
+<a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales" data-ga-event="contact_sales_click" data-ga-intent="sales_contact" data-ga-location="footer">Talk to sales</a>
 <button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
 </div>
 </div>
@@ -479,11 +480,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     statusLive:'PANEL FIT / LIVE', statusDemoLabel:'owned panel operations', statusNetworks:'member records + survey execution site', statusRegion:'trial path ready', statusControls:'Panel version', brandSub:'Operations console',
     product:'Product', solutions:'Solutions', resources:'Resources', plans:'Plans', navAbout:'About', navContact:'Contact', bookDemo:'Book a demo', startTrial:'Apply for trial',
     footerDesc:'An online sample operations platform for panel providers and sample suppliers, covering project delivery, supplier assignment, review records, finance, and Cooperation Resources.', footerTag1:'Sample supply', footerTag2:'Review workflow', footerTag3:'Settlement ledger', footerProductTitle:'Product', footerPlatform:'Platform overview', footerWorkflow:'Workflow', footerProductSurfaces:'Product surfaces', footerPlans:'Plans', footerResourcesTitle:'Resources', footerResourcesOverview:'Resources overview', footerConfigurationGuide:'Configuration Guide', footerOperationManual:'Operation Manual', footerRolloutNotes:'Rollout Notes', footerGetStartedTitle:'Get started', footerStartTrial:'Apply for trial', footerBookDemo:'Book a demo', footerTalkToSales:'Talk to sales', footerContact:'Contact', footerAddress:'Room 1506, Block A, Hengsheng Sunshine City, Lu\'an, Anhui, China', footerCopyright:'© 2026', footerCompanyLegal:'Anhui Jiayu Enterprise Service Co., Ltd.',privacy:'Privacy Policy',cookie:'Cookie Policy',cookiePreferences:'Cookie Preferences',terms:'Terms of Use', legalStaticGuard:'© 2026 Anhui Jiayu Enterprise Service Co., Ltd.',
-    heroEyebrow:'Plans / operating model', heroTitle:'Choose the Sampora plan for your operating model.', heroTitleHtml:'Choose the <span class="grad">Sampora plan</span> for your operating model.', heroText:'Sampora plans are grouped by what your team operates: owned panels, external supplier networks, or multi-entity sample operations across clients, suppliers, panels, APIs, and finance.', heroPrimary:'Apply for trial', heroSecondary:'Book a demo',
-    selectorTitle:'sample operations / plans', selectorMapLabel:'OPERATING MODEL MAP', selectorKicker:'Plan logic', selectorHeading:'Match each plan to the work your team owns.', selectorText:'Choose by daily work: panel operations, supplier coordination, API delivery, finance, and Cooperation Resources.', selectorPanelTitle:'Panel', selectorPanelText:'For owned panel, survey execution site, member, incentive, and member-side finance operations.', selectorSupplierTitle:'Supplier Network', selectorSupplierText:'For teams that assign suppliers, manage subcontracted delivery, API handoff, review, and settlement.', selectorEnterpriseTitle:'Enterprise', selectorEnterpriseText:'For teams managing clients, suppliers, Panel, API delivery, finance, permissions, and Cooperation Resources across business units.',
+    heroEyebrow:'Plans / team fit', heroTitle:'Choose the Sampora plan that matches your team.', heroTitleHtml:'Choose the <span class="grad">Sampora plan</span> that matches your team.', heroText:'Compare versions by what your team manages: owned panels, supplier coordination, or multi-entity work across clients, suppliers, panels, APIs, and finance.', heroPrimary:'Apply for trial', heroSecondary:'Book a demo',
+    selectorTitle:'sample operations / plans', selectorMapLabel:'TEAM FIT MAP', selectorKicker:'Plan logic', selectorHeading:'Match each plan to what your team manages.', selectorText:'Choose by daily work: owned panels, supplier coordination, API delivery, finance, and Cooperation Resources.', selectorPanelTitle:'Panel', selectorPanelText:'For owned panel, survey execution site, member, incentive, and member-side finance operations.', selectorSupplierTitle:'Supplier Network', selectorSupplierText:'For teams that assign suppliers, manage subcontracted delivery, API handoff, review, and settlement.', selectorEnterpriseTitle:'Enterprise', selectorEnterpriseText:'For teams managing clients, suppliers, Panel, API delivery, finance, permissions, and Cooperation Resources across business units.',
     planBestForLabel:'Best for', planScopeLabel:'Operating scope', planUpgradeLabel:'Upgrade trigger',
-    plansKicker:'Sample operations versions', plansTitle:'Three versions for three operating responsibilities.', plansLead:'Decide by what your team actually owns: panel operations, supplier coordination, or the complete multi-entity operations loop.',
-    matrixKicker:'Capability matrix', matrixTitle:'Compare plans by operating responsibility.', matrixLead:'Compare what each version helps your team manage across projects, suppliers, clients, members, settlement, API delivery, and Cooperation Resources.',
+    plansKicker:'Sample operations versions', plansTitle:'Three versions for three team needs.', plansLead:'Decide by what your team needs to manage: owned panels, supplier coordination, or the complete multi-entity loop.',
+    matrixKicker:'Capability matrix', matrixTitle:'Compare what each plan helps you manage.', matrixLead:'Compare what each version helps your team manage across projects, suppliers, clients, members, settlement, API delivery, and Cooperation Resources.',
     finalTitle:'Not sure which Sampora version fits your operation?', finalText:'Tell us how you manage panel, supplier, API, review, and settlement workflows. We will map the right version for your team.', finalPrimary:'Apply for trial', finalSecondary:'Book a demo', finalTertiary:'Talk to sales'
   };
   const I18N = {
@@ -528,17 +529,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       footerAddress:'中国安徽省六安市恒生阳光城 A 座 1506 室',
       footerCopyright:'© 2026',
       footerCompanyLegal:'安徽省嘉禹企业服务有限公司',privacy:'隐私政策',cookie:'Cookie政策',cookiePreferences:'Cookie 偏好设置',terms:'使用条款',
-      heroEyebrow:'版本方案 / 运营模型',
-      heroTitle:'选择匹配你运营模式的 Sampora 版本',
-      heroTitleHtml:'选择匹配你运营模式的 <span class="grad">Sampora 版本</span>',
-      heroText:'Sampora 版本按团队实际运营对象划分：自有样本库运营版、供应商网络运营版，或覆盖客户、供应商、样本库、API 与财务的多实体样本运营。',
+      heroEyebrow:'版本方案 / 团队适配',
+      heroTitle:'选择适合你团队的 Sampora 版本',
+      heroTitleHtml:'选择适合你团队的 <span class="grad">Sampora 版本</span>',
+      heroText:'按团队需要管理的内容比较版本：自有样本库、供应商协同，或覆盖客户、供应商、样本库、API 与财务的多实体工作。',
       heroPrimary:'申请试用',
       heroSecondary:'预约演示',
       selectorTitle:'样本运营 / 版本方案',
-      selectorMapLabel:'运营模型映射',
+      selectorMapLabel:'团队适配地图',
       selectorKicker:'版本逻辑',
-      selectorHeading:'按团队实际负责的工作选择版本.',
-      selectorText:'按每天负责的工作选择：自有样本库、供应商协同、API 交付、财务和合作资源。',
+      selectorHeading:'按团队需要管理的内容选择版本。',
+      selectorText:'按日常工作选择：自有样本库、供应商协同、API 交付、财务和合作资源。',
       selectorPanelTitle:'样本库运营版',
       selectorPanelText:'适合自有样本库、执行站点、会员、激励和会员侧财务运营。',
       selectorSupplierTitle:'供应商网络运营版',
@@ -549,12 +550,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       planScopeLabel:'运营范围',
       planUpgradeLabel:'升级信号',
       plansKicker:'样本运营版本',
-      plansTitle:'三种版本，对应三类运营责任.',
-      plansLead:'根据团队真正管理的对象选择：自有样本库运营、供应商协同，或完整的多实体运营闭环。',
+      plansTitle:'三种版本，对应三类团队需求。',
+      plansLead:'根据团队需要管理的内容选择：自有样本库、供应商协同，或完整的多实体闭环。',
       matrixKicker:'能力矩阵',
-      matrixTitle:'按运营责任比较版本.',
+      matrixTitle:'比较每个版本能帮你管理什么。',
       matrixLead:'比较每个版本能帮助团队管理哪些项目、供应商、客户、会员、结算、API 交付和合作资源。',
-      finalTitle:'不确定哪个 Sampora 版本适合你的运营模式？',
+      finalTitle:'不确定哪个 Sampora 版本适合你的团队？',
       finalText:'告诉我们你如何管理样本库、供应商、API、审核和结算流程，我们会帮你匹配合适的 Sampora 版本。',
       finalPrimary:'申请试用',
       finalSecondary:'预约演示',
@@ -675,6 +676,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       ? 'contact.html?intent=contact_sales&plan=enterprise#contact-form'
       : 'contact.html?intent=start_trial#contact-form';
   }
+  function planCTATracking(plan){
+    return plan.key === 'enterprise'
+      ? { event: 'contact_sales_click', intent: 'sales_contact', slug: 'enterprise' }
+      : { event: 'apply_for_trial_click', intent: 'trial_request', slug: plan.key === 'panel' ? 'sampora_panel' : 'supplier_network' };
+  }
   function renderChrome(lang){
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     document.documentElement.dataset.lang = lang;
@@ -717,7 +723,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
           <small>${escapeHTML(tr(lang, 'planUpgradeLabel'))}</small>
           <span>${escapeHTML(plan.trigger)}</span>
         </div>
-        <a class="btn ${index === 1 ? 'primary' : 'ghost'}" href="${planCTAUrl(plan)}">${escapeHTML(plan.cta)}</a>
+        <a class="btn ${index === 1 ? 'primary' : 'ghost'}" href="${planCTAUrl(plan)}" data-ga-event="${planCTATracking(plan).event}" data-ga-intent="${planCTATracking(plan).intent}" data-ga-location="plans_card" ${plan.key === 'panel' ? 'data-plan-slug="sampora_panel"' : plan.key === 'supplier' ? 'data-plan-slug="supplier_network"' : 'data-plan-slug="enterprise"'}>${escapeHTML(plan.cta)}</a>
       </article>
     `).join('');
   }

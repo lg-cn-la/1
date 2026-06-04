@@ -59,6 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="description" content="Contact Sampora to discuss trial, demo, sales, enterprise, or resource questions for online sample operations." />
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+<meta property="og:url" content="https://getsampora.com/contact.html">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://getsampora.com/contact.html">
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
@@ -1497,8 +1498,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                     <button data-lang="zh" type="button">中文</button>
 
                 </div>
-                <a class="btn ghost" href="contact.html?intent=book_demo#contact-form" data-i18n="ctaDemo">Book a demo</a>
-                <a class="btn primary" href="contact.html?intent=start_trial#contact-form" data-i18n="ctaTop">Apply for trial</a>
+                <a class="btn ghost" href="contact.html?intent=book_demo#contact-form" data-i18n="ctaDemo" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="header">Book a demo</a>
+                <a class="btn primary" href="contact.html?intent=start_trial#contact-form" data-i18n="ctaTop" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="header">Apply for trial</a>
             </div>
         </div>
     </header>
@@ -1542,6 +1543,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                     <input type="hidden" name="utm_source" id="utmSourceField" value="" />
                     <input type="hidden" name="utm_medium" id="utmMediumField" value="" />
                     <input type="hidden" name="utm_campaign" id="utmCampaignField" value="" />
+                    <input type="hidden" name="utm_term" id="utmTermField" value="" />
+                    <input type="hidden" name="utm_content" id="utmContentField" value="" />
+                    <input type="hidden" name="gclid" id="gclidField" value="" />
+                    <input type="hidden" name="fbclid" id="fbclidField" value="" />
+                    <input type="hidden" name="msclkid" id="msclkidField" value="" />
+                    <input type="hidden" name="conversion_page" id="conversionPageField" value="" />
+                    <input type="hidden" name="cta_intent" id="ctaIntentField" value="" />
+                    <input type="hidden" name="cta_location" id="ctaLocationField" value="" />
+                    <input type="hidden" name="cta_event" id="ctaEventField" value="" />
+                    <input type="hidden" name="captured_at" id="capturedAtField" value="" />
+                    <input type="hidden" name="first_landing_page" id="firstLandingPageField" value="" />
+                    <input type="hidden" name="first_referrer" id="firstReferrerField" value="" />
+                    <input type="hidden" name="first_utm_source" id="firstUtmSourceField" value="" />
+                    <input type="hidden" name="first_utm_medium" id="firstUtmMediumField" value="" />
+                    <input type="hidden" name="first_utm_campaign" id="firstUtmCampaignField" value="" />
+                    <input type="hidden" name="last_landing_page" id="lastLandingPageField" value="" />
+                    <input type="hidden" name="last_referrer" id="lastReferrerField" value="" />
                     <input type="text" name="website" autocomplete="off" tabindex="-1" hidden>
                     <div class="form-row">
                         <div class="field">
@@ -1685,9 +1703,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 </div>
                 <div class="sampora-footer-col">
                     <h3 data-footer-i18n="footerGetStarted">Get started</h3>
-                    <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Apply for trial</a>
-                    <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
-                    <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
+                    <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="footer">Apply for trial</a>
+                    <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="footer">Book a demo</a>
+                    <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales" data-ga-event="contact_sales_click" data-ga-intent="sales_contact" data-ga-location="footer">Talk to sales</a>
                     <button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
                 </div>
             </div>
@@ -2117,34 +2135,90 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
   const sourcePage = 'contact.html';
   const sourceSection = qs.get('source_section') || 'contact-form';
   const backendEndpoint = CONTACT_ENDPOINT;
+  const contactSuccessMarkerKey = 'sampora_contact_success_marker';
   const roleSelect = document.getElementById('role');
   const roleOtherField = document.getElementById('roleOtherField');
   const roleOtherInput = document.getElementById('role_other');
   const businessSelect = document.getElementById('business_type');
-  const landingPageField = document.getElementById('landingPageField');
-  const referrerField = document.getElementById('referrerField');
-  const utmSourceField = document.getElementById('utmSourceField');
-  const utmMediumField = document.getElementById('utmMediumField');
-  const utmCampaignField = document.getElementById('utmCampaignField');
+  const attributionFields = {
+    landing_page: document.getElementById('landingPageField'),
+    referrer: document.getElementById('referrerField'),
+    utm_source: document.getElementById('utmSourceField'),
+    utm_medium: document.getElementById('utmMediumField'),
+    utm_campaign: document.getElementById('utmCampaignField'),
+    utm_term: document.getElementById('utmTermField'),
+    utm_content: document.getElementById('utmContentField'),
+    gclid: document.getElementById('gclidField'),
+    fbclid: document.getElementById('fbclidField'),
+    msclkid: document.getElementById('msclkidField'),
+    conversion_page: document.getElementById('conversionPageField'),
+    cta_intent: document.getElementById('ctaIntentField'),
+    cta_location: document.getElementById('ctaLocationField'),
+    cta_event: document.getElementById('ctaEventField'),
+    captured_at: document.getElementById('capturedAtField'),
+    first_landing_page: document.getElementById('firstLandingPageField'),
+    first_referrer: document.getElementById('firstReferrerField'),
+    first_utm_source: document.getElementById('firstUtmSourceField'),
+    first_utm_medium: document.getElementById('firstUtmMediumField'),
+    first_utm_campaign: document.getElementById('firstUtmCampaignField'),
+    last_landing_page: document.getElementById('lastLandingPageField'),
+    last_referrer: document.getElementById('lastReferrerField')
+  };
 
   function resolveLeadAttribution() {
+    const intentTrackingDefaults = {
+      start_trial: { cta_intent: 'trial_request', cta_event: 'apply_for_trial_click' },
+      book_demo: { cta_intent: 'demo_request', cta_event: 'book_demo_click' },
+      contact_sales: { cta_intent: 'sales_contact', cta_event: 'contact_sales_click' },
+      cooperation: { cta_intent: 'cooperation_resources', cta_event: 'resource_click' }
+    };
     const fallback = {
       landing_page: normalizeUrlWithoutHash(window.location.href),
       referrer: trimValue(document.referrer),
       utm_source: trimValue(qs.get('utm_source')),
       utm_medium: trimValue(qs.get('utm_medium')),
-      utm_campaign: trimValue(qs.get('utm_campaign'))
+      utm_campaign: trimValue(qs.get('utm_campaign')),
+      utm_term: trimValue(qs.get('utm_term')),
+      utm_content: trimValue(qs.get('utm_content')),
+      gclid: trimValue(qs.get('gclid')),
+      fbclid: trimValue(qs.get('fbclid')),
+      msclkid: trimValue(qs.get('msclkid')),
+      conversion_page: normalizeUrlWithoutHash(window.location.href),
+      cta_intent: intent === 'start_trial' ? 'trial_request' : trimValue(qs.get('cta_intent')) || intent,
+      cta_location: trimValue(qs.get('cta_location')) || sourceSection,
+      cta_event: intent === 'start_trial' ? 'apply_for_trial_click' : trimValue(qs.get('cta_event')) || 'contact_request_submit',
+      captured_at: new Date().toISOString(),
+      first_landing_page: '',
+      first_referrer: '',
+      first_utm_source: '',
+      first_utm_medium: '',
+      first_utm_campaign: '',
+      last_landing_page: '',
+      last_referrer: ''
     };
-    const runtime = window.SamporaLeadAttribution && typeof window.SamporaLeadAttribution.get === 'function'
-      ? window.SamporaLeadAttribution.get() || {}
-      : {};
-    return {
-      landing_page: trimValue(runtime.landing_page) || fallback.landing_page,
-      referrer: trimValue(runtime.referrer) || fallback.referrer,
-      utm_source: trimValue(runtime.utm_source) || fallback.utm_source,
-      utm_medium: trimValue(runtime.utm_medium) || fallback.utm_medium,
-      utm_campaign: trimValue(runtime.utm_campaign) || fallback.utm_campaign
-    };
+    let runtime = {};
+    try {
+      runtime = window.SamporaLeadAttribution && typeof window.SamporaLeadAttribution.get === 'function'
+        ? window.SamporaLeadAttribution.get() || {}
+        : {};
+    } catch (error) {
+      runtime = {};
+    }
+    const output = Object.keys(fallback).reduce((values, key) => {
+      values[key] = trimValue(runtime[key]) || fallback[key];
+      return values;
+    }, {});
+    const trackingDefault = intentTrackingDefaults[intent];
+    if (trackingDefault) {
+      const runtimeEvent = trimValue(runtime.cta_event);
+      const queryLocation = trimValue(qs.get('cta_location'));
+      output.cta_intent = trackingDefault.cta_intent;
+      output.cta_event = trackingDefault.cta_event;
+      if (!queryLocation && runtimeEvent !== trackingDefault.cta_event) {
+        output.cta_location = sourceSection;
+      }
+    }
+    return output;
   }
 
   function resolvePlan() {
@@ -2160,11 +2234,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     document.getElementById('planField').value = resolvePlan();
     document.getElementById('langField').value = currentPageLang();
     const attribution = resolveLeadAttribution();
-    if (landingPageField) landingPageField.value = attribution.landing_page;
-    if (referrerField) referrerField.value = attribution.referrer;
-    if (utmSourceField) utmSourceField.value = attribution.utm_source;
-    if (utmMediumField) utmMediumField.value = attribution.utm_medium;
-    if (utmCampaignField) utmCampaignField.value = attribution.utm_campaign;
+    Object.keys(attributionFields).forEach((key) => {
+      if (attributionFields[key]) attributionFields[key].value = attribution[key] || '';
+    });
   }
 
   function updateRoleOtherState() {
@@ -2183,10 +2255,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
   const place = (id, key) => { const el = document.getElementById(id); if (el && copy[key]) el.placeholder = copy[key]; };
 
   const submit = form.querySelector('button[type="submit"]');
+  const defaultSubmitText = submit ? submit.textContent : '';
   const privacy = form.querySelector('.privacy');
   const submitFeedback = document.getElementById('contactSubmitFeedback');
   let submitFeedbackState = '';
   let isSubmitting = false;
+  let trackedSubmitSuccess = false;
 
   function setSubmitFeedback(state) {
     submitFeedbackState = state || '';
@@ -2205,6 +2279,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     submitFeedback.textContent = feedbackKey && copy[feedbackKey] ? copy[feedbackKey] : '';
     submitFeedback.dataset.state = submitFeedbackState;
     submitFeedback.hidden = false;
+  }
+
+  function setSubmitLoading(loading) {
+    if (!submit) return;
+    submit.disabled = loading;
+    submit.setAttribute('aria-busy', String(loading));
+    submit.textContent = loading && copy.submitPending ? copy.submitPending : (copy.submit || defaultSubmitText);
   }
 
   function renderPrivacyNote() {
@@ -2238,6 +2319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     place('role_other', 'roleOtherDetailPlaceholder');
     place('message', 'messagePlaceholder');
     if (submit && copy.submit) submit.textContent = copy.submit;
+    setSubmitLoading(isSubmitting);
     renderPrivacyNote();
     roleOptions.forEach((opt, i) => { if (copy[optionText.role[i]]) opt.textContent = copy[optionText.role[i]]; });
     bizOptions.forEach((opt, i) => { if (copy[optionText.business[i]]) opt.textContent = copy[optionText.business[i]]; });
@@ -2268,6 +2350,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
   const toastFailure = document.getElementById('toastFailure');
   const show = (el) => { if (!el) return; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 3800); };
 
+  function responseIdentifier(result, responsePayload) {
+    const candidates = [
+      responsePayload && responsePayload.submit_id,
+      responsePayload && responsePayload.lead_id,
+      responsePayload && responsePayload.id,
+      result && result.submit_id,
+      result && result.lead_id,
+      result && result.id
+    ];
+    return candidates.map(trimValue).find(Boolean) || '';
+  }
+
+  function createSuccessMarker(result, responsePayload) {
+    const backendId = responseIdentifier(result, responsePayload);
+    if (backendId) return `backend:${backendId}`;
+    const randomPart = Math.random().toString(36).slice(2);
+    return `session:${Date.now()}:${randomPart}`;
+  }
+
+  function storeSuccessMarker(marker) {
+    try { sessionStorage.setItem(contactSuccessMarkerKey, marker); } catch (e) {}
+  }
+
+  function pushContactSubmitEvent() {
+    if (trackedSubmitSuccess) return;
+    trackedSubmitSuccess = true;
+    const attribution = resolveLeadAttribution();
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({}, attribution, {
+        event: 'contact_form_submit',
+        form_name: 'contact',
+        intent: intent,
+        cta_intent: attribution.cta_intent || (intent === 'start_trial' ? 'trial_request' : intent),
+        cta_event: attribution.cta_event || (intent === 'start_trial' ? 'apply_for_trial_click' : 'contact_request_submit')
+      }));
+    } catch (error) {}
+  }
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (isSubmitting) return;
@@ -2276,6 +2397,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
     const body = new URLSearchParams(payload);
     try { sessionStorage.setItem('sampora_contact_pending', 'pending'); } catch (e) {}
     isSubmitting = true;
+    setSubmitLoading(true);
     setSubmitFeedback('submitting');
     try {
       const res = await fetch(backendEndpoint, { method: 'POST', body });
@@ -2285,6 +2407,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       if (res.ok && responsePayload.ok === true) {
         setSubmitFeedback('success');
         try { sessionStorage.removeItem('sampora_contact_pending'); } catch (e) {}
+        storeSuccessMarker(createSuccessMarker(result, responsePayload));
+        pushContactSubmitEvent();
         form.reset();
         updateRoleOtherState();
         setHiddenFields();
@@ -2296,6 +2420,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
       setSubmitFeedback('failure');
     } finally {
       isSubmitting = false;
+      setSubmitLoading(false);
     }
   });
 })();

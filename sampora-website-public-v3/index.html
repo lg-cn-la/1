@@ -53,10 +53,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta content="Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations." name="description"/>
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://getsampora.com/assets/og-sampora.png">
+<meta property="og:url" content="https://getsampora.com/index.html">
 <meta name="msvalidate.01" content="0F37EC55E6AF64B1CFDC6D6A23A433DE" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://getsampora.com/index.html">
 <link rel="stylesheet" href="assets/sampora-cookie-preferences.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://getsampora.com/#organization","name":"Sampora","url":"https://getsampora.com/index.html","logo":"https://getsampora.com/assets/og-sampora.png"},{"@type":"WebSite","@id":"https://getsampora.com/#website","url":"https://getsampora.com/index.html","name":"Sampora","publisher":{"@id":"https://getsampora.com/#organization"}},{"@type":"SoftwareApplication","@id":"https://getsampora.com/#software","name":"Sampora","applicationCategory":"BusinessApplication","operatingSystem":"Web","url":"https://getsampora.com/index.html","description":"Sampora is an online sample operations platform for panel providers and sample suppliers, with supplier allocation, review records, finance, and partner operations.","publisher":{"@id":"https://getsampora.com/#organization"}}]}</script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -4880,7 +4882,7 @@ body::before,
     color: var(--cyan2);
     font: 11px var(--mono);
     letter-spacing: .15em;
-    text-transform: uppercase;
+    text-transform: none;
 }
 .opv6-kicker::before {
     content: "";
@@ -5662,7 +5664,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <header class="mast">
 <div class="container inner"><a class="brand" href="index.html"><span class="mark">S</span><span><b>Sampora</b><small data-i18n="brandSub">Operations console</small></span></a>
 <nav aria-label="Primary navigation" class="nav product-nav sampora-nav-standard"><span aria-hidden="true" class="nav-indicator"></span><a class="nav-link active" data-i18n="product" href="index.html">Product</a><a class="nav-link" data-i18n="solutions" href="solutions.html">Solutions</a><a class="nav-link" data-i18n="resources" href="resources.html">Resources</a><a class="nav-link" data-i18n="plans" href="plans.html">Plans</a><a class="nav-link" data-i18n="navAbout" href="about.html">About</a><a class="nav-link" data-i18n="navContact" href="contact.html">Contact</a></nav>
-<div class="header-actions"><div aria-label="Language" class="lang" data-i18n-aria-label="langSwitcher"><button class="active" data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button></div><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Apply for trial</a></div>
+<div class="header-actions"><div aria-label="Language" class="lang" data-i18n-aria-label="langSwitcher"><button class="active" data-lang="en" type="button">EN</button><button data-lang="zh" type="button">中文</button></div><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="header">Book a demo</a><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="header">Apply for trial</a></div>
 </div>
 </header>
 <div aria-hidden="true" aria-labelledby="topologyModalTitle" class="topology-modal" id="topologyModal">
@@ -5680,7 +5682,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="eyebrow localized settle d1" data-i18n="eyebrow">Online sample operations platform / control console</div>
 <h1 class="settle d2" data-i18n-html="heroTitle">Online Sample Operations Platform for <em>Panel Providers &amp; Sample Suppliers.</em></h1>
 <p class="hero-sub settle d3" data-i18n-html="heroSub">Manage sample projects, suppliers, reviews, and settlement checks in one workspace.</p>
-<div class="cta-row settle d3"><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Apply for trial</a><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a></div>
+<div class="cta-row settle d3"><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="header">Apply for trial</a><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="header">Book a demo</a></div>
 <div class="hero-proof-grid settle d4">
 <div class="proof-mini cyan"><strong data-i18n="heroProof1Title">Receive projects</strong><span data-i18n="heroProof1Text">Keep client, country, CPI, IR/LOI, quota, and launch rules together.</span></div>
 <div class="proof-mini"><strong data-i18n="heroProof2Title">Assign suppliers</strong><span data-i18n="heroProof2Text">Assign suppliers, block unsuitable supply, and manage supplier pricing.</span></div>
@@ -5964,8 +5966,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <div class="opv6-bottom">
 <p data-i18n-html="opProofBottom"><strong>Best next step:</strong> ask about cooperation resources or book a demo to see how client and supplier cooperation moves into the workflow.</p>
 <div class="opv6-actions">
-<a class="btn ghost" data-i18n="opProofCoopCta" href="contact.html?intent=cooperation#contact-form">Explore Cooperation Resources</a>
-<a class="btn primary" data-i18n="opProofDemoCta" href="contact.html?intent=book_demo#contact-form">Book a demo</a>
+<a class="btn ghost" data-i18n="opProofCoopCta" href="contact.html?intent=cooperation#contact-form" data-ga-event="resource_click" data-ga-intent="cooperation_resources" data-ga-location="operating_proof" data-resource-slug="cooperation_resources">Explore Cooperation Resources</a>
+<a class="btn primary" data-i18n="opProofDemoCta" href="contact.html?intent=book_demo#contact-form" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="operating_proof">Book a demo</a>
 </div>
 </div>
 </div>
@@ -6216,7 +6218,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <li data-i18n="panelPlanLi2">Member groups and levels</li>
 <li data-i18n="panelPlanLi3">Incentive / wallet workflows</li>
 <li data-i18n="panelPlanLi4">Respondent portal support</li>
-</ul><a class="btn ghost" data-i18n="talkSales" href="contact.html?intent=contact_sales#contact-form">Talk to sales</a>
+</ul><a class="btn ghost" data-i18n="talkSales" href="contact.html?intent=contact_sales#contact-form" data-ga-event="contact_sales_click" data-ga-intent="sales_contact" data-ga-location="plans_card">Talk to sales</a>
 </article>
 <article class="pricing-card featured">
 <div class="plan">
@@ -6228,7 +6230,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <li data-i18n="supplierPlanLi2">Allocation and pricing controls</li>
 <li data-i18n="supplierPlanLi3">Review and callback records</li>
 <li data-i18n="supplierPlanLi4">Supplier bills and settlement checks</li>
-</ul><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Apply for trial</a>
+</ul><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="header">Apply for trial</a>
 </article>
 <article class="pricing-card">
 <div class="plan">
@@ -6240,7 +6242,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <li data-i18n="enterprisePlanLi2">API receiving and distribution controls</li>
 <li data-i18n="enterprisePlanLi3">Multi-party settlement and invoices</li>
 <li data-i18n="enterprisePlanLi4">Permissions, audit, and implementation support</li>
-</ul><a class="btn ghost" data-i18n="contactSales" href="contact.html?intent=contact_sales#contact-form">Contact sales</a>
+</ul><a class="btn ghost" data-i18n="contactSales" href="contact.html?intent=contact_sales#contact-form" data-ga-event="contact_sales_click" data-ga-intent="sales_contact" data-ga-location="plans_card">Contact sales</a>
 </article>
 </div>
 </div>
@@ -6256,7 +6258,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 <p data-i18n="finalStep2">02 Map the right Sampora layer</p>
 <p data-i18n="finalStep3">03 Apply for trial or demo</p>
 </div>
-<div class="cta-row"><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form">Apply for trial</a><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form">Book a demo</a></div>
+<div class="cta-row"><a class="btn primary" data-i18n="startTrial" href="contact.html?intent=start_trial#contact-form" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="header">Apply for trial</a><a class="btn ghost" data-i18n="bookDemo" href="contact.html?intent=book_demo#contact-form" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="header">Book a demo</a></div>
 </div>
 <aside class="faq-card">
 <h3 data-i18n="quickAnswers">Quick answers</h3>
@@ -6300,9 +6302,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </div>
 <div class="sampora-footer-col">
 <h3 data-i18n="footerGetStarted">Get started</h3>
-<a href="contact.html?intent=start_trial#contact-form" data-i18n="startTrial">Apply for trial</a>
-<a href="contact.html?intent=book_demo#contact-form" data-i18n="bookDemo">Book a demo</a>
-<a href="contact.html?intent=contact_sales#contact-form" data-i18n="footerTalkToSales">Talk to sales</a>
+<a href="contact.html?intent=start_trial#contact-form" data-i18n="startTrial" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="footer">Apply for trial</a>
+<a href="contact.html?intent=book_demo#contact-form" data-i18n="bookDemo" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="footer">Book a demo</a>
+<a href="contact.html?intent=contact_sales#contact-form" data-i18n="footerTalkToSales" data-ga-event="contact_sales_click" data-ga-intent="sales_contact" data-ga-location="footer">Talk to sales</a>
 <button type="button" class="sampora-footer-link-button" data-footer-email-open data-i18n="navContact">Contact</button>
 </div>
 </div>
@@ -6794,7 +6796,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
                 "startTrial": "申请试用",
                 "networkState": "样本供给池状态",
                 "openTopologyLabel": "打开运营拓扑",
-                "opProofAssuranceLabel": "运营证明要点",
+                "opProofAssuranceLabel": "构建基础要点",
                 "opv12Aria": "合作资源",
                 "opv12Kicker": "合作资源",
                 "opv12Title": "通过 Sampora 找到<em>靠谱客户</em>和<em>稳定供应商</em>，然后<span class='opv12-nowrap'>开始合作</span>",

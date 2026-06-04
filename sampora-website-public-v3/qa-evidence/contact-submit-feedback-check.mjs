@@ -12,7 +12,33 @@ const failures = [];
 
 const PLACEHOLDER_ENDPOINT = '[BACKEND_CONTACT_ENDPOINT]';
 const SOURCE_CONTACT_ENDPOINT = '/api/contact';
-const requiredLeadKeys = ['source_page', 'landing_page', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign', 'lang', 'website'];
+const requiredLeadKeys = [
+  'source_page',
+  'landing_page',
+  'referrer',
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_term',
+  'utm_content',
+  'gclid',
+  'fbclid',
+  'msclkid',
+  'conversion_page',
+  'cta_intent',
+  'cta_location',
+  'cta_event',
+  'captured_at',
+  'first_landing_page',
+  'first_referrer',
+  'first_utm_source',
+  'first_utm_medium',
+  'first_utm_campaign',
+  'last_landing_page',
+  'last_referrer',
+  'lang',
+  'website',
+];
 const requiredFormBody = {
   name: 'QA Reviewer',
   company: 'QA Evidence Co',
@@ -77,6 +103,20 @@ function assertSourceEndpointContract() {
   }
   if (/script\.google\.com\/macros|\/macros\/s\//i.test(contactHtml)) {
     fail('source contact.html must not directly reference Google Apps Script');
+  }
+  const requiredTrackingDefaults = [
+    "start_trial: { cta_intent: 'trial_request', cta_event: 'apply_for_trial_click' }",
+    "book_demo: { cta_intent: 'demo_request', cta_event: 'book_demo_click' }",
+    "contact_sales: { cta_intent: 'sales_contact', cta_event: 'contact_sales_click' }",
+    "cooperation: { cta_intent: 'cooperation_resources', cta_event: 'resource_click' }",
+    'output.cta_intent = trackingDefault.cta_intent',
+    'output.cta_event = trackingDefault.cta_event',
+    'runtimeEvent !== trackingDefault.cta_event',
+  ];
+  for (const snippet of requiredTrackingDefaults) {
+    if (!contactHtml.includes(snippet)) {
+      fail(`source contact.html missing intent-level tracking override: ${snippet}`);
+    }
   }
 }
 
@@ -289,12 +329,10 @@ async function expectThankYouRedirect(page, label) {
     }
   };
   if (!isThankYou()) {
-    await page.waitForURL('**/thank-you.html', { timeout: 5000 }).catch(() => {
-      fail(`${label}: did not redirect to thank-you.html, current URL ${page.url()}`);
-    });
+    await page.waitForURL(url => url.pathname === '/thank-you.html', { timeout: 5000 }).catch(() => {});
   }
-  const current = new URL(page.url());
-  if (current.pathname !== '/thank-you.html') {
+  if (!isThankYou()) {
+    const current = new URL(page.url());
     fail(`${label}: redirected to ${current.pathname} instead of /thank-you.html`);
   }
   const pending = await readPendingMarker(page);
@@ -336,7 +374,7 @@ try {
   await page.click('#contactForm button[type="submit"]');
   await page.waitForFunction(() => document.querySelector('#contactSubmitFeedback')?.dataset?.state === 'submitting');
   const pendingValues = await readFormValues(page);
-  if (pendingValues.submitDisabled) fail('live success pending disabled the submit button');
+  if (!pendingValues.submitDisabled) fail('live success pending did not disable the submit button');
   assertMinimalPendingMarker('live success pending storage', await readPendingMarker(page));
   await expectThankYouRedirect(page, 'live success');
 

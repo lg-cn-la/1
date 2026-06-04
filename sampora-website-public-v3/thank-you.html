@@ -41,23 +41,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script>
 window.dataLayer = window.dataLayer || [];
 (function () {
-  var key = 'sampora_thank_you_generate_lead_sent';
+  var markerKey = 'sampora_contact_success_marker';
+  var directTokenKey = 'sampora_thank_you_session_token';
+  var sentPrefix = 'sampora_thank_you_generate_lead_sent:';
+  function readSession(key) {
+    try { return sessionStorage.getItem(key) || ''; } catch (error) { return ''; }
+  }
+  function writeSession(key, value) {
+    try { sessionStorage.setItem(key, value); } catch (error) {}
+  }
+  function getFallbackToken() {
+    var token = readSession(directTokenKey);
+    if (token) return token;
+    token = 'session:' + Date.now() + ':' + Math.random().toString(36).slice(2);
+    writeSession(directTokenKey, token);
+    return token;
+  }
+  var marker = readSession(markerKey) || getFallbackToken();
+  var dedupeKey = sentPrefix + marker;
+  function pushGenerateLead() {
+    window.dataLayer.push({
+      event: 'generate_lead',
+      lead_form: 'contact',
+      lead_stage: 'request_received',
+      page_type: 'thank_you'
+    });
+  }
   try {
-    if (sessionStorage.getItem(key)) return;
-    window.dataLayer.push({
-      event: 'generate_lead',
-      lead_form: 'contact',
-      lead_stage: 'request_received',
-      page_type: 'thank_you'
-    });
-    sessionStorage.setItem(key, '1');
+    if (sessionStorage.getItem(dedupeKey)) return;
+    pushGenerateLead();
+    sessionStorage.setItem(dedupeKey, '1');
   } catch (error) {
-    window.dataLayer.push({
-      event: 'generate_lead',
-      lead_form: 'contact',
-      lead_stage: 'request_received',
-      page_type: 'thank_you'
-    });
+    pushGenerateLead();
   }
 })();
 </script>
@@ -1137,8 +1152,8 @@ h1 em {
           <button class="active" data-lang="en" type="button" aria-pressed="true">EN</button>
           <button data-lang="zh" type="button" aria-pressed="false">中文</button>
         </div>
-        <a class="btn ghost" href="contact.html?intent=book_demo#contact-form" data-i18n="ctaDemo">Book a demo</a>
-        <a class="btn primary" href="contact.html?intent=start_trial#contact-form" data-i18n="ctaTop">Apply for trial</a>
+        <a class="btn ghost" href="contact.html?intent=book_demo#contact-form" data-i18n="ctaDemo" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="header">Book a demo</a>
+        <a class="btn primary" href="contact.html?intent=start_trial#contact-form" data-i18n="ctaTop" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="header">Apply for trial</a>
       </div>
     </div>
   </header>
@@ -1279,9 +1294,9 @@ h1 em {
         </div>
         <div class="sampora-footer-col">
           <h3 data-footer-i18n="footerGetStarted">Get started</h3>
-          <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop">Apply for trial</a>
-          <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo">Book a demo</a>
-          <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales">Talk to sales</a>
+          <a href="contact.html?intent=start_trial#contact-form" data-footer-i18n="ctaTop" data-ga-event="apply_for_trial_click" data-ga-intent="trial_request" data-ga-location="footer">Apply for trial</a>
+          <a href="contact.html?intent=book_demo#contact-form" data-footer-i18n="ctaDemo" data-ga-event="book_demo_click" data-ga-intent="demo_request" data-ga-location="footer">Book a demo</a>
+          <a href="contact.html?intent=contact_sales#contact-form" data-footer-i18n="footerTalkToSales" data-ga-event="contact_sales_click" data-ga-intent="sales_contact" data-ga-location="footer">Talk to sales</a>
           <button type="button" class="sampora-footer-link-button" data-footer-email-open data-footer-i18n="navContact">Contact</button>
         </div>
       </div>
