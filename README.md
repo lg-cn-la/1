@@ -1,101 +1,84 @@
-# SurveySaaS / FenSvyG 海外官网方向评估
+# Sampora / SurveySaaS 海外官网与产品文档
 
-这个仓库保存 SurveySaaS / FenSvyG 海外官网的设计 demo、真实页面评估输出、补充方案和交接文档。
+> 当前公开品牌：**Sampora**。
+> `SurveySaaS` / `FenSvyG` 是历史旧名，只用于旧资产、旧 demo 和归档上下文。后续公开官网、SEO、JSON-LD、OG/Twitter、Sales PDF、Demo 脚本和 Codex patch 应优先使用 Sampora 口径。
 
-后续 agent 接手时，建议先读：
+这个仓库保存 Sampora 当前官网产品共识、SEO 规则、术语表、验收边界，以及 SurveySaaS / FenSvyG 旧阶段的设计 demo、真实页面评估输出、补充方案和交接文档。
 
-1. [docs/surveysaas/product-positioning-summary.md](docs/surveysaas/product-positioning-summary.md)：当前最新产品定位、供应链位置、客户画像、功能边界、业务闭环、术语和 Demo 主线。后续官网、Sales PDF、Demo 脚本和产品文案应优先以此为产品共识基础。
-2. [docs/surveysaas/sample-supplier-taxonomy.md](docs/surveysaas/sample-supplier-taxonomy.md)：Panel Provider、Sample Supplier、Survey Station、Sample Aggregator、Research Subcontractor、API-connected Supplier 的分类关系；明确 Audience Source 不作为当前首屏核心目标客户分类。
-3. [docs/surveysaas/backend-function-map.md](docs/surveysaas/backend-function-map.md)：基于演示后台实扫的功能地图、模块字段、按钮、流程线索、官网卖点和仍需确认项。
-4. [补充资料归档/operations-console/V48_R8_REVIEWED_DESIGN_NOTES.md](补充资料归档/operations-console/V48_R8_REVIEWED_DESIGN_NOTES.md)：从 v48 R8 分支核对后吸收进 main 的设计补充说明；保留可确认的设计判断，同时标记不能原样沿用的旧文案和未验证承诺。
-5. [PROJECT_HANDOFF.md](PROJECT_HANDOFF.md)：项目背景、目标客户、设计演进、当前判断和下一步建议。
-6. [补充资料归档/README.md](补充资料归档/README.md)：不在原始 Git 仓库里的桌面补充资料归档说明。
-7. [补充资料归档/operations-console/README.md](补充资料归档/operations-console/README.md)：operations console 方向的版本说明和 v4.7 / v4.8 R8 方向资料。
+## 当前 Sampora 必读文档
+
+后续 agent / Codex 接手时，优先读：
+
+1. [docs/sampora/README.md](docs/sampora/README.md)：当前 Sampora 文档索引和维护规则。
+2. [docs/sampora/current-product-positioning.md](docs/sampora/current-product-positioning.md)：当前品牌、目标客户、产品定位和不应误写的边界。
+3. [docs/sampora/product-boundaries-and-workflows.md](docs/sampora/product-boundaries-and-workflows.md)：确认过的产品能力、业务闭环、Partner Network 和结算流程口径。
+4. [docs/sampora/terminology-glossary.md](docs/sampora/terminology-glossary.md)：中英文固定术语，尤其是 `panel management software` 的中文口径。
+5. [docs/sampora/seo-implementation-rules.md](docs/sampora/seo-implementation-rules.md)：SEO 关键词、OG/Twitter、JSON-LD、sitemap 和页面修改边界。
+6. [docs/sampora/website-repair-and-acceptance-rules.md](docs/sampora/website-repair-and-acceptance-rules.md)：官网修复、回归保护和验收表述规则。
+
+## 当前公开官网交付与执行文档
+
+官网交付、部署、品牌资产、追踪和后端交接优先读：
+
+1. [docs/sampora/PRODUCT_BRIEF.md](docs/sampora/PRODUCT_BRIEF.md)：当前公开官网产品简报和对外叙事。
+2. [docs/sampora/BRAND_ASSETS.md](docs/sampora/BRAND_ASSETS.md)：当前品牌资产、Logo、OG 图和使用边界。
+3. [docs/sampora/TRACKING_AND_ANALYTICS.md](docs/sampora/TRACKING_AND_ANALYTICS.md)：GTM、GA4、Clarity、Cookie consent 和营销追踪规则。
+4. [docs/sampora/CONTACT_BACKEND_HANDOFF.md](docs/sampora/CONTACT_BACKEND_HANDOFF.md)：联系表单 `/api/contact`、Google Sheet、邮件通知和归因字段交接。
+5. [docs/sampora/SEO_SOCIAL_SCHEMA.md](docs/sampora/SEO_SOCIAL_SCHEMA.md)：SEO、OG/Twitter、JSON-LD、sitemap 和 IndexNow 交付说明。
+6. [docs/sampora/DEPLOYMENT_RUNBOOK.md](docs/sampora/DEPLOYMENT_RUNBOOK.md)：公开网站部署、验证和回滚运行手册。
+
+这些文档补充当前官网交付和执行细节，不取代上面的产品共识、术语表、SEO 边界和验收规则。做当前公开官网工作时，先用 Sampora 口径，不要把 SurveySaaS 重新作为前台品牌。
 
 ## 当前产品共识
 
-当前最新产品定位资料是：
+Sampora 不是普通问卷工具、普通项目管理系统、纯样本交易市场，也不应被包装成 Cint / PureSpectrum / Dynata 那类 marketplace。
 
-[docs/surveysaas/product-positioning-summary.md](docs/surveysaas/product-positioning-summary.md)
+当前更准确的定位是：
 
-核心判断：SurveySaaS / Sampora 不是普通问卷工具、普通项目管理系统或纯样本交易市场，而是面向在线样本服务商、Panel Providers、Sample Suppliers 和调研分包执行团队的 **Sample Operations / Panel Operations SaaS + Partner Network + Multi-party Settlement Platform**。
+> Online sample operations platform and B2B SaaS workspace for panel providers, sample suppliers, supplier network teams, and market research sample operations teams.
 
-后续所有官网、PDF、Demo、销售话术、Agent 交接和功能包装，优先以 `product-positioning-summary.md` 为产品共识基础；涉及目标客户分类、首屏拓扑图、Sample Supplier 子类型时，同时以 `sample-supplier-taxonomy.md` 为准。早期文档中的旧版本名、旧价格和不准确术语仅作为历史参考。
+中文可表达为：
 
-后台功能、字段、按钮和流程证据以：
+> 面向自有样本库运营方、在线样本供应商、供应商网络团队和市场研究样本运营团队的在线样本运营平台 / B2B SaaS 工作台。
 
-[docs/surveysaas/backend-function-map.md](docs/surveysaas/backend-function-map.md)
+## 当前官网与 Codex 执行原则
 
-为当前实扫参考。
+- 当前前台品牌只用 Sampora。
+- SEO 优先在现有核心页面做非破坏式关键词补充，不先新增大量长尾 HTML。
+- 首页 JSON-LD 只保留 Organization + WebSite + SoftwareApplication，不新增 Product / Offer / price / Review / Rating / AggregateRating。
+- `panel management software` 中文统一为“自有样本库管理软件”，不要写成“Panel 管理软件”或“面板管理软件”。
+- 完整五层验证必须真实覆盖静态完整性、视觉与动效运行态、业务路径、文案术语和上线可用性。grep / source review / smoke check 不能说成验收完成。
 
-## 当前主线
+## 历史资料仍可参考
 
-当前推荐方向是 `operations console`，核心判断是：
+以下旧资料仍有参考价值，但名称、定位和文案不得直接覆盖当前 Sampora 口径：
 
-> 国际 SaaS 正版感 + 运营密度 + 产品可信。
+1. [docs/surveysaas/product-positioning-summary.md](docs/surveysaas/product-positioning-summary.md)：旧 SurveySaaS 产品定位、功能边界和业务闭环。
+2. [docs/surveysaas/sample-supplier-taxonomy.md](docs/surveysaas/sample-supplier-taxonomy.md)：Panel Provider、Sample Supplier、Survey Station、Sample Aggregator、Research Subcontractor、API-connected Supplier 的分类关系。
+3. [docs/surveysaas/backend-function-map.md](docs/surveysaas/backend-function-map.md)：基于演示后台实扫的功能地图、模块字段、按钮和流程线索。
+4. [补充资料归档/operations-console/V48_R8_REVIEWED_DESIGN_NOTES.md](补充资料归档/operations-console/V48_R8_REVIEWED_DESIGN_NOTES.md)：从 v48 R8 分支核对后吸收进 main 的设计补充说明。
+5. [PROJECT_HANDOFF.md](PROJECT_HANDOFF.md)：旧阶段项目背景、目标客户、设计演进和下一步建议。
+6. [补充资料归档/README.md](补充资料归档/README.md)：不在原始 Git 仓库里的桌面补充资料归档说明。
+7. [补充资料归档/operations-console/README.md](补充资料归档/operations-console/README.md)：operations console 方向的版本说明和 v4.7 / v4.8 R8 方向资料。
 
-当前基础方向资料是：
+## 历史主线说明
 
-[补充资料归档/operations-console/DESIGN_STRATEGY_v4.7.md](补充资料归档/operations-console/DESIGN_STRATEGY_v4.7.md)
+仓库早期主线是 SurveySaaS / FenSvyG 海外官网方向评估，包含多个 demo、operations console 方向、真实页面截图和评估报告。当前这些内容保留为历史资产。
 
-配套方向 demo 是：
+后续如果继续迭代官网，不要从“7 个旧 demo 重新打分”开始。更有效的顺序是：
 
-[补充资料归档/operations-console/surveysaas_v47_direction_demo.html](补充资料归档/operations-console/surveysaas_v47_direction_demo.html)
-
-v4.8 R8 分支中的有效设计判断已经整理到：
-
-[补充资料归档/operations-console/V48_R8_REVIEWED_DESIGN_NOTES.md](补充资料归档/operations-console/V48_R8_REVIEWED_DESIGN_NOTES.md)
-
-后续如果继续基于 v4.8 / R8 方向迭代，应优先读这个 reviewed notes，不要直接照搬分支里的 snapshot HTML。
-
-对照基准是：
-
-[补充资料归档/operations-console/09_v35_operations_console_hybrid.html](补充资料归档/operations-console/09_v35_operations_console_hybrid.html)
+1. 先读 `docs/sampora/` 目录，确认当前 Sampora 品牌、产品边界、术语、SEO 和验收规则。
+2. 再读 `docs/surveysaas/sample-supplier-taxonomy.md` 和 `docs/surveysaas/backend-function-map.md`，吸收仍然有效的业务分类和后台功能证据。
+3. 再看 operations console 归档，判断 SaaS 克制感、运营密度、视觉记忆点和产品运行感是否平衡。
+4. 最后再把真实业务内容替换进当前候选页面，不要继续写设计说明类占位文案。
 
 ## 目录说明
 
-- `docs/surveysaas/product-positioning-summary.md`：当前最新产品定位、供应链位置、客户画像、功能边界、业务闭环、术语和 Demo 主线。
-- `docs/surveysaas/sample-supplier-taxonomy.md`：Sample Supplier 分类补充说明，包含首屏拓扑图建议和 Audience Source 使用边界。
-- `docs/surveysaas/backend-function-map.md`：演示后台实扫得到的功能地图、字段、按钮、状态流转线索和官网功能卖点。
-- `补充资料归档/operations-console/V48_R8_REVIEWED_DESIGN_NOTES.md`：v48 R8 分支核对后的设计补充说明。
+- `docs/sampora/`：当前 Sampora 产品、术语、SEO、结构化数据和验收规则。
+- `docs/surveysaas/`：SurveySaaS 旧阶段产品定位、分类和后台功能证据。
+- `补充资料归档/operations-console/`：operations console 方向资料和历史 demo。
 - `AI网页评估包/`：原始 7 个 demo 和评估入口。
 - `真实页面评估输出/`：早期 demo 的桌面端 / 移动端截图、contact sheet 和页面观察 JSON。
-- `补充资料归档/`：后来从桌面补进来的 Claude / GPT 方案、交接文档和聊天记录。
-- `PROJECT_HANDOFF.md`：给新对话或新 agent 的总交接说明。
-- `DEMO设计评估手册.html`：较大的综合设计评估手册。
-- `真实页面专业评估报告.html`：早期真实页面专业评估报告。
+- `PROJECT_HANDOFF.md`：旧阶段项目交接说明。
+- `DEMO设计评估手册.html`、`真实页面专业评估报告.html`：早期设计评估资料。
 - `build_*.js` / `evaluate_*.js` / `make_ai_review_pack.ps1`：生成评估手册、真实页面报告和评估包的脚本。
-
-## 接手建议
-
-不要从“7 个旧 demo 重新打分”开始。更有效的顺序是：
-
-1. 先读 `docs/surveysaas/product-positioning-summary.md`，确认产品到底是什么、服务谁、处在供应链哪个位置，以及哪些功能/术语不能误写。
-2. 再读 `docs/surveysaas/sample-supplier-taxonomy.md`，确认 Panel Provider / Sample Supplier / Survey Station / API Supplier 等角色关系，以及首页拓扑图应该如何写。
-3. 再读 `docs/surveysaas/backend-function-map.md`，把真实后台模块、字段、按钮和流程线索转成官网功能证据。
-4. 再读 `补充资料归档/operations-console/V48_R8_REVIEWED_DESIGN_NOTES.md`，吸收 v48 R8 的可用设计判断，并避开其中已经标记不能原样沿用的旧文案。
-5. 再读 `PROJECT_HANDOFF.md`。
-6. 先读 v4.7 设计 / 迭代指导方案，再打开 v4.7 方向 demo。
-7. 对照 v4.6、v3.5 和 `10_ops_console_overseas_saas_demo.html`，判断 SaaS 克制感、视觉记忆点和产品运行感是否平衡。
-8. 再把真实业务内容替换进当前候选，而不是继续写设计说明类占位文案。
-
-## 注意
-
-- 不要提交压缩包、浏览器缓存、临时测试目录。
-- 不要提交账号、密码、密钥、客户隐私数据。
-- 这个仓库包含项目方向、定位和设计讨论资料，GitHub 仓库建议设置为 Private。
-
-## Current Sampora public website docs
-
-Current public-facing brand is Sampora. SurveySaaS / FenSvyG materials in this repository are historical context unless a current Sampora doc says otherwise.
-
-Latest Sampora website and deployment docs:
-
-- [docs/sampora/PRODUCT_BRIEF.md](docs/sampora/PRODUCT_BRIEF.md)
-- [docs/sampora/BRAND_ASSETS.md](docs/sampora/BRAND_ASSETS.md)
-- [docs/sampora/TRACKING_AND_ANALYTICS.md](docs/sampora/TRACKING_AND_ANALYTICS.md)
-- [docs/sampora/CONTACT_BACKEND_HANDOFF.md](docs/sampora/CONTACT_BACKEND_HANDOFF.md)
-- [docs/sampora/SEO_SOCIAL_SCHEMA.md](docs/sampora/SEO_SOCIAL_SCHEMA.md)
-- [docs/sampora/DEPLOYMENT_RUNBOOK.md](docs/sampora/DEPLOYMENT_RUNBOOK.md)
-
-For current public website work, use these Sampora docs first. Do not reintroduce SurveySaaS as the front-facing brand.

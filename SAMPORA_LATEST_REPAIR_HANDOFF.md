@@ -337,6 +337,16 @@ Historical detailed update-log entries that previously made this active handoff 
 - `VISUAL-QA-001` is superseded by the 2026-05-22 user override for ordinary repair rounds: do not run default visual acceptance/review loops, and do not claim visual PASS unless the user explicitly requested and received that check.
 - Latest archived active entries before this cleanup included Package E async subagent wait rule sync, Package A FAQ layout balance, Package B Solutions card/fit-cycle repair, multilingual copy sync policy, and topology ledger evidence. Read the detailed log only when tracing those decisions.
 
+### 2026-06-06 JST - PR #2 root README merge-conflict resolution
+
+**Files changed:** root `README.md` and this handoff note. The normal merge from `origin/main` into `codex-full-qa-repair` also brings main-only docs/reference files into the PR branch history. `sampora-website-public-v3/` source files, QA evidence, delivery folders, zips, page behavior, and visual surfaces were intentionally untouched by this conflict-resolution step.
+
+**Issue addressed:** GitHub PR #2 was not mergeable because root `README.md` had a content conflict. The resolved README keeps the `main` branch's Sampora-first repository entrypoint, keeps SurveySaaS / FenSvyG as historical context, and adds the PR branch's current public website delivery/execution doc links under a dedicated section instead of restoring the older SurveySaaS-first README body.
+
+**Verification run:** conflict-marker scan for `README.md` returned no opening, separator, or closing conflict marker lines. `git diff --check -- README.md` exited 0 with only the existing LF/CRLF warning.
+
+**Remaining failures / next agent:** no page-source acceptance, browser proof, screenshots, Lighthouse/axe, package sync, zip rebuild, deployment, or visual acceptance was run. This is not acceptance-reviewed / 未做验收.
+
 ### 2026-06-04 JST - Marketing tracking / attribution / SEO metadata implementation
 
 **Files changed:** `ACCEPTANCE_TESTS.md`, `ISSUE_LEDGER.md`, `SAMPORA_LATEST_REPAIR_HANDOFF.md`, `sampora-website-public-v3/index.html`, `sampora-website-public-v3/solutions.html`, `sampora-website-public-v3/resources.html`, `sampora-website-public-v3/plans.html`, `sampora-website-public-v3/about.html`, `sampora-website-public-v3/resource-manuals.html`, `sampora-website-public-v3/contact.html`, `sampora-website-public-v3/thank-you.html`, `sampora-website-public-v3/privacy.html`, `sampora-website-public-v3/cookie-policy.html`, `sampora-website-public-v3/terms.html`, `sampora-website-public-v3/404.html`, `sampora-website-public-v3/assets/lead-attribution.js`, `sampora-website-public-v3/assets/sampora-cookie-preferences.js`, `sampora-website-public-v3/backend-form-handoff.md`, `sampora-website-public-v3/backend/google-apps-script-contact.gs`, `sampora-website-public-v3/README.md`, `sampora-website-public-v3/qa-evidence/contact-submit-feedback-check.mjs`, and `sampora-website-public-v3/qa-evidence/marketing-tracking-static-check.mjs`.
