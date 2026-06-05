@@ -84,3 +84,18 @@ v4.8 R8 分支中的有效设计判断已经整理到：
 - 不要提交压缩包、浏览器缓存、临时测试目录。
 - 不要提交账号、密码、密钥、客户隐私数据。
 - 这个仓库包含项目方向、定位和设计讨论资料，GitHub 仓库建议设置为 Private。
+
+## Current Sampora public website docs
+
+Current public-facing brand is Sampora. SurveySaaS / FenSvyG materials in this repository are historical context unless a current Sampora doc says otherwise.
+
+Latest Sampora website and deployment docs:
+
+- [docs/sampora/PRODUCT_BRIEF.md](docs/sampora/PRODUCT_BRIEF.md)
+- [docs/sampora/BRAND_ASSETS.md](docs/sampora/BRAND_ASSETS.md)
+- [docs/sampora/TRACKING_AND_ANALYTICS.md](docs/sampora/TRACKING_AND_ANALYTICS.md)
+- [docs/sampora/CONTACT_BACKEND_HANDOFF.md](docs/sampora/CONTACT_BACKEND_HANDOFF.md)
+- [docs/sampora/SEO_SOCIAL_SCHEMA.md](docs/sampora/SEO_SOCIAL_SCHEMA.md)
+- [docs/sampora/DEPLOYMENT_RUNBOOK.md](docs/sampora/DEPLOYMENT_RUNBOOK.md)
+
+For current public website work, use these Sampora docs first. Do not reintroduce SurveySaaS as the front-facing brand.
